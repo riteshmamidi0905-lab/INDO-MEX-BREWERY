@@ -1,0 +1,31 @@
+# ARC-01-D: Targeted correction of ARC-01-C (image-edit prompt)
+
+- **STATUS:** NOT GENERATED
+- **PURPOSE:** ARC-01-C scored 86/100 with no hard fail. Fix only the remaining small defects inside the Tank Hall glass and the window-frame colour. Everything else stays.
+- **METHOD:** input = `visuals/generated/ARC-01-C.webp`; mask the glass of the Tank Hall and the dark window frames. The earlier edit re-rendered the whole image, so **if the tool cannot preserve unmasked pixels, do these changes in post-production** (recolour cones; narrow the nearest band) instead of regenerating.
+- **ASPECT:** 16:9, identical framing.
+
+## EDIT PROMPT
+```
+Make only these changes to the input photograph and keep everything else exactly as it is (architecture, entrance, people, arcade, perforated screens, court, planting, sky, vehicles, light, camera).
+1) Cones: on all six fermenters, make the conical bottoms a MATTE CHARCOAL insulated cladding (dark graphite grey, about RAL 7016, non-reflective, with a soft fabric-like matte finish), clearly darker than the polished stainless cylindrical shells; keep the legs and fittings.
+2) Bands: on all six fermenters make the single band around the middle of the shell the same narrow width (about 6 inches, about one tenth of the tank diameter), the same deep marigold orange (more orange than yellow, about hex E8870E), perfectly horizontal; in particular narrow the band on the largest, nearest tank to match the others.
+3) Remove the small copper-coloured cylindrical vessel beside the staircase between the second and third tank on the west side, leaving the stair and a plain floor-level pipe run; keep the two large copper-clad brewing vessels, the copper hood and the stack on the raised brew deck.
+4) Window frames: change the dark mullions and frames of the Tank Hall glazing from black to a dark bronze (deep brown-bronze, slightly warm, matte).
+5) Add stainless trench drains in the floor at the base of the west and east tank groups, and coiled hoses on wall hooks at floor level, only if they fit naturally.
+6) Increase sharpness and fine detail of the equipment behind the glass (valves, tri-clamp fittings, railings, pipework) to the same crispness as the limestone and concrete outside, without changing any positions.
+Do not change the number of fermenters: exactly six, in the same positions.
+```
+## NEGATIVE
+```
+seven tanks, extra tanks, moved tanks, removed tanks, changes to the arcade or screens, changes to people, changes to vehicles, changes to the entrance, new text or logos, silver cones, shiny cones, thick or yellow bands, black frames
+```
+## Review checklist
+- [ ] Still exactly six fermenters in the same positions; two copper vessels remain.
+- [ ] Cones read matte charcoal, clearly darker than the shells.
+- [ ] All bands uniform ~6 in, deep marigold.
+- [ ] Ambiguous small vessel removed.
+- [ ] Mullions dark bronze, not black.
+- [ ] Nothing outside the hall glass drifted.
+## Acceptance
+Score >= 90 on the ARC-01 rubric with no hard fail; then founder approval. If ARC-01-D still misses on cone colour or band width, finish in post-production and stop iterating.
