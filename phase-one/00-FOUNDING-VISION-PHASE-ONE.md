@@ -1,3 +1,5 @@
+> **PHASE 1.5 NOTICE (2026-10-10):** This Phase One document is the first-draft baseline and is kept for the record. Where it conflicts with Phase 1.5 files (research/, beer/, food/, brand/, architecture/, visuals/), Phase 1.5 governs. See `docs/decisions/DECISIONS.md` and `docs/decisions/CORRECTIONS.md`.
+
 # INDO MEX BREWERY
 # FOUNDING VISION — PHASE ONE
 

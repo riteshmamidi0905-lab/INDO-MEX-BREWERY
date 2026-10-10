@@ -31,8 +31,21 @@ brand/ beer/ food/ architecture/ business/ website/   future working folders
 ```
 
 ## Start here
-`phase-one/00-FOUNDING-VISION-PHASE-ONE.md`
+Phase 1.5 (current): `docs/decisions/DECISIONS.md` → `brand/BRAND-WORLDS.md` → `visuals/VISUAL-DNA.md` → `visuals/ASSET-MANIFEST.md`.
+Phase One baseline (kept; Phase 1.5 governs conflicts): `phase-one/00-FOUNDING-VISION-PHASE-ONE.md`.
+
+### Phase 1.5 map
+| Area | Files |
+|---|---|
+| Research | `research/INDIAN-CULINARY-BENCHMARKS.md`, `MEXICAN-CULINARY-BENCHMARKS.md`, `INDIAN-BEER-LANDSCAPE.md`, `MEXICAN-BEER-LANDSCAPE.md`, `WHEAT-BEER-BENCHMARKS.md`, `AUSTIN-COMPETITIVE-LANDSCAPE.md`, `PAIRING-MATRIX-V2.md`, `SOURCES.md`, `RESEARCH-BACKLOG.md`, `RESEARCH-QUALITY-AUDIT.md` |
+| Beer | `beer/HEFEWEIZEN-BENCHMARK.md`, `PORTFOLIO-V2.md`, `GLASSWARE-V2.md` |
+| Food | `food/OPENING-MENU-V2.md`, `SAUCE-SYSTEM.md` |
+| Brand | `brand/NAMING-UNIVERSE-V2.md`, `PARENT-BRAND-CANDIDATES.md`, `BRAND-WORLDS.md` |
+| Architecture | `architecture/COURT-BREWHOUSE-V2.md`, `OPERATIONAL-FLOW.md`, `CULTURAL-DESIGN-RESEARCH.md` |
+| Business | `business/LICENSING-AND-FEASIBILITY-NOTES.md` |
+| Visuals | `visuals/VISUAL-DNA.md`, `ASSET-MANIFEST.md`, `prompts/V2-*.md`, `tools/build_prompts.py` |
+| Decisions | `docs/decisions/DECISIONS.md`, `REJECTED.md`, `OPEN-QUESTIONS.md`, `CORRECTIONS.md` |
 
 ## Status (2026-10-10)
-Phase One written. **No images generated yet** (no image-generation tool was available in the authoring session). Prompts for all 12 are ready.
+Phase One written; Phase 1.5 (research deepening + brand world) complete as a draft awaiting founder review. **No images generated yet** (external tool required); 57 self-contained prompts are ready.
 Website: not started, by instruction.

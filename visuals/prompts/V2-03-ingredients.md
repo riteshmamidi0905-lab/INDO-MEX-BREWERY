@@ -1,0 +1,24 @@
+# Production Prompts: V2-03-ingredients.md
+
+ Status of every asset below: **NOT GENERATED**. Each prompt is self-contained; paste it whole. For continuity, also attach the approved ARC-01 and BRW-01 images as references once they exist. Record tool, model, seed and date beside each output in `visuals/generated/LOG.md`.
+
+## ING-01: Grain and hops
+- Aspect: 1:1  |  Purpose: Ingredient story
+
+```
+Photorealistic editorial photograph, premium hospitality photography, natural imperfections, true-to-life materials, believable scale. Labeled as a concept visual (not an operating business). FORMAT: aspect ratio 1:1. SCENE: Flat lay on a pecan board: malted wheat and barley in two small black stoneware bowls, pale malt spilled loosely, whole hop cones and pellets in a stainless katori, a small dish of fresh yeast cake. VENUE CONTINUITY (identical in every image of this project): Tableware: matte black stoneware plates and bowls with raw unglazed rims and bone-white interiors; small stainless katori bowls for sauces; round stainless thali trays lined with bone paper; indigo-and-bone linen napkins with one marigold stripe; pecan tabletop. No people unless stated in the scene. CAMERA: Top-down 50mm flat lay. LIGHTING: Soft window light from the left. REALISM: believable quantities, natural browning and imperfections, correct physics for liquids, foam and cheese, real material textures. AVOID: brass fixtures, terracotta walls, mosaic or Moorish tiles, agave props, sombreros, turbans or saris as costume, deity or mandala imagery, flags, neon, string-light canopies, readable text or logos (leave every sign blank), extra or missing fingers, warped or asymmetrical glassware, CGI sheen, plastic-looking food, over-saturation, HDR halos, stock-photo smiles, any resemblance to real brands.
+```
+
+## ING-02: Masa and chiles
+- Aspect: 1:1  |  Purpose: Masa and chile story
+
+```
+Photorealistic editorial photograph, premium hospitality photography, natural imperfections, true-to-life materials, believable scale. Labeled as a concept visual (not an operating business). FORMAT: aspect ratio 1:1. SCENE: Flat lay: multicolored heirloom corn kernels, a ball of fresh masa, a hand-pressed raw tortilla, dried guajillo and Kashmiri-type red chiles in a katori, a stone molcajete-style bowl, a few curry leaves. VENUE CONTINUITY (identical in every image of this project): Tableware: matte black stoneware plates and bowls with raw unglazed rims and bone-white interiors; small stainless katori bowls for sauces; round stainless thali trays lined with bone paper; indigo-and-bone linen napkins with one marigold stripe; pecan tabletop. No people unless stated in the scene. CAMERA: Top-down 50mm flat lay. LIGHTING: Soft window light from the left. REALISM: believable quantities, natural browning and imperfections, correct physics for liquids, foam and cheese, real material textures. AVOID: brass fixtures, terracotta walls, mosaic or Moorish tiles, agave props, sombreros, turbans or saris as costume, deity or mandala imagery, flags, neon, string-light canopies, readable text or logos (leave every sign blank), extra or missing fingers, warped or asymmetrical glassware, CGI sheen, plastic-looking food, over-saturation, HDR halos, stock-photo smiles, any resemblance to real brands.
+```
+
+## ING-03: Fruit, spice and marigold
+- Aspect: 1:1  |  Purpose: The crossing: mango, tamarind, marigold
+
+```
+Photorealistic editorial photograph, premium hospitality photography, natural imperfections, true-to-life materials, believable scale. Labeled as a concept visual (not an operating business). FORMAT: aspect ratio 1:1. SCENE: Flat lay: a halved ripe mango, tamarind pods, dried kokum, whole black peppercorns, cardamom pods, fresh curry leaves, and a few real marigold flowers with orange petals on a dark stoneware tray. VENUE CONTINUITY (identical in every image of this project): Tableware: matte black stoneware plates and bowls with raw unglazed rims and bone-white interiors; small stainless katori bowls for sauces; round stainless thali trays lined with bone paper; indigo-and-bone linen napkins with one marigold stripe; pecan tabletop. No people unless stated in the scene. CAMERA: Top-down 50mm flat lay. LIGHTING: Soft window light from the left. REALISM: believable quantities, natural browning and imperfections, correct physics for liquids, foam and cheese, real material textures. AVOID: brass fixtures, terracotta walls, mosaic or Moorish tiles, agave props, sombreros, turbans or saris as costume, deity or mandala imagery, flags, neon, string-light canopies, readable text or logos (leave every sign blank), extra or missing fingers, warped or asymmetrical glassware, CGI sheen, plastic-looking food, over-saturation, HDR halos, stock-photo smiles, any resemblance to real brands.
+```
