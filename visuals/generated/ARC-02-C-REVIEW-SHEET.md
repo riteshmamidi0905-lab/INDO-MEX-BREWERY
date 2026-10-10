@@ -1,6 +1,6 @@
 # ARC-02-C Review Sheet (complete after external generation)
 
-**Status:** ARC-02-C NOT GENERATED — PACKAGE READY (D-45). Score nothing until an image exists. **One attempt only; if it fails, stop and report. No ARC-02-D automatically.**
+**Status:** ARC-02-C attempt 1 received and FAILED (D-46); completed review in `ARC-02-C-REVIEW.md`. Score nothing until an image exists. **One attempt only; if it fails, stop and report. No ARC-02-D automatically.**
 **Sources:** ARC-02-A (night exterior authority), ARC-01-D (hall geometry authority), ARC-01-E attempt 1 (equipment realism reference only). **Prompt:** `generation-batch-01/ARC-02-C.md`. ARC-02-B is rejected (provenance only).
 
 ## 0. Provenance to record

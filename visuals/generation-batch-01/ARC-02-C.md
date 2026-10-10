@@ -1,6 +1,6 @@
 # ARC-02-C: true night Tank Hall render, masked into ARC-02-A (ONE controlled generative attempt)
 
-- **STATUS:** NOT GENERATED — PACKAGE READY (founder decision D-45). **One attempt only.** If it fails, STOP and report; no ARC-02-D without a new founder decision.
+- **STATUS:** ATTEMPT 1 RECEIVED AND FAILED (D-46); see `visuals/generated/ARC-02-C-REVIEW.md`. **One attempt only.** If it fails, STOP and report; no ARC-02-D without a new founder decision.
 - **PURPOSE:** ARC-02-A's night exterior is the best we have but its hall interior is wrong (eight fermenters, no copper brewhouse). ARC-02-B (scripted day-to-night grade of ARC-01-D) is **rejected, kept for provenance only**. ARC-02-C replaces *only the interior behind the Tank Hall glazing* with the canonical six-tank brewhouse, genuinely lit as a night scene. This is not grading.
 - **SOURCE HIERARCHY:** ARC-02-A = entire night exterior/exposure/sky/landscape/people/entrance/atmosphere (outside the mask it stays pixel-identical). ARC-01-D = Tank Hall camera, mullions, exactly-six geometry, tank scale/positions, central brewhouse. ARC-01-E attempt 1 = **realism reference only** for sanitary equipment detail; never its frontal camera, symmetry, mullions or tank arrangement.
 - **Mullions:** ARC-02-A's own mullions are locked and re-pasted by the composite step. ARC-01-D's mullions were registered onto them (same positions to within ~1-2 px, per the ARC-02-B registration), so the layout reference is aligned to the edit crop.
