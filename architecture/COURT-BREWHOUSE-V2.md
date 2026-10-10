@@ -1,5 +1,7 @@
 # The Court Brewhouse v2 (stress-tested; NOT final)
 
+> **Visual authority (D-39):** for any image-related detail, `visuals/VISUAL-DNA.md` and `visuals/LOCKED-SCENE-DNA.md` govern; this document is architectural background.
+
 Supersedes the Phase One architecture sketch (kept). **Conceptual layouts are not engineering drawings.** All structural, MEP, code, fire, flood, ADA and zoning matters `[PRO]`.
 
 ## 1. Thesis, restated
@@ -19,7 +21,7 @@ Scores 1-5 (5 best) `[C]`; Cost and Heat are "higher = better (cheaper/easier)".
 
 ## 3. The Tank Hall (concept)
 - **Hall:** ~40-50 ft clear height at center `[Unresolved: vessel heights drive it]`; clerestory glazing north-facing to avoid solar gain.
-- **Tanks:** polished stainless shells; insulated cones clad matte charcoal; a single marigold paint band at mid-shell; large white stencil numbers; neat sanitary piping with consistent routing; manways facing guests. Count/size set by the brewer for target barrelage `[PRO: brewer]`.
+- **Tanks:** polished stainless shells; insulated cones clad matte charcoal; a single marigold band at mid-shell [SUPERSEDED wording: this was written as "paint band" and "large white stencil numbers"; per D-28/D-39 it is a removable powder-coated sleeve, never paint on sanitary stainless, and numerals are optional; canonical source: `visuals/VISUAL-DNA.md`]; neat sanitary piping with consistent routing; manways facing guests. Count/size set by the brewer for target barrelage `[PRO: brewer]`.
 - **Brewhouse:** copper-clad kettle and mash tun (copper is a legitimate brewing tradition and was used in the Brewpoint design `[V S-39a]`) on a raised deck at the head of the horseshoe, visible from the entrance; hot-side steam captured by hoods and vented upward.
 - **Viewing:** a ground-level glass wall plus a **mezzanine gallery** (ADA-accessible by elevator `[PRO]`) from which guests can look down into the cloister and see brewers working. Brewers' working aisle sits **behind glass**; guests never share the floor with wet, hot, caustic, or CO₂ hazards.
 - **Light:** warm 2200-2400K, low-level; tanks softly uplit; nothing flashes.

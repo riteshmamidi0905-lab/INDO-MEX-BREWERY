@@ -1,7 +1,7 @@
 # LOCKED SCENE DNA (canonical geometry for image generation)
 
 **Status:** approved for *visualization* only. This is concept architecture, **not** engineering or construction architecture `[PRO]`. It defines one physical brewery so that every image depicts the same place. If any older prompt (including `visuals/prompts/V2-*.md` and the Phase One Style Bible) conflicts with this file or `VISUAL-DNA.md`, **this file and Visual DNA v2 win**.
-Governing documents: `VISUAL-DNA.md` (rules) → this file (geometry) → `generation-batch-01/*.md` (prompts).
+Governing documents (D-39 authority order): `VISUAL-DNA.md` v2.1 (rules) → this file (geometry) → Visual Lock decisions D-22 onward → approved ARC-01 review decisions → `generation-batch-01/*.md` (prompts). The Phase One Style Bible is SUPERSEDED — RETAINED FOR HISTORY.
 Working name only: INDO MEX BREWERY. No logo exists. Concept visual: not an operating business.
 
 ## 1. Orientation and the canonical camera position
@@ -69,7 +69,7 @@ Working name only: INDO MEX BREWERY. No logo exists. Concept visual: not an oper
 - **Six** identical fermenters in a **horseshoe open to the south glass**.
 - Numbering (optional on images; omit if the generator cannot render clean numerals): west leg south→north **1, 2**; north base west→east **3, 4** (flanking the brew deck); east leg north→south **5, 6**.
 - Each tank: ~5 ft diameter; polished cylindrical shell ~12 ft; **insulated conical bottom clad in matte charcoal**, ~4 ft; four short legs; overall ~19 ft; dished top with top manway, pressure relief/spunding fitting and CIP arm; **round side manway with clamp**; sample valve; thermowell; racking/racking-arm and butterfly valves at the cone outlet; **tri-clamp** connections; restrained, tidy piping on the inner side of the horseshoe.
-- **Marigold band:** one narrow (~6 in) marigold-orange band around the middle of each shell, executed as a removable powder-coated sleeve (never paint on a sanitary surface). Brightness restrained; no other orange on tanks.
+- **Marigold band:** one narrow (~6 in) marigold-orange band around the middle of each shell, executed as a **removable powder-coated sleeve (D-28): never paint on a sanitary stainless surface**, never described as paint in any prompt. Brightness restrained; no other orange on tanks.
 - Spacing ~9 ft between tank centrelines; ~28 ft clear between the west and east legs.
 - **Brew deck:** raised ~4 ft, ~24 ft wide x 12 ft deep, at the centre of the north base between tanks 3 and 4; stairs at each end; 42-in guardrails; **two copper-clad vessels** (kettle and mash/lauter tun, ~7 ft diameter, domed tops, steam stack rising to the roof), stainless hot-liquor tank, pumps, valve train, hoses coiled on hooks.
 - **Catwalk:** grated stainless/steel walkway at about +11 ft along the west and east legs with a cross-walk behind the brew deck, 42-in guardrails with kick plates, stairs at each end (access to tank tops).
@@ -132,3 +132,5 @@ Recommended zoning **Option C+** (`architecture/FAMILY-ZONING-OPTIONS.md`):
 - **Flagship Outlet** (~1,200 sf) in the first two bays of the south arcade east of the entrance recess, with its own door.
 - **History Corridor** = the guest promenade (south ~12 ft of the Tank Hall).
 None of these appear in ARC-01 or ARC-02. Adventure Court and Game Hall lie beyond the hero camera's view (east).
+
+- **v1.2 (D-39):** authority order stated; marigold band wording unified as a removable powder-coated sleeve across all documents; ARC-01-D is the composition authority for ARC-01-E (see `generation-batch-01/ARC-01-E.md`).

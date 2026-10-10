@@ -1,3 +1,5 @@
+> **SUPERSEDED for visual specification — RETAINED FOR HISTORY.** This Phase One chapter mentions brass fittings and painted piping. Visual authority is `visuals/VISUAL-DNA.md` (v2.1) then `visuals/LOCKED-SCENE-DNA.md` (decision D-39).
+
 # 16-18. Architecture and Customer Journey
 
 All `[CONCEPT]`. Structural, mechanical, fire, ADA and zoning feasibility require architect/engineer review `[PRO]`.

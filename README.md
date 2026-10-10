@@ -25,7 +25,7 @@ README.md
 docs/decisions/        DECISIONS.md, REJECTED.md, OPEN-QUESTIONS.md
 research/              SOURCES.md, RESEARCH-BACKLOG.md
 phase-one/             the Founding Vision, split into numbered chapters
-visuals/prompts/       production prompts + style bible for the 12 first images
+visuals/prompts/       production prompts (Phase One style bible + first-twelve are SUPERSEDED — RETAINED FOR HISTORY); authority is visuals/VISUAL-DNA.md
 visuals/generated/     generated concept images (none yet)
 brand/ beer/ food/ architecture/ business/ website/   future working folders
 ```

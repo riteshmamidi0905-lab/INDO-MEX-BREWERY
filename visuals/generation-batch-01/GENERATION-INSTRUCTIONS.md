@@ -2,7 +2,9 @@
 
 Five assets lock the world: **ARC-01, ARC-02, BRW-01, GLS-01, GLS-02.** Do **not** generate any of the other 52 assets until this batch is reviewed and approved. Do not build a website.
 
-> **Update (2026-10-10):** ARC-01-A was generated and reviewed (73/100, hard fail on screens). The next image is **ARC-01-B** (`ARC-01-B.md`). ARC-01.md is superseded. ARC-02, BRW-01 and the glasses stay blocked until ARC-01-B is approved.
+> **Update (D-40):** ARC-01-D (89/100, scripted edit) is the geometry authority. The only pending ARC-01 step is **ARC-01-E** (`ARC-01-E.md`). If E is rejected, ARC-01-D becomes canonical by founder waiver; there is no ARC-01-F. ARC-02 stays blocked until then.
+
+> **Earlier update (2026-10-10):** ARC-01-A was generated and reviewed (73/100, hard fail on screens). The next image is **ARC-01-B** (`ARC-01-B.md`). ARC-01.md is superseded. ARC-02, BRW-01 and the glasses stay blocked until ARC-01-B is approved.
 
 ## Sequence (do not reorder without a strong reason)
 1. **ARC-01.** Generate 4 or more variants. Founder reviews. Revise until approved. Save the approved image as the canonical day reference.

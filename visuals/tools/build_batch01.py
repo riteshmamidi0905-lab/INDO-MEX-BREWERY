@@ -16,7 +16,7 @@ BUILDING = (
 )
 
 TANKS = (
-"THE TANK CLOISTER seen through the hall glass: exactly SIX identical polished stainless-steel conical fermenters (each about 5 ft in diameter and about 19 ft tall including legs) arranged in a HORSESHOE that opens toward the south glass: two tanks along the west wall, two along the east wall, and one on each side of a raised central brew deck at the north end. Every tank has a polished cylindrical shell, an insulated conical bottom clad in matte charcoal, four short legs, a round side manway with clamp, a sample valve, realistic tri-clamp fittings, tidy restrained piping on the inner side of the horseshoe, and exactly ONE narrow (about 6 in) deep marigold-orange band (more orange than yellow, about hex E8870E) around the middle of the shell. No other orange on the tanks, no patterns or decoration on the stainless. "
+"THE TANK CLOISTER seen through the hall glass: exactly SIX identical polished stainless-steel conical fermenters (each about 5 ft in diameter and about 19 ft tall including legs) arranged in a HORSESHOE that opens toward the south glass: two tanks along the west wall, two along the east wall, and one on each side of a raised central brew deck at the north end. Every tank has a polished cylindrical shell, an insulated conical bottom clad in matte charcoal, four short legs, a round side manway with clamp, a sample valve, realistic tri-clamp fittings, tidy restrained piping on the inner side of the horseshoe, and exactly ONE narrow (about 6 in) deep marigold-orange sleeve, a removable powder-coated band (more orange than yellow, about hex E8870E), around the middle of the shell. No other orange on the tanks, no patterns or decoration on the stainless. "
 )
 
 BREWHOUSE = (
