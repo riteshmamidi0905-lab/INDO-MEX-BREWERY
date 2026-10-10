@@ -142,7 +142,7 @@ accept=[
 "Founder reaction: 'They actually make all of this here.'",
 "Becomes the reference for all later brewhouse and fermentation images."])
 
-GLASS_COMMON = ("Glass design (canonical): a family of four drinking glasses that share one design feature, a RAISED CLEAR-GLASS RING (collar) moulded integrally into the glass about one-quarter of the way up from the base, about 5 mm proud of the surface and about 12 mm tall with softly rounded edges, never wider than the rim. "
+GLASS_COMMON = ("Glass design (canonical): this glass belongs to a family of four that share one design feature, a RAISED CLEAR-GLASS RING (collar) moulded integrally into the glass about one-quarter of the way up from the base, about 5 mm proud of the surface and about 12 mm tall with softly rounded edges, never wider than the rim. "
 "All glass is perfectly clear, colourless, with no print, no etching, no logo, no pattern, no colour, no metal. ")
 
 FILES["GLS-01.md"] = dict(
