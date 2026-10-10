@@ -43,3 +43,14 @@ Phase One was written from a limited first research pass (6 searches). The items
 - [ ] TABC minors-on-premises rules; brewpub to-go and retail rules; insurance requirements for play areas and arcades `[PRO]`.
 - [ ] Arcade economics and game-mix research; family-brewery dwell-time data (pilot).
 - [ ] Verify the US playground-shade study cited (Olsen et al.) and Pfautsch values.
+
+## Phase 2 additions (2026-10-10)
+- [x] BJCP 10A official numbers (resolved via search extract; confirm in PDF).
+- [~] TABC/ch. 74 current text, minors, to-go, self-distribution (search extracts only; S-90..S-99; **attorney**).
+- [ ] Open every Phase-2 source in a browser (WebFetch failed on all hosts in this environment): S-76..S-118.
+- [ ] Austin competitor price survey (pint, food ticket); 30+ customer interviews; pop-up design.
+- [ ] Architect and vendor quotes: 15- and 30-bbl brewhouse/fermenters, kitchen equipment, glazing premium, Compact-set build cost.
+- [ ] Brewer wages; FOH/BOH split; brewpub COGS/sales per sf (BA members-only data); arcade per-game revenue; merch share; glassware sell-through.
+- [ ] Kellerbier BJCP 2021 code; Cicerone serving temperatures; MBAA/Weihenstephan carbonation; kokum/tamarind dose; TTB formula status of non-exempt adjuncts; Austin water lab test.
+- [ ] Austin zoning use class for brewpub/outdoor entertainment; impervious cover; heat/shade rules; arcade/amusement permits; Texas Accessibility Standards.
+- [ ] Scholarly sources named in the historical audit addendum (G).

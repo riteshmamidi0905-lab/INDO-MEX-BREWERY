@@ -170,3 +170,67 @@ Access date 2026-10-10. Grade key as above. Items marked A* were reached only th
 
 ## Still needed (see RESEARCH-BACKLOG.md)
 Primary pages for each Austin venue, the current TABC brewpub page, Michelin/50 Best official pages, Latin America's 50 Best 2025 official list, BA state craft statistics, Schneider Weisse history page, ASHRAE/NOAA climate normals for Austin, City of Austin permitting.
+
+---
+# Phase 2 additions (S-76 onward; accessed 2026-10-10)
+
+**Limitation (important):** in the Phase-2 research pass, **WebFetch failed with DNS errors for every host**; no primary page, PDF or statute was opened. Every entry below was taken from **WebSearch result extracts** of the named URLs. Confidence is capped at Medium unless two independent extracts agree. **Re-open each source in a browser before any external use** (investors, press, website, signage). Grades as above. "mirror" = a secondary copy of an official document.
+
+## Economics and market
+| ID | Source | URL | Grade |
+|---|---|---|---|
+| S-76 | The New Brewer, Mar/Apr 2025, p.26 (Brewers Association Operations Benchmarking Survey, 2023 data): median 2.6 bbl on-site beer per seat per year; median food sales $924 per seat; on-site revenue per bbl 231% above distributed | https://the-new-brewer.mydigitalpublication.com/march-april-2025/page-26 | A/B (extract) |
+| S-77 | New School Beer, "Major Revisions to the BA's 2025 Industry Production Report" (Jun 2026): craft 22.03M bbl, -4%; 9,578 craft breweries incl. 3,525 brewpubs | https://newschoolbeer.com/home/2026/6/revisions-to-brewers-association-2025-production-report | B |
+| S-78 | Brewbound / BA Taproom Report (Arryved POS data): food share of taproom/pub sales ~15% (2021) to >20% | https://www.brewbound.com/news/brewers-association-taproom-report-consumers-seeking-food-beyond-beer-expanded-hours | B |
+| S-79 | National Restaurant Association, elevated labor costs and 2024 profitability: full-service median labor 36.5% of sales | https://restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-labor-costs-had-a-significant-impact-on-restaurant-profitability-in-2024/ | A |
+| S-80 | Matthews, Q2 2026 Austin Retail Market Report: retail asking rent $31.39/sf, vacancy 3.4% | https://cms.matthews.com/wp-content/uploads/2026/08/Q2-2026-Austin-Retail-Market-Report.pdf | B |
+| S-81 | Transwestern Austin industrial factsheet, Q1 2026: flex $16.62/sf net | https://transwestern.com/Upload/MarketResearchFactsheet_PDF/639135873067115693.pdf | B |
+| S-82 | Craft Beer Austin, openings/closures list (updated 2026-08-01) | https://craftbeeraustin.com/?p=39636 | B/C |
+| S-83 | Axios, Texas craft beer market drops nearly 9% (2024: 1.369M bbl; 22 openings, 29 closures) | https://www.axios.com/local/san-antonio/2025/05/01/texas-craft-beer-market-san-antonio-brewery-close | B |
+| S-84 | Toast, "How Much Does it Cost to Open a Brewery?"; Dojo Business, brewpub food revenue/startup (2025): typical brewpub startup ~$575k-$1.45M, premium $2.3M+; ~40% food/60% beer vendor benchmark | https://pos.toasttab.com/blog/on-the-line/how-much-does-it-cost-to-open-a-brewery ; https://dojobusiness.com/blogs/news/brewpub-food-revenue | C |
+| S-85 | Menuviel, cost to open a restaurant in Texas ($200-$555/sf); TDLR TABS filings (Austin owner estimates ~$105-$632/sf) | https://blog.menuviel.com/how-much-does-it-cost-to-open-a-restaurant-in-texas/ ; https://www.tdlr.texas.gov/TABS/Projects/TABS2025008122 | C / A (filing) |
+| S-86 | Buildermuse brewery taproom buildout cost 2026; FinancialModelsLab craft brewery startup costs (brewhouse/fermentation/glycol/drain ranges) | https://buildermuse.com/commercial/brewery-taproom-buildout-cost-2026/ ; https://financialmodelslab.com/products/craft-brewery-startup-costs | C |
+| S-87 | OSU News, restaurant failure rate much lower than commonly assumed (first-year ~17%-26% in older studies) | https://news.osu.edu/restaurant-failure-rate-much-lower-than-commonly-assumed-study-finds/ | A/B |
+| S-88 | Playground surfacing and arcade cost vendor guides (Replay Surfacing, Willy Goat, voxbooster, FinancialModelsLab soft play) | https://replaysurfacing.com/?p=31403 ; https://willygoat.com/pages/planning-design-glossary-playground-budget-planning ; https://voxbooster.com/blog/arcade-machine-statistics-2026 | C |
+| S-89 | Staffing comps: Dayton.com (300-seat brewpub, 60-80 staff planned); Washington Beer Blog (250-seat, 50 positions) | https://www.dayton.com/news/fire-beavercreek-brewery-won-slow-progress-founder-vows/YFRxQz0K07sq2aJ6gCYeFJ/ | B/C |
+
+## Legal and regulatory (NOT legal advice)
+| ID | Source | URL | Grade |
+|---|---|---|---|
+| S-90 | Tex. Alco. Bev. Code §74.03 (10,000 bbl brewpub cap) and §74.08 (self-distribution: BG-holding brewpub, own premises-made malt beverages, 1,000 bbl per location/2,500 per licensee) via FindLaw/public.law mirrors; SB 515 (83R) | https://codes.findlaw.com/tx/alcoholic-beverage-code/alco-bev-sect-74-08 ; https://texas.public.law/statutes/tex._alcoh._bev._code_section_74.08 ; https://capitol.texas.gov/tlodocs/83R/billtext/html/SB00515H.htm | B/A (mirror) |
+| S-91 | Dallas Morning News 2019-06-15 and Governor release on HB 1545 (beer to-go for breweries); TABC BP course: brewpubs may sell own beer off-premise in containers up to 1/2 barrel | https://www.dallasnews.com/news/politics/2019/06/15/texas-breweries-will-finally-get-to-sell-beer-to-go-starting-sept-1/ | B |
+| S-92 | KCBD/NABCA: TABC spokesperson, minors are legally allowed in bars and restaurants (service to minors is the violation) | https://www.nabca.org/license-state-news/tabc-says-minors-are-legally-allowed-bars-clubs-wake-level-night-club-shooting | B |
+| S-93 | DSHS Food Manufacturers general information and FAQs (packaging sauces for retail needs a food manufacturer license) | https://www.dshs.texas.gov/food-manufacturers-wholesalers-warehouses/food-manufacturers-general-information | A |
+| S-94 | Austin Water, Fermented Beverage Producers; Industrial Waste Plan Review (General Industrial User permit, pH 6.0-11.5) | https://www.austintexas.gov/water/fermented-beverage-producers | A |
+| S-95 | Austin Code §9-2-30 outdoor music (85 dB; 70 dB if tied to Restaurant (General); 100 ft residential setback) via elaws; Austin Music Office permits page | http://austin-tx.elaws.us/code/coor_title9_ch9-2_art2_subpta_sec9-2-30 | B/A |
+| S-96 | Austin Planning zoning FAQ; Land Development Code (Restaurant (General) 51% food; Indoor Sports and Recreation includes arcades) | https://www.austintexas.gov/planning/frequently-asked-questions-faqs | A |
+| S-97 | Federal Register, CPSC Public Playground Safety Handbook update (2025-08-13) | https://www.govinfo.gov/content/pkg/FR-2025-08-13/html/2025-15374.htm | A |
+| S-98 | TABC "New Laws from the 89th Texas Legislature" (2025) | https://www.tabc.texas.gov/static/sites/default/files/2025-08/legislative-update-89.pdf | A |
+| S-99 | Texas Supreme Court dram-shop opinion and Alco. Bev. Code ch. 2 commentary | https://www.txcourts.gov/media/1460290/230662.pdf | A |
+
+## History and culture
+| ID | Source | URL | Grade |
+|---|---|---|---|
+| S-100 | Saveur, "Fired Up: The History of Vindaloo" (quoting Lizzie Collingham): chilies reached India via Portuguese empire | https://www.saveur.com/article/cooking/the-history-of-vindaloo | B |
+| S-101 | Oxford Botanic Garden Plants400 (Tagetes); J Tradit Complement Med 2024 marigold review (PMC11725087) | https://herbaria.plants.ox.ac.uk/bol/plants400/Profiles/st/Tagetes ; https://pmc.ncbi.nlm.nih.gov/articles/PMC11725087 | B |
+| S-102 | Correa-Ascencio et al., Pulque production from fermented agave sap in Prehispanic Mesoamerica, PNAS 111(39), 2014 | https://pmc.ncbi.nlm.nih.gov/articles/PMC4191797 | A |
+| S-103 | Santini, Weber et al., first archaeological identification of nixtamalized maize (San Bartolo), J Archaeol Sci 2022 | https://scholarworks.brandeis.edu/esploro/outputs/journalArticle/First-archaeological-identification-of-nixtamalized-maize/9924148604801921 | A |
+| S-104 | McHugh, J. American Oriental Society (2021), Rigvedic *sura* | https://lockwoodonlinejournals.com/index.php/jaos/article/download/559/422 | A |
+| S-105 | Indian J Genet Plant Breed, early history of maize in India | https://www.isgpb.org/journal/index.php/IJGPB/article/view/4023 | B |
+| S-106 | Leonard, *Making Ethnic Choices: California's Punjabi Mexican Americans* (Temple UP, 1992); Seijas, *Asian Slaves in Colonial Mexico* (CUP 2014) | https://pluralism.org/publications/making-ethnic-choices-californias-punjabi-mexican-americans ; https://pure.psu.edu/en/publications/asian-slaves-in-colonial-mexico-from-chinos-to-indians/ | A |
+
+## Beer technical
+| ID | Source | URL | Grade |
+|---|---|---|---|
+| S-107 | BJCP 2021 10A Weissbier (OG 1.044-1.053, IBU 8-15, SRM 2-6, ABV 4.3-5.6) | https://styles.bjcp.org/bjcp-2021-beer/10/10a-weissbier | A (extract) |
+| S-108 | BJCP 2021 10B Dunkles Weissbier; 10C Weizenbock; 7A Vienna; 2A International Pale Lager; 5D German Pils; 24A Witbier; 23G Gose | https://www.bjcp.org/style/2021/10/10B/dunkles-weissbier/ | A (extract) |
+| S-109 | BSK law firm; TTB Industry Circular 2024-2: formula approval for non-exempt beer ingredients | https://www.bsk.com/news-events-videos/legal-requirements-for-beer-with-fruit-spices-and-other-specialty-ingredients | B |
+| S-110 | BA Mexican-Style Pale Lager guideline (Brewfather mirror) | https://brewfather.app/styles/bras/mexican-style-pale-lager | C |
+| S-111 | Yeast datasheets: Wyeast 3068 / 3333, White Labs WLP380, Fermentis W-68 | https://wyeastlab.com/product/weihenstephan-weizen/ ; https://www.whitelabs.com/yeast-bank/wlp380-hefeweizen-iv-ale-yeast ; https://fermentis.com/en/product/safale-w-68 | A |
+| S-112 | Brulosophy, ferulic acid rest exBEERiment (2019) | https://brulosophy.com/2019/06/17/the-ferulic-acid-rest-effect-exbeeriment-results/ | C |
+| S-113 | BYO: German Gose style profile; "Brewing gone nuts" (oils and foam); witbier spice doses (MoreBeer) | https://byo.com/articles/german-gose-style-profile/ ; https://byo.com/articles/brewing-gone-nuts/ | B/C |
+| S-114 | Good Beer Hunting, refermentation in canned fruited beers | https://www.goodbeerhunting.com/sightlines/tick-tick-boom-regulatory | B |
+| S-115 | City of Austin Water quality reports (hardness 70-126 ppm, avg 93, 2025; alkalinity ~52-81 mg/L; pH ~9.6) | https://www.austintexas.gov/water/programs/water-quality-reports | A (extract) |
+| S-116 | Live Oak Brewing, The Beer (Hefeweizen 5.3% ABV, 10 IBU) | https://www.liveoakbrewing.com/the-beer | A |
+| S-117 | Austin wage data: Indeed salary pages (line cook, bartender), Indeed Flex, WageDex (BLS OEWS republisher) (Oct-Nov 2025) | https://www.indeed.com/salaries/line-cook-Salaries,-Austin-TX ; https://wagedex.com/jobs/chefs-and-head-cooks/metro/austin-round-rock-san-marcos-tx | B/C |
+| S-118 | Land asking prices: LoopNet/Crexi listings (Pflugerville, Manor, Del Valle); Texas A&M RERC via Land Report (asking prices, not closed sales) | https://landreport.com/?p=78372 | C |

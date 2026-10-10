@@ -31,6 +31,8 @@ brand/ beer/ food/ architecture/ business/ website/   future working folders
 ```
 
 ## Start here
+**Current plan and status: `PROJECT-ROADMAP.md`** (Phase 2 active since D-49).
+
 Phase 1.5 (current): `docs/decisions/DECISIONS.md` → `brand/BRAND-WORLDS.md` → `visuals/VISUAL-DNA.md` → `visuals/ASSET-MANIFEST.md`.
 Phase One baseline (kept; Phase 1.5 governs conflicts): `phase-one/00-FOUNDING-VISION-PHASE-ONE.md`.
 
@@ -52,6 +54,9 @@ Phase One baseline (kept; Phase 1.5 governs conflicts): `phase-one/00-FOUNDING-V
 ## Visual Lock (current)
 `visuals/VISUAL-DNA.md` (canonical rules) → `visuals/LOCKED-SCENE-DNA.md` (geometry) → `visuals/generation-batch-01/` (5 prompts to generate first; do not generate the other 52 until reviewed).
 
-## Status (2026-10-10)
+## Status (2026-10-10, Phase 2 sprint)
+Phase 2 v1 shipped: `beer/OPENING-BEER-PROGRAM-V1.md`, `food/MENU-DEVELOPMENT-MATRIX-V1.md`, `experience/GUEST-JOURNEY-V1.md`, `architecture/MASTER-PLAN-PHASE2.md`, `business/AUSTIN-FEASIBILITY-V1.md`, `brand/BRAND-SYSTEM-V0.md`; GLS-01/02 packages prepared; sources S-76..S-118 added (search-extract level, re-verify before external use, D-53).
+
+## Status (earlier, 2026-10-10)
 Phase One written; Phase 1.5 (research deepening + brand world) complete as a draft awaiting founder review. **No images generated yet** (external tool required); 57 prompts are ready; the first five (Visual Lock batch) are finalized in `visuals/generation-batch-01/`.
 **ARC-01-D is the APPROVED canonical day exterior (founder waiver 89/100, D-42).** **ARC-02 ON HOLD, tool-limited (D-47): no canonical night image; ARC-02-A is a non-canonical night-atmosphere reference; ARC-02-B/C rejected.** Next: BRW-01 (package prepared, not generated). Website: not started, by instruction.

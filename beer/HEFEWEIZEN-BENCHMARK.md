@@ -9,10 +9,10 @@ A traditional South German-style Hefeweizen that a Bavarian would respect: brill
 | Parameter | Target | Basis |
 |---|---|---|
 | Style | BJCP 10A Weissbier (Hefeweizen) | `[V S-06]` |
-| OG / FG | 1.044-1.057 / 1.008-1.014 (aim mid-range) | `[V S-06]` |
+| OG / FG | **BJCP 10A: 1.044-1.053** / 1.008-1.014 (aim mid-range). *Corrected (Phase 2): 1.057 is the 10B Dunkelweizen upper bound* | `[V S-06, S-107]` |
 | ABV | 4.8-5.4% (envelope 4.3-5.6%) | `[V S-06]`; narrowed by us |
-| IBU | 10-15 (envelope 10-18) | `[V S-06]` |
-| SRM | 4-8 for our pale hefe `[Note]` | BJCP's printed range is SRM 14-23 per our retrieved text, which looks like a retrieval/format error since hefe is typically pale; **verify against the official PDF** `[Unresolved]` |
+| IBU | **8-15** (BJCP 10A; our window 10-13). *Corrected (Phase 2): 10-18 is 10B* | `[V S-06, S-107]` |
+| SRM | **2-6** (BJCP 10A); our window 3-5. *Resolved (Phase 2): the 14-23 text was the 10B Dunkles range; re-confirm against the official PDF* | `[V S-107]` |
 | Wheat | ≥50% malted wheat (BA rule); typical commercial practice higher `[U]` | `[V S-07]` |
 | Carbonation | ~3.0-3.8 vol CO₂ (high) `[TEST]` | 3.0 vol cited `[S-44]`; upper range from practice `[U]` |
 | Appearance | Hazy, pale-to-deep gold, long-lasting white head | `[V S-06]` |

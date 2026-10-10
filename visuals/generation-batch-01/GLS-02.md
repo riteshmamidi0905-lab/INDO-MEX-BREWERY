@@ -3,7 +3,7 @@
 - **ID:** GLS-02
 - **TITLE:** Glass family (four glasses)
 - **PURPOSE:** Show the four canonical glasses as one industrial-design collection built around the ring-collar.
-- **STATUS:** NOT GENERATED
+- **STATUS:** NOT GENERATED. **PACKAGE PREPARED (Phase 2, D-50).** Not blocked by BRW-01. Profile guide: `visuals/generated/GLS-inputs/GLS-02-family-profile-guide.png` (a to-scale 2-D drawing from Locked DNA §8, not a render; attach it as the proportion reference and tell the tool not to draw its annotations). Review sheet: `visuals/generated/GLS-02-REVIEW-SHEET.md`. Attach the approved (or best) GLS-01 result if it passes; otherwise the guide only. One run of 4 variants first; review before any second run.
 - **RECOMMENDED ASPECT RATIO:** 3:2 (16:9 acceptable). Attach approved GLS-01 as reference.
 - **Concept label (record in metadata/caption, do not render in the image):** Concept visual, not an operating business.
 

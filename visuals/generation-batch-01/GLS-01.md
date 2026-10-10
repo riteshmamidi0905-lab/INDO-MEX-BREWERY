@@ -3,7 +3,7 @@
 - **ID:** GLS-01
 - **TITLE:** Hero Hefeweizen glass (ring-collar), empty
 - **PURPOSE:** Define the iconic but manufacturable brewery glass. The silhouette must be recognizable on its own.
-- **STATUS:** NOT GENERATED
+- **STATUS:** NOT GENERATED. **PACKAGE PREPARED (Phase 2, D-50).** Not blocked by BRW-01. Profile guide: `visuals/generated/GLS-inputs/GLS-01-profile-guide.png` (a to-scale 2-D drawing from Locked DNA §8, not a render; attach it as the proportion reference and tell the tool not to draw its annotations). Review sheet: `visuals/generated/GLS-01-REVIEW-SHEET.md`. Ask for 4 variants. One run of 4 variants first; review before any second run.
 - **RECOMMENDED ASPECT RATIO:** 4:5 (1:1 acceptable)
 - **Concept label (record in metadata/caption, do not render in the image):** Concept visual, not an operating business.
 

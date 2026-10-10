@@ -24,3 +24,6 @@
 4. **Arcade pricing:** free / pay-per-play / card / hybrid preference?
 5. **Historians and artists:** who should advise (South Asia and Mesoamerica historians, a food historian, artists)?
 6. **Approve** ARC-01-B as the next image to generate, using the corrected prompt.
+
+## Phase 2 (2026-10-10): only what truly needs the founder
+See `PROJECT-ROADMAP.md` section 6 (FD-1 to FD-8). Everything else is decided autonomously as a documented reversible decision (D-52).

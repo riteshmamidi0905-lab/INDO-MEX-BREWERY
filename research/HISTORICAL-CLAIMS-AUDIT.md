@@ -57,3 +57,22 @@ Status key: **VERIFIED** (strong source read) · **SUPPORTED** (credible seconda
 1. Obtain scholarly books/papers: Collingham *Curry*; Andrews on Capsicum; Seijas; Columbian Exchange texts (Crosby, Nunn & Qian); a university botany source on *Tagetes*; McGovern PNAS 2004; Kashyap & Weber PNAS 2010.
 2. Engage two historians (South Asia, Mesoamerica) and one food historian for review `[PRO]`.
 3. Every exhibit text gets a source line in the digital archive (Level 4).
+
+## G. Phase 2 update (2026-10-10)
+**Method limit:** WebFetch failed on every host; findings come from **search extracts** only. Statuses below are therefore conservative; a person must open each source before public use. New sources: `research/SOURCES.md` S-100..S-106. The rule is unchanged: never turn an attractive story into fact (D-30).
+
+| # (above) | Claim | Phase-2 status | Wording permitted now | Source |
+|---|---|---|---|---|
+| 2 | Chile to India | **SUPPORTED** (unchanged) | "Chile peppers reached India in the 1500s, carried by Portuguese trade." No route, no year. The Brazil-Lisbon-Goa route and the 1542 "three kinds" date are repeated in popular pieces; treat as unverified | S-100 (Collingham via Saveur) |
+| 7 | Marigold route to India | **UNRESOLVED** (unchanged, contested) | Only the parallel: "Marigolds are sacred offerings in both India and Mexico. The flower is American in origin, and how it reached India is still debated." Never "carried by the Portuguese" or "ancient shared tradition" | S-101 |
+| 6 | Marigold native to Mexico/Central America | **VERIFIED** | "Native to Mexico and Central America." Pre-Hispanic ritual/medicinal use is SUPPORTED (Florentine Codex); continuity to modern altars is a hypothesis; avoid the Xochitl/Huitzilin legend | S-101 |
+| 5 | Mango/tamarind via the galleon | **UNRESOLVED** | Tamarind: "thought to be native to tropical Africa; widely used in Mexican agua fresca and candy; it arrived after the 1500s through colonial trade" (no route). Mango: "Some Mexican mango varieties such as Manila descend from Philippine mangoes brought in the galleon era" (no date; dates conflict from the late 1600s to 1775). Coconut: galleon-era Filipino link SUPPORTED, no year | S-101 family, extracts |
+| 4 | Indian-subcontinent people on the galleons | **VERIFIED as human history** | Seijas (CUP 2014): at least ~8,100 enslaved people from Asia incl. the Indian subcontinent, 1565-1700, called *chinos*, legally treated as Indians after 1672 | S-106 |
+| 19 | Pulque | **VERIFIED** (earliest direct chemical evidence) | "Chemical residues in vessels at Teotihuacan (c. AD 200-550) are the earliest direct evidence of pulque found so far." | S-102 |
+| 16 | Nixtamalization | **VERIFIED that it is Mesoamerican; earliest date still UNRESOLVED** | "The earliest direct archaeological evidence found so far for nixtamalized maize is at San Bartolo, Guatemala (Late/Terminal Classic); the practice is likely older." Do not use the 1200-1500 BCE figure | S-103 |
+| 13 | India fermented drinks | **SUPPORTED (textual)** | "India has a long, documented tradition of fermented drinks, including grain *sura* in the Rigveda (per McHugh) and mahua-flower drinks in later texts." No toddy date | S-104 |
+| new | Maize in India | **UNRESOLVED** | "Maize reached South Asia after 1492; most scholars favour Portuguese introduction in the 16th-17th centuries, but dates and route are debated." | S-105 |
+| new | Mole/salan/korma "same structure" | **ANALOGY, NOT HISTORICAL LINK** | "Both traditions build rich sauces from toasted spices, seeds or nuts; the similarity is a coincidence of technique, not a shared history." The mole convent origin story is unsubstantiated. **Menu text must not imply a link** | extracts |
+| 8 | Punjabi-Mexican families | **VERIFIED** (extra source) | Add Leonard (Temple UP 1992); food output ("Hindu pizza" at Rasul's El Ranchero, closed 1993) is press-level only | S-106 |
+| 14 | Goa/Hyderabad | **SUPPORTED (broad)** | Hyderabadi cuisine developed under the Qutb Shahi dynasty and the Nizams, blending Deccani, Persian/Turkic and Mughal traditions; biryani/dum origin stories are folklore. Goa: Portuguese traders brought American crops to India after 1510 | secondary |
+**Still needed:** Collingham *Curry*, Andrews *The Pepper Trail*, a botanical-history source for marigold in India, a horticultural history of mango in Mexico, the full San Bartolo and McHugh papers, a scholarly Hyderabad/Goa source, and the two historians' review `[PRO]`.
