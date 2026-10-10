@@ -1,11 +1,12 @@
 # BRW-01 Review Sheet (complete after external generation)
 
-**Status:** BRW-01 NOT GENERATED — PACKAGE PREPARED (D-47). Nothing is scored until an image exists. **Prompt:** `generation-batch-01/BRW-01.md`. **Layout guide:** `BRW-01-inputs/BRW-01-layout-blockout.png`.
+**Status:** BRW-01 NOT GENERATED — PACKAGE APPROVED (D-48). Run policy: Run 1 = four variants, then STOP and review; max two runs/eight variants; if any Run-1 variant passes everything, no Run 2. Nothing is scored until an image exists. **Prompt:** `generation-batch-01/BRW-01.md`. **Layout guide:** `BRW-01-inputs/BRW-01-layout-blockout.png`.
 
 ## 0. Provenance to record
 Tool/model; layout reference accepted and strength; other references accepted; variant; seed; date; run number (cap: 2 runs, 8 variants, if approved); retouching (none). Founder approval stays NO until stated.
 
-## 1. Count and arrangement gate (any FAIL rejects the variant)
+## 1. HARD COUNT GATE first: count fermenters manually twice at enlarged scale before judging aesthetics (5 = reject, 6 = continue, 7+ = reject); count copper vessels independently (exactly two).
+## 1b. Count and arrangement gates (any FAIL rejects the variant)
 | # | Gate | Method | Result |
 |---|---|---|---|
 | 1 | Exactly six fermenters | Count twice at 2x and 4x | |
@@ -16,7 +17,7 @@ Tool/model; layout reference accepted and strength; other references accepted; v
 | 6 | Raised deck, stairs, 42-in guardrails, catwalk (+11 ft) with kick plates | Visual | |
 | 7 | Sanitary piping, tri-clamps, butterfly valves, pumps, restrained hoses, legs with foot plates, side manways | Zoom | |
 | 8 | Stainless trench drains visible; warm-grey satin seamless floor (not glossy) | Visual | |
-| 9 | Evening light: warm 2200-2400K, tank-base uplights, no orange wash, no clipping, rear falls darker; no window frames/reflections/daytime sky | Visual + histogram | |
+| 9 | Evening light: ~2300K practicals + subtle cool blue-hour fill so stainless stays neutral; restrained architectural uplights; no orange wash, no clipping, rear falls darker; no window frames/reflections/daytime sky | Visual + histogram | |
 | 10 | A brewer or engineer would not laugh: plausible process flow, sensible clearances, no impossible plumbing | Judgement | |
 | 11 | No people, logos, text, numerals, string/pendant lights, flares, bloom, haze, steam | Visual | |
 

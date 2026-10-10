@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """BRW-01 layout block-out (NOT an image of the brewery). A simple perspective projection of the LOCKED-SCENE-DNA section 4 geometry, used only
 as a layout/depth guide so a generator can count to six and see the true horseshoe. Plan units: feet; x east, y north, z up; origin = SW corner of
-the production room (44 x 48 ft; the interior glass wall is the y=0 line). Camera = on the south promenade side of the interior glass wall (about 11 ft up the mezzanine edge), SE of the hall axis, looking NNW.
+the production room (44 x 48 ft; the interior glass wall is the y=0 line). Camera = on the south promenade side of the interior glass wall (about 10.75 ft up the mezzanine edge), SE of the hall axis, looking NNW.
 Run from repo root: python3 visuals/tools/brw01_blockout.py -> visuals/generated/BRW-01-inputs/ (blockout + annotated + plan)."""
 import numpy as np, os
 from PIL import Image, ImageDraw, ImageFont
 OUT="visuals/generated/BRW-01-inputs"; W,H=2000,1125
-CAM=np.array([28.0,-11.0,10.5]); TGT=np.array([17.0,32.0,11.0]); F=21.0   # 21 mm equivalent (36 mm sensor width)
+CAM=np.array([30.0,-12.0,10.75]); TGT=np.array([20.0,32.0,11.5]); F=24.0   # 24 mm equivalent (36 mm sensor width)
 TANKS={1:(6,16),2:(6,26),3:(6,38),4:(38,38),5:(38,26),6:(38,16)}       # centres (x,y); legs 1,2 west, 3 and 4 flank the deck, 5,6 east
 R=2.5; LEG=3.0; CONE=4.0; SHELL=12.0
 fwd=TGT-CAM; fwd/=np.linalg.norm(fwd); right=np.cross(fwd,[0,0,1]); right/=np.linalg.norm(right); up=np.cross(right,fwd)
