@@ -140,5 +140,33 @@ Access date for all entries: **2026-10-10** unless noted. Grade: A = official/pr
 | S-57 | Dimensions.com, Weizen glass; Rike Group, why weizen glasses matter | https://www.dimensions.com/element/weizen-glass | C |
 | S-58 | Tropic of Cancer states in India (Careers360; Unacademy; Vajiram) | https://school.careers360.com/how-many-states-does-the-tropic-of-cancer-pass-through | C |
 
+## Added for the history, family and retail work (Phase 2.0)
+Access date 2026-10-10. Grade key as above. Items marked A* were reached only through search summaries.
+| ID | Source | URL | Grade |
+|---|---|---|---|
+| S-59 | Kraft et al. 2014, PNAS, origin of domesticated chili pepper (Capsicum annuum) in Mexico | https://pmc.ncbi.nlm.nih.gov/articles/4035960/ | A |
+| S-60 | Seijas, *Asian Slaves in Colonial Mexico: From Chinos to Indians* (Cambridge UP, 2014) | https://www.cambridge.org/core/books/asian-slaves-in-colonial-mexico/1136CF8D42E50A4F5BA6DF10C091F6ED | A (book page/excerpt) |
+| S-61 | Metropolitan Museum of Art, The Manila Galleon Trade (1565-1815) | https://www.metmuseum.org/pt/essays/the-manila-galleon-trade-1565-1815 | A |
+| S-62 | Britannica, Manila galleon | https://britannica.com/print/article/362297 | B |
+| S-63 | Kashyap & Weber, Harappan plant use revealed by starch grains from Farmana, India (Antiquity project gallery; also PNAS 2010) | https://antiquity.ac.uk/projgall/kashyap326/ | A (project page; PNAS paper not directly read) |
+| S-64 | Maize domestication: Balsas origin (PMC2664064; PMC1348017) | https://pmc.ncbi.nlm.nih.gov/articles/PMC2664064 | A |
+| S-65 | Scientific American blog, the dawn of beer remains elusive (Jiahu, Mesopotamia context) | https://www.scientificamerican.com/blog/observations/the-dawn-of-beer-remains-elusive-in-archaeological-record/ | B |
+| S-66 | UNESCO, Traditional Mexican cuisine: ancestral, ongoing community culture, the Michoacán paradigm (2010) | https://ich.unesco.org/RL/00400 | A |
+| S-67 | CPSC, Public Playground Safety Handbook (2010 ed.) | https://www.cpsc.gov/s3fs-public/325.pdf | A* |
+| S-68a | Pfautsch et al. 2022, outdoor playgrounds and climate change (surface materials; Western Sydney) | https://researchers.westernsydney.edu.au/en/publications/outdoor-playgrounds-and-climate-change-importance-of-surface-mate/ | A |
+| S-68b | Thessaloniki playground thermal study (E3S Web of Conferences 2025) | https://www.e3s-conferences.org/10.1051/e3sconf/202566902006 | B |
+| S-68c | News measurements of rubber playground surfaces (CBS17; USA Shade) | https://digital-release.cbs17.com/?p=2333531 | C |
+| S-69a | ADA.gov, 2010 Standards highlights (play areas, §240/§1008) | https://www.ada.gov/ada-standards-highlights/ | A |
+| S-69b | IPEMA ADA checklist reference (slope figures conflict with other checklists) | https://ipema.org/wp-content/uploads/2026/05/ADA-Checklist-Reference.pdf | C |
+| S-70a | Community Impact, Pinballz Arcade (Austin) | https://communityimpact.com/northwest-austin/news/pinballz-arcade/ | B |
+| S-70b | Austinot, Cidercade (Austin; flat-price play) | https://austinot.com/?p=38247 | B |
+| S-71a | The Brewer Magazine, catering to families: what works | https://thebrewermagazine.com/catering-to-the-kids-families-share-what-works-what-doesnt/ | B |
+| S-71b | Untappd, kids in taprooms | https://lounge.untappd.com/kids-in-taprooms | C |
+| S-72 | Brewbound, crowlers officially legal in Texas (HB 908, 2017; later HB 1545 for production breweries) | https://www.brewbound.com/news/crowlers-officially-legal-state-texas | B |
+| S-73a | Wikipedia, Comal (cookware) | https://en.wikipedia.org/wiki/Comal_(cookware) | B |
+| S-73b | The Better India, history of the tandoor (secondary; cites NYT report of Rajasthan finds) | https://thebetterindia.com/316761/history-and-origin-of-tandoor-from-indus-valley-to-moti-mahal-kundal-lal-gujral | C |
+| S-74a | Wikipedia, Apo (drink) / Apong, Northeast India rice beer | https://en.wikipedia.org/wiki/Apo_(drink) | B |
+| S-74b | Wikipedia, Tesgüino | https://en.wikipedia.org/wiki/Tesg%C3%BCino | B |
+
 ## Still needed (see RESEARCH-BACKLOG.md)
 Primary pages for each Austin venue, the current TABC brewpub page, Michelin/50 Best official pages, Latin America's 50 Best 2025 official list, BA state craft statistics, Schneider Weisse history page, ASHRAE/NOAA climate normals for Austin, City of Austin permitting.

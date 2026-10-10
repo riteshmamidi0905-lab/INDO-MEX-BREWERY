@@ -1,3 +1,5 @@
+> **SUPERSEDED by `ARC-01-B.md`.** This v1 prompt produced ARC-01-A (see `visuals/generated/ARC-01-A-REVIEW.md`). A frozen copy is `ARC-01-v1-used-for-ARC-01-A.md`.
+
 # ARC-01: Definitive day exterior
 
 - **ID:** ARC-01

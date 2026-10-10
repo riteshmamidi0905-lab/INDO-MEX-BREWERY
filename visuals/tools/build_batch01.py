@@ -7,8 +7,8 @@ OUT="visuals/generation-batch-01"; os.makedirs(OUT,exist_ok=True)
 
 BUILDING = (
 "THE BUILDING (one specific, consistent brewery-restaurant in Central Texas, seen from the southeast entry drive looking north-northwest): "
-"On the LEFT is the Tank Hall, a double-height glass-walled brewing hall about 44 ft wide and 60 ft long and about 38 ft tall, with a flat roof behind a thin board-formed-concrete parapet. Its end wall facing the viewer (south) and its long side wall facing the courtyard (east) are fully glazed with dark-bronze aluminium framing on a regular 6-ft vertical mullion rhythm, rising from a low 2-ft honed pale Texas limestone plinth (the limestone rises to full height only on the hall's solid north and west walls), with a 10-ft projecting board-formed-concrete canopy shading the south glass. "
-"To the RIGHT of the hall is the Shade Court, a climate-designed outdoor room that is open to the sky in the middle: its south edge faces the viewer as a continuous arcade 14 ft deep and about 13 ft clear, made of square board-formed concrete columns (about 18 in) at 15-ft spacing carrying exposed cedar elm timber beams under a low-pitched dark charcoal standing-seam metal roof; between some columns stand laser-cut blackened-steel panels (about 1/4 in thick) perforated with a staggered field of round holes in graduated sizes so that the density of holes forms large soft concentric ring shapes about 3 ft across, with solid steel between the holes. "
+"On the LEFT is the Tank Hall, a double-height glass-walled brewing hall about 44 ft wide and 60 ft long and about 38 ft tall, with a flat roof behind a thin board-formed-concrete parapet. Its end wall facing the viewer (south) and its long side wall facing the courtyard (east) are fully glazed with dark-bronze (not black) aluminium framing on a regular 6-ft vertical mullion rhythm, rising from a low 2-ft honed pale Texas limestone plinth (the limestone rises to full height only on the hall's solid north and west walls), with a 10-ft projecting board-formed-concrete canopy shading the south glass. "
+"To the RIGHT of the hall is the Shade Court, a climate-designed outdoor room that is open to the sky in the middle: its south edge faces the viewer as a continuous arcade 14 ft deep and about 13 ft clear, made of square, warm-grey board-formed concrete columns (about 18 in, with visible horizontal formwork lines, NOT limestone) at 15-ft spacing carrying exposed cedar elm timber beams under a low-pitched dark charcoal standing-seam metal roof; between some columns stand flat, plain blackened-steel panels (about 1/4 in thick, about 5 ft wide) perforated with many simple round holes in only three controlled diameters (about 1 in, 2 in and 3 in) on a regular offset grid; the hole density varies gradually across each panel and from panel to panel so that, seen together, broad, soft, incomplete concentric arcs appear across several panels; no single panel has a centre motif, radial petals, rosette, sunburst, star, lace or any ornament; it reads as utilitarian contemporary industrial perforated metal, not a decorative screen. "
 "The MAIN ENTRANCE is a 12-ft-wide, 12-ft-deep covered recess in that south arcade immediately beside the hall's southeast corner, with a cedar elm soffit, a pair of full-height glass doors in dark-bronze frames, and a plain blank blackened-steel sign panel on a board-formed-concrete plinth beside it. "
 "Through the arcade openings the court is visible: decomposed-granite gravel, a shallow stone water rill about 18 in wide running east-west down the centre, long dark-pecan communal tables with benches under the arcades, a cluster of cedar elms, and at the open east end a native-grass lawn with two mature live oaks. "
 "Across the court, on its north side, runs a long, low restaurant block (about 140 ft long, one storey, about 18 ft to the ridge) with pale Texas limestone walls in horizontal courses, tall deep-set dark-bronze windows (about 5 ft wide by 9 ft tall), a low-pitched charcoal standing-seam roof with deep eaves, two slim blackened-steel kitchen exhaust stacks near its centre, and in front of it a second arcade identical to the south one; a stage alcove sits at its northeast corner. A third arcade runs along the hall's east glass. "
@@ -16,7 +16,7 @@ BUILDING = (
 )
 
 TANKS = (
-"THE TANK CLOISTER seen through the hall glass: exactly SIX identical polished stainless-steel conical fermenters (each about 5 ft in diameter and about 19 ft tall including legs) arranged in a HORSESHOE that opens toward the south glass: two tanks along the west wall, two along the east wall, and one on each side of a raised central brew deck at the north end. Every tank has a polished cylindrical shell, an insulated conical bottom clad in matte charcoal, four short legs, a round side manway with clamp, a sample valve, realistic tri-clamp fittings, tidy restrained piping on the inner side of the horseshoe, and exactly ONE narrow (about 6 in) marigold-orange band around the middle of the shell. No other orange on the tanks, no patterns or decoration on the stainless. "
+"THE TANK CLOISTER seen through the hall glass: exactly SIX identical polished stainless-steel conical fermenters (each about 5 ft in diameter and about 19 ft tall including legs) arranged in a HORSESHOE that opens toward the south glass: two tanks along the west wall, two along the east wall, and one on each side of a raised central brew deck at the north end. Every tank has a polished cylindrical shell, an insulated conical bottom clad in matte charcoal, four short legs, a round side manway with clamp, a sample valve, realistic tri-clamp fittings, tidy restrained piping on the inner side of the horseshoe, and exactly ONE narrow (about 6 in) deep marigold-orange band (more orange than yellow, about hex E8870E) around the middle of the shell. No other orange on the tanks, no patterns or decoration on the stainless. "
 )
 
 BREWHOUSE = (
@@ -39,7 +39,7 @@ NEG_COMMON = ("cartoon, illustration, painting, obvious CGI, video-game or 3D-re
 
 FILES = {}
 
-FILES["ARC-01.md"] = dict(
+_FROZEN_ARC01 = dict(
 id="ARC-01", title="Definitive day exterior",
 purpose="Answer: WHAT DOES THIS BREWERY LOOK LIKE? Establish the massing, entrance, Shade Court, Tank Hall and the six-tank Tank Cloister in one frame. This image becomes the visual reference for every other exterior.",
 aspect="16:9 (generate 3 to 4 variants; accept only the best as the reference)",
@@ -205,6 +205,39 @@ accept=[
 "A designer would read this as one collection.",
 "Each glass is plausibly manufacturable and dishwasher-safe.",
 "Founder approves the family and signs off the visual lock (with ARC-01, ARC-02, BRW-01, GLS-01)."])
+
+FILES["ARC-01-B.md"] = dict(
+id="ARC-01-B", title="Corrected day exterior (refinement of ARC-01-A)",
+purpose="Refine ARC-01-A, not replace it: same brewery, same massing and materials, with corrected ring-free industrial screens, a readable six-tank horseshoe, a stronger entrance and more photographic realism. ARC-01 remains the BREWERY HERO: no play, game, history or retail elements.",
+aspect="16:9 (generate 4 variants; attach ARC-01-A as an optional composition reference but obey the corrections below)",
+prompt=(STYLE+"FORMAT: 16:9. THIS IS A REFINEMENT OF AN EXISTING DESIGN: the same brewery as the earlier candidate, with the corrections listed at the end. "+BUILDING+TANKS+
+"HALL HEIGHT AND CONTRAST: the Tank Hall is a tall industrial volume, its parapet about 2.5 times the height of the arcade eave beside it, acting almost like the brewery's visual tower without being a tower; the arcade, entrance and restaurant block are clearly low hospitality volumes. "
+"TANK READABILITY (critical): the camera is turned more obliquely so the hall's south glass and east glass are both clearly visible, the south face at about 35 to 40 degrees to the picture plane (about 55 percent of the visible hall width is south glass, 45 percent east-flank glass). Through the glass the SIX tanks must read as a U-shaped room of equipment, not a row: the two west-leg tanks at the far left of the south glass, the two back tanks flanking a raised brew deck whose copper-clad vessels are visible at the centre of the depth, and the two east-leg tanks seen nearest through the east glass at a steep angle. The tanks are at different depths and different sizes in perspective, which creates depth. Interior narrow-beam uplights on the far tanks make them pop against a slightly darker interior; the glass is clear and low-reflectance so reflections of trees do not hide the tanks. Each tank: polished stainless shell, a matte CHARCOAL insulated cone (clearly darker than the shell), four legs, a visible round manway, and ONE narrow (about 6 in) deep marigold band (more orange than yellow). "
+"ENTRANCE (clear hierarchy without any sign): immediately beside the hall's southeast corner the south arcade steps in to a deeper recess about 12 ft wide and 14 ft deep with a lowered cedar elm soffit, two shielded downlights, a pair of full-height dark-bronze glass doors with an accessible door, a wall change to honed limestone inside the recess, paving that changes to larger pale limestone pavers leading in from the drive, and clusters of muhly grass and yaupon on either side framing the opening. The blank blackened-steel monument panel on its board-formed-concrete plinth stands beside the approach path, not in front of any column. A couple walk toward the entrance. "
+"ARCADE SCREENS (corrected): flat plain blackened-steel perforated panels as described, reading as industrial perforated metal; through the holes the viewer sees the shaded greens of the court, not a golden glow; no panel has a centre motif or radial pattern. "
+"PEOPLE AND CONTEXT: a family group under the arcade, a few small diners at communal pecan tables in the court, a couple at the entrance: small, natural, unposed. Vehicles (a pickup, an SUV, a sedan) appear only as low, partial, cropped shapes at the extreme bottom corners with no readable plates; the gravel entry drive and native grasses (little bluestem, muhly, inland sea oats, yaupon, Texas sage) occupy the foreground; a live oak branch frames the upper left without covering the tanks; cedar elms and live oaks around and behind. "
+"CAMERA: eye level (about 5.5 ft), 24-28mm equivalent, level horizon, perfectly straight verticals, about 150 to 170 ft from the hall, building about 75 to 80 percent of the frame width, Tank Hall in the left third, entrance centre-left, court extending right. "
+"LIGHT AND PHOTOGRAPHIC REALISM: late afternoon in Central Texas, about 60 to 90 minutes before sunset, hard sun from camera-left (west-southwest) with crisp long shadows and strong material texture, deep shade under the arcade, clear dusty-blue sky with a few thin cirrus; neutral true-colour grade (not sunset-orange, no golden haze, no glowing backlit foliage, no glowing holes in the screens), natural lens falloff and fine film grain, believable fine detail in the limestone coursing, board-formed concrete lines, trench of the rill and the gravel; avoid the smooth, over-saturated AI look. "
+"No logo and no readable text anywhere. Marigold-orange appears only as the six narrow tank bands. "),
+neg=NEG_COMMON+"; additionally avoid radial or sunburst or medallion screen patterns, golden glow through the screens, a straight row of four tanks, silver or stainless cones, thick yellow tank bands, limestone columns in place of concrete columns, a recess-less flush entrance, a monument sign in front of columns, large cars filling the frame, orange sunset haze, any play structures, game machines, retail signage or historical displays",
+cont=[
+"Identical building to ARC-01-A: tall glazed Tank Hall at left, deep arcade and Shade Court at right, restaurant block with two stacks behind, rill, communal pecan tables, oaks, native grasses.",
+"Corrections: ring-free industrial perforated panels; six tanks in a horseshoe with charcoal cones and narrow deep-marigold bands; clearer, deeper entrance recess; board-formed concrete columns; dark-bronze mullions; hall visibly taller than the arcade.",
+"Camera: SE of the building looking NNW, eye level, 24-28mm, more oblique so the east glass shows.",
+"Nothing from the family/game/history/retail expansion appears in this image."],
+checklist=[
+"Do the screens read as plain perforated industrial panels with three hole sizes and NO centre motifs, sunbursts or medallions?",
+"Do the six tanks read as a U-shaped horseshoe (two west, two back around the brew deck, two east) rather than a row? Can you count six?",
+"Charcoal cones clearly different from the polished shells? Narrow deep-marigold bands?",
+"Is the Tank Hall visibly taller than the arcade, and is the east glass visible?",
+"Can a stranger find the entrance at a glance (recess, soffit, lights, paving, planting) without a sign?",
+"Are the columns concrete and the mullions dark bronze? No terracotta, brass or decoration?",
+"Natural colour grade, no golden haze, no glowing screen holes; does it read as a photograph?",
+"Are vehicles low and subordinate? No readable text, no logo?"],
+accept=[
+"Score >= 90 on the ARC-01 rubric with no hard fail.",
+"Six tanks believable in a horseshoe, or regenerate.",
+"Founder approval required before it is called canonical."])
 
 def md(f,d):
     o=[f"# {d['id']}: {d['title']}","",

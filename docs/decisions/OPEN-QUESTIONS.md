@@ -16,3 +16,11 @@
 5. **Cultural advisors:** names/organizations for Indian and Mexican review of names, imagery and dishes?
 6. **Budget band and funding path** for the first location (needed before Phase Four).
 7. **Willingness to partner:** open to collaborating with an existing Austin brewer (e.g., a Celis witbier collab) and a licensed head brewer consultant for pilot batches?
+
+## Destination expansion: new questions (only those that truly need the founder)
+1. **Master plan:** confirm Option C+ (Game Hall at the east end of the restaurant block; Adventure Court on the east lawn; Outlet in the first south-arcade bays)? Site length and land are unknown.
+2. **Scope for phase one:** build the Compact set first (Adventure Court ~8,000 sf, Game Hall ~1,500 sf, Outlet ~500 sf) and phase the rest, or hold the whole vision?
+3. **Alcohol-to-go and minors:** authorize an attorney to resolve brewpub to-go rules and minors-on-premises rules (affects the Outlet and the family model).
+4. **Arcade pricing:** free / pay-per-play / card / hybrid preference?
+5. **Historians and artists:** who should advise (South Asia and Mesoamerica historians, a food historian, artists)?
+6. **Approve** ARC-01-B as the next image to generate, using the corrected prompt.

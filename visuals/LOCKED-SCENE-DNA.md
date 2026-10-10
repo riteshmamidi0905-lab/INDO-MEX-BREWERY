@@ -40,8 +40,8 @@ Working name only: INDO MEX BREWERY. No logo exists. Concept visual: not an oper
 | Main entrance | 12 ft wide x 12 ft deep **covered recess** in the south arcade, immediately beside the hall's southeast corner; leads to a lobby with a viewing promenade along the hall's south glass |
 | Stage | **Alcove at the northeast corner** of the court, inside the restaurant block's east end, its back to the property edge, facing southwest |
 | Shade Court | ~110 ft (E-W) x 70 ft (N-S) including arcades; **arcades on the west, north and south sides**; east side open to a native-grass lawn and live oaks |
-| Arcades | Depth **14 ft**; column spacing **15 ft**; board-formed concrete columns (~18 in square); exposed **cedar elm** timber beams; dark standing-seam roof; stone paver floor |
-| Screens | South arcade partly screened between columns by laser-cut **blackened-steel panels** (1/4 in), perforated with a staggered field of round holes in graduated sizes (about 1.5-4 in) whose density reads as large soft **concentric ring shapes ~3 ft across**. Solid steel remains between holes so panels are structurally plausible. Not jaali, not mandala, not lattice. |
+| Arcades | Depth **14 ft**; column spacing **15 ft**; **warm-grey board-formed concrete columns** (~18 in square; limestone columns are NOT canonical); exposed **cedar elm** timber beams; dark standing-seam roof; stone paver floor |
+| Screens | **Revised (D-29, founder-directed after ARC-01-A):** flat, plain **blackened-steel panels** (1/4 in, ~5 ft wide) perforated with many simple round holes in **three controlled diameters (~1, 2, 3 in)** on a regular offset grid; density varies across and between panels so broad, soft, **incomplete concentric arcs** appear across several panels; **no centre motifs, radial petals, rosettes, sunbursts, stars, lace or ornament** on any single panel. Utilitarian industrial perforated metal. Not jaali, not mandala, not lattice. |
 | Court surface | Decomposed-granite gravel in the open middle; stone pavers under arcades; **stone rill ~18 in wide, shallow, running east-west on the centreline** and discharging toward the lawn |
 | Landscape | Mature **live oaks** at the east edge and along the property line; **cedar elms** in the court; native Central Texas grasses (e.g., little bluestem, muhly), inland sea oats, yaupon holly, Texas sage; **no agave as a feature, no palms, no resort planting** |
 | Service | North side, out of sight: loading dock for kegs/grain/food at the Tank Hall's north end, grain bin and spent-grain bin, mechanical yard. Separate service drive. |
@@ -121,3 +121,14 @@ Open concept risks: building depth vs. a real site, flood plain, fire separation
 ## 11. Cautions (design principle)
 - We do not need a cultural story for every object. A floor can just be a good floor.
 - Marigold is a visual accent; its historical cultural connection is **not** established. Black stoneware and terrazzo are chosen because they work, not because of unverified shared-tradition claims. Do not publish those claims. Do not print "two cuisines that already traded fire, fruit and flower" anywhere; it is an internal thesis only.
+
+## 12. Revision log
+- **v1.1 (D-29):** screen spec replaced (see Screens row); columns confirmed as board-formed concrete; mullions confirmed dark bronze; tank bands "deep marigold (more orange than yellow), ~6 in"; entrance recess deepened to 12 x 14 ft with lowered cedar elm soffit. Reason: ARC-01-A review.
+
+## 13. Expansion Addendum (PROPOSED, pending founder approval; does not alter the core brewery above)
+Recommended zoning **Option C+** (`architecture/FAMILY-ZONING-OPTIONS.md`):
+- **Restaurant block extends ~80 ft east** (to ~220 ft) to form a **Game Hall** (~2,800 sf) at its east end behind the stage's thick back wall plus an acoustic vestibule; glazed south face onto the Adventure Court.
+- **Adventure Court** (~18,000 sf incl. terrace) on the east lawn, with architectural shade (concrete columns, cedar elm beams, standing-seam roof) over ~60% of play; parent terrace between it and the Shade Court.
+- **Flagship Outlet** (~1,200 sf) in the first two bays of the south arcade east of the entrance recess, with its own door.
+- **History Corridor** = the guest promenade (south ~12 ft of the Tank Hall).
+None of these appear in ARC-01 or ARC-02. Adventure Court and Game Hall lie beyond the hero camera's view (east).

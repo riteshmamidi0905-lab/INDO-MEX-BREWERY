@@ -35,3 +35,11 @@ Phase One was written from a limited first research pass (6 searches). The items
 - [ ] Cultural advisors (Indian, Mexican) review of names, imagery, dishes.
 - [ ] Equipment vendor quotes for a ~7-10 bbl brewpub system with visible hall; wastewater load estimate.
 - [ ] Generate the 57 images externally; log in visuals/generated/LOG.md; QA against VISUAL-DNA.
+
+## Added (history, family, retail)
+- [ ] Scholarly sources for the chile's route to India (Collingham, Andrews), Columbian exchange texts, Seijas, McGovern 2004, Kashyap & Weber 2010; marigold botanical history; maize in India; pulque; Olmec/Maya/Zapotec/Mixtec/Purépecha/Mexica; Indian regional food histories.
+- [ ] Two historians and a food historian review `[PRO]`.
+- [ ] CPSC Handbook tables, ASTM F1487/F1292, ADA §1008 read directly; CPSI review; playground surface temperatures in Austin; age groups.
+- [ ] TABC minors-on-premises rules; brewpub to-go and retail rules; insurance requirements for play areas and arcades `[PRO]`.
+- [ ] Arcade economics and game-mix research; family-brewery dwell-time data (pilot).
+- [ ] Verify the US playground-shade study cited (Olsen et al.) and Pfautsch values.
