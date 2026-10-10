@@ -2,7 +2,9 @@
 
 Five assets lock the world: **ARC-01, ARC-02, BRW-01, GLS-01, GLS-02.** Do **not** generate any of the other 52 assets until this batch is reviewed and approved. Do not build a website.
 
-> **Update (D-42, current):** ARC-01 is FINISHED. **ARC-01-D is APPROVED — CANONICAL DAY EXTERIOR (founder waiver 89/100).** ARC-02 is unblocked (`ARC-02.md`, use ARC-01-D as the init/reference image). BRW-01, GLS-01, GLS-02, expansion, branding and website remain blocked until instructed.
+> **Update (D-47, CURRENT SEQUENCE):** ARC-02 is ON HOLD (tool-limited; no canonical night image; ARC-02-A is a non-canonical atmosphere reference). New order: ARC-01-D → **BRW-01** (package prepared, awaiting founder approval to generate) → GLS-01 → GLS-02 → Visual Lock review → return to ARC-02 only with a mask-aware editing workflow or a strong BRW-01.
+
+> **Update (D-42, superseded by D-47 on ARC-02):** ARC-01 is FINISHED. **ARC-01-D is APPROVED — CANONICAL DAY EXTERIOR (founder waiver 89/100).** ARC-02 is unblocked (`ARC-02.md`, use ARC-01-D as the init/reference image). BRW-01, GLS-01, GLS-02, expansion, branding and website remain blocked until instructed.
 
 > **Superseded update (D-40):** ARC-01-D (89/100, scripted edit) is the geometry authority. The only pending ARC-01 step is **ARC-01-E** (`ARC-01-E.md`). If E is rejected, ARC-01-D becomes canonical by founder waiver; there is no ARC-01-F. ARC-02 stays blocked until then.
 

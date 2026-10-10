@@ -54,4 +54,4 @@ Phase One baseline (kept; Phase 1.5 governs conflicts): `phase-one/00-FOUNDING-V
 
 ## Status (2026-10-10)
 Phase One written; Phase 1.5 (research deepening + brand world) complete as a draft awaiting founder review. **No images generated yet** (external tool required); 57 prompts are ready; the first five (Visual Lock batch) are finalized in `visuals/generation-batch-01/`.
-**ARC-01-D is the APPROVED canonical day exterior (founder waiver 89/100, D-42).** ARC-02-A (best night exterior) and ARC-02-B rejected; **ARC-02-C attempt 1 FAILED (D-46); stopped pending founder decision.** Website: not started, by instruction.
+**ARC-01-D is the APPROVED canonical day exterior (founder waiver 89/100, D-42).** **ARC-02 ON HOLD, tool-limited (D-47): no canonical night image; ARC-02-A is a non-canonical night-atmosphere reference; ARC-02-B/C rejected.** Next: BRW-01 (package prepared, not generated). Website: not started, by instruction.

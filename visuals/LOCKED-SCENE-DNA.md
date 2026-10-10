@@ -4,6 +4,8 @@
 Governing documents (D-39 authority order): `VISUAL-DNA.md` v2.1 (rules) → this file (geometry) → Visual Lock decisions D-22 onward → approved ARC-01 review decisions → `generation-batch-01/*.md` (prompts). The Phase One Style Bible is SUPERSEDED — RETAINED FOR HISTORY.
 Working name only: INDO MEX BREWERY. No logo exists. Concept visual: not an operating business.
 
+> **Authority note (D-47):** ARC-01-D is the sole canonical exterior and geometry authority. **ARC-02-A is a night-atmosphere reference only; its Tank Hall (eight fermenters, no brewhouse) is NOT canonical** and must never be used for count, arrangement, cones, sleeves, deck, copper or mullion geometry, however attractive it looks. BRW-01 will become the canonical authority for the Tank Cloister and equipment once approved.
+
 ## 1. Orientation and the canonical camera position
 - North is up in the plan. The entry drive and parking are on the **south**. The "hero camera" for ARC-01 and ARC-02 stands at the **southeast** of the building on the entry drive, looking **north-northwest**, at eye level, about 150-170 ft from the Tank Hall.
 - Day light: late afternoon, sun low in the **west-southwest**, i.e. raking from the **camera-left**, so the Tank Hall's south glass is lit and the court arcade throws deep shadows.
