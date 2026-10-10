@@ -143,7 +143,7 @@ Candidate submarkets are **not** pre-selected; collect asking and closed comps, 
 | R4 | Texas heat and rain make court unusable | M | H | Engineered shade/air, indoor fallback, test |
 | R5 | Liability and insurance for play/arcade/alcohol | M | H | Broker, CPSI, hours policy |
 | R6 | Licensing misstep (guest beer, canning, minors) | M | H | Attorney early |
-| R7 | Kitchen complexity (tandoor, comal, oven, goat supply, biryani throughput) | M | M | Menu matrix gates; T4 speed tests |
+| R7 | Kitchen complexity (tandoor, comal, oven, biryani throughput) and **goat/lamb/fish/paneer supply and price** (no beef/pork, D-54) | M | M | Menu gates; supplier quotes and T1 cut/yield tests; chicken/vegetarian share cushions protein cost |
 | R8 | Cultural accuracy and perceived stereotyping | M | H | Advisors; historical audit; no costume rule |
 | R9 | Market consolidation and lender caution | H | H | Capital discipline; reserves |
 | R10 | Noise/neighbour conflict (stage, Game Hall) | M | M | Siting, acoustics |

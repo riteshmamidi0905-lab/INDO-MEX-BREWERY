@@ -1,3 +1,5 @@
+> **HISTORICAL RESEARCH NOTE (D-54):** this chapter discusses beef and pork dishes (carne asada, carnitas, Goa/Yucatán pork) as regional research. Our concept serves **no beef and no pork**; the research is retained, the product is not.
+
 # 3-5. Regional Research Frameworks and Pairing Matrix
 
 All regional food statements here are `[UNCITED]` general background. Before external use, each region needs one strong citation (see backlog). "Beer relevance" and ratings are `[CONCEPT]`.

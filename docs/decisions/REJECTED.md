@@ -26,4 +26,4 @@
 | Saffron as a standard ingredient | Founder | Reserve only, gated | Cost, inconsistency | Sensory trial passes |
 | Mexican lager with lime/salt as a core serve | Phase One | Not adopted | Keep Classic lager clean | |
 | 25-dish launch menu | Phase One | Replaced by 16-item opening menu | Operations | |
-| Achari Carnitas, Chilli Chicken Taco | Phase One | Test kitchen / special only | Overpowering / third culture | |
+| Achari Carnitas, Chilli Chicken Taco | Phase One | Test kitchen / special only | Overpowering / third culture. **Achari Carnitas is now also REJECTED (pork, D-54).** | |

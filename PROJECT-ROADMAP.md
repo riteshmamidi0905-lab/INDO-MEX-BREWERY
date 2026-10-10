@@ -1,7 +1,7 @@
 # PROJECT ROADMAP
 
 **Project:** INDO MEX BREWERY (working name; parent brand unresolved) · **Founder:** Ritesh Mamidi · **Market:** Austin, Texas · **Branch:** `claude/loving-hypatia-jwilh1` (never merged to main)
-**Last updated:** 2026-10-10 (Phase-2 sprint). **Rules:** nothing is deleted; rejected ideas live in `docs/decisions/REJECTED.md`; every factual claim carries an evidence tag and a source ID; beer and food are R&D targets until tested; images are concept visuals; **no website code yet**.
+**Last updated:** 2026-10-10 (Phase-2 Sprint 2). **Rules:** nothing is deleted; rejected ideas live in `docs/decisions/REJECTED.md`; every factual claim carries an evidence tag and a source ID; beer and food are R&D targets until tested; images are concept visuals; **no website code yet**.
 **Operating rule (D-49):** build the concept systematically and refine visuals only when they materially help. Phases overlap. No artificial blockers.
 
 ## 1. Phases at a glance
@@ -23,18 +23,19 @@ Overlap is expected: Phase 3 evidence feeds Phase 5 sizing; Phase 4 waits on tra
 - Historical claims audit (never invent history, D-30); sources S-01..S-74.
 - ARC-02 night attempts (A, B, C): **ARC-02 on hold, tool-limited (D-47)**; ARC-02-A is a night-atmosphere reference only; B and C rejected as provenance.
 - BRW-01: package approved and Run 1 V1 reviewed (68/100); retained as development reference only (D-49).
-- **Phase-2 sprint v1 (this session):** opening beer program v1; opening menu development matrix v1; guest journey v1; master-plan update; Austin feasibility skeleton; brand system v0; GLS-01/02 packages; Phase-2 research (S-76..S-118); historical audit addendum G; corrections #17-20; decisions D-49..D-53.
+- **Phase-2 Sprint 2 (D-54, D-55):** founder dietary policy recorded (**no beef, no pork; not claimed halal**) with a repo-wide audit (`docs/decisions/DIETARY-AUDIT-D54.md`, `tools/diet_audit.py`); Tandoori Lamb replaces beef; **Menu v1.1** 12-dish test set (`food/MENU-V1.1-TEST-MENU.md`); five T1 test sheets (`food/t1-test-sheets/`); three brewer-facing **pilot briefs** (`beer/pilot-briefs/`); GLS final generation package (`visuals/generation-batch-01/GLS-GENERATION-PACKAGE.md`); Austin competitor price survey structure (`research/market-survey/`); 30-interview discovery instrument, response schema and analyser (`research/customer-discovery/`).
+- **Phase-2 sprint v1:** opening beer program v1; opening menu development matrix v1; guest journey v1; master-plan update; Austin feasibility skeleton; brand system v0; GLS-01/02 packages; Phase-2 research (S-76..S-118); historical audit addendum G; corrections #17-20; decisions D-49..D-53.
 
 ## 3. ACTIVE (work to continue now)
 | Workstream | Next concrete steps |
 |---|---|
-| **Beer** | Engage a licensed head brewer `[PRO]`; design P1 pilot for Hefeweizen first; Austin water lab test; decide yeast shortlist; resolve kellerbier code, Cicerone temperatures, TTB formula status for Deccan Sol/Goa Baja/Malabar Dark |
-| **Food** | T1 test-kitchen plan for the 16 dishes (priority order: Chicken 65 Totopos, Paneer Tikka Taco, Dum Goat Birria, Gobi Taco, Mole-Salan Bowl); supplier availability (goat, paneer, kokum, methi); fry-oil and halal policy |
+| **Beer** | Hand the three pilot briefs (Hefeweizen, Mexican-Style Lager, Vienna Amber) to a licensed head brewer `[PRO]`; Hefeweizen first; Austin water lab test; decide yeast shortlist; resolve kellerbier code, Cicerone temperatures, TTB formula status for Deccan Sol/Goa Baja/Malabar Dark |
+| **Food** | Cook the five T1 sheets first (Chicken 65 Totopos, Chaat Elote, Paneer Tikka Taco, Dum Goat Birria, Butter Chicken Rajas Quesadilla), then the other seven wave-1 dishes; supplier availability (goat, lamb, paneer, kokum, methi); fry-oil policy; halal is **not** claimed (needs separate review) |
 | **Experience** | Cardboard walkthrough design; exit-card and observation protocol; pop-up concept |
 | **Space** | Architect brief using the master plan; scale reconciliation with a brewing consultant (D-51); acoustics and heat strategy briefs |
 | **Brand** | Trademark knockout on the top 5 parent names; advisor roster; naming test plan |
-| **Glassware** | Generate GLS-01 (4 variants) then GLS-02 using the profile guides; review with the sheets |
-| **Business** | Competitor price survey; customer interviews; quotes (brewhouse, kitchen, Compact set); attorney engagement; broker and land comps |
+| **Glassware** | Package final; **not generated** (no image tool here). Founder runs GLS-01 then GLS-02 per `GLS-GENERATION-PACKAGE.md` |
+| **Business** | Fill the competitor price survey (`research/market-survey/`); run the 30 interviews (`research/customer-discovery/`); quotes (brewhouse, kitchen, Compact set); attorney engagement; broker and land comps |
 | **Research** | Re-open every Phase-2 source in a browser (WebFetch failed in-session); scholarly sources for the historical audit; historians' review |
 
 ## 4. NEXT (sequenced; may start before Active items finish)
@@ -56,20 +57,23 @@ Overlap is expected: Phase 3 evidence feeds Phase 5 sizing; Phase 4 waits on tra
 | **Legal conclusions (licence path, minors, to-go, canning)** | Attorney not engaged; primary text not opened | Attorney engagement |
 | **Public website** | By instruction | Founder instruction |
 
-## 6. DECISIONS NEEDED FROM THE FOUNDER (meaningful only)
-| # | Decision | Why it matters | Default I will assume if not answered |
-|---|---|---|---|
-| FD-1 | **Budget band and funding path** (equity, debt, partners) for the first location | Gates the model, phasing and site size | Model three phase scenarios; no budget assumed |
-| FD-2 | **Family set in the opening build or later** (SP-1 later with provisions vs SP-2 Compact Adventure Court at opening) | Largest swing in capex, staffing and liability | SP-1 (later, provisions built in) |
-| FD-3 | **Diet policy**: pork-free opening menu, beef limited/labelled, halal sourcing, vegetarian segregation | Menu, kitchen layout, positioning | Defaults M-1..M-4 |
-| FD-4 | **Authorise professionals**: Texas alcohol attorney, insurance broker, head brewer/consultant, architect for Compact concept | Licensing, liability and sizing are unresolved without them | Proceed with research only |
-| FD-5 | **Cultural advisors**: names/organisations (Indian-heritage and Mexican-heritage, culinary and history) | Required before names, dishes, history text and imagery go public | None named |
-| FD-6 | **Parent-name shortlist go-ahead** for trademark knockout (top 5) | Phase 4 cannot finish without it | Top 5 by our scoring |
-| FD-7 | **Geography for site search** (submarkets or radius) and any land already in view | Site scoring and land comps | No site assumed |
-| FD-8 | **Partnering**: open to a collaboration (e.g. a Celis witbier collab) and a pilot-brewing partner? | Pilot path and pop-up legality | Open to a pilot partner; collab undecided |
+## 6. DECISIONS NEEDED FROM THE FOUNDER (only what cannot be made responsibly without him)
+| # | Decision | Why it matters |
+|---|---|---|
+| FD-1 | **Budget band and funding path** (equity, debt, partners) for the first location | Gates the model, phasing and site size; the real cost is unknown and multi-million-dollar |
+| FD-2 | **Authorise the first paid professionals**: Texas alcohol attorney, insurance broker, licensed head brewer/consultant, architect (Compact-set rough order of magnitude) | Licensing, liability, vessel sizing and cost cannot be resolved by research alone |
+| FD-3 | **Pilot-brewing route**: partner brewery or pilot system, and openness to a collaboration (e.g. a Celis witbier) | Hefeweizen is the gate beer; nothing proceeds without real brewing |
+| FD-4 | **Cultural advisors**: names/organisations (Indian-heritage and Mexican-heritage, culinary and history) | Required before names, dish text, history and imagery go public |
+| FD-5 | **Parent-name shortlist go-ahead** for trademark knockout (default: top 5 by our scoring) | Phase 4 cannot finish without it |
+Closed: ~~diet policy~~ (D-54). Defaults assumed, no decision needed now: family set later with Phase-A provisions (SP-1); no site assumed until a geography is given.
+
+## 6b. What needs physical testing / a professional / money next
+| Needs physical testing | Needs a professional | Costs money next |
+|---|---|---|
+| T1 cooking of the five test sheets then the other seven wave-1 dishes; lamb cut comparison; goat birria yield; lard-free tortilla and bean sourcing | Texas alcohol attorney (licence path, guest beer, minors, canning); insurance broker; licensed head brewer; architect/cost consultant; CPSI (later); cultural advisors | Ingredients and a test-kitchen/cook's time; pilot batches via a partner; legal consult; vendor and architect quotes; customer-interview incentives; pop-up permits and costs |
 
 ## 7. Reversible decisions made autonomously (see D-52 and each document)
-Menu M-1..M-7 · Journey J-1..J-6 · Brand BR-1..BR-4 · Beer B-1, B-2 · Site SP-1/SP-2 · Scale D-51 · Evidence caveat D-53.
+Menu M-1..M-7 (M-1/M-2/M-3 superseded by D-54) · Journey J-1..J-6 · Brand BR-1..BR-4 · Beer B-1, B-2 · Site SP-1/SP-2 · Scale D-51 · Evidence caveat D-53.
 
 ## 8. Top unresolved risks
 1. **Capex scale** vs revenue; the full concept is multi-million-dollar and unquoted (`AUSTIN-FEASIBILITY-V1.md` §10).

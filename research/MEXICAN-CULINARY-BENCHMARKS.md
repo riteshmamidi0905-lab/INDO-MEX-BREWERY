@@ -26,7 +26,7 @@ Tags: `[V S-xx]` verified; `[U]` background needing a source; `[C]` our interpre
 - **Salsas, moles, chiles, agave, seafood, barbacoa:** `[U]` still need individual sources (backlog).
 
 ## 4. Birria study for the Indian-influence dish (required)
-Identity checklist (what must survive) `[C]`: (1) dried-chile adobo (guajillo/ancho/pasilla family) as the flavor spine; (2) long braise producing a **drinkable consommé**; (3) tortilla dipped and griddled; (4) onion, cilantro, lime on the side; (5) goat is the Jalisco original, beef the Tijuana/US form.
+Identity checklist (what must survive) `[C]`: (1) dried-chile adobo (guajillo/ancho/pasilla family) as the flavor spine; (2) long braise producing a **drinkable consommé**; (3) tortilla dipped and griddled; (4) onion, cilantro, lime on the side; (5) goat is the Jalisco original, beef the Tijuana/US form. *[HISTORICAL RESEARCH. D-54: our birria is goat only; no beef version.]*
 Where Indian goat cooking can contribute without erasing birria `[C]`:
 - **Technique** over spice: Hyderabadi/North-Indian marinades use yogurt, ginger-garlic, raw papaya (tenderizer) and long dum (sealed) cooking `[V S-35, C grade]`. A **yogurt-and-papaya pre-marinade** for goat could improve tenderness before the chile adobo goes on. `[TEST]`
 - **Fat and onion discipline:** slow-browned onion base (birista-style) deepening the consommé. `[TEST]`

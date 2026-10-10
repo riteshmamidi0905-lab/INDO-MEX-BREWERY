@@ -1,0 +1,35 @@
+{
+ "fields": [
+  "venue",
+  "location",
+  "concept",
+  "house_beer_price_usd",
+  "pint_size_oz",
+  "flight_price_usd",
+  "flagship_beer",
+  "taco_or_snack_price_usd",
+  "entree_or_pizza_price_usd",
+  "average_food_range_usd",
+  "na_options",
+  "family_features",
+  "outdoor_features",
+  "events_music",
+  "parking",
+  "brewery_visibility",
+  "merch",
+  "retail_to_go",
+  "service_model",
+  "source_url",
+  "access_date",
+  "confidence",
+  "notes"
+ ],
+ "rules": [
+  "Leave unknown fields blank; never estimate",
+  "One row per venue per visit/date",
+  "Prices in USD as printed on the menu at access_date; record tax/tip inclusion in notes",
+  "Record source_url and access_date for every row",
+  "confidence: HIGH (own visit/photo of menu), MEDIUM (official site/menu within 30 days), LOW (third-party), NOT SURVEYED",
+  "Use the same basket for every venue (see README)"
+ ]
+}

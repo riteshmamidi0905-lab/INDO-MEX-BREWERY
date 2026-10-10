@@ -54,7 +54,10 @@ Phase One baseline (kept; Phase 1.5 governs conflicts): `phase-one/00-FOUNDING-V
 ## Visual Lock (current)
 `visuals/VISUAL-DNA.md` (canonical rules) → `visuals/LOCKED-SCENE-DNA.md` (geometry) → `visuals/generation-batch-01/` (5 prompts to generate first; do not generate the other 52 until reviewed).
 
-## Status (2026-10-10, Phase 2 sprint)
+## Status (2026-10-10, Phase 2 Sprint 2)
+**Dietary policy D-54: no beef, no pork (not claimed halal).** Sprint 2 added `food/MENU-V1.1-TEST-MENU.md`, `food/t1-test-sheets/`, `beer/pilot-briefs/`, `research/market-survey/`, `research/customer-discovery/`, `docs/decisions/DIETARY-AUDIT-D54.md`, `tools/diet_audit.py`. Nothing has been cooked, brewed, surveyed or generated.
+
+## Status (Phase 2 Sprint 1)
 Phase 2 v1 shipped: `beer/OPENING-BEER-PROGRAM-V1.md`, `food/MENU-DEVELOPMENT-MATRIX-V1.md`, `experience/GUEST-JOURNEY-V1.md`, `architecture/MASTER-PLAN-PHASE2.md`, `business/AUSTIN-FEASIBILITY-V1.md`, `brand/BRAND-SYSTEM-V0.md`; GLS-01/02 packages prepared; sources S-76..S-118 added (search-extract level, re-verify before external use, D-53).
 
 ## Status (earlier, 2026-10-10)

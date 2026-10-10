@@ -1,3 +1,5 @@
+> **SUPERSEDED for the menu (D-54):** this Phase One library includes beef (Tandoori Carne Asada) and pork (Achari Carnitas, Cochinita Pibil Naan Pizza). The concept is now **beef-free and pork-free**; current menu authority is `food/OPENING-MENU-V2.md` (with D-54 updates) and `food/MENU-V1.1-TEST-MENU.md`. Retained for provenance.
+
 # 12-13. Food Program: 25 Concepts, 10 Signatures
 
 All dishes are `[CONCEPT]` and need kitchen trials `[TEST]`. Quantities, costs and recipes are intentionally absent: none has been tested. ★ = signature candidate.

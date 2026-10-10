@@ -1,5 +1,7 @@
 # Opening Menu Development Matrix v1 (Phase 2)
 
+> **D-54 UPDATE:** no beef, no pork. Item 8 is now **Tandoori Lamb Taco**; birria is goat only; M-1/M-2/M-3 are superseded (section 6). The 12-dish opening **test** set is in `MENU-V1.1-TEST-MENU.md`; this 16-item matrix remains the development pool.
+
 **Status:** development system, not a menu. **No dish has been cooked or costed.** Everything here is `[CONCEPT]` or `[TEST]`; nothing is a validated recipe. It builds on `OPENING-MENU-V2.md` (16 items), `SAUCE-SYSTEM.md` (8 sauces), `research/INDIAN-CULINARY-BENCHMARKS.md`, `MEXICAN-CULINARY-BENCHMARKS.md` and `research/PAIRING-MATRIX-V2.md`. Beer names are the working names from `beer/OPENING-BEER-PROGRAM-V1.md`.
 
 ## 0. How to read the matrix
@@ -23,7 +25,7 @@
 | 5 | **Gobi Taco** (3) | Veg anchor | Gobi 65/Manchurian-style fried cauliflower × Baja-style fried taco | Crisp batter + tamarind-chile glaze; lime-cabbage slaw acid; corn tortilla | **Hawa lager / Goa Baja** | Cauliflower, rice-flour batter, Imli-Guajillo glaze, cabbage, achari onion, corn tortilla | Par-fry, hold; glaze and fry-crisp to order; ticket ≤ 6 min | 3 | Fryer, comal | L | T0 | 2 |
 | 6 | **Paneer Tikka Taco** (3) | Veg anchor | Tandoori paneer tikka × tacos al carbón | Smoky char, yogurt-ajwain-chile; hari salsa; charred pineapple | **Hefeweizen / Witbier** | Paneer, yogurt marinade, hari, pineapple, corn tortilla | Marinate 4-8 h; tandoor or high-heat grill; 90-second finish | 3 | Tandoor or charbroiler | L-M (paneer is made in-house or sourced) | T0 | 2 |
 | 7 | **Malabar Fish Taco** (3) | Signature | Kerala pepper-coconut fish × Baja/Yucatán fish tacos | Black pepper-coconut-curry leaf warmth; cabbage-lime acid | **Goa Baja / Witbier / Pilsner** | White fish (mahi/redfish: sourcing TBD), Malabar sauce, cabbage, corn tortilla, kokum-lime (test) | Marinate 30-60 min; grill or light batter; to order | 3 | Grill/fryer | M-H (fish price, yield, freshness) | T0 | 2 |
-| 8 | **Tandoori Carne Asada** (3) | Signature | Punjabi tandoori marination × Sonora carne asada + flour tortilla | Char and juice; yogurt-chile tenderises; flour tortilla sweetness; salsa | **Vienna Amber** | Skirt/flank, yogurt-chile marinade, flour tortilla, onion, hari | Marinate 12-24 h; fast hot grill; rest, slice | 3 | Charbroiler/tandoor, comal | H (beef price) | T0 | 2 |
+| 8 | **Tandoori Lamb Taco** (3) *(replaces Tandoori Carne Asada, SUPERSEDED D-54)* | Signature | Our own composition: Punjabi tandoori-style marination × Sonoran grilling and flour tortilla (not a historical dish) | Char, bright herb/chile/acid; yogurt-chile marinade; flour tortilla sweetness; salsa | **Vienna Amber** | Lamb (cut chosen at T1), yogurt-chile marinade, flour tortilla, onion, hari | Marinate 12-24 h; fast hot grill; rest, slice; faster and brighter than birria | 3 | Charbroiler/tandoor, comal | **H** (lamb price, cut yield) | T0; cut comparison at T1 | 2 |
 | 9 | **Dum Goat Birria** | Anchor/Signature | Hyderabad-style dum braise × Jalisco birria | Sealed low-slow braise; guajillo-ancho adobo; consommé to dip; ghee-curry leaf tadka at table | **Vienna Amber / Dunkelweizen / Malabar Dark** | Goat shoulder/leg (supply and price risk), Adobo-Dum, yogurt-papaya marinade, corn tortillas, consommé | Marinate 24 h; dum-seal and braise 3-4 h; shred; consommé cut and spiced; to-order griddle tacos | 4 | Braise kettle/combi oven, comal | **H** (goat supply, trim yield, price) | T0 | 2 |
 | 10 | **Butter Chicken Rajas Quesadilla** | Gateway/Family | Murgh makhani × quesadilla with rajas (poblano strips) | Rich sweet tomato-cream balanced by charred poblano smoke/acid; cheese pulls | **Hefeweizen / Hawa** | Chicken thigh, Makhani-Rajas, poblano, Oaxaca/Chihuahua-style cheese, flour tortilla | Tandoori chicken pre-cooked; sauce made thick (no pool); griddle | 2 | Comal/flat-top | M | T0 | 1 |
 | 11 | **Mushroom-Epazote-Methi Quesadilla** | Veg | Mexican mushroom-epazote quesadilla × Indian methi (fenugreek leaf) | Earthy-bitter herb duo; cheese and cream round | **Dunkelweizen / Vienna** | Mushrooms, epazote, kasuri/fresh methi, cheese, flour tortilla | Sauté dry, finish herbs; griddle | 2 | Comal | L-M | T0; **kill** if bitter-herb pairing fails panel | 1 |
@@ -33,7 +35,7 @@
 | 15 | **Mole-Salan Bowl** | Veg signature | Mole (toasted seed/nut/chile/souring) × salan (peanut-sesame-coconut-tamarind gravy): same structure | Toast-grind-simmer depth; sour-sweet; vegetables and rice or masa | **Malabar Dark / Dunkelweizen** | Seasonal vegetables, peanut, sesame, dried chile, tamarind, coconut, rice | Batch paste (2-day), finish with vegetables; hold well | 3 | Blender/mill, braise kettle | L | T0; allergen-sensitive (peanut/sesame) | 2 |
 | 16 | **Cardamom Churros, jaggery-chocolate** | Margin/Family | Churros × cardamom-jaggery-chocolate (Oaxacan-style chocolate logic) | Crisp-hot dough, cardamom sugar, bittersweet sauce | **Weizenbock (Reserve) / Malabar Dark** | Dough, cardamom, jaggery/piloncillo, chocolate | Pipe and fry to order; sauces batch | 2 | Fryer | L | T0 | 0 |
 
-**Counts:** 16 items; vegetarian-capable 9 (2, 3, 5, 6, 11, 12, 14v, 15, 16); fully vegetarian 8 (excluding biryani chicken variant). Opening menu is **pork-free by default** (reversible decision, section 6).
+**Counts:** 16 items; vegetarian-capable 9 (2, 3, 5, 6, 11, 12, 14v, 15, 16); fully vegetarian 8 (excluding biryani chicken variant). Menu is **beef-free and pork-free (D-54, binding)**; not claimed halal.
 
 ## 2. Equipment dependency map (what to settle first)
 | Equipment | Dishes depending on it | Risk if absent | Notes |
@@ -65,7 +67,7 @@ Eight sauces need three stations (`SAUCE-SYSTEM.md`); verify at T1.
 | Gluten | Tortillas (flour), pizza, churros, wheat beers | Corn tortilla default for tacos; no gluten-free claim for the kitchen |
 | Fish/shellfish | 7 | Fry oil shared? decision needed |
 | Vegetarian | 2, 3, 5, 6, 11, 12, 15, 16, 14v | Separate fry oil and tongs recommended; vegetarian segregation policy `[Founder, reversible default below]` |
-| Beef / goat / chicken | 8, 9, 13 / 9 / 1, 4, 10, 14 | Labelled; halal sourcing availability is a business decision (section 6) |
+| Goat / lamb / chicken / fish | 9, 13 / 8 / 1, 4, 10, 14 / 7 | **No beef, no pork (D-54).** Halal is not claimed; needs separate review |
 | Heat | Scale 0-3 on every item | Cooling sauce named on the menu |
 
 ## 5. Menu logic checks (applied to all 16)
@@ -79,12 +81,12 @@ Eight sauces need three stations (`SAUCE-SYSTEM.md`); verify at T1.
 ## 6. Reversible decisions made (documented; change when evidence demands)
 | ID | Decision | Why | Reverse when |
 |---|---|---|---|
-| M-1 | Opening menu is pork-free | Simplifies halal and vegetarian-adjacent policy; no dish depends on pork; achari carnitas stays test-only | Founder wants pork items or halal path changes |
-| M-2 | Beef appears only in 8 (carne asada) and as an option in 9; cooked on dedicated surfaces and clearly labelled | Many Indian-heritage guests avoid beef; Mexican cuisine and Texas need it | Guest data or founder policy |
-| M-3 | Goat is the default birria; beef is an option | Distinctiveness and the dum-braise link; but supply risk is real | Goat supply or cost fails T3 |
+| M-1 | ~~Opening menu is pork-free~~ **SUPERSEDED by D-54** (no beef and no pork anywhere) | | |
+| M-2 | ~~Beef only in 8 and as a birria option~~ **SUPERSEDED by D-54** (item 8 is lamb; no beef birria) | | |
+| M-3 | Goat is the birria (**beef option removed by D-54**) | Distinctiveness and the dum-braise link; supply risk is real | Goat supply or cost fails T3 (then reconsider lamb or chicken birria, not beef) |
 | M-4 | Vegetarian dishes use separate fryer oil and utensils where equipment allows | Trust with vegetarian guests | Space/equipment constraint |
 | M-5 | Dish 13 (Birria Pizza) is a **special**, not core, until it passes kill criteria | Avoid carrying a weak dish | Passes T2 |
-| M-6 | Corn tortilla is default for tacos; flour for carne asada and quesadillas | Matches regional logic; gluten honesty | Never reverse the label policy |
+| M-6 | Corn tortilla is default for tacos; flour for the lamb taco and quesadillas (lard-free) | Matches regional logic; gluten honesty | Never reverse the label policy |
 | M-7 | Fresh tortillas by supplier at launch, in-house press tested at T3 | Capital and labour | In-house press costs less at volume |
 
 ## 7. Test plan (concept to launch)

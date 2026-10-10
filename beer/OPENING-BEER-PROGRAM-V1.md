@@ -62,7 +62,7 @@ Full dossier: `HEFEWEIZEN-BENCHMARK.md` (corrected below, §8).
 | Specs | OG 1.048-1.055, FG 1.010-1.014, IBU 18-30, SRM 9-15, ABV 4.7-5.5 | ABV 4.8-5.2, IBU 18-24, SRM 10-13 |
 | Sensory | toasted bread crust, light caramel, no roast | |
 | Serve / glass | 4-6 °C / Collar Lager | |
-| Food | Birria, Tandoori Carne Asada, Dal-Frijol Dip, biryani | |
+| Food | Birria, Tandoori Lamb Taco, Dal-Frijol Dip, biryani | |
 | Intent | Mexico's Vienna-lager lineage (Dos Equis Ámbar is Vienna-style `[V S-49c]`); toast not sweetness | |
 | Risks | malt balance | |
 

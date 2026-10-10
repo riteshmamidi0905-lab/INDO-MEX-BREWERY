@@ -18,9 +18,9 @@ This gives the brand a *true* story: **not "Indian + Mexican", but two food cult
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | Kerala × Yucatán | 8 | 7 | 8 | 8 | 8 | 7 | 3 | 3 | **7.5** | BUILD | Banana-leaf wrapping, habanero/pepper heat, sour-citrus (sour orange / kokum-type acid), coconut; humid-coast kinship. |
 | 2 | Telangana × Puebla (salan ↔ mole) | 8 | 8 | 8 | 7 | 8 | 6 | 3 | 3 | **7.4** | BUILD | Peanut-sesame-chile-tamarind gravies (e.g., mirchi ka salan) ↔ nut-seed-chile-spice moles: shared architecture of thickened, toasted-seed chile sauces. |
-| 3 | Goa × Yucatán | 8 | 7 | 9 | 7 | 7 | 7 | 3 | 3 | **7.4** | BUILD | Red-paste marinated pork: recheado/vindaloo (vinegar, chile) ↔ cochinita pibil (achiote, sour orange, leaf-wrapped); same logic, different acids. |
+| 3 | Goa × Yucatán | 8 | 7 | 9 | 7 | 7 | 7 | 3 | 3 | **7.4** | BUILD | [RESEARCH-ONLY, D-54: our product serves no pork; any product expression must use chicken, fish, lamb or vegetables] Red-paste marinated pork: recheado/vindaloo (vinegar, chile) ↔ cochinita pibil (achiote, sour orange, leaf-wrapped); same logic, different acids. |
 | 4 | Goa × Baja California | 7 | 7 | 7 | 8 | 7 | 8 | 3 | 3 | **7.2** | BUILD | Coastal fish, vinegar/lime acid, Iberian colonial layer, tile culture; crisp lagers. |
-| 5 | Punjab × Sonora | 8 | 6 | 9 | 7 | 7 | 6 | 3 | 4 | **7.0** | BUILD | Wheat flatbreads (naan/roti ↔ tortilla de harina), live-fire grilled beef/chicken, dairy and cheese. |
+| 5 | Punjab × Sonora | 8 | 6 | 9 | 7 | 7 | 6 | 3 | 4 | **7.0** | BUILD | Wheat flatbreads (naan/roti ↔ tortilla de harina), live-fire grilled beef/chicken [RESEARCH-ONLY, D-54: our product uses lamb or chicken, no beef], dairy and cheese. |
 | 6 | Telangana × Jalisco | 8 | 7 | 8 | 7 | 7 | 6 | 4 | 4 | **6.9** | SELECTIVE | Chile-led dried-chile adobo vs Deccan masala; goat; slow sealed braise (dum) ↔ birria braise. Risk: 'garam masala on birria'. |
 | 7 | Kerala × Veracruz | 7 | 8 | 6 | 7 | 6 | 5 | 3 | 4 | **6.5** | SELECTIVE | Coastal fish, coconut, banana, tropical fruit, Afro-Iberian trade histories. |
 | 8 | Punjab × Jalisco | 7 | 6 | 7 | 7 | 6 | 5 | 3 | 4 | **6.4** | SELECTIVE | Grilled meat, dairy/paneer ↔ fresh cheese, smoke; good for pizza/quesadilla. |
