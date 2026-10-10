@@ -1,6 +1,6 @@
 # ARC-02-B: Tank Hall correction of ARC-02-A (masked edit)
 
-- **STATUS:** NOT GENERATED
+- **STATUS:** SUPERSEDED — masked-edit route replaced by scripted fallback (ARC-02-B, REJECTED) then by ARC-02-C (D-45); kept for history
 - **PURPOSE:** ARC-02-A is faithful outside the glass but invented the hall interior (8 tanks, no copper vessels, silver cones, thick sleeves). Restore the canonical interior from ARC-01-D under the existing night lighting. **Edit only the glass of the Tank Hall; change nothing else.**
 - **INPUTS:** (1) `visuals/generated/ARC-02-B-inputs/ARC-02-A-hall-crop-2x.png` with `hall-edit-mask-2x.png` (white = may change) and `hall-frame-lock-mask-2x.png`; (2) **arrangement reference:** `visuals/generated/ARC-01-E-inputs/ARC-01-D-hall-crop-2x.png` (the canonical interior in daylight; copy its tank count, positions, deck, copper vessels, but relight for night).
 - **FINISH:** `python3 visuals/tools/arc02_tools.py composite visuals/generated/ARC-02-A.webp <edited_crop.png>` then `python3 visuals/tools/structure_check.py visuals/generated/ARC-01-D.png visuals/generated/ARC-02-B.png`.

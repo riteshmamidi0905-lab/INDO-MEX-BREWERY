@@ -54,4 +54,4 @@ Phase One baseline (kept; Phase 1.5 governs conflicts): `phase-one/00-FOUNDING-V
 
 ## Status (2026-10-10)
 Phase One written; Phase 1.5 (research deepening + brand world) complete as a draft awaiting founder review. **No images generated yet** (external tool required); 57 prompts are ready; the first five (Visual Lock batch) are finalized in `visuals/generation-batch-01/`.
-**ARC-01-D is the APPROVED canonical day exterior (founder waiver 89/100, D-42).** ARC-02 (night) is unblocked: prompt audited, not generated. Website: not started, by instruction.
+**ARC-01-D is the APPROVED canonical day exterior (founder waiver 89/100, D-42).** ARC-02-A (best night exterior) and ARC-02-B rejected; **ARC-02-C package ready (D-45), awaiting one external generation.** Website: not started, by instruction.
