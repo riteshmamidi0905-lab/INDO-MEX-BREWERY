@@ -1,3 +1,5 @@
+> **CLOSED (D-42): ARC-01-D is the canonical day exterior by founder waiver (89/100).**
+
 # ARC-01 Review Sheet (to complete after external generation)
 
 Candidates: ARC-01-A, -B, -C, -D (same architecture; vary only camera nudge, sun angle, people, planting). Save files as `visuals/generated/ARC-01-A.*` etc.

@@ -77,35 +77,39 @@ accept=[
 "Approved image is saved as the canonical reference and logged in visuals/generated/LOG.md with prompt, tool, model, seed, date."])
 
 FILES["ARC-02.md"] = dict(
-id="ARC-02", title="Definitive night exterior",
-purpose="Same building as ARC-01 at blue hour into night. Provoke: 'I NEED TO GO THERE TONIGHT.' Show the Tank Cloister glowing as the brightest large objects and the Shade Court alive.",
-aspect="16:9. Attach the APPROVED ARC-01 as an image reference and keep the same camera position and framing.",
-prompt=(STYLE+"FORMAT: 16:9. THIS IS THE EXACT SAME BUILDING AND CAMERA POSITION AS THE DAYTIME VIEW, photographed at blue hour as it turns to night; do not redesign anything. "+BUILDING+TANKS+COURT_NIGHT+
-"Specifics: the sky is deep indigo (not black) with a faint warm-grey glow low on the horizon; the Tank Hall's south and east glass glows warm from within and the six polished-steel tanks are the brightest large objects in the picture, lit from below so their shells glow softly and their narrow marigold bands show as restrained orange rings; copper-clad vessels on the brew deck glow dimly behind them. "
-"The arcades are washed by low shielded light that reveals the board-formed concrete texture and the cedar elm beams; the ring-perforated steel screens are backlit and show their hole patterns as soft glowing rings. Warm light spills from the kitchen pass windows in the north arcade, and the mouth of an enclosed wood-fired oven set into the north arcade wall glows modestly behind a stainless counter (a cook is visible at it); this is real cooking fire, small and controlled, not theatre. The rill reflects the arcade lights. The live oaks are softly uplit from below. "
-"People: about 25 to 35 guests of mixed ages, backgrounds and styles, naturally dressed in everyday Austin clothes, talking and sharing food and beer at the communal pecan tables under the arcades, a few standing at the entrance recess, some walking in from the drive; slight motion blur is fine; nobody poses; staff in charcoal aprons over bone shirts. The mood is lively but calm: not a nightclub, not a festival. "
-"CAMERA: identical to the day image: eye level, 24-28mm equivalent, level horizon, straight verticals, tripod long-exposure clarity, building spanning about 80% of the width. Drive and a few parked cars at the bottom edge with only soft red/white glints. "
-"No logo or readable text; the sign panel is blank steel. Orange appears only as the narrow bands on the tanks and the small oven glow. "),
-neg=NEG_COMMON+"; additionally avoid festival lighting, light beams, lens flares, fog machines, a black sky, over-bright blown-out windows, people inside the production area",
+id="ARC-02", title="Definitive night exterior (same scene as ARC-01-D)",
+purpose="The SAME physical scene as the canonical day exterior ARC-01-D, at blue hour into night. Only time of day, lighting and occupancy change; the architecture, camera and crop do not. Provoke: 'I NEED TO GO THERE TONIGHT.' The Tank Cloister must be the brightest large architectural feature.",
+aspect="16:9, 2000x1128 framing identical to ARC-01-D. Use ARC-01-D (visuals/generated/ARC-01-D.png) as the INIT/REFERENCE image (relight/time-of-day change, moderate strength), not as loose inspiration.",
+prompt=(STYLE+"FORMAT: 16:9. THIS IS THE EXACT SAME PHYSICAL SCENE AND CAMERA AS THE REFERENCE DAYTIME PHOTOGRAPH; ONLY THE TIME OF DAY, THE LIGHTING AND THE OCCUPANCY CHANGE. Do not redesign, add, remove, move or resize anything. "
+"CAMERA (identical): oblique three-quarter view from the southeast entry drive looking north-northwest, eye level about 5.5 ft, 24-28mm equivalent, level horizon, straight verticals, about 150 to 170 ft from the hall; the hall's south glass at about 35 to 40 degrees to the picture plane with the east-flank glass also visible; Tank Hall in the left third, entrance recess centre-left, the arcade and court extending to the right; a live-oak branch framing the upper left; gravel entry drive and native grasses in the foreground; a pickup truck cropped at the extreme bottom-left corner and a dark SUV cropped at the extreme bottom-right corner, as in the reference. "
++BUILDING+TANKS+BREWHOUSE+
+"THE TANK HALL INTERIOR AS SEEN THROUGH THE GLASS (preserve the reference arrangement exactly): from the oblique view the two west tanks and the tank west of the deck are at the left of the glass, the raised brew deck with the two copper-clad vessels, copper hood and stack is at the centre, and on the right the large nearest tank (east of the deck) with two more tanks behind it partly hidden by a mullion: exactly six fermenters in all, graphite cones, one narrow deep-marigold removable powder-coated sleeve each; copper only on the two vessels and their hood; steel railings and a stair on the deck; seamless warm-grey production floor with stainless trench drains. Do not copy the camera or layout of any other image of the hall. "
+"TIME AND SKY: Texas blue hour turning to night: deep indigo sky (not black), a faint warm-grey afterglow low on the horizon at the camera-left (west), a few thin cirrus barely lit; no sun, no sunset glow on the building. "
+"LIGHTING (shielded, warm, about 2200-2400K, physically plausible): the Tank Hall is the brightest large feature of the picture: warm shielded interior lights and narrow-beam uplights at the base of the tanks light the polished stainless shells softly while the graphite cones stay dark and the narrow marigold sleeves read as restrained deep-orange rings; the copper vessels glow dimly; the glass reads as real glass, mostly transparent because the interior is brighter than the outside, with only faint, physically plausible reflections of the sky and the oak canopy and slight refraction at the mullion edges. The entrance recess glows with its cedar soffit and two shielded downlights. The arcade is lit by low linear washers at the column bases and small shielded soffit downlights that reveal the board-formed concrete texture and the cedar beams. The perforated blackened-steel panels stay dark, flat and industrial: only tiny separate pinpoints of warm light show through some holes; they never glow as a pattern and never read as orange or as a decorative medallion. The restaurant block's tall windows glow warmly, and a soft warm glow comes from its kitchen windows; no open flames are visible. The stone rill reflects the arcade lights gently. The live oaks are softly uplit from below at low intensity and the upper-left branch is a dark silhouette with a subtle warm edge. Low shielded path lights mark the entry walk and a few low lights wash the planting. These shielded architectural sources are the only light sources in the scene. Point lights render as soft round glows; there are no star spikes, no lens flares, no light beams. "
+"PEOPLE (occupancy): about 20 to 30 guests of mixed ages, backgrounds and styles in ordinary everyday Austin clothes, relaxed and candid: the same two walkers approaching the entrance recess as in the reference, a family under the south arcade, small groups at the long dark-pecan communal tables in the court and under the arcades, one or two standing in conversation; slight motion blur is fine; nobody poses or looks at the camera; lively but calm, not a nightclub, not a festival, not crowded. "
+"REALISM: tripod long-exposure architectural photograph, natural film grain, natural dynamic range (not HDR), consistent white balance (warm interior against blue sky), correct reflections, soft contact shadows, no atmospheric haze, no CGI sheen. No logo and no readable text anywhere. The only marigold-orange in the picture is the six narrow tank sleeves. "),
+neg=NEG_COMMON+"; additionally avoid: any change to the architecture, camera, crop, massing, entrance, arcade, court or landscape; a seventh tank, extra or missing fermenters, a row of tanks, silver cones, thick or yellow sleeves, extra copper vessels; glowing or orange perforated screens, sunburst or medallion patterns, jaali, mandalas; string lights, festival lighting, coloured or neon lighting, light beams, lens flares, starburst or star-spike lights, bloom halos; a black sky, daylight, sunset-orange sky; a nightclub or crowded scene; the Game Hall, Adventure Court, Flagship Outlet or any historical exhibits; open flames or fire pits in view; readable text or logos",
 cont=[
-"Identical massing, roofline, entrance recess, court geometry, tank positions, window rhythm, materials and landscape as ARC-01.",
-"Six tanks in a horseshoe, marigold bands, charcoal cones; tanks are the brightest large objects.",
-"Same hero camera (SE, eye level, NNW, 24-28mm).",
-"Lighting warm 2200-2400K appearance, shielded; no string lights; oven glow and kitchen windows are the only visible fire/cooking light.",
-"People naturally diverse, not grouped, no costumes."],
+"Identical to ARC-01-D (canonical day exterior, founder waiver 89/100): camera, crop, massing, Tank Hall dimensions, entrance recess, restaurant block with two stacks, concrete-and-cedar arcade, plain perforated screens, court geometry, rill, tables, oaks, landscaping, vehicle placement.",
+"Exactly six fermenters, graphite cones, six narrow deep-marigold removable sleeves, exactly two copper-clad brew vessels with hood and stack, dark-bronze glazing, warm-grey production floor with trench drains.",
+"Only time of day, lighting and occupancy change.",
+"ARC-01-E attempt 1 may be used ONLY as a realism reference for brewery equipment (pipework, tri-clamps, valves, legs, drains, pumps); it is NOT a camera, geometry, glazing or composition reference.",
+"Expansion elements (Game Hall, Adventure Court, Outlet, history) are outside ARC-02."],
 checklist=[
-"Is it recognizably the SAME building as ARC-01 (hall left, entrance beside its SE corner, arcade, restaurant block, stacks)?",
-"Six tanks, horseshoe, marigold bands visible and restrained?",
-"Are the tanks the brightest large objects? Is the glass glow warm, not orange everywhere?",
-"Arcade lighting shielded and architectural; ring-perforated screens read as backlit rings; no string lights?",
-"Oven glow small and plausible; cook behind a counter; no giant flames?",
-"Court feels alive but calm; people natural, diverse, not posed?",
-"Sky deep indigo with faint horizon glow; no HDR halos, no flares?",
-"Nothing readable or branded?"],
+"Run `python3 visuals/tools/structure_check.py visuals/generated/ARC-01-D.png <ARC-02 file>`: edge recall >= 0.80 passes, 0.65-0.80 means inspect, < 0.65 means drift (calibration in the review sheet).",
+"Same camera, crop and massing as ARC-01-D? Hall left, entrance centre-left, arcade right, oak branch upper left, vehicles at the bottom corners?",
+"Exactly six tanks in the same arrangement; graphite cones; six narrow deep-marigold sleeves; two copper vessels?",
+"Tank Hall the brightest large feature, glass still reads as glass with plausible reflections?",
+"Screens dark, flat, plain: no glowing pattern, no orange?",
+"Light warm 2200-2400K and shielded; no string lights, neon, colour, flares or starbursts?",
+"Rill reflection, oak uplighting, restaurant/kitchen glow plausible?",
+"People natural, mixed, relaxed, not crowded, not posed?",
+"No new architecture or expansion elements, no logo or text?"],
 accept=[
-"Matches ARC-01 geometry closely enough to be believed as the same place.",
+"Passes the preservation gate (visual + structure_check) and every item above.",
+"ARC-01 rubric adapted for night >= 90/100 with no hard fail.",
 "Founder reaction: 'I need to go there tonight.'",
-"Logged with reference image = approved ARC-01."])
+"Logged with reference image = ARC-01-D; founder approval required."])
 
 FILES["BRW-01.md"] = dict(
 id="BRW-01", title="Hero Tank Cloister",

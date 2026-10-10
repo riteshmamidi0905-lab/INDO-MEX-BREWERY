@@ -1,5 +1,7 @@
 # ARC-01-E, attempt 1 (externally edited hall crop): Review
 
+> **FINAL STATUS (D-42): REJECTED FOR ARC-01 / RETAINED AS BRW-01 REALISM REFERENCE.** The founder invoked the D-40 fallback; ARC-01-D is canonical. Inherit only equipment realism; never the camera, symmetry, tank positions, mullions, glossy floor or star-flare lighting. See `REFERENCES.md`.
+
 ## What was supplied
 - `visuals/generated/ARC-01-E-external-crop-attempt1.webp`: **2000x965** (aspect 2.073, matching the 2.071 crop frame), an externally generated replacement for the Tank Hall crop. Tool/model not stated by the founder (logged as "external, not stated").
 - It is **not** a full-frame ARC-01-E. I tested it with the compositing helper: `visuals/generated/ARC-01-E-attempt1-composite-DIAGNOSTIC.png` (a diagnostic only, not a candidate; outside-hall RMSE 0 by construction).

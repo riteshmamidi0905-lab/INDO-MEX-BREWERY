@@ -2,7 +2,9 @@
 
 Five assets lock the world: **ARC-01, ARC-02, BRW-01, GLS-01, GLS-02.** Do **not** generate any of the other 52 assets until this batch is reviewed and approved. Do not build a website.
 
-> **Update (D-40):** ARC-01-D (89/100, scripted edit) is the geometry authority. The only pending ARC-01 step is **ARC-01-E** (`ARC-01-E.md`). If E is rejected, ARC-01-D becomes canonical by founder waiver; there is no ARC-01-F. ARC-02 stays blocked until then.
+> **Update (D-42, current):** ARC-01 is FINISHED. **ARC-01-D is APPROVED — CANONICAL DAY EXTERIOR (founder waiver 89/100).** ARC-02 is unblocked (`ARC-02.md`, use ARC-01-D as the init/reference image). BRW-01, GLS-01, GLS-02, expansion, branding and website remain blocked until instructed.
+
+> **Superseded update (D-40):** ARC-01-D (89/100, scripted edit) is the geometry authority. The only pending ARC-01 step is **ARC-01-E** (`ARC-01-E.md`). If E is rejected, ARC-01-D becomes canonical by founder waiver; there is no ARC-01-F. ARC-02 stays blocked until then.
 
 > **Earlier update (2026-10-10):** ARC-01-A was generated and reviewed (73/100, hard fail on screens). The next image is **ARC-01-B** (`ARC-01-B.md`). ARC-01.md is superseded. ARC-02, BRW-01 and the glasses stay blocked until ARC-01-B is approved.
 
@@ -26,7 +28,7 @@ Five assets lock the world: **ARC-01, ARC-02, BRW-01, GLS-01, GLS-02.** Do **not
 Always keep these core facts in any shortened prompt.
 - **Common geometry:** "Contemporary Central Texas brewery; double-height glass-walled brewing hall (left) with limestone plinth, bronze mullions and concrete canopy; entrance recess beside its SE corner with a blank blackened-steel sign; shaded courtyard to the right with 14-ft arcades of board-formed concrete columns, cedar elm beams, charcoal standing-seam roof, laser-cut blackened-steel screens with round perforations forming ring shapes; long low limestone restaurant block across the court with two slim steel stacks; gravel court with a shallow stone rill, pecan communal tables, cedar elms, live oaks, native grass; EXACTLY SIX polished stainless conical fermenters in a HORSESHOE, charcoal insulated cones, one narrow marigold-orange band each, two copper-clad brew vessels on a raised deck at the back."
 - **ARC-01:** + "late-afternoon hard sun from camera-left, eye level, 24-28mm, 16:9, straight verticals, no logo, no text."
-- **ARC-02:** + "same view at blue hour, indigo sky, tanks glowing as the brightest objects, shielded warm 2300K light, no string lights, guests at communal tables, small enclosed oven glow, 16:9."
+- **ARC-02:** + "Same scene and camera as the supplied reference photograph (ARC-01-D), relit at blue hour/night: deep indigo sky, tanks the brightest large feature behind real glass, shielded warm 2300K light, dark flat perforated panels (no glow), restaurant and kitchen windows warm, relaxed guests at communal tables, no string lights, neon, flares or starbursts, exactly six tanks, graphite cones, narrow marigold sleeves, two copper vessels, no architecture changes, 16:9."
 - **BRW-01:** + "interior from behind bronze-framed glass, camera 4 ft high, 28-35mm, six tanks horseshoe, two copper vessels on deck, catwalk, trench drains, two brewers working, 16:9."
 - **GLS-01:** "Empty 0.5 L Weizen glass, 24-25 cm tall, thick base, fine rim, one raised clear ring a quarter of the way up the base, on pale limestone, raking studio light, 100mm macro, 4:5, no print, no logo."
 - **GLS-02:** "Four empty glasses with the same ring: tall Hefeweizen, conical Lager, stemmed Reserve goblet with one step, small Flight tulip, descending heights, limestone studio, 3:2."

@@ -1,5 +1,7 @@
 # ARC-01-D Review
 
+> **FINAL STATUS (D-42, 2026-10-10): APPROVED — CANONICAL DAY EXTERIOR — FOUNDER WAIVER 89/100. Founder approval: YES.** Review below is the historical record (written when the status was CANDIDATE). ARC-01 iteration is finished.
+
 ## Provenance (read this first)
 - **File:** `visuals/generated/ARC-01-D.png`, **2000x1128**, lossless PNG.
 - **How it was made:** **not** by an image generator. No image-generation capability exists in this environment, so I performed the five requested refinements as a **documented post-production edit of the ARC-01-C pixels** with a script (`visuals/tools/postedit_arc01d.py`, OpenCV/Pillow). Tool for the log: *Claude Code post-production script on ARC-01-C (not a generative model)*. If you prefer a true generator edit, the prompt in `generation-batch-01/ARC-01-D.md` is still valid.

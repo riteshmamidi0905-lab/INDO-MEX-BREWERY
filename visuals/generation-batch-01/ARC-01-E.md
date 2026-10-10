@@ -1,5 +1,7 @@
 # ARC-01-E: Final realism pass (image-to-image refinement of ARC-01-D)
 
+> **CLOSED (D-42): do not use.** Attempt 1 was rejected for drift; the founder accepted ARC-01-D by waiver. No further attempt and no ARC-01-F. The realism cues in this file may inform a later BRW-01 prompt, but never the ARC-01 camera or layout.
+
 - **ID:** ARC-01-E  |  **STATUS:** NOT GENERATED — FINAL REALISM PASS PREPARED
 - **Authority:** ARC-01-D (`visuals/generated/ARC-01-D.png`, 2000x1128, 89/100, scripted post-production edit of ARC-01-C) is the composition and geometry authority. Visual DNA v2.1 and Locked Scene DNA v1.2 govern everything else (D-39).
 - **PURPOSE:** solve the one remaining deficit, the AI-soft Tank Hall interior, **without changing the design**. Add micro-realism only.

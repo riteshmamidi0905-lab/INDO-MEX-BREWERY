@@ -1,4 +1,6 @@
-# ARC-01-E Review Sheet (to complete after external generation)
+# ARC-01-E Review Sheet
+
+> **CLOSED (D-42): no further ARC-01-E attempts; ARC-01-D is the canonical day exterior by founder waiver.** Kept for history.
 
 **Status:** ARC-01-E — NOT GENERATED — FINAL REALISM PASS PREPARED. No ARC-01-E image exists. Do not fill in scores until one does.
 **Compare against:** `visuals/generated/ARC-01-D.png` (89/100). **Prompt:** `generation-batch-01/ARC-01-E.md`. **Tools:** `visuals/tools/arc01e_tools.py`.

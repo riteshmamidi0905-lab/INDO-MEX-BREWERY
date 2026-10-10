@@ -125,6 +125,8 @@ Open concept risks: building depth vs. a real site, flood plain, fire separation
 ## 12. Revision log
 - **v1.1 (D-29):** screen spec replaced (see Screens row); columns confirmed as board-formed concrete; mullions confirmed dark bronze; tank bands "deep marigold (more orange than yellow), ~6 in"; entrance recess deepened to 12 x 14 ft with lowered cedar elm soffit. Reason: ARC-01-A review.
 
+- **v1.3 (D-42):** ARC-01-D is the approved canonical day-exterior reference (founder waiver 89/100) and the geometry/composition authority for ARC-02 and exterior variants. **No geometry or specification change**; the rejected ARC-01-E attempt did not alter this document.
+
 ## 13. Expansion Addendum (PROPOSED, pending founder approval; does not alter the core brewery above)
 Recommended zoning **Option C+** (`architecture/FAMILY-ZONING-OPTIONS.md`):
 - **Restaurant block extends ~80 ft east** (to ~220 ft) to form a **Game Hall** (~2,800 sf) at its east end behind the stage's thick back wall plus an acoustic vestibule; glazed south face onto the Adventure Court.
