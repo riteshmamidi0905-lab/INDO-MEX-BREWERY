@@ -1,3 +1,5 @@
+> **SUPERSEDED — RETAINED FOR HISTORY.** Replaced by `visuals/VISUAL-DNA.md` (v2) and `visuals/LOCKED-SCENE-DNA.md` (decision D-16 / D-22). Do not use for generation.
+
 # Visual Style Bible (continuity rules for every image)
 
 Label every output "Concept visual: not an operating business." Record tool, model, seed, date and prompt beside each file.

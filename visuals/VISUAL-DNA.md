@@ -1,4 +1,9 @@
-# Visual DNA (v2, supersedes the Phase One Style Bible; the old file is kept)
+# Visual DNA (v2): CANONICAL VISUAL SOURCE OF TRUTH
+
+> Governs all image generation. Geometry is locked in `LOCKED-SCENE-DNA.md`. The Phase One Style Bible (`prompts/00-STYLE-BIBLE.md`) is SUPERSEDED — RETAINED FOR HISTORY. If any older prompt conflicts with this document, **Visual DNA v2 wins**. Status: approved for *visualization* only, not as construction architecture.
+
+> **Cautions (decision D-25):** the "Why" notes below that link marigold, black clay and terrazzo to India/Mexico traditions are *design rationale under verification*, not published claims. Materials stand on their own merit. Do not print the thesis "two cuisines that already traded fire, fruit and flower" on signage or in copy yet.
+
 
 Goal: from a single photograph, with no logo, someone should know this is the same place. The system avoids the generic "terracotta + brass + geometric tile + agave + lattice" look. Each rule has a *reason* rooted in research or operations.
 

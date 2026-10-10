@@ -46,6 +46,9 @@ Phase One baseline (kept; Phase 1.5 governs conflicts): `phase-one/00-FOUNDING-V
 | Visuals | `visuals/VISUAL-DNA.md`, `ASSET-MANIFEST.md`, `prompts/V2-*.md`, `tools/build_prompts.py` |
 | Decisions | `docs/decisions/DECISIONS.md`, `REJECTED.md`, `OPEN-QUESTIONS.md`, `CORRECTIONS.md` |
 
+## Visual Lock (current)
+`visuals/VISUAL-DNA.md` (canonical rules) → `visuals/LOCKED-SCENE-DNA.md` (geometry) → `visuals/generation-batch-01/` (5 prompts to generate first; do not generate the other 52 until reviewed).
+
 ## Status (2026-10-10)
-Phase One written; Phase 1.5 (research deepening + brand world) complete as a draft awaiting founder review. **No images generated yet** (external tool required); 57 self-contained prompts are ready.
+Phase One written; Phase 1.5 (research deepening + brand world) complete as a draft awaiting founder review. **No images generated yet** (external tool required); 57 prompts are ready; the first five (Visual Lock batch) are finalized in `visuals/generation-batch-01/`.
 Website: not started, by instruction.

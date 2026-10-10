@@ -5,10 +5,10 @@ Every prompt is self-contained: it repeats the venue DNA so any image generator 
 import os, collections
 
 BLOCKS = {
-"HALL": "The venue is ONE consistent building: a long, low hall of pale Texas limestone and board-formed concrete with blackened-steel fins and large dark-bronze-framed glass. A double-height glazed Tank Hall holds SIX polished stainless-steel conical fermenters standing in a horseshoe (the 'Tank Cloister'). Every tank has a matte charcoal insulated cone, a large white stencilled number 1 to 6, a round manway, tidy sanitary piping, and exactly ONE narrow marigold-orange painted band around the middle of the shell. At the closed end of the horseshoe a raised brew deck holds a copper-clad kettle and mash tun with steam hoods.",
+"HALL": "The venue is ONE consistent building (locked geometry): a double-height glass-walled Tank Hall (about 44 x 60 ft, 38 ft tall, flat roof behind a thin board-formed-concrete parapet, dark-bronze glazing on a 6-ft mullion rhythm, low 2-ft pale Texas limestone plinth, 10-ft concrete canopy over the south glass) holds EXACTLY SIX polished stainless-steel conical fermenters in a HORSESHOE open to the south glass: two along the west wall, two along the east wall, one each side of a raised central brew deck at the north end. Every tank has a matte charcoal insulated cone, four legs, a round side manway, tri-clamp fittings, restrained piping and exactly ONE narrow marigold-orange band around the middle of the shell. The brew deck carries two copper-clad brewing vessels under a steam hood and stack; a grated catwalk with 42-in guardrails runs at about 11 ft along the west and east legs; the production floor is light warm-grey sealed concrete with stainless trench drains.",
 "FLOOR": "Interior floor: polished matte terrazzo in bone with red-and-black volcanic aggregate flecks.",
 "BAR": "Bar: long dark pecan top; front clad in square 4-inch handmade matte tiles in only two colors, bone and marigold orange, set as a simple broken stripe; blackened-steel footrail; 24 matte-black tap handles each with a single marigold ring; open steel shelving with glassware; the tank hall visible through glass behind the bar.",
-"COURT": "Court: a deep 12-15 ft arcade of board-formed concrete columns with timber beams on three sides; perforated blackened-steel screens whose perforations are rings; a shallow stone rill; mature live oaks and cedar elms; large slow ceiling fans; long communal pecan tables with stainless inlay; a small stage alcove at the far end; NO string-light canopy.",
+"COURT": "Court (locked geometry): a climate-designed outdoor room open to the sky in the middle, about 110 x 70 ft including arcades. Arcades 14 ft deep on the west (beside the hall), north (in front of the restaurant block) and south sides, made of square board-formed concrete columns at 15-ft spacing carrying exposed cedar elm beams under a low-pitched charcoal standing-seam roof; laser-cut blackened-steel screens between some columns perforated with round holes in graduated sizes forming soft concentric ring shapes about 3 ft across; large slow ceiling fans; decomposed-granite gravel floor; a shallow stone rill about 18 in wide running east-west; long dark-pecan communal tables with benches; cedar elms in the court; the east side open to a native-grass lawn with mature live oaks; a stage alcove at the northeast corner. NO string-light canopy, no agave.",
 "TABLE": "Tableware: matte black stoneware plates and bowls with raw unglazed rims and bone-white interiors; small stainless katori bowls for sauces; round stainless thali trays lined with bone paper; indigo-and-bone linen napkins with one marigold stripe; pecan tabletop.",
 "GLASS": "Glassware: the hero Hefeweizen glass is a tall 0.5-litre weizen vase with a thin rim and a raised glass ring (collar) about a quarter of the way up from the base, thick clear base. Lager glass: tall conical glass with the same collar. Reserve glass: short stemmed goblet with a stepped bowl. Flight glass: 4 oz tulip with the collar.",
 "PEOPLE": "People: mixed ages and backgrounds, relaxed and candid, unposed, mid-conversation, soft focus or gentle motion blur, nobody looking at the camera; staff in charcoal canvas aprons over bone shirts with a small marigold stitch; brewers in black work shirts and rubber boots. No costumes.",
@@ -100,6 +100,8 @@ FILES = {
  "PEOPLE":"V2-07-people.md","PACKAGING":"V2-08-packaging-merch-details.md","MERCHANDISE":"V2-08-packaging-merch-details.md","DETAILS":"V2-08-packaging-merch-details.md",
  "WEBSITE HERO":"V2-09-website-heroes.md"}
 
+BATCH01={"ARC-01","ARC-02","BRW-01","GLS-01","GLS-02"}
+
 def prompt(a):
     id_,cat,title,aspect,cam,light,blocks,scene,purpose,found=a
     cont=" ".join(BLOCKS[b] for b in blocks)
@@ -113,6 +115,9 @@ for a in A: by.setdefault(FILES[a[1]],[]).append(a)
 for fn,items in by.items():
     out=[f"# Production Prompts: {fn}",""," Status of every asset below: **NOT GENERATED**. Each prompt is self-contained; paste it whole. For continuity, also attach the approved ARC-01 and BRW-01 images as references once they exist. Record tool, model, seed and date beside each output in `visuals/generated/LOG.md`.",""]
     for a in items:
+        if a[0] in BATCH01:
+            out+= [f"## {a[0]}: {a[2]}  (SUPERSEDED: use `visuals/generation-batch-01/{a[0]}.md`)", "", "The master prompt for this asset now lives in the Visual Lock batch. Do not use a prompt from this file.", ""]
+            continue
         out+= [f"## {a[0]}: {a[2]}" + (f"  (Foundation {a[9]})" if a[9] else ""), f"- Aspect: {a[3]}  |  Purpose: {a[8]}", "", "```", prompt(a), "```",""]
     open(f"visuals/prompts/{fn}","w").write("\n".join(out))
 
@@ -126,7 +131,7 @@ f"**{len(A)} assets planned. All status: NOT GENERATED.** No image-generation ca
 "Six tanks in a horseshoe; one marigold band; charcoal cones; terrazzo floor; collar on glass; black stoneware on food; no brass/terracotta; anatomy and glass geometry correct; no readable fake text; label as concept visual.","",
 "| ID | Category | Subject | Purpose | Aspect | Camera/lens feel | Lighting | Continuity requirements | Prompt file | Status | Foundation |","|---|---|---|---|---|---|---|---|---|---|---|"]
 for a in A:
-    m.append(f"| {a[0]} | {a[1]} | {a[2]} | {a[8]} | {a[3]} | {a[4]} | {a[5]} | {', '.join(a[6])} | {FILES[a[1]]} | NOT GENERATED | {a[9] or ''} |")
+    m.append(f"| {a[0]} | {a[1]} | {a[2]} | {a[8]} | {a[3]} | {a[4]} | {a[5]} | {', '.join(a[6])} | {FILES[a[1]]} | NOT GENERATED{' (master prompt: generation-batch-01/'+a[0]+'.md)' if a[0] in BATCH01 else ''} | {a[9] or ''} |")
 cnt=collections.Counter(a[1] for a in A)
 m+=["","## Count by category",""]+[f"- {k}: {v}" for k,v in cnt.items()]
 open("visuals/ASSET-MANIFEST.md","w").write("\n".join(m))

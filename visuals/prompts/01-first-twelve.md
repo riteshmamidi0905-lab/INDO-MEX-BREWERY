@@ -1,3 +1,5 @@
+> **SUPERSEDED — RETAINED FOR HISTORY.** Replaced by `visuals/generation-batch-01/` (ARC-01, ARC-02, BRW-01, GLS-01, GLS-02) and the V2 prompt set. Do not use for generation.
+
 # First Twelve Concept Visuals: Prompts
 
 Prefix every prompt with: "Photorealistic, premium editorial photography. Follow the Style Bible in 00-STYLE-BIBLE.md." Status of all: **NOT GENERATED**.
