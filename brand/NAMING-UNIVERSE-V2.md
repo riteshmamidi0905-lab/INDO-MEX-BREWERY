@@ -1,5 +1,7 @@
 # Beer Naming Universe v2 (119 candidates, supersedes the Phase One list; old file kept)
 
+> HISTORICAL: candidate-name pools; see brand/NASHA-BRAND-STRATEGY.md (D-62). Any use of these names needs counsel's search first (D-79).
+
 **Status: every name is UNCLEARED.** "Prelim TM risk" is a rough guess from how common the word is (High = crowded word), **not** a search result. No USPTO, TTB COLA, Texas SOS or domain searches were run. `[PRO]` trademark attorney search required before adoption.
 Meanings come from general knowledge of the languages `[U]`; a native-speaker review (Hindi/Urdu, Mexican Spanish, Nahuatl) is required. Avoided on purpose: names of deities (Agni, Surya, Pavan, Ganga etc.), sacred rivers, living communities' names (e.g., Sardar), and obvious existing beer/brand names.
 Pronunciation = approximate English.

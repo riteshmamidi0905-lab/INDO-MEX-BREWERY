@@ -1,5 +1,7 @@
 # Mobile / Low-Capital MVP Strategy
 
+> SUPERSEDED (menu section 5 only): see research/CORE5-PRODUCT-SYSTEM.md and docs/company/CORE5-COMMERCIAL-LOGIC.md. The 12-dish menu is pre-D-75; the staged-path framing still holds as a hypothesis.
+
 **Status:** `[PROPOSED]` planning. **Stage hypothesis (D-60): the company may be built in stages instead of requiring flagship capital on Day 1. This is NOT established as legally, operationally or financially optimal.** The flagship brewery-restaurant remains the end goal; the MVP is a **launch platform, testing laboratory, customer-acquisition engine, revenue experiment, brand-building vehicle and investor-proof generator** for it, not a replacement. **No permit, cost, supplier, partner, sales or customer fact below is validated** unless a ledger tier is shown (`research/VERIFICATION-LEDGER.md` V-23..V-33). Policy: **no beef, no pork** (D-54); not halal. Dishes are untested (`food/MENU-V1.1-TEST-MENU.md`).
 
 ## 1. The question

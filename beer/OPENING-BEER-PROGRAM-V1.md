@@ -1,5 +1,7 @@
 # Opening Beer Program v1 (Phase 2)
 
+> HISTORICAL for the gate rule: see beer/pilot-briefs/00-BREWER-HANDOFF.md section 0b and D-77 (proposed replacement; founder confirmation pending).
+
 **Nothing here has been brewed.** Every number is an **R&D target `[TEST]`**, not a validated recipe. Reference ranges are BJCP 2021 (verified through search extracts of the official pages, `S-107..S-108`, medium-high confidence; open the PDF before external use) or flagged otherwise. No commercial-scale recipe, grist percentage, hop weight or ingredient dose is invented: where a dose exists it is a homebrew/supplier reference, labelled as such. A licensed head brewer `[PRO]` owns the final specifications. Builds on `beer/PORTFOLIO-V2.md`, `HEFEWEIZEN-BENCHMARK.md`, `GLASSWARE-V2.md`, `food/MENU-DEVELOPMENT-MATRIX-V1.md`.
 
 ## 1. Program principle

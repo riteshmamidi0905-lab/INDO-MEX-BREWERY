@@ -9,3 +9,7 @@ description: Close a NASHA sprint: run all validators, check the diff, update RE
 4. Physical status line must remain true: "Chicken 65 Totopos: NOT PERFORMED" until real rows exist.
 5. Update README sprint line and PROJECT-ROADMAP; commit with the attribution lines; `git push -u origin <branch>`; never merge, never open a PR, never deploy; website stays noindex.
 6. Report order: Repository (start/end SHA, branch, push, merge, PR, deployment), what was done, tested vs installed, blocked, founder actions (only real ones), physical status, scores, next physical action. State the Figma originals deadline while it is open.
+
+## Founder-view rule (D-80)
+Start every sprint report with a FOUNDER VIEW of at most about 10 lines: WHAT CHANGED, WHAT I NEED FROM YOU, WHAT I CAN KEEP DOING WITHOUT YOU. The technical report follows. Run `bash tools/validate_all.sh` before closing and report its result.
+

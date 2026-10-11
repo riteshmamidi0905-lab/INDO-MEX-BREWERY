@@ -1,5 +1,7 @@
 # IP and Ownership Framework
 
+> NOTE: statements that no website exists are superseded by the Sprint 20 notes at the end of this file.
+
 **Status:** `[PLAN]` framework so that future work is created with **clean provenance from the start**. **This is not legal advice and gives no clearance, no registration status and no ownership conclusion.** Facts about law are T1/T3 search summaries (`research/VERIFICATION-LEDGER.md` V-28..V-30, V-34) or general knowledge flagged for attorney review. An **IP/trademark attorney** (separate from the Texas alcohol attorney) is added to the professional roadmap. Registers: `founder-asset-register.csv`, `website-asset-rights-register.csv`.
 
 ## 1. Principles

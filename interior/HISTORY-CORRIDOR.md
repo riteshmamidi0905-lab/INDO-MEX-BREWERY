@@ -1,5 +1,7 @@
 # The History Corridor
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 **Idea:** the guest promenade by the Tank Hall becomes a short, quiet gallery that ends in the spectacular view of the stainless Tank Cloister: PAST → FERMENTATION → PRESENT. `[CONCEPT]`
 
 ## Experience (one paragraph)

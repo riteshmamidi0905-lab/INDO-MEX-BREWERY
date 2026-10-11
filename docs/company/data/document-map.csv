@@ -1,0 +1,37 @@
+path,class,note,read_instead
+docs/FOUNDER-ACTION-BOARD.md,CANONICAL (generated),"What can I do today: next three actions, contacts, board",
+docs/FOUNDER-CONTROL-CENTER.md,CANONICAL (generated),"Whole-company status, stages, hypotheses, risks, roadmap",
+docs/CORE5-CONTROL-CENTER.md,SUPPORTING (generated),Ten products with kill/revise rules,
+docs/PROTOTYPE-READINESS.md,SUPPORTING (generated),Food and beer readiness dashboard,
+docs/decisions/DECISIONS.md,CANONICAL,Latest word; read D-62 and D-75 to D-80,
+research/CORE5-PRODUCT-SYSTEM.md,CANONICAL,Core 5 food x beer analysis,
+food/t1-test-sheets/11-chicken-65-totopos-prototype-protocol-FROZEN.md,CANONICAL,Frozen D-74 rule,
+food/t1-test-sheets/13-session-1-quantity-audit-shopping-cook-card.md,CANONICAL,Session 1 quantities,
+food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md,CANONICAL,Session 1 plain-language card,
+food/t1-test-sheets/15-SESSION-1-CHECKLISTS.md,SUPPORTING,Phone checklists,
+docs/send-packs/,CANONICAL,Five one-page professional send packs (not sent),
+docs/EXTERNAL-INPUT-QUEUE.md,SUPERSEDED by docs/FOUNDER-ACTION-BOARD.md,Kept for the rationale text,docs/FOUNDER-ACTION-BOARD.md
+docs/EVIDENCE-INTAKE.md,SUPPORTING,Where each real input is filed,
+docs/company/NASHA-CONFLICT-FACTS.md,CANONICAL,Name-conflict fact base (T1),
+beer/pilot-briefs/00-BREWER-HANDOFF.md,CANONICAL,Brewer handoff,
+docs/CULTURAL-REVIEW-PACK.md,CANONICAL,Cultural review pack,
+validation/MOBILE-MVP-STRATEGY.md,SUPERSEDED (menu section 5),Older 12-dish menu,research/CORE5-PRODUCT-SYSTEM.md
+food/MENU-V1.1-TEST-MENU.md,SUPERSEDED,12-dish T1 wave,research/CORE5-PRODUCT-SYSTEM.md
+food/MENU-DEVELOPMENT-MATRIX-V1.md,HISTORICAL,16-item pool,research/CORE5-PRODUCT-SYSTEM.md
+food/OPENING-MENU-V2.md,HISTORICAL,16-item opening menu,research/CORE5-PRODUCT-SYSTEM.md
+beer/OPENING-BEER-PROGRAM-V1.md,SUPPORTING (gate wording historical),Old Hefeweizen gate,beer/pilot-briefs/00-BREWER-HANDOFF.md
+beer/PORTFOLIO-V2.md,HISTORICAL,12-beer table,beer/CORE5-BEER-MATRIX.csv
+beer/GLASSWARE-V2.md,SUPERSEDED,Collar mark story; D-66,visuals/glass-studies/README.md
+brand/BRAND-SYSTEM-V0.md,SUPERSEDED,Pre-D-62 brand system,brand/NASHA-BRAND-STRATEGY.md
+brand/BRAND-ARCHITECTURE-V1.md,SUPERSEDED (in part),Pre-D-62; trademark row,brand/NASHA-BRAND-STRATEGY.md
+brand/PARENT-BRAND-CANDIDATES.md,HISTORICAL,ANGAN and candidate names,brand/NASHA-BRAND-STRATEGY.md
+brand/NAMING-UNIVERSE-V2.md,HISTORICAL,"Candidate-name pools (counsel's search first, D-79)",brand/NASHA-BRAND-STRATEGY.md
+phase-one/,HISTORICAL,Phase 1 research,research/ food/ beer/ docs/decisions/
+architecture/ interior/ experience/,HISTORICAL (Track A concept),Concept layers; not evidence,
+research/AUSTIN-COMPETITIVE-LANDSCAPE.md,SUPERSEDED (absence claims),Indian-Mexican players exist,docs/company/NASHA-CONFLICT-FACTS.md
+research/EXTERNAL-INTELLIGENCE-S15.md,SUPERSEDED (absence claims),Same,docs/company/NASHA-CONFLICT-FACTS.md
+research/PAIRING-MATRIX-V2.md,HISTORICAL,Pre-Core 5 pairing scores,food/CORE5-PAIRING-HYPOTHESES.md
+PROJECT-ROADMAP.md,SUPERSEDED (stale),Status through Sprint 4,docs/FOUNDER-CONTROL-CENTER.md
+README.md,SUPPORTING (stale in places),Sprint log ends at 16,docs/FOUNDER-CONTROL-CENTER.md
+visuals/nasha-v3/CANDIDATE-REVIEW.md,CANONICAL,Figma candidate status; exact originals not preserved,
+docs/company/data/*-NOTE.md,ARCHIVE CANDIDATE,Data stub notes (kept; move rather than delete),

@@ -1,5 +1,7 @@
 # Guest Experience Architecture v1
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 **Status:** `[PROPOSED]` experience design for a future venue. **No guest preference is asserted**: audiences are planning archetypes, not research findings; the interview instrument (`research/customer-discovery/`) is how we test them. Spatial facts: `visuals/LOCKED-SCENE-DNA.md`, `architecture/SPATIAL-VISION-V1.md`. The earlier 14-stage physical journey stays in `GUEST-JOURNEY-V1.md`; this document adds the **full lifecycle** and **audience variants**. Technology items are proposals and carry cost/privacy questions.
 
 ## 1. Lifecycle (Discovery → Return) and what we design at each step

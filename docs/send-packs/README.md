@@ -1,0 +1,4 @@
+DRAFT - NOT SENT - founder reviews, edits and sends in their own name. Sending is an external action. Reading time for the recipient: about 5-10 minutes for this page.
+
+# Send packs (five, one page each; NOTHING SENT)
+`01-IP-ATTORNEY.md`, `02-HEAD-BREWER.md`, `03-INDIAN-ADVISOR.md`, `04-MEXICAN-ADVISOR.md`, `05-TEXAS-ALCOHOL-ATTORNEY.md`. Who to pick: `docs/company/data/contact-targets.csv` (discovery only; check credentials and confirm contact details on the organisation's own site). Where replies go: save the raw reply, then `python3 tools/intake.py route` shows the pipeline; Claude records it with `docs/professional-reviews/RECORD-TEMPLATE.md`. Wording follows D-79/D-80: the IP attorney pack identifies NASHA (counsel must evaluate the name); the other packs describe a concept-stage project and attach documents that use the internal working name, which is not for public use.

@@ -1,5 +1,7 @@
 # 9. Austin Competitor Analysis
 
+> HISTORICAL: see phase-one/00 banner; research/, food/, beer/ and docs/decisions/ now govern.
+
 ## What is verified so far
 Descriptions below come from S-13 and S-14 (guide/community sources, grade B/C). **Pricing, reviews, demographics and event data have NOT been collected**; those columns are marked TO RESEARCH rather than guessed.
 

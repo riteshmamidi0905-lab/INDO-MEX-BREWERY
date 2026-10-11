@@ -1,5 +1,7 @@
 # House Sauce System (8)
 
+> NOTE: "Raita-Crema" is a house label only. Use "crema" per research/CORE5-PRODUCT-SYSTEM.md.
+
 Principle: each sauce exists because a **cooking structure** is shared across both cuisines, not because chiles + tamarind sounds fun. All formulas are `[TEST]`; this is architecture, not recipe.
 
 | # | Sauce | Structure (what it is) | Why it exists | Core components `[C]` | Heat | Used in |

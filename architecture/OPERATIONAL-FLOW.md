@@ -1,5 +1,7 @@
 # Operational Flow Diagram (text, conceptual, not to scale)
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 ```
                               ROAD / ARRIVAL (north or south edge: site-dependent)
                                          │

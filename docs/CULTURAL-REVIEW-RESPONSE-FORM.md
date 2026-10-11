@@ -11,7 +11,8 @@ For each dish mark **OK / FIX / REMOVE / UNSURE** and add one line:
 | Gobi Taco | | | | |
 | Butter Chicken & Roasted Poblano Quesadilla | | | | |
 
-Please also answer (a line each):
+**Please do not answer a vague "is it authentic?"; these precise questions are what we need.** Please also answer (a line each):
+0. Does the Indian component remain recognisable in each dish? Does the Mexican component? Is our terminology accurate? Does any origin or history claim mislead? Does any technique create a false cultural claim? Is anything stereotyped or flattened? What should be called modern fusion rather than tradition? (Indian and Mexican reviews are kept independent.)
 1. What is culturally recognizable in the set?  2. What is inaccurate?  3. What is stereotypical?  4. What is overclaimed?  5. What is genuinely new NASHA fusion, and is that framing fair?  6. Which terms should change (totopos, tikka, birria, gobi, butter chicken, poblano/rajas, tandoor, comal, adobo, salsa)?  7. Which technique must not be misrepresented?  8. Which visual cue matters (colour, garnish, vessel, tortilla type)?  9. What story can NASHA legitimately tell, and what must it never say (we invent no shared Indian-Mexican history)?  10. Any concern about the name NASHA (it can mean intoxication or addiction) next to alcohol?
 
 **Processing rule:** each point is logged as ACCEPT / REVISE / INVESTIGATE / DISAGREE WITH REASON / FOUNDER DECISION, including the unflattering ones. Negative feedback is kept as evidence.

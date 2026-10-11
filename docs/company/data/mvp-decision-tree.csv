@@ -1,0 +1,9 @@
+node,condition (needs real evidence),if_yes,if_no_or_unknown,stage_check
+N1,Session 1 yields at least one construction that passes the frozen D-74 gates (or a clear rework path),Continue Sessions 2-5 (confirm D-76 first),Rework or hold Chicken 65; do not run an external test of an untested dish,Internal cook only
+N2,At least two Core 5 dishes pass their gates in internal sessions,Candidate set for a first external test,Keep cooking; no external test,Internal cook only
+N3,Health-authority and attorney answers permit a private or cost-share tasting (tier rules in docs/company/MINIMUM-LAWFUL-FOOD-TEST.md); alcohol excluded,Run the smallest tasting under the neutral label,Stay internal; ask again; do not charge or advertise,Legal answer needed
+N4,"The tasting shows intentional taste, both identities recognised, and some stated willingness to order or pay (directional, thresholds frozen beforehand by the founder)",Repeat with a second group or a pop-up,Rework the dishes or the proposition; stop if signal is negative,Customer evidence
+N5,Kitchen throughput and unit cost from real data work for a repeated event,Evaluate a brewery residency or repeated pop-ups,Fix throughput (menu cut) before scaling,Real receipts and times
+N6,"A licensed brewery partner and an attorney-cleared structure exist, and the beer pairing materially adds value",Evaluate a brewery-linked format,Stay food-only; non-alcoholic pairings only,Legal and brewer answers
+N7,Repeat demand and mobile economics from real events support a vehicle,Evaluate a trailer (reversible); truck last,Keep to pop-ups and residencies,Sales and cost actuals
+N8,Contribution margin from actuals is positive across several events and the name is cleared,Consider a small permanent operation and capital conversation,Hold; do not buy assets,Actuals plus counsel's view

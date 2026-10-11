@@ -1,5 +1,7 @@
 # Menu v1.1: the Opening TEST Menu (12 dishes)
 
+> SUPERSEDED: see research/CORE5-PRODUCT-SYSTEM.md (D-75). The 12-dish T1 wave is kept as backlog; the Core 5 leads.
+
 **Status:** `[TEST]`. A realistic first test set, **not a launch menu**. Nothing has been cooked, costed or tasted. The 16-item pool in `MENU-DEVELOPMENT-MATRIX-V1.md` stays intact; dishes not in this set remain in the pool (Wave 2 or conditional), none deleted. Policy: **no beef, no pork** (D-54, `DIETARY-POLICY-AND-INGREDIENT-SPEC.md`); **not claimed halal**. Beer pairings use `beer/OPENING-BEER-PROGRAM-V1.md`.
 
 ## 1. The 12 (T1 wave 1)

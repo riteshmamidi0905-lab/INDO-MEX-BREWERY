@@ -1,5 +1,7 @@
 # Pairing Matrix v2 (supersedes the Phase One matrix; the old file is kept)
 
+> HISTORICAL: see food/CORE5-PAIRING-MATRIX.csv and food/CORE5-PAIRING-HYPOTHESES.md.
+
 Scores are **our structured judgments `[C]`**, not measured data. Formula: Overall = 0.75 × mean(six positive scores) + 0.25 × (10 − mean(authenticity risk, gimmick risk)). Thresholds: ≥7.0 BUILD, 6.0-6.99 SELECTIVE (individual dishes/beers), 5.0-5.99 PARK, <5.0 REJECT. Scored independently of the earlier five A-pairings; the ranking was not adjusted afterwards.
 
 ## The deeper thesis found in research: "The Crossing"

@@ -1,5 +1,7 @@
 # Opening Menu v2 (16 core items) + Vegetarian Program + Reassessed Concepts
 
+> HISTORICAL: see research/CORE5-PRODUCT-SYSTEM.md (D-75). The 16-item pool is kept as R&D backlog.
+
 > **D-54 UPDATE (founder dietary policy: no beef, no pork):** the original v2 text is kept for provenance. **Tandoori Carne Asada is replaced by Tandoori Lamb**; the **beef option for birria is removed**; **Achari Carnitas is rejected (pork)**. Current product spec: `DIETARY-POLICY-AND-INGREDIENT-SPEC.md`; current test set: `MENU-V1.1-TEST-MENU.md`. Struck rows below are marked SUPERSEDED, not deleted.
 
 Supersedes the Phase One 25-dish library (kept in `phase-one/06-food-program.md`). **No dish has been cooked.** Everything is `[CONCEPT]` + `[TEST]`. Identity checklists come from `research/INDIAN-CULINARY-BENCHMARKS.md` and `MEXICAN-CULINARY-BENCHMARKS.md`.

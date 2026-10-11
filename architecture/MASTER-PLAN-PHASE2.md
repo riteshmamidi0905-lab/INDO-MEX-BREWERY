@@ -1,5 +1,7 @@
 # Master Plan, Phase-2 Update (concept, not construction drawings)
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 **Status:** `[CONCEPT]` planning document. **No construction drawings, engineering, code review, site survey or cost estimate exists.** All dimensions are order-of-magnitude concept values; structural, MEP, fire, flood, ADA, zoning and acoustic matters are `[PRO]`.
 **Source of truth:** **ARC-01-D** (canonical day exterior, D-42) and `visuals/LOCKED-SCENE-DNA.md` for geometry. **ARC-02-A is a night-atmosphere reference only, never geometry (D-47).** The current BRW-01 render is a development/equipment reference only (D-49). This document extends `architecture/COURT-BREWHOUSE-V2.md`, `FAMILY-DESTINATION-EXPANSION.md`, `FAMILY-ZONING-OPTIONS.md` (Option C+) and `EXPANDED-GUEST-JOURNEY.md` and the new `experience/GUEST-JOURNEY-V1.md`.
 

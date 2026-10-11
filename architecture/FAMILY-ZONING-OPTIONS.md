@@ -1,5 +1,7 @@
 # Family Zoning Options (scored)
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 Scores are our judgment `[C]` (1-5, 5 best) from the research in `research/` and the Locked Scene DNA; they are **not data**. Max = 65. Dwell-time, liability, staffing and cost facts are unresolved (see `business/FAMILY-EXPERIENCE-OPERATIONS.md`).
 
 **Existing geometry:** Tank Hall (W), Shade Court (centre), restaurant block (N, with stage alcove at the court's NE corner), south arcade with entrance recess (S), east lawn and live oaks (E), service yard (N, hidden).

@@ -19,7 +19,8 @@ def parse(text):
         whole = dec + " " + owner + " " + rat
         up = whole.upper()
         status = "ACTIVE"
-        pending = "AGENT-PROPOSED" in up or "PROPOSED BY PROJECT AGENTS" in up or "FOUNDER APPROVAL OF THESE THRESHOLDS" in up
+        ou = owner.upper()
+        pending = ("PENDING" in ou or "PROPOSAL" in ou or "PROPOSED BY PROJECT AGENTS" in ou or "AGENT-PROPOSED" in ou or "FOUNDER APPROVAL OF THESE THRESHOLDS" in up)
         if pending and "FROZEN" in up: status = "FROZEN (thresholds agent-proposed; founder confirmation pending)"
         elif pending: status = "PROPOSED (founder confirmation pending)"
         elif "FROZEN" in up: status = "FROZEN"
@@ -30,6 +31,12 @@ def parse(text):
         fr = "YES" if pending else ("founder decision" if re.search(r"founder", owner, re.I) else "")
         out.append(dict(id=m.group(1), date=m.group(2), decision=re.sub(r"\*\*", "", dec)[:300], status=status, owner_or_status_text=re.sub(r"\*\*", "", owner)[:200],
                         supersedes="|".join(sup), superseded_by="|".join(by), founder_required=fr))
+    # a later decision that says it (provisionally) CONFIRMS D-nn updates that decision's status; history is never rewritten
+    byid = {r["id"]: r for r in out}
+    for r in out:
+        for t in re.findall(r"(?:provisionally )?confirms (D-\d+)", r["decision"], flags=re.I):
+            if t in byid and byid[t]["status"].startswith("PROPOSED"):
+                byid[t]["status"] = f"PROVISIONALLY CONFIRMED by founder ({r['id']})"; byid[t]["founder_required"] = ""
     return out
 def phrases(path=PHR): return list(csv.DictReader(open(path, encoding="utf-8")))
 SCOPE = ("docs/", "food/CORE5", "food/sessions/", "food/t1-test-sheets/1", "beer/CORE5", "beer/pilot-briefs/", "beer/BREWERY", "research/CORE5-PRODUCT-SYSTEM.md", "ip/", "brand/TRADEMARK", "website/data/", "visuals/CONCEPT")   # current canonical areas; older v1 documents are historical and not scanned

@@ -1,5 +1,7 @@
 # India Story System (independent)
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 India is not reduced to the Taj Mahal, Mughal imagery, curry, elephants or mandalas. We curate across periods and regions and leave most things out. Status of each theme comes from the audit.
 
 | Theme | Content idea | Evidence now | Status |

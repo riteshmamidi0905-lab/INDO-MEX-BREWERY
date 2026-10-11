@@ -1,5 +1,7 @@
 # Family Destination Expansion: Adventure Court, Game Hall, Flagship Outlet
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 Status: **concept, approved for study only.** Recommended zoning: **Option C+** (`FAMILY-ZONING-OPTIONS.md`). The brewery stays the heart; none of these may compromise the Tank Cloister, kitchen, service routes or the Shade Court's conversation. All safety, code and cost items are `[PRO]`. Footprints are order-of-magnitude estimates `[C]`, not measurements.
 
 ## 1. Adventure Court (outdoor)

@@ -2,6 +2,8 @@
 
 # 12-13. Food Program: 25 Concepts, 10 Signatures
 
+> HISTORICAL: see phase-one/00 banner; research/, food/, beer/ and docs/decisions/ now govern.
+
 All dishes are `[CONCEPT]` and need kitchen trials `[TEST]`. Quantities, costs and recipes are intentionally absent: none has been tested. ★ = signature candidate.
 
 **Principles.** (1) Tortillas are made from nixtamalized masa in-house (corn) and flour for Punjab×Sonora crossings; breads from the tandoor kitchen. (2) A shared set of "mother sauces" cuts prep: a Deccan red chile paste, a green herb chutney-salsa verde, a tamarind-guajillo glaze, a Kerala pepper-coconut base, a birria/adobo consommé. (3) Each dish names its two regions on the menu. (4) Acid and crunch on every rich dish.

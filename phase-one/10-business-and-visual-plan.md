@@ -1,5 +1,7 @@
 # 20-21. Business Feasibility and Visual-Production Plan
 
+> HISTORICAL: see phase-one/00 banner; research/, food/, beer/ and docs/decisions/ now govern.
+
 ## 20. Preliminary business feasibility (NOT legal or financial advice)
 
 ### Texas alcohol licensing (partly verified)

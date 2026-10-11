@@ -1,5 +1,7 @@
 # Mexico Story System (independent)
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 Mexico is not reduced to Aztec imagery, tacos, sombreros, cactus or Día de Muertos. We curate across civilizations and regions.
 
 | Theme | Content idea | Evidence now | Status |

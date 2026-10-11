@@ -1,5 +1,7 @@
 # Historical Zoning (story by zone)
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 | Zone | Story | Installation | Intensity |
 |---|---|---|---|
 | **Entry: Two Worlds** | One sentence introduces two civilizations and one table | Dark threshold room, a single large photograph, no flags, no glowing map | Low |

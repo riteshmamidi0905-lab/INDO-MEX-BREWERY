@@ -1,5 +1,7 @@
 # Historical Design Philosophy
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 The interior should feel like **contemporary museum × world-class brewery × excellent restaurant × Austin hospitality**. History is the soul of the building, but the brewery remains the heart. `[CONCEPT]` All claims inside the displays follow `research/HISTORICAL-CLAIMS-AUDIT.md`.
 
 ## Principles

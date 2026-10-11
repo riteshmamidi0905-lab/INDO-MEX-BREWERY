@@ -1,5 +1,7 @@
 # Interactive History (families)
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 Physical first, screens last. All content follows the claims audit.
 - **Ingredient drawers:** wooden drawers of grains to touch (barley, wheat, maize colours, rice, millets); a short tag per drawer.
 - **Smell jars:** cumin, coriander, black pepper, chile, vanilla, cacao, lime.

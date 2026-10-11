@@ -15,6 +15,7 @@ One place for the ten products: what we know, what we assume, what must happen n
 - **OPERATIONAL RISK:** holding HIGH: moisture migration into chip; 10-minute failure gate; execution medium: fryer pressure, second person, oil handling; equipment: fryer (H load), probe thermometer, rack, hot hold 90 C
 - **PAIRING HYPOTHESIS:** PF-01 NASHA Mexican-Style Lager (CORE; mechanisms HEAT|CONTRAST; risk: low bitterness should not amplify chile; may be too thin for the fat); PF-07 NASHA Pilsner (OPTIONAL; mechanisms CONTRAST|BODY (lager vs Pilsner on the same food); risk: bitterness plus chile heat)
 - **PASS/FAIL GATE:** D-74 (frozen): Chicken 65 identity, totopo identity, fusion coherence, another bite >= 4.0; T+10 crispness, structure >= 3.5; no failure code (NOT_65, NO_CORN, SOGGY, IMPRACTICAL, COLLAPSE, SAUCE_DOMINATES, GENERIC_NACHOS, UNRELATED_CHIPS, D54, UNSAFE); 2 passing iterations
+- **KILL / REVISE RULE (proposals; no result exists):** CONTINUE if A construction passes every frozen D-74 gate in two iterations with no failure code (KEEP); one good plate is only PROMISING PROTOTYPE. REVISE if Gates narrowly missed or a single fixable cause (crispness, coating, sauce migration); identity is good in at least one construction. DE-PRIORITIZE if Only passes with a plating or fry process the kitchen cannot sustain (IMPRACTICAL / fryer pressure). REMOVE if Repeated NOT_65, NO_CORN, GENERIC_NACHOS or UNRELATED_CHIPS after reworks, or an UNSAFE handling problem that cannot be solved. Guard: The AI renders and the founder's attachment count for nothing; only plates, scores and measurements.
 - **EVIDENCE STATUS:** none (planning only)
 - **NEXT ACTION:** Founder cooks Session 1 per the founder-mode card
 
@@ -29,6 +30,7 @@ One place for the ten products: what we know, what we assume, what must happen n
 - **OPERATIONAL RISK:** holding MEDIUM-HIGH: paneer firms and dries, tortilla steams; finish to order; execution medium: depends on the unresolved tandoor/hood answer; equipment: tandoor (unresolved) or charbroiler/comal; comal for tortillas
 - **PAIRING HYPOTHESIS:** PF-03 NASHA Witbier (CORE; mechanisms ECHO|ACID; risk: coriander/citrus clash with lime or yogurt (soapy))
 - **PASS/FAIL GATE:** D-76 (AGENT-PROPOSED, founder confirmation required before Session 2): paneer_tikka_identity >= 4.0, taco_identity >= 4.0, nasha_coherence >= 4.0, moisture >= 3.5, char >= 3.5, tortilla_integrity >= 3.5, structural_integrity >= 3.5, another_bite >= 4.0, service_practicality >= 3.5; failure gates; 2 passing iterations; NASHA R&D THRESHOLDS, not industry standards
+- **KILL / REVISE RULE (proposals; no result exists):** CONTINUE if Meets the Session 2 gates (agent-proposed D-76; founder confirmation pending) with a heat source the founder can actually use. REVISE if Char or tenderness fails with one heat source; another arm or time fixes it. DE-PRIORITIZE if Only a tandoor reaches identity and no tandoor/hood path exists (Q-15 unresolved). REMOVE if No heat source reaches tikka identity, or advisors reject the tikka name and no honest name works. Guard: A tandoor in a render is not a tandoor in a kitchen.
 - **EVIDENCE STATUS:** none (planning only)
 - **NEXT ACTION:** wait for Session 1; confirm the D-76 thresholds first
 
@@ -43,6 +45,7 @@ One place for the ten products: what we know, what we assume, what must happen n
 - **OPERATIONAL RISK:** holding HIGH: large braise cooling/reheating/hold, fat set in consomme (food-safety professional must set the process); execution HIGH: long lead, sourcing, yield and trim waste unknown; equipment: oven or kettle (long braise), comal/griddle, cold storage, hot hold
 - **PAIRING HYPOTHESIS:** PF-05 NASHA Hefeweizen (CORE; mechanisms CONTRAST|ECHO; risk: clove/banana against clove/cinnamon is a congruence gamble); PF-06 NASHA Vienna Amber (CORE; mechanisms BRIDGE|BODY; risk: may be heavy with a rich consomme)
 - **PASS/FAIL GATE:** D-76 (AGENT-PROPOSED, founder confirmation required before Session 2): birria_identity >= 4.0, goat_identity >= 4.0, tenderness >= 3.5, consomme_quality >= 3.5, taco_hold >= 3.5, improves_over_control >= 3.5, another_bite >= 4.0, service_practicality >= 3.5; failure gates; 2 passing iterations; NASHA R&D THRESHOLDS, not industry standards
+- **KILL / REVISE RULE (proposals; no result exists):** CONTINUE if The Indian-technique arm is rated at or above the improves_over_control gate against the plain-adobo control, blind, twice. REVISE if One variant helps but another harms; adjust one variable. DE-PRIORITIZE if Goat sourcing, yield, cooling or reheat is impractical for the intended format. REMOVE if The Indian layer never beats plain adobo, or a Mexican advisor rejects the cheese-free Indian-layer version under the name birria. Guard: 'It is more interesting' is not a reason to keep a layer the panel cannot taste or like.
 - **EVIDENCE STATUS:** none (planning only)
 - **NEXT ACTION:** wait for Session 1; confirm the D-76 thresholds first
 
@@ -57,6 +60,7 @@ One place for the ten products: what we know, what we assume, what must happen n
 - **OPERATIONAL RISK:** holding MEDIUM-HIGH: cauliflower keeps releasing water; glaze and slaw soften crust; execution medium; equipment: oven or fryer, comal for tortillas
 - **PAIRING HYPOTHESIS:** PF-02 NASHA Pilsner (CORE; mechanisms CONTRAST|BODY|HEAT (counter-test); risk: bitterness beside chile heat may amplify burn)
 - **PASS/FAIL GATE:** D-76 (AGENT-PROPOSED, founder confirmation required before Session 2): cauliflower_recognition >= 4.0, indian_identity >= 4.0, taco_identity >= 4.0, nasha_coherence >= 4.0, browning >= 3.5, crispness >= 3.5, interior_tenderness >= 3.5, glaze_adhesion >= 3.5, tortilla_integrity >= 3.5, another_bite >= 4.0; failure gates; 2 passing iterations; NASHA R&D THRESHOLDS, not industry standards
+- **KILL / REVISE RULE (proposals; no result exists):** CONTINUE if The roast arm reads as cauliflower, holds crisp at the gate times, and the glaze helps. REVISE if Coating hides the cauliflower or it goes soggy by T+5. DE-PRIORITIZE if Needs a fryer and labour that make it uneconomic for the format. REMOVE if Cannot hold crisp or read as cauliflower in either arm. Guard: Do not keep both arms to avoid choosing.
 - **EVIDENCE STATUS:** none (planning only)
 - **NEXT ACTION:** wait for Session 1; confirm the D-76 thresholds first
 
@@ -71,6 +75,7 @@ One place for the ten products: what we know, what we assume, what must happen n
 - **OPERATIONAL RISK:** holding MEDIUM: steams soft if covered; filling leaks if sauce not reduced; execution medium-high: comal is the shared bottleneck; equipment: comal/flat-top (H load), tandoor optional for chicken, oven/grill alternative
 - **PAIRING HYPOTHESIS:** PF-04 NASHA Vienna Amber (CORE; mechanisms BRIDGE|SWEET (risk)|BODY; risk: Vienna malt may cloy on a sweet cream sauce); PF-08 NASHA Hefeweizen (OPTIONAL; mechanisms CONTRAST|ECHO; risk: yeast spice against garam masala)
 - **PASS/FAIL GATE:** D-76 (AGENT-PROPOSED, founder confirmation required before Session 2): butter_chicken_identity >= 4.0, quesadilla_identity >= 4.0, nasha_coherence >= 4.0, tortilla_crispness >= 3.5, leak_control >= 3.5, filling_integrity >= 3.5, poblano_presence >= 3.5, another_bite >= 4.0, service_practicality >= 3.5; failure gates; 2 passing iterations; NASHA R&D THRESHOLDS, not industry standards
+- **KILL / REVISE RULE (proposals; no result exists):** CONTINUE if Leak and moisture gates pass at the gate times with a sauce thickness the comal can handle. REVISE if Sauce too thin or cheese buries the butter-chicken identity. DE-PRIORITIZE if Comal minutes per plate make it the service bottleneck for the intended format. REMOVE if Reads as a caricature to advisors and fails identity, or cannot be executed at pace. Guard: Being the founder's favourite does not offset a bottleneck.
 - **EVIDENCE STATUS:** none (planning only)
 - **NEXT ACTION:** wait for Session 1; confirm the D-76 thresholds first
 
@@ -87,6 +92,7 @@ One place for the ten products: what we know, what we assume, what must happen n
 - **OPERATIONAL RISK:** tank time and lager/ale scheduling; glass: Collar Weizen about 0.5 L serve (tall vase) (Glass V2 is a concept; manufacturability unverified)
 - **PAIRING HYPOTHESIS:** PF-05 Goat Birria, Sealed-Pot Braise (CORE; mechanisms CONTRAST|ECHO; risk: clove/banana against clove/cinnamon is a congruence gamble); PF-08 Butter Chicken & Roasted Poblano Quesadilla (OPTIONAL; mechanisms CONTRAST|ECHO; risk: yeast spice against garam masala)
 - **PASS/FAIL GATE:** none frozen yet; pilot gates are proposed in the brewer handoff and need a brewer's view; pilot order founder 1 / recommended 1
+- **KILL / REVISE RULE (proposals; no result exists):** CONTINUE if All six proofs (credibility, differentiation, repeat drinkability, food compatibility, fermentation reliability, taproom appeal) are met on brewer-set thresholds (D-77 is agent-proposed; founder confirmation pending). REVISE if Credibility met but another proof or sample size is not. DE-PRIORITIZE if Sound beer but weaker in pairing or appeal than another house beer. REMOVE if Repeated faults with no root cause after the brewer's review, or equipment cannot support the style (founder decision). Guard: It is not sacred because it was listed first; if the brewer advises another lead beer, record that.
 - **EVIDENCE STATUS:** none (planning only)
 - **NEXT ACTION:** a qualified brewer reads the handoff and answers the review form
 
@@ -101,6 +107,7 @@ One place for the ten products: what we know, what we assume, what must happen n
 - **OPERATIONAL RISK:** tank time and lager/ale scheduling; glass: Collar Lager about 0.4 L (Glass V2 is a concept; manufacturability unverified)
 - **PAIRING HYPOTHESIS:** PF-01 Chicken 65 Totopos (CORE; mechanisms HEAT|CONTRAST; risk: low bitterness should not amplify chile; may be too thin for the fat)
 - **PASS/FAIL GATE:** none frozen yet; pilot gates are proposed in the brewer handoff and need a brewer's view; pilot order founder 2 / recommended 2
+- **KILL / REVISE RULE (proposals; no result exists):** CONTINUE if Distinguishable from the Pilsner by untrained drinkers and useful for chile heat. REVISE if Not distinguishable once: re-spec (hop, bitterness, dryness) and retest; brewer reviews the 14-18 IBU window. DE-PRIORITIZE if Still indistinguishable: merge into one lager plus a distinct seasonal, or hold one back. REMOVE if Brewer judges the style impractical for the system. Guard: Do not keep two lagers because both are in the plan.
 - **EVIDENCE STATUS:** none (planning only)
 - **NEXT ACTION:** a qualified brewer reads the handoff and answers the review form
 
@@ -115,6 +122,7 @@ One place for the ten products: what we know, what we assume, what must happen n
 - **OPERATIONAL RISK:** tank time and lager/ale scheduling; glass: Collar Lager (own variant: double-step ring) (Glass V2 is a concept; manufacturability unverified)
 - **PAIRING HYPOTHESIS:** PF-04 Butter Chicken & Roasted Poblano Quesadilla (CORE; mechanisms BRIDGE|SWEET (risk)|BODY; risk: Vienna malt may cloy on a sweet cream sauce); PF-06 Goat Birria, Sealed-Pot Braise (CORE; mechanisms BRIDGE|BODY; risk: may be heavy with a rich consomme)
 - **PASS/FAIL GATE:** none frozen yet; pilot gates are proposed in the brewer handoff and need a brewer's view; pilot order founder 3 / recommended 3
+- **KILL / REVISE RULE (proposals; no result exists):** CONTINUE if Wins or ties in pairing trials as the char and braise bridge. REVISE if Cloys against sweet cream sauces or heavy against consomme. DE-PRIORITIZE if Its tank time is better spent elsewhere. REMOVE if Repeatedly weakest in pairings and brewer advises cutting. Guard: Same.
 - **EVIDENCE STATUS:** none (planning only)
 - **NEXT ACTION:** a qualified brewer reads the handoff and answers the review form
 
@@ -129,6 +137,7 @@ One place for the ten products: what we know, what we assume, what must happen n
 - **OPERATIONAL RISK:** tank time and lager/ale scheduling; glass: slim tall Pilsner glass (family variant) (Glass V2 is a concept; manufacturability unverified)
 - **PAIRING HYPOTHESIS:** PF-02 Gobi Taco (CORE; mechanisms CONTRAST|BODY|HEAT (counter-test); risk: bitterness beside chile heat may amplify burn); PF-07 Chicken 65 Totopos (OPTIONAL; mechanisms CONTRAST|BODY (lager vs Pilsner on the same food); risk: bitterness plus chile heat)
 - **PASS/FAIL GATE:** none frozen yet; pilot gates are proposed in the brewer handoff and need a brewer's view; pilot order founder 4 / recommended 4
+- **KILL / REVISE RULE (proposals; no result exists):** CONTINUE if Credible and distinct from the Mexican-style lager; noble-hop supply works. REVISE if Bitterness plus chile reads harsh; supply or spec issues. DE-PRIORITIZE if Redundant with the Mexican lager. REMOVE if Brewer advises it cannot be done well on the system. Guard: Same.
 - **EVIDENCE STATUS:** none (planning only)
 - **NEXT ACTION:** a qualified brewer reads the handoff and answers the review form
 
@@ -143,6 +152,7 @@ One place for the ten products: what we know, what we assume, what must happen n
 - **OPERATIONAL RISK:** tank time and lager/ale scheduling; glass: Collar Weizen family variant (short wide bowl) (Glass V2 is a concept; manufacturability unverified)
 - **PAIRING HYPOTHESIS:** PF-03 Paneer Tikka Taco (CORE; mechanisms ECHO|ACID; risk: coriander/citrus clash with lime or yogurt (soapy))
 - **PASS/FAIL GATE:** none frozen yet; pilot gates are proposed in the brewer handoff and need a brewer's view; pilot order founder 5 / recommended 5
+- **KILL / REVISE RULE (proposals; no result exists):** CONTINUE if Fits a seasonal or lager-free slot with a controlled cross-contamination plan and a real pairing job. REVISE if Coriander or orange clashes with lime or yogurt. DE-PRIORITIZE if Seasonal fit or pairing job is thin. REMOVE if Allergen and label burden or brewer advice outweighs value. Guard: Same.
 - **EVIDENCE STATUS:** none (planning only)
 - **NEXT ACTION:** a qualified brewer reads the handoff and answers the review form
 

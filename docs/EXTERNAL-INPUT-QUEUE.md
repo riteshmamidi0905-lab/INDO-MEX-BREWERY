@@ -1,4 +1,6 @@
 # External-input queue (who to ask, what to send, what it unlocks)
+
+> SUPERSEDED by docs/FOUNDER-ACTION-BOARD.md (generated, with a NEXT 3 view). Kept for the rationale text.
 Everything below needs a human or real-world actor. Nothing has been sent; sending anything in the founder's name is an external action that needs the founder. Order is by expected information value and urgency. Evidence 4/95 and design 43/95 do not change until some of these produce real input.
 
 | # | Who | What to send | What to ask | Output we need | Decision it unlocks |

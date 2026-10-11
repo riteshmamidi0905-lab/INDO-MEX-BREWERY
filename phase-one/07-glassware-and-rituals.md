@@ -1,5 +1,7 @@
 # 14-15. Glassware and Serving Rituals
 
+> HISTORICAL: see phase-one/00 banner; research/, food/, beer/ and docs/decisions/ now govern.
+
 ## Why traditional glass works (`[UNCITED]`, verify with manufacturer and brewing sources)
 - **Weizen vase:** tall, tapered, wide top: holds foam, shows haze, leaves room for the large head wheat beer makes.
 - **Pilsner flute:** shows clarity and bubbles; narrow keeps carbonation.

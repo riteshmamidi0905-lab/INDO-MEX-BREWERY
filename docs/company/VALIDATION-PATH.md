@@ -38,3 +38,13 @@ Reason: the name is founder-selected with clearance pending, and an Austin resta
 - A passing step is not market proof; one tasting is descriptive only (n under 8 is not a rank).
 - Hypothesis order: H2 (intentional fusion), H11 (lawful structure), H1 demand, H8 cultural respect, H12 dietary integrity.
 - Professionals own real decisions: chef, brewer, cultural advisors, Texas alcohol attorney, trademark attorney, accountant, health authority.
+
+## Smallest credible first external test (design only; NOT RUN; needs the tier rules in `docs/company/MINIMUM-LAWFUL-FOOD-TEST.md`)
+Question it answers: *does the dish taste intentional, are both identities recognisable, would someone order it, what would they pay, what fails, would they want it again?* It is early directional learning, not statistics.
+- **Dishes:** one or two, only those that passed their internal gates (never an untested dish). If only Chicken 65 Totopos passed, test that alone.
+- **People:** roughly 8 to 12 invited people for a first round (an agent-proposed planning figure, not a sample-size claim), kept separate from the founder's closest friends where possible; note each person's relationship and food background; include some who know Indian food and some who know Mexican food.
+- **What to observe:** first bite reaction; which identity they name unprompted; what they would call it; whether they finish it; what they say about price when asked an open question (no price anchor); what is left on the plate; confusion or "gimmick" remarks; whether they ask for it again.
+- **Instruments (already built):** `research/customer-discovery/TASTING-FEEDBACK-FORM.md` and trackers; coding scheme in `CODING-SYSTEM.md`.
+- **Do not freeze customer thresholds here;** the founder sets them before the first interview. Alcohol excluded; neutral label; no public advertising; a charge only after the health-authority and attorney answers.
+- **Stop or rework** if identities are not recognised, people leave food, or the dish fails its hold in real service.
+

@@ -136,8 +136,22 @@ Entry, exit, evidence and go/hold/kill questions per stage: `docs/company/data/s
 | **AFTER FIRST CUSTOMER TEST** | Code responses with the coding system; analyse by cohort; separate signal from non-signal; update... | Review the result against the pre-set thresholds; decide HOLD/GO/KILL for the next rung | Optional: sensory scientist review of the design | Second small test or a pop-up if thresholds were met | North-star hypotheses updated with real data; next rung decided |
 | **BEFORE PAID MVP** | Price the scenario fields with real quotes; model break-even and cash required; update capital... | Choose the paid vehicle and budget band (F-1); approve any public step | Attorney written pathway; insurance broker; commissary and brewery-partner terms; IP... | First paid event (only after the above) | Paid MVP cleared to run, or explicitly postponed |
 
+## MVP format decision tree (each node needs real evidence; none has any yet)
+
+| Node | Condition | If yes | If no or unknown | Needs |
+|---|---|---|---|---|
+| N1 | Session 1 yields at least one construction that passes the frozen D-74 gates (or a clear rework path) | Continue Sessions 2-5 (confirm D-76 first) | Rework or hold Chicken 65; do not run an external test of an untested dish | Internal cook only |
+| N2 | At least two Core 5 dishes pass their gates in internal sessions | Candidate set for a first external test | Keep cooking; no external test | Internal cook only |
+| N3 | Health-authority and attorney answers permit a private or cost-share tasting (tier rules in docs/company/MINIMUM-LAWFUL-FOOD-TEST.md); alcohol... | Run the smallest tasting under the neutral label | Stay internal; ask again; do not charge or advertise | Legal answer needed |
+| N4 | The tasting shows intentional taste, both identities recognised, and some stated willingness to order or pay (directional, thresholds frozen... | Repeat with a second group or a pop-up | Rework the dishes or the proposition; stop if signal is negative | Customer evidence |
+| N5 | Kitchen throughput and unit cost from real data work for a repeated event | Evaluate a brewery residency or repeated pop-ups | Fix throughput (menu cut) before scaling | Real receipts and times |
+| N6 | A licensed brewery partner and an attorney-cleared structure exist, and the beer pairing materially adds value | Evaluate a brewery-linked format | Stay food-only; non-alcoholic pairings only | Legal and brewer answers |
+| N7 | Repeat demand and mobile economics from real events support a vehicle | Evaluate a trailer (reversible); truck last | Keep to pop-ups and residencies | Sales and cost actuals |
+| N8 | Contribution margin from actuals is positive across several events and the name is cleared | Consider a small permanent operation and capital conversation | Hold; do not buy assets | Actuals plus counsel's view |
+
 ## Where to look
 
+- **WHAT CAN I DO TODAY / WHO TO CONTACT / WHAT TO SEND / WHAT TO BUY:** `docs/FOUNDER-ACTION-BOARD.md` (next three actions at the top); Session 1 phone checklists: `food/t1-test-sheets/15-SESSION-1-CHECKLISTS.md`; send packs: `docs/send-packs/`; filing and ingestion: `docs/EVIDENCE-INTAKE.md` and `python3 tools/intake.py route`. Document map: `docs/DOCUMENT-MAP.md`.
 - Products: `docs/CORE5-CONTROL-CENTER.md` (ten products), `docs/PROTOTYPE-READINESS.md`, `docs/company/CORE5-COMMERCIAL-LOGIC.md`, `docs/company/BEER-AND-NA-BUSINESS-SYSTEM.md`, `docs/company/FOOD-FAILURE-CONTINGENCIES.md`.
 - Cook now: `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md`.
 - Real-world asks: `docs/EXTERNAL-INPUT-QUEUE.md`, `docs/company/PROFESSIONAL-REVIEW-PIPELINE.md`, `docs/company/OUTREACH-DRAFTS.md` (drafts, not sent).

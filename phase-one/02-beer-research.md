@@ -1,5 +1,7 @@
 # 6-8. Beer Research
 
+> HISTORICAL: see phase-one/00 banner; research/, food/, beer/ and docs/decisions/ now govern.
+
 ## 6. Indian beer
 **[VERIFIED S-11, S-12]** Bira 91 launched in 2015 from B9 Beverages, founded by Ankur Jain. Early production was contract-brewed in Belgium before moving to India. Press at the time reported rapid growth and a position against mass-market incumbents; growth figures vary by source and are 2017-18 vintage. Treat as history, not current performance.
 

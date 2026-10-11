@@ -1,5 +1,7 @@
 # Crossings Story System
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 Only verified or well-supported exchanges. Everything else is "no established connection". Status per `HISTORICAL-CLAIMS-AUDIT.md`.
 
 | Crossing | Panel idea | Status |

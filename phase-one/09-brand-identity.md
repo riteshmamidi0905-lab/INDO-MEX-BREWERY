@@ -1,5 +1,7 @@
 # 19. Brand Identity Directions
 
+> HISTORICAL: ANGAN and other candidate names are not the brand. See brand/NASHA-BRAND-STRATEGY.md (D-62).
+
 ## Evaluation of "INDO MEX BREWERY" as a name
 - **Pros:** instantly says what it is; strong search clarity.
 - **Cons:** descriptive and probably hard to protect `[PRO]`; "Indo" can be read as Indonesia; "Mex" shortcut can feel casual or Tex-Mex; hard to premiumize; can't grow into a global brand with other categories.

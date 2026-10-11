@@ -1,5 +1,7 @@
 # INDO MEX BREWERY
 
+> NOTE: the sprint log ends at 16 and 'no website code' is superseded; a concept prototype exists in website/ (noindex, not deployed). Current state: docs/FOUNDER-CONTROL-CENTER.md and docs/FOUNDER-ACTION-BOARD.md.
+
 Permanent source of truth for the project. Founder: Ritesh Mamidi. Target market: Austin, Texas.
 **Brand name: NASHA** (founder-selected, 2026-10-11; `SELECTED_BY_FOUNDER — LEGAL CLEARANCE PENDING`, D-62). This is not trademark clearance. "INDO MEX BREWERY" remains the repository and working name in earlier history; see `brand/NASHA-BRAND-STRATEGY.md` and `phase-one/09-brand-identity.md` (history).
 

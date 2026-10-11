@@ -1,5 +1,7 @@
 # Cultural Design Research: Principles to Translate
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 Rule: **translate principles, do not copy forms.** No sacred sites, temples, mosques, or historically sensitive structures as models. Evidence tags: `[V S-xx]`, `[U]` = widely documented but not yet sourced in this repo, `[Gap]` = research needed.
 
 ## 1. Courtyards: what the evidence says

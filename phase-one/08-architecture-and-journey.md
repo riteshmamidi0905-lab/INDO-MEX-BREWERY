@@ -2,6 +2,8 @@
 
 # 16-18. Architecture and Customer Journey
 
+> HISTORICAL: see phase-one/00 banner; research/, food/, beer/ and docs/decisions/ now govern.
+
 All `[CONCEPT]`. Structural, mechanical, fire, ADA and zoning feasibility require architect/engineer review `[PRO]`.
 
 ## Principles (fuse principles, not decorations)

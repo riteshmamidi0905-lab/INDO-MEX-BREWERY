@@ -1,5 +1,7 @@
 # 10. Beer Name Candidates (50)
 
+> HISTORICAL: ANGAN and other candidate names are not the brand. See brand/NASHA-BRAND-STRATEGY.md (D-62).
+
 **Status: all names are UNCLEARED `[PRO]`.** None has had a USPTO/TTB/Texas search. Meanings are standard dictionary meanings from general knowledge `[UNCITED]`; a native-speaker review is required before use. Names of deities, living public figures and communities are deliberately excluded or flagged.
 
 Pronunciation is approximate English. Flags: ⚠ = known commonness/crowding or sensitivity concern to check; ★ = shortlisted for finalist cards below.

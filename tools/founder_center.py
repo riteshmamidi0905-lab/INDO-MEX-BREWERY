@@ -40,7 +40,11 @@ L += ["", "## Top risks", "", "| # | Risk | Reduced by | Lane |", "|---|---|---|
 for r in risks: L.append(f"| {r['rank']} | {cell(r['risk'], 200)} | {cell(r['what reduces it'], 200)} | {r['lane']} |")
 L += ["", "## Next 100 days (dependency-driven, no calendar dates)", "", "| Phase | Digital (lane B) | Founder | Professional | Physical (lane A) | Exit signal |", "|---|---|---|---|---|---|"]
 for r in road: L.append(f"| **{r['phase']}** | {cell(r['digital_work (lane B)'], 100)} | {cell(r['founder_work'], 90)} | {cell(r['professional_work'], 90)} | {cell(r['physical_work (lane A)'], 80)} | {cell(r['exit_signal'], 70)} |")
+tree = rows("mvp-decision-tree.csv")
+L += ["", "## MVP format decision tree (each node needs real evidence; none has any yet)", "", "| Node | Condition | If yes | If no or unknown | Needs |", "|---|---|---|---|---|"]
+for t in tree: L.append(f"| {t['node']} | {cell(t['condition (needs real evidence)'], 150)} | {cell(t['if_yes'], 90)} | {cell(t['if_no_or_unknown'], 90)} | {t['stage_check']} |")
 L += ["", "## Where to look", "",
+      "- **WHAT CAN I DO TODAY / WHO TO CONTACT / WHAT TO SEND / WHAT TO BUY:** `docs/FOUNDER-ACTION-BOARD.md` (next three actions at the top); Session 1 phone checklists: `food/t1-test-sheets/15-SESSION-1-CHECKLISTS.md`; send packs: `docs/send-packs/`; filing and ingestion: `docs/EVIDENCE-INTAKE.md` and `python3 tools/intake.py route`. Document map: `docs/DOCUMENT-MAP.md`.",
       "- Products: `docs/CORE5-CONTROL-CENTER.md` (ten products), `docs/PROTOTYPE-READINESS.md`, `docs/company/CORE5-COMMERCIAL-LOGIC.md`, `docs/company/BEER-AND-NA-BUSINESS-SYSTEM.md`, `docs/company/FOOD-FAILURE-CONTINGENCIES.md`.",
       "- Cook now: `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md`.",
       "- Real-world asks: `docs/EXTERNAL-INPUT-QUEUE.md`, `docs/company/PROFESSIONAL-REVIEW-PIPELINE.md`, `docs/company/OUTREACH-DRAFTS.md` (drafts, not sent).",

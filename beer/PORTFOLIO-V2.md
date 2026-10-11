@@ -1,5 +1,7 @@
 # Beer Portfolio v2 (supersedes the Phase One 12-beer table; the old file is kept)
 
+> HISTORICAL: see beer/CORE5-BEER-MATRIX.csv (D-75).
+
 **Never brewed. All specs are development targets `[TEST]`.** Names are working names (see `brand/NAMING-UNIVERSE-V2.md`); ABV/IBU for Hefeweizen anchored to BJCP `[V S-06]`; others are typical style windows `[C]`.
 
 **Gate rule:** Regional and Reserve beers launch only after the Classics pass sensory benchmarks. **Ingredient rule:** every non-traditional ingredient must state its *job* (aroma, acidity, bitterness, fermentation, mouthfeel, finish, or pairing). "Because it is Indian/Mexican" = reject.

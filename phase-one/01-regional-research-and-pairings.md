@@ -2,6 +2,8 @@
 
 # 3-5. Regional Research Frameworks and Pairing Matrix
 
+> HISTORICAL: see phase-one/00 banner; research/, food/, beer/ and docs/decisions/ now govern.
+
 All regional food statements here are `[UNCITED]` general background. Before external use, each region needs one strong citation (see backlog). "Beer relevance" and ratings are `[CONCEPT]`.
 
 ## 3. India framework: which regions earn a place?

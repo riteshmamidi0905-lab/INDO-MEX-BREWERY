@@ -1,5 +1,7 @@
 # Parent Brand Candidates (50)
 
+> HISTORICAL: ANGAN and other candidate names are not the brand. See brand/NASHA-BRAND-STRATEGY.md (D-62).
+
 **Not beer names; these are company/brewery names.** Working project descriptor stays **INDO MEX BREWERY**; ANGAN BREWING CO. is one candidate among 50 and is not privileged (it ranks where the scores put it).
 
 **Method:** 9 criteria scored 1-5 (5 best) by our judgment `[C]`: Memorability, Pronunciation, American appeal, Indian connection, Mexican connection, Beer credibility, Restaurant credibility, National expansion, Visual branding. Plus **TM conflict risk** 1-5 (5 = most crowded; a guess from word commonness, **not** a search). Adjusted score = sum of 9 − 2×(TM risk − 1); max 45.

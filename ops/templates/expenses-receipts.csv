@@ -1,1 +1,1 @@
-receipt_id,date,vendor,item,quantity,unit,amount_paid_as_on_receipt,tax_if_shown,category,linked_product_or_run,name_dependent_spend (Y/N),receipt_file_ref,data_source,notes
+receipt_id,date,vendor,item,brand,package_size,quantity,unit,amount_paid_as_on_receipt,tax_if_shown,lot_or_best_by,d54_label_result,category,linked_product_or_run,name_dependent_spend (Y/N),receipt_file_ref,data_source,notes

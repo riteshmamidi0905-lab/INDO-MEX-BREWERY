@@ -1,5 +1,7 @@
 # The Court Brewhouse v2 (stress-tested; NOT final)
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 > **Visual authority (D-39):** for any image-related detail, `visuals/VISUAL-DNA.md` and `visuals/LOCKED-SCENE-DNA.md` govern; this document is architectural background.
 
 Supersedes the Phase One architecture sketch (kept). **Conceptual layouts are not engineering drawings.** All structural, MEP, code, fire, flood, ADA and zoning matters `[PRO]`.

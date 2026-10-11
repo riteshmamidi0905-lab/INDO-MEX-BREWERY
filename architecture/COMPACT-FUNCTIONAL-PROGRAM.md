@@ -1,5 +1,7 @@
 # Compact Configuration: Functional Program (conceptual; Sprint 3)
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 **Level:** concept planning only. **No construction precision, code review, MEP or structural validation exists.** ARC-01-D and `visuals/LOCKED-SCENE-DNA.md` remain geometry authority; `architecture/MASTER-PLAN-PHASE2.md` holds areas and phasing. Every row is labelled **KNOWN** (from locked/approved project documents), **ASSUMED** (our planning assumption), or **PRO** (needs architect/engineer/code review). Purpose: give an architect a clear functional brief and expose what must be decided.
 
 ## 1. What "Compact" means

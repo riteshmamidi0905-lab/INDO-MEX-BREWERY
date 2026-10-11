@@ -1,5 +1,7 @@
 # PROJECT ROADMAP
 
+> STALE: status through Sprint 4 only. Current state: docs/FOUNDER-CONTROL-CENTER.md and DECISIONS.md D-75 to D-80.
+
 **Project:** INDO MEX BREWERY (repository/working name) · **Brand name: NASHA, founder-selected, legal clearance pending (D-62)** · **Founder:** Ritesh Mamidi · **Market:** Austin, Texas · **Branch:** `claude/loving-hypatia-jwilh1` (never merged to main)
 **Last updated:** 2026-10-11 (Sprint 4). **Rules:** nothing is deleted; rejected ideas live in `docs/decisions/REJECTED.md`; every factual claim carries an evidence tag and a source ID; beer and food are R&D targets until tested; images are concept visuals; **no website code yet**.
 **Operating rule (D-49):** build the concept systematically and refine visuals only when they materially help. Phases overlap. No artificial blockers.

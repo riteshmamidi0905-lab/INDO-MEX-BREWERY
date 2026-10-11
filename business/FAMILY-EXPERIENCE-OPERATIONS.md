@@ -1,5 +1,7 @@
 # Family Experience: Operating Questions (research record, no invented answers)
 
+> HISTORICAL (Track A concept): family and arcade expansion is parked; not evidence.
+
 | Question | What the evidence says | Status |
 |---|---|---|
 | Does family recreation increase dwell time? | Operator accounts in brewing trade press say kids' tables and daytime openings keep parents longer and bring repeat visits, and can add a daytime revenue stream `[S-71a,b: anecdotal, B/C]` | **UNRESOLVED**: no hard data; run a pilot and measure |

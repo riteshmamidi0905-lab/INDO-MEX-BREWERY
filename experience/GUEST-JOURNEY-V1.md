@@ -1,5 +1,7 @@
 # Guest Journey v1 (Phase 2): parking → departure
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 **Status:** `[CONCEPT]` experience design. Anchors: `visuals/LOCKED-SCENE-DNA.md` (geometry), **ARC-01-D** (the canonical exterior; sole geometry authority), `architecture/EXPANDED-GUEST-JOURNEY.md` (earlier sequence), `architecture/FAMILY-ZONING-OPTIONS.md` (Option C+), `interior/HISTORY-CORRIDOR.md`. Timings, queue lengths and guest reactions are **assumptions to test**, not data. No construction drawings exist.
 
 ## 1. The journey in one line

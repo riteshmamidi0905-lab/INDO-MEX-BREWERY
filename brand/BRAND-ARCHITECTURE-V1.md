@@ -1,5 +1,7 @@
 # Brand Architecture v1 (extends `BRAND-SYSTEM-V0.md`)
 
+> SUPERSEDED in part: see brand/NASHA-BRAND-STRATEGY.md (D-62) and docs/company/NASHA-CONFLICT-FACTS.md (D-78 to D-80).
+
 **Status:** `[PROPOSED]` hospitality brand architecture. **No parent name is selected** (D-11, D-12; trademark screening is preliminary only, `TRADEMARK-SCREENING.md`). "INDO MEX BREWERY" = working project name. No logo exists. Cultural rules in `BRAND-SYSTEM-V0.md` §6 and `CULTURAL-INTEGRITY-AND-ADVISORS.md` remain binding. Concept source: `concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md`.
 
 ## 1. Positioning, mission, vision, values

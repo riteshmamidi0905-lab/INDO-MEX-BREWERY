@@ -1,5 +1,7 @@
 # Spatial Vision v1: zones as vision, need and validation
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 **Status:** `[CONCEPT]`; **no construction drawings, no code or MEP review, no architect involvement.** Geometry authority: ARC-01-D and `visuals/LOCKED-SCENE-DNA.md`. Functional relationships: `COMPACT-FUNCTIONAL-PROGRAM.md`. Areas and phasing: `MASTER-PLAN-PHASE2.md`. Each zone separates **VISION** (what we want it to feel like) from **OPERATIONAL NEED** (what it must do to work) and **PRO** (what professionals must validate). Phase labels: A core, B family, C destination.
 
 | Zone | VISION (founder/design intent) | OPERATIONAL NEED | PROFESSIONAL VALIDATION REQUIRED |

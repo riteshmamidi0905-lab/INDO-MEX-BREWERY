@@ -1,5 +1,7 @@
 # 11. Twelve Flagship Beer Concepts
 
+> HISTORICAL: ANGAN and other candidate names are not the brand. See brand/NASHA-BRAND-STRATEGY.md (D-62).
+
 **ALL SPECS ARE DEVELOPMENT TARGETS `[TEST]`.** Nothing has been brewed. Working names are placeholders pending trademark/cultural review. Hefeweizen target ranges anchor to BJCP 10A (S-06): ABV 4.3-5.6%, IBU 10-18. Other ranges are typical for the style `[UNCITED]`.
 
 Founder's ideas I changed: "Raja" demoted from flagship (generic); "Saffron Sol" moved to Reserve and gated on sensory trials; "Goa Baja" kept.

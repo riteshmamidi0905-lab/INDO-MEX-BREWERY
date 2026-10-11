@@ -1,5 +1,7 @@
 # Expanded Guest Journey (improved from the draft sequence)
 
+> HISTORICAL (Track A concept): not evidence and not scoped to the Core 5 development program.
+
 The draft ran ARRIVAL → Tank Hall reveal → Entry → History → Crossings → Cloister reveal → Bar → Dining → Kitchen → Court → Adventure → Game → Music → Outlet → home. Problems found and fixed:
 1. **Outlet last** forces everyone through the whole site to shop; give it its own front door *and* a natural exit path.
 2. **History before the bar** is fine for first-timers but families with hungry children should not be forced through a gallery; the corridor is the default path *but not the only path* (a side door leads to the court).

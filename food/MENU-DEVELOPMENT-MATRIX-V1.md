@@ -1,5 +1,7 @@
 # Opening Menu Development Matrix v1 (Phase 2)
 
+> HISTORICAL: see research/CORE5-PRODUCT-SYSTEM.md (D-75). The 16-item pool is kept as R&D backlog.
+
 > **D-54 UPDATE:** no beef, no pork. Item 8 is now **Tandoori Lamb Taco**; birria is goat only; M-1/M-2/M-3 are superseded (section 6). The 12-dish opening **test** set is in `MENU-V1.1-TEST-MENU.md`; this 16-item matrix remains the development pool.
 
 **Status:** development system, not a menu. **No dish has been cooked or costed.** Everything here is `[CONCEPT]` or `[TEST]`; nothing is a validated recipe. It builds on `OPENING-MENU-V2.md` (16 items), `SAUCE-SYSTEM.md` (8 sauces), `research/INDIAN-CULINARY-BENCHMARKS.md`, `MEXICAN-CULINARY-BENCHMARKS.md` and `research/PAIRING-MATRIX-V2.md`. Beer names are the working names from `beer/OPENING-BEER-PROGRAM-V1.md`.
