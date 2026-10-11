@@ -39,3 +39,13 @@ Five shapes (current V2), three (tall Hefeweizen, tall Pilsner/Mexican lager, sh
 - Can the brewery's cold side and the kitchen's cooling needs share planning (walk-in, drains, glycol)?
 - Dry-goods and masa/nixtamal storage; dish-wash for plate and glass volume; tandoor or substitute placement, hood and fire-code route (unknown).
 - Patio and take-away path for Chicken 65 (chip crispness window is short, test it).
+
+## 7. What this implies for the flagship architecture program (conceptual; no code, site, area or tank-count claim; not architect-approved)
+Derived from sections 1-4, not from the renders. The renders (including the 2026-10 concept images) are mood references: they show a pizza-style oven, a tap tower without shanks, and two or three tanks, none of which is a design input.
+- **Kitchen core is comal-and-labour bound.** Put the comal bank next to the pass with a short path to plating; plan the cook line around hands and comal positions before fryer capacity. The first bottleneck to measure is quesadilla comal minutes per plate (assumed, not measured).
+- **Heat zones, not five kitchens:** one fry station (Chicken 65, optional Gobi), one comal/griddle bank, one char position (tandoor or charbroiler substitute: hood, clearances and fire rules are UNRESOLVED and need a professional), one oven/kettle for the braise.
+- **Cold chain for goat:** shallow-pan and ice-bath cooling space, walk-in capacity and labelled storage near the braise station; raw chicken and goat handling separate from vegetarian prep (paneer, gobi) to control cross-contact.
+- **Brewery relationships:** cold storage and keg movement near receiving and the bar; fermenter access and drains independent of guest routes; lager cold tanks sized by the brewer's tank-turn analysis (`beer/BREWERY-SCALE-DECISION-FRAMEWORK.md`), not by the concept images.
+- **Guest side:** bar service, patio and family seating are guest-experience choices; any adjacency of children and alcohol service is a responsible-alcohol and legal question for an attorney.
+- **Service routes:** receiving, waste, dish and glass wash for both food plates and beer glasses; acoustic comfort and ventilation for charred-chile smoke.
+Open for a restaurant architect and brewery designer: hood/tandoor/fire, MEP, accessibility, floor area, utilities. Nothing here fixes a square footage or a tank count.

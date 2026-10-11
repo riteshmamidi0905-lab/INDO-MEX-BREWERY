@@ -1,5 +1,21 @@
 # NASHA Candidate Review (Sprint 10)
 
+## Sprint 18 update (2026-10-11): native-size visual QA of recompressed copies; exact originals NOT preserved
+**Status: VISUALLY QA'D - ORIGINAL FILES NOT PRESERVED.** The sandbox cannot reach figma.com (proxy 403, name does not resolve; WebFetch fails too). The founder opened the Figma links in a browser and sent the images through chat. Nine arrived at native size (1376x768, 1200x896 for A6, 1024x1024 for B1 truth) but as lossy WebP re-encodes, so none is byte-identical to Figma's PNG, no SHA-256 of an original exists, and **0/10 exact originals are preserved in the repository**. The copies were reviewed in the session only and not committed. A4 c1 was not re-viewed (superseded by c2; founder-stated status: ambiguous pizza/fire-oven look, internal reference only). Figma generation calls remain 10/12 used, 2 held. Links reportedly expire 2026-10-18; the founder chose not to spend more time on recovery.
+| Code | Provisional outcome (from the lossy copy; final classification not possible without the exact file) | Key limitation |
+|---|---|---|
+| A1 exterior | ACCEPTED WITH LIMITATIONS | two full tanks and a partial third imply a tank count (G-6); concept of a building that does not exist |
+| A2 interior | ACCEPTED WITH LIMITATIONS for bar/tile/mood; REWORK for kitchen and tanks | copper pizza-style oven (not a tandoor); two tanks visible; repeated clasped-hands pose |
+| A3 bar | ACCEPTED WITH LIMITATIONS (mood, materials); REWORK for tap system | nine handles float over an arch with no shanks; tanks visible; glass is not Glass V2 |
+| A4 c1 | SUPERSEDED / INTERNAL REFERENCE ONLY | pizza-oven look (not re-viewed) |
+| A4 c2 | ACCEPTED WITH LIMITATIONS (preferred kitchen concept) | tandoor plus comal reads right; hood, flue and suppression are NOT engineering or code validation |
+| A5 patio | ACCEPTED WITH LIMITATIONS (internal only) | children at a table with beer: responsible-alcohol and public-use concern; soft hands |
+| A6 entrance | ACCEPTED FOR INTERNAL CONCEPT USE (strongest) | blank sign, no tanks; concept only |
+| B1 hero | ACCEPTED WITH LIMITATIONS as chicken/garnish reference; chips REWORK | thin generic chips (GENERIC_NACHOS risk); Composed-like layout; not evidence |
+| B1 truth | ACCEPTED WITH LIMITATIONS | better Integrated-style layout; chips still thin and flatbread-like; not evidence |
+| C6 beer family | ACCEPTED WITH LIMITATIONS (colour/style reference only) | not Glass V2; low shelf-like collar bulge; near-brimful fills; not brewed |
+No image is called final photography, evidence or legally cleared (PROVISIONAL-LOCAL-ONLY). Design warning (not evidence): AI generators repeatedly render the Mexican component as generic tortilla chips rather than a thick, irregular, blistered nixtamal totopo; the next useful Chicken 65 image must come from a real cook.
+
 **Status:** `[ANALYSIS]`. **Full-resolution QA has NOT been done for any candidate.** The only files available in the sandbox are 256 px previews, and the sandbox proxy blocks `www.figma.com`, so the 7-day originals cannot be fetched here (`curl` returns 403 on CONNECT). Decisions below are therefore **PENDING FULL RESOLUTION** unless a candidate is already superseded. Previews can show composition and gross plausibility only; they cannot clear people, text/logo, food-texture or equipment gates. **Nothing is accepted.** All rights are PROVISIONAL-LOCAL-ONLY (`docs/ai/FIGMA-AI-TERMS-REVIEW.md`).
 
 **To resume:** download each PNG from the URL in `GENERATION-LOG.md` into `visuals/archive/candidates/` named `<CODE>-<name>-c<N>.png`, run `python3 tools/review_candidates.py`, then complete the human gates in `IMAGE-QA.md` and record ACCEPT / ACCEPT WITH EDIT / REGENERATE / REJECT here.

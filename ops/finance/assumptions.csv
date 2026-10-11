@@ -1,1 +1,23 @@
-assumption_id,category,description,value,unit,basis_source,evidence_tier,owner,date,scenario
+assumption_id,category,description,value,unit,basis_source,evidence_tier,owner,date,scenario,provenance_class
+seats,capacity,Seats,,seats,,,,,,UNKNOWN
+covers,demand,Covers per open day,,covers,,,,,,UNKNOWN
+avg_check,demand,Average check,,USD,,,,,,UNKNOWN
+food_mix_pct,demand,Food share of revenue,,fraction,,,,,,UNKNOWN
+bev_mix_pct,demand,Beer/beverage share of revenue,,fraction,,,,,,UNKNOWN
+food_cogs_pct,cogs,Food COGS % of food revenue (from priced recipes),,fraction,,,,,,UNKNOWN
+bev_cogs_pct,cogs,Beverage COGS %,,fraction,,,,,,UNKNOWN
+labor_monthly,opex,Labour per month,,USD,,,,,,UNKNOWN
+occupancy_monthly,opex,Rent/occupancy per month,,USD,,,,,,UNKNOWN
+utilities_monthly,opex,Utilities per month,,USD,,,,,,UNKNOWN
+insurance_monthly,opex,Insurance per month,,USD,,,,,,UNKNOWN
+licensing_annual,opex,Licences and permits per year,,USD,,,,,,UNKNOWN
+marketing_monthly,opex,Marketing per month,,USD,,,,,,UNKNOWN
+maintenance_monthly,opex,Repairs and maintenance per month,,USD,,,,,,UNKNOWN
+waste_pct,cogs,Waste allowance,,fraction,,,,,,UNKNOWN
+other_fixed_monthly,opex,Other fixed costs per month,,USD,,,,,,UNKNOWN
+days_open,demand,Open days per month,,days,,,,,,UNKNOWN
+debt_service_monthly,finance,Debt service per month,,USD,,,,,,UNKNOWN
+capex_total,capex,Total capital expenditure,,USD,,,,,,UNKNOWN
+working_capital,finance,Working capital requirement,,USD,,,,,,UNKNOWN
+depreciation_monthly,finance,Depreciation per month,,USD,,,,,,UNKNOWN
+tax_rate_pct,finance,Effective tax rate,,fraction,,,,,,UNKNOWN

@@ -43,6 +43,8 @@ for r in v2:
     if abs(float(r["pappus_vs_mesh_pct"])) > 1.0: fail(f"glass V2 {r['name']}: exact and mesh volume disagree >1%")
     if float(r["headspace_above_fill_mm"]) < 20: fail(f"glass V2 {r['name']}: headspace below the 20 mm design minimum")
 import subprocess
+if subprocess.run([sys.executable, "tools/control_center.py", "--check"]).returncode: fail("docs/CORE5-CONTROL-CENTER.md is stale: run python3 tools/control_center.py")
+if subprocess.run([sys.executable, "tools/dashboard.py", "--check"]).returncode: fail("docs/PROTOTYPE-READINESS.md is stale: run python3 tools/dashboard.py")
 rc = subprocess.run([sys.executable, "tools/food_costing.py"], capture_output=True, text=True)
 if rc.returncode: fail("food_costing.py fails (false D-54 trip or real violation): " + rc.stdout[-200:])
 if "| D-75 |" not in open("docs/decisions/DECISIONS.md", encoding="utf-8").read(): fail("D-75 not recorded")

@@ -3,7 +3,7 @@
 **Status:** brewer-facing brief. **Nothing has been brewed.** This is a *specification of intent and a test plan*, not a recipe. **No** grist, hop weights, spice doses, brewhouse efficiency, water chemistry, pitch rates, fermentation schedules or production yields appear here, and none may be inferred from it: they are the **licensed head brewer's professional responsibility** and come only from real brewing work. Reference ranges: BJCP 2021 via search extracts (`S-107, S-108`; open the PDF before use). Targets are `[TEST]`. Parent documents: `beer/OPENING-BEER-PROGRAM-V1.md`, `beer/HEFEWEIZEN-BENCHMARK.md`. Pairings: `food/MENU-V1.1-TEST-MENU.md`.
 
 ## 1. Intended sensory identity
-A traditional South German-style Hefeweizen a Bavarian would respect: hazy gold, tall dense white foam, **banana and clove in balance** with soft bread/wheat, high carbonation, dry-ish bright finish, low bitterness, drinkable in volume, outstanding with chile heat and fat. No fruit, spice or novelty ingredient, ever. If this beer fails, no Regional beer launches.
+A traditional South German-style Hefeweizen a Bavarian would respect: hazy gold, tall dense white foam, **banana and clove in balance** with soft bread/wheat, high carbonation, dry-ish bright finish, low bitterness, drinkable in volume, outstanding with chile heat and fat. No fruit, spice or novelty ingredient, ever. (Older wording "if this beer fails, nothing launches" is superseded: see 00-BREWER-HANDOFF.md section 0b and BREWER-REVIEW-FORM.md; thresholds are founder/R&D proposals a brewer should set.)
 
 ## 2. Style reference and target ranges
 | Item | BJCP reference | Our R&D window `[TEST]` |
@@ -66,7 +66,7 @@ A traditional South German-style Hefeweizen a Bavarian would respect: hazy gold,
 7. How fast does quality fall after packaging (freshness window)?
 
 ## 9. Pass / fail gate
-**PASS** only if: all faults 0; banana and clove each within ±0.5 of target and ratio ~1:1; foam ≥ ~3 minutes; independent panel average ≥ the reference average; three consecutive batches consistent. **FAIL** otherwise: revise and repeat; **no Regional beer launches until this passes.**
+**PASS** only if: all faults 0; banana and clove each within ±0.5 of target and ratio ~1:1; foam ≥ ~3 minutes; independent panel average ≥ the reference average; three consecutive batches consistent. **FAIL** otherwise: revise and repeat; see the CONTINUE / REVISE / DE-PRIORITIZE / REMOVE outcomes in 00-BREWER-HANDOFF.md section 0b.
 
 ## 10. What remains the head brewer's professional responsibility
 Recipe design (grist, hops, adjuncts), mash and water strategy, yeast selection and pitching, fermentation and conditioning schedules, lager time, carbonation and packaging, sanitation and safety, QC methods and limits, scale-up, TTB/regulatory formula questions, and the decision to proceed or stop. This brief gives the intent and the gates only.

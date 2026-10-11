@@ -20,6 +20,7 @@ def load(scenario=None):
     for r in csv.DictReader(open(F, encoding="utf-8")):
         sc = (r.get("scenario") or "").strip()
         if sc and scenario and sc != scenario: continue
+        if (r.get("provenance_class") or "").strip().upper() == "UNKNOWN": continue   # UNKNOWN is the default and never feeds a model; only QUOTE/ACTUAL rows may feed investor-facing output, FOUNDER ASSUMPTION / INDUSTRY or PUBLIC REFERENCE rows only sensitivity ranges and must be labelled
         try: out[r["assumption_id"]] = float(r["value"])
         except (ValueError, KeyError): pass
     return out
