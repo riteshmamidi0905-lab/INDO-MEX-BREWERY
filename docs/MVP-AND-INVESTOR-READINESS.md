@@ -1,3 +1,5 @@
+SUPERSEDED (Sprint 23, history kept): the current MVP path and investor view are `docs/BUSINESS-MODEL-CONTROL.md` (formats, gates), `docs/BLUEPRINT-STATUS.md` (completeness and diagnostic) and `docs/INVESTOR-DATA-ROOM.md`; this page predates the Core 5 and D-81.
+
 # MVP path and investor-readiness gap (AI planning analysis, not legal or financial advice)
 Source: a hospitality-strategist AI agent working from the repository (T4 reasoning; not a qualified review). All legal items are orientation only: every row of `docs/regulatory/REGULATORY-MATRIX.csv` is T1 with no primary page read, and each item marked VERIFY needs a Texas alcohol attorney or the health authority. Nothing here is a forecast; no forecast numbers are invented; thresholds shown (8 or more tasters, 30+ interviews) are agent-proposed planning thresholds, not sourced. Evidence 4/95, design 43/95.
 

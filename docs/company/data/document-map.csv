@@ -14,7 +14,6 @@ docs/EXTERNAL-INPUT-QUEUE.md,SUPERSEDED by docs/FOUNDER-ACTION-BOARD.md,Kept for
 docs/EVIDENCE-INTAKE.md,SUPPORTING,Where each real input is filed,
 docs/company/NASHA-CONFLICT-FACTS.md,CANONICAL,Name-conflict fact base (T1),
 beer/pilot-briefs/00-BREWER-HANDOFF.md,CANONICAL,Brewer handoff,
-docs/CULTURAL-REVIEW-PACK.md,CANONICAL,Cultural review pack,
 validation/MOBILE-MVP-STRATEGY.md,SUPERSEDED (menu section 5),Older 12-dish menu,research/CORE5-PRODUCT-SYSTEM.md
 food/MENU-V1.1-TEST-MENU.md,SUPERSEDED,12-dish T1 wave,research/CORE5-PRODUCT-SYSTEM.md
 food/MENU-DEVELOPMENT-MATRIX-V1.md,HISTORICAL,16-item pool,research/CORE5-PRODUCT-SYSTEM.md
@@ -40,3 +39,6 @@ docs/BUSINESS-MODEL-CONTROL.md,CANONICAL (generated),"Economic decision model: c
 docs/PRODUCT-BIBLE.md,CANONICAL (generated),Core 5 food and beer product bible generated from canonical matrices,
 docs/OPERATING-BLUEPRINT.md,CANONICAL (generated),"Proposed operations, kitchen, brewery, guest journey and digital-twin requirements",
 docs/INVESTOR-DATA-ROOM.md,CANONICAL (generated),"Investor data-room index, capital stages, use of funds, risks",
+docs/MVP-AND-INVESTOR-READINESS.md,SUPERSEDED,Predates Core 5 and D-81,docs/BUSINESS-MODEL-CONTROL.md; docs/BLUEPRINT-STATUS.md
+docs/CULTURAL-REVIEW-PACK.md,SUPPORTING,Background for the advisor send packs,docs/send-packs/03-INDIAN-ADVISOR.md
+docs/OPERATIONAL-REQUIREMENTS-CORE5.md,SUPPORTING,Earlier dish-by-dish operating view,docs/OPERATING-BLUEPRINT.md

@@ -6,3 +6,7 @@ Classes: CANONICAL, SUPPORTING, HISTORICAL, SUPERSEDED, ARCHIVE CANDIDATE. Nothi
 
 ## Added in Sprint 22 (D-81 pre-capital build; all CANONICAL, generated from CSV data by `tools/blueprint_views.py`)
 `docs/BLUEPRINT-STATUS.md` (start here for the pre-capital picture), `docs/BUSINESS-MODEL-CONTROL.md`, `docs/PRODUCT-BIBLE.md`, `docs/OPERATING-BLUEPRINT.md`, `docs/INVESTOR-DATA-ROOM.md`. Fix facts in the CSV sources (`docs/company/data/bm-*.csv`, `bp-*.csv`, and the matrices), never in these views.
+
+## If you read only five things (Sprint 23)
+1. `docs/BLUEPRINT-STATUS.md` (where everything stands, three separate scales)  2. `docs/FOUNDER-ACTION-BOARD.md` (what to do next)  3. `docs/PRODUCT-BIBLE.md` (the product source of truth)  4. `docs/INVESTOR-DATA-ROOM.md` (what an investor would read)  5. the private website build (`python3 website/build.py`, then open `website/dist/index.html`).
+The generated views are one dataset seen from several angles; fix facts in the CSV sources and regenerate (`bash tools/validate_all.sh` checks freshness).

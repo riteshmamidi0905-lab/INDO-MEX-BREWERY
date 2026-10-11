@@ -2,6 +2,33 @@
 
 **Private index of pointers, not duplicated files. No investor has been contacted; nothing is public; the website stays noindex.** Lane B (digital planning). Evidence stays 4/95 and design 43/95: digital work never raises physical evidence.
 
+## Executive summary (one page; source: `docs/company/data/exec-summary.csv`)
+
+**The concept.** NASHA is a planned Indo-Mex brewery and kitchen in Austin, Texas: five core dishes and five core beers designed together so that each plate has a drink chosen for it, with non-alcoholic pairings given equal standing. It is a concept and a development system today, not an operating business.
+
+**The opportunity (a hypothesis).** Hypothesis, untested: guests who already enjoy Indian food, Mexican food and craft beer may value a place where those traditions meet in dishes that feel like one cuisine, with the pairing explained simply. No demand data exists; the cheapest tests are listed in the risk table.
+
+**The solution.** A compact core menu cooked on a small set of stations (fryer, comal, char), a beer list built to match it, and a hall where the brewing is visible. The brewery is the last capital gate: food and demand come first, and host-brewery or collaboration paths can test beer with far less capital.
+
+**The product.** Core 5 food: Chicken 65 Totopos, Paneer Tikka Taco, Goat Birria, Gobi Taco, Butter Chicken and Roasted Poblano Quesadilla. Core 5 beer: Hefeweizen, Mexican-Style Lager, Vienna Amber, Pilsner, Witbier. All are design briefs; none has been cooked or brewed.
+
+**What may make it different.** The combination and the execution, not any single ingredient: pairing designed in from the start, a no-beef and no-pork kitchen as a clear constraint, and a development process that publishes what failed. Indian, Mexican, fusion, brewery and destination-hospitality businesses all exist in Austin; the market lessons are in the market view.
+
+**Current stage.** Concept and design blueprint (stage S0). Physical evidence is 4 of 95 and design is 43 of 95 on the project's own scoreboard. These are self-assessed and are not investor-grade metrics.
+
+**What has been done.** Concept and product system documented; the first home-kitchen test (Chicken 65 Totopos) designed with fixed pass and fail rules and prepared for cooking; economic model structure with provenance rules; operating, kitchen, brewery, guest-journey and space requirements drafted; risk register with cheapest tests; this private site.
+
+**What has not been done.** Nothing has been cooked, brewed, tasted by anyone outside the project, photographed as a real prototype, priced from real receipts or quotes, reviewed by a lawyer, brewer, chef or advisor, or sold. There is no site, no entity, no permit, no customer and no investor conversation.
+
+**Capital strategy.** Staged: pre-capital founder build, low-cost validation, commercial validation, site and design, build, opening. No fundraising amount is set; amounts will follow real quotes. Each stage is tied to the risk it removes and to gates that stop spending when evidence does not support it.
+
+**Next proof points.** Cook and document the first dish with receipts, weights, photographs and tasters' scores; repeat for the other four; compute real food costs; then, once funds exist, take the name to an attorney, scope the legal path for beer with food, and run a first lawful commercial pilot.
+
+**Major risks.** The name is in question (a same-name Austin restaurant has been reported); no dish is proven; margin, labor and throughput are unknown; the brewery is capital-heavy; the founder is the only team member today. Each risk has a cheapest test in the risk table.
+
+**The founder.** Ritesh Mamidi is building NASHA as a one-person project, using the pre-capital period to develop as much of the company as can be done without money: product system, economic model, operating blueprint, a private website and a data room, and personal home-kitchen testing. No hospitality, culinary or brewing credentials are claimed; the capability gaps are listed openly in the future-team view.
+
+
 ## The story, stated honestly
 
 NASHA is a concept for a food-and-beer house joining Indian and Mexican traditions in Austin. The founder is using the pre-capital phase to remove as much uncertainty as possible before asking anyone to fund expensive uncertainty: what has been documented with time and research (concept, product system, operating and economic model structures with every number still unknown, risk map, data room); what has been tested personally (NOTHING YET: Session 1 is prepared, not performed); what requires capital (professional review, commercial pilots, brewing, site, build); and what each dollar would de-risk (see use of funds). The amounts are not set; no fundraising claim is made.
@@ -164,6 +191,46 @@ READY = a generated or reference document that is complete as a document. PREPAR
 | **TEAM** | Executive chef, brewer, operations, finance as needed (see team-blueprint.csv) | CS2-CS5 | compensation unknown | NOT SET |
 | **MARKETING / LAUNCH** | Public launch after gates | CS5 | none yet | NOT SET |
 | **CONTINGENCY** | Cost of being wrong on the above | all stages | size | NOT SET |
+
+## Why Austin: fact, research and hypothesis kept apart (`docs/company/data/austin-thesis.csv`)
+
+| Class | Statement | What must be true | Cheapest test |
+|---|---|---|---|
+| **OBSERVED FACT** | Austin taprooms and brewpubs commonly pair an integrated kitchen with beer (Pinthouse, Lazarus, Brewtorium listed). | Integrated kitchens are table stakes, so NASHA's kitchen must be judged on its own merit. | Founder lists every brewery kitchen on site visits and phone calls. |
+| **PUBLIC RESEARCH** | Craft-beer drinkers in Austin choose by style and brand, with IPA-led lists common. | A lager and wheat-led list must find enough drinkers who want it, not just be different. | Compare current tap lists of several taprooms in a simple table. |
+| **HYPOTHESIS** | Austin guests will order a lager-first or wheat-first beer list when food is Indian-Mexican. | Guests find the style fit appealing and repeat-order it; brewer confirms the styles are distinguishable. | Structured tasting with bought-in beers matched to dishes, brewer present. |
+| **PUBLIC RESEARCH** | Austin has accepted Indian food paired with beer: Whip In was reported as an Indian-immigrant-family pub and brewery. | The precedent reflects durable demand, not only one family's local loyalty. | Founder visits or calls to learn current status and menu. |
+| **PUBLIC RESEARCH** | Indian-Mexican fusion has been sold in Austin: Nasha (reported), Sivestar, Kurry Takos, Taco Twist, Austin Taco Project, Urban... | Fusion is proven to have an audience, so NASHA must not claim to be first or only. | Founder checks each operator's current status by phone or visit. |
+| **PUBLIC RESEARCH** | Austin diners are open to fusion with a clear, named identity. | Openness extends to Indian-Mexican specifically and to a brewery setting. | Short guest interviews on fusion appetite using plain menu cards. |
+| **HYPOTHESIS** | Some Austin guests would reject Indian-Mexican fusion as novelty or as disrespectful to either cuisine. | Cultural advisors and community interviews find the pairing framed with care is welcome. | Cultural advisor review of concept and menu wording before any public use. |
+| **OBSERVED FACT** | Austin has deep supply of Indian restaurants, which act as behavioural substitutes for an Indian meal. | NASHA offers a reason to choose it over a familiar Indian dinner, such as beer pairing or group fit. | Ask Indian-dining interviewees what they would trade off to visit a brewery. |
+| **HYPOTHESIS** | Indian diners in Austin want a beer-forward venue with Indian-influenced food. | Enough Indian-dining households see beer and food together as a reason to visit. | Interview Indian-dining households about beer-with-dinner habits. |
+| **OBSERVED FACT** | Austin has deep supply of Mexican restaurants, and birria is already sold by specialists. | Goat birria that reads as goat is distinct and acceptable to guests (D-54: no beef or pork). | Check menus of birria sellers; later a chef-cooked tasting. |
+| **HYPOTHESIS** | Mexican-dining guests will accept Indian spice logic in a taco or birria format. | Guests rate the result as coherent and tasty, and not as a gimmick. | Blinded tasting of chef-cooked dishes with recruited guests. |
+| **PUBLIC RESEARCH** | Experiential venues in Austin draw visits through activity and programming (arcade bar, music, social club). | A food-and-beer story, tours or events can be a reason to visit without an activity hook. | Offer a small tasting-night pop-up and record who attends and why. |
+| **HYPOTHESIS** | A designed brewhouse-as-centrepiece hall drives repeat visits in Austin. | Guests return for the room and a lender accepts the capital need in a consolidating market. | Architect and cost review; tour-style pop-up. |
+| **OBSERVED FACT** | Patios are an expected feature of Austin taprooms and beer gardens. | Shade is baseline, so only verified cooling or comfort could be a hook. | Visit several patios at different times and note shade and comfort. |
+| **HYPOTHESIS** | Guests will choose a venue because of a climate-engineered patio. | Heat discomfort is a real barrier and guests value relief enough to switch venues. | Short interviews plus counts of patio use at several venues across seasons. |
+| **HYPOTHESIS** | Segment: groups with mixed diets and mixed ages (including vegetarian guests) are underserved by one-cuisine taprooms. | Groups report splitting plans because of menu limits and would pick a mixed-diet menu. | Group-ordering pop-up or interviews with organisers. |
+| **HYPOTHESIS** | Segment: Indian and Mexican communities in Austin are core guests, not just curiosity seekers. | Members of both communities say they would visit and recommend the venue. | Interview members of each community; cultural advisors guide approach. |
+| **HYPOTHESIS** | Segment: neighbourhood regulars rather than destination visitors will drive repeat sales. | A location exists where repeat local visits are plausible within the site budget. | Document visit frequency in interviews; no site decision before this. |
+| **PUBLIC RESEARCH** | The closest competitors for the visit are neighbourhood taco-and-beer places and fusion dinner restaurants, not Indo-Mex... | Guests compare NASHA with those options at decision time. | Ask interviewees where they would go instead. |
+| **OBSERVED FACT** | No in-house brewery with an Indian-Mexican kitchen was found in a capped search; this does not prove none exists. | A site-based survey confirms the combination is unoccupied, or competitors are understood. | Repeat search in person and by phone and list every brewery kitchen. |
+| **PUBLIC RESEARCH** | Austin brewery market is consolidating, so capital discipline matters more than novelty. | Closures reflect market conditions that would also constrain a new entrant. | Read the landscape source and a trade-body report; ask an accountant. |
+| **OBSERVED FACT** | A reported same-name Austin restaurant (Nasha) may affect whether NASHA can operate under that name. | A trademark attorney clears or advises on the name; NASHA claims no rights. | Send the conflict facts file to a trademark attorney. |
+| **HYPOTHESIS** | Austin is a good NASHA market only if guests, advisors and economics all validate together. | Guests choose NASHA over substitutes, communities respond well, the name is available, and unit economics... | Run the A and B tests in this file first; stop if two or more fail. |
+| **HYPOTHESIS** | Legal and regulatory constraints on a brewery with a kitchen and a pop-up route are resolved for Texas. | A Texas alcohol attorney and county health confirm a viable licensing path. | Questions to a Texas alcohol attorney and county health. |
+
+## What the market teaches us (`docs/company/data/competitor-lessons.csv`)
+
+| Segment | What we can learn | NASHA hypothesis | What we do not know |
+|---|---|---|---|
+| **Indian restaurants** | Regional specificity and bar-adjacent Indian dining are accepted; guests have familiar alternatives. | Beer plus Indian-influenced food could suit groups wanting both in one visit. | Beer attach, vegetarian share, prices, quality and wait times are UNKNOWN. |
+| **Mexican restaurants** | Guests expect regional specificity; birria is known, so any goat birria must read clearly as goat. | Goat birria with Indian spice logic may stand apart from a typical birria menu. | Birria protein at sellers, goat availability and guest acceptance are UNKNOWN. |
+| **Indian-Mexican or Indian-Tex-Mex fusion** | Fusion has had paying customers in Austin, so NASHA must not say first or only. The Nasha facts are publicly reported and... | The open question is the combination of a brewery and a kitchen designed together around Indian-Mexican... | Current operation of each, trademark position, any brewery link (none found), and guest... |
+| **Breweries and taprooms** | Integrated kitchens and chef hires are common, so serious food alone is not a differentiator. | A short beer list built with the kitchen may help, if a brewer confirms the styles can be distinguished. | Food share of sales, current menus, tap-list details and reasons some breweries closed... |
+| **Experiential or destination hospitality** | Programming and dayparting give guests reasons to visit beyond the menu. | Tours, tastings or a visible brewhouse might add a visit reason; untested. | Revenue, repeat visits, capital cost and whether guests would pay for the experience are... |
+| **Food-and-beer pairing concepts** | Pairing dinners are an established format, so NASHA cannot call pairing new; the name also overlaps a term in NASHA's repo. | A pairing system tied to an Indian-Mexican menu and non-alcoholic parity is a hypothesis only. | Whether pairing drives repeat visits or sales, and the current state of existing... |
 
 ## Risks and how each will be tested
 

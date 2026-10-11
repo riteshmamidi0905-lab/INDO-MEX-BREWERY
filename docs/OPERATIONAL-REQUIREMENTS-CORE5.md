@@ -1,3 +1,5 @@
+SUPPORTING (Sprint 23): kitchen and operating requirements now live in `docs/OPERATING-BLUEPRINT.md` (generated from `bp-kitchen.csv` and `bp-operations.csv`); this page is the earlier dish-by-dish view for an architect or kitchen consultant.
+
 # Operational requirements for the Core 5 (for a restaurant architect and an equipment/kitchen consultant)
 
 **Status: PLANNING INPUT. Not an architect-approved plan, not a HACCP plan, not a code review.** Nothing here has been cooked, timed or reviewed by a person. Capacity numbers are assumptions (`ops/kitchen/capacity-assumptions.json`, rebuilt by `python3 tools/kitchen_capacity.py`), labelled CAPACITY PLANNING EXERCISES. Food-safety figures are T4 (general knowledge of US FDA Food Code values, not read from the Code) used as planning defaults and are UNVERIFIED for Austin/Texas; the health authority decides.

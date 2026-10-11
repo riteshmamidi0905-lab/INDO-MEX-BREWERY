@@ -8,6 +8,7 @@ import csv, hashlib, html, json, os, shutil, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import art, images  # noqa: E402
+import pages_s23 as P  # noqa: E402
 
 SRC, DATA, DIST = (os.path.join(HERE, p) for p in ("src", "data", "dist"))
 REPO = os.path.dirname(HERE)
@@ -21,14 +22,17 @@ def load(n):
 
 dishes, beers = load("dishes.json"), load("beers.json")
 crossing, status, labs = load("crossing.json"), load("status.json"), load("labs.json")
+SITE = load("investor.json")
+PROTO = {}
+SITE_EXEC = {e["section"]: e["text"] for e in SITE["exec"]}
 BEER = {b["id"]: b for b in beers}
 BEER_BY_NAME = {b["name"]: b for b in beers}
 DISH = {d["id"]: d for d in dishes}
 VIS = {r["id"]: r for r in csv.DictReader(open(MANIFEST, encoding="utf-8"))}
 RASTER_META = {}
 
-PAGES = [("index.html", "Home"), ("experience.html", "Experience"), ("space.html", "Space"), ("food.html", "Food"),
-         ("beer.html", "Beer"), ("crossing.html", "The Crossing"), ("labs.html", "Labs"), ("investor.html", "Investor"), ("about.html", "About")]
+PAGES = [("index.html", "Home"), ("crossing.html", "The Idea"), ("food.html", "Food"), ("beer.html", "Beer"), ("pairings.html", "Pairings"),
+         ("labs.html", "The Lab"), ("space.html", "The Place"), ("investor.html", "Business")]
 
 DISCLOSE = ("NASHA is in development. There is no brewery, no restaurant, no truck and no menu for sale yet. "
             "Images are concept visualizations and illustrations, not photographs of NASHA.")
@@ -67,7 +71,7 @@ def svg_fig(vid, svg, cls="", ar="16/10"):
 
 # ---------- layout ----------
 def layout(fn, title, desc, body, head_extra="", body_class=""):
-    nav = "".join(f'<li><a href="{f}"{" aria-current=\"page\"" if f == fn else ""}>{E(n)}</a></li>' for f, n in PAGES)
+    nav = "".join(f'<li><a href="{f}"{" aria-current=\"page\"" if f == fn or (f == "space.html" and fn == "experience.html") else ""}>{E(n)}</a></li>' for f, n in PAGES)
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -100,6 +104,7 @@ def layout(fn, title, desc, body, head_extra="", body_class=""):
 <p>Images show a possible future. The photographic-style pictures are <strong>concept visualizations</strong> made with AI tools and edited, and the drawings are illustrations. They are not photographs of NASHA, of its food, or of its beer. <a href="about.html#images">About these images</a>.</p>
 <p>Menu items are designs for testing, not served food. Heat and vegetarian labels describe how a dish is designed, not a certified allergen or dietary statement. Ask before you eat if you have an allergy. If you drink, drink responsibly. Alcohol is for adults of legal drinking age.</p>
 <p>The word NASHA in the header and in some pictures is a <strong>temporary typographic placeholder</strong>, set in a standard font. It is not a logo, not an official brand mark, and no trademark is claimed. No logo has been approved or released.</p>
+<p><a href="about.html">About NASHA</a> · <a href="investor.html">Business and investor view</a> · <a href="labs.html">The Lab</a></p>
 <p>Build of {BUILD_DATE}.</p>
 </div></footer>
 <script src="app.js" defer></script>
@@ -203,6 +208,16 @@ def page_index():
 <p class="disclosure">{E(DISCLOSE)} Equipment shown in images is illustrative: brewery size, tank count and layout are not decided.</p>
 </div></section>
 
+<section aria-labelledby="sx"><div class="wrap"><p class="eyebrow">In sixty seconds</p><h2 id="sx" class="statement">An Indo-Mex brewery and kitchen, designed in the open before it exists.</h2>
+<div class="grid cols-3 sixty">
+<div class="card"><h3>India × Mexico</h3><p>Two cuisines that already build flavour from chile, acid and fire, joined into five core dishes that should feel like one cuisine.</p></div>
+<div class="card"><h3>Food × Beer × Zero-proof</h3><p>Every dish has a beer and a non-alcoholic drink chosen for it, with equal standing. <a href="pairings.html">See the pairings</a>.</p></div>
+<div class="card"><h3>Austin</h3><p>The founder's chosen first market: a hypothesis to test, not a proven one. <a href="investor.html#austin">Why Austin</a>.</p></div>
+<div class="card"><h3>Craft, eventually</h3><p>House beer is the last thing to be built. A partner brewery can test the idea first. <a href="investor.html#capital">The staged path</a>.</p></div>
+<div class="card"><h3>Experiment first</h3><p>Dishes are developed by cooking, measuring, tasting and learning from failures. <a href="labs.html">Visit the Lab</a>.</p></div>
+<div class="card"><h3>What exists today</h3><p>A design system, a prepared first kitchen test and this private site. Nothing has been cooked, brewed or sold, and no restaurant, brewery or opening date exists.</p></div>
+</div></div></section>
+
 <section aria-labelledby="b2"><div class="wrap grid cols-2 center">
 <div class="reveal"><p class="eyebrow"><span class="beat-no">02</span> Food × Beer</p><h2 id="b2" class="statement">Each dish names the beers it is meant to meet.</h2>
 <p class="lede">India and Mexico both build flavour from chile, lime, toasted spice, flatbread and fermentation. NASHA starts from what they share and lets each stay itself.</p>
@@ -221,7 +236,7 @@ def page_index():
 <section aria-labelledby="b4"><div class="wrap">
 <p class="eyebrow"><span class="beat-no">04</span> The food</p>
 <h2 id="b4">Dishes, as designed.</h2>
-<p>Drawn here as proposed presentation. No dish has been cooked for guests, and these are not photographs. <a href="food.html">See the whole menu</a>.</p>
+<p>Drawn here as proposed presentation. No dish has been cooked for guests, and these are not photographs. <a href="food.html">See the five core dishes</a>.</p>
 <div class="grid cols-3">{food}</div></div></section>
 
 <section class="alt" aria-labelledby="b5"><div class="wrap">
@@ -244,7 +259,7 @@ def page_index():
 <section class="alt" aria-labelledby="b8"><div class="wrap">
 <p class="eyebrow"><span class="beat-no">08</span> The table</p>
 <h2 id="b8" class="statement">Plates and pitchers for the middle of the table.</h2>
-<p>Designed for sharing: five dishes, six glasses, one long table. <a href="experience.html">See an evening at NASHA</a>.</p>
+<p>Designed for sharing: five dishes, five beers, one long table. <a href="experience.html">See an evening at NASHA</a>.</p>
 {svg_fig("NV-ILL-TABLE", art.table_scene(uid("tb")), "reveal fig-wide", "960/420")}</div></section>
 
 <section aria-labelledby="b9"><div class="wrap">
@@ -278,11 +293,12 @@ def page_experience():
      ("Night", "Staying late", "By dusk the hall glows, the court fills, and nobody is in a hurry.", raster_fig("NV-HERO-01", "", sizes="(max-width: 700px) 100vw, 50vw"))]
     rows = "".join(f'<section class="scene{" alt" if i % 2 else ""}" aria-labelledby="sc{i}"><div class="wrap grid cols-2 center"><div class="reveal{" order-2" if i % 2 else ""}"><p class="eyebrow"><span class="beat-no">{i+1:02d}</span> {E(feel)}</p><h2 id="sc{i}">{E(t)}</h2><p class="lede">{E(txt)}</p></div><div class="reveal">{fig}</div></div></section>' for i, (t, feel, txt, fig) in enumerate(sc))
     body = f'''<section aria-labelledby="h1"><div class="wrap">
-<p class="eyebrow">Experience</p><h1 id="h1">An evening at NASHA.</h1>
+{P.subnav("experience.html")}<p class="eyebrow">Experience</p><h1 id="h1">An evening at NASHA.</h1>
 <p class="lede">This is what the evening is designed to feel like, from the walk up to the last pour. It is a design, written in the conditional, because NASHA does not exist yet.</p>
 <p class="disclosure">{E(DISCLOSE)} Nobody has tested this evening.</p></div></section>
 {rows}
 <section class="band-indigo" aria-labelledby="exf"><div class="wrap grid cols-2 center"><div><h2 id="exf">Before the hall, the test.</h2><p class="lede">The path to this evening starts smaller: tastings, pop-ups, perhaps a brewery residency. Each step has to earn the next.</p><p><a href="labs.html">See the path</a></p></div>{svg_fig("NV-ILL-POPUP", art.popup_scene(uid("pu")), "", "960/500")}</div></section>'''
+    body += P.journey_section(M, SITE)
     return layout("experience.html", "Experience · NASHA", "What an evening at NASHA is designed to feel like. A concept, not a built place.", body)
 
 def page_space():
@@ -297,12 +313,13 @@ def page_space():
          ("Patio", "Staying", "A covered court with shade and fans for Texas heat, greenery, and light for the evening.", raster_fig("NV-SPACE-PATIO", "", sizes="(max-width: 700px) 100vw, 50vw"))]
     steps = "".join(step(i, *x) for i, x in enumerate(s))
     body = f'''<section aria-labelledby="h1"><div class="wrap">
-<p class="eyebrow">Space</p><h1 id="h1">A walk through the hall.</h1>
+{P.subnav("space.html")}<p class="eyebrow">Space</p><h1 id="h1">A walk through the hall.</h1>
 <p class="lede">From the road to the patio, in seven steps.</p>
 <p class="disclosure">{E(CONCEPT_NOTE)} These are not construction plans. No site has been chosen and NASHA has no address. {E(DISCLOSE)}</p></div></section>
 {steps}
 <section class="band-indigo" aria-labelledby="zn"><div class="wrap grid cols-2 center"><div><h2 id="zn">How the zones relate.</h2><p>A concept diagram, not a floor plan.</p></div><div>{svg_fig("NV-ILL-ZONES", ZONE_SVG, "fig-zone", "870/370")}</div></div></section>'''
-    return layout("space.html", "Space · NASHA", "A conceptual walkthrough of a future NASHA hall. Concept visualization, not construction plans.", body)
+    body += P.space_section(M, SITE)
+    return layout("space.html", "The Place · NASHA", "A conceptual walkthrough of a future NASHA hall. Concept visualization, not construction plans.", body)
 
 def menu_card():
     cats = ["Small", "Tacos", "Quesadillas", "Birria", "Large", "Dessert"]
@@ -334,8 +351,7 @@ def page_food():
 <p class="disclosure">{E(DISCLOSE)} The drawings are proposed presentation, not our finished dishes.</p></div>
 <div class="reveal"><div class="hero-plate">{plate_svg(hero)}</div><h2 class="h3">{E(hero["name"])}</h2><p>{E(hero["line"])}</p><p>{chips(hero["kind"], "Proposed presentation · not cooked or tested")}</p></div></div></section>
 
-<section class="alt" aria-labelledby="sg"><div class="wrap"><p class="eyebrow">Signature dishes</p><h2 id="sg">The first plates we would test.</h2>
-<div class="grid cols-3">{cards}</div></div></section>
+{P.food_core_section(M, SITE)}
 
 <section aria-labelledby="vg"><div class="wrap grid cols-2 center"><div><p class="eyebrow">Vegetarian story</p><h2 id="vg">Vegetarian is not a side.</h2>
 <p class="lede">Both India and Mexico have strong plant-based cooking traditions we want to learn from. NASHA designs vegetarian dishes as headliners, not substitutes.</p>
@@ -346,14 +362,12 @@ def page_food():
 <div class="reveal">{svg_fig("NV-ILL-FIRE", art.fire_scene(uid("fi")), "", "8/5")}</div></div></section>
 
 <section class="alt" aria-labelledby="pr"><div class="wrap"><p class="eyebrow">Pairing</p><h2 id="pr">Proposed pairings.</h2>
-<p>Each dish names the beers it is meant to meet. These are design intentions. Nothing has been tasted together, and no beer has been brewed.</p>
+<p>Each dish names the beers it is meant to meet (<a href="pairings.html">see the full pairing reasoning</a>). These are design intentions. Nothing has been tasted together, and no beer has been brewed.</p>
 <div class="grid cols-2 pairs">{pairs_section()}</div></div></section>
 
-<section aria-labelledby="mn"><div class="wrap"><p class="eyebrow">The menu</p><h2 id="mn">A proposed menu design.</h2>
-<div class="grid cols-2 menu-grid"><div class="reveal">{svg_fig("NV-ILL-MENU", art.menu_cover(uid("mc")), "fig-menu", "420/580")}{flight_card()}</div><div class="reveal">{menu_card()}</div></div></div></section>
-
 <section class="alt" aria-labelledby="all"><div class="wrap">
-<p class="eyebrow">Full development menu</p><h2 id="all">Every dish in the test plan.</h2>
+<p class="eyebrow">Wider exploration</p><h2 id="all">Other dishes we have drawn.</h2>
+<p>Only the five core dishes above are planned for the first tests. These are earlier ideas, kept as thinking, not as a menu.</p>
 <fieldset class="filters" data-filter-group="dish-list" data-status="dish-status"><legend>Filter dishes</legend>{f}<button type="button" class="btn btn-ghost" data-reset>Clear</button></fieldset>
 <p id="dish-status" class="muted" role="status" aria-live="polite"></p>
 <div id="dish-list" class="grid cols-3">{"".join(dish_card(d, "h3", False) for d in dishes)}</div>
@@ -375,10 +389,10 @@ def page_beer():
 <div class="macro" data-macro data-beer="hefeweizen" data-vid="NV-ILL-GLASS">{macro}<p class="tag-inline">Concept illustration · colour follows the style reference, not a brewed beer</p>
 <div class="beer-info" data-beer-info role="status" data-beers='{binfo_json}'><p class="bi-name" data-bi="name">Hefeweizen</p><p data-bi="style">{E(BEER["hefeweizen"]["style"])}</p><p data-bi="status">Not brewed yet</p><p data-bi="pair">Designed to pair with {E(", ".join(BEER["hefeweizen"]["pairs"][:3]))}</p></div></div></div></section>
 
-<section class="alt" aria-labelledby="gt"><div class="wrap"><p class="eyebrow">Gate beers</p><h2 id="gt">The three we would brew first.</h2>
-<div class="grid cols-3">{gate}</div></div></section>
+{P.beer_core_section(M, SITE)}
 
-<section aria-labelledby="ex"><div class="wrap"><p class="eyebrow">Beer explorer</p><h2 id="ex">All nine briefs.</h2>
+<section aria-labelledby="ex"><div class="wrap"><p class="eyebrow">Wider exploration</p><h2 id="ex">Other beer ideas we have drawn.</h2>
+<p>Only the five core beers above are planned first; these are earlier ideas.</p>
 <fieldset class="filters" data-filter-group="beer-list" data-status="beer-status"><legend>Filter beers</legend>{f}<button type="button" class="btn btn-ghost" data-reset>Clear</button></fieldset>
 <p id="beer-status" class="muted" role="status" aria-live="polite"></p>
 <div id="beer-list" class="grid cols-3">{"".join(beer_card(b, "h3") for b in beers)}</div>
@@ -437,6 +451,8 @@ def page_about():
 <p class="eyebrow">About</p><h1 id="h1">About NASHA.</h1>
 <p class="lede">NASHA is food and beer designed together to draw you in, made in plain sight and shared at a long table.</p>
 <p>It is a project of Ritesh Mamidi, who is building toward an Indo-Mex brewery and kitchen in Austin, Texas. Today it is a body of design and a plan, not a business that serves anyone.</p>
+<h2>The founder</h2>
+<p>{E(SITE_EXEC["founder"])}</p>
 <h2>The name</h2>
 <p>The word NASHA as it appears here is a temporary typographic wordmark, not a final logo. No NASHA logo has been designed, approved or released, and no logo exploration is published on this site.</p>
 <p>The founder chose the name NASHA. Legal clearance of the name has not been completed, and nothing here claims trademark ownership, registration, availability, or ownership of any domain or social handle. If a professional review finds a problem, the name returns to the founder for a decision.</p>
@@ -456,69 +472,22 @@ def page_about():
 </div></section>'''
     return layout("about.html", "About · NASHA", "About NASHA, the name, how images are labelled, and what is and is not true today.", body)
 
-CORE5 = ["chicken-65-totopos", "paneer-tikka-taco", "goat-birria", "gobi-taco", "butter-chicken-quesadilla"]
-def page_investor():
-    inv = load("investor.json")
-    def state(s):
-        return f'<span class="chip chip-state">{E(s)}</span>'
-    def rows(items, cols):
-        return "".join("<tr>" + "".join(f"<td>{c}</td>" for c in cols(i)) + "</tr>" for i in items)
-    core = "".join(f'<li><strong>{E(DISH[i]["name"])}</strong> {state("Designing, not cooked")}</li>' for i in CORE5 if i in DISH)
-    why = "".join(f'<li><strong>{E(w["q"])}</strong>: {E(w["a"])}</li>' for w in inv["why"])
-    pn = "".join(f'<tr><th scope="row">{E(x["claim"])}</th><td>{state(x["state"])}</td></tr>' for x in inv["proven_not_proven"])
-    comp = rows(inv["completeness"], lambda c: [E(c["area"].title()), f'{c["digital"]} of 4', f'{c["real"]} of 4', f'{c["pro"]} of 3'])
-    rd = rows(inv["readiness"], lambda r: [E(r["dimension"].title()), f'{r["level"]} of 3', E(r["needs"])])
-    rk = rows(inv["risks"], lambda r: [E(r["risk"].title()), E(r["why"]), E(r["test"]), E(r["horizon"])])
-    st = rows(inv["stages"], lambda r: [E(r["stage"] + " " + r["name"].title()), E(r["funds"]), E(r["unlocks"]), E(r["claim"])])
-    uf = "".join(f'<li><strong>{E(u["category"].title())}</strong>: {E(u["unlocks"])}</li>' for u in inv["use_of_funds"])
-    gt = rows(inv["gates"], lambda g: [E(g["commitment"]), f'<strong>{E(g["stop"])}</strong>'])
-    fm = rows(inv["formats"], lambda f: [E(f["name"]), E(f["question"]), E(f["reversibility"])])
-    body = f'''<section aria-labelledby="h1"><div class="wrap stack">
-<p class="eyebrow">Investor view · private</p><h1 id="h1">What NASHA is, and what is actually proven.</h1>
-<p class="lede">{state("Concept stage")} {state("Not public")} {state("Not an offer")}</p>
-<p>NASHA is a concept for food and beer designed together, joining Indian and Mexican traditions, in Austin, Texas. This page is a private, unindexed concept view. It is not an offer, it does not ask for money, and no investor has been approached. Everything is labelled by how much is real.</p>
-<p>The pre-capital phase is being used to remove as much uncertainty as possible before anyone is asked to fund expensive uncertainty: what can be written down and designed with time and research is being documented; what can be tested personally will be tested; what needs money is named, with what each category would unlock.</p>
-<h2>What is documented, and what is not proven</h2>
-<table><caption class="visually-hidden">Proven and not proven</caption><tbody>{pn}</tbody></table>
-<p>The project's own readiness record shows physical evidence at {inv["evidence"]} of 95 and design at {inv["design"]} of 95. Design is not proof. Digital work never raises the evidence number.</p>
-<h2>Why this, and why a brewery</h2><ul>{why}</ul>
-<h2>The Core 5 food (designs for testing)</h2><ul>{core}</ul>
-<p>Nothing has been cooked. Photographs on this site are concept visualizations or illustrations, never photographs of NASHA food. The first home-kitchen test is prepared, with fixed pass and fail rules written before cooking.</p>
-<h2>The cheapest way to learn at each step</h2>
-<table><thead><tr><th scope="col">Format</th><th scope="col">The question it answers cheaply</th><th scope="col">Reversibility</th></tr></thead><tbody>{fm}</tbody></table>
-<h2>Capital gates (none has passed)</h2>
-<table><thead><tr><th scope="col">Commitment</th><th scope="col">Stop statement</th></tr></thead><tbody>{gt}</tbody></table>
-<h2>How complete is the blueprint?</h2>
-<p>Three separate scales, never merged into one score. A workstream can be well designed on paper, untested in the real world and unreviewed by professionals.</p>
-<table><thead><tr><th scope="col">Area</th><th scope="col">Designed</th><th scope="col">Tested in the real world</th><th scope="col">Professionally reviewed</th></tr></thead><tbody>{comp}</tbody></table>
-<h2>Investor readiness, honestly</h2>
-<table><thead><tr><th scope="col">Dimension</th><th scope="col">Level</th><th scope="col">What capital must solve</th></tr></thead><tbody>{rd}</tbody></table>
-<p>Pre-capital checklist: the criteria that need real cooking, photographs and receipts stand at {inv["physical_pct"]}% complete. The paper-and-model criteria are mostly written, but a written model with no real numbers in it is not a result.</p>
-<h2>Risks and how each will be tested</h2>
-<table><thead><tr><th scope="col">Risk</th><th scope="col">Why it matters</th><th scope="col">Cheapest test</th><th scope="col">When</th></tr></thead><tbody>{rk}</tbody></table>
-<h2>Capital stages</h2>
-<table><thead><tr><th scope="col">Stage</th><th scope="col">Funds</th><th scope="col">Unlocks</th><th scope="col">Status</th></tr></thead><tbody>{st}</tbody></table>
-<p>No fundraising target is set and no fundraising claim is made. Hospitality investors, strategic and brewery partners, angels and later debt are all possible; venture capital is not assumed.</p>
-<h2>Use of funds, by category</h2><ul>{uf}</ul>
-<p>No amounts are stated because none has been earned by evidence yet. There is no market-size claim, no projection, no customer, no sale, no quote and no professional opinion in this view.</p>
-<h2>The name</h2>
-<p>NASHA is the founder's internal working name. A same-name restaurant has been reported in Austin, so the name carries a legal question that must be reviewed by an attorney before any name-dependent spend. Nothing here claims clearance, ownership or exclusivity.</p>
-</div></section>'''
-    return layout("investor.html", "Investor view · NASHA", "A private, honest view of what NASHA is, what is proven and what is not, and how capital would be used.", body)
-
 ZONE_SVG = ""
 # ---------- Build ----------
 def main():
     global ZONE_SVG
     ZONE_SVG = zone_svg()
+    global M
+    M = sys.modules[__name__]
     if os.path.isdir(DIST):
         shutil.rmtree(DIST)
     os.makedirs(os.path.join(DIST, "fonts")); imgdir = os.path.join(DIST, "images"); os.makedirs(imgdir)
     for vid, row in VIS.items():
         if row["kind"] == "raster" and row["source_file"] and os.path.exists(os.path.join(REPO, row["source_file"])):
             RASTER_META[vid] = images.build_raster(row, imgdir)
+    PROTO.update(P.load_proto(M))
     pages = (("index.html", page_index), ("experience.html", page_experience), ("space.html", page_space), ("food.html", page_food),
-             ("beer.html", page_beer), ("crossing.html", page_crossing), ("labs.html", page_labs), ("investor.html", page_investor), ("about.html", page_about))
+             ("beer.html", page_beer), ("crossing.html", page_crossing), ("pairings.html", lambda: P.page_pairings(M, SITE)), ("labs.html", lambda: P.page_lab(M, SITE)), ("investor.html", lambda: P.page_business(M, SITE)), ("about.html", page_about))
     for fn, fnc in pages:
         with open(os.path.join(DIST, fn), "w", encoding="utf-8") as f:
             f.write(fnc())

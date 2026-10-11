@@ -154,6 +154,7 @@ Entry, exit, evidence and go/hold/kill questions per stage: `docs/company/data/s
 ## Where to look
 
 - **WHAT CAN I DO TODAY / WHO TO CONTACT / WHAT TO SEND / WHAT TO BUY:** `docs/FOUNDER-ACTION-BOARD.md` (next three actions at the top); Session 1 phone checklists: `food/t1-test-sheets/15-SESSION-1-CHECKLISTS.md`; send packs: `docs/send-packs/`; filing and ingestion: `docs/EVIDENCE-INTAKE.md` and `python3 tools/intake.py route`. Document map: `docs/DOCUMENT-MAP.md`.
+- **Private website (D-82):** `python3 website/build.py` then open `website/dist/index.html` (private, noindex, not deployed; pages render from the canonical data; Business page is the investor view).
 - **Pre-capital blueprint (D-81):** `docs/BLUEPRINT-STATUS.md` (horizons, completeness map, investor diagnostic, pre-capital criteria, professional gates, team gaps), `docs/BUSINESS-MODEL-CONTROL.md` (economic decision model), `docs/PRODUCT-BIBLE.md`, `docs/OPERATING-BLUEPRINT.md` (operations, kitchen, brewery, guest journey, digital twin requirements), `docs/INVESTOR-DATA-ROOM.md` (index, capital stages, use of funds, risks).
 - Products: `docs/CORE5-CONTROL-CENTER.md` (ten products), `docs/PROTOTYPE-READINESS.md`, `docs/company/CORE5-COMMERCIAL-LOGIC.md`, `docs/company/BEER-AND-NA-BUSINESS-SYSTEM.md`, `docs/company/FOOD-FAILURE-CONTINGENCIES.md`.
 - Cook now: `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md`.

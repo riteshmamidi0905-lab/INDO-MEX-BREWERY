@@ -1,3 +1,5 @@
+SUPPORTING (Sprint 23): the one-page packs to send are `docs/send-packs/03-INDIAN-ADVISOR.md` and `04-MEXICAN-ADVISOR.md` (READY WHEN FUNDED, D-81); this longer pack is background for them and is not sent as is.
+
 # NASHA cultural review pack (for a human Indian and a human Mexican culinary advisor)
 
 **Who this is for.** You do not need to know GitHub or read any other file. **What we are asking.** Five dishes are proposed for a future Austin, Texas restaurant and brewery called NASHA (the name is selected by the founder and not legally cleared). None has been cooked, tested or served. We want you to tell us where we are being inaccurate, disrespectful, gimmicky or misleading, and to answer the questions below in your own words. **This pack has not been sent to anyone, and no advisor has reviewed anything.** AI helped prepare it; AI is not the advisor.

@@ -47,151 +47,201 @@
    "area": "CONCEPT",
    "digital": 3,
    "real": 1,
-   "pro": 0
+   "pro": 0,
+   "capital": "none",
+   "next": "Reader test: ask someone outside the project to explain it back"
   },
   {
    "area": "BRAND",
    "digital": 2,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "PG-1 name decision; PG-12 final identity",
+   "next": "Name decision after counsel"
   },
   {
    "area": "FOOD",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "none for home prototypes; PG-6 for commercial sale",
+   "next": "Session 1 and repeats"
   },
   {
    "area": "BEER",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "PG-3 brewer; pilots",
+   "next": "Brewer review and a pilot"
   },
   {
    "area": "PAIRING",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "needs cooked food and beer",
+   "next": "A cooked flight with a real beer"
   },
   {
    "area": "NA",
    "digital": 2,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "PG-6 for shelf life",
+   "next": "A home trial of one drink per dish after Session 1"
   },
   {
    "area": "MENU",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "none",
+   "next": "Core 5 results decide the set"
   },
   {
    "area": "OPERATIONS",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "PG-6, PG-7; a pilot kitchen",
+   "next": "A pop-up or residency"
   },
   {
    "area": "KITCHEN",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "PG-9; PG-6",
+   "next": "Measured ticket times"
   },
   {
    "area": "BREWERY",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "PG-3, PG-9; brewhouse gate BG-6",
+   "next": "Brewer sizing"
   },
   {
    "area": "SUPPLY CHAIN",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "none to ask; quotes need contact (deferred)",
+   "next": "Retail receipts, then quotes"
   },
   {
    "area": "CUSTOMER EXPERIENCE",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "a venue to test it",
+   "next": "A residency or pop-up"
   },
   {
    "area": "ARCHITECTURE",
    "digital": 2,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "PG-9; a site",
+   "next": "A real site"
   },
   {
    "area": "MARKET",
    "digital": 2,
    "real": 1,
-   "pro": 0
+   "pro": 0,
+   "capital": "none for desk work",
+   "next": "Walk and record competitors (founder)"
   },
   {
    "area": "MVP",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "CS2",
+   "next": "Session 1 result decides the first format"
   },
   {
    "area": "FINANCE",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "accountant PG-8",
+   "next": "Real receipts and yields"
   },
   {
    "area": "CAPITAL",
    "digital": 2,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "CS2 onward",
+   "next": "Costed next steps from quotes"
   },
   {
    "area": "IP",
    "digital": 2,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "PG-1",
+   "next": "Attorney review"
   },
   {
    "area": "LEGAL",
    "digital": 2,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "PG-2, PG-8",
+   "next": "Attorney answers"
   },
   {
    "area": "REGULATORY",
    "digital": 2,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "PG-2, PG-6",
+   "next": "Authority answers"
   },
   {
    "area": "TEAM",
    "digital": 2,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "hiring needs CS2+",
+   "next": "Conversations with potential partners"
   },
   {
    "area": "WEBSITE",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "none",
+   "next": "Real prototype media"
   },
   {
    "area": "INVESTOR",
    "digital": 2,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "none",
+   "next": "Reader test with a real person"
   },
   {
    "area": "DATA ROOM",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "none",
+   "next": "Real evidence to index"
   },
   {
    "area": "EVIDENCE",
    "digital": 3,
    "real": 0,
-   "pro": 0
+   "pro": 0,
+   "capital": "none",
+   "next": "Session 1 originals"
   }
  ],
  "readiness": [
@@ -271,61 +321,81 @@
    "risk": "NAME RISK",
    "why": "a reportedly operating same-name Austin restaurant (D-78)",
    "test": "IP attorney review of the prepared package",
-   "horizon": "C (unfunded: LEGAL REVIEW REQUIRED)"
+   "horizon": "C (unfunded: LEGAL REVIEW REQUIRED)",
+   "decision": "counsel advises changing the name; brand-independent work continues",
+   "unknown": "clearance outcome"
   },
   {
    "risk": "PRODUCT RISK",
    "why": "no Core 5 dish or beer has been cooked or brewed",
    "test": "Session 1 and repeats at home",
-   "horizon": "A"
+   "horizon": "A",
+   "decision": "dishes fail D-74 gates; rework or cut",
+   "unknown": "commercial scalability"
   },
   {
    "risk": "CUSTOMER RISK",
    "why": "no guest has tasted anything",
    "test": "structured lawful tastings once the dishes pass",
-   "horizon": "B"
+   "horizon": "B",
+   "decision": "low willingness to pay or low repeat",
+   "unknown": "real behavior"
   },
   {
    "risk": "BREWERY CAPEX RISK",
    "why": "a brewhouse is large irreversible capital",
    "test": "host-brewery or collaboration pilots",
-   "horizon": "C"
+   "horizon": "C",
+   "decision": "partner beer sells as well as own brews",
+   "unknown": "brewery economics"
   },
   {
    "risk": "RESTAURANT MARGIN RISK",
    "why": "food cost, labor and waste may leave little contribution",
    "test": "Session 1 receipts and yields; priced portion",
-   "horizon": "A then B"
+   "horizon": "A then B",
+   "decision": "negative contribution at achievable price",
+   "unknown": "labor and waste in operation"
   },
   {
    "risk": "SITE RISK",
    "why": "a site may not support kitchen, brewery drainage and permits",
    "test": "site diligence on candidate sites",
-   "horizon": "C"
+   "horizon": "C",
+   "decision": "site cannot host tanks or hood",
+   "unknown": "every site cost"
   },
   {
    "risk": "CULTURAL RISK",
    "why": "two cultures; stereotypes or errors would harm the concept",
    "test": "Indian and Mexican advisor review",
-   "horizon": "C"
+   "horizon": "C",
+   "decision": "advisors reject names, claims or dish framing",
+   "unknown": "advisors' view"
   },
   {
    "risk": "EXECUTION RISK",
    "why": "comal and fryer throughput and consistency",
    "test": "measured ticket times in pilots",
-   "horizon": "A then B"
+   "horizon": "A then B",
+   "decision": "station limits cap covers below break-even",
+   "unknown": "real throughput"
   },
   {
    "risk": "FOUNDER / TEAM GAP",
    "why": "commercial culinary, brewing and operations leadership are not demonstrated",
    "test": "founder cooking evidence; recruit partners when capital exists",
-   "horizon": "B/C"
+   "horizon": "B/C",
+   "decision": "no qualified partners join",
+   "unknown": "who joins"
   },
   {
    "risk": "REGULATORY RISK",
    "why": "beer-food structure, permits, alcohol rules",
    "test": "attorney and authority answers",
-   "horizon": "C"
+   "horizon": "C",
+   "decision": "structure not lawful for a format",
+   "unknown": "permit path"
   }
  ],
  "stages": [
@@ -334,42 +404,60 @@
    "name": "PRE-CAPITAL",
    "funds": "Founder time, retail ingredients, phone photography, free modelling",
    "unlocks": "Personal prototype baseline; digital blueprint; data room",
-   "claim": "IN PROGRESS"
+   "claim": "IN PROGRESS",
+   "true_first": "none",
+   "risk": "Idea risk: is the concept coherent, and can the founder cook it at home?",
+   "sources": "founder time"
   },
   {
    "stage": "CS1",
    "name": "MICRO VALIDATION CAPITAL",
    "funds": "Ingredients, supplier samples, transport, basic photo materials, small lawful tastings",
    "unlocks": "Repeated prototypes; first real cost data; possible small tastings",
-   "claim": "NOT RAISED"
+   "claim": "NOT RAISED",
+   "true_first": "Session 1 completed; decision gate BG-2 not passed for sale",
+   "risk": "Product risk: do the dishes hold up, and what do they really cost?",
+   "sources": "founder savings; friends and family only if the founder chooses"
   },
   {
    "stage": "CS2",
    "name": "PRE-SEED / CONCEPT CAPITAL",
    "funds": "Legal and IP, formation, food and beer pilots, brand finalization, insurance",
    "unlocks": "Name decision; professional reviews; commercial pilots",
-   "claim": "NOT RAISED; no fundraising target set"
+   "claim": "NOT RAISED; no fundraising target set",
+   "true_first": "blueprint, prototype evidence and risk disclosure ready",
+   "risk": "Name, legal and demand risk: can the concept lawfully operate, and do strangers want it?",
+   "sources": "angels; hospitality investors; strategic or brewery partners; grants if any"
   },
   {
    "stage": "CS3",
    "name": "SITE CAPITAL",
    "funds": "Site diligence, design, permitting professionals",
    "unlocks": "Location, drawings, cost estimates",
-   "claim": "NOT RAISED"
+   "claim": "NOT RAISED",
+   "true_first": "pilots show demand and unit economics",
+   "risk": "Site risk: can a real place support the kitchen and brewery?",
+   "sources": "hospitality investors; partners; possible debt later"
   },
   {
    "stage": "CS4",
    "name": "BUILD CAPITAL",
    "funds": "Construction, equipment, brewery",
    "unlocks": "Physical venue",
-   "claim": "NOT RAISED"
+   "claim": "NOT RAISED",
+   "true_first": "earlier gates passed (bm-gates.csv)",
+   "risk": "Build risk: can it be built within what evidence supports?",
+   "sources": "investors; SBA or other debt where appropriate; landlord contribution"
   },
   {
    "stage": "CS5",
    "name": "OPENING CAPITAL",
    "funds": "Staff, inventory, launch, working capital",
    "unlocks": "Public opening",
-   "claim": "NOT RAISED"
+   "claim": "NOT RAISED",
+   "true_first": "build complete and licensed",
+   "risk": "Opening risk: can the team serve guests safely and consistently?",
+   "sources": "investors; debt; founder capital later"
   }
  ],
  "use_of_funds": [
@@ -522,5 +610,1460 @@
  ],
  "pre_capital_pct": 53,
  "physical_pct": 0,
- "pre_capital_method": "count of criteria (DONE=1, PARTIAL=0.5) over 18; not a readiness score"
+ "pre_capital_method": "count of criteria (DONE=1, PARTIAL=0.5) over 18; not a readiness score",
+ "exec": [
+  {
+   "section": "concept",
+   "heading": "The concept",
+   "text": "NASHA is a planned Indo-Mex brewery and kitchen in Austin, Texas: five core dishes and five core beers designed together so that each plate has a drink chosen for it, with non-alcoholic pairings given equal standing. It is a concept and a development system today, not an operating business."
+  },
+  {
+   "section": "opportunity",
+   "heading": "The opportunity (a hypothesis)",
+   "text": "Hypothesis, untested: guests who already enjoy Indian food, Mexican food and craft beer may value a place where those traditions meet in dishes that feel like one cuisine, with the pairing explained simply. No demand data exists; the cheapest tests are listed in the risk table."
+  },
+  {
+   "section": "solution",
+   "heading": "The solution",
+   "text": "A compact core menu cooked on a small set of stations (fryer, comal, char), a beer list built to match it, and a hall where the brewing is visible. The brewery is the last capital gate: food and demand come first, and host-brewery or collaboration paths can test beer with far less capital."
+  },
+  {
+   "section": "product",
+   "heading": "The product",
+   "text": "Core 5 food: Chicken 65 Totopos, Paneer Tikka Taco, Goat Birria, Gobi Taco, Butter Chicken and Roasted Poblano Quesadilla. Core 5 beer: Hefeweizen, Mexican-Style Lager, Vienna Amber, Pilsner, Witbier. All are design briefs; none has been cooked or brewed."
+  },
+  {
+   "section": "difference",
+   "heading": "What may make it different",
+   "text": "The combination and the execution, not any single ingredient: pairing designed in from the start, a no-beef and no-pork kitchen as a clear constraint, and a development process that publishes what failed. Indian, Mexican, fusion, brewery and destination-hospitality businesses all exist in Austin; the market lessons are in the market view."
+  },
+  {
+   "section": "stage",
+   "heading": "Current stage",
+   "text": "Concept and design blueprint (stage S0). Physical evidence is 4 of 95 and design is 43 of 95 on the project's own scoreboard. These are self-assessed and are not investor-grade metrics."
+  },
+  {
+   "section": "done",
+   "heading": "What has been done",
+   "text": "Concept and product system documented; the first home-kitchen test (Chicken 65 Totopos) designed with fixed pass and fail rules and prepared for cooking; economic model structure with provenance rules; operating, kitchen, brewery, guest-journey and space requirements drafted; risk register with cheapest tests; this private site."
+  },
+  {
+   "section": "not_done",
+   "heading": "What has not been done",
+   "text": "Nothing has been cooked, brewed, tasted by anyone outside the project, photographed as a real prototype, priced from real receipts or quotes, reviewed by a lawyer, brewer, chef or advisor, or sold. There is no site, no entity, no permit, no customer and no investor conversation."
+  },
+  {
+   "section": "capital",
+   "heading": "Capital strategy",
+   "text": "Staged: pre-capital founder build, low-cost validation, commercial validation, site and design, build, opening. No fundraising amount is set; amounts will follow real quotes. Each stage is tied to the risk it removes and to gates that stop spending when evidence does not support it."
+  },
+  {
+   "section": "milestones",
+   "heading": "Next proof points",
+   "text": "Cook and document the first dish with receipts, weights, photographs and tasters' scores; repeat for the other four; compute real food costs; then, once funds exist, take the name to an attorney, scope the legal path for beer with food, and run a first lawful commercial pilot."
+  },
+  {
+   "section": "risks",
+   "heading": "Major risks",
+   "text": "The name is in question (a same-name Austin restaurant has been reported); no dish is proven; margin, labor and throughput are unknown; the brewery is capital-heavy; the founder is the only team member today. Each risk has a cheapest test in the risk table."
+  },
+  {
+   "section": "founder",
+   "heading": "The founder",
+   "text": "Ritesh Mamidi is building NASHA as a one-person project, using the pre-capital period to develop as much of the company as can be done without money: product system, economic model, operating blueprint, a private website and a data room, and personal home-kitchen testing. No hospitality, culinary or brewing credentials are claimed; the capability gaps are listed openly in the future-team view."
+  }
+ ],
+ "austin": [
+  {
+   "id": "T01",
+   "statement": "Austin taprooms and brewpubs commonly pair an integrated kitchen with beer (Pinthouse, Lazarus, Brewtorium listed).",
+   "class": "OBSERVED FACT",
+   "must_be_true": "Integrated kitchens are table stakes, so NASHA's kitchen must be judged on its own merit.",
+   "evidence": "market-map.csv rows 2-9: Yelp listings (T2) and T1 summaries; pages not opened.",
+   "limit": "Yelp sample is small and not representative; menus not examined.",
+   "test": "Founder lists every brewery kitchen on site visits and phone calls.",
+   "horizon": "A"
+  },
+  {
+   "id": "T02",
+   "statement": "Craft-beer drinkers in Austin choose by style and brand, with IPA-led lists common.",
+   "class": "PUBLIC RESEARCH",
+   "must_be_true": "A lager and wheat-led list must find enough drinkers who want it, not just be different.",
+   "evidence": "Repo notes a hazy-IPA focus at one brewpub (T1/T2); no consumer data on style preference.",
+   "limit": "One venue only; production share is not drinker preference.",
+   "test": "Compare current tap lists of several taprooms in a simple table.",
+   "horizon": "A"
+  },
+  {
+   "id": "T03",
+   "statement": "Austin guests will order a lager-first or wheat-first beer list when food is Indian-Mexican.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "Guests find the style fit appealing and repeat-order it; brewer confirms the styles are distinguishable.",
+   "evidence": "None. No brewing or tasting has occurred.",
+   "limit": "Entirely untested; no customers, no beer.",
+   "test": "Structured tasting with bought-in beers matched to dishes, brewer present.",
+   "horizon": "B"
+  },
+  {
+   "id": "T04",
+   "statement": "Austin has accepted Indian food paired with beer: Whip In was reported as an Indian-immigrant-family pub and brewery.",
+   "class": "PUBLIC RESEARCH",
+   "must_be_true": "The precedent reflects durable demand, not only one family's local loyalty.",
+   "evidence": "market-map.csv row 17: T1 search summaries; current brewing status unknown.",
+   "limit": "Pages not opened; ownership changed in 2017 per summaries; reasons unknown.",
+   "test": "Founder visits or calls to learn current status and menu.",
+   "horizon": "A"
+  },
+  {
+   "id": "T05",
+   "statement": "Indian-Mexican fusion has been sold in Austin: Nasha (reported), Sivestar, Kurry Takos, Taco Twist, Austin Taco Project, Urban Turban (Round Rock).",
+   "class": "PUBLIC RESEARCH",
+   "must_be_true": "Fusion is proven to have an audience, so NASHA must not claim to be first or only.",
+   "evidence": "market-map.csv rows 16-21 and COMPETITIVE-DIFFERENTIATION.md; T1, status unconfirmed.",
+   "limit": "Search summaries only; current operation of most is UNKNOWN.",
+   "test": "Founder checks each operator's current status by phone or visit.",
+   "horizon": "A"
+  },
+  {
+   "id": "T06",
+   "statement": "Austin diners are open to fusion with a clear, named identity.",
+   "class": "PUBLIC RESEARCH",
+   "must_be_true": "Openness extends to Indian-Mexican specifically and to a brewery setting.",
+   "evidence": "Yelp review volumes for several named fusion restaurants (T2) in market-map.csv rows 22-23.",
+   "limit": "Review counts are not demand for NASHA; no review text read; ratings are user aggregates.",
+   "test": "Short guest interviews on fusion appetite using plain menu cards.",
+   "horizon": "B"
+  },
+  {
+   "id": "T07",
+   "statement": "Some Austin guests would reject Indian-Mexican fusion as novelty or as disrespectful to either cuisine.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "Cultural advisors and community interviews find the pairing framed with care is welcome.",
+   "evidence": "None. No cultural advisor review has occurred.",
+   "limit": "Reception unknown; advisors own this judgement.",
+   "test": "Cultural advisor review of concept and menu wording before any public use.",
+   "horizon": "B"
+  },
+  {
+   "id": "T08",
+   "statement": "Austin has deep supply of Indian restaurants, which act as behavioural substitutes for an Indian meal.",
+   "class": "OBSERVED FACT",
+   "must_be_true": "NASHA offers a reason to choose it over a familiar Indian dinner, such as beer pairing or group fit.",
+   "evidence": "market-map.csv rows 11-13: Yelp indpak listings (T2), many well reviewed.",
+   "limit": "Yelp sample only; menus, prices and beer attach unknown.",
+   "test": "Ask Indian-dining interviewees what they would trade off to visit a brewery.",
+   "horizon": "B"
+  },
+  {
+   "id": "T09",
+   "statement": "Indian diners in Austin want a beer-forward venue with Indian-influenced food.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "Enough Indian-dining households see beer and food together as a reason to visit.",
+   "evidence": "None directly; Whip In is a historical precedent only.",
+   "limit": "No NASHA demand data; precedent may not generalise.",
+   "test": "Interview Indian-dining households about beer-with-dinner habits.",
+   "horizon": "B"
+  },
+  {
+   "id": "T10",
+   "statement": "Austin has deep supply of Mexican restaurants, and birria is already sold by specialists.",
+   "class": "OBSERVED FACT",
+   "must_be_true": "Goat birria that reads as goat is distinct and acceptable to guests (D-54: no beef or pork).",
+   "evidence": "market-map.csv rows 14-15: Yelp listings (T2); birria protein not established.",
+   "limit": "Protein, volume and goat availability unknown.",
+   "test": "Check menus of birria sellers; later a chef-cooked tasting.",
+   "horizon": "A"
+  },
+  {
+   "id": "T11",
+   "statement": "Mexican-dining guests will accept Indian spice logic in a taco or birria format.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "Guests rate the result as coherent and tasty, and not as a gimmick.",
+   "evidence": "None. Nothing has been cooked or tasted.",
+   "limit": "Untested; chef owns the recipes.",
+   "test": "Blinded tasting of chef-cooked dishes with recruited guests.",
+   "horizon": "B"
+  },
+  {
+   "id": "T12",
+   "statement": "Experiential venues in Austin draw visits through activity and programming (arcade bar, music, social club).",
+   "class": "PUBLIC RESEARCH",
+   "must_be_true": "A food-and-beer story, tours or events can be a reason to visit without an activity hook.",
+   "evidence": "market-map.csv rows 28-30: LOW and T1 or T2 sources.",
+   "limit": "Revenue and food attach unknown; reasons for visits not shown.",
+   "test": "Offer a small tasting-night pop-up and record who attends and why.",
+   "horizon": "B"
+  },
+  {
+   "id": "T13",
+   "statement": "A designed brewhouse-as-centrepiece hall drives repeat visits in Austin.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "Guests return for the room and a lender accepts the capital need in a consolidating market.",
+   "evidence": "None. Central Machine Works is one reported converted-shed example (T1).",
+   "limit": "Design alone may not drive repeats; cost unknown; architect not consulted.",
+   "test": "Architect and cost review; tour-style pop-up.",
+   "horizon": "C"
+  },
+  {
+   "id": "T14",
+   "statement": "Patios are an expected feature of Austin taprooms and beer gardens.",
+   "class": "OBSERVED FACT",
+   "must_be_true": "Shade is baseline, so only verified cooling or comfort could be a hook.",
+   "evidence": "market-map.csv rows 31-32: Yelp listings (T2) and press snippets.",
+   "limit": "Actual shade or cooling features at competitors unknown.",
+   "test": "Visit several patios at different times and note shade and comfort.",
+   "horizon": "A"
+  },
+  {
+   "id": "T15",
+   "statement": "Guests will choose a venue because of a climate-engineered patio.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "Heat discomfort is a real barrier and guests value relief enough to switch venues.",
+   "evidence": "None. No guest data; competitors may already shade.",
+   "limit": "No willingness data; architect input needed.",
+   "test": "Short interviews plus counts of patio use at several venues across seasons.",
+   "horizon": "B"
+  },
+  {
+   "id": "T16",
+   "statement": "Segment: groups with mixed diets and mixed ages (including vegetarian guests) are underserved by one-cuisine taprooms.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "Groups report splitting plans because of menu limits and would pick a mixed-diet menu.",
+   "evidence": "None. A weak signal from one late-night vegetarian truck listing (T2).",
+   "limit": "No group-ordering data; paneer-in-tortilla already sold locally.",
+   "test": "Group-ordering pop-up or interviews with organisers.",
+   "horizon": "B"
+  },
+  {
+   "id": "T17",
+   "statement": "Segment: Indian and Mexican communities in Austin are core guests, not just curiosity seekers.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "Members of both communities say they would visit and recommend the venue.",
+   "evidence": "None.",
+   "limit": "No community interviews; size and attitudes UNKNOWN.",
+   "test": "Interview members of each community; cultural advisors guide approach.",
+   "horizon": "B"
+  },
+  {
+   "id": "T18",
+   "statement": "Segment: neighbourhood regulars rather than destination visitors will drive repeat sales.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "A location exists where repeat local visits are plausible within the site budget.",
+   "evidence": "None. No site chosen.",
+   "limit": "Location, rent and trading area unknown.",
+   "test": "Document visit frequency in interviews; no site decision before this.",
+   "horizon": "B"
+  },
+  {
+   "id": "T19",
+   "statement": "The closest competitors for the visit are neighbourhood taco-and-beer places and fusion dinner restaurants, not Indo-Mex breweries.",
+   "class": "PUBLIC RESEARCH",
+   "must_be_true": "Guests compare NASHA with those options at decision time.",
+   "evidence": "market-map.csv row 8 (Lazarus) and COMPETITIVE-DIFFERENTIATION.md; T1/T2.",
+   "limit": "Agent judgement from listings; guest behaviour not observed.",
+   "test": "Ask interviewees where they would go instead.",
+   "horizon": "B"
+  },
+  {
+   "id": "T20",
+   "statement": "No in-house brewery with an Indian-Mexican kitchen was found in a capped search; this does not prove none exists.",
+   "class": "OBSERVED FACT",
+   "must_be_true": "A site-based survey confirms the combination is unoccupied, or competitors are understood.",
+   "evidence": "AUSTIN-MARKET-MAP.md H1: Yelp sample and capped web searches (T1/T2).",
+   "limit": "Absence of results is not proof; search limits stated in the market map.",
+   "test": "Repeat search in person and by phone and list every brewery kitchen.",
+   "horizon": "A"
+  },
+  {
+   "id": "T21",
+   "statement": "Austin brewery market is consolidating, so capital discipline matters more than novelty.",
+   "class": "PUBLIC RESEARCH",
+   "must_be_true": "Closures reflect market conditions that would also constrain a new entrant.",
+   "evidence": "AUSTIN-MARKET-MAP.md summary citing the landscape file; underlying source not reopened here.",
+   "limit": "Causes of closures unknown; figures not restated here.",
+   "test": "Read the landscape source and a trade-body report; ask an accountant.",
+   "horizon": "A"
+  },
+  {
+   "id": "T22",
+   "statement": "A reported same-name Austin restaurant (Nasha) may affect whether NASHA can operate under that name.",
+   "class": "OBSERVED FACT",
+   "must_be_true": "A trademark attorney clears or advises on the name; NASHA claims no rights.",
+   "evidence": "NASHA-CONFLICT-FACTS.md: T1 search summaries; no registry searched.",
+   "limit": "No legal conclusion; status and rights UNKNOWN.",
+   "test": "Send the conflict facts file to a trademark attorney.",
+   "horizon": "B"
+  },
+  {
+   "id": "T23",
+   "statement": "Austin is a good NASHA market only if guests, advisors and economics all validate together.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "Guests choose NASHA over substitutes, communities respond well, the name is available, and unit economics hold.",
+   "evidence": "None. Every condition is UNTESTED.",
+   "limit": "Demand is an assumption until real customers validate it.",
+   "test": "Run the A and B tests in this file first; stop if two or more fail.",
+   "horizon": "A"
+  },
+  {
+   "id": "T24",
+   "statement": "Legal and regulatory constraints on a brewery with a kitchen and a pop-up route are resolved for Texas.",
+   "class": "HYPOTHESIS",
+   "must_be_true": "A Texas alcohol attorney and county health confirm a viable licensing path.",
+   "evidence": "None. Market map notes licensing is unresolved.",
+   "limit": "Professionals own this decision.",
+   "test": "Questions to a Texas alcohol attorney and county health.",
+   "horizon": "B"
+  }
+ ],
+ "competitors": [
+  {
+   "segment": "Indian restaurants",
+   "exists": "Many Indian restaurants appear in the Yelp sample, including Clay Pit with a bar and regional menus such as Chettinad (Yelp, T2, 2026-10-11).",
+   "learn": "Regional specificity and bar-adjacent Indian dining are accepted; guests have familiar alternatives.",
+   "hypothesis": "Beer plus Indian-influenced food could suit groups wanting both in one visit.",
+   "unknown": "Beer attach, vegetarian share, prices, quality and wait times are UNKNOWN."
+  },
+  {
+   "segment": "Mexican restaurants",
+   "exists": "Many Mexican restaurants and taco specialists appear, with destination and cocktail-led options; birria is sold by at least one specialist (Yelp, T2, 2026-10-11).",
+   "learn": "Guests expect regional specificity; birria is known, so any goat birria must read clearly as goat.",
+   "hypothesis": "Goat birria with Indian spice logic may stand apart from a typical birria menu.",
+   "unknown": "Birria protein at sellers, goat availability and guest acceptance are UNKNOWN."
+  },
+  {
+   "segment": "Indian-Mexican or Indian-Tex-Mex fusion",
+   "exists": "Reported (T1, pages not opened): Sivestar, Kurry Takos, Taco Twist, Austin Taco Project, Urban Turban, and a restaurant named Nasha with reported locations at 1614 E 7th St and 8900 S Congress Ave; status UNKNOWN.",
+   "learn": "Fusion has had paying customers in Austin, so NASHA must not say first or only. The Nasha facts are publicly reported and unverified.",
+   "hypothesis": "The open question is the combination of a brewery and a kitchen designed together around Indian-Mexican dishes.",
+   "unknown": "Current operation of each, trademark position, any brewery link (none found), and guest preference are UNKNOWN."
+  },
+  {
+   "segment": "Breweries and taprooms",
+   "exists": "Breweries with food exist (Jester King, Brewtorium, Fitzhugh, Pinthouse, Lazarus, Draught House); family-tolerant taprooms and chef-led kitchens are reported (Yelp T2, T1).",
+   "learn": "Integrated kitchens and chef hires are common, so serious food alone is not a differentiator.",
+   "hypothesis": "A short beer list built with the kitchen may help, if a brewer confirms the styles can be distinguished.",
+   "unknown": "Food share of sales, current menus, tap-list details and reasons some breweries closed are UNKNOWN."
+  },
+  {
+   "segment": "Experiential or destination hospitality",
+   "exists": "Activity and programming venues exist: Cidercade, Scholz Garten, Upstairs at Caroline, Cosmic, Central Machine Works (LOW, T1, T2).",
+   "learn": "Programming and dayparting give guests reasons to visit beyond the menu.",
+   "hypothesis": "Tours, tastings or a visible brewhouse might add a visit reason; untested.",
+   "unknown": "Revenue, repeat visits, capital cost and whether guests would pay for the experience are UNKNOWN."
+  },
+  {
+   "segment": "Food-and-beer pairing concepts",
+   "exists": "The Brewer's Table was reported in 2018-era coverage (T1) as a kitchen designed around its beers with pairing dinners; current status UNKNOWN.",
+   "learn": "Pairing dinners are an established format, so NASHA cannot call pairing new; the name also overlaps a term in NASHA's repo.",
+   "hypothesis": "A pairing system tied to an Indian-Mexican menu and non-alcoholic parity is a hypothesis only.",
+   "unknown": "Whether pairing drives repeat visits or sales, and the current state of existing concepts, are UNKNOWN."
+  }
+ ],
+ "core5": [
+  {
+   "id": "chicken-65-totopos",
+   "name": "Chicken 65 Totopos",
+   "status": "IN DEVELOPMENT",
+   "tested": "Not cooked",
+   "narr": {
+    "food_id": "chicken-65-totopos",
+    "what_it_is": "Bite-sized fried boneless chicken thigh in the style of South Indian Chicken 65, served on and with thick fried corn chips. It is a design in development and has not been cooked.",
+    "why_it_exists": "The chip becomes the plate, so chicken and chip are built to be eaten together. It is a shareable, hands-on opener that shows the Indo-Mex idea immediately.",
+    "indian_component": "Chicken 65 with a yogurt, ginger, garlic and lemon marinade, curry leaf and green chile. It is associated with Chennai, but its origin is contested.",
+    "mexican_component": "Fried nixtamal corn totopos as the base, with lime, onion and crema. The thick chip is NASHA's own design choice, not a Mexican standard.",
+    "fusion_logic": "The chicken and chip are eaten as one bite, with crema as an optional cooler in place of raita. Three constructions (integrated, ring, composed board) are planned for comparison.",
+    "portion_intent": "Shareable board or plate; exact amounts are still to be set in testing.",
+    "plating_intent": "Board or plate, with crema on the side or worked in depending on the construction under test.",
+    "identity_critical_ingredients": "Boneless chicken thigh, rice flour and cornflour coating, curry leaf, green chile, fried corn tortilla wedges, lime.",
+    "cultural_risk": "Medium. The Chicken 65 origin and the Hyderabad or Andhra lineage are unconfirmed, so no single origin story should be told, and an advisor should review."
+   },
+   "na": {
+    "food_id": "chicken-65-totopos",
+    "primary_beer": "mexican-lager",
+    "alternate_beer": "pilsner",
+    "primary_na": "An agua-fresca-style drink of fruit, lime and a little salt: bright, acidic and lightly savory, served very cold.",
+    "alternate_na": "A chilled, lightly sweetened tea with spiced citrus; tannin and citrus give a dry, refreshing edge without heat.",
+    "mechanisms": "CLEANSING|CONTRAST|HEAT_RELIEF|ACIDITY",
+    "why_it_may_work": "The beer is light and low in bitterness, so it should refresh against fried, medium-heat chicken without adding to the chile. The fruit-and-acid drink does the same job with lime and salt.",
+    "how_it_could_fail": "A light lager could be too thin for the fat. A bitter pilsner or tannic tea could add to the chile burn. A sweet drink could feel heavy beside fried food.",
+    "deciding_test": "Taste each drink beside the same chicken and chip at the start and after ten minutes, then ask whether the heat, fat and chip crunch feel better or worse.",
+    "na_safety_note": "Fresh fruit drinks need review for unpasteurised juice, produce handling and holding time. Nothing here is a recipe; a food-safety professional must review shelf life, storage and service before any use.",
+    "status": "PROPOSED - NOT SENSORY TESTED"
+   },
+   "primary_beer": "Mexican-Style Lager",
+   "alternate_beer": "Pilsner",
+   "texture": "Crisp-shell juicy chicken; chip still crisp at T+10 (gate 3.5)",
+   "heat": "medium (green chile, red chilli)",
+   "acid": "lemon in marinade, lime at service",
+   "holding": "HIGH: moisture migration into chip; 10-minute failure gate",
+   "equipment": "fryer (H load), probe thermometer, rack, hot hold 90 C",
+   "next": "Session 1 exactly as frozen (sheet 13 shopping list and cook card)",
+   "uncertainty_rank": 4,
+   "econ": "chicken thigh; frying oil; nixtamal tortilla chips; crema; curry leaf; fresh chile",
+   "econ_first": "Session 1: raw/trimmed/cooked weights, oil in/out, active minutes",
+   "iterations": 0,
+   "media": []
+  },
+  {
+   "id": "paneer-tikka-taco",
+   "name": "Paneer Tikka Taco",
+   "status": "IN DEVELOPMENT",
+   "tested": "Not cooked",
+   "narr": {
+    "food_id": "paneer-tikka-taco",
+    "what_it_is": "A small corn-tortilla taco filled with charred, spiced paneer, green salsa, raw onion, cilantro and lime. It has not been cooked.",
+    "why_it_exists": "It gives vegetarian guests a hero dish rather than a side, and shows that tikka char and taco freshness fit naturally together.",
+    "indian_component": "Paneer tikka: a thick hung-curd marinade, char and soft paneer. It comes from the North Indian and Punjabi restaurant tradition, and no inventor is documented.",
+    "mexican_component": "Corn tortilla with salsa verde, onion, cilantro and lime; the taco form is Mexican-inspired. Optional charred pineapple is an echo of al pastor but is never called that.",
+    "fusion_logic": "Tandoor-style char on a taco, with salsa and lime doing the job that raita and chutney do beside tikka.",
+    "portion_intent": "Two small tacos per order.",
+    "plating_intent": "Two tacos on a plate with salsa on the side.",
+    "identity_critical_ingredients": "Paneer, hung-curd marinade with ginger, garlic, chile, kasuri methi and chaat masala, corn tortilla, salsa verde, onion, cilantro, lime.",
+    "cultural_risk": "Medium. Pineapple is flagged as uncertain and needs advisor input, and the taco form and tikka are both borrowed, so both cultures should be credited plainly."
+   },
+   "na": {
+    "food_id": "paneer-tikka-taco",
+    "primary_beer": "witbier",
+    "alternate_beer": "mexican-lager",
+    "primary_na": "A spiced-citrus drink with a gentle herbal edge and light sparkle that echoes lime and cilantro.",
+    "alternate_na": "A hop-water-style botanical drink, dry and aromatic, with citrus peel and no sweetness.",
+    "mechanisms": "AROMA_BRIDGE|ACIDITY|CLEANSING|CONTRAST",
+    "why_it_may_work": "Citrus and herbal aroma should link to the cilantro, lime and char, and the acidity cuts the paneer's richness. The NA drinks aim at the same bridge.",
+    "how_it_could_fail": "Coriander and citrus against the cilantro or lime could taste soapy to some guests. A strongly spiced drink could compete with the marinade.",
+    "deciding_test": "Taste the beer and both NA drinks with the same taco, with and without cilantro, and note any soapy or clashing flavours.",
+    "na_safety_note": "Botanical and hop-water-style drinks need review of ingredient sourcing, allergens and labelling. Nothing here is a recipe; a food-safety professional must review shelf life, storage and service before any use.",
+    "status": "PROPOSED - NOT SENSORY TESTED"
+   },
+   "primary_beer": "Witbier",
+   "alternate_beer": "Mexican-Style Lager",
+   "texture": "Soft interior, visible char, crust that clings; tortilla does not tear",
+   "heat": "medium",
+   "acid": "lime, salsa verde, pickled red onion",
+   "holding": "MEDIUM-HIGH: paneer firms and dries, tortilla steams; finish to order",
+   "equipment": "tandoor (unresolved) or charbroiler/comal; comal for tortillas",
+   "next": "Session 2: ONE variable = heat source; marinade, cut, tortilla constant; hold at 0/5/10 min",
+   "uncertainty_rank": 2,
+   "econ": "paneer; tortillas; hung curd and spice; salsa; onion/capsicum",
+   "econ_first": "Session 2 heat-source comparison plus a paneer price/spec check",
+   "iterations": 0,
+   "media": []
+  },
+  {
+   "id": "goat-birria",
+   "name": "Goat Birria, Sealed-Pot Braise",
+   "status": "IN DEVELOPMENT",
+   "tested": "Not cooked",
+   "narr": {
+    "food_id": "goat-birria",
+    "what_it_is": "A slow braise of bone-in goat in a guajillo and ancho chile adobo, served as tacos with a small cup of consomme. It has not been cooked and is a long-lead item.",
+    "why_it_exists": "Birria de chivo is a Jalisco dish whose original meat is goat, and it lets NASHA make a rich, deep centrepiece that clearly reads as goat.",
+    "indian_component": "Technique only: dum-style sealed-pot braising, whole-spice toasting and bhuna-style frying of the adobo paste. Yogurt-papaya and curry-leaf ideas are tested against a plain adobo, not assumed.",
+    "mexican_component": "Goat, chile adobo, consomme, corn tortillas, onion, cilantro, lime and salsa. These are historically supported from web sources, with a Mexican advisor still to confirm.",
+    "fusion_logic": "The Mexican dish stays whole, and the Indian layer is included only where tasting shows it adds depth. The dipped and griddled taco form is a modern adaptation.",
+    "portion_intent": "Taco or tacos with consomme in a small cup; no cheese by default.",
+    "plating_intent": "Tacos on a plate and consomme in a small clay or steel cup, with bones and fibre kept visible.",
+    "identity_critical_ingredients": "Bone-in goat, guajillo and ancho adobo, goat, chicken or vegetable stock only, corn tortillas, onion, cilantro, lime.",
+    "cultural_risk": "Higher. Birria is a living Mexican regional dish, so Mexican advisor review is needed, and the sealed-pot link to India is a parallel rather than a shared origin."
+   },
+   "na": {
+    "food_id": "goat-birria",
+    "primary_beer": "hefeweizen",
+    "alternate_beer": "vienna-amber",
+    "primary_na": "A tea-based drink with tamarind or hibiscus acid and warm spice, served cool or slightly warm, matching the dish's chile and cinnamon notes.",
+    "alternate_na": "A zero-proof beer in a malty amber style, with toast and gentle body to answer the braise.",
+    "mechanisms": "CONTRAST|AROMA_BRIDGE|ACIDITY|TEXTURE|BITTERNESS",
+    "why_it_may_work": "Carbonation, acid and tannin cut the fat in the consomme, and warm spice in the drink can echo the adobo. The amber style bridges toasty malt to the braise.",
+    "how_it_could_fail": "Clove and banana against the dish's clove and cinnamon is a gamble. A malty option could be heavy with a rich consomme. Too much sweetness would clog.",
+    "deciding_test": "Taste the same goat portion with each option, alternating with the consomme, and note which one leaves the palate cleaner after a few bites.",
+    "na_safety_note": "Tea, hibiscus and spice infusions need review of brewing, cooling and holding, and any warm service needs hot-holding checks. Nothing here is a recipe; a food-safety professional must review shelf life, storage and service before any use.",
+    "status": "PROPOSED - NOT SENSORY TESTED"
+   },
+   "primary_beer": "Hefeweizen",
+   "alternate_beer": "Vienna Amber",
+   "texture": "Tender but fibrous goat; drinkable consomme; tortilla holds after dipping",
+   "heat": "medium",
+   "acid": "vinegar in adobo, lime, salsa",
+   "holding": "HIGH: large braise cooling/reheating/hold, fat set in consomme (food-safety professional must set the process)",
+   "equipment": "oven or kettle (long braise), comal/griddle, cold storage, hot hold",
+   "next": "Small pilot per the Session 5 card (about 3 kg bone-in): plain adobo vs adobo+Indian layer (one variable), record yield, trim, skim, 60/120 min hold; blind vs lamb taco",
+   "uncertainty_rank": 1,
+   "econ": "bone-in goat; dried chiles; stock; tortillas; consomme",
+   "econ_first": "a single braise with raw/trim/cooked weights and a goat price check",
+   "iterations": 0,
+   "media": []
+  },
+  {
+   "id": "gobi-taco",
+   "name": "Gobi Taco",
+   "status": "IN DEVELOPMENT",
+   "tested": "Not cooked",
+   "narr": {
+    "food_id": "gobi-taco",
+    "what_it_is": "A corn-tortilla taco with roasted cauliflower florets, a tamarind and guajillo glaze, lime slaw, salsa, pickled onion and cilantro. It has not been cooked.",
+    "why_it_exists": "It is a vegetarian taco meant to stand on its own, with the cauliflower recognisable and not hidden under batter.",
+    "indian_component": "Inspired by Gobi 65 and tandoori gobi. Gobi Manchurian is Indo-Chinese and is only named if actually used.",
+    "mexican_component": "Corn tortilla, lime-cabbage slaw, salsa, pickled onion and cilantro. No traditional Mexican cauliflower taco is claimed.",
+    "fusion_logic": "Roast-first cauliflower with a late tamarind and guajillo glaze, so slaw and pickle add the acid and crunch. A batter-fried version is a comparison, and fry versus roast is still undecided.",
+    "portion_intent": "Two tacos, three to four florets per taco.",
+    "plating_intent": "Two tacos, with salsa on the side and slaw and glaze added at the last moment.",
+    "identity_critical_ingredients": "Cauliflower florets, tamarind and guajillo glaze, lime slaw, corn tortilla, pickled onion, cilantro.",
+    "cultural_risk": "Lower to medium. The glaze is an original house idea with no claimed precedent, and the dish should be called modern fusion and not traditional."
+   },
+   "na": {
+    "food_id": "gobi-taco",
+    "primary_beer": "pilsner",
+    "alternate_beer": "mexican-lager",
+    "primary_na": "A lime-forward agua-fresca-style drink with a pinch of salt and a little green herb, cold and crisp.",
+    "alternate_na": "A savory, saline drink with tamarind and a light spice, a nod to chaat flavours, kept thin and not sweet.",
+    "mechanisms": "CONTRAST|CLEANSING|ACIDITY|BITTERNESS",
+    "why_it_may_work": "Crisp carbonation and light bitterness should reset the palate between bites of roasted, glazed cauliflower, and the lime and saline drinks echo the slaw and pickle.",
+    "how_it_could_fail": "Bitterness beside chile heat could increase the burn, though the heat is modest here. The tamarind glaze plus a tamarind drink could be too sour or sweet.",
+    "deciding_test": "Taste with the dish at the roast stage and again once the glaze has softened the crust, and compare each drink against the lighter Mexican-style lager.",
+    "na_safety_note": "Saline and tamarind drinks need review of acidity, salt level, and holding time. Nothing here is a recipe; a food-safety professional must review shelf life, storage and service before any use.",
+    "status": "PROPOSED - NOT SENSORY TESTED"
+   },
+   "primary_beer": "Pilsner",
+   "alternate_beer": "Mexican-Style Lager",
+   "texture": "Visible florets with dark tips and cream stems; crunch retained 10 min",
+   "heat": "medium",
+   "acid": "tamarind, lime slaw, pickled onion",
+   "holding": "MEDIUM-HIGH: cauliflower keeps releasing water; glaze and slaw soften crust",
+   "equipment": "oven or fryer, comal for tortillas",
+   "next": "Write a Gobi Taco test sheet first; primary question fry vs roast; crunch at 0/5/10/15 min; glaze grams vs tortilla softening",
+   "uncertainty_rank": 5,
+   "econ": "cauliflower; batter/oven; glaze; slaw; tortilla",
+   "econ_first": "Session with weights and a roast vs fry comparison",
+   "iterations": 0,
+   "media": []
+  },
+  {
+   "id": "butter-chicken-quesadilla",
+   "name": "Butter Chicken & Roasted Poblano Quesadilla",
+   "status": "IN DEVELOPMENT",
+   "tested": "Not cooked",
+   "narr": {
+    "food_id": "butter-chicken-quesadilla",
+    "what_it_is": "A griddled quesadilla filled with reduced butter chicken, charred chicken, melting cheese and roasted poblano strips. It has not been cooked.",
+    "why_it_exists": "It takes one of the best-known Indian comfort dishes and puts it in a handheld, shareable Mexican form.",
+    "indian_component": "Murgh makhani: a tomato, butter and cream gravy with kasuri methi and tandoori-style charred chicken. Its origin is contested in court, so we do not pick a side.",
+    "mexican_component": "Quesadilla con rajas: roasted poblano strips and Oaxaca-style cheese, griddled on a comal.",
+    "fusion_logic": "The makhani is reduced until clingy so it stays inside, and poblano smoke and acid balance the richness. A dip is optional and served separately.",
+    "portion_intent": "One large folded tortilla, cut into wedges.",
+    "plating_intent": "Wedges cut to show the cross-section, with the dip in a cup.",
+    "identity_critical_ingredients": "Chicken thigh, reduced makhani, roasted poblano rajas, Oaxaca-style cheese, tortilla, kasuri methi.",
+    "cultural_risk": "Medium. The dish's origin is disputed, so we should tell no single origin story, and the quesadilla con rajas is borrowed from Mexican home cooking and should be credited."
+   },
+   "na": {
+    "food_id": "butter-chicken-quesadilla",
+    "primary_beer": "vienna-amber",
+    "alternate_beer": "hefeweizen",
+    "primary_na": "A lassi-inspired drink of cultured dairy, fruit and a little spice, served cold, to echo the sauce and cool the richness.",
+    "alternate_na": "A spiced citrus tea with a sharp, dry finish to cut the cream and cheese.",
+    "mechanisms": "CONTRAST|ACIDITY|SWEETNESS|TEXTURE|AROMA_BRIDGE",
+    "why_it_may_work": "Toasty malt bridges to the charred chicken, and a sharp or tart drink counters the cream, butter and cheese. A lassi-style drink echoes the sauce in a cooling way.",
+    "how_it_could_fail": "Malt sweetness on a sweet cream sauce could cloy. A dairy drink beside a dairy-rich dish could feel heavy. Yeast spice could clash with the garam masala.",
+    "deciding_test": "Taste each option beside the same wedge, and see whether the drink keeps the second bite as appealing as the first.",
+    "na_safety_note": "Dairy-based drinks need particular review for pasteurisation, cold chain, shelf life and allergen labelling. Nothing here is a recipe; a food-safety professional must review shelf life, storage and service before any use.",
+    "status": "PROPOSED - NOT SENSORY TESTED"
+   },
+   "primary_beer": "Vienna Amber",
+   "alternate_beer": "Hefeweizen",
+   "texture": "Crisp-browned tortilla, set filling, melted cheese fused, no leak",
+   "heat": "low",
+   "acid": "poblano, optional lime, dip",
+   "holding": "MEDIUM: steams soft if covered; filling leaks if sauce not reduced",
+   "equipment": "comal/flat-top (H load), tandoor optional for chicken, oven/grill alternative",
+   "next": "Session 4: sauce thickness first (spoon-coat/reduction time vs leak minutes); then cheese barrier; then chicken size",
+   "uncertainty_rank": 3,
+   "econ": "chicken thigh; butter/cream/makhani; poblano; Oaxaca-style cheese; tortilla (corn or flour open)",
+   "econ_first": "Session with filling weights and comal minutes",
+   "iterations": 0,
+   "media": []
+  }
+ ],
+ "beers": [
+  {
+   "id": "hefeweizen",
+   "name": "Hefeweizen",
+   "style_in_plain_words": "A hazy, golden German-style wheat beer with a tall, dense white head. Typically it smells of banana and clove, and it is soft and creamy rather than bitter.",
+   "role_on_the_list": "The proof beer: the one used to test whether the whole beer program is credible.",
+   "flavor_intent": "Soft wheat bread, gentle banana and clove from the yeast, very little bitterness.",
+   "food_role": "Lively bubbles cut through rich or fatty dishes, the clove note echoes warm spice, and low bitterness stays out of the way of heat. Goat birria and butter chicken quesadilla are the planned first matches (hypotheses, not tasted).",
+   "why_it_earns_a_tap": "It is the beer most dependent on yeast character, so it is the clearest test of whether a brewing partner can deliver something distinctive. Its short, warm production cycle may also free tank time.",
+   "what_remains_undecided": "The brewer decides the yeast strain, fermentation temperature and pitch, whether a rest step is worth it, open or closed fermentation, how much haze and sediment to keep, and the pass/fail thresholds for each proof. Any clarifying aid must be free of animal products (no isinglass; nothing from beef or pork).",
+   "status_plain": "Design brief only. Not brewed, not tested, no recipe. A qualified brewer must develop it. The gate rule is PROPOSED decision D-77, which the founder has not yet confirmed.",
+   "non_brewer_note": "Under proposed D-77 this is the proof beer, judged on six things (credibility, difference from the others, repeat drinkability, food fit, fermentation reliability, taproom appeal) with four outcomes: continue, revise, de-prioritise or remove. A brewer sets the thresholds, and a Hefeweizen failure would not by itself stop the other pilots. D-77 is not yet confirmed, and the older wording ('if it fails nothing else launches') is still in some files. Contains wheat and gluten; no gluten-free claim."
+  },
+  {
+   "id": "mexican-lager",
+   "name": "Mexican-Style Lager",
+   "style_in_plain_words": "A pale, very clear, light and fairly dry lager with a small white head. It is made to be crisp and easy to drink cold.",
+   "role_on_the_list": "The everyday session beer for chile-forward food, and the planned largest share of volume.",
+   "flavor_intent": "Light cracker-like malt, clean and dry, bitterness kept low so it does not push heat higher.",
+   "food_role": "Cold, light and low in bitterness, so it gives relief from heat without adding to it. Chicken 65 totopos is the planned first match (a hypothesis, not tasted); it is expected to look thin beside very rich dishes like goat birria.",
+   "why_it_earns_a_tap": "Chile-forward food needs a refreshing default, and a clean easy beer gives guests a simple starting point.",
+   "what_remains_undecided": "The brewer decides whether any corn or grits earns its place, how long to lager, the water treatment, protection against light damage, and where in the style range the bitterness sits. Whether to list it AND the Pilsner or only one is a real open question: they may draw different guests or the same guests, they may suit different foods or the same foods, the Pilsner may need more tank time, each may take sales from the other, and the tap slot might have a better use. No answer is given here; the evidence (tastings, brewer input, sales) does not exist yet.",
+   "status_plain": "Design brief only. Not brewed, not tested, no recipe. A qualified brewer must develop it.",
+   "non_brewer_note": "If its bitterness is set toward the higher end, it starts to look like the Pilsner, which is why the two need a side-by-side tasting. Lime is not added by default. It is made from barley, so it is not gluten-free."
+  },
+  {
+   "id": "vienna-amber",
+   "name": "Vienna Amber",
+   "style_in_plain_words": "A clear copper-amber lager with an off-white head, medium body and a toasted-bread malt flavour. It has no roasted or burnt taste.",
+   "role_on_the_list": "The pairing workhorse for charred, smoky and slow-cooked dishes.",
+   "flavor_intent": "Toasted bread crust and a little light caramel, clean, not sweet.",
+   "food_role": "The toasty malt meets char and smoke and bridges to rich sauces. Goat birria and butter chicken quesadilla are the planned matches (hypotheses, not tasted); sweetness could become cloying with some dishes.",
+   "why_it_earns_a_tap": "It gives the list a darker, malty choice that is not heavy, and it is the most different from the lighter lagers.",
+   "what_remains_undecided": "The brewer decides the malt mix and balance so it stays dry rather than sweet, the lagering time, and the serving temperature (the traditional way is warmer than the cold default, so both should be tried).",
+   "status_plain": "Design brief only. Not brewed, not tested, no recipe. A qualified brewer must develop it.",
+   "non_brewer_note": "Expected to have a smaller default audience than the light lagers, so its tap case rests on food fit. It is made from barley, so it is not gluten-free."
+  },
+  {
+   "id": "pilsner",
+   "name": "Pilsner",
+   "style_in_plain_words": "A clear golden lager with a dense white head, crisp and dry, with a noticeable but clean bitterness and a flowery or herbal hop aroma.",
+   "role_on_the_list": "The beer that shows a brewer's skill. It is the snappy, dry lager that the Mexican-Style Lager is deliberately not.",
+   "flavor_intent": "Bready pale malt, a firm clean bitterness and gentle floral or herbal hops.",
+   "food_role": "Bitterness resets the palate between bites of fried and rich food. Gobi taco and chicken 65 totopos are the planned matches (hypotheses, not tasted); bitterness can also make heat feel stronger.",
+   "why_it_earns_a_tap": "If a panel can tell it apart from the Mexican-Style Lager, it adds a second, sharper lager lane and a quality signal that flaws cannot hide behind.",
+   "what_remains_undecided": "The brewer decides hop choice and cost, how the local water suits the style (the water numbers in the repo are unverified and need a lab test), clarity and filtering, lagering time, and a warmer serving arm. Whether to list it AND the Mexican-Style Lager or only one is a real open question: different guests or not, different foods or not, the longest tank time against a style that may sell more, mutual cannibalisation, and whether the slot has a better use. No verdict is given; the blind side-by-side tasting and sales evidence do not exist yet.",
+   "status_plain": "Design brief only. Not brewed, not tested, no recipe. A qualified brewer must develop it.",
+   "non_brewer_note": "Style-typical descriptions only. Hop supply and cost are unchecked. It is made from barley, so it is not gluten-free."
+  },
+  {
+   "id": "witbier",
+   "name": "Witbier",
+   "style_in_plain_words": "A hazy, pale, soft Belgian-style wheat beer, traditionally brewed with coriander and orange peel for a light citrus aroma.",
+   "role_on_the_list": "A seasonal beer for the warm months, a citrusy choice for paneer, vegetables and char.",
+   "flavor_intent": "Soft wheat and oats, light orange and coriander aroma, gentle and refreshing.",
+   "food_role": "Citrus lifts char and creamy yogurt and links to cilantro and lime. Paneer tikka taco is the planned match (a hypothesis, not tasted); with some dishes the citrus could turn soapy.",
+   "why_it_earns_a_tap": "It gives guests a lighter, fragrant option that suits vegetable dishes and has a natural place in warm weather.",
+   "what_remains_undecided": "The brewer decides the spice amount and timing, the peel source, how to keep the haze stable, how to avoid yeast cross-contamination with the Hefeweizen, and whether it is worth a slot. It overlaps the Hefeweizen as a wheat beer.",
+   "status_plain": "Design brief only. Not brewed, not tested, no recipe. A qualified brewer must develop it.",
+   "non_brewer_note": "Spices are style-typical aroma ingredients only, never added just to look Indian. Contains wheat and gluten, and coriander must be labelled. Its brief was written after the others, so it is the least developed."
+  }
+ ],
+ "space": [
+  {
+   "space": "Exterior",
+   "intent": "A warm, shaded, readable arrival that signals craft hospitality, not theme",
+   "flow": "Street or lot to entrance; patio visible",
+   "day_night": "Daylight shade; evening warm light",
+   "family": "Clear step-free approach intended",
+   "not_claimed": "No site, no address, no approved sign"
+  },
+  {
+   "space": "Entrance",
+   "intent": "A clear threshold with a welcome point and a view of the room and brewery glass",
+   "flow": "To host, bar, and dining without a bottleneck",
+   "day_night": "Daytime easy entry; evening orderly entry",
+   "family": "Door and threshold designed for step-free passage as an intent",
+   "not_claimed": "No accessibility compliance claim"
+  },
+  {
+   "space": "Bar",
+   "intent": "A social hub for beer and NA on equal footing, with the brewery visible",
+   "flow": "Near entrance; separate from the kitchen pass",
+   "day_night": "Day: calm service; night: livelier but conversational",
+   "family": "Part of the bar usable seated at an accessible height as an intent",
+   "not_claimed": "No tap count, no equipment"
+  },
+  {
+   "space": "Dining",
+   "intent": "Long communal tables and smaller tables, easy conversation",
+   "flow": "Between bar, kitchen pass and patio",
+   "day_night": "Day: light and open; night: warm and intimate",
+   "family": "Space for strollers and wheelchairs intended; family areas legible",
+   "not_claimed": "No seat count, no square footage"
+  },
+  {
+   "space": "Brewery visibility",
+   "intent": "Guests can see real brewing work through glass; the work is shown, not performed",
+   "flow": "Next to dining or bar; separate from guests for safety",
+   "day_night": "Visible by day; lit softly at night",
+   "family": "Safety separation for children",
+   "not_claimed": "No tank count, no vessel size, no capacity"
+  },
+  {
+   "space": "Kitchen relationship",
+   "intent": "Food and beer are designed together; the kitchen pass and bar are close",
+   "flow": "Kitchen pass to dining; brewery to kitchen utility adjacency questions",
+   "day_night": "Prep by day; service at night",
+   "family": "Allergen information reachable at the pass",
+   "not_claimed": "No equipment specification, no code claim"
+  },
+  {
+   "space": "Patio",
+   "intent": "Shaded, shared, relaxed outdoor dining",
+   "flow": "Opens from dining; own service path",
+   "day_night": "Shade by day; lighting and fans at night",
+   "family": "Step-free patio access intended; family-friendly layout",
+   "not_claimed": "No patio size or permit claim"
+  },
+  {
+   "space": "Restrooms",
+   "intent": "Clean, accessible, easy to find",
+   "flow": "Off dining without crossing the kitchen",
+   "day_night": "Same by day and night",
+   "family": "Accessible restroom intent; family needs considered",
+   "not_claimed": "No ADA or code compliance claim"
+  },
+  {
+   "space": "Service paths",
+   "intent": "Staff routes that avoid guest collisions",
+   "flow": "Pass to tables; bar to tables; patio runner path",
+   "day_night": "Stricter at peak",
+   "family": "Clear aisles intended",
+   "not_claimed": "No dimensions"
+  },
+  {
+   "space": "Receiving",
+   "intent": "A back door route that does not cross guests",
+   "flow": "Receiving to storage to kitchen and brewery",
+   "day_night": "Deliveries off-peak intent",
+   "family": "n/a",
+   "not_claimed": "No site claim"
+  },
+  {
+   "space": "Storage",
+   "intent": "Dry, cold and freezer storage placed to shorten kitchen trips",
+   "flow": "Receiving to storage to prep",
+   "day_night": "n/a",
+   "family": "n/a",
+   "not_claimed": "No capacity"
+  },
+  {
+   "space": "Staff area",
+   "intent": "Space for breaks, lockers, handwash, and training",
+   "flow": "Off back-of-house",
+   "day_night": "n/a",
+   "family": "Accessible to staff with disabilities intent",
+   "not_claimed": "No code claim"
+  },
+  {
+   "space": "Mechanical needs",
+   "intent": "A list of what professionals must size: hood, make-up air, cooling, drainage, power, gas",
+   "flow": "Roof or utility zone",
+   "day_night": "n/a",
+   "family": "n/a",
+   "not_claimed": "No MEP design"
+  },
+  {
+   "space": "Brewery support",
+   "intent": "Grain, chemicals, cold room, kegs, cleaning, drainage",
+   "flow": "Adjacent to brewery; separate from food flow",
+   "day_night": "Brew days may differ from service",
+   "family": "Guest separation for safety",
+   "not_claimed": "No equipment, no drainage design"
+  },
+  {
+   "space": "Family considerations",
+   "intent": "Families welcome where law and policy allow; separate from adult-focused bar seating",
+   "flow": "Family seating away from the bar",
+   "day_night": "Earlier evening focus",
+   "family": "Changing and stroller space intended",
+   "not_claimed": "No policy claim"
+  },
+  {
+   "space": "Accessibility intent",
+   "intent": "Step-free, clear routes, readable menus and signage",
+   "flow": "Everywhere",
+   "day_night": "Same by day and night",
+   "family": "Design intent only",
+   "not_claimed": "No compliance claim"
+  },
+  {
+   "space": "Night experience",
+   "intent": "Warm, glare-free, conversational, safe departure options visible",
+   "flow": "Whole venue",
+   "day_night": "Night",
+   "family": "Safe-ride information intended",
+   "not_claimed": "No claim about hours or licence"
+  },
+  {
+   "space": "Day experience",
+   "intent": "Daylight, shade, quieter service",
+   "flow": "Whole venue",
+   "day_night": "Day",
+   "family": "Easy for families",
+   "not_claimed": "No opening hours"
+  }
+ ],
+ "journey": [
+  {
+   "stage": "DISCOVERY",
+   "goal": "Learn what NASHA is and decide if it fits them.",
+   "principle": "Be honest and plain; show real work only; make no claim that is not yet true.",
+   "experience": "A clear page or sign that says what is offered, including the beer and non-alcoholic choices, without hype.",
+   "staff": "Answer questions truthfully and say what is not yet decided.",
+   "avoid": "Exaggeration, borrowed culture, or implying awards or opinions that do not exist.",
+   "recovery": "Correct any wrong information quickly and say so plainly."
+  },
+  {
+   "stage": "ARRIVAL",
+   "goal": "Find the place and feel welcome without confusion.",
+   "principle": "Easy and obvious approach; no pressure; clear way in.",
+   "experience": "Clear wayfinding, shade where possible, and an entrance that is easy to read.",
+   "staff": "Greet people naturally as they appear; no scripted line.",
+   "avoid": "Long waits in the sun, confusing entrances, loud hype.",
+   "recovery": "Offer shade or a seat, explain the wait honestly, and update the guest."
+  },
+  {
+   "stage": "HOST",
+   "goal": "Be acknowledged and told what happens next.",
+   "principle": "Honesty about wait and options.",
+   "experience": "A calm greeting, a straight answer on seating, and notes from the booking already known.",
+   "staff": "Make eye contact, answer directly, ask about access or allergen needs without drama.",
+   "avoid": "Ignoring guests, wrong promises, bar queue blocking the host.",
+   "recovery": "Apologise, give the honest next step, and ask a lead to help."
+  },
+  {
+   "stage": "SEATING",
+   "goal": "Be placed comfortably where they can talk and see.",
+   "principle": "Choice and comfort; fit the party, not the system.",
+   "experience": "A table suited to the group, with access needs respected and noise considered.",
+   "staff": "Offer options rather than assign; seat families and mixed groups with care.",
+   "avoid": "Forcing a table, awkward positions, seating near hazards.",
+   "recovery": "Offer a move without fuss and thank the guest for saying."
+  },
+  {
+   "stage": "MENU",
+   "goal": "Understand the food and drinks quickly.",
+   "principle": "Clarity first; allergens and dietary facts easy to find; vegetarian equal to the rest.",
+   "experience": "A readable menu with plain descriptions, allergen notes, and beer and non-alcoholic drinks given equal space.",
+   "staff": "Explain only if asked; know every dish and its allergens.",
+   "avoid": "Jargon, buried allergen facts, unverified labels, halal or other claims not earned.",
+   "recovery": "Admit when unsure, check with the kitchen, and tell the guest what is known."
+  },
+  {
+   "stage": "FOOD DISCOVERY",
+   "goal": "Find dishes they will enjoy, whether vegetarian or not.",
+   "principle": "Curiosity without lectures; honest descriptions.",
+   "experience": "Dishes explained plainly, with the Indian and Mexican threads described with verified facts only.",
+   "staff": "Describe food as cooks do, in simple words; offer suggestions, not pushes.",
+   "avoid": "Performed culture, stories made up, pressure to order more.",
+   "recovery": "Offer an alternative dish and note the preference for the kitchen."
+  },
+  {
+   "stage": "BEER / NA DISCOVERY",
+   "goal": "Choose a drink they like, alcoholic or not, with equal respect.",
+   "principle": "Non-alcoholic choices stand level with beer in list, glass and care.",
+   "experience": "A drink list where non-alcoholic items are as considered as beer, with tasting help offered.",
+   "staff": "Ask what they like, offer small tastes where permitted, never push volume.",
+   "avoid": "Treating non-alcoholic as a lesser option, or encouraging fast drinking.",
+   "recovery": "Swap the drink without comment and note what was disliked."
+  },
+  {
+   "stage": "PAIRING",
+   "goal": "See how food and drink go together if they want it.",
+   "principle": "Suggestion, not instruction; no medical or intoxication claims.",
+   "experience": "Optional suggestions for beer or non-alcoholic drinks, framed as ideas.",
+   "staff": "Offer a pairing only when interested; suggest both alcoholic and non-alcoholic options.",
+   "avoid": "Scripts, forced pairing flights, tying alcohol to spice or heat as a challenge.",
+   "recovery": "Replace the pairing freely and thank the guest for the feedback."
+  },
+  {
+   "stage": "SERVICE",
+   "goal": "Receive food and drink at a natural pace with attention.",
+   "principle": "Attentive and unhurried; roles clear.",
+   "experience": "Food arrives in a sensible order, hot items hot and chips crisp, and staff notice needs.",
+   "staff": "Check in with care, read the table, and carry plates with the allergen note.",
+   "avoid": "Long gaps, cold food, interrupting, plates forgotten.",
+   "recovery": "Apologise, tell the guest the truth about delay, and remake or replace when needed."
+  },
+  {
+   "stage": "TABLE EXPERIENCE",
+   "goal": "Enjoy time with their group in comfort.",
+   "principle": "Warm, social, and low-pressure; the table is theirs.",
+   "experience": "A clean table, water offered, and room to share food.",
+   "staff": "Clear in good time, refill water, and leave guests alone when they want.",
+   "avoid": "Rushing guests out, constant interruption, mess left too long.",
+   "recovery": "Fix the table, apologise briefly, and move on."
+  },
+  {
+   "stage": "PAYMENT",
+   "goal": "Pay without friction or surprise.",
+   "principle": "Transparent and simple; no pressure on tips or extras.",
+   "experience": "A bill that is clear, with split options and no hidden items.",
+   "staff": "Bring the bill when asked or at a natural point; explain charges plainly.",
+   "avoid": "Surprise charges, slow payment, pushing more drinks.",
+   "recovery": "Correct errors immediately and fully, and apologise."
+  },
+  {
+   "stage": "DEPARTURE",
+   "goal": "Leave feeling looked after and safe.",
+   "principle": "A warm close without scripted lines; guest safety comes first.",
+   "experience": "A simple thank you, easy exit, and information on safe travel options if needed.",
+   "staff": "Notice how guests are doing, offer water or a ride option where concerned, and thank them.",
+   "avoid": "Ignoring a guest who is unwell, pressure to leave a review.",
+   "recovery": "Involve a lead and help the guest get home safely."
+  },
+  {
+   "stage": "RETURN",
+   "goal": "Want to come back because it was good, not because they were pushed.",
+   "principle": "Earn the return through quality and respect; no tricks.",
+   "experience": "A memory of good food, fair treatment, and equal choice of drinks.",
+   "staff": "Remember preferences if the guest agrees; do not fake familiarity.",
+   "avoid": "Pushy loyalty schemes, invented regulars, pressure to return.",
+   "recovery": "Invite feedback quietly and act on what is said."
+  },
+  {
+   "stage": "FAMILY EXPERIENCE",
+   "goal": "Bring children comfortably while adults are respected.",
+   "principle": "Family welcome within rules; children kept apart from alcohol service as the rules require.",
+   "experience": "Kid-friendly choices that follow the no-beef, no-pork policy, high chairs if provided, and a calm table.",
+   "staff": "Be friendly, quick with children's food, and aware of alcohol near minors.",
+   "avoid": "Treating families as a nuisance, alcohol near children, unsafe spots.",
+   "recovery": "Move the table, speed the food, and ask a lead to help."
+  },
+  {
+   "stage": "ACCESSIBILITY INTENT",
+   "goal": "Enter, move, order and eat with dignity.",
+   "principle": "Design intent only: no claim of code compliance; qualified professionals decide.",
+   "experience": "Clear paths, seating options, readable menus, and willingness to adapt.",
+   "staff": "Ask what would help, listen, and act without fuss or attention.",
+   "avoid": "Assuming needs, blocked paths, loud speech about disability.",
+   "recovery": "Fix it at once, apologise, and report the barrier to the manager."
+  },
+  {
+   "stage": "MUSIC AND LIGHTING",
+   "goal": "Talk easily and feel at ease.",
+   "principle": "Warm, low-glare light and music that never overpowers conversation.",
+   "experience": "Light that suits eating and reading, and sound that allows talk.",
+   "staff": "Adjust to the room and guest comment; no staff taste imposed.",
+   "avoid": "Club-like volume, harsh glare, themed stereotypes.",
+   "recovery": "Lower the sound or change the light when a guest asks."
+  },
+  {
+   "stage": "TABLEWARE AND GLASSWARE",
+   "goal": "Eat and drink from clean, sensible, comfortable ware.",
+   "principle": "Function over show; same care for non-alcoholic glassware as for beer glasses.",
+   "experience": "Clean plates and glasses suited to the food and drink, with no chipped items.",
+   "staff": "Check ware before service, replace damaged pieces, and handle glass safely.",
+   "avoid": "Chipped or dirty ware, glass shortages, costume-like props.",
+   "recovery": "Replace at once, apologise, and remove the damaged piece."
+  },
+  {
+   "stage": "PATIO",
+   "goal": "Enjoy outdoor space in comfort and safety.",
+   "principle": "Shade, comfort, clear service path, respect for neighbours.",
+   "experience": "Seating with shade where possible, hot food timed carefully, and noise kept considerate.",
+   "staff": "Check tables regularly, bring water, and watch for weather changes.",
+   "avoid": "Guests forgotten outside, food going cold, rowdy behaviour.",
+   "recovery": "Bring a lead, relocate the guest if needed, and replace food that went cold."
+  }
+ ],
+ "team": [
+  {
+   "role": "Concept, brand and product direction",
+   "founder": "YES",
+   "gap": "none for pre-capital",
+   "from_stage": "CS0"
+  },
+  {
+   "role": "Home-kitchen prototyping and cost capture",
+   "founder": "YES (to be demonstrated by Session 1)",
+   "gap": "commercial scale and speed unproven",
+   "from_stage": "CS0"
+  },
+  {
+   "role": "Executive culinary leadership",
+   "founder": "NOT DEMONSTRATED",
+   "gap": "a commercial chef (Indian and Mexican fluency valuable)",
+   "from_stage": "CS2"
+  },
+  {
+   "role": "Commercial brewing",
+   "founder": "NO",
+   "gap": "qualified head brewer",
+   "from_stage": "CS2"
+  },
+  {
+   "role": "Restaurant operations",
+   "founder": "NOT DEMONSTRATED",
+   "gap": "operator experience",
+   "from_stage": "CS2-CS3"
+  },
+  {
+   "role": "Finance and accounting",
+   "founder": "PARTIAL (model architecture exists)",
+   "gap": "accountant or finance partner",
+   "from_stage": "CS2"
+  },
+  {
+   "role": "Construction and project management",
+   "founder": "NO",
+   "gap": "architect, contractor, project manager",
+   "from_stage": "CS3-CS4"
+  },
+  {
+   "role": "Legal (IP, alcohol, formation)",
+   "founder": "NO",
+   "gap": "attorneys",
+   "from_stage": "CS2"
+  },
+  {
+   "role": "Alcohol compliance",
+   "founder": "NO",
+   "gap": "trained manager and attorney guidance",
+   "from_stage": "CS2-CS5"
+  },
+  {
+   "role": "Marketing",
+   "founder": "PARTIAL (brand voice exists)",
+   "gap": "marketing support",
+   "from_stage": "CS5"
+  },
+  {
+   "role": "Hospitality leadership (GM)",
+   "founder": "NOT DEMONSTRATED",
+   "gap": "experienced GM",
+   "from_stage": "CS4"
+  }
+ ],
+ "chain": [
+  {
+   "chain": "RESTAURANT",
+   "step": 1,
+   "node": "CUSTOMER",
+   "relationship": "guests who choose to come (count, party size, repeat)"
+  },
+  {
+   "chain": "RESTAURANT",
+   "step": 2,
+   "node": "ORDER",
+   "relationship": "items per guest and check; intent is NOT behavior"
+  },
+  {
+   "chain": "RESTAURANT",
+   "step": 3,
+   "node": "MENU MIX",
+   "relationship": "share of each Core 5 dish and drink in orders (scenario weights are MODEL_ASSUMPTION until sold)"
+  },
+  {
+   "chain": "RESTAURANT",
+   "step": 4,
+   "node": "FOOD COST",
+   "relationship": "purchase cost / yield + waste + oil + sauce + garnish per portion"
+  },
+  {
+   "chain": "RESTAURANT",
+   "step": 5,
+   "node": "BEVERAGE COST",
+   "relationship": "cost per pour (beer, NA, other) x attach rate"
+  },
+  {
+   "chain": "RESTAURANT",
+   "step": 6,
+   "node": "VARIABLE LABOR",
+   "relationship": "direct labor minutes per portion x loaded wage (founder labor is not zero)"
+  },
+  {
+   "chain": "RESTAURANT",
+   "step": 7,
+   "node": "CONTRIBUTION",
+   "relationship": "price minus food, packaging, fees, direct labor, event cost, per portion and per cover"
+  },
+  {
+   "chain": "RESTAURANT",
+   "step": 8,
+   "node": "FIXED OPERATING COST",
+   "relationship": "rent, base labor, insurance, utilities, permits, commissary, maintenance, marketing"
+  },
+  {
+   "chain": "RESTAURANT",
+   "step": 9,
+   "node": "OPERATING RESULT",
+   "relationship": "EBITDA = contribution x covers - fixed cost; before debt service and depreciation"
+  },
+  {
+   "chain": "RESTAURANT",
+   "step": 10,
+   "node": "CAPITAL REQUIREMENT",
+   "relationship": "capex + working capital + cumulative operating losses to learning milestone; maximum loss exposure per format"
+  },
+  {
+   "chain": "BREWERY",
+   "step": 1,
+   "node": "BREWERY CAPITAL",
+   "relationship": "brewhouse, fermenters, cellar, packaging, utilities build, licensing, space"
+  },
+  {
+   "chain": "BREWERY",
+   "step": 2,
+   "node": "BREWERY UTILIZATION",
+   "relationship": "share of fermenter-days actually filled"
+  },
+  {
+   "chain": "BREWERY",
+   "step": 3,
+   "node": "BEER VOLUME",
+   "relationship": "bbl per year demanded by taproom, restaurant and any distribution"
+  },
+  {
+   "chain": "BREWERY",
+   "step": 4,
+   "node": "TANK TIME",
+   "relationship": "fermenter-days per batch by style (ale vs lager vs conditioning)"
+  },
+  {
+   "chain": "BREWERY",
+   "step": 5,
+   "node": "BEER COST",
+   "relationship": "ingredients, labor, utilities, yield loss, packaging per barrel"
+  },
+  {
+   "chain": "BREWERY",
+   "step": 6,
+   "node": "BEER CONTRIBUTION",
+   "relationship": "price per pour x pours per barrel - beer cost - pour loss"
+  },
+  {
+   "chain": "BREWERY",
+   "step": 7,
+   "node": "VALUE TO RESTAURANT",
+   "relationship": "food attach, pairing attach, repeat and check lift caused by house beer, NOT assumed"
+  }
+ ],
+ "dataroom": [
+  {
+   "category": "00 Executive Overview",
+   "item": "Founder control center",
+   "status": "READY",
+   "note": "generated"
+  },
+  {
+   "category": "00 Executive Overview",
+   "item": "Blueprint status and completeness",
+   "status": "READY",
+   "note": "generated"
+  },
+  {
+   "category": "01 Brand",
+   "item": "Brand strategy",
+   "status": "PARTIAL",
+   "note": "name under D-78/D-79; no logo (D-66)"
+  },
+  {
+   "category": "01 Brand",
+   "item": "Trademark screening and conflict facts",
+   "status": "PARTIAL",
+   "note": "LEGAL REVIEW REQUIRED"
+  },
+  {
+   "category": "01 Brand",
+   "item": "Brand contingency",
+   "status": "READY",
+   "note": "name-independent work continues"
+  },
+  {
+   "category": "01 Brand",
+   "item": "Brand experience and responsible alcohol",
+   "status": "PREPARED",
+   "note": "proposed"
+  },
+  {
+   "category": "02 Product",
+   "item": "Product bible",
+   "status": "READY",
+   "note": "generated"
+  },
+  {
+   "category": "02 Product",
+   "item": "Core 5 food matrix",
+   "status": "PREPARED",
+   "note": "design hypotheses"
+  },
+  {
+   "category": "02 Product",
+   "item": "Core 5 beer matrix",
+   "status": "PREPARED",
+   "note": "design hypotheses"
+  },
+  {
+   "category": "02 Product",
+   "item": "Core 5 control center",
+   "status": "READY",
+   "note": "generated"
+  },
+  {
+   "category": "03 Food R&D",
+   "item": "Session 1 founder mode and checklists",
+   "status": "PREPARED",
+   "note": "not performed"
+  },
+  {
+   "category": "03 Food R&D",
+   "item": "Pairing matrix (hypotheses)",
+   "status": "PARTIAL",
+   "note": "not sensory tested"
+  },
+  {
+   "category": "03 Food R&D",
+   "item": "Iteration log",
+   "status": "FUTURE",
+   "note": "empty until cooks happen"
+  },
+  {
+   "category": "04 Beer Program",
+   "item": "Opening beer program",
+   "status": "PARTIAL",
+   "note": "design only; PROFESSIONAL REVIEW REQUIRED"
+  },
+  {
+   "category": "04 Beer Program",
+   "item": "Brewery scale framework",
+   "status": "PARTIAL",
+   "note": "no size chosen"
+  },
+  {
+   "category": "04 Beer Program",
+   "item": "Beer and NA business system",
+   "status": "PARTIAL",
+   "note": "proposed"
+  },
+  {
+   "category": "05 Market",
+   "item": "Austin market map",
+   "status": "PARTIAL",
+   "note": "public sources, low confidence"
+  },
+  {
+   "category": "05 Market",
+   "item": "Competitive differentiation",
+   "status": "PARTIAL",
+   "note": "agent analysis"
+  },
+  {
+   "category": "06 Customer Validation",
+   "item": "Validation path",
+   "status": "PREPARED",
+   "note": "no customers yet"
+  },
+  {
+   "category": "06 Customer Validation",
+   "item": "First 30 learning plan",
+   "status": "PREPARED",
+   "note": "templates empty"
+  },
+  {
+   "category": "07 Operations",
+   "item": "Operating blueprint",
+   "status": "PREPARED",
+   "note": "PROPOSED OPERATING MODEL - NOT FIELD VALIDATED"
+  },
+  {
+   "category": "07 Operations",
+   "item": "Operating day model",
+   "status": "PARTIAL",
+   "note": "assumptions"
+  },
+  {
+   "category": "08 Financial Model",
+   "item": "Business model control system",
+   "status": "PREPARED",
+   "note": "all inputs UNKNOWN"
+  },
+  {
+   "category": "08 Financial Model",
+   "item": "Assumptions store",
+   "status": "FUTURE",
+   "note": "empty until real inputs"
+  },
+  {
+   "category": "09 Architecture",
+   "item": "Operating blueprint digital twin section",
+   "status": "PARTIAL",
+   "note": "CONCEPTUAL / ILLUSTRATIVE; PROFESSIONAL REVIEW REQUIRED"
+  },
+  {
+   "category": "09 Architecture",
+   "item": "Spatial vision",
+   "status": "PARTIAL",
+   "note": "concept only"
+  },
+  {
+   "category": "10 Regulatory",
+   "item": "Regulatory question tree",
+   "status": "PARTIAL",
+   "note": "LEGAL REVIEW REQUIRED"
+  },
+  {
+   "category": "10 Regulatory",
+   "item": "Minimum lawful food test",
+   "status": "PARTIAL",
+   "note": "UNVERIFIED"
+  },
+  {
+   "category": "11 IP",
+   "item": "Attorney package",
+   "status": "PREPARED",
+   "note": "LEGAL REVIEW REQUIRED; not sent"
+  },
+  {
+   "category": "11 IP",
+   "item": "IP asset tracker",
+   "status": "READY",
+   "note": "tracker"
+  },
+  {
+   "category": "12 Evidence",
+   "item": "Validation scoreboard",
+   "status": "READY",
+   "note": "evidence 4/95"
+  },
+  {
+   "category": "12 Evidence",
+   "item": "Evidence intake",
+   "status": "READY",
+   "note": "ingests real inputs"
+  },
+  {
+   "category": "13 Risks",
+   "item": "Investor risks with tests",
+   "status": "PREPARED",
+   "note": "tests not yet executed"
+  },
+  {
+   "category": "14 Roadmap",
+   "item": "Roadmap and stages",
+   "status": "READY",
+   "note": "stage S0"
+  },
+  {
+   "category": "14 Roadmap",
+   "item": "Website roadmap",
+   "status": "READY",
+   "note": "V1-V7"
+  },
+  {
+   "category": "15 Capital",
+   "item": "Capital stages",
+   "status": "PREPARED",
+   "note": "no amounts"
+  },
+  {
+   "category": "15 Capital",
+   "item": "Use of funds",
+   "status": "PREPARED",
+   "note": "no amounts"
+  },
+  {
+   "category": "15 Capital",
+   "item": "Capital gates",
+   "status": "PREPARED",
+   "note": "none passed"
+  },
+  {
+   "category": "15 Capital",
+   "item": "Professional gates register",
+   "status": "PREPARED",
+   "note": "unfunded"
+  }
+ ],
+ "gap": {
+  "BUILD NOW": 16,
+  "FOUNDER INPUT": 1,
+  "REAL-WORLD INPUT": 9,
+  "PROFESSIONAL REVIEW": 7,
+  "FUTURE CAPITAL": 2,
+  "NOT WORTH BUILDING": 2
+ },
+ "lab_stages": [
+  "Idea",
+  "Research",
+  "Prototype",
+  "Cook",
+  "Measure",
+  "Taste",
+  "Fail / learn",
+  "Iterate",
+  "Validate"
+ ],
+ "gates_full": [
+  {
+   "gate": "BG-1",
+   "commitment": "Final brand spend (logo, signage, packaging, domain, merch)",
+   "required": "ip_attorney view; D-79/D-80 resolved by founder after counsel",
+   "pass": "Counsel supports use or a modified name; founder decides",
+   "fail": "Counsel advises against, or conflict is confirmed and unresolved",
+   "stop": "DO NOT SPEND ON NAME-DEPENDENT ASSETS YET"
+  },
+  {
+   "gate": "BG-2",
+   "commitment": "Paid customer test (any money changes hands)",
+   "required": "Dish passed internal gates (s1_sensory); food permit path verified; food_cost layer computed; alcohol excluded or legally cleared; neutral external wording",
+   "pass": "All prerequisites met in writing",
+   "fail": "A prerequisite shows the test cannot lawfully run",
+   "stop": "DO NOT RUN A PAID TEST YET"
+  },
+  {
+   "gate": "BG-3",
+   "commitment": "Commissary / equipment spend",
+   "required": "Menu stable across repeated sessions; commissary quote; hood/comal answers",
+   "pass": "Two or more dishes stable and a quote in hand",
+   "fail": "Equipment would sit idle or the kitchen cannot host the Core 5",
+   "stop": "DO NOT BUY OR RENT EQUIPMENT YET"
+  },
+  {
+   "gate": "BG-4",
+   "commitment": "Food trailer",
+   "required": "Repeat demand behavior; real unit economics at event scale; throughput measured; permit/commissary path verified; financing sized to maximum loss exposure",
+   "pass": "Repeat demand + positive contribution at measured throughput + capital within loss limit",
+   "fail": "Break-even covers exceed measured kitchen capacity (fin_model capacity_warning)",
+   "stop": "DO NOT BUY A TRAILER YET"
+  },
+  {
+   "gate": "BG-5",
+   "commitment": "Lease (fixed site)",
+   "required": "Demand + operating model + financing + legal and site diligence (grease, hood, drainage, parking, permits)",
+   "pass": "Evidence from residency or trailer supports a fixed site and diligence passes",
+   "fail": "Break-even exceeds capacity or diligence finds an unfixable barrier",
+   "stop": "DO NOT SIGN A LEASE YET"
+  },
+  {
+   "gate": "BG-6",
+   "commitment": "Brewhouse purchase",
+   "required": "Beer validation (pilot or collaboration); volume case from real draft velocity; brewer sizing; legal route confirmed",
+   "pass": "Beer sells and brewer sizing agrees with the demand case",
+   "fail": "Partner beer sells as well as own brews would, or demand cannot fill tanks",
+   "stop": "DO NOT BREW AT SCALE YET"
+  },
+  {
+   "gate": "BG-7",
+   "commitment": "Flagship construction",
+   "required": "Substantially more evidence: repeated demand, proven small-site economics, beer validation, financing, lease, licensed professionals' costed design",
+   "pass": "All earlier gates passed plus a costed design within the evidence",
+   "fail": "Quotes exceed what evidence can support",
+   "stop": "DO NOT OPEN A FLAGSHIP YET"
+  },
+  {
+   "gate": "BG-8",
+   "commitment": "Scale a dish (bulk ingredient buys, larger batches)",
+   "required": "Dish passed its gates twice; real yield and cost measured; supplier quote",
+   "pass": "Stable gates and measured yield",
+   "fail": "Yield or hold failure makes the dish cost-unviable",
+   "stop": "DO NOT SCALE THIS DISH YET"
+  },
+  {
+   "gate": "BG-9",
+   "commitment": "Add a menu item",
+   "required": "The item passes gates and fits an existing station without a new bottleneck",
+   "pass": "Passes and capacity warning is clear",
+   "fail": "The item forces a new station or breaks D-54",
+   "stop": "DO NOT ADD THIS MENU ITEM"
+  },
+  {
+   "gate": "BG-10",
+   "commitment": "Brewery build",
+   "required": "Beer validation; volume case; site with drainage/floor loading; legal route; financing",
+   "pass": "See BG-6 plus a site that can host tanks",
+   "fail": "Oversize vs undersize analysis fails",
+   "stop": "DO NOT BUILD A BREWERY YET"
+  }
+ ],
+ "exec_status": {
+  "evidence": "4",
+  "design": "43"
+ }
 }
