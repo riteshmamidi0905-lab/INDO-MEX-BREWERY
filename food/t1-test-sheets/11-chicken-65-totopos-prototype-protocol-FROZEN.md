@@ -69,6 +69,8 @@ Fixed position (tripod or a stack of books), grey card, same time of day, sequen
 ## 10. Required vs nice to have
 **Required:** kitchen scale (1 g), instant-read probe thermometer, timer/stopwatch, a deep pot or fryer with a frying thermometer, spider/skimmer and a rack over a tray, mixing bowls, knives and boards, black plates (or any plain dark plates), a small bowl for crema, a phone camera, a stack of books or tripod for a fixed camera. **Nice to have:** a second set of hands, a grey card, a dedicated fryer, a ruler for the frame, a heat lamp (not used in Session 1). **Home-kitchen limitation:** a pot is not a restaurant fryer (recovery and temperature control differ); record the vessel and what you could not control.
 
+> Quantities in §4 and §11 corrected by sheet 13 (1.3 kg trimmed chicken, 24 tortillas); the design and D-74 are unchanged.
+
 ## 11. Shopping list (supports 2 iterations of A/B/C plus control; do not overbuy)
 - **Chicken:** boneless skinless thighs, about 1.6 kg.
 - **Marinade/spices:** ginger and garlic (or ready paste, label checked), red chilli powder (Kashmiri-type) about 40 g, turmeric, ground coriander, salt, lemons 4, thick plain yogurt 150 g.
