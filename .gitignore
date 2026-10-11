@@ -3,3 +3,4 @@ __pycache__/
 website/qa/node_modules/
 .imgcache/
 .baseline/
+.cache/
