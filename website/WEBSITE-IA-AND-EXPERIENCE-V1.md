@@ -2,6 +2,8 @@
 
 **Status:** `[DESIGN]` for a future site. **No website code is written** (still by instruction). This defines storytelling, sitemap, public vs investor layers, interactions and requirements so a build can start cleanly. Content sources and their evidence status are mapped in §6. Every public page must carry the right honesty label (§5). Concept visuals only until real photography exists.
 
+> **Sprint 6 update:** the brand name is **NASHA** (founder-selected, clearance pending, D-62). A first local prototype now exists (`website/DESIGN-SYSTEM.md`, `website/dist/`) implementing the home, Food, Beer, Crossing, Labs and About pages. Pages here that are not built (investor layer, ordering, bookings, events, press) remain design only. Where this IA says "INDO MEX BREWERY", read NASHA.
+
 ## 1. Storytelling goals: what a visitor should understand
 What is it? Why should it exist? Why Austin? Why Indian × Mexican? What will the food and beer be? What will the building feel like? Who will visit? How does it make money *(investor layer only)*? What makes it defensible *(investor layer)*? How could it expand *(investor layer)*? What remains to be validated *(both layers, in different depth)*? Why could this become a major hospitality brand *(investor layer; public gets the vision)*.
 

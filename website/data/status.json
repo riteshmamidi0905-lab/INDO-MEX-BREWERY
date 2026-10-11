@@ -1,0 +1,12 @@
+{"states":["Concept","Designing","Testing","Validated","Future"],
+ "definitions":{"Concept":"An idea written down.","Designing":"Specified and prepared for testing.","Testing":"In real tests with real results.","Validated":"Passed its gate with evidence.","Future":"Planned, not started."},
+ "items":[
+  {"name":"The idea and the brand","state":"Designing","note":"The name NASHA is chosen by the founder. Legal clearance is pending."},
+  {"name":"The menu","state":"Designing","note":"Twelve dishes specified for a first round of kitchen tests. None cooked yet."},
+  {"name":"The beer","state":"Designing","note":"Briefs are ready for a head brewer. Nothing has been brewed."},
+  {"name":"The place","state":"Concept","note":"Illustrated, not engineered. No site chosen."},
+  {"name":"Talking to future guests","state":"Designing","note":"An interview guide is ready. No interviews yet."},
+  {"name":"Tastings and pop-ups","state":"Future","note":"Next step, after testing and permits are understood."},
+  {"name":"A small mobile kitchen","state":"Future","note":"Only if early tests show people want it."},
+  {"name":"The brewery and kitchen","state":"Future","note":"The goal. Built on evidence, not before it."}
+ ]}

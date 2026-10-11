@@ -10,7 +10,7 @@ Founder-owned gates are **F-1..F-5**. G-6..G-12 are project gates that feed them
 | F-2 | First paid professionals and order (Texas alcohol attorney, **IP/trademark attorney**, head brewer, broker, architect) | Founder | READY | R1 | Authorise scoped attorney + head-brewer engagements first; add IP attorney (D-61) |
 | F-3 | Pilot-brewing route (and any collaboration) | Founder + head brewer | WAITING on F-2 | R1-R2 | Recommend partner-brewery pilot, brewer-designed |
 | F-4 | Cultural advisors | Founder | OPEN | R1 | Approve criteria; start outreach by role |
-| F-5 | Trademark screening of the parent-name shortlist (top 5 **plus founder-proposed NASHA**, D-59) | Founder + IP attorney | READY | R1 (screen) / R3 (adopting a name) | Authorise attorney knockout search; advisor review of NASHA's meaning |
+| F-5 | Trademark clearance of **NASHA** (founder-selected, D-62; shortlist retained as fallback) via `ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md` | Founder + IP attorney | READY | R1 (screen) / R3 (adopting a name) | Authorise attorney knockout search; advisor review of NASHA's meaning |
 | G-13 | Staged path and MVP route (pop-up/commissary, brewery residency, trailer, truck) | Founder | OPEN | R1-R2 | Run interviews and T1 first; check permits and partners (`validation/MOBILE-MVP-STRATEGY.md`, D-60) |
 | G-6 | Real fermenter/brewhouse size | Head brewer | WAITING on F-2 | R3 | Brewer sizing proposal |
 | G-7 | Oven/pizza decision (Wave 2) | Founder + chef + architect | OPEN | R2 | Defer until kitchen layout exists |
@@ -72,7 +72,8 @@ Founder-owned gates are **F-1..F-5**. G-6..G-12 are project gates that feed them
 - **Outreach structure (by role, not by names):** (1) 2 culinary advisors Indian-heritage, 2 Mexican-heritage; (2) 1 food historian; (3) 1 diaspora community voice. Sources to *look* (not claims of agreement): university South Asia/Latin America programmes, culinary schools, restaurateur associations, community cultural organisations, food-history scholars. Process: written brief → review packet (menu names and descriptions, claims audit, visual rules, brand rules) → structured feedback form → founder decision log recording where we followed or declined advice and why → right of dissent recorded.
 - **Recommendation:** approve the criteria and start outreach by role before the pop-up. **Next:** founder approves criteria and roster size; names to be supplied by him or found through the sources above. **Owner:** Founder. **Status:** OPEN.
 
-## F-5 Trademark screening of the top 5 parent names
+## F-5 Trademark clearance of NASHA (founder-selected, D-62) — shortlist retained as fallback
+*Sprint 6 update:* the founder selected NASHA; attorney briefing is ready in `ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md`; domains/handles unchecked (`marketing/NASHA-DOMAIN-AND-HANDLE-INVENTORY.md`). If clearance finds a material obstacle the name returns to the founder. The text below was written for the top-five shortlist and is kept as history.
 - **Why:** Phase 4 cannot finish without it, and a name is hard to reverse (R3 once adopted). **Depends on:** attorney (F-2 item 5). **Evidence now:** a **preliminary web-search screen only** (`brand/TRADEMARK-SCREENING.md`); **no USPTO or state search has been run; no clearance exists.** **Cost:** TBD (attorney knockout/full search).
 - **Options:** (a) authorise attorney knockout search on the five; (b) screen more names first; (c) pause naming. **Recommendation:** (a), limited to the five, because the preliminary screen already shows crowded patterns for two names (Latitude, Marigold) and the attorney can rank risk. **Next:** founder authorises; attorney returns a ranked risk memo.
 - **Owner:** Founder + attorney. **Status:** READY.

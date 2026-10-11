@@ -1,6 +1,6 @@
 area,design_0_5,evidence_0_5,evidence_basis,evidence_ref,primary_or_external_evidence,what_blocks_readiness
 Concept,3,1,Designed in depth; background evidence only T1-T3 secondary,research/VERIFICATION-LEDGER.md,no,No customer validation; no professional review
-Brand,2,0,"Architecture and rules drafted; no name, no identity, no advisors",brand/BRAND-ARCHITECTURE-V1.md,no,Trademark search; name; advisors; identity design
+Brand,3,0,"Founder-selected name NASHA; strategy and identity system proposed; no logo; no clearance; no advisors",brand/NASHA-BRAND-STRATEGY.md,no,"Trademark clearance; designed logo; cultural advisor review"
 Market,2,1,Secondary research (T1-T3) + 19 LOW-confidence price observations,research/market-survey/observations.csv,no,Completed price survey; Austin demand sizing
 Customer,2,0,Interview instrument ready; ZERO interviews,research/customer-discovery/INTERVIEW-GUIDE.md,no,30 real interviews
 Food,3,0,12-dish test set designed; nothing cooked,food/MENU-V1.1-TEST-MENU.md,no,T1-T4 testing; supplier statements; costing
@@ -14,7 +14,7 @@ Supply chain,1,0,Dietary spec; no supplier contact,food/DIETARY-POLICY-AND-INGRE
 Team,1,0,Founder only; roles listed,docs/decisions/DECISION-GATES.md,no,"Brewer, chef, GM, architect, attorney, advisors"
 Cultural integrity,3,0,Rules and audit written; no advisors,brand/CULTURAL-INTEGRITY-AND-ADVISORS.md,no,Advisors review
 IP/trademark/ownership,3,1,"Framework, registers and preliminary web screen only; no attorney, no filing",ip/IP-OWNERSHIP-FRAMEWORK.md,no,Attorney knockout search
-Website/presentation,3,0,Information architecture designed; nothing built,website/WEBSITE-IA-AND-EXPERIENCE-V1.md,no,"Brand, hero visuals, build"
-Marketing,1,0,"Foundation plan only; no audience, no channels live",marketing/MARKETING-AND-BUILD-IN-PUBLIC-FOUNDATION.md,no,"Name, identity, real content, legal review of beer content"
+Website/presentation,4,0,"Working local prototype (6 pages) with measured QA; not deployed; no domain; no content from real tests",website/DESIGN-SYSTEM.md,no,"Domain/hosting decision; real photography; logo; manual accessibility audit; real content from tests"
+Marketing,2,0,"Hooks and domain checklist only; no audience, no channels live",marketing/NASHA-MARKETING-HOOKS.md,no,"Clearance; identity; real content; legal review of beer content"
 Capital strategy and investors,2,0,Capital ladder and investor stages designed; no investors identified or contacted,investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md,no,Evidence package; counsel on solicitation
 Mobile MVP and traction,2,0,MVP strategy and empty measurement schema; no event has occurred,validation/MOBILE-MVP-STRATEGY.md,no,"Permits/commissary check, T1 tests, first events"

@@ -26,7 +26,9 @@ Contemporary hospitality design with intelligent cultural integration: pale lime
 **Leaning (provisional, reversible): A or C**, with B reserved for a later packaged-beer line. Not decided.
 Name candidates remain in `PARENT-BRAND-CANDIDATES.md` (50) and the screened five (`TRADEMARK-SCREENING.md`); none is promoted.
 
-## 4b. Founder-proposed candidate: NASHA (recorded D-59; **not selected**)
+## 4b. Founder-proposed candidate: NASHA (recorded D-59)
+> **Superseded in part (Sprint 6, D-62/D-64):** the founder has since **selected** NASHA (`SELECTED_BY_FOUNDER — LEGAL CLEARANCE PENDING`). The sub-brand family below is **not adopted**; the current recommendation is a master brand with a descriptor ladder (`NASHA-BRAND-STRATEGY.md` §2). This section is kept as history.
+
 Founder proposal: **NASHA**: *Indo-Mex food × craft beer × Austin*; **NASHA Kitchen** (food / mobile concept), **NASHA Brewing** (future house beer identity, if appropriate), **NASHA Food Truck** (early validation vehicle, if chosen), **NASHA Brewery & Kitchen** (flagship destination), **NASHA Labs** (public R&D/build journey). This is a **house + sub-brands architecture (Option B)** whose names track the staged path (D-60).
 | Aspect | Assessment (judgement; needs professionals) |
 |---|---|

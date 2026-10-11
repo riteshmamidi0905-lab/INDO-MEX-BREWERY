@@ -1,6 +1,6 @@
 # Validation Scoreboard and Investor-Readiness Score
 
-**Purpose:** make it impossible to confuse polished design with validated evidence. **Status date:** 2026-10-11 (Sprint 5; three areas added: Marketing, Capital strategy and investors, Mobile MVP and traction; Sprint 4 figures were 41% / 5% of 80). Source data: `docs/readiness/readiness.csv` (checked by `tools/validate_repo.py`). Scores are **our own transparent rubric**, not an external rating; they are deliberately conservative and move only when evidence is added.
+**Purpose:** make it impossible to confuse polished design with validated evidence. **Status date:** 2026-10-11 (Sprint 6 update: design 42/95 = 44%, evidence unchanged 4/95; Sprint 5; three areas added: Marketing, Capital strategy and investors, Mobile MVP and traction; Sprint 4 figures were 41% / 5% of 80). Source data: `docs/readiness/readiness.csv` (checked by `tools/validate_repo.py`). Scores are **our own transparent rubric**, not an external rating; they are deliberately conservative and move only when evidence is added.
 
 ## 1. Maturity ladder (each area is placed on it)
 **CONCEPT → DESIGNED → RESEARCHED → PRIMARY VERIFIED → PROFESSIONALLY REVIEWED → PHYSICALLY TESTED → CUSTOMER VALIDATED → COSTED → READY.** Not every area needs every rung (– = not applicable). Marks: **●** achieved · **◐** partial · **○** not achieved.
@@ -30,7 +30,7 @@
 | Area | Design completeness (0-5) | **Evidence level (0-5)** | Basis for evidence level |
 |---|---|---|---|
 | Concept | 3 | **1** | background research T1-T3 |
-| Brand | 2 | **0** | no name, no identity, no advisors |
+| Brand | 3 | **0** | name founder-selected, clearance pending; strategy and identity proposed; no logo; no advisors |
 | Market | 2 | **1** | secondary research; 19 LOW observations |
 | Customer | 2 | **0** | zero interviews |
 | Food | 3 | **0** | nothing cooked |
@@ -44,12 +44,12 @@
 | Team | 1 | **0** | founder only |
 | Cultural integrity | 3 | **0** | no advisor review |
 | IP/trademark/ownership | 3 | **1** | preliminary web screen only; framework and registers, no attorney |
-| Website/presentation | 3 | **0** | IA designed; nothing built |
-| Marketing | 1 | **0** | foundation plan only |
+| Website/presentation | 4 | **0** | local prototype built and measured (axe 0 violations, no overflow); not deployed; build quality is not business evidence |
+| Marketing | 2 | **0** | hooks and domain checklist only |
 | Capital strategy and investors | 2 | **0** | ladder and stages designed; no investors identified or contacted |
 | Mobile MVP and traction | 2 | **0** | strategy and empty schema; no event |
-| **Total (of 95)** | **39 = 41%** | **4 = 4%** | |
-**Reading:** the concept is **well designed (41%)** and **almost entirely unvalidated (4%)**. That gap is the honest state of the project: **not investor-ready**.
+| **Total (of 95)** | **42 = 44%** | **4 = 4%** | |
+**Reading (Sprint 6):** design rose from 41% to 44% because a brand direction and working website now exist; **evidence did not move (4%)** because a beautiful, accessible site is not evidence that anyone wants the product. The concept is **well designed (44%)** and **almost entirely unvalidated (4%)**. That gap is the honest state of the project: **not investor-ready**.
 **Rubric:** Design 0 none · 1 sketch · 2 structured draft · 3 detailed working version · 4 reviewed by someone qualified · 5 complete. Evidence 0 none · 1 secondary/weak (T1-T3, LOW observations) · 2 broad secondary or limited primary · 3 primary (T0), tested, or real data at small scale (**requires primary/external evidence = yes and a real evidence file**) · 4 professionally reviewed or customer-validated with adequate sample · 5 costed/quoted and ready. The validator rejects any evidence score ≥ 3 without those conditions.
 
 ## 3. What most blocks investor-readiness (highest impact first)

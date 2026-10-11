@@ -1,7 +1,7 @@
 # INDO MEX BREWERY
 
 Permanent source of truth for the project. Founder: Ritesh Mamidi. Target market: Austin, Texas.
-Working name only. See `phase-one/09-brand-identity.md` for the naming evaluation.
+**Brand name: NASHA** (founder-selected, 2026-10-11; `SELECTED_BY_FOUNDER — LEGAL CLEARANCE PENDING`, D-62). This is not trademark clearance. "INDO MEX BREWERY" remains the repository and working name in earlier history; see `brand/NASHA-BRAND-STRATEGY.md` and `phase-one/09-brand-identity.md` (history).
 
 ## Rules for this repo
 1. Nothing is deleted. Rejected ideas move to `docs/decisions/REJECTED.md` with the reason.
@@ -72,3 +72,5 @@ Phase 2 v1 shipped: `beer/OPENING-BEER-PROGRAM-V1.md`, `food/MENU-DEVELOPMENT-MA
 ## Status (earlier, 2026-10-10)
 Phase One written; Phase 1.5 (research deepening + brand world) complete as a draft awaiting founder review. **No images generated yet** (external tool required); 57 prompts are ready; the first five (Visual Lock batch) are finalized in `visuals/generation-batch-01/`.
 **ARC-01-D is the APPROVED canonical day exterior (founder waiver 89/100, D-42).** **ARC-02 ON HOLD, tool-limited (D-47): no canonical night image; ARC-02-A is a non-canonical night-atmosphere reference; ARC-02-B/C rejected.** Next: BRW-01 (package prepared, not generated). Website: not started, by instruction.
+
+Sprint 6 selected NASHA (D-62) and added `brand/NASHA-BRAND-STRATEGY.md`, `brand/NASHA-IDENTITY-SYSTEM.md`, a working local website prototype (`website/`: `build.py`, `src/`, `data/`, `dist/`, `qa/`, `DESIGN-SYSTEM.md`), `tools/validate_site.py`, `visuals/NASHA-VISUAL-AUDIT-AND-GENERATION-QUEUE.md`, `ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md`, `marketing/NASHA-DOMAIN-AND-HANDLE-INVENTORY.md` and `marketing/NASHA-MARKETING-HOOKS.md`. To rebuild: `python3 website/build.py`. Nothing is deployed, owned, cleared or sold.

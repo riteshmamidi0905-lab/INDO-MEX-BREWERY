@@ -18,6 +18,8 @@ Context we believe (unverified): TABC alcohol permits attach to a permanent phys
 12. Confirm whether our use of "brewery" in a **name or marketing** before we hold a brewery licence is permitted and wise (`NASHA Brewing`, `NASHA Brewery & Kitchen` would be future uses).
 
 ## B. IP / trademark attorney
+> *Sprint 6:* the name NASHA is founder-selected, clearance pending. Use the focused briefing and questions in `ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md` first; the list below is the broader set.
+
 13. **Name strategy:** run knockout and full searches (USPTO word/design, state, common law, domains, handles) for the parent name candidates (including founder-proposed **NASHA**) across beer, restaurant services, mobile food, retail and merchandise classes; rank risk. (USPTO states it will not run or interpret searches for applicants; common-law use can matter, V-29.)
 14. **Filing strategy:** use-in-commerce vs intent-to-use; which marks (name, logo, tagline, beer names, "Labs") and when; budget; whether sub-brands (Kitchen, Brewing, Food Truck, Brewery & Kitchen, Labs) should be filed separately.
 15. **Meaning and cultural/linguistic risk:** how should an attorney treat a name whose meaning in a source language may be sensitive (e.g. alcohol-related words)? Any registrability or consumer-perception issue?

@@ -37,19 +37,19 @@ for f in sorted(glob.glob("food/t1-test-sheets/0[1-6]-*.md")):
 # 6 prohibited claims
 BAD=re.compile(r"customers preferred|tested well|pilot batch produced|market survey found|attorney confirmed|architect estimates|supplier confirmed|our food cost is|GLS-0[12] demonstrates|production-ready|is now validated",re.I)
 SKIP={"tools/validate_repo.py"}
-for f in glob.glob("**/*.md",recursive=True):
+for f in (x for x in glob.glob("**/*.md",recursive=True) if "node_modules" not in x):
     if f in SKIP or f.startswith(".git") or f.startswith("phase-one/"): continue
     for i,l in enumerate(open(f),1):
         if BAD.search(l) and not re.search(r"never|do not|don't|prohibited|not claim|must not|no .* has|until|before|only after|unless",l,re.I): warn(f"{f}:{i}: possible unperformed-event claim: {l.strip()[:110]}")
 # 7 halal wording
-for f in glob.glob("**/*.md",recursive=True):
+for f in (x for x in glob.glob("**/*.md",recursive=True) if "node_modules" not in x):
     if f.startswith("phase-one/"): continue
     for i,l in enumerate(open(f),1):
         if re.search(r"\bhalal\b",l,re.I) and not re.search(r"not|no |never|without|review|claim|unresolved|decision|policy|positioning|sourcing|certif|question|policy",l,re.I): warn(f"{f}:{i}: 'halal' without a not-claimed qualifier: {l.strip()[:110]}")
 # 8 broken references
 allfiles={os.path.basename(p) for p in glob.glob("**/*",recursive=True) if os.path.isfile(p)}
 missing=set()
-for f in glob.glob("**/*.md",recursive=True):
+for f in (x for x in glob.glob("**/*.md",recursive=True) if "node_modules" not in x):
     for m in re.findall(r"`([A-Za-z0-9_./\-]+\.(?:md|py|csv|png|json|webp))`",open(f).read()):
         if os.path.exists(m) or os.path.exists(os.path.join(os.path.dirname(f),m)): continue
         if os.path.basename(m) in allfiles: continue
@@ -100,7 +100,7 @@ print(f"founder asset register: {len(AS)} assets, owned-documented: {sum(1 for r
 WR=list(csv.DictReader(open("ip/website-asset-rights-register.csv")))
 for r in WR:
     if not (r["licence"] or "").strip() or not (r["status"] or "").strip(): fail(f"website asset {r['asset_id']}: missing licence/status")
-print(f"website asset rights register: {len(WR)} rows (no website exists yet)")
+print(f"website asset rights register: {len(WR)} rows")
 IV=list(csv.DictReader(open("investor/investor-universe-schema.csv")))
 for r in IV:
     if not (r["evidence_source_url"] or "").strip() or not (r["source_type"] or "").strip() or not (r["access_date"] or "").strip(): fail(f"investor row {r['investor_id']}: needs public evidence_source_url, source_type, access_date")
@@ -111,7 +111,7 @@ for f in ["investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","validation/MOBILE-
     t=open(f).read()
     if not re.search(r"No investor has been identified|No marketing has been done|NOT validated|No permit, cost",t): fail(f"{f}: missing honesty disclaimer")
 # 12 Track A docs must carry a status/label near the top
-TRACKA=["concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md","brand/BRAND-ARCHITECTURE-V1.md","experience/GUEST-EXPERIENCE-ARCHITECTURE-V1.md","architecture/SPATIAL-VISION-V1.md","visuals/VISUAL-WORLD-AND-BRIEFS-V1.md","food/MENU-STORYTELLING-V1.md","beer/BEER-BRAND-EXPERIENCE-V1.md","business/BUSINESS-MODEL-MAP-V1.md","business/FINANCIAL-MODEL-ARCHITECTURE-V1.md","investor/INVESTOR-STORY-ARCHITECTURE-V1.md","investor/DATA-ROOM-MAP.md","website/WEBSITE-IA-AND-EXPERIENCE-V1.md","docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md","validation/MOBILE-MVP-STRATEGY.md","validation/TRACTION-METRICS.md","investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","ip/IP-OWNERSHIP-FRAMEWORK.md","marketing/MARKETING-AND-BUILD-IN-PUBLIC-FOUNDATION.md","docs/decisions/ATTORNEY-QUESTIONS.md"]
+TRACKA=["concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md","brand/BRAND-ARCHITECTURE-V1.md","experience/GUEST-EXPERIENCE-ARCHITECTURE-V1.md","architecture/SPATIAL-VISION-V1.md","visuals/VISUAL-WORLD-AND-BRIEFS-V1.md","food/MENU-STORYTELLING-V1.md","beer/BEER-BRAND-EXPERIENCE-V1.md","business/BUSINESS-MODEL-MAP-V1.md","business/FINANCIAL-MODEL-ARCHITECTURE-V1.md","investor/INVESTOR-STORY-ARCHITECTURE-V1.md","investor/DATA-ROOM-MAP.md","website/WEBSITE-IA-AND-EXPERIENCE-V1.md","docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md","validation/MOBILE-MVP-STRATEGY.md","validation/TRACTION-METRICS.md","investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","ip/IP-OWNERSHIP-FRAMEWORK.md","marketing/MARKETING-AND-BUILD-IN-PUBLIC-FOUNDATION.md","docs/decisions/ATTORNEY-QUESTIONS.md","brand/NASHA-BRAND-STRATEGY.md","brand/NASHA-IDENTITY-SYSTEM.md","website/DESIGN-SYSTEM.md","visuals/NASHA-VISUAL-AUDIT-AND-GENERATION-QUEUE.md","ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md","marketing/NASHA-DOMAIN-AND-HANDLE-INVENTORY.md"]
 LABELS=re.compile(r"\[(CONCEPT|PROPOSED|DESIGN|STRUCTURE|PLAN|ANALYSIS|FOUNDER VISION)\]|`\[(CONCEPT|PROPOSED|DESIGN|STRUCTURE|PLAN|ANALYSIS)\]`")
 for f in TRACKA:
     if not os.path.exists(f): fail(f"missing Track A document {f}"); continue
@@ -121,5 +121,9 @@ for f in TRACKA:
 for f in glob.glob("investor/*.md")+["business/FINANCIAL-MODEL-ARCHITECTURE-V1.md"]:
     for i,l in enumerate(open(f),1):
         if re.search(r"\b(IRR|ROI|valuation of|expected return|guaranteed)\b",l) and not re.search(r"no |not |never|until|without",l,re.I): warn(f"{f}:{i}: return/valuation wording: {l.strip()[:100]}")
+# 14 website (Sprint 6): static + real-browser QA result checks
+r=subprocess.run([sys.executable,"tools/validate_site.py"],capture_output=True,text=True)
+print(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else "")
+if r.returncode!=0: fail("validate_site failed:\n"+r.stdout)
 print(f"\nSUMMARY: {len(fails)} fail, {len(warns)} warn")
 sys.exit(1 if fails else 0)

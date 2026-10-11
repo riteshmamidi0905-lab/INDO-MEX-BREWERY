@@ -1,0 +1,67 @@
+// Real browser QA: overflow, axe (WCAG 2.2 AA), page weight, CLS/LCP, console errors, no-JS render.
+import { chromium } from "playwright-core";
+import fs from "fs"; import path from "path"; import http from "http";
+import { fileURLToPath } from "url";
+const here = path.dirname(fileURLToPath(import.meta.url));
+const dist = path.join(here, "..", "dist");
+const axeSrc = fs.readFileSync(path.join(here, "node_modules/axe-core/axe.min.js"), "utf8");
+const types = { ".html":"text/html", ".css":"text/css", ".js":"text/javascript", ".woff2":"font/woff2", ".txt":"text/plain" };
+const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split("?")[0]); if (p === "/") p = "/index.html";
+  const f = path.join(dist, p); if (!f.startsWith(dist) || !fs.existsSync(f)) { r.writeHead(404); return r.end(); }
+  r.writeHead(200, { "content-type": types[path.extname(f)] || "application/octet-stream" }); fs.createReadStream(f).pipe(r); });
+await new Promise(r => srv.listen(0, r)); const base = `http://127.0.0.1:${srv.address().port}`;
+const pages = fs.readdirSync(dist).filter(f => f.endsWith(".html"));
+const widths = [320, 390, 768, 1280, 1440, 1920];
+const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome", args: ["--no-sandbox"] });
+const out = { date: new Date().toISOString(), pages: {}, summary: {} };
+const reqs = new Set();
+for (const pg of pages) {
+  const rec = { overflow: {}, axe: {}, console: [], bytes: 0, requests: [], perf: {}, noJs: {} };
+  for (const scheme of ["dark", "light"]) {
+    const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, colorScheme: scheme });
+    const page = await ctx.newPage();
+    page.on("console", m => { if (["error", "warning"].includes(m.type())) rec.console.push(m.text()); });
+    page.on("pageerror", e => rec.console.push("pageerror " + e.message));
+    page.on("request", r => { if (!r.url().startsWith(base)) rec.console.push("EXTERNAL REQUEST " + r.url()); });
+    await page.addInitScript(() => { window.__cls = 0; new PerformanceObserver(l => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__cls += e.value; }).observe({ type: "layout-shift", buffered: true });
+      window.__lcp = 0; new PerformanceObserver(l => { for (const e of l.getEntries()) window.__lcp = e.startTime; }).observe({ type: "largest-contentful-paint", buffered: true }); });
+    let bytes = 0; page.on("response", async r => { try { const b = await r.body(); bytes += b.length; if (scheme === "dark") rec.requests.push(r.url().replace(base, "")); } catch {} });
+    await page.goto(`${base}/${pg}`, { waitUntil: "networkidle" });
+    await page.evaluate(() => document.fonts.ready);
+    await page.addScriptTag({ content: axeSrc });
+    const res = await page.evaluate(() => axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"] } }));
+    rec.axe[scheme] = { violations: res.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.length, sample: v.nodes[0]?.html?.slice(0, 140), why: v.nodes[0]?.failureSummary?.slice(0, 200) })), passes: res.passes.length, incomplete: res.incomplete.map(i => i.id) };
+    if (scheme === "dark") { rec.bytes = bytes; rec.perf = await page.evaluate(() => ({ cls: Number(window.__cls.toFixed(4)), lcp_ms: Math.round(window.__lcp) })); }
+    await ctx.close();
+  }
+  for (const w of widths) {
+    const ctx = await browser.newContext({ viewport: { width: w, height: 900 } }); const page = await ctx.newPage();
+    await page.goto(`${base}/${pg}`, { waitUntil: "networkidle" });
+    rec.overflow[w] = await page.evaluate(() => ({ scrollW: document.documentElement.scrollWidth, clientW: document.documentElement.clientWidth }));
+    rec.overflow[w].ok = rec.overflow[w].scrollW <= rec.overflow[w].clientW;
+    await ctx.close();
+  }
+  { const ctx = await browser.newContext({ javaScriptEnabled: false }); const page = await ctx.newPage(); await page.goto(`${base}/${pg}`);
+    rec.noJs = await page.evaluate(() => ({ h1: document.querySelectorAll("h1").length, textLen: document.body.innerText.length, hiddenFilters: [...document.querySelectorAll("[data-filter-group]")].every(e => getComputedStyle(e).display === "none"), items: document.querySelectorAll("[data-item]").length, visibleItems: [...document.querySelectorAll("[data-item]")].filter(e => e.offsetParent !== null).length }));
+    await ctx.close(); }
+  { const ctx = await browser.newContext({ viewport: { width: 390, height: 800 }, reducedMotion: "reduce" }); const page = await ctx.newPage(); await page.goto(`${base}/${pg}`);
+    rec.reducedMotion = await page.evaluate(() => [...document.querySelectorAll(".glow,.steam")].every(e => getComputedStyle(e).animationName === "none")); await ctx.close(); }
+  out.pages[pg] = rec;
+}
+// Filter interaction + keyboard test on food page
+{ const ctx = await browser.newContext({ viewport: { width: 390, height: 800 } }); const page = await ctx.newPage(); await page.goto(`${base}/food.html`);
+  const total = await page.locator("[data-item]").count();
+  await page.locator('input[name=diet]').check();
+  const veg = await page.locator("[data-item]:not([hidden])").count();
+  const status = await page.locator("#dish-status").innerText();
+  await page.locator("[data-reset]").click(); const after = await page.locator("[data-item]:not([hidden])").count();
+  await page.reload(); await page.keyboard.press("Tab"); const first = await page.evaluate(() => document.activeElement.className || document.activeElement.tagName);
+  out.interaction = { total, vegFiltered: veg, statusText: status, afterReset: after, firstTab: first, firstTabIsSkipLink: first === "skip" }; await ctx.close(); }
+await browser.close(); srv.close();
+const allAxe = Object.values(out.pages).flatMap(p => Object.values(p.axe).flatMap(a => a.violations));
+out.summary = { pages: pages.length, axeViolations: allAxe.length, overflowFailures: Object.values(out.pages).flatMap(p => Object.entries(p.overflow).filter(([, v]) => !v.ok)).length,
+  maxBytes: Math.max(...Object.values(out.pages).map(p => p.bytes)), maxCls: Math.max(...Object.values(out.pages).map(p => p.perf.cls)), maxLcpMs: Math.max(...Object.values(out.pages).map(p => p.perf.lcp_ms)),
+  consoleIssues: Object.values(out.pages).flatMap(p => p.console).length };
+fs.writeFileSync(path.join(here, "results/latest.json"), JSON.stringify(out, null, 1));
+console.log(JSON.stringify(out.summary), JSON.stringify(out.interaction));
+for (const [pg, p] of Object.entries(out.pages)) for (const [s, a] of Object.entries(p.axe)) for (const v of a.violations) console.log(pg, s, v.id, v.impact, v.nodes, v.sample, "|", v.why);
