@@ -48,7 +48,7 @@ def glass(uid, beer="hefeweizen", fill=0.86, kind="weizen", animate=True, title=
             f'<rect x="0" y="{liq_top:.1f}" width="120" height="{bottom-liq_top+4:.1f}" fill="#fff" opacity="{haze}"/>{bubbles}{cond}<rect x="0" y="0" width="120" height="280" fill="url(#{uid}g)"/></g>'
             f'<path d="{outline}" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2.2"/>'
             f'<path d="M34 {bottom-48} Q60 {bottom-40} 86 {bottom-48}" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="3.5"/>')  # collar ring
-    return _svg("0 0 120 284", uid, t, "A tall beer glass with a raised ring (collar) near the base, drawn as a concept illustration. Not a manufactured glass.", body, "glass-art" + (" big" if big else ""))
+    return _svg("0 0 120 284", uid, t, "A tall beer glass with a raised ring (collar) near the base, drawn as a concept illustration. Not a dimensioned drawing and not a manufactured glass.", body, "glass-art" + (" big" if big else ""))
 
 def plate(uid, kind):
     ink = PAL

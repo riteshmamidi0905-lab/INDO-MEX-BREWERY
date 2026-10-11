@@ -1,6 +1,6 @@
 {
- "distHash": "5b1bbd5d8418552e",
- "date": "2026-10-11T03:36:37.425Z",
+ "distHash": "9ad0ac641588a861",
+ "date": "2026-10-11T03:50:48.175Z",
  "pages": {
   "about.html": {
    "overflow": {
@@ -52,15 +52,15 @@
    "console": [],
    "bytes": 99508,
    "requests": [
+    "/about.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/about.html",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 156
+    "lcp_ms": 80
    },
    "noJs": {
     "h1": 1,
@@ -124,7 +124,7 @@
     }
    },
    "console": [],
-   "bytes": 193606,
+   "bytes": 194086,
    "requests": [
     "/styles.css",
     "/beer.html",
@@ -135,7 +135,7 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 132
+    "lcp_ms": 120
    },
    "noJs": {
     "h1": 1,
@@ -144,7 +144,7 @@
     "items": 9,
     "visibleItems": 9
    },
-   "initialBytes": 193606,
+   "initialBytes": 194086,
    "reducedMotion": true
   },
   "crossing.html": {
@@ -260,14 +260,14 @@
    "bytes": 116215,
    "requests": [
     "/crossing.html",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
+    "/app.js",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 76
+    "lcp_ms": 116
    },
    "noJs": {
     "h1": 1,
@@ -341,7 +341,7 @@
     }
    },
    "console": [],
-   "bytes": 169221,
+   "bytes": 169311,
    "requests": [
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
@@ -352,7 +352,7 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 88
+    "lcp_ms": 100
    },
    "noJs": {
     "h1": 1,
@@ -361,7 +361,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 169221,
+   "initialBytes": 169311,
    "reducedMotion": true
   },
   "food.html": {
@@ -412,18 +412,18 @@
     }
    },
    "console": [],
-   "bytes": 209778,
+   "bytes": 210018,
    "requests": [
+    "/food.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/food.html",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
     "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 100
+    "lcp_ms": 116
    },
    "noJs": {
     "h1": 1,
@@ -432,7 +432,7 @@
     "items": 16,
     "visibleItems": 16
    },
-   "initialBytes": 209778,
+   "initialBytes": 210018,
    "reducedMotion": true
   },
   "index.html": {
@@ -529,7 +529,7 @@
     }
    },
    "console": [],
-   "bytes": 250405,
+   "bytes": 250525,
    "requests": [
     "/index.html",
     "/styles.css",
@@ -540,7 +540,7 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 100
    },
    "noJs": {
     "h1": 1,
@@ -549,7 +549,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 250405,
+   "initialBytes": 250525,
    "reducedMotion": true
   },
   "labs.html": {
@@ -617,14 +617,14 @@
    "bytes": 100861,
    "requests": [
     "/labs.html",
-    "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 64
+    "lcp_ms": 72
    },
    "noJs": {
     "h1": 1,
@@ -764,18 +764,18 @@
    "console": [],
    "bytes": 196511,
    "requests": [
-    "/styles.css",
     "/space.html",
+    "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
     "/images/NV-SPACE-ENTRANCE-d-640.avif",
-    "/images/NV-SPACE-EXT-DAY-d-640.avif",
-    "/images/NV-BREWERY-HALL-d-640.avif"
+    "/images/NV-BREWERY-HALL-d-640.avif",
+    "/images/NV-SPACE-EXT-DAY-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 60
+    "lcp_ms": 104
    },
    "noJs": {
     "h1": 1,
@@ -792,16 +792,16 @@
   "pages": 8,
   "axeViolations": 0,
   "overflowFailures": 0,
-  "maxBytes": 250405,
-  "maxInitialBytes": 250405,
-  "homeInitialBytes": 250405,
+  "maxBytes": 250525,
+  "maxInitialBytes": 250525,
+  "homeInitialBytes": 250525,
   "maxCls": 0,
-  "maxLcpMs": 156,
+  "maxLcpMs": 120,
   "consoleIssues": 0
  },
  "slow": {
   "profile": "1.6 Mbps, 150 ms RTT, 390px viewport",
-  "heroReadyMs": 1281,
+  "heroReadyMs": 1291,
   "heroSrc": "/images/NV-HERO-01-m-480.avif"
  },
  "imagesBlocked": {

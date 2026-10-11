@@ -1,5 +1,5 @@
 {
- "date": "2026-10-11T03:41:42.297Z",
+ "date": "2026-10-11T03:52:54.882Z",
  "tool": "lighthouse 13.5.0",
  "runs": {
   "index.html:mobile": {
@@ -7,7 +7,7 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 1882,
+   "lcpMs": 1885,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 201
@@ -17,17 +17,17 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 424,
+   "lcpMs": 427,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 246
   },
   "food.html:mobile": {
-   "performance": 98,
+   "performance": 99,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 1977,
+   "lcpMs": 1957,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 206
@@ -37,7 +37,7 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 443,
+   "lcpMs": 486,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 206
@@ -47,27 +47,27 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 1960,
+   "lcpMs": 1954,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 190
+   "transferKB": 191
   },
   "beer.html:desktop": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 442,
+   "lcpMs": 443,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 190
+   "transferKB": 191
   },
   "space.html:mobile": {
-   "performance": 100,
+   "performance": 99,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 1878,
+   "lcpMs": 1877,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 206
@@ -77,7 +77,7 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 465,
+   "lcpMs": 425,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 262
