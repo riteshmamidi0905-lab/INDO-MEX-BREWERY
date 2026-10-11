@@ -13,7 +13,9 @@ await new Promise(r => srv.listen(0, r)); const base = `http://127.0.0.1:${srv.a
 const pages = fs.readdirSync(dist).filter(f => f.endsWith(".html"));
 const widths = [320, 390, 768, 1280, 1440, 1920];
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome", args: ["--no-sandbox"] });
-const out = { date: new Date().toISOString(), pages: {}, summary: {} };
+import crypto from "crypto";
+const distHash = crypto.createHash("sha256").update(fs.readdirSync(dist).filter(f => /\.(html|css|js)$/.test(f)).sort().map(f => fs.readFileSync(path.join(dist, f))).reduce((a, b) => Buffer.concat([a, b]), Buffer.alloc(0))).digest("hex").slice(0, 16);
+const out = { distHash, date: new Date().toISOString(), pages: {}, summary: {}, slow: {}, imagesBlocked: {} };
 const reqs = new Set();
 for (const pg of pages) {
   const rec = { overflow: {}, axe: {}, console: [], bytes: 0, requests: [], perf: {}, noJs: {} };
@@ -27,7 +29,10 @@ for (const pg of pages) {
       window.__lcp = 0; new PerformanceObserver(l => { for (const e of l.getEntries()) window.__lcp = e.startTime; }).observe({ type: "largest-contentful-paint", buffered: true }); });
     let bytes = 0; page.on("response", async r => { try { const b = await r.body(); bytes += b.length; if (scheme === "dark") rec.requests.push(r.url().replace(base, "")); } catch {} });
     await page.goto(`${base}/${pg}`, { waitUntil: "networkidle" });
+    if (scheme === "dark") rec.initialBytes = bytes;
     await page.evaluate(() => document.fonts.ready);
+    await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 500) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 60)); } window.scrollTo(0, 0); });
+    await page.waitForTimeout(3000);
     await page.addScriptTag({ content: axeSrc });
     const res = await page.evaluate(() => axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"] } }));
     rec.axe[scheme] = { violations: res.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.length, sample: v.nodes[0]?.html?.slice(0, 140), why: v.nodes[0]?.failureSummary?.slice(0, 200) })), passes: res.passes.length, incomplete: res.incomplete.map(i => i.id) };
@@ -48,6 +53,17 @@ for (const pg of pages) {
     rec.reducedMotion = await page.evaluate(() => [...document.querySelectorAll(".glow,.steam")].every(e => getComputedStyle(e).animationName === "none")); await ctx.close(); }
   out.pages[pg] = rec;
 }
+// Slow connection (CDP, about 1.6 Mbps down, 150 ms RTT) on the home page: time to hero image decoded
+{ const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const page = await ctx.newPage(); const cdp = await ctx.newCDPSession(page);
+  await cdp.send("Network.enable"); await cdp.send("Network.emulateNetworkConditions", { offline: false, latency: 150, downloadThroughput: (1.6 * 1024 * 1024) / 8, uploadThroughput: (750 * 1024) / 8 });
+  const t0 = Date.now(); await page.goto(`${base}/index.html`, { waitUntil: "load" });
+  await page.waitForFunction(() => { const i = document.querySelector(".fig-hero img"); return i && i.complete && i.naturalWidth > 0; }, null, { timeout: 30000 });
+  const ms = Date.now() - t0; const used = await page.evaluate(() => document.querySelector(".fig-hero img").currentSrc);
+  out.slow = { profile: "1.6 Mbps, 150 ms RTT, 390px viewport", heroReadyMs: ms, heroSrc: used.replace(base, "") }; await ctx.close(); }
+// Image failure: block all images, check layout holds and alt text is present
+for (const pg of ["index.html", "space.html"]) { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const page = await ctx.newPage();
+  await page.route(/\.(avif|webp|jpg)$/, r => r.abort()); await page.goto(`${base}/${pg}`, { waitUntil: "load" });
+  out.imagesBlocked[pg] = await page.evaluate(() => ({ imgs: document.querySelectorAll("figure img").length, withAlt: [...document.querySelectorAll("figure img")].filter(i => i.alt && i.alt.length > 20).length, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth, h1: !!document.querySelector("h1") })); await ctx.close(); }
 // Filter interaction + keyboard test on food page
 { const ctx = await browser.newContext({ viewport: { width: 390, height: 800 } }); const page = await ctx.newPage(); await page.goto(`${base}/food.html`);
   const total = await page.locator("[data-item]").count();
@@ -60,7 +76,7 @@ for (const pg of pages) {
 await browser.close(); srv.close();
 const allAxe = Object.values(out.pages).flatMap(p => Object.values(p.axe).flatMap(a => a.violations));
 out.summary = { pages: pages.length, axeViolations: allAxe.length, overflowFailures: Object.values(out.pages).flatMap(p => Object.entries(p.overflow).filter(([, v]) => !v.ok)).length,
-  maxBytes: Math.max(...Object.values(out.pages).map(p => p.bytes)), maxCls: Math.max(...Object.values(out.pages).map(p => p.perf.cls)), maxLcpMs: Math.max(...Object.values(out.pages).map(p => p.perf.lcp_ms)),
+  maxBytes: Math.max(...Object.values(out.pages).map(p => p.bytes)), maxInitialBytes: Math.max(...Object.values(out.pages).map(p => p.initialBytes)), homeInitialBytes: out.pages["index.html"].initialBytes, maxCls: Math.max(...Object.values(out.pages).map(p => p.perf.cls)), maxLcpMs: Math.max(...Object.values(out.pages).map(p => p.perf.lcp_ms)),
   consoleIssues: Object.values(out.pages).flatMap(p => p.console).length };
 fs.writeFileSync(path.join(here, "results/latest.json"), JSON.stringify(out, null, 1));
 console.log(JSON.stringify(out.summary), JSON.stringify(out.interaction));

@@ -4,6 +4,7 @@ Static checks: internal links and anchors, HTML semantics (lang, title, one h1, 
 no third-party resources or trackers, noindex, prohibited claims, rights-register coverage, fonts licensed, performance budget,
 and that the committed real-browser QA result (website/qa/results/latest.json) has no violations and is not stale versus dist/."""
 import csv, glob, hashlib, json, os, re, sys
+from html import unescape as html_unescape
 from html.parser import HTMLParser
 D="website/dist"; fails=[]
 def fail(m): fails.append(m); print("FAIL",m)
@@ -29,6 +30,14 @@ class P(HTMLParser):
     def handle_data(s,d):
         if s._t: s.title+=d
         elif not s.inscript: s.text.append(d)
+# ---- protected-material gate: nothing but web-necessary assets in dist ----
+ALLOWED_EXT={".html",".css",".js",".woff2",".txt",".avif",".webp",".jpg"}
+for x in glob.glob(D+"/**/*",recursive=True):
+    if os.path.isfile(x):
+        ext=os.path.splitext(x)[1].lower(); rel=os.path.relpath(x,D)
+        if ext not in ALLOWED_EXT: fail(f"dist file type not allowed (possible source/master leak): {rel}")
+        if re.search(r"logo|master|exploration|rejected|attorney|trademark|\.psd|\.ai$|\.fig|\.sketch|\.eps",rel,re.I): fail(f"dist file name suggests protected material: {rel}")
+if os.path.exists(D+"/brand") or os.path.exists(D+"/ip"): fail("dist contains brand/ or ip/ directory")
 files=sorted(glob.glob(D+"/*.html"))
 if not files: fail("no website/dist/*.html (run python3 website/build.py)"); print("SITE:",len(fails),"fail"); sys.exit(1)
 pages={}
@@ -62,6 +71,27 @@ for f in files:
             if re.search(r"\b(no|not|never|nothing|none|without|isn.?t|aren.?t)\b",ctx,re.I) and pat!=r"\bhalal\b": continue
             fail(f"{f}: {why}: …{ctx.strip()}…")
     if not re.search(r"in development|Illustrations show a concept|concept",t,re.I): fail(f"{f}: development/concept disclosure missing")
+import csv as _csv
+MAN={r["id"]:r for r in _csv.DictReader(open("visuals/NASHA-VISUAL-MANIFEST.csv",encoding="utf-8"))}
+for fn,p in pages.items():
+    h=open(os.path.join(D,fn),encoding="utf-8").read()
+    for m in re.finditer(r'<figure class="fig[^"]*" data-vid="([^"]+)"[^>]*>(.*?)</figure>',h,re.S):
+        vid,inner=m.group(1),m.group(2)
+        if vid not in MAN: fail(f"{fn}: figure {vid} not in visual manifest"); continue
+        r=MAN[vid]
+        if r["status"].startswith("NOT GENERATED"): fail(f"{fn}: unbuilt planned asset {vid} used on a page")
+        if "class=\"tag\"" not in inner or "Concept" not in inner: fail(f"{fn}: figure {vid} lacks a concept label")
+        if "<img" in inner:
+            im=re.search(r"<img[^>]*>",inner).group(0)
+            if not re.search(r'width="\d+" height="\d+"',im): fail(f"{fn}: {vid} img lacks width/height")
+            if not re.search(r'alt="[^"]{25,}"',im): fail(f"{fn}: {vid} alt text missing or too short")
+            if "Concept visualization" not in re.sub(r"\s+"," ",re.sub(r"<[^>]+>","",html_unescape(r["alt_text"]))) and "Concept visualization" not in r["alt_text"]: fail(f"{fn}: {vid} alt should say it is a concept visualization")
+            lazy="loading=\"lazy\"" in im
+            if fn=="index.html" and vid=="NV-HERO-01":
+                if lazy or "fetchpriority=\"high\"" not in im: fail("hero image must be eager with fetchpriority high")
+            elif not lazy: fail(f"{fn}: {vid} below-the-fold image must be lazy")
+            if "image/avif" not in inner or "image/webp" not in inner or "(max-width: 700px)" not in inner: fail(f"{fn}: {vid} needs avif+webp sources and a mobile composition")
+        if r["rights_status"] not in ("PROVISIONAL-LOCAL-ONLY","OWNED-BY-PROJECT-AI-ASSISTED"): fail(f"{fn}: {vid} has unapproved rights status {r['rights_status']}")
 names={os.path.basename(x) for x in glob.glob(D+"/**/*",recursive=True) if os.path.isfile(x)}
 for fn,p in pages.items():
     for l in p.links:
@@ -81,12 +111,20 @@ if "prefers-reduced-motion" not in css: fail("css lacks prefers-reduced-motion")
 for f in glob.glob(D+"/fonts/*.woff2"):
     fam="Inter" if "inter" in f else "InstrumentSerif"
     if not os.path.exists(f"{D}/fonts/LICENSE-{fam}.txt"): fail(f"font {f} has no licence file in dist")
+prov=[r for r in csv.DictReader(open("ip/website-asset-rights-register.csv")) if r["status"]=="provisional-local-only"]
+print(f"provisional-rights images (blocked from public launch until cleared): {len(prov)}")
+for f in files:
+    if prov and 'name="robots" content="noindex' not in open(f,encoding="utf-8").read(): fail(f"{f}: provisional-rights images present, page must stay noindex")
+    t=open(f,encoding="utf-8").read()
+    if "temporary typographic placeholder" not in t: fail(f"{f}: footer must disclose the temporary typographic wordmark")
+    if 'rel="icon" href="data:,"' not in t: fail(f"{f}: favicon must stay empty until a logo is approved")
 # rights register coverage
 reg={r["name"]:r for r in csv.DictReader(open("ip/website-asset-rights-register.csv"))}
 allfiles=[os.path.relpath(x,D).replace(os.sep,"/") for x in glob.glob(D+"/**/*",recursive=True) if os.path.isfile(x)]
 for rel in allfiles:
     key=rel if not rel.startswith("fonts/") else None
-    if rel.startswith("fonts/"): ok=any(rel.split("/")[1] in n for n in reg)
+    if rel.startswith("images/"): ok=any(rel.split("/")[1].startswith(n+"-") for n in reg)
+    elif rel.startswith("fonts/"): ok=any(rel.split("/")[1] in n for n in reg)
     else: ok=rel in reg
     if not ok: fail(f"asset {rel} not covered by ip/website-asset-rights-register.csv (run website/build.py)")
 for r in reg.values():
@@ -94,6 +132,8 @@ for r in reg.values():
 # performance budget (gzip-free raw bytes of HTML+CSS+JS per page, fonts counted separately)
 for f in files:
     b=os.path.getsize(f)+os.path.getsize(D+"/styles.css")+os.path.getsize(D+"/app.js")
+    if b>150_000: fail(f"{f}: HTML+CSS+JS {b} bytes exceeds 150 KB budget")
+    b=0
     if b>150_000: fail(f"{f}: HTML+CSS+JS {b} bytes exceeds 150 KB budget")
 fb=sum(os.path.getsize(x) for x in glob.glob(D+"/fonts/*.woff2"))
 if fb>200_000: fail(f"fonts {fb} bytes exceed 200 KB budget")
@@ -104,6 +144,12 @@ else:
     q=json.load(open(qp)); s=q["summary"]
     if s["axeViolations"] or s["overflowFailures"] or s["consoleIssues"]: fail(f"QA result has issues: {s}")
     if s["maxCls"]>0.1 or s["maxLcpMs"]>2500: fail(f"QA performance over budget: {s}")
+    if s["homeInitialBytes"]>450_000: fail(f"home initial transfer {s['homeInitialBytes']} bytes exceeds 450 KB budget")
+    if q["slow"].get("heroReadyMs",1e9)>6000: fail(f"hero not ready within 6 s on the slow profile: {q['slow']}")
+    for pg,v in q["imagesBlocked"].items():
+        if v["overflow"] or v["withAlt"]!=v["imgs"]: fail(f"image-failure test failed on {pg}: {v}")
+    h=hashlib.sha256(b"".join(open(os.path.join(D,f),"rb").read() for f in sorted(os.listdir(D)) if re.search(r"\.(html|css|js)$",f))).hexdigest()[:16]
+    if q.get("distHash")!=h: fail("QA results are stale: dist changed since run-qa.mjs (rerun build and QA)")
     if set(q["pages"])!=set(pages): fail("QA result covers different pages than dist")
     if not q["interaction"]["firstTabIsSkipLink"]: fail("QA: skip link is not first tab stop")
 print(f"SITE: {len(files)} pages, {len(allfiles)} files, {len(fails)} fail")

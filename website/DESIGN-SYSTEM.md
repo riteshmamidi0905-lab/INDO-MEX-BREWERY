@@ -28,3 +28,12 @@ HTML+CSS+JS ≤ 150 KB per page; fonts ≤ 200 KB; CLS ≤ 0.1; LCP ≤ 2.5 s (l
 
 ## 9. Known QA limits (honest)
 axe reported **0 violations** but marked colour contrast as **"incomplete" (needs manual check) on `index.html` and `beer.html`** (text over gradient/SVG areas and the glass icons). Manual contrast review is owed. No real-device, no screen-reader, no slow-network tests were run; LCP/CLS are from a local server in headless Chromium.
+
+## 10. Sprint 7 additions
+- **Pages:** Experience, Space added; Home rebuilt as ten beats; Food, Beer, The Crossing rebuilt editorially; Labs shows the pop-up illustration.
+- **Image pipeline** (`website/images.py`): desktop and mobile (4:5) compositions per raster, AVIF + WebP + JPEG fallback, 480-1920 px widths, explicit dimensions, lazy loading except the preloaded hero. Sources live in `visuals/web-source/`; the canonical list is `visuals/NASHA-VISUAL-MANIFEST.csv`. A manifest row with a raster source becomes a `<picture>`; otherwise a drawn illustration (`website/art.py`) stands in.
+- **Labels:** each figure carries a small corner tag, "Concept visualization" or "Concept illustration".
+- **Rights:** AI-made rasters are `PROVISIONAL-LOCAL-ONLY`; the validator keeps every page `noindex` while any exist.
+- **Logo protection (D-66):** the NASHA lettering is a disclosed temporary typographic placeholder; the favicon is empty; `dist/` may contain only web assets; nothing from `brand/logo/` is ever read.
+- **Motion:** flame flicker, rising bubbles, reveal-on-scroll, Two-Pour steps and beer-colour preview; all static under `prefers-reduced-motion`.
+- **QA additions:** slow-connection profile, image-failure test, stale-QA hash check, home initial-transfer budget (450 KB).

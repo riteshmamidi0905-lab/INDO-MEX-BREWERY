@@ -1,5 +1,5 @@
 area,design_0_5,evidence_0_5,evidence_basis,evidence_ref,primary_or_external_evidence,what_blocks_readiness
-Concept,3,1,Designed in depth; background evidence only T1-T3 secondary,research/VERIFICATION-LEDGER.md,no,No customer validation; no professional review
+Concept,4,1,"Designed in depth incl. Experience, Space, pairing and menu visual system; background evidence only T1-T3 secondary",research/VERIFICATION-LEDGER.md,no,"No customer validation; no professional review"
 Brand,3,0,"Founder-selected name NASHA; strategy and identity system proposed; no logo; no clearance; no advisors",brand/NASHA-BRAND-STRATEGY.md,no,"Trademark clearance; designed logo; cultural advisor review"
 Market,2,1,Secondary research (T1-T3) + 19 LOW-confidence price observations,research/market-survey/observations.csv,no,Completed price survey; Austin demand sizing
 Customer,2,0,Interview instrument ready; ZERO interviews,research/customer-discovery/INTERVIEW-GUIDE.md,no,30 real interviews

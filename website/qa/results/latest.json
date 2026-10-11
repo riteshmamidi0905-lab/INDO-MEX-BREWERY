@@ -1,5 +1,6 @@
 {
- "date": "2026-10-11T01:54:37.260Z",
+ "distHash": "4dca9fa1acdef77e",
+ "date": "2026-10-11T02:26:18.106Z",
  "pages": {
   "about.html": {
    "overflow": {
@@ -47,25 +48,26 @@
     }
    },
    "console": [],
-   "bytes": 85443,
+   "bytes": 97967,
    "requests": [
-    "/about.html",
     "/styles.css",
+    "/about.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 72
+    "lcp_ms": 64
    },
    "noJs": {
     "h1": 1,
-    "textLen": 2734,
+    "textLen": 4305,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
+   "initialBytes": 97967,
    "reducedMotion": true
   },
   "beer.html": {
@@ -104,39 +106,41 @@
    "axe": {
     "dark": {
      "violations": [],
-     "passes": 45,
+     "passes": 47,
      "incomplete": [
-      "color-contrast"
+      "aria-prohibited-attr"
      ]
     },
     "light": {
      "violations": [],
-     "passes": 45,
+     "passes": 47,
      "incomplete": [
-      "color-contrast"
+      "aria-prohibited-attr"
      ]
     }
    },
    "console": [],
-   "bytes": 92316,
+   "bytes": 188223,
    "requests": [
     "/beer.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
+    "/app.js",
+    "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 68
+    "lcp_ms": 116
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4014,
+    "textLen": 7161,
     "hiddenFilters": true,
     "items": 9,
     "visibleItems": 9
    },
+   "initialBytes": 188223,
    "reducedMotion": true
   },
   "crossing.html": {
@@ -175,17 +179,21 @@
    "axe": {
     "dark": {
      "violations": [],
-     "passes": 35,
-     "incomplete": []
+     "passes": 42,
+     "incomplete": [
+      "color-contrast"
+     ]
     },
     "light": {
      "violations": [],
-     "passes": 35,
-     "incomplete": []
+     "passes": 42,
+     "incomplete": [
+      "color-contrast"
+     ]
     }
    },
    "console": [],
-   "bytes": 88637,
+   "bytes": 114707,
    "requests": [
     "/crossing.html",
     "/styles.css",
@@ -195,15 +203,89 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 72
+    "lcp_ms": 68
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4399,
+    "textLen": 5593,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
+   "initialBytes": 114707,
+   "reducedMotion": true
+  },
+  "experience.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 43,
+     "incomplete": [
+      "color-contrast"
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 43,
+     "incomplete": [
+      "color-contrast"
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 164422,
+   "requests": [
+    "/styles.css",
+    "/experience.html",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/images/NV-SPACE-ENTRANCE-d-640.avif"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 92
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 3825,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 164422,
    "reducedMotion": true
   },
   "food.html": {
@@ -242,35 +324,37 @@
    "axe": {
     "dark": {
      "violations": [],
-     "passes": 45,
+     "passes": 46,
      "incomplete": []
     },
     "light": {
      "violations": [],
-     "passes": 45,
+     "passes": 46,
      "incomplete": []
     }
    },
    "console": [],
-   "bytes": 98568,
+   "bytes": 201894,
    "requests": [
-    "/food.html",
     "/styles.css",
+    "/food.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
-    "/fonts/inter-latin-wght-normal.woff2"
+    "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 64
+    "lcp_ms": 92
    },
    "noJs": {
     "h1": 1,
-    "textLen": 7840,
+    "textLen": 14218,
     "hiddenFilters": true,
     "items": 16,
     "visibleItems": 16
    },
+   "initialBytes": 201894,
    "reducedMotion": true
   },
   "index.html": {
@@ -309,40 +393,41 @@
    "axe": {
     "dark": {
      "violations": [],
-     "passes": 43,
+     "passes": 44,
      "incomplete": [
       "color-contrast"
      ]
     },
     "light": {
      "violations": [],
-     "passes": 43,
+     "passes": 44,
      "incomplete": [
       "color-contrast"
      ]
     }
    },
    "console": [],
-   "bytes": 122422,
+   "bytes": 243595,
    "requests": [
-    "/styles.css",
     "/index.html",
+    "/styles.css",
+    "/images/NV-HERO-01-d-1600.avif",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js",
-    "/fonts/instrument-serif-latin-400-italic.woff2"
+    "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 132
+    "lcp_ms": 84
    },
    "noJs": {
     "h1": 1,
-    "textLen": 6337,
+    "textLen": 5798,
     "hiddenFilters": true,
-    "items": 6,
-    "visibleItems": 6
+    "items": 0,
+    "visibleItems": 0
    },
+   "initialBytes": 243595,
    "reducedMotion": true
   },
   "labs.html": {
@@ -381,46 +466,147 @@
    "axe": {
     "dark": {
      "violations": [],
-     "passes": 35,
-     "incomplete": []
+     "passes": 41,
+     "incomplete": [
+      "color-contrast"
+     ]
     },
     "light": {
      "violations": [],
-     "passes": 35,
-     "incomplete": []
+     "passes": 41,
+     "incomplete": [
+      "color-contrast"
+     ]
     }
    },
    "console": [],
-   "bytes": 85397,
+   "bytes": 99479,
    "requests": [
     "/labs.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
+    "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 64
+    "lcp_ms": 80
    },
    "noJs": {
     "h1": 1,
-    "textLen": 2391,
+    "textLen": 3001,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
+   "initialBytes": 99479,
+   "reducedMotion": true
+  },
+  "space.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 43,
+     "incomplete": [
+      "color-contrast"
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 43,
+     "incomplete": [
+      "color-contrast"
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 195315,
+   "requests": [
+    "/styles.css",
+    "/space.html",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/app.js",
+    "/images/NV-SPACE-EXT-DAY-d-640.avif",
+    "/images/NV-SPACE-ENTRANCE-d-640.avif",
+    "/images/NV-BREWERY-HALL-d-640.avif"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 76
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 3575,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 195315,
    "reducedMotion": true
   }
  },
  "summary": {
-  "pages": 6,
+  "pages": 8,
   "axeViolations": 0,
   "overflowFailures": 0,
-  "maxBytes": 122422,
+  "maxBytes": 243595,
+  "maxInitialBytes": 243595,
+  "homeInitialBytes": 243595,
   "maxCls": 0,
-  "maxLcpMs": 132,
+  "maxLcpMs": 116,
   "consoleIssues": 0
+ },
+ "slow": {
+  "profile": "1.6 Mbps, 150 ms RTT, 390px viewport",
+  "heroReadyMs": 1261,
+  "heroSrc": "/images/NV-HERO-01-m-480.avif"
+ },
+ "imagesBlocked": {
+  "index.html": {
+   "imgs": 3,
+   "withAlt": 3,
+   "overflow": false,
+   "h1": true
+  },
+  "space.html": {
+   "imgs": 4,
+   "withAlt": 4,
+   "overflow": false,
+   "h1": true
+  }
  },
  "interaction": {
   "total": 16,

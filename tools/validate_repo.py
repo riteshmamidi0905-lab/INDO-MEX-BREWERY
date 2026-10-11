@@ -111,7 +111,7 @@ for f in ["investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","validation/MOBILE-
     t=open(f).read()
     if not re.search(r"No investor has been identified|No marketing has been done|NOT validated|No permit, cost",t): fail(f"{f}: missing honesty disclaimer")
 # 12 Track A docs must carry a status/label near the top
-TRACKA=["concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md","brand/BRAND-ARCHITECTURE-V1.md","experience/GUEST-EXPERIENCE-ARCHITECTURE-V1.md","architecture/SPATIAL-VISION-V1.md","visuals/VISUAL-WORLD-AND-BRIEFS-V1.md","food/MENU-STORYTELLING-V1.md","beer/BEER-BRAND-EXPERIENCE-V1.md","business/BUSINESS-MODEL-MAP-V1.md","business/FINANCIAL-MODEL-ARCHITECTURE-V1.md","investor/INVESTOR-STORY-ARCHITECTURE-V1.md","investor/DATA-ROOM-MAP.md","website/WEBSITE-IA-AND-EXPERIENCE-V1.md","docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md","validation/MOBILE-MVP-STRATEGY.md","validation/TRACTION-METRICS.md","investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","ip/IP-OWNERSHIP-FRAMEWORK.md","marketing/MARKETING-AND-BUILD-IN-PUBLIC-FOUNDATION.md","docs/decisions/ATTORNEY-QUESTIONS.md","brand/NASHA-BRAND-STRATEGY.md","brand/NASHA-IDENTITY-SYSTEM.md","website/DESIGN-SYSTEM.md","visuals/NASHA-VISUAL-AUDIT-AND-GENERATION-QUEUE.md","ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md","marketing/NASHA-DOMAIN-AND-HANDLE-INVENTORY.md"]
+TRACKA=["concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md","brand/BRAND-ARCHITECTURE-V1.md","experience/GUEST-EXPERIENCE-ARCHITECTURE-V1.md","architecture/SPATIAL-VISION-V1.md","visuals/VISUAL-WORLD-AND-BRIEFS-V1.md","food/MENU-STORYTELLING-V1.md","beer/BEER-BRAND-EXPERIENCE-V1.md","business/BUSINESS-MODEL-MAP-V1.md","business/FINANCIAL-MODEL-ARCHITECTURE-V1.md","investor/INVESTOR-STORY-ARCHITECTURE-V1.md","investor/DATA-ROOM-MAP.md","website/WEBSITE-IA-AND-EXPERIENCE-V1.md","docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md","validation/MOBILE-MVP-STRATEGY.md","validation/TRACTION-METRICS.md","investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","ip/IP-OWNERSHIP-FRAMEWORK.md","marketing/MARKETING-AND-BUILD-IN-PUBLIC-FOUNDATION.md","docs/decisions/ATTORNEY-QUESTIONS.md","brand/NASHA-BRAND-STRATEGY.md","brand/NASHA-IDENTITY-SYSTEM.md","website/DESIGN-SYSTEM.md","visuals/NASHA-VISUAL-AUDIT-AND-GENERATION-QUEUE.md","ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md","marketing/NASHA-DOMAIN-AND-HANDLE-INVENTORY.md","visuals/NASHA-VISUAL-DIRECTION-V3.md","visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.md","brand/NASHA-LOGO-GOVERNANCE.md","visuals/nasha-v3/PROMPT-PACK.md","marketing/NASHA-MARKETING-HOOKS.md"]
 LABELS=re.compile(r"\[(CONCEPT|PROPOSED|DESIGN|STRUCTURE|PLAN|ANALYSIS|FOUNDER VISION)\]|`\[(CONCEPT|PROPOSED|DESIGN|STRUCTURE|PLAN|ANALYSIS)\]`")
 for f in TRACKA:
     if not os.path.exists(f): fail(f"missing Track A document {f}"); continue
@@ -121,6 +121,35 @@ for f in TRACKA:
 for f in glob.glob("investor/*.md")+["business/FINANCIAL-MODEL-ARCHITECTURE-V1.md"]:
     for i,l in enumerate(open(f),1):
         if re.search(r"\b(IRR|ROI|valuation of|expected return|guaranteed)\b",l) and not re.search(r"no |not |never|until|without",l,re.I): warn(f"{f}:{i}: return/valuation wording: {l.strip()[:100]}")
+# 13b Sprint 7: visual manifest, reference library, logo protection
+MAN=list(csv.DictReader(open("visuals/NASHA-VISUAL-MANIFEST.csv",encoding="utf-8")))
+mids=[r["id"] for r in MAN]
+if len(mids)!=len(set(mids)): fail("duplicate ids in visuals/NASHA-VISUAL-MANIFEST.csv")
+for r in MAN:
+    for k in ("id","title","page","kind","status","concept_or_real","rights_status","alt_text","priority","replacement_plan"):
+        if not (r[k] or "").strip(): fail(f"manifest {r['id']}: missing {k}")
+    if r["kind"]=="raster":
+        if not os.path.exists(r["source_file"]): fail(f"manifest {r['id']}: source_file missing {r['source_file']}")
+        if r["rights_status"]!="PROVISIONAL-LOCAL-ONLY" and not r["rights_status"].startswith("CLEARED"): fail(f"manifest {r['id']}: raster rights must be PROVISIONAL-LOCAL-ONLY or CLEARED*")
+        if not r["unresolved_restrictions"].strip(): fail(f"manifest {r['id']}: unresolved_restrictions must be stated")
+        if "concept" not in r["concept_or_real"].lower() and "real" not in r["concept_or_real"].lower(): fail(f"manifest {r['id']}: concept_or_real unclear")
+    if r["kind"]=="raster-planned" and r["status"]!="NOT GENERATED (prompt ready)": fail(f"manifest {r['id']}: planned row must say NOT GENERATED")
+print(f"visual manifest: {len(MAN)} rows; rasters integrated: {sum(1 for r in MAN if r['kind']=='raster')}; planned: {sum(1 for r in MAN if r['kind']=='raster-planned')}")
+LIB=open("visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.md",encoding="utf-8").read()
+for b in json.load(open("website/data/beers.json")):
+    if b["name"] not in LIB: fail(f"reference library lacks beer {b['name']}")
+    if b["working"] and "WORKING NAME" not in LIB.split(b["name"],1)[1][:30]: fail(f"reference library must keep WORKING NAME for {b['name']}")
+for d in ("Chicken 65 Totopos","Paneer Tikka Taco","Gobi Taco","Butter Chicken & Roasted Poblano Quesadilla","Goat Birria, Sealed-Pot Braise","Chaat Elote","Cardamom Churros"):
+    if d not in LIB: fail(f"reference library lacks dish {d}")
+# logo protection: vault stays empty of real files until founder approval is recorded; no stray logo files; no TM/R symbols in site sources
+for dname in ("PUBLIC-EXPORTS","CONTROLLED-MASTERS","LEGAL-OWNERSHIP"):
+    extra=[x for x in os.listdir("brand/logo/"+dname) if x!="README.md"]
+    if extra: fail(f"brand/logo/{dname} holds files ({extra}); the vault is empty until a founder-approved identity exists (update the gate deliberately)")
+for x in glob.glob("**/*",recursive=True):
+    if "node_modules" in x or not os.path.isfile(x): continue
+    if re.search(r"logo",os.path.basename(x),re.I) and os.path.splitext(x)[1].lower() in (".svg",".png",".ai",".eps",".pdf",".psd",".fig",".sketch",".jpg",".webp"): fail(f"stray logo-like file {x}: logos must live in the controlled vault only")
+for x in [y for y in glob.glob("website/src/*")+glob.glob("website/*.py")+glob.glob("website/dist/*.html") if os.path.isfile(y)]:
+    if re.search("[\u2122\u00ae]",open(x,encoding="utf-8").read()): fail(f"{x}: trademark symbol used without basis")
 # 14 website (Sprint 6): static + real-browser QA result checks
 r=subprocess.run([sys.executable,"tools/validate_site.py"],capture_output=True,text=True)
 print(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else "")
