@@ -6,7 +6,7 @@ that appear without a nearby marker such as 'older wording' or 'superseded'.
   python3 tools/decision_register.py selftest"""
 import csv, glob, os, re, sys
 DEC, REG, PHR = "docs/decisions/DECISIONS.md", "docs/decisions/decision-register.csv", "docs/decisions/superseded-phrases.csv"
-COLS = ["id", "date", "decision", "status", "owner_or_status_text", "evidence_level", "supersedes", "superseded_by", "founder_required", "review_date"]
+COLS = ["id", "date", "decision", "status", "owner_or_status_text", "supersedes", "superseded_by", "founder_required"]
 ROW = re.compile(r"^\|\s*(D-\d+)\s*\|\s*([\d-]+)\s*\|(.*)$")
 def parse(text):
     out = []
@@ -19,15 +19,17 @@ def parse(text):
         whole = dec + " " + owner + " " + rat
         up = whole.upper()
         status = "ACTIVE"
-        if "AGENT-PROPOSED" in up or "PENDING" in up and "FOUNDER" in up: status = "PROPOSED (founder confirmation pending)"
+        pending = "AGENT-PROPOSED" in up or "PROPOSED BY PROJECT AGENTS" in up or "FOUNDER APPROVAL OF THESE THRESHOLDS" in up
+        if pending and "FROZEN" in up: status = "FROZEN (thresholds agent-proposed; founder confirmation pending)"
+        elif pending: status = "PROPOSED (founder confirmation pending)"
         elif "FROZEN" in up: status = "FROZEN"
-        elif re.search(r"\bSUPERSEDED\b", up) and re.search(r"SUPERSEDED BY D-\d+", up): status = "SUPERSEDED"
+        elif re.search(r"SUPERSEDED BY D-\d+", up): status = "SUPERSEDED"
         elif "PROVISIONAL" in up: status = "PROVISIONAL"
         sup = sorted(set(re.findall(r"\*{0,2}Supersedes\*{0,2}[^|]*?(D-\d+)", whole, flags=re.I)))
         by = sorted(set(re.findall(r"SUPERSEDED BY (D-\d+)", whole, flags=re.I)))
-        fr = "YES" if re.search(r"founder", owner, re.I) and re.search(r"pending|confirm|decision", whole, re.I) and status.startswith("PROPOSED") else ("founder decision" if re.search(r"founder", owner, re.I) else "")
+        fr = "YES" if pending else ("founder decision" if re.search(r"founder", owner, re.I) else "")
         out.append(dict(id=m.group(1), date=m.group(2), decision=re.sub(r"\*\*", "", dec)[:300], status=status, owner_or_status_text=re.sub(r"\*\*", "", owner)[:200],
-                        evidence_level="", supersedes="|".join(sup), superseded_by="|".join(by), founder_required=fr, review_date=""))
+                        supersedes="|".join(sup), superseded_by="|".join(by), founder_required=fr))
     return out
 def phrases(path=PHR): return list(csv.DictReader(open(path, encoding="utf-8")))
 SCOPE = ("docs/", "food/CORE5", "food/sessions/", "food/t1-test-sheets/1", "beer/CORE5", "beer/pilot-briefs/", "beer/BREWERY", "research/CORE5-PRODUCT-SYSTEM.md", "ip/", "brand/TRADEMARK", "website/data/", "visuals/CONCEPT")   # current canonical areas; older v1 documents are historical and not scanned
@@ -55,7 +57,7 @@ def check():
             if ref and ref not in known: errs.append(f"{r['id']} references unknown {ref}")
     if os.path.exists(REG):
         cur = list(csv.DictReader(open(REG, encoding="utf-8")))
-        if [(c["id"], c["status"]) for c in cur] != [(r["id"], r["status"]) for r in rows]: errs.append("decision-register.csv is stale: run python3 tools/decision_register.py write")
+        if [(c["id"], c["status"], c["founder_required"]) for c in cur] != [(r["id"], r["status"], r["founder_required"]) for r in rows]: errs.append("decision-register.csv is stale: run python3 tools/decision_register.py write")
     else: errs.append("decision-register.csv missing")
     for f, n, by, txt in scan(): errs.append(f"superseded wording without a marker ({by}): {f}:{n}: {txt}")
     return errs

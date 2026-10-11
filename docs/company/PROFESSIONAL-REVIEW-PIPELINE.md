@@ -1,3 +1,5 @@
+AGENT ANALYSIS - NOT PROFESSIONAL REVIEW - NOT EVIDENCE
+
 # Professional review pipeline (packages stay SHORT; nothing has been sent)
 Sending anything is an external action for the founder to approve. Record every reply with `docs/professional-reviews/RECORD-TEMPLATE.md` (raw first). Order of urgency is set by `docs/company/data/risks.csv` and `docs/EXTERNAL-INPUT-QUEUE.md`. Reading time is a target for the reviewer, not a promise. Draft messages: `docs/company/OUTREACH-DRAFTS.md`.
 

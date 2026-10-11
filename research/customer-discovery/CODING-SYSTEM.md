@@ -42,7 +42,7 @@ Add a sentiment tag (+ / 0 / -) per quote. Codes added later are logged with dat
 5. Friend/family/founder_network and SYNTHETIC-FORM-TEST rows are coded for mechanics only and excluded from counts.
 
 ## 3. Two-coder check
-Where possible, a second person (not the interviewer, ideally not the founder) independently codes at least the first 10 respondents or 20 percent of quotes, whichever is larger. Compare: agreement percentage per code; discuss every disagreement; update definitions, not just the answer. If agreement is below a level the founder fixes beforehand (TBD by founder), tighten definitions and recode. If no second coder exists, say "single coder" in every report.
+Where possible, a second person (not the interviewer, ideally not the founder) independently codes at least the first 10 respondents or 20 percent (AGENT-PROPOSED, founder may change) of quotes, whichever is larger. Compare: agreement percentage per code; discuss every disagreement; update definitions, not just the answer. If agreement is below a level the founder fixes beforehand (TBD by founder), tighten definitions and recode. If no second coder exists, say "single coder" in every report.
 
 ## 4. Storing quotes
 Quote = verbatim, with respondent id (R-###), cohort, relationship flag, date and field. Names, faces, contact details never enter the repository. Mark paraphrase as paraphrase. Keep one quote file; do not create a "best quotes" file separate from the full set.
@@ -56,4 +56,4 @@ Quote = verbatim, with respondent id (R-###), cohort, relationship flag, date an
 - Founder does not select quotes alone; second reader or coder reviews the selection.
 
 ## 6. Small-sample rule
-**n below 8 per cohort is directional only.** Report as "X of n said...", never percentages, never cohort comparisons as findings. With the proposed cohort sizes (3-5), every cohort-level result is directional; pooled results across the 30 are exploratory, not statistically representative. Report n, cohort mix, recruitment channel and share of friend-network exclusions with every figure.
+**n below 8 per cohort is directional only (AGENT-PROPOSED, founder may change).** Report as "X of n said...", never percentages, never cohort comparisons as findings. With the proposed cohort sizes (3-5), every cohort-level result is directional; pooled results across the 30 are exploratory, not statistically representative. Report n, cohort mix, recruitment channel and share of friend-network exclusions with every figure.

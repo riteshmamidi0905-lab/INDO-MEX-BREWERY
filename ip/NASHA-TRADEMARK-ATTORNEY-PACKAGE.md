@@ -13,6 +13,7 @@
 |---|---|
 | Meaning | *Nasha* is a common Hindi-Urdu word (intoxication/addiction; `research/VERIFICATION-LEDGER.md` V-33). Not an invented word; descriptiveness/suggestiveness for alcohol is a question for counsel. |
 | Preliminary web screen | `brand/TRADEMARK-SCREENING.md`: limited web results only; **no USPTO, state, common-law or domain search done**. Similar-looking marks seen (e.g. coffee, Nashville-type names) are not an analysis. |
+| Known-conflict flag | Known-conflict flag (T1, 2026-10-11): search results report a restaurant named Nasha in Austin (1614 E 7th St; second location reported 2023), Indian and Tex-Mex fusion with a full bar. Pages not opened; current status and trademark position unknown. Not a legal conclusion. See `brand/TRADEMARK-SCREENING.md` and D-78. |
 | Crowded field risk | Unknown. Alcohol, restaurant and food-truck classes are crowded; the word is common in South Asian businesses, music and media; counsel to assess. |
 | Foreign-language doctrine | Counsel to advise on how a foreign word's meaning is treated. |
 | Federal alcohol label rules | Beer labels need federal approval and alcohol-related name rules; not examined. |

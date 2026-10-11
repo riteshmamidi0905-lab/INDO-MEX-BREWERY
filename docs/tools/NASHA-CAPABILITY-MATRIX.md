@@ -95,3 +95,10 @@ Tools are leverage, not evidence: nothing here moves evidence readiness (4/95) o
 
 ## Blocked in this environment (verified by connection test, 2026-10-11)
 USDA FoodData Central, Crossref, OpenAlex, Internet Archive/Wayback, Overpass/OSM, Census, USPTO/TSDR, TABC, BJCP, Blender downloads: all unreachable through the sandbox proxy (no response). Therefore no live API integration is claimed; code would be untested. Only the founder's own computer or a different environment can reach them. USDA FDC (CC0, free data.gov key) and Census are the highest-value ones to wire up when reachable.
+
+## Sprint 19 additions
+| Area | Tool | Status | Sprint | Note |
+|---|---|---|---|---|
+| Decisions | tools/decision_register.py (register + superseded-phrase contradiction check) | TESTED (selftest and repo run; not independently reviewed) | Sprint 19 | Parses DECISIONS.md; scans current docs for superseded wording lacking a marker |
+| Company | tools/founder_center.py (generated founder control center) | INSTALLED (no selftest; staleness checked by validate_company) | Sprint 19 | Reads docs/company/data/*.csv and the scoreboard |
+| Company | tools/validate_company.py | INSTALLED (no selftest) | Sprint 19 | Parses company data, banners, dollar-amount and empty-template checks |

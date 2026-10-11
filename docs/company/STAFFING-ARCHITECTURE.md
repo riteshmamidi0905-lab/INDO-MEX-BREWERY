@@ -8,7 +8,7 @@ AGENT ANALYSIS - NOT PROFESSIONAL REVIEW - NOT EVIDENCE
 1. **Roles, not people.** One person may hold several roles at small stages; the CSV says which combinations are unsafe.
 2. **Raw-poultry/goat handlers do not also do allergen-sensitive vegetarian prep** (paneer, gobi) in the same block without full separation; strict-vegetarian claims remain pending verification.
 3. **Brewer vs FOH:** brewing (hot liquor, caustic CIP, timing) and guest service/alcohol service should not be one person in one shift.
-4. **Alcohol:** pop-up/residency/trailer staff do not sell NASHA alcohol; the licensed host does (V-26, T1). Training or certification needed for anyone serving alcohol: verify with TABC and a Texas alcohol attorney.
+4. **Alcohol:** planning assumption (from T1 V-26; a Texas alcohol attorney confirms): pop-up/residency/trailer staff do not sell NASHA alcohol; the licensed host does. Training or certification needed for anyone serving alcohol: verify with TABC and a Texas alcohol attorney.
 5. **Cash and books:** the person who handles cash should not be the only person who reconciles it.
 6. **Thermometer and second-person checks** stay with the kitchen lead; the frozen Chicken 65 protocol (D-74) is not altered by staffing choices.
 

@@ -4,9 +4,9 @@ AGENT ANALYSIS - NOT PROFESSIONAL REVIEW - NOT EVIDENCE
 Date: 2026-10-11. Data: `data/market-map.csv` (31 rows). Inputs: `research/AUSTIN-COMPETITIVE-LANDSCAPE.md`, `ops/data/austin-yelp-observed.csv` (49 listings, T2), `ops/data/austin-deep-dives.csv` (T1), `research/market-survey/*` (LOW), `research/EXTERNAL-INTELLIGENCE-S15.md`, plus 5 targeted web searches on 2026-10-11 (T1). Name status: SELECTED_BY_FOUNDER, LEGAL CLEARANCE PENDING. NASHA does not exist; nothing here is demand evidence.
 
 ## 1. One-screen summary
-- **No direct competitor is shown by the data.** Nothing found combines an in-house brewery with an Indian-Mexican kitchen. This is limited by a 49-listing Yelp sample, 9 capped searches and 5 more searches.
+- **No in-house brewery with an Indian-Mexican kitchen was found; an Indian/Tex-Mex restaurant-bar named Nasha was reported (T1, status unconfirmed), so competition cannot be ruled out.** This is limited by a 49-listing Yelp sample, 9 capped searches and 5 more searches.
 - **Two overlaps the repo did not know about (new, T1):**
-  - **Nasha, a restaurant** (1614 E 7th St since 2014; 8900 S Congress since April 2023): Indian Tex-Mex-Indo fusion, enchiladas and tacos, full bar. Same name as the founder-selected NASHA and the closest cuisine overlap found. No brewery link found. Classified ADJACENT; the name matter belongs to a trademark attorney.
+  - **Nasha, a restaurant** (reported by T1 search summaries, pages not opened, current status unconfirmed: 1614 E 7th St since about 2014; 8900 S Congress since about April 2023): Indian Tex-Mex-Indo fusion, enchiladas and tacos, full bar. Same name as the founder-selected NASHA and the closest cuisine overlap found. No brewery link found. Classified ADJACENT; the name matter belongs to a trademark attorney.
   - **Whip In** (South Austin): Indian-immigrant family pub, market and (historically) brewery with Gujarati/Tex-Mex food; "Namaste Brewery" naming dispute with Dogfish Head; ownership changed in 2017. Precedent for Indian food plus beer in Austin; current brewing status unknown.
 - **Other Indian-Mexican players (T1):** Sivestar Indian Tacos (SW Austin, paneer tikka burrito), Kurry Takos (truck, 2020, status unknown), Taco Twist (Leander), Austin Taco Project (downtown, tikka taco). **Urban Turban (Round Rock)** remains a real halal Mexican-Pakistani truck, birria likely beef, not a direct NASHA competitor (D-54, no halal claim).
 - **Chef-led food at breweries already exists** (The Brewer's Table, Fitzhugh Brewing per T1 snippets). "Serious food" alone is not white space.
@@ -56,7 +56,7 @@ Date: 2026-10-11. Data: `data/market-map.csv` (31 rows). Inputs: `research/AUSTI
 
 ## 5. Flags and disagreements
 - **Disagreement (record):** `research/AUSTIN-COMPETITIVE-LANDSCAPE.md` section 3 and `research/EXTERNAL-INTELLIGENCE-S15.md` section 3 imply near-absence of Indian-Mexican players; these searches show Nasha, Sivestar, Whip In and others. White-space claims should be softened to the brewery-plus-kitchen combination only.
-- **Name:** Nasha (restaurant) predates NASHA. Not a legal conclusion; verify with a trademark attorney (see `docs/decisions/ATTORNEY-QUESTIONS.md`).
+- **Name:** Nasha (restaurant) was reported earlier than the founder's selection of the name. Not a legal conclusion; verify with a trademark attorney (see `docs/decisions/ATTORNEY-QUESTIONS.md`).
 - **"Brewer's Table"** is used in repo beer docs for flights/nights and is also the name of an Austin restaurant (T1); attorney check.
 - Professionals own real decisions: attorney (name, TABC), brewer, chef, cultural advisors.
 

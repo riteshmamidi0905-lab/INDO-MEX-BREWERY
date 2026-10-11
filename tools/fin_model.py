@@ -27,16 +27,18 @@ def load(scenario=None):
 def run_all(rows=None):
     rows = rows if rows is not None else list(csv.DictReader(open(F, encoding="utf-8"))) if os.path.exists(F) else []
     res = {}
+    stray = sorted({(r.get("scenario") or "").strip() for r in rows} - set(SCENARIOS) - {""})
+    if stray: print("WARNING: rows tagged with unknown scenarios are ignored:", ", ".join(stray))
     for sc in SCENARIOS:
-        a = {}
+        a = {}; used = set()
         for r in rows:
             scn = (r.get("scenario") or "").strip()
             if scn and scn != sc: continue
             if (r.get("provenance_class") or "UNKNOWN").strip().upper() == "UNKNOWN": continue   # UNKNOWN or unclassified rows never feed a model
-            try: a[r["assumption_id"]] = float(r["value"])
+            try: a[r["assumption_id"]] = float(r["value"]); used.add((r.get("provenance_class") or "").strip().upper())
             except (ValueError, KeyError): pass
         miss = [k for k in REQ if k not in a]
-        res[sc] = {"status": "NOT RUN", "missing": miss} if miss else {"status": "RUN", **pnl(a)}
+        res[sc] = {"status": "NOT RUN", "missing": miss} if miss else {"status": "RUN", "investor_grade": used <= {"QUOTE", "ACTUAL"}, **pnl(a)}
     return res
 def selftest():
     a = dict(covers=10, avg_check=10, food_cogs_pct=.3, bev_cogs_pct=.2, bev_mix_pct=.5, labor_monthly=1000, occupancy_monthly=500, other_fixed_monthly=500, days_open=30)
@@ -52,4 +54,4 @@ if __name__ == "__main__":
     res = run_all(); ran = {k: v for k, v in res.items() if v["status"] == "RUN"}
     for k, v in res.items(): print(k, "RUN" if v["status"] == "RUN" else "NOT RUN (missing: " + ", ".join(v["missing"][:3]) + ("..." if len(v["missing"]) > 3 else "") + ")")
     if not ran: print("NO MODEL RUN: nothing is invented; enter real or clearly marked scenario assumptions (assumption_id, value, scenario, source, tier)."); sys.exit(2)
-    for k, v in ran.items(): print(k, {a: round(b, 1) for a, b in v.items() if a != "status"})
+    for k, v in ran.items(): print(k, {a: round(b, 1) for a, b in v.items() if a not in ("status", "investor_grade")}, "" if v["investor_grade"] else "NOT INVESTOR-GRADE: uses classes other than QUOTE/ACTUAL (assumption or test inputs); label any output as a scenario")

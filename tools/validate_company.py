@@ -2,6 +2,7 @@
 """Company-building system checks (Sprint 19): data files parse, generated founder control center is fresh, decision register and contradiction check pass, every agent
 analysis file carries its banner, no dollar amounts or invented figures in company planning files, no respondent data in customer templates, finance inputs blank or classified."""
 import csv, glob, os, re, subprocess, sys
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))   # run from the repo root wherever invoked
 errs = []
 def fail(m): errs.append(m)
 for f in glob.glob("docs/company/data/*.csv") + ["docs/decisions/decision-register.csv", "ops/finance/scenario-fields.csv", "ops/finance/assumptions.csv", "ip/IP-ASSET-TRACKER.csv", "ops/rd/iteration-log.csv", "research/customer-discovery/purchase-conversion-tracker.csv", "research/customer-discovery/repeat-intent-tracker.csv", "research/customer-discovery/tasting-responses.csv", "research/customer-discovery/coded-quotes.csv"]:
@@ -12,13 +13,12 @@ for f in glob.glob("docs/company/data/*.csv") + ["docs/decisions/decision-regist
             if len(r) != n: fail(f"{f}:{i}: {len(r)} cells, header has {n}")
     except Exception as e: fail(f"{f}: {e}")
 for f in glob.glob("docs/company/*.md"):
-    if not open(f, encoding="utf-8").read(400).lstrip().startswith("AGENT ANALYSIS") and not open(f, encoding="utf-8").read(400).lstrip().startswith("#"): fail(f"{f}: missing banner")
-    t = open(f, encoding="utf-8").read()
-    if "AGENT ANALYSIS" not in t[:600] and os.path.basename(f) not in ("PROFESSIONAL-REVIEW-PIPELINE.md", "OUTREACH-DRAFTS.md", "WEBSITE-VALIDATION-ARCHITECTURE.md", "REGULATORY-QUESTION-TREE.md"): fail(f"{f}: agent analysis banner missing")
+    first = open(f, encoding="utf-8").readline().strip()
+    if not (first.startswith("AGENT ANALYSIS") or first.startswith("DRAFT ONLY")): fail(f"{f}: first line must carry the AGENT ANALYSIS (or DRAFT ONLY) banner")
 for f in glob.glob("docs/company/**/*", recursive=True) + glob.glob("research/customer-discovery/*"):
     if os.path.isfile(f) and f.endswith((".md", ".csv")) and "market-map" not in f.lower():   # market-map files may quote OBSERVED public prices with source and tier
         t = open(f, encoding="utf-8").read()
-        if re.search(r"\$\s?\d", t): fail(f"{f}: dollar amount in a planning file (no unsourced prices)")
+        if re.search(r"\$\s?\d|\bUSD\b|\d\s*dollars", t, re.I): fail(f"{f}: dollar amount in a planning file (no unsourced prices)")
 for f in ("research/customer-discovery/purchase-conversion-tracker.csv", "research/customer-discovery/repeat-intent-tracker.csv", "research/customer-discovery/tasting-responses.csv", "research/customer-discovery/coded-quotes.csv", "ops/rd/iteration-log.csv"):
     if len(list(csv.reader(open(f, encoding="utf-8")))) > 1: fail(f"{f}: has data rows; templates must stay header-only until real data exists")
 for r in csv.DictReader(open("ops/finance/assumptions.csv", encoding="utf-8")):

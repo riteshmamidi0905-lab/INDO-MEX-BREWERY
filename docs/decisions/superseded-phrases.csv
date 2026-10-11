@@ -1,5 +1,5 @@
 phrase_regex,superseded_by,note,allowed_context_regex
-"if (it|this beer|the hefeweizen|hefe) fails,? (no regional beer launches|nothing (else )?launches)",D-77,"Old Hefeweizen gate wording; replaced by the six-proof development gate (agent-proposed)","older rule|older gate|older wording|replacement|superseded|still appears|not an emotional|emotional rule|previous position|old rule|old wording|reworded|rewritten"
-"raita[- ]crema",CORRECTIONS,"Public/product wording is 'crema' (raita is a different thing)","never|drop|renamed|removed|corrected|not |avoid|was |instead|replac|house invention|call it crema"
-"tacos al carb[oó]n",CORRECTIONS,"Unsourced inspiration removed from public text","removed|unsourced|never|corrected|not |avoid"
-"two-pour ritual",CORRECTIONS,"'Two-Pour' is an optional idea, not a ritual","idea|never|corrected|not |avoid|wording|renamed|older|was "
+"if (it|this beer|the hefeweizen|hefe) fails,? (no regional beer launches|nothing (else )?launches)",D-77,Old Hefeweizen gate wording; replaced by the six-proof development gate (agent-proposed),older rule|older gate|older wording|replacement|superseded|still appears|not an emotional|emotional rule|previous position|old rule|old wording|reworded|rewritten
+raita[- ]crema,CORRECTIONS,Public/product wording is 'crema' (raita is a different thing),"house invention|call it crema|older wording|superseded|corrected|removed|['""`]raita|disagree|conflict| vs |wording drift"
+tacos al carb[oó]n,CORRECTIONS,Unsourced inspiration removed from public text,"removed|unsourced|older wording|superseded|corrected|['""`]tacos al|wording drift"
+two-pour ritual,CORRECTIONS,"'Two-Pour' is an optional idea, not a ritual","older wording|superseded|corrected|renamed|ritual is|not a ritual|['""`]two-pour ritual|idea"

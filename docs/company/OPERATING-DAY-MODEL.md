@@ -41,7 +41,7 @@ Format tags: **PU** pop-up, **RS** residency, **TR** trailer, **SP** small perma
 | C11 | Draft line cleaning and CIP chemicals near food | Chemical storage and sink separate from food prep and glass wash; labelled | SP, FL |
 | C12 | Spent grain, oil and waste crossing clean routes | Waste route separate from receiving and guest paths; grease and grain handling area | SP, FL; PU/RS/TR: host or commissary waste plan |
 | C13 | Minors near alcohol service (family hours) | Hours/zone policy; separation of bar from play/children's area; rules from attorney | SP, FL (RS if host allows minors; verify) |
-| C14 | Food truck or pop-up cannot sell NASHA alcohol (V-26, T1) | Alcohol sold only by the licensed host/partner; no beer on NASHA menu board as a sale; attorney reviews pairing and advertising | PU, RS, TR |
+| C14 | Per the T1 ledger (V-26/V-27, unverified), a mobile or pop-up unit may be unable to hold an alcohol permit; a Texas alcohol attorney confirms. Plan as if the licensed host sells the beer | Alcohol sold only by the licensed host/partner; no beer on NASHA menu board as a sale; attorney reviews pairing and advertising | PU, RS, TR |
 | C15 | Closing cooldown, labelling, handoff gaps | Cooling and date-label station, handoff log template, closer-to-opener checklist | All |
 | C16 | One person covering brewing and service | Role separation rules (see `STAFFING-ARCHITECTURE.md`); schedule that avoids brewer on floor at peak | SP, FL |
 

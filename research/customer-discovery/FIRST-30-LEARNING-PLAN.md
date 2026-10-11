@@ -33,7 +33,7 @@ Cohorts describe **food and drink familiarity or situation, not ethnicity, relig
 5. Flag people who work in food, beer or hospitality (keep, do not exclude).
 6. Consent first; recording optional; an incentive (if any) is for time, offered the same to everyone, never tied to answers. Anyone served alcohol must be 21+ verified by the legally required process (verify with a Texas alcohol attorney; no NASHA alcohol service exists today).
 7. No personal data in the repository: respondent ids only (e.g. R-001). Contact details live in a consent-based store outside git.
-8. Stop rule: not before each cohort has at least 3 people unless recruitment is failing, which is itself a finding to record.
+8. Stop rule: not before each cohort has at least 3 people (AGENT-PROPOSED, founder may change) unless recruitment is failing, which is itself a finding to record.
 
 ## 3. What to ask (use the existing guide; this adds the tasting/commitment layer)
 - Behaviour first (guide section 3A), concept second, hypotheticals last.

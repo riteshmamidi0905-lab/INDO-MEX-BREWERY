@@ -1,3 +1,5 @@
+AGENT ANALYSIS - NOT PROFESSIONAL REVIEW - NOT EVIDENCE
+
 # Website as future validation infrastructure (ARCHITECTURE ONLY - nothing built, nothing deployed)
 The site stays a static, `noindex` concept site (concept/prototype/tested/final labels). This note records how it could later help NASHA learn from real people, and what must exist first. **No sign-up form, analytics, cookie or personal-data capture is added now**, and no fake sign-ups are created.
 | Capability | What it would learn | Data collected | Preconditions before building |

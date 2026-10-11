@@ -13,7 +13,7 @@
 | Stage | Name | Today | Capital exposure |
 |---|---|---|---|
 | S0 | Concept and design blueprint | CURRENT | none |
-| S1 | Professional scoping and legal pathway | PARTIAL | low |
+| S1 | Professional scoping and legal pathway | NOT STARTED (drafts only) | low |
 | S2 | Founder kitchen prototype and blinded sensory | NOT STARTED | low |
 | S3 | Guest concept validation (private and small paid tastings) | NOT STARTED | low |
 | S4 | Pilot beer and brewery partnership | BLOCKED | medium |
@@ -52,7 +52,7 @@ Entry, exit, evidence and go/hold/kill questions per stage: `docs/company/data/s
 | **ARCHITECTURE** | ACTIVE (planning level) | No architect, no site | Derive requirements from the operating-day model | Architect or brewery-designer consult (later) | 4 |
 | **WEBSITE** | ACTIVE | Privacy approach (no data collection built) | Architecture note for future validation capture; no deployment | Founder decision to deploy or collect data (external action) | 4 |
 
-## North-star hypotheses (test order; all UNTESTED)
+## North-star hypotheses (test order; all UNTESTED; importance and uncertainty are agent judgement 1-5, not data)
 
 | Rank | Id | Hypothesis | Importance | Uncertainty | Cost to test | Earliest test |
 |---|---|---|---|---|---|---|
@@ -111,14 +111,14 @@ Entry, exit, evidence and go/hold/kill questions per stage: `docs/company/data/s
 | # | Risk | Reduced by | Lane |
 |---|---|---|---|
 | 1 | No physical evidence exists for any dish or beer | Cook Session 1 and the following sessions; a qualified brewer pilot | A |
-| 2 | An Austin restaurant named Nasha (Indian Tex-Mex fusion with a bar) already exists per T1 searches: HIGH... | IP attorney clearance review now; founder decision on keep/modify/fallback shortlist; no further... | A |
+| 2 | An Austin restaurant named Nasha (Indian Tex-Mex fusion with a bar) already exists per T1 searches: HIGH NAME-CONFLICT RISK (D-78) | IP attorney clearance review now; founder decision on keep/modify/fallback shortlist; no further name-dependent spend or public use until decided | A |
 | 3 | No lawful structure may exist to link food and beer before a brewery exists (H11) | Texas alcohol attorney; commissary/health checks; food-only first tests | A |
 | 4 | The fusion may read as gimmick or caricature (H2, H8) | Cultural advisor review; blinded tasting; dish-by-dish cut/rework rule | A |
 | 5 | Unit economics are unknown (no price, yield, rent, labour, quote) | Real receipts and quotes; scenario model with provenance classes | A |
 | 6 | Brewery scale and economics conflict with the building concept (50 bbl canon vs small demand) | Brewer-led sizing; pilot-first; do not size from renders | A |
 | 7 | Customer demand and willingness to pay are untested (H1, H5, H10) | First-30 learning plan; thresholds frozen in advance; paid tests last | A |
 | 8 | Kitchen bottleneck (comal and labour) and goat handling may limit the menu | Time real steps; cut or rework the weakest dish; operating-day requirements | A |
-| 9 | Identity-critical ingredients (nixtamal tortillas, goat, paneer without bovine rennet) may be hard to source... | Supply-spec table; label checks; supplier declarations before any claim | A |
+| 9 | Identity-critical ingredients (nixtamal tortillas, goat, paneer without bovine rennet) may be hard to source to specification | Supply-spec table; label checks; supplier declarations before any claim | A |
 | 10 | AI-generated imagery and planning could be mistaken for evidence | Lane separation, stage labels, evidence audit, concept-only rule | B |
 | 11 | Founder-dependence: one person running cooking, legal, research and outreach | Short review packages, prioritised queue, parallel workstreams | B |
 | 12 | Responsible-alcohol and family-imagery missteps | Responsible-alcohol principles; image checklist; attorney and broker review | B |
