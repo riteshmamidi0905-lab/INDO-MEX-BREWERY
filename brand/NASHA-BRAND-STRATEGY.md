@@ -5,7 +5,7 @@
 ## 1. Brand essence, positioning, promise
 | Element | Proposed |
 |---|---|
-| **Essence (one sentence)** | **NASHA is food and beer designed together to captivate you, made in plain sight and shared at a long table.** |
+| **Essence (one sentence)** | **NASHA is food and beer designed together to draw you in, made in plain sight and shared at a long table.** *(Sprint 10 founder direction D-71: replaces "to captivate you", which leaned too close to the meaning of the word. Alternative contextual line: "A place built around flavor, craft and company.")* |
 | **Positioning (why it exists)** | Austin has beer-led and taco-led places; NASHA is the **pairing-led** kitchen-and-brewery: every plate is designed with a pour in mind, the cooking draws on Indian and Mexican technique, and the work is visible. *(Hypothesis; needs customer validation.)* |
 | **Brand promise (what a guest should eventually experience)** | Watch it made. Taste why it goes together. Stay a while. *(Future promise; today a design intent.)* |
 | **Descriptor (proposed, not final)** | **NASHA: Indo-Mex Brewery & Kitchen**, used **only when a brewery exists**; before that, contextual descriptors (§3). |
@@ -52,7 +52,7 @@ Six territories first; then the strongest candidates. **Avoid:** cultural clich�
 ### 5.1 Facts and limits
 *Nasha* (नशा / نشہ) is a Hindi-Urdu word for **intoxication, with a sense of addiction** in some phrases (dictionary summary, tier T2, `research/VERIFICATION-LEDGER.md` V-33). Nothing in the name signals Mexico. We **do not conceal** this and **do not invent** other linguistic meanings.
 ### 5.2 Intended interpretation (proposed; for cultural-advisor review)
-The brand leans on the *mood* sense, **being captivated**: by flavour, atmosphere, energy, discovery, culture and craft. The meaning is communicated by behaviour (curiosity, craft, hospitality), not by wordplay.
+The brand leans on the *mood* sense, **being drawn in** (curiosity, not compulsion): by flavour, atmosphere, energy, discovery, culture and craft. The meaning is communicated by behaviour (curiosity, craft, hospitality), not by wordplay.
 ### 5.3 Responsibility commitments (non-negotiable)
 NASHA will **never romanticise** addiction, alcoholism, dangerous drinking or substance dependency. In practice: no intoxication or "get drunk/high" language or jokes; no "addicted to NASHA" copy; no shot-drinking or speed-drinking promotions; non-alcoholic options as first-class (aguas, NA beer); 21+ clarity for alcohol; flights and 4-oz pours as a moderation-friendly format; food-first service; rideshare and designated-driver messaging at a real venue; staff trained in responsible service (TABC-certified training, `ATTORNEY-QUESTIONS.md`); no cannabis-style or nightlife branding. The brand voice never uses the word *nasha* for alcohol effects.
 ### 5.4 Risk register for the name

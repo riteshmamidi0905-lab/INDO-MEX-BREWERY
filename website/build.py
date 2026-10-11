@@ -96,7 +96,7 @@ def layout(fn, title, desc, body, head_extra="", body_class=""):
 <footer class="site-footer"><div class="wrap stack">
 <p><strong>NASHA</strong> is a future Indo-Mex brewery and kitchen in Austin, Texas, in development.</p>
 <p>The name was chosen by the founder. Legal clearance of the name is pending. Nothing here claims trademark ownership. There is no brewery, restaurant or truck open, and nothing is for sale. No site has been chosen.</p>
-<p>In Hindi and Urdu, <em>nasha</em> means intoxication or addiction. We chose it for the feeling of being captivated by food, craft and company. We take that meaning seriously and will never present excess or addiction as something to admire. Cultural advisors will review the name and our language before launch.</p>
+<p>In Hindi and Urdu, <em>nasha</em> means intoxication or addiction. We chose it for the feeling of being drawn in by food, craft and company. We take that meaning seriously and will never present excess or addiction as something to admire. Cultural advisors will review the name and our language before launch.</p>
 <p>Images show a possible future. The photographic-style pictures are <strong>concept visualizations</strong> made with AI tools and edited, and the drawings are illustrations. They are not photographs of NASHA, of its food, or of its beer. <a href="about.html#images">About these images</a>.</p>
 <p>Menu items are designs for testing, not served food. Heat and vegetarian labels describe how a dish is designed, not a certified allergen or dietary statement. Ask before you eat if you have an allergy. If you drink, drink responsibly. Alcohol is for adults of legal drinking age.</p>
 <p>The word NASHA in the header and in some pictures is a <strong>temporary typographic placeholder</strong>, set in a standard font. It is not a logo, not an official brand mark, and no trademark is claimed. No logo has been approved or released.</p>
@@ -435,12 +435,12 @@ def page_labs():
 def page_about():
     body = f'''<section aria-labelledby="h1"><div class="wrap stack">
 <p class="eyebrow">About</p><h1 id="h1">About NASHA.</h1>
-<p class="lede">NASHA is food and beer designed together to captivate you, made in plain sight and shared at a long table.</p>
+<p class="lede">NASHA is food and beer designed together to draw you in, made in plain sight and shared at a long table.</p>
 <p>It is a project of Ritesh Mamidi, who is building toward an Indo-Mex brewery and kitchen in Austin, Texas. Today it is a body of design and a plan, not a business that serves anyone.</p>
 <h2>The name</h2>
 <p>The word NASHA as it appears here is a temporary typographic wordmark, not a final logo. No NASHA logo has been designed, approved or released, and no logo exploration is published on this site.</p>
 <p>The founder chose the name NASHA. Legal clearance of the name has not been completed, and nothing here claims trademark ownership, registration, availability, or ownership of any domain or social handle. If a professional review finds a problem, the name returns to the founder for a decision.</p>
-<p><em>Nasha</em> means intoxication or addiction in Hindi and Urdu. We chose it for the feeling of being captivated by food, craft and company. We commit to never romanticising addiction, alcoholism or dangerous drinking, and to asking cultural advisors to review the name and our language before launch.</p>
+<p><em>Nasha</em> means intoxication or addiction in Hindi and Urdu. We chose it for the feeling of being drawn in by food, craft and company. We commit to never romanticising addiction, alcoholism or dangerous drinking, and to asking cultural advisors to review the name and our language before launch.</p>
 <h2 id="images">About these images</h2>
 <p>NASHA is currently in development. Photographic-style images on this site are concept visualizations used to communicate the intended experience. They are not photographs of an operating NASHA location, finished dishes or brewed NASHA beer.</p>
 <ul><li><strong>Concept visualization</strong>: photographic-style images made with AI image tools by the founder and edited. People in them are synthetic and are not real individuals. A few details, such as the temporary NASHA lettering on a sign, were added by script. Equipment in them is illustrative.</li>

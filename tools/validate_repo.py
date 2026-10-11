@@ -30,7 +30,7 @@ rows=list(csv.reader(open("research/customer-discovery/responses.csv")))
 if len(rows)>1: warn(f"responses.csv has {len(rows)-1} rows: confirm these are REAL interviews (never synthetic)")
 else: print("responses.csv: header only (no interview data), as expected")
 # 5 T1 sheets blank
-for f in sorted(glob.glob("food/t1-test-sheets/0[1-6]-*.md")):
+for f in sorted(glob.glob("food/t1-test-sheets/0[1-9]-*.md")):
     t=open(f).read()
     if "Result: KEEP / REWORK / CUT / HOLD" in t and "Result: KEEP / REWORK / CUT / HOLD   Reason: ______" not in t: fail(f"{f}: outcome line altered (sheet may have been filled)")
     if re.search(r"\| \*\*Average\*\* \| [0-9]",t): fail(f"{f}: average score filled in")

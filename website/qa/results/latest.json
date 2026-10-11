@@ -1,6 +1,6 @@
 {
- "distHash": "0cc552df8592bf8a",
- "date": "2026-10-11T03:14:45.234Z",
+ "distHash": "5b1bbd5d8418552e",
+ "date": "2026-10-11T03:36:37.425Z",
  "pages": {
   "about.html": {
    "overflow": {
@@ -50,26 +50,26 @@
     }
    },
    "console": [],
-   "bytes": 99514,
+   "bytes": 99508,
    "requests": [
-    "/about.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/about.html",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 60
+    "lcp_ms": 156
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4506,
+    "textLen": 4500,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 99514,
+   "initialBytes": 99508,
    "reducedMotion": true
   },
   "beer.html": {
@@ -124,27 +124,27 @@
     }
    },
    "console": [],
-   "bytes": 193608,
+   "bytes": 193606,
    "requests": [
+    "/styles.css",
     "/beer.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
     "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 108
+    "lcp_ms": 132
    },
    "noJs": {
     "h1": 1,
-    "textLen": 8025,
+    "textLen": 8023,
     "hiddenFilters": true,
     "items": 9,
     "visibleItems": 9
    },
-   "initialBytes": 193608,
+   "initialBytes": 193606,
    "reducedMotion": true
   },
   "crossing.html": {
@@ -257,26 +257,26 @@
     }
    },
    "console": [],
-   "bytes": 116217,
+   "bytes": 116215,
    "requests": [
+    "/crossing.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
-    "/crossing.html",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 56
+    "lcp_ms": 76
    },
    "noJs": {
     "h1": 1,
-    "textLen": 5661,
+    "textLen": 5659,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 116217,
+   "initialBytes": 116215,
    "reducedMotion": true
   },
   "experience.html": {
@@ -341,27 +341,27 @@
     }
    },
    "console": [],
-   "bytes": 169223,
+   "bytes": 169221,
    "requests": [
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
-    "/fonts/inter-latin-wght-normal.woff2",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/experience.html",
+    "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
     "/images/NV-SPACE-ENTRANCE-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 88
    },
    "noJs": {
     "h1": 1,
-    "textLen": 3827,
+    "textLen": 3825,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 169223,
+   "initialBytes": 169221,
    "reducedMotion": true
   },
   "food.html": {
@@ -412,27 +412,27 @@
     }
    },
    "console": [],
-   "bytes": 209780,
+   "bytes": 209778,
    "requests": [
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/fonts/inter-latin-wght-normal.woff2",
     "/food.html",
+    "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
     "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 120
+    "lcp_ms": 100
    },
    "noJs": {
     "h1": 1,
-    "textLen": 14459,
+    "textLen": 14457,
     "hiddenFilters": true,
     "items": 16,
     "visibleItems": 16
    },
-   "initialBytes": 209780,
+   "initialBytes": 209778,
    "reducedMotion": true
   },
   "index.html": {
@@ -529,27 +529,27 @@
     }
    },
    "console": [],
-   "bytes": 250407,
+   "bytes": 250405,
    "requests": [
-    "/images/NV-HERO-01-d-1537.avif",
+    "/index.html",
     "/styles.css",
+    "/images/NV-HERO-01-d-1537.avif",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
-    "/index.html",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 88
+    "lcp_ms": 80
    },
    "noJs": {
     "h1": 1,
-    "textLen": 6656,
+    "textLen": 6654,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 250407,
+   "initialBytes": 250405,
    "reducedMotion": true
   },
   "labs.html": {
@@ -614,26 +614,26 @@
     }
    },
    "console": [],
-   "bytes": 100863,
+   "bytes": 100861,
    "requests": [
     "/labs.html",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 68
+    "lcp_ms": 64
    },
    "noJs": {
     "h1": 1,
-    "textLen": 3011,
+    "textLen": 3009,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 100863,
+   "initialBytes": 100861,
    "reducedMotion": true
   },
   "space.html": {
@@ -762,29 +762,29 @@
     }
    },
    "console": [],
-   "bytes": 196513,
+   "bytes": 196511,
    "requests": [
-    "/space.html",
     "/styles.css",
+    "/space.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
-    "/images/NV-BREWERY-HALL-d-640.avif",
+    "/images/NV-SPACE-ENTRANCE-d-640.avif",
     "/images/NV-SPACE-EXT-DAY-d-640.avif",
-    "/images/NV-SPACE-ENTRANCE-d-640.avif"
+    "/images/NV-BREWERY-HALL-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 84
+    "lcp_ms": 60
    },
    "noJs": {
     "h1": 1,
-    "textLen": 3585,
+    "textLen": 3583,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 196513,
+   "initialBytes": 196511,
    "reducedMotion": true
   }
  },
@@ -792,11 +792,11 @@
   "pages": 8,
   "axeViolations": 0,
   "overflowFailures": 0,
-  "maxBytes": 250407,
-  "maxInitialBytes": 250407,
-  "homeInitialBytes": 250407,
+  "maxBytes": 250405,
+  "maxInitialBytes": 250405,
+  "homeInitialBytes": 250405,
   "maxCls": 0,
-  "maxLcpMs": 120,
+  "maxLcpMs": 156,
   "consoleIssues": 0
  },
  "slow": {
