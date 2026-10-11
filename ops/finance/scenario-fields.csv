@@ -1,0 +1,134 @@
+scenario,field,kind,unit,source_rule,provenance_class_today
+private_tasting,capex,input,USD,one-time capital outlay for the vehicle or site,UNKNOWN
+private_tasting,fixed_cost_monthly,input,USD,costs that do not vary with covers,UNKNOWN
+private_tasting,variable_cost_per_cover,input,USD,per-guest cost excluding food/beverage COGS,UNKNOWN
+private_tasting,labor,input,USD,from staffing-stages.csv roles x real wage quotes (no wage assumed),UNKNOWN
+private_tasting,permits,input,USD,fees from official schedules or attorney (none known),UNKNOWN
+private_tasting,insurance,input,USD,broker quote only,UNKNOWN
+private_tasting,commissary_monthly,input,USD,quote only; n/a for some scenarios,UNKNOWN
+private_tasting,rent,input,USD,quote or lease datum only,UNKNOWN
+private_tasting,equipment,input,USD,quotes only,UNKNOWN
+private_tasting,food_cogs_pct,input,fraction,from priced recipes (food/costing); not a guess,UNKNOWN
+private_tasting,bev_cogs_pct,input,fraction,from brewer/partner quote; n/a if no beer,UNKNOWN
+private_tasting,transaction_fee_pct,input,fraction,payment processor published rate or contract,UNKNOWN
+private_tasting,marketing,input,USD,spend actually planned,UNKNOWN
+private_tasting,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
+private_tasting,covers,input,covers per session,from real events,UNKNOWN
+private_tasting,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+private_tasting,break_even,computed,covers or USD,computed by tools/fin_model.py from the inputs above,UNKNOWN
+private_tasting,cash_required,computed,USD,capex + working capital + losses before break-even,UNKNOWN
+private_tasting,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
+popup,capex,input,USD,one-time capital outlay for the vehicle or site,UNKNOWN
+popup,fixed_cost_monthly,input,USD,costs that do not vary with covers,UNKNOWN
+popup,variable_cost_per_cover,input,USD,per-guest cost excluding food/beverage COGS,UNKNOWN
+popup,labor,input,USD,from staffing-stages.csv roles x real wage quotes (no wage assumed),UNKNOWN
+popup,permits,input,USD,fees from official schedules or attorney (none known),UNKNOWN
+popup,insurance,input,USD,broker quote only,UNKNOWN
+popup,commissary_monthly,input,USD,quote only; n/a for some scenarios,UNKNOWN
+popup,rent,input,USD,quote or lease datum only,UNKNOWN
+popup,equipment,input,USD,quotes only,UNKNOWN
+popup,food_cogs_pct,input,fraction,from priced recipes (food/costing); not a guess,UNKNOWN
+popup,bev_cogs_pct,input,fraction,from brewer/partner quote; n/a if no beer,UNKNOWN
+popup,transaction_fee_pct,input,fraction,payment processor published rate or contract,UNKNOWN
+popup,marketing,input,USD,spend actually planned,UNKNOWN
+popup,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
+popup,covers,input,covers per session,from real events,UNKNOWN
+popup,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+popup,break_even,computed,covers or USD,computed by tools/fin_model.py from the inputs above,UNKNOWN
+popup,cash_required,computed,USD,capex + working capital + losses before break-even,UNKNOWN
+popup,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
+brewery_residency,capex,input,USD,one-time capital outlay for the vehicle or site,UNKNOWN
+brewery_residency,fixed_cost_monthly,input,USD,costs that do not vary with covers,UNKNOWN
+brewery_residency,variable_cost_per_cover,input,USD,per-guest cost excluding food/beverage COGS,UNKNOWN
+brewery_residency,labor,input,USD,from staffing-stages.csv roles x real wage quotes (no wage assumed),UNKNOWN
+brewery_residency,permits,input,USD,fees from official schedules or attorney (none known),UNKNOWN
+brewery_residency,insurance,input,USD,broker quote only,UNKNOWN
+brewery_residency,commissary_monthly,input,USD,quote only; n/a for some scenarios,UNKNOWN
+brewery_residency,rent,input,USD,quote or lease datum only,UNKNOWN
+brewery_residency,equipment,input,USD,quotes only,UNKNOWN
+brewery_residency,food_cogs_pct,input,fraction,from priced recipes (food/costing); not a guess,UNKNOWN
+brewery_residency,bev_cogs_pct,input,fraction,from brewer/partner quote; n/a if no beer,UNKNOWN
+brewery_residency,transaction_fee_pct,input,fraction,payment processor published rate or contract,UNKNOWN
+brewery_residency,marketing,input,USD,spend actually planned,UNKNOWN
+brewery_residency,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
+brewery_residency,covers,input,covers per session,from real events,UNKNOWN
+brewery_residency,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+brewery_residency,break_even,computed,covers or USD,computed by tools/fin_model.py from the inputs above,UNKNOWN
+brewery_residency,cash_required,computed,USD,capex + working capital + losses before break-even,UNKNOWN
+brewery_residency,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
+food_trailer,capex,input,USD,one-time capital outlay for the vehicle or site,UNKNOWN
+food_trailer,fixed_cost_monthly,input,USD,costs that do not vary with covers,UNKNOWN
+food_trailer,variable_cost_per_cover,input,USD,per-guest cost excluding food/beverage COGS,UNKNOWN
+food_trailer,labor,input,USD,from staffing-stages.csv roles x real wage quotes (no wage assumed),UNKNOWN
+food_trailer,permits,input,USD,fees from official schedules or attorney (none known),UNKNOWN
+food_trailer,insurance,input,USD,broker quote only,UNKNOWN
+food_trailer,commissary_monthly,input,USD,quote only; n/a for some scenarios,UNKNOWN
+food_trailer,rent,input,USD,quote or lease datum only,UNKNOWN
+food_trailer,equipment,input,USD,quotes only,UNKNOWN
+food_trailer,food_cogs_pct,input,fraction,from priced recipes (food/costing); not a guess,UNKNOWN
+food_trailer,bev_cogs_pct,input,fraction,from brewer/partner quote; n/a if no beer,UNKNOWN
+food_trailer,transaction_fee_pct,input,fraction,payment processor published rate or contract,UNKNOWN
+food_trailer,marketing,input,USD,spend actually planned,UNKNOWN
+food_trailer,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
+food_trailer,covers,input,covers per session,from real events,UNKNOWN
+food_trailer,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+food_trailer,break_even,computed,covers or USD,computed by tools/fin_model.py from the inputs above,UNKNOWN
+food_trailer,cash_required,computed,USD,capex + working capital + losses before break-even,UNKNOWN
+food_trailer,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
+food_truck,capex,input,USD,one-time capital outlay for the vehicle or site,UNKNOWN
+food_truck,fixed_cost_monthly,input,USD,costs that do not vary with covers,UNKNOWN
+food_truck,variable_cost_per_cover,input,USD,per-guest cost excluding food/beverage COGS,UNKNOWN
+food_truck,labor,input,USD,from staffing-stages.csv roles x real wage quotes (no wage assumed),UNKNOWN
+food_truck,permits,input,USD,fees from official schedules or attorney (none known),UNKNOWN
+food_truck,insurance,input,USD,broker quote only,UNKNOWN
+food_truck,commissary_monthly,input,USD,quote only; n/a for some scenarios,UNKNOWN
+food_truck,rent,input,USD,quote or lease datum only,UNKNOWN
+food_truck,equipment,input,USD,quotes only,UNKNOWN
+food_truck,food_cogs_pct,input,fraction,from priced recipes (food/costing); not a guess,UNKNOWN
+food_truck,bev_cogs_pct,input,fraction,from brewer/partner quote; n/a if no beer,UNKNOWN
+food_truck,transaction_fee_pct,input,fraction,payment processor published rate or contract,UNKNOWN
+food_truck,marketing,input,USD,spend actually planned,UNKNOWN
+food_truck,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
+food_truck,covers,input,covers per session,from real events,UNKNOWN
+food_truck,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+food_truck,break_even,computed,covers or USD,computed by tools/fin_model.py from the inputs above,UNKNOWN
+food_truck,cash_required,computed,USD,capex + working capital + losses before break-even,UNKNOWN
+food_truck,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
+small_permanent,capex,input,USD,one-time capital outlay for the vehicle or site,UNKNOWN
+small_permanent,fixed_cost_monthly,input,USD,costs that do not vary with covers,UNKNOWN
+small_permanent,variable_cost_per_cover,input,USD,per-guest cost excluding food/beverage COGS,UNKNOWN
+small_permanent,labor,input,USD,from staffing-stages.csv roles x real wage quotes (no wage assumed),UNKNOWN
+small_permanent,permits,input,USD,fees from official schedules or attorney (none known),UNKNOWN
+small_permanent,insurance,input,USD,broker quote only,UNKNOWN
+small_permanent,commissary_monthly,input,USD,quote only; n/a for some scenarios,UNKNOWN
+small_permanent,rent,input,USD,quote or lease datum only,UNKNOWN
+small_permanent,equipment,input,USD,quotes only,UNKNOWN
+small_permanent,food_cogs_pct,input,fraction,from priced recipes (food/costing); not a guess,UNKNOWN
+small_permanent,bev_cogs_pct,input,fraction,from brewer/partner quote; n/a if no beer,UNKNOWN
+small_permanent,transaction_fee_pct,input,fraction,payment processor published rate or contract,UNKNOWN
+small_permanent,marketing,input,USD,spend actually planned,UNKNOWN
+small_permanent,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
+small_permanent,covers,input,covers per session,from real events,UNKNOWN
+small_permanent,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+small_permanent,break_even,computed,covers or USD,computed by tools/fin_model.py from the inputs above,UNKNOWN
+small_permanent,cash_required,computed,USD,capex + working capital + losses before break-even,UNKNOWN
+small_permanent,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
+flagship,capex,input,USD,one-time capital outlay for the vehicle or site,UNKNOWN
+flagship,fixed_cost_monthly,input,USD,costs that do not vary with covers,UNKNOWN
+flagship,variable_cost_per_cover,input,USD,per-guest cost excluding food/beverage COGS,UNKNOWN
+flagship,labor,input,USD,from staffing-stages.csv roles x real wage quotes (no wage assumed),UNKNOWN
+flagship,permits,input,USD,fees from official schedules or attorney (none known),UNKNOWN
+flagship,insurance,input,USD,broker quote only,UNKNOWN
+flagship,commissary_monthly,input,USD,quote only; n/a for some scenarios,UNKNOWN
+flagship,rent,input,USD,quote or lease datum only,UNKNOWN
+flagship,equipment,input,USD,quotes only,UNKNOWN
+flagship,food_cogs_pct,input,fraction,from priced recipes (food/costing); not a guess,UNKNOWN
+flagship,bev_cogs_pct,input,fraction,from brewer/partner quote; n/a if no beer,UNKNOWN
+flagship,transaction_fee_pct,input,fraction,payment processor published rate or contract,UNKNOWN
+flagship,marketing,input,USD,spend actually planned,UNKNOWN
+flagship,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
+flagship,covers,input,covers per session,from real events,UNKNOWN
+flagship,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+flagship,break_even,computed,covers or USD,computed by tools/fin_model.py from the inputs above,UNKNOWN
+flagship,cash_required,computed,USD,capex + working capital + losses before break-even,UNKNOWN
+flagship,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN

@@ -12,7 +12,7 @@ def pnl(a):
     cm = rev - cogs; be_rev = fixed / (cm / rev) if cm > 0 else float("inf")
     return dict(revenue=rev, cogs=cogs, gross_profit=cm, fixed=fixed, ebitda=cm - fixed, breakeven_revenue=be_rev)
 def sensitivity(a, key, deltas=(-.1, 0, .1)): return {d: round(pnl({**a, key: a[key] * (1 + d)})["ebitda"], 2) for d in deltas}
-SCENARIOS = ("mobile_mvp", "popup", "brewery_residency", "small_permanent", "flagship")
+SCENARIOS = ("private_tasting", "popup", "brewery_residency", "food_trailer", "food_truck", "small_permanent", "flagship")   # mobile_mvp was split into trailer and truck (Sprint 19); fields per scenario: ops/finance/scenario-fields.csv
 def load(scenario=None):
     """Assumptions for one scenario (rows whose 'scenario' column equals it); rows with an empty scenario apply to every scenario. No defaults."""
     if not os.path.exists(F): return {}
@@ -43,7 +43,7 @@ def selftest():
     r = pnl(a); assert r["revenue"] == 3000 and abs(r["cogs"] - 750) < 1e-9 and abs(r["ebitda"] - 250) < 1e-9
     assert sensitivity(a, "covers")[0.1] > sensitivity(a, "covers")[-0.1]
     rows = [dict(assumption_id=k, value=str(v), scenario="popup", provenance_class="TEST") for k, v in a.items()]
-    out = run_all(rows); assert out["popup"]["status"] == "RUN" and out["flagship"]["status"] == "NOT RUN" and out["mobile_mvp"]["status"] == "NOT RUN"
+    out = run_all(rows); assert out["popup"]["status"] == "RUN" and out["flagship"]["status"] == "NOT RUN" and out["food_trailer"]["status"] == "NOT RUN"
     unk = [dict(r, provenance_class="UNKNOWN") for r in rows]; assert run_all(unk)["popup"]["status"] == "NOT RUN"   # a typed value on an UNKNOWN row must not feed the model
     blank = [{k: v for k, v in r.items() if k != "provenance_class"} for r in rows]; assert run_all(blank)["popup"]["status"] == "NOT RUN"
     print("selftest ok (TEST numbers only, not a NASHA result):", {k: round(v, 1) for k, v in r.items()})

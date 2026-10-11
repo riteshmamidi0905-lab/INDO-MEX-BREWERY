@@ -1,5 +1,8 @@
 # Trademark Screening: top-5 parent names (F-5)
 
+> **UPDATE 2026-10-11 (Sprint 19, T1, supersedes the "none found" results below for the restaurant class):** targeted web searches found a restaurant named **Nasha** in Austin (1614 E 7th St; reported since 2014, a second location on S Congress reported 2023): Indian and Tex-Mex fusion with a full bar (Austin Chronicle First Plates 2016, Time Out, Austinot, Hoodline listings; website nashaindia.com). Sources are search results, pages not individually verified, current operating status unconfirmed, trademark status of that business unknown. **This is a material name-conflict risk** (same word, same city, adjacent cuisine, restaurant-and-bar class) and has NOT been assessed legally. No change is made to the founder's selection (D-62) by this note; see D-78. IP attorney review (F-5) is now the most urgent professional action. Do not make further name-dependent spend until the founder has decided.
+
+
 **This is NOT a trademark search and NOT legal clearance.** No USPTO, state or TABC/TTB database was searched (those hosts were blocked in this environment, and a general web search cannot substitute). The table is a **preliminary web-search screen for obvious conflicts**. Language rule: allowed = "no obvious conflict found in preliminary web screening"; **never** "available", "cleared" or "safe". Names come from `brand/PARENT-BRAND-CANDIDATES.md` (our own scoring; no name is selected; D-11, D-12).
 
 ## 1. Preliminary web screen (2026-10-11; search summaries; T3)

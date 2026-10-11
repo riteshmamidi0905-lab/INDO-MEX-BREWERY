@@ -1,0 +1,27 @@
+question_id,question,depends_on,must_be_answered_before,who_answers,evidence_tier_today,note
+IP-1,Is NASHA clearable as a name (knockout and full search)?,"F-5; name founder-selected, clearance pending",PAID EVENT,IP attorney,T4 (web screen only),Private tasting can run unbranded or under a blank label (ATTORNEY-QUESTIONS Q13-15)
+Q-06,Can a third-party truck or food partner operate at a licensed premises; effect on the host's food test?,A0 entity; host identity,POP-UP OR RESIDENCY,Texas alcohol attorney,T1,Matrix: a truck does not satisfy the own-permanent-food-facility option; BP-specific answer unknown
+Q-05,"Temporary permits: who holds them, can a brewpub serve off-site, what does a paid pop-up need?",A1; A3b,PAID EVENT,Texas alcohol attorney,T1,Informal TABC regional-office check only after the attorney agrees
+ATT-6,Can pilot or partner beer be served at a private tasting? Who holds the permit?,A2,PRIVATE FOOD TASTING (only if beer is served) / BEER PILOT,Texas alcohol attorney,T4,A food-only tasting without beer does not need this
+ATT-1,"Which partnerships with a licensed brewery are allowed (residency, co-branded events, revenue share, tied-house)?",A0; A3,POP-UP OR RESIDENCY,Texas alcohol attorney,T4,Source ATTORNEY-QUESTIONS Q1-2; no matrix row
+ATT-3,What may a food-only brand say about beer (pairings naming a partner beer)?,ATT-1,PAID EVENT,Texas alcohol attorney,T4,Affects menus and social media; can defer until marketing exists
+ATT-4,"Collaboration or contract brewing: who holds permit, COLA and label; who owns recipe and name?",A1; IP-1; F-3,BEER PILOT,Texas alcohol attorney,T4,Idea only; no outreach has happened
+Q-01,Brewpub (BP) vs manufacturer licence; compatibility; caps,A0 entity and business model,LEASE,Texas alcohol attorney,T1,"Drives site, premises and entity (gate G-11)"
+Q-02,Guest beer at a brewpub,Q-01,DESIGN,Texas alcohol attorney,T1,Inference only; written TABC guidance sought; affects taplines and cold room
+Q-03,On-premise sales of own beer; product registration,Q-01,OPENING,Texas alcohol attorney,T1,Low risk to defer
+Q-04,Off-premise and packaged sales; COLA and TTB,Q-01,DESIGN,Texas alcohol attorney,T1,Design keeps a canning option open regardless
+Q-08,Distribution and caps,Q-01,CONSTRUCTION,Texas alcohol attorney,T1,Only matters if wholesale is planned; sources disagree on whether caps are enacted
+Q-07,Mobile units and delivery; permanent-address rule,Q-01,TRAILER,Texas alcohol attorney,T1,Matrix says a moving truck cannot hold a permit; HB 1024 not read
+Q-09,Food manager and handler certification; which rules apply in Austin,none,PRIVATE FOOD TASTING,health authority,T1,Ask Austin Public Health whether a private non-sale tasting needs a permit; do not assume
+Q-10,"Mobile unit, temporary event and commissary rules after the 2026-07-01 DSHS transition",Q-09,POP-UP OR RESIDENCY,health authority,T1,Also covers TRAILER; Austin Fire is a second authority for gas or propane units
+Q-11,Austin fixed-establishment permits and plan review,B1; B4,CONSTRUCTION,health authority,T1,Fees pending amendment; confirm directly
+Q-12,Food Code edition in force in Austin,none,OPENING,health authority,T1,Low priority
+Q-13,Poultry temperature and food-safety verification,none,PRIVATE FOOD TASTING,health authority,T1,Also a food-safety professional; Chicken 65 and Butter Chicken are poultry
+FM-1,Fire requirements for propane or gas units and for event assembly,A3c; Q-10,TRAILER,fire marshal,T1,"A search summary mentioned a temporary public-assembly permit for 50+ people; unread, unverified"
+Q-14,Zoning and land use for brewpub plus restaurant plus patio,G-10,LEASE,zoning,T4,Not researched; consult zoning counsel or the City before any lease commitment
+OCC-1,"Change of use, certificate of occupancy, occupancy load, ADA",Q-14,LEASE,architect,T1,Reported by search summary only
+Q-15,Hood and fire for tandoor and fryers,OCC-1; kitchen design,DESIGN,fire marshal,T4,Austin Fire requirements not found; mechanical engineer also involved
+PAT-1,"Patio: zoning, occupancy, premises description, noise",Q-14; Q-01,CONSTRUCTION,zoning,T4,Also architect and attorney: the premises boundary affects the licence
+SIGN-1,Signage permits and landlord rules,Q-14,CONSTRUCTION,zoning,T4,No logo exists; do not design signage; wait for IP clearance and identity
+INS-1,"Liability and liquor-liability cover for events, residency, family features",A3; G-9,POP-UP OR RESIDENCY,insurance broker,T4,Indicative conversation only; no premium figures
+ENT-1,"Entity structure separating food business, future brewpub, beer brand",none,POP-UP OR RESIDENCY,Texas alcohol attorney,T4,ATTORNEY-QUESTIONS Q8-9; also tax counsel

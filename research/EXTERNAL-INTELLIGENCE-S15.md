@@ -1,4 +1,6 @@
 # External intelligence, Sprint 15 (2026-10-11)
+
+> **UPDATE 2026-10-11 (Sprint 19, T1 search summaries, pages not opened):** targeted searches contradict the near-absence implied below for Indian-Mexican players. Found: a restaurant named Nasha (Indian Tex-Mex fusion, full bar, E 7th St), Whip In (Gujarati/Tex-Mex pub and market with a brewery), Sivestar Indian Tacos, Kurry Takos, Taco Twist, Austin Taco Project, and chef-led kitchens at some breweries. No in-house brewery with an Indian-Mexican regional kitchen logic was found. See `docs/company/AUSTIN-MARKET-MAP.md` section 5. Status of each business is unconfirmed.
 Everything here is T1/T2 research or an observed third-party listing, never evidence of a tested product or demand. Ledger rows V-59..V-70; literature in `research/LITERATURE-LEDGER.csv`; observed data in `ops/data/`.
 
 ## 1. Connector assessments
