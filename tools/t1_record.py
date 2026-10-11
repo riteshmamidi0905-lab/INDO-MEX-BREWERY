@@ -6,7 +6,7 @@ import csv, os, re, statistics, sys
 P = "food/t1-results/t1-results.csv"
 NUM = ["chicken_identity_0_5", "totopo_identity_0_5", "flavor_0_5", "aroma_0_5", "texture_0_5", "fusion_coherence_0_5", "crispness_0_5", "structural_integrity_0_5", "appearance_0_5", "repeatability_0_5", "another_bite_0_5"]  # column names keep the legacy suffix; the scale is 1-5 (Sprint 12)
 GATES = {"NOT_65", "NO_CORN", "SOGGY", "IMPRACTICAL", "COLLAPSE", "SAUCE_DOMINATES", "GENERIC_NACHOS", "UNRELATED_CHIPS", "D54", "UNSAFE"}
-D54 = re.compile(r"\b(beef|veal|pork|bacon|ham|lard|tallow|suet|gelatin|gelatine|chicharron|chorizo)\b", re.I)
+D54 = re.compile(r"\b(beef|veal|pork|bacon|ham|lard(?!-free)|tallow|suet|gelatin|gelatine|chicharron|chorizo)\b", re.I)
 # FROZEN BEFORE COOKING (Sprint 12, 2026-10-11; founder's recommended starting rule, 1-5 scale; edit only BEFORE a test, with a decision-ledger note). Not industry standards.
 FROZEN = dict(chicken_identity=4.0, totopo_identity=4.0, fusion=4.0, crisp10=3.5, structure=3.5, another_bite=4.0)
 MIN_ITER = 2   # a construction needs this many iterations that pass EVERY gate
@@ -53,7 +53,8 @@ def report(rows):
         scores[(dish, con)] = dict(iters=iters, passing=passing)
     for dish in sorted({d for d, _ in scores}):
         ok = [(c, s) for (d, c), s in scores.items() if d == dish and s["passing"] >= MIN_ITER]
-        if len(ok) == 1: print(f"\n{dish}: candidate winner {ok[0][0]} (passed every FROZEN gate in 2 iterations with no failure-gate codes; with one cook and one panel this is directional, a PROMISING PROTOTYPE at best, not a validated dish)")
+        if len(ok) > 1: print(f"\n{dish}: SEVERAL constructions qualify ({', '.join(c for c, _ in ok)}): NO SINGLE WINNER; rank by margin and rework")
+        elif len(ok) == 1: print(f"\n{dish}: candidate winner {ok[0][0]} (passed every FROZEN gate in 2 iterations with no failure-gate codes; with one cook and one panel this is directional, a PROMISING PROTOTYPE at best, not a validated dish)")
         else: print(f"\n{dish}: NO WINNER DECLARED ({len(ok)} construction(s) meet the rule with >= {MIN_ITER} iterations)")
     print("\nConcept vs real: complete food/t1-test-sheets/09-concept-vs-real-comparison.md; advance visual_stage to PROTOTYPE at most, with stage_evidence_ref set.")
     return 0

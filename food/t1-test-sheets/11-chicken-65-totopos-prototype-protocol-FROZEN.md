@@ -11,11 +11,11 @@
 
 ## 2. Decisions and reasons (chef may change BEFORE cooking, never after)
 - **Chicken cut:** boneless **thigh**, cut about 2.5 cm (a NASHA operational choice: moisture, tenderness, fry-and-hold behaviour, repeatability and bite size; not presented as traditional).
-- **Chip method for T1: FRIED**, from **real nixtamal corn tortillas** (from a tortilleria or good store; record brand/type, thickness, corn type if known), dried first, cut in sixths. Reason: best corn flavour, crispness and structural strength for the restaurant product; baked and toasted are later controls. **Do not use bagged flavoured supermarket chips**; if you must, label the whole run "ROUGH CONVENIENCE TEST" and it **does not count**.
+- **Chip method for T1: FRIED**, from **real nixtamal corn tortillas** (from a tortilleria or good store; record brand/type, thickness, corn type if known), dried first, cut in sixths. Reason (hypothesis): expected best corn flavour, crispness and structural strength for the restaurant product; baked and toasted are later controls. **Do not use bagged flavoured supermarket chips**; if you must, label the whole run "ROUGH CONVENIENCE TEST" and it **does not count**.
 - **Oil:** neutral vegetable oil, lard-free (statement/label photographed). Fresh oil for the run; record type, set point and each batch.
 - **Same components for A, B and C:** one chicken batch per iteration, one chip batch per iteration, same garnish, same acid, same crema, same portion targets. Only the construction changes.
 - **Crema:** optional component, same placement in all three (small pool at the plate edge) in Session 1; **placement (side, pool, drizzle, dots) is a Session 2 question**. Lime and onion are the default accompaniments.
-- **Garnish (each has a reason):** curry leaf (Chicken 65 identity, fried crisp), green chile (heat and identity), lime (acid, cuts fat), thin onion (traditional-style accompaniment), no other garnish.
+- **Garnish (each has a reason):** curry leaf (Chicken 65 identity, fried crisp), green chile (heat and identity), lime (acid, cuts fat), thin onion (a common accompaniment), no other garnish.
 
 ## 3. Portion targets (weigh and record the ACTUAL value; write NOT MEASURED if skipped)
 Per plate: cooked chicken 120 g, chips 60 g, crema 20 g, curry leaf 1 g, green chile 5 g, onion 10 g, lime 1/6. **Plates: 3 constructions x 2 iterations = 6, plus 1 spare, plus a bare-chip control (60 g) per iteration, plus extra chips on the side for T+5/T+10 crispness scoring.**
@@ -24,7 +24,7 @@ Per plate: cooked chicken 120 g, chips 60 g, crema 20 g, curry leaf 1 g, green c
 Marinade: ginger-garlic paste 40 g, red chilli powder 12 g (Kashmiri-type for colour; chef decides heat), turmeric 2 g, coriander powder 6 g, salt 10 g, lemon juice 25 ml, thick yogurt 60 g; rest 1 hour to overnight at 4 C or below. Coating just before frying: rice flour 40 g + cornflour 40 g (record flours used; note any egg white). Finish: curry leaves 15 g and slit green chiles 30 g fried crisp in the oil and tossed through; lemon. Frying: set point about 175 C (chef decision), small batches, rest, **probe every batch to 74 C (165 F) in the thickest piece**. **Raw chicken needed for the full plan: about 1.6 kg** (two iterations of about 0.8 kg, covering plates plus tasting extras).
 
 ## 5. Constructions (same components, different geometry; photograph each)
-- **A Integrated (founder-preferred direction):** an open layer of chips on a black stoneware plate, the chicken pieces distributed through and among them, curry leaf and chile scattered, crema pool at the edge, lime beside.
+- **A Integrated (design direction under test):** an open layer of chips on a black stoneware plate, the chicken pieces distributed through and among them, curry leaf and chile scattered, crema pool at the edge, lime beside.
 - **B Ring:** a ring of upright/leaning chips around the edge, chicken piled in the centre ring, crema in a katori or edge pool, lime beside; keeps a dry chip surface.
 - **C Composed board:** chips, chicken (on a small rack or liner) and crema in controlled contact on a board, one composed arrangement; risk: reads as two foods.
 - **Control:** 60 g of bare chips on a plate, untouched, scored at the same times.
@@ -39,7 +39,7 @@ Marinade: ginger-garlic paste 40 g, red chilli powder 12 g (Kashmiri-type for co
 | T+10 crispness | 3.5 |
 | Structural integrity | 3.5 |
 | Overall desire for another bite | 4.0 |
-A construction **passes an iteration** only if every gate is met **and** no failure gate is triggered. It needs **2 passing iterations** to be named a candidate; one good plate is a PROMISING PROTOTYPE, never a VALIDATED SIGNATURE DISH. These thresholds are frozen in `tools/t1_record.py` (`FROZEN`) by this commit; changing them after tasting is not allowed. Outcomes: KEEP / REWORK / HOLD / CUT.
+A construction **passes an iteration** only if every gate is met **and** no failure gate is triggered (T+10 crispness and structure are averaged at T+10 only; the four identity/coherence/bite gates are averaged over T+0, T+5 and T+10). It needs **2 passing iterations** to be a candidate. If exactly one construction qualifies it is the candidate winner; **if several qualify, no single winner is declared** and they are ranked by margin for a rework session; one good plate is a PROMISING PROTOTYPE, never a VALIDATED SIGNATURE DISH. These thresholds are frozen in `tools/t1_record.py` (`FROZEN`) by this commit; changing them after tasting is not allowed. Outcomes: KEEP / REWORK / HOLD / CUT.
 **Automatic failure gates (recorded as codes in `gate_failures`, pipe-separated):** `NOT_65` chicken no longer reads as Chicken 65; `NO_CORN` Mexican corn component disappears; `SOGGY` chips unpleasantly soggy within reasonable table time; `IMPRACTICAL` cannot be eaten practically; `COLLAPSE` construction falls apart; `SAUCE_DOMINATES`; `GENERIC_NACHOS`; `UNRELATED_CHIPS` (tastes like Chicken 65 with unrelated chips); `D54`; `UNSAFE`.
 
 ## 6. Panel, blinding and honesty
@@ -48,8 +48,8 @@ Record panel size and each taster's role and familiarity with Indian and Mexican
 ## 7. Kitchen day card
 1. **Before:** write down chip source, flour used, oil, pre-set numbers; photograph every label (D-54); confirm tasters' allergies (dairy in crema; wheat/rice flour; shared fryer oil); clean workspace; thermometer calibrated (ice water).
 2. **Prep:** marinate chicken (<= 4 C); dry and cut tortillas; weigh everything.
-3. **Iteration 1:** fry chips (one batch, record time and gap to plating); fry chicken in small batches, probe each batch; toss with fried curry leaf and chile; weigh portions. Run the randomizer; **stagger plating 3 minutes apart**; plate A, B, C and the control from the same batches; log room temperature; assembly time per plate.
-4. **Per plate (stopwatch):** T+0 (score within 60 seconds), T+5, T+10 left untouched on the table (ambient); score chips from the **extra chips on the side** at each time; probe temperature at each time. **Do not rescue a plate before scoring it.**
+3. **Iteration 1 (order matters):** fry the **chicken first** in small batches, probe each batch to 74 C, toss with the fried curry leaf and chile, weigh portions, and **hold the chicken on a rack in a 90 C oven**; fry the **chips last, immediately before plating** (record fry time and the gap to plating). Curry leaves and chiles must be **patted dry and fried behind a splatter screen**. **Fresh oil per iteration; filter between chips and chicken (or use a separate pot for chips); record every oil change.** Run the randomizer; **a second person is required** (not optional): plating, stopwatch, scoring and photography for four plates cannot be done by one cook; stagger plating 3 minutes apart, or run one construction per 15-minute slot from the held batch; plate A, B, C and the control from the same batches; log room temperature; assembly time per plate.
+4. **Per plate (stopwatch):** T+0 (score within 60 seconds), T+5, T+10 left untouched on the table (ambient); score chips from the **extra chips on the side** at each time; probe a **sacrificial piece** of chicken placed on the side at each time (probing the plated chicken disturbs it). **Do not rescue a plate before scoring it.**
 5. **Photograph** (section 9) before anyone touches a plate; failures before cleanup.
 6. **Iteration 2:** fresh batches, new codes, same procedure.
 7. **Same day:** enter rows in `food/t1-results/t1-results.csv` (only real values; `NOT MEASURED` where skipped), fill `09-concept-vs-real-comparison.md`, then `python3 tools/t1_record.py report`. Discard plates held over 2 hours (or 1 hour above 32 C).
@@ -60,6 +60,7 @@ Record panel size and each taster's role and familiarity with Indian and Mexican
 | ___ | T+0 | | | | | | | | | |
 | ___ | T+5 | | | | | | | | | |
 | ___ | T+10 | | | | | | | | | |
+(also record any failure-gate code per code in the data file: `gate_failures`)
 (repeat per code; the control row is crispness and corn flavour only)
 
 ## 9. Photography sequence (fixed protocol: `food/PHOTOGRAPHY-PROTOCOL-T1.md`)
@@ -72,7 +73,7 @@ Fixed position (tripod or a stack of books), grey card, same time of day, sequen
 - **Chicken:** boneless skinless thighs, about 1.6 kg.
 - **Marinade/spices:** ginger and garlic (or ready paste, label checked), red chilli powder (Kashmiri-type) about 40 g, turmeric, ground coriander, salt, lemons 4, thick plain yogurt 150 g.
 - **Coating:** rice flour 150 g, cornflour 150 g.
-- **Totopos:** fresh nixtamal corn tortillas, about 48 (check label for lard; ask for lard-free), 6 per plate-equivalent plus control and extras.
+- **Totopos:** fresh nixtamal corn tortillas, about 24 per iteration (48 total; check the label for animal fat; ask for lard-free), enough for the plate chips (4 x 60 g plus control) and the extra side chips.
 - **Sauce:** thick plain yogurt or Mexican crema about 150 g (for the optional crema; label checked), salt.
 - **Garnish:** fresh curry leaves 1 large bunch (about 40 g), green chiles (serrano or Indian green) about 120 g, limes 6, red onion 1.
 - **Frying:** neutral vegetable oil (lard-free label) about 3 L.
