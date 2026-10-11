@@ -1,6 +1,6 @@
 {
- "distHash": "aa78dd41df33c6a4",
- "date": "2026-10-11T16:51:11.192Z",
+ "distHash": "a11c7940dccc7720",
+ "date": "2026-10-11T16:55:11.673Z",
  "pages": {
   "about.html": {
    "overflow": {
@@ -54,13 +54,13 @@
    "requests": [
     "/about.html",
     "/styles.css",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
-    "/fonts/inter-latin-wght-normal.woff2"
+    "/fonts/instrument-serif-latin-400-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 60
+    "lcp_ms": 56
    },
    "noJs": {
     "h1": 1,
@@ -122,16 +122,16 @@
    "console": [],
    "bytes": 194669,
    "requests": [
-    "/beer.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/app.js",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/beer.html",
+    "/app.js",
     "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 116
+    "lcp_ms": 72
    },
    "noJs": {
     "h1": 1,
@@ -256,14 +256,14 @@
    "bytes": 116657,
    "requests": [
     "/crossing.html",
-    "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 60
+    "lcp_ms": 56
    },
    "noJs": {
     "h1": 1,
@@ -341,14 +341,14 @@
    "requests": [
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/experience.html",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/experience.html",
     "/app.js",
     "/images/NV-SPACE-ENTRANCE-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 56
+    "lcp_ms": 100
    },
    "noJs": {
     "h1": 1,
@@ -410,10 +410,10 @@
    "console": [],
    "bytes": 210604,
    "requests": [
-    "/styles.css",
     "/food.html",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/app.js",
     "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
@@ -599,14 +599,14 @@
    "bytes": 111301,
    "requests": [
     "/styles.css",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/investor.html",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 68
+    "lcp_ms": 52
    },
    "noJs": {
     "h1": 1,
@@ -685,12 +685,12 @@
     "/labs.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
+    "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 56
+    "lcp_ms": 64
    },
    "noJs": {
     "h1": 1,
@@ -830,8 +830,8 @@
    "console": [],
    "bytes": 196953,
    "requests": [
-    "/styles.css",
     "/space.html",
+    "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/app.js",
     "/fonts/inter-latin-wght-normal.woff2",
@@ -841,7 +841,7 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 84
+    "lcp_ms": 80
    },
    "noJs": {
     "h1": 1,
@@ -862,12 +862,12 @@
   "maxInitialBytes": 250970,
   "homeInitialBytes": 250970,
   "maxCls": 0,
-  "maxLcpMs": 116,
+  "maxLcpMs": 100,
   "consoleIssues": 0
  },
  "slow": {
   "profile": "1.6 Mbps, 150 ms RTT, 390px viewport",
-  "heroReadyMs": 1282,
+  "heroReadyMs": 1289,
   "heroSrc": "/images/NV-HERO-01-m-480.avif"
  },
  "imagesBlocked": {
