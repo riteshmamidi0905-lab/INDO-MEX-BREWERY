@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Generate docs/FOUNDER-ACTION-BOARD.md from docs/company/data/actions.csv and contact-targets.csv: ONLY actions that need the founder or an outside party, with a NEXT 3
-view at the top. Statuses: READY / WAITING / BLOCKED / DONE / NOT YET NEEDED. Costs are FREE / UNKNOWN / QUOTE REQUIRED / PAID - APPROVAL REQUIRED, never invented.
+view at the top. Statuses: READY / READY WHEN FUNDED / WAITING / BLOCKED / DONE / NOT YET NEEDED. Costs are FREE / UNKNOWN / QUOTE REQUIRED / PAID - APPROVAL REQUIRED, never invented.
   python3 tools/action_board.py         write       python3 tools/action_board.py --check   exit 1 if stale"""
 import csv, os, sys
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def p(*a): return os.path.join(R, *a)
 def rows(f): return list(csv.DictReader(open(p(f), encoding="utf-8")))
 acts = rows("docs/company/data/actions.csv"); tg = rows("docs/company/data/contact-targets.csv")
-ST = ("READY", "WAITING", "BLOCKED", "DONE", "NOT YET NEEDED")
+ST = ("READY", "READY WHEN FUNDED", "WAITING", "BLOCKED", "DONE", "NOT YET NEEDED")
+HZ = {"A": "HORIZON A - $0 FOUNDER BUILD", "B": "HORIZON B - LOW-COST VALIDATION", "C": "HORIZON C - FUNDED PROFESSIONAL EXECUTION"}
 for a in acts:
     if a["status"] not in ST: sys.exit(f"{a['action_id']}: status {a['status']} not in {ST}")
     cs = a["cost_status"].split(" ")[0].split("(")[0]
@@ -24,9 +25,11 @@ for i, a in enumerate(top, 1):
           f"- **Why now:** {a['why_now']}", f"- **Who:** {a['who']}", f"- **Send / bring:** {a['send_bring']}", f"- **Your time:** {a['founder_time_estimate']}   **Cost:** {a['cost_status']}",
           f"- **Steps:** {a['exact_steps']}", f"- **Output expected:** {a['output_expected']}   **Where it goes:** {a['save_output_to']}", f"- **Decision it unlocks:** {a['decision_unlocked']}",
           f"- **What Claude does after the input arrives:** {a['claude_after']}", ""]
-cult = [a for a in acts if a["action_id"] in ("A04", "A05")]
-cp = min(int(a["priority"]) for a in cult)
-L += [f"**Where cultural review sits:** the two advisor packs (A04, A05) are priority {cp}. Reasoning at the time of writing: they do not unlock a cook or a legal gate and nothing is public yet; they matter before Session 2 and before any public name or claim, and cost little founder time, so they can go in the same sitting as the brewer pack. Ranking is by dependency and information value; change a priority in `docs/company/data/actions.csv` and regenerate.", "",
+fund = sorted([a for a in acts if a["status"] == "READY WHEN FUNDED"], key=lambda a: (int(a["priority"]), a["action_id"]))
+L += ["**Founder direction (D-81): the pre-capital phase has no money for paid professionals, so legal, brewer and advisor actions are not asked of you now.** They are prepared and wait under READY WHEN FUNDED below. Only Horizon A actions (free, personal, lawful) are on the NEXT 3 list. Priority is by dependency and information value; change it in `docs/company/data/actions.csv` and regenerate.", "",
+      "## READY WHEN FUNDED (Horizon C; prepared, not needed to keep building)", "", "| ID | Action | Pack / what to send | Decision it unlocks | Cost |", "|---|---|---|---|---|"]
+for a in fund: L.append(f"| {a['action_id']} | {cell(a['action'], 80)} | {cell(a['send_bring'], 90)} | {cell(a['decision_unlocked'], 90)} | {cell(a['cost_status'], 50)} |")
+L += ["", "Full register of who, why, what they review and what they unlock: `docs/company/data/professional-gates.csv` (generated into `docs/BLUEPRINT-STATUS.md`).", "",
       "## Starting pool (fit to the need from public listings; NOT a recommendation or a qualification; nobody contacted)", "", "| Need | Listing-fit candidates | Route shown in a search result (not opened) | Listing agreement (T1; qualifications unchecked) |", "|---|---|---|---|"]
 cats = []
 for t in tg:
@@ -35,9 +38,9 @@ for c in cats:
     top2 = sorted([t for t in tg if t["category"] == c], key=lambda t: int(t["rank"]))[:2]
     L.append(f"| {c} | " + "; ".join(t["name_or_organization"] for t in top2) + " | " + "; ".join(cell(t["public_contact_route"], 400) for t in top2) + " | " + "/".join(t["confidence"] for t in top2) + " |")
 L += ["", "Full list with questions to ask first and sources: `docs/company/data/contact-targets.csv`. A listing is not a qualification: the founder checks credentials. Confirm every contact detail on the organisation's own site.", "",
-      "## Whole board", "", "| ID | Pri | Action | Who | Send / bring | Time (est.) | Cost | Depends on | Output -> where saved | Unlocks | Status |", "|---|---|---|---|---|---|---|---|---|---|---|"]
+      "## Whole board", "", "| ID | Hz | Pri | Action | Who | Send / bring | Time (est.) | Cost | Depends on | Output -> where saved | Unlocks | Status |", "|---|---|---|---|---|---|---|---|---|---|---|---|"]
 for a in sorted(acts, key=lambda a: (int(a["priority"]), a["action_id"])):
-    L.append(f"| {a['action_id']} | {a['priority']} | {cell(a['action'], 70)} | {cell(a['who'], 50)} | {cell(a['send_bring'], 80)} | {cell(a['founder_time_estimate'], 40)} | {cell(a['cost_status'], 40)} | {cell(a['dependency'], 40)} | {cell(a['output_expected'], 40)} -> {cell(a['save_output_to'], 40)} | {cell(a['decision_unlocked'], 60)} | {a['status']} |")
+    L.append(f"| {a['action_id']} | {a['horizon']} | {a['priority']} | {cell(a['action'], 70)} | {cell(a['who'], 50)} | {cell(a['send_bring'], 80)} | {cell(a['founder_time_estimate'], 40)} | {cell(a['cost_status'], 40)} | {cell(a['dependency'], 40)} | {cell(a['output_expected'], 40)} -> {cell(a['save_output_to'], 40)} | {cell(a['decision_unlocked'], 60)} | {a['status']} |")
 cnt = {s: sum(a["status"] == s for a in acts) for s in ST}
 L += ["", "Status counts: " + ", ".join(f"{s} {n}" for s, n in cnt.items()) + ".", "", "When an input arrives, send it to Claude as it is and say INGEST THESE. Routing: `python3 tools/intake.py route`. Where things are filed: `docs/EVIDENCE-INTAKE.md`.", ""]
 out = "\n".join(L); path = p("docs/FOUNDER-ACTION-BOARD.md")

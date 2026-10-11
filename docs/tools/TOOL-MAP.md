@@ -6,6 +6,7 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 |---|---|---|---|
 | `action_board.py` | GENERATOR | Generate docs/FOUNDER-ACTION-BOARD.md from docs/company/data/actions.csv and contact-targets.csv: ONLY actions | 3 |
 | `beerjson_check.py` | HELPER / MODEL | Validate a BeerJSON file against the vendored official schema (Sprint 15). Structure check only: a valid file  | 2 |
+| `blueprint_views.py` | HELPER / MODEL | Generate the pre-capital blueprint views from canonical CSV data (Sprint 22). Invents nothing: every number-be | 6 |
 | `brew_calc.py` | HELPER / MODEL | Brewing arithmetic for NASHA PLANNING (Sprint 9). AI planning support only: NOT operating instructions, NOT pr | 4 |
 | `competitor_summary.py` | HELPER / MODEL | Summarise ops/data/austin-yelp-observed.csv by group (Sprint 15). OBSERVED values only; nothing is inferred ab | 3 |
 | `control_center.py` | GENERATOR | Generate docs/CORE5-CONTROL-CENTER.md: one place for the ten Core 5 products. Reads the canonical matrices, se | 3 |
@@ -14,15 +15,15 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 | `decision_register.py` | GENERATOR | Decision register and contradiction check (Sprint 19). Parses docs/decisions/DECISIONS.md (table rows / D-n /  | 6 |
 | `diet_audit.py` | VALIDATOR | D-54 consistency check: no beef/pork in CURRENT-PRODUCT files unless the line is marked as superseded/rejected | 6 |
 | `experiment_stats.py` | RECORDER / INGEST | Small-sample experiment analysis for T1-style tests (Sprint 14). Honest by design: with n<8 it reports descrip | 4 |
-| `fin_model.py` | HELPER / MODEL | Restaurant/brewery scenario model skeleton (Sprint 14). Reads ops/finance/assumptions.csv (header only today)  | 6 |
-| `food_costing.py` | HELPER / MODEL | Percent columns in the costing CSVs are 0-100 (yield_pct = usable yield after trim/cook, waste_pct = extra pre | 8 |
+| `fin_model.py` | HELPER / MODEL | Restaurant/brewery scenario model (Sprint 14, hardened Sprint 22). Reads ops/finance/assumptions.csv (every va | 13 |
+| `food_costing.py` | HELPER / MODEL | Food costing, allergen and D-54 checks for NASHA recipes (Sprint 9, hardened Sprint 22). Reads food/costing/in | 18 |
 | `founder_center.py` | GENERATOR | Generate docs/FOUNDER-CONTROL-CENTER.md from canonical company data in docs/company/data/ (workstreams, stages | 4 |
 | `founder_download_candidates.sh` | HELPER / MODEL | FOUNDER: run this on YOUR computer (not in the cloud sandbox, whose proxy blocks figma.com) before 2026-10-18. | 8 |
 | `glass_model.py` | HELPER / MODEL | Parametric glass CONCEPT model (Sprint 14). Draws a revolved profile with OpenSCAD, measures volume with trime | 2 |
 | `glass_params.py` | HELPER / MODEL | Parametric glass CONCEPT geometry with optional collar ring (Sprint 15). CONCEPT GEOMETRY - MANUFACTURABILITY  | 3 |
 | `glass_v2.py` | HELPER / MODEL | Glass family V2 geometry system (Sprint 17). CONCEPT GEOMETRY - MANUFACTURABILITY UNVERIFIED; no logo/text/mar | 3 |
-| `intake.py` | RECORDER / INGEST | REAL INPUT INGESTION (Sprint 21). One tool for receipts, labels, packages, supplier quotes and raw professiona | 9 |
-| `kitchen_capacity.py` | HELPER / MODEL | Core 5 kitchen CAPACITY PLANNING EXERCISE (Sprint 17). Not a forecast. Reads ops/kitchen/capacity-assumptions. | 2 |
+| `intake.py` | RECORDER / INGEST | REAL INPUT INGESTION (Sprint 21). One tool for receipts, labels, packages, supplier quotes and raw professiona | 12 |
+| `kitchen_capacity.py` | HELPER / MODEL | Core 5 kitchen CAPACITY PLANNING EXERCISE (Sprint 17). Not a forecast. Reads ops/kitchen/capacity-assumptions. | 4 |
 | `lit_ledger.py` | RECORDER / INGEST | Literature ledger (Sprint 15): Question -> candidate paper -> DOI -> metadata -> abstract note -> evidence qua | 2 |
 | `make_session_cards.py` | GENERATOR | Generate the Core 5 SESSION CARDS (food/sessions/S2..S5-*.md) and the R&D book index (food/sessions/README.md) | 2 |
 | `menu_engineering.py` | HELPER / MODEL | Menu engineering (Kasavana-Smith style) from REAL sales data only (Sprint 14). Input: ops/menu-engineering/sal | 2 |
@@ -40,7 +41,7 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 | `t1_record.py` | RECORDER / INGEST | Summarise real T1 kitchen results (food/t1-results/t1-results.csv). Never invents data: with no rows it report | 13 |
 | `tool_map.py` | GENERATOR | Generate docs/tools/TOOL-MAP.md: every tool, its one-line purpose (first docstring line or comment), what refe | 0 (UNREFERENCED) |
 | `trade_area.py` | HELPER / MODEL | Trade-area screening on FOUNDER-SUPPLIED public points (Sprint 15). Straight-line (geodesic-projected) radius  | 2 |
-| `validate_all.sh` | VALIDATOR | FULL NASHA VALIDATION: one command. Runs the repository validators, generated-file freshness checks, every too | 2 |
+| `validate_all.sh` | VALIDATOR | FULL NASHA VALIDATION: one command. Runs the repository validators, generated-file freshness checks, every too | 3 |
 | `validate_company.py` | VALIDATOR | Company-building system checks (Sprint 19): data files parse, generated founder control center is fresh, decis | 2 |
 | `validate_core5.py` | VALIDATOR | Validate the Core 5 x Core 5 program files (Sprint 16, D-75). Exit 1 on failure. Checks structure and honesty, | 3 |
 | `validate_repo.py` | VALIDATOR | Sprint-3 repository validation. Run from repo root: python3 tools/validate_repo.py (exit 1 on failure; warning | 10 |

@@ -33,6 +33,8 @@ brand/ beer/ food/ architecture/ business/ website/   future working folders
 ```
 
 ## Start here
+**Current (Sprint 22, D-81 zero-dollar pre-capital build): read `docs/BLUEPRINT-STATUS.md`, then `docs/FOUNDER-ACTION-BOARD.md` (next three actions) and `docs/FOUNDER-CONTROL-CENTER.md`; the older lines below are history. Document map: `docs/DOCUMENT-MAP.md`. Full validation: `bash tools/validate_all.sh`.**
+
 **Current plan and status: `PROJECT-ROADMAP.md`** (Phase 2 active since D-49).
 
 Phase 1.5 (current): `docs/decisions/DECISIONS.md` → `brand/BRAND-WORLDS.md` → `visuals/VISUAL-DNA.md` → `visuals/ASSET-MANIFEST.md`.

@@ -35,3 +35,8 @@ PROJECT-ROADMAP.md,SUPERSEDED (stale),Status through Sprint 4,docs/FOUNDER-CONTR
 README.md,SUPPORTING (stale in places),Sprint log ends at 16,docs/FOUNDER-CONTROL-CENTER.md
 visuals/nasha-v3/CANDIDATE-REVIEW.md,CANONICAL,Figma candidate status; exact originals not preserved,
 docs/company/data/*-NOTE.md,ARCHIVE CANDIDATE,Data stub notes (kept; move rather than delete),
+docs/BLUEPRINT-STATUS.md,CANONICAL (generated),"Pre-capital blueprint: horizons, completeness map, investor diagnostic, professional gates, team gaps",
+docs/BUSINESS-MODEL-CONTROL.md,CANONICAL (generated),"Economic decision model: chain, provenance, gates, formats, brewery logic (no numbers)",
+docs/PRODUCT-BIBLE.md,CANONICAL (generated),Core 5 food and beer product bible generated from canonical matrices,
+docs/OPERATING-BLUEPRINT.md,CANONICAL (generated),"Proposed operations, kitchen, brewery, guest journey and digital-twin requirements",
+docs/INVESTOR-DATA-ROOM.md,CANONICAL (generated),"Investor data-room index, capital stages, use of funds, risks",

@@ -181,3 +181,37 @@ flagship,ticket_price,input,USD,NOT USED BY tools/fin_model.py YET (record only)
 flagship,per_event_fixed_cost,input,USD,"NOT USED BY tools/fin_model.py YET (record only); kitchen hours x hourly rate quote, permits per event",UNKNOWN
 flagship,deposit_refund_no_show,input,fractions,NOT USED BY tools/fin_model.py YET (record only); deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
 flagship,name_change_exposure,qualitative,text,track name-dependent spend as sunk/refundable/reusable (D-78); no amounts assumed,UNKNOWN
+invited_validation,capex,input,USD,one-time capital outlay for the vehicle or site,UNKNOWN
+invited_validation,other_fixed_monthly,input,USD,"fixed costs that do not vary with covers (permits, insurance, commissary, marketing, maintenance listed separately below if split)",UNKNOWN
+invited_validation,variable_cost_per_cover,input,USD,per-guest cost excluding food/beverage COGS,UNKNOWN
+invited_validation,labor_monthly,input,USD,from the roles in docs/company/data/staffing-stages.csv x real wage quotes and hours (no wage or hours assumed),UNKNOWN
+invited_validation,permits,input,USD,fees from official schedules or attorney (none known),UNKNOWN
+invited_validation,insurance_monthly,input,USD,broker quote only,UNKNOWN
+invited_validation,commissary_monthly,input,USD,quote only; n/a for some scenarios,UNKNOWN
+invited_validation,occupancy_monthly,input,USD,rent/occupancy: quote or lease datum only,UNKNOWN
+invited_validation,equipment,input,USD,quotes only,UNKNOWN
+invited_validation,food_cogs_pct,input,fraction,from priced recipes (food/costing); not a guess,UNKNOWN
+invited_validation,bev_cogs_pct,input,fraction,from brewer/partner quote; n/a if no beer,UNKNOWN
+invited_validation,bev_mix_pct,input,fraction,share of revenue from beverages,UNKNOWN
+invited_validation,transaction_fee_pct,input,fraction,payment processor published rate or contract,UNKNOWN
+invited_validation,marketing_monthly,input,USD,spend actually planned,UNKNOWN
+invited_validation,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
+invited_validation,covers,input,covers per day,from real events,UNKNOWN
+invited_validation,days_open,input,days per month,operating days,UNKNOWN
+invited_validation,event_capacity,input,guests per session,NOT USED BY tools/fin_model.py YET (record only); physical or permit limit,UNKNOWN
+invited_validation,break_even,computed,covers or USD,computed by tools/fin_model.py: breakeven_revenue only (break-even covers not yet computed); a free event has zero revenue and positive cost,UNKNOWN
+invited_validation,cash_required,computed,USD,"NOT YET COMPUTED by the tool; fill from capex, working capital and expected losses by hand with sources",UNKNOWN
+invited_validation,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
+invited_validation,events_per_month,input,events,"NOT USED BY tools/fin_model.py YET (record only); for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
+invited_validation,ticket_price,input,USD,NOT USED BY tools/fin_model.py YET (record only); only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
+invited_validation,per_event_fixed_cost,input,USD,"NOT USED BY tools/fin_model.py YET (record only); kitchen hours x hourly rate quote, permits per event",UNKNOWN
+invited_validation,deposit_refund_no_show,input,fractions,NOT USED BY tools/fin_model.py YET (record only); deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
+invited_validation,name_change_exposure,qualitative,text,track name-dependent spend as sunk/refundable/reusable (D-78); no amounts assumed,UNKNOWN
+private_tasting,max_covers_per_day,input,covers,"physical ceiling per open day (seats x turns, or the bottleneck station from measured ticket times); used by the break-even capacity warning",UNKNOWN
+invited_validation,max_covers_per_day,input,covers,"physical ceiling per open day (seats x turns, or the bottleneck station from measured ticket times); used by the break-even capacity warning",UNKNOWN
+popup,max_covers_per_day,input,covers,"physical ceiling per open day (seats x turns, or the bottleneck station from measured ticket times); used by the break-even capacity warning",UNKNOWN
+brewery_residency,max_covers_per_day,input,covers,"physical ceiling per open day (seats x turns, or the bottleneck station from measured ticket times); used by the break-even capacity warning",UNKNOWN
+food_trailer,max_covers_per_day,input,covers,"physical ceiling per open day (seats x turns, or the bottleneck station from measured ticket times); used by the break-even capacity warning",UNKNOWN
+food_truck,max_covers_per_day,input,covers,"physical ceiling per open day (seats x turns, or the bottleneck station from measured ticket times); used by the break-even capacity warning",UNKNOWN
+small_permanent,max_covers_per_day,input,covers,"physical ceiling per open day (seats x turns, or the bottleneck station from measured ticket times); used by the break-even capacity warning",UNKNOWN
+flagship,max_covers_per_day,input,covers,"physical ceiling per open day (seats x turns, or the bottleneck station from measured ticket times); used by the break-even capacity warning",UNKNOWN

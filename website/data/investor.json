@@ -1,0 +1,526 @@
+{
+ "status": "PRIVATE INVESTOR CONCEPT VIEW - NOT PUBLIC, NOT AN OFFER",
+ "evidence": "4",
+ "design": "43",
+ "proven_not_proven": [
+  {
+   "claim": "Concept, design blueprint and economic model structure (no numbers)",
+   "state": "DOCUMENTED, NOT TESTED"
+  },
+  {
+   "claim": "Any dish cooked",
+   "state": "NOT YET (Session 1 prepared)"
+  },
+  {
+   "claim": "Any beer brewed",
+   "state": "NOT YET"
+  },
+  {
+   "claim": "Customers, sales, quotes",
+   "state": "NONE"
+  },
+  {
+   "claim": "Name clearance",
+   "state": "LEGAL REVIEW REQUIRED"
+  }
+ ],
+ "why": [
+  {
+   "q": "Why India and Mexico",
+   "a": "Founder thesis, untested: two traditions that already share heat, acid, corn-and-fry technique and a fondness for sharing plates can be joined into dishes that feel like one cuisine, not two. Cultural advisor review is pending."
+  },
+  {
+   "q": "Why food and beer together",
+   "a": "Founder thesis, untested: designing beer and food together makes pairing a reason to visit. Our own analysis says a host-brewery or collaboration path could test this with far less capital than a brewery."
+  },
+  {
+   "q": "Why a brewery at all",
+   "a": "Untested. The brewery is the LAST capital gate, after food, demand and economics are shown."
+  },
+  {
+   "q": "Why Austin",
+   "a": "Founder choice; a market map from public sources exists at low confidence. No demand data."
+  }
+ ],
+ "completeness": [
+  {
+   "area": "CONCEPT",
+   "digital": 3,
+   "real": 1,
+   "pro": 0
+  },
+  {
+   "area": "BRAND",
+   "digital": 2,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "FOOD",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "BEER",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "PAIRING",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "NA",
+   "digital": 2,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "MENU",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "OPERATIONS",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "KITCHEN",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "BREWERY",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "SUPPLY CHAIN",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "CUSTOMER EXPERIENCE",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "ARCHITECTURE",
+   "digital": 2,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "MARKET",
+   "digital": 2,
+   "real": 1,
+   "pro": 0
+  },
+  {
+   "area": "MVP",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "FINANCE",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "CAPITAL",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "IP",
+   "digital": 2,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "LEGAL",
+   "digital": 2,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "REGULATORY",
+   "digital": 2,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "TEAM",
+   "digital": 2,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "WEBSITE",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "INVESTOR",
+   "digital": 2,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "DATA ROOM",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  },
+  {
+   "area": "EVIDENCE",
+   "digital": 3,
+   "real": 0,
+   "pro": 0
+  }
+ ],
+ "readiness": [
+  {
+   "dimension": "CONCEPT CLARITY",
+   "level": 2,
+   "needs": "reader test not run"
+  },
+  {
+   "dimension": "PRODUCT DEVELOPMENT",
+   "level": 1,
+   "needs": "cooking not begun; no brewer"
+  },
+  {
+   "dimension": "PHYSICAL EVIDENCE",
+   "level": 0,
+   "needs": "every physical test"
+  },
+  {
+   "dimension": "CUSTOMER EVIDENCE",
+   "level": 0,
+   "needs": "all of it; lawful path first"
+  },
+  {
+   "dimension": "ECONOMICS",
+   "level": 1,
+   "needs": "every real input"
+  },
+  {
+   "dimension": "OPERATIONS",
+   "level": 1,
+   "needs": "pilot operation"
+  },
+  {
+   "dimension": "MARKET",
+   "level": 1,
+   "needs": "real demand data"
+  },
+  {
+   "dimension": "TEAM",
+   "level": 1,
+   "needs": "hiring requires capital"
+  },
+  {
+   "dimension": "LEGAL",
+   "level": 1,
+   "needs": "attorney"
+  },
+  {
+   "dimension": "IP",
+   "level": 1,
+   "needs": "attorney"
+  },
+  {
+   "dimension": "SITE",
+   "level": 0,
+   "needs": "site work"
+  },
+  {
+   "dimension": "BREWERY",
+   "level": 1,
+   "needs": "brewer and pilots"
+  },
+  {
+   "dimension": "CAPITAL PLAN",
+   "level": 1,
+   "needs": "quotes to size amounts"
+  },
+  {
+   "dimension": "RISK DISCLOSURE",
+   "level": 2,
+   "needs": "executing the tests"
+  }
+ ],
+ "risks": [
+  {
+   "risk": "NAME RISK",
+   "why": "a reportedly operating same-name Austin restaurant (D-78)",
+   "test": "IP attorney review of the prepared package",
+   "horizon": "C (unfunded: LEGAL REVIEW REQUIRED)"
+  },
+  {
+   "risk": "PRODUCT RISK",
+   "why": "no Core 5 dish or beer has been cooked or brewed",
+   "test": "Session 1 and repeats at home",
+   "horizon": "A"
+  },
+  {
+   "risk": "CUSTOMER RISK",
+   "why": "no guest has tasted anything",
+   "test": "structured lawful tastings once the dishes pass",
+   "horizon": "B"
+  },
+  {
+   "risk": "BREWERY CAPEX RISK",
+   "why": "a brewhouse is large irreversible capital",
+   "test": "host-brewery or collaboration pilots",
+   "horizon": "C"
+  },
+  {
+   "risk": "RESTAURANT MARGIN RISK",
+   "why": "food cost, labor and waste may leave little contribution",
+   "test": "Session 1 receipts and yields; priced portion",
+   "horizon": "A then B"
+  },
+  {
+   "risk": "SITE RISK",
+   "why": "a site may not support kitchen, brewery drainage and permits",
+   "test": "site diligence on candidate sites",
+   "horizon": "C"
+  },
+  {
+   "risk": "CULTURAL RISK",
+   "why": "two cultures; stereotypes or errors would harm the concept",
+   "test": "Indian and Mexican advisor review",
+   "horizon": "C"
+  },
+  {
+   "risk": "EXECUTION RISK",
+   "why": "comal and fryer throughput and consistency",
+   "test": "measured ticket times in pilots",
+   "horizon": "A then B"
+  },
+  {
+   "risk": "FOUNDER / TEAM GAP",
+   "why": "commercial culinary, brewing and operations leadership are not demonstrated",
+   "test": "founder cooking evidence; recruit partners when capital exists",
+   "horizon": "B/C"
+  },
+  {
+   "risk": "REGULATORY RISK",
+   "why": "beer-food structure, permits, alcohol rules",
+   "test": "attorney and authority answers",
+   "horizon": "C"
+  }
+ ],
+ "stages": [
+  {
+   "stage": "CS0",
+   "name": "PRE-CAPITAL",
+   "funds": "Founder time, retail ingredients, phone photography, free modelling",
+   "unlocks": "Personal prototype baseline; digital blueprint; data room",
+   "claim": "IN PROGRESS"
+  },
+  {
+   "stage": "CS1",
+   "name": "MICRO VALIDATION CAPITAL",
+   "funds": "Ingredients, supplier samples, transport, basic photo materials, small lawful tastings",
+   "unlocks": "Repeated prototypes; first real cost data; possible small tastings",
+   "claim": "NOT RAISED"
+  },
+  {
+   "stage": "CS2",
+   "name": "PRE-SEED / CONCEPT CAPITAL",
+   "funds": "Legal and IP, formation, food and beer pilots, brand finalization, insurance",
+   "unlocks": "Name decision; professional reviews; commercial pilots",
+   "claim": "NOT RAISED; no fundraising target set"
+  },
+  {
+   "stage": "CS3",
+   "name": "SITE CAPITAL",
+   "funds": "Site diligence, design, permitting professionals",
+   "unlocks": "Location, drawings, cost estimates",
+   "claim": "NOT RAISED"
+  },
+  {
+   "stage": "CS4",
+   "name": "BUILD CAPITAL",
+   "funds": "Construction, equipment, brewery",
+   "unlocks": "Physical venue",
+   "claim": "NOT RAISED"
+  },
+  {
+   "stage": "CS5",
+   "name": "OPENING CAPITAL",
+   "funds": "Staff, inventory, launch, working capital",
+   "unlocks": "Public opening",
+   "claim": "NOT RAISED"
+  }
+ ],
+ "use_of_funds": [
+  {
+   "category": "LEGAL / IP",
+   "unlocks": "Name decision; trademark path; alcohol structure; formation"
+  },
+  {
+   "category": "PRODUCT VALIDATION",
+   "unlocks": "Repeated personal prototypes, supplier samples, small lawful tastings"
+  },
+  {
+   "category": "COMMERCIAL FOOD PILOTS",
+   "unlocks": "Commissary pop-up or residency data on mix, speed, cost"
+  },
+  {
+   "category": "BREWING PILOTS",
+   "unlocks": "Qualified brewer and pilot or collaboration batches"
+  },
+  {
+   "category": "BRAND FINALIZATION",
+   "unlocks": "Final identity after the name decision"
+  },
+  {
+   "category": "ARCHITECTURE / ENGINEERING",
+   "unlocks": "Real drawings against a real site"
+  },
+  {
+   "category": "SITE DILIGENCE",
+   "unlocks": "Rent, NNN, grease, ventilation, drainage, parking, permits"
+  },
+  {
+   "category": "EQUIPMENT",
+   "unlocks": "Kitchen and brewery equipment sized by evidence"
+  },
+  {
+   "category": "CONSTRUCTION",
+   "unlocks": "Build-out"
+  },
+  {
+   "category": "WORKING CAPITAL",
+   "unlocks": "Cash until the unit is self-sustaining"
+  },
+  {
+   "category": "TEAM",
+   "unlocks": "Executive chef, brewer, operations, finance as needed (see team-blueprint.csv)"
+  },
+  {
+   "category": "MARKETING / LAUNCH",
+   "unlocks": "Public launch after gates"
+  },
+  {
+   "category": "CONTINGENCY",
+   "unlocks": "Cost of being wrong on the above"
+  }
+ ],
+ "gates": [
+  {
+   "gate": "BG-1",
+   "commitment": "Final brand spend (logo, signage, packaging, domain, merch)",
+   "stop": "DO NOT SPEND ON NAME-DEPENDENT ASSETS YET"
+  },
+  {
+   "gate": "BG-2",
+   "commitment": "Paid customer test (any money changes hands)",
+   "stop": "DO NOT RUN A PAID TEST YET"
+  },
+  {
+   "gate": "BG-3",
+   "commitment": "Commissary / equipment spend",
+   "stop": "DO NOT BUY OR RENT EQUIPMENT YET"
+  },
+  {
+   "gate": "BG-4",
+   "commitment": "Food trailer",
+   "stop": "DO NOT BUY A TRAILER YET"
+  },
+  {
+   "gate": "BG-5",
+   "commitment": "Lease (fixed site)",
+   "stop": "DO NOT SIGN A LEASE YET"
+  },
+  {
+   "gate": "BG-6",
+   "commitment": "Brewhouse purchase",
+   "stop": "DO NOT BREW AT SCALE YET"
+  },
+  {
+   "gate": "BG-7",
+   "commitment": "Flagship construction",
+   "stop": "DO NOT OPEN A FLAGSHIP YET"
+  },
+  {
+   "gate": "BG-8",
+   "commitment": "Scale a dish (bulk ingredient buys, larger batches)",
+   "stop": "DO NOT SCALE THIS DISH YET"
+  },
+  {
+   "gate": "BG-9",
+   "commitment": "Add a menu item",
+   "stop": "DO NOT ADD THIS MENU ITEM"
+  },
+  {
+   "gate": "BG-10",
+   "commitment": "Brewery build",
+   "stop": "DO NOT BUILD A BREWERY YET"
+  }
+ ],
+ "formats": [
+  {
+   "name": "Private R&D tasting (invited, unpaid, no sale)",
+   "question": "Does the food pass its gates and what does one portion physically cost?",
+   "reversibility": "FULL"
+  },
+  {
+   "name": "Invited validation event (guests who know it is a test)",
+   "question": "Do guests other than friends rate the food and say what they would pay?",
+   "reversibility": "FULL"
+  },
+  {
+   "name": "Commissary-based pop-up (paid, public or ticketed)",
+   "question": "Will people actually pay, in what mix, and how fast can the kitchen run?",
+   "reversibility": "HIGH (month-to-month)"
+  },
+  {
+   "name": "Residency inside a licensed brewery (host brewery's beer)",
+   "question": "Does food + real craft beer pairing sell, and what does a rented-site proxy cost?",
+   "reversibility": "HIGH"
+  },
+  {
+   "name": "Food trailer",
+   "question": "Can the Core 5 run as a repeatable kitchen at event speed with real unit economics?",
+   "reversibility": "LOW-MEDIUM (resale value uncertain)"
+  },
+  {
+   "name": "Food truck",
+   "question": "Is demand location-bound or portable (only after repeat demand exists)?",
+   "reversibility": "LOW-MEDIUM"
+  },
+  {
+   "name": "Small permanent kitchen (lease, no flagship brewery)",
+   "question": "Does the model make money at a fixed site with a lease?",
+   "reversibility": "LOW (lease obligations)"
+  },
+  {
+   "name": "Brewpub / flagship (kitchen + brewery + patio)",
+   "question": "Only asked after every earlier question has real evidence (see gate BG-9)",
+   "reversibility": "VERY LOW"
+  }
+ ],
+ "pre_capital_pct": 58,
+ "physical_pct": 0,
+ "pre_capital_method": "count of criteria (DONE=1, PARTIAL=0.5) over 18; not a readiness score"
+}

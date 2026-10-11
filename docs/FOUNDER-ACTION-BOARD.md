@@ -14,27 +14,39 @@
 - **Decision it unlocks:** D-74 outcome for the first dish; Session 2 start; first yield and cost data; concept-vs-reality
 - **What Claude does after the input arrives:** Preserve originals, ingest photos and receipts, record against the frozen gates, compare with the concept images, run adversarial review, then update the matrices and dashboard
 
-### ACTION 2: Decide whether to send the IP attorney pack, then send it  (A02, READY)
-- **Why now:** D-78/D-79: a reportedly operating same-name Austin restaurant; every name-dependent decision waits for counsel; costs the founder little time
-- **Who:** Founder -> an IP / trademark counsel candidate
-- **Send / bring:** docs/send-packs/01-IP-ATTORNEY.md plus ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md
-- **Your time:** ESTIMATE: 30-60 min to choose a candidate and send   **Cost:** QUOTE REQUIRED (ask for fee structure first; PAID - APPROVAL REQUIRED before engaging)
-- **Steps:** 1. Open docs/company/data/contact-targets.csv and read the rows for category IP counsel. 2. Pick one (check the conflict-of-interest and fee questions in the row). 3. Use the public route in the row (confirm it on the firm's own site). 4. Send the pack text and the attachment. 5. Forward the reply to Claude unedited.
-- **Output expected:** A written legal risk assessment and next steps (not a legal conclusion from us)   **Where it goes:** evidence/professional_response (raw reply first)
-- **Decision it unlocks:** Keep, modify, hold or change the name; whether name-dependent work can resume
-- **What Claude does after the input arrives:** Preserve the raw reply, record it with the review template, update D-78/D-79 only through a new decision with the founder
+### ACTION 2: Photograph the cook with the phone (original files, no edits)  (A16, READY)
+- **Why now:** Real founder photographs are investor-grade physical evidence that no render can replace; costs only a phone and window light
+- **Who:** Founder or a helper
+- **Send / bring:** Phone, a plain surface, steady window light; follow the photo section of food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md
+- **Your time:** ESTIMATE: part of the cook day (about 20-30 min of extra care)   **Cost:** FREE
+- **Steps:** 1. Fix the phone position and light before cooking. 2. Photograph raw ingredients, then each plate at the same angle at T+0, T+5, T+10. 3. Keep failures. 4. Do not filter or enhance.
+- **Output expected:** Original photos of ingredients, each plate at T+0/5/10, failures   **Where it goes:** Send with the A01 batch and say INGEST THESE
+- **Decision it unlocks:** Founder prototype photographs for the product bible and website; concept-vs-reality comparison
+- **What Claude does after the input arrives:** Preserve originals with hashes, rename, log in the photo register, never edit; keep failures
 
-### ACTION 3: Send the head-brewer pack to a qualified brewer or brewing consultant  (A03, READY)
-- **Why now:** Longest lead time; a brewer decides pilot route, yeast, lager days and vessel size, and can overturn agent advice; the attorney agenda needs the pilot route
-- **Who:** Founder -> a brewer candidate
-- **Send / bring:** docs/send-packs/02-HEAD-BREWER.md plus beer/pilot-briefs/00-BREWER-HANDOFF.md and BREWER-REVIEW-FORM.md
-- **Your time:** ESTIMATE: 30-60 min to choose and send   **Cost:** UNKNOWN (ask what compensation is fair; PAID - APPROVAL REQUIRED if they charge)
-- **Steps:** 1. Open docs/company/data/contact-targets.csv, category brewer. 2. Choose one. 3. Send the pack. 4. Forward the reply or form unedited.
-- **Output expected:** Completed review form, raw   **Where it goes:** evidence/professional_response (raw first)
-- **Decision it unlocks:** Pilot order, the D-77 Hefeweizen gate, Pilsner vs Mexican Lager, vessel size, pilot route
-- **What Claude does after the input arrives:** Preserve raw, separate what confirms, contradicts agent advice or needs testing; professional outranks agent on brewing only
+### ACTION 3: Keep every receipt and photograph each ingredient label (cost capture)  (A17, READY)
+- **Why now:** The first real ingredient costs, yields and D-54 label checks come from receipts; they are free to collect
+- **Who:** Founder
+- **Send / bring:** Receipts (hide card digits), photos of ingredient labels incl. the tortilla and oil labels
+- **Your time:** ESTIMATE: a few minutes while shopping   **Cost:** FREE
+- **Steps:** 1. Keep the paper or app receipt. 2. Cover card digits. 3. Photograph the tortilla and fat/oil labels. 4. Send all in one message.
+- **Output expected:** Receipts and label photos   **Where it goes:** Send with the A01 batch and say INGEST THESE
+- **Decision it unlocks:** First provisional dish cost path (retail receipt class, R&D only); D-54 pass/fail on labels
+- **What Claude does after the input arrives:** Preserve originals, record purchases and labels with python3 tools/intake.py, compute the food-cost layer; contribution stays NOT COMPUTABLE until price, packaging and labor are real
 
-**Where cultural review sits:** the two advisor packs (A04, A05) are priority 4. Reasoning at the time of writing: they do not unlock a cook or a legal gate and nothing is public yet; they matter before Session 2 and before any public name or claim, and cost little founder time, so they can go in the same sitting as the brewer pack. Ranking is by dependency and information value; change a priority in `docs/company/data/actions.csv` and regenerate.
+**Founder direction (D-81): the pre-capital phase has no money for paid professionals, so legal, brewer and advisor actions are not asked of you now.** They are prepared and wait under READY WHEN FUNDED below. Only Horizon A actions (free, personal, lawful) are on the NEXT 3 list. Priority is by dependency and information value; change it in `docs/company/data/actions.csv` and regenerate.
+
+## READY WHEN FUNDED (Horizon C; prepared, not needed to keep building)
+
+| ID | Action | Pack / what to send | Decision it unlocks | Cost |
+|---|---|---|---|---|
+| A02 | Decide whether to send the IP attorney pack, then send it | docs/send-packs/01-IP-ATTORNEY.md plus ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md | Keep, modify, hold or change the name; whether name-dependent work can resume | QUOTE REQUIRED (ask for fee structure first;... |
+| A03 | Send the head-brewer pack to a qualified brewer or brewing consultant | docs/send-packs/02-HEAD-BREWER.md plus beer/pilot-briefs/00-BREWER-HANDOFF.md and... | Pilot order, the D-77 Hefeweizen gate, Pilsner vs Mexican Lager, vessel size, pilot route | UNKNOWN (ask what compensation is fair; PAID -... |
+| A04 | Send the Indian culinary advisor pack | docs/send-packs/03-INDIAN-ADVISOR.md plus docs/CULTURAL-REVIEW-PACK.md and... | Names, terminology, claims; any dish rework | UNKNOWN (ask what recognition or fee is fair) |
+| A05 | Send the Mexican culinary advisor pack | docs/send-packs/04-MEXICAN-ADVISOR.md plus the cultural pack and response form | Totopos, birria and quesadilla naming and respect | UNKNOWN |
+| A06 | Book a first consult with a Texas alcohol attorney | docs/send-packs/05-TEXAS-ALCOHOL-ATTORNEY.md plus docs/company/REGULATORY-QUESTION-TREE.md | MVP format (G-13), pilot route (F-3), licence structure (G-11) | QUOTE REQUIRED (PAID - APPROVAL REQUIRED before... |
+
+Full register of who, why, what they review and what they unlock: `docs/company/data/professional-gates.csv` (generated into `docs/BLUEPRINT-STATUS.md`).
 
 ## Starting pool (fit to the need from public listings; NOT a recommendation or a qualification; nobody contacted)
 
@@ -50,24 +62,27 @@ Full list with questions to ask first and sources: `docs/company/data/contact-ta
 
 ## Whole board
 
-| ID | Pri | Action | Who | Send / bring | Time (est.) | Cost | Depends on | Output -> where saved | Unlocks | Status |
-|---|---|---|---|---|---|---|---|---|---|---|
-| A01 | 1 | Cook Chicken 65 Totopos Session 1 | Founder + 3-4 tasters (min. 3) + 1-3 helpers | food/t1-test-sheets/15-SESSION-1-CHECKLISTS.md (shopping, prep, photo,... | ESTIMATE: shopping 1-2 h; prep 1 h the... | UNKNOWN (retail ingredients; the... | A08 (tasters and panel record);... | Original photos, scored sheets,... -> Send everything to Claude in one... | D-74 outcome for the first dish; Session 2 start; first... | READY |
-| A02 | 2 | Decide whether to send the IP attorney pack, then send it | Founder -> an IP / trademark counsel candidate | docs/send-packs/01-IP-ATTORNEY.md plus ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md | ESTIMATE: 30-60 min to choose a... | QUOTE REQUIRED (ask for fee structure... | Founder decision to send (external... | A written legal risk assessment and... -> evidence/professional_response (raw... | Keep, modify, hold or change the name; whether... | READY |
-| A03 | 3 | Send the head-brewer pack to a qualified brewer or brewing consultant | Founder -> a brewer candidate | docs/send-packs/02-HEAD-BREWER.md plus beer/pilot-briefs/00-BREWER-HANDOFF.md... | ESTIMATE: 30-60 min to choose and send | UNKNOWN (ask what compensation is... | Founder decision to send (external... | Completed review form, raw -> evidence/professional_response (raw... | Pilot order, the D-77 Hefeweizen gate, Pilsner vs Mexican... | READY |
-| A04 | 4 | Send the Indian culinary advisor pack | Founder -> an Indian culinary advisor candidate | docs/send-packs/03-INDIAN-ADVISOR.md plus docs/CULTURAL-REVIEW-PACK.md and... | ESTIMATE: 30-60 min | UNKNOWN (ask what recognition or fee... | Founder decision to send | Completed response form, raw -> evidence/professional_response (raw... | Names, terminology, claims; any dish rework | READY |
-| A05 | 4 | Send the Mexican culinary advisor pack | Founder -> a Mexican culinary advisor candidate | docs/send-packs/04-MEXICAN-ADVISOR.md plus the cultural pack and response form | ESTIMATE: 30-60 min | UNKNOWN | Founder decision to send | Completed response form, raw -> evidence/professional_response (raw... | Totopos, birria and quesadilla naming and respect | READY |
-| A06 | 5 | Book a first consult with a Texas alcohol attorney | Founder -> a Texas alcohol counsel candidate | docs/send-packs/05-TEXAS-ALCOHOL-ATTORNEY.md plus... | ESTIMATE: 30-60 min to choose and send | QUOTE REQUIRED (PAID - APPROVAL... | Founder decision to send | Written answers with jurisdiction and... -> evidence/professional_response (raw... | MVP format (G-13), pilot route (F-3), licence structure... | READY |
-| A07 | 5 | Ask Austin Public Health whether a private, unpaid, invite-only... | Founder -> Austin Public Health (route to be... | The six questions in docs/company/MINIMUM-LAWFUL-FOOD-TEST.md | ESTIMATE: 20-30 min | FREE (no fee known; route not verified... | None | Their answer in their words -> evidence/professional_response (raw... | Which tier (private, cost-share, paid pop-up) can run first | READY |
-| A08 | 6 | Recruit 3-4 tasters for Session 1 | Founder | The plain invitation line in the Session 1 checklist (no brand name) | ESTIMATE: 30 min | FREE | None (before A01) | Names and food backgrounds -> Paper notes; send a photo | Panel record for the frozen protocol | READY |
-| A09 | 7 | Confirm or amend the Sessions 2-5 thresholds (D-76) | Founder | docs/decisions/DECISIONS.md D-76 and food/sessions/ | ESTIMATE: 20 min | FREE | Session 1 result | A decision in your own words -> docs/decisions/DECISIONS.md (Claude... | Session 2 start | WAITING |
-| A10 | 7 | Confirm or reject the Hefeweizen gate proposal (D-77) | Founder | beer/pilot-briefs/00-BREWER-HANDOFF.md section 0b | ESTIMATE: 15 min | FREE | Better after the brewer reply | A decision -> DECISIONS.md | Beer program gate | WAITING |
-| A11 | 8 | Call a commissary (information only, no booking) | Founder -> commissary candidates (see... | The eight questions in the shortlist | ESTIMATE: 30-45 min per call | FREE (information only; no deposit) | After Session 1 | Written answers and any quote -> evidence/quote or professional_response | Kitchen for the first external tasting | NOT YET NEEDED |
-| A12 | 8 | Send supplier specification requests (food and shared kitchen) | Founder -> suppliers | ops/supplier-packages/ (founder approves each send) | ESTIMATE: 20 min per supplier | QUOTE REQUIRED | Optional before Session 1; better after | Vendor quotes -> evidence/quote then record-quote | Real costs, supply feasibility | READY |
-| A13 | 9 | Decide the name after counsel's written view (D-78/D-79) | Founder | Counsel's reply | ESTIMATE: 1 h | FREE | A02 | A decision -> DECISIONS.md | Rename, modify or keep NASHA; domains and brand work | WAITING |
-| A14 | 9 | Interview or taste with real prospects | Founder | docs/company/VALIDATION-PATH.md and research/customer-discovery/ | ESTIMATE: TBD after Session 1 | UNKNOWN | Session 1 and the tier rules | Forms and notes -> research/customer-discovery/ | Demand, price, repeat intent | NOT YET NEEDED |
-| A15 | 10 | Optional: download the 10 Figma originals | Founder | tools/founder_download_candidates.sh | ESTIMATE: 15 min | FREE | None | 10 PNGs -> visuals/archive/candidates/ | Exact-original provenance only | NOT YET NEEDED |
+| ID | Hz | Pri | Action | Who | Send / bring | Time (est.) | Cost | Depends on | Output -> where saved | Unlocks | Status |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| A01 | A | 1 | Cook Chicken 65 Totopos Session 1 | Founder + 3-4 tasters (min. 3) + 1-3 helpers | food/t1-test-sheets/15-SESSION-1-CHECKLISTS.md (shopping, prep, photo,... | ESTIMATE: shopping 1-2 h; prep 1 h the... | UNKNOWN (retail ingredients; the... | A08 (tasters and panel record);... | Original photos, scored sheets,... -> Send everything to Claude in one... | D-74 outcome for the first dish; Session 2 start; first... | READY |
+| A02 | C | 2 | Decide whether to send the IP attorney pack, then send it | Founder -> an IP / trademark counsel candidate | docs/send-packs/01-IP-ATTORNEY.md plus ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md | ESTIMATE: 30-60 min to choose a... | QUOTE REQUIRED (ask for fee structure... | Founder decision to send (external... | A written legal risk assessment and... -> evidence/professional_response (raw... | Keep, modify, hold or change the name; whether... | READY WHEN FUNDED |
+| A16 | A | 2 | Photograph the cook with the phone (original files, no edits) | Founder or a helper | Phone, a plain surface, steady window light; follow the photo section of... | ESTIMATE: part of the cook day (about... | FREE | A01 (same sitting) | Original photos of ingredients, each... -> Send with the A01 batch and say INGEST... | Founder prototype photographs for the product bible and... | READY |
+| A03 | C | 3 | Send the head-brewer pack to a qualified brewer or brewing consultant | Founder -> a brewer candidate | docs/send-packs/02-HEAD-BREWER.md plus beer/pilot-briefs/00-BREWER-HANDOFF.md... | ESTIMATE: 30-60 min to choose and send | UNKNOWN (ask what compensation is... | Founder decision to send (external... | Completed review form, raw -> evidence/professional_response (raw... | Pilot order, the D-77 Hefeweizen gate, Pilsner vs Mexican... | READY WHEN FUNDED |
+| A17 | A | 3 | Keep every receipt and photograph each ingredient label (cost capture) | Founder | Receipts (hide card digits), photos of ingredient labels incl. the tortilla... | ESTIMATE: a few minutes while shopping | FREE | A01 (same sitting) | Receipts and label photos -> Send with the A01 batch and say INGEST... | First provisional dish cost path (retail receipt class,... | READY |
+| A04 | C | 4 | Send the Indian culinary advisor pack | Founder -> an Indian culinary advisor candidate | docs/send-packs/03-INDIAN-ADVISOR.md plus docs/CULTURAL-REVIEW-PACK.md and... | ESTIMATE: 30-60 min | UNKNOWN (ask what recognition or fee... | Founder decision to send | Completed response form, raw -> evidence/professional_response (raw... | Names, terminology, claims; any dish rework | READY WHEN FUNDED |
+| A05 | C | 4 | Send the Mexican culinary advisor pack | Founder -> a Mexican culinary advisor candidate | docs/send-packs/04-MEXICAN-ADVISOR.md plus the cultural pack and response form | ESTIMATE: 30-60 min | UNKNOWN | Founder decision to send | Completed response form, raw -> evidence/professional_response (raw... | Totopos, birria and quesadilla naming and respect | READY WHEN FUNDED |
+| A18 | A | 4 | Read the investor-mode private site and the blueprint status page... | Founder | docs/BLUEPRINT-STATUS.md and the private site build (not deployed) | ESTIMATE: 30-45 min | FREE | none | A list of corrections or questions -> Reply to Claude in chat | Fixes truthfulness and tone before anything is ever shown... | READY |
+| A06 | C | 5 | Book a first consult with a Texas alcohol attorney | Founder -> a Texas alcohol counsel candidate | docs/send-packs/05-TEXAS-ALCOHOL-ATTORNEY.md plus... | ESTIMATE: 30-60 min to choose and send | QUOTE REQUIRED (PAID - APPROVAL... | Founder decision to send | Written answers with jurisdiction and... -> evidence/professional_response (raw... | MVP format (G-13), pilot route (F-3), licence structure... | READY WHEN FUNDED |
+| A07 | B | 5 | Ask Austin Public Health whether a private, unpaid, invite-only... | Founder -> Austin Public Health (route to be... | The six questions in docs/company/MINIMUM-LAWFUL-FOOD-TEST.md | ESTIMATE: 20-30 min | FREE (no fee known; route not verified... | None | Their answer in their words -> evidence/professional_response (raw... | Which tier (private, cost-share, paid pop-up) can run first | NOT YET NEEDED |
+| A08 | A | 6 | Recruit 3-4 tasters for Session 1 | Founder | The plain invitation line in the Session 1 checklist (no brand name) | ESTIMATE: 30 min | FREE | None (before A01) | Names and food backgrounds -> Paper notes; send a photo | Panel record for the frozen protocol | READY |
+| A09 | A | 7 | Confirm or amend the Sessions 2-5 thresholds (D-76) | Founder | docs/decisions/DECISIONS.md D-76 and food/sessions/ | ESTIMATE: 20 min | FREE | Session 1 result | A decision in your own words -> docs/decisions/DECISIONS.md (Claude... | Session 2 start | WAITING |
+| A10 | A | 7 | Confirm or reject the Hefeweizen gate proposal (D-77) | Founder | beer/pilot-briefs/00-BREWER-HANDOFF.md section 0b | ESTIMATE: 15 min | FREE | Better after the brewer reply | A decision -> DECISIONS.md | Beer program gate | WAITING |
+| A11 | B | 8 | Call a commissary (information only, no booking) | Founder -> commissary candidates (see... | The eight questions in the shortlist | ESTIMATE: 30-45 min per call | FREE (information only; no deposit) | After Session 1 | Written answers and any quote -> evidence/quote or professional_response | Kitchen for the first external tasting | NOT YET NEEDED |
+| A12 | B | 8 | Send supplier specification requests (food and shared kitchen) | Founder -> suppliers | ops/supplier-packages/ (founder approves each send) | ESTIMATE: 20 min per supplier | QUOTE REQUIRED | Optional before Session 1; better after | Vendor quotes -> evidence/quote then record-quote | Real costs, supply feasibility | NOT YET NEEDED |
+| A13 | C | 9 | Decide the name after counsel's written view (D-78/D-79) | Founder | Counsel's reply | ESTIMATE: 1 h | FREE | A02 | A decision -> DECISIONS.md | Rename, modify or keep NASHA; domains and brand work | WAITING |
+| A14 | B | 9 | Interview or taste with real prospects | Founder | docs/company/VALIDATION-PATH.md and research/customer-discovery/ | ESTIMATE: TBD after Session 1 | UNKNOWN | Session 1 and the tier rules | Forms and notes -> research/customer-discovery/ | Demand, price, repeat intent | NOT YET NEEDED |
+| A15 | A | 10 | Optional: download the 10 Figma originals | Founder | tools/founder_download_candidates.sh | ESTIMATE: 15 min | FREE | None | 10 PNGs -> visuals/archive/candidates/ | Exact-original provenance only | NOT YET NEEDED |
 
-Status counts: READY 9, WAITING 3, BLOCKED 0, DONE 0, NOT YET NEEDED 3.
+Status counts: READY 5, READY WHEN FUNDED 5, WAITING 3, BLOCKED 0, DONE 0, NOT YET NEEDED 5.
 
 When an input arrives, send it to Claude as it is and say INGEST THESE. Routing: `python3 tools/intake.py route`. Where things are filed: `docs/EVIDENCE-INTAKE.md`.

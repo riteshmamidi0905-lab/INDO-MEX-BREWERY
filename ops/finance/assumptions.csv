@@ -21,3 +21,7 @@ capex_total,capex,Total capital expenditure,,USD,,,,,,UNKNOWN
 working_capital,finance,Working capital requirement,,USD,,,,,,UNKNOWN
 depreciation_monthly,finance,Depreciation per month,,USD,,,,,,UNKNOWN
 tax_rate_pct,finance,Effective tax rate,,fraction,,,,,,UNKNOWN
+max_covers_per_day,capacity,Physical covers ceiling per open day,,covers,,,,,,UNKNOWN
+transaction_fee_pct,cogs,Payment fee share of revenue,,fraction,,,,,,UNKNOWN
+variable_cost_per_cover,cogs,Per-cover cost excluding food and beverage COGS,,USD,,,,,,UNKNOWN
+commissary_monthly,opex,Commissary fee,,USD,,,,,,UNKNOWN

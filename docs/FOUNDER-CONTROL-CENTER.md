@@ -4,7 +4,9 @@
 
 **Two lanes.** Lane A needs the real world (cooking, brewing, tasting, customers, quotes, professionals). Lane B is autonomous digital work. A blocked Lane A item does not stop Lane B. Blockers are reported per workstream, not for the whole company.
 
-**Top alert (D-78):** an Austin restaurant named Nasha was found by T1 searches: the name carries HIGH CONFLICT RISK until an IP attorney reviews it. `docs/decisions/DECISIONS.md` D-78; `brand/TRADEMARK-SCREENING.md`. **D-79 (agent-proposed, founder confirmation pending):** interim handling: neutral project label for internal work, no name-dependent spend or public use until counsel's written view; the concise attorney package is ready and NOT sent.
+**Top alert (D-78):** an Austin restaurant named Nasha was found by T1 searches: the name carries HIGH CONFLICT RISK until an IP attorney reviews it. `docs/decisions/DECISIONS.md` D-78; `brand/TRADEMARK-SCREENING.md`. **D-79 (provisionally confirmed by the founder, D-80):** NASHA is the internal working name; neutral wording for external prototype activity; no name-dependent spend or public use until counsel's written view; the concise attorney package is ready and NOT sent.
+
+**Founder direction D-81 (zero-dollar pre-capital build).** Horizon A ($0 founder build) is what we do now; Horizon B (low-cost validation) when small amounts exist; Horizon C (funded professional execution) after capital. Paid professional steps are prepared and wait as READY WHEN FUNDED; they do not block autonomous work. The business is not being opened. Detail: `docs/BLUEPRINT-STATUS.md`.
 
 ## Where NASHA is today
 
@@ -152,6 +154,7 @@ Entry, exit, evidence and go/hold/kill questions per stage: `docs/company/data/s
 ## Where to look
 
 - **WHAT CAN I DO TODAY / WHO TO CONTACT / WHAT TO SEND / WHAT TO BUY:** `docs/FOUNDER-ACTION-BOARD.md` (next three actions at the top); Session 1 phone checklists: `food/t1-test-sheets/15-SESSION-1-CHECKLISTS.md`; send packs: `docs/send-packs/`; filing and ingestion: `docs/EVIDENCE-INTAKE.md` and `python3 tools/intake.py route`. Document map: `docs/DOCUMENT-MAP.md`.
+- **Pre-capital blueprint (D-81):** `docs/BLUEPRINT-STATUS.md` (horizons, completeness map, investor diagnostic, pre-capital criteria, professional gates, team gaps), `docs/BUSINESS-MODEL-CONTROL.md` (economic decision model), `docs/PRODUCT-BIBLE.md`, `docs/OPERATING-BLUEPRINT.md` (operations, kitchen, brewery, guest journey, digital twin requirements), `docs/INVESTOR-DATA-ROOM.md` (index, capital stages, use of funds, risks).
 - Products: `docs/CORE5-CONTROL-CENTER.md` (ten products), `docs/PROTOTYPE-READINESS.md`, `docs/company/CORE5-COMMERCIAL-LOGIC.md`, `docs/company/BEER-AND-NA-BUSINESS-SYSTEM.md`, `docs/company/FOOD-FAILURE-CONTINGENCIES.md`.
 - Cook now: `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md`.
 - Real-world asks: `docs/FOUNDER-ACTION-BOARD.md`, `docs/company/PROFESSIONAL-REVIEW-PIPELINE.md`, `docs/company/OUTREACH-DRAFTS.md` (drafts, not sent).

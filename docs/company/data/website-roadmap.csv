@@ -1,0 +1,8 @@
+"stage","name","consumes_data","status_today","truth_rule"
+"V1","Concept","website/data/*.json; brand strategy","BUILT (private build, noindex)","status chips from website/data/status.json"
+"V2","Product system","CORE5-FOOD-MATRIX.csv; CORE5-BEER-MATRIX.csv; pairing matrix","PARTIAL (needs Core 5 refresh of the dish data)","every dish shows DESIGN / NOT COOKED"
+"V3","Digital twin","bp-twin-spaces.csv; illustrative renders","PARTIAL","CONCEPTUAL / ILLUSTRATIVE on every render"
+"V4","Founder prototypes","ops/rd/iteration-log.csv; photo register","NOT STARTED (no physical prototype yet)","only real founder photos labelled FOUNDER PROTOTYPE"
+"V5","Economics / operating model","bm-*.csv; bp-operations.csv","BUILT as investor page tables (no numbers)","every number tagged with provenance; none today"
+"V6","Investor experience","investor-readiness.csv; investor-risks.csv; use-of-funds.csv; capital-stages.csv","BUILT (private page)","what is proven / not proven shown side by side"
+"V7","Evidence-rich investor prototype","real evidence after Session 1","NOT STARTED","only after evidence exists"

@@ -28,7 +28,7 @@ VIS = {r["id"]: r for r in csv.DictReader(open(MANIFEST, encoding="utf-8"))}
 RASTER_META = {}
 
 PAGES = [("index.html", "Home"), ("experience.html", "Experience"), ("space.html", "Space"), ("food.html", "Food"),
-         ("beer.html", "Beer"), ("crossing.html", "The Crossing"), ("labs.html", "Labs"), ("about.html", "About")]
+         ("beer.html", "Beer"), ("crossing.html", "The Crossing"), ("labs.html", "Labs"), ("investor.html", "Investor"), ("about.html", "About")]
 
 DISCLOSE = ("NASHA is in development. There is no brewery, no restaurant, no truck and no menu for sale yet. "
             "Images are concept visualizations and illustrations, not photographs of NASHA.")
@@ -330,7 +330,7 @@ def page_food():
     f = filter_inputs("category", [(c, c) for c in cats]) + filter_inputs("diet", [("veg", "Vegetarian as designed")]) + filter_inputs("heat", [(str(i), f"Heat {i}") for i in range(4)])
     body = f'''<section class="food-hero" aria-labelledby="h1"><div class="wrap grid cols-2 center">
 <div><p class="eyebrow">Food · Designs for testing</p><h1 id="h1">Hunger, designed.</h1>
-<p class="lede">Chicken 65 from South India, rethought for masa totopos. A braise that borrows from two kitchens. Twelve dishes are specified for a first round of kitchen tests. None are cooked for guests. None are for sale.</p>
+<p class="lede">Chicken 65 from South India, rethought for masa totopos. A braise that borrows from two kitchens. A wider set of dishes is specified; five core dishes are the first to be tested in a home kitchen. None are cooked for guests. None are for sale.</p>
 <p class="disclosure">{E(DISCLOSE)} The drawings are proposed presentation, not our finished dishes.</p></div>
 <div class="reveal"><div class="hero-plate">{plate_svg(hero)}</div><h2 class="h3">{E(hero["name"])}</h2><p>{E(hero["line"])}</p><p>{chips(hero["kind"], "Proposed presentation · not cooked or tested")}</p></div></div></section>
 
@@ -456,6 +456,56 @@ def page_about():
 </div></section>'''
     return layout("about.html", "About · NASHA", "About NASHA, the name, how images are labelled, and what is and is not true today.", body)
 
+CORE5 = ["chicken-65-totopos", "paneer-tikka-taco", "goat-birria", "gobi-taco", "butter-chicken-quesadilla"]
+def page_investor():
+    inv = load("investor.json")
+    def state(s):
+        return f'<span class="chip chip-state">{E(s)}</span>'
+    def rows(items, cols):
+        return "".join("<tr>" + "".join(f"<td>{c}</td>" for c in cols(i)) + "</tr>" for i in items)
+    core = "".join(f'<li><strong>{E(DISH[i]["name"])}</strong> {state("Designing, not cooked")}</li>' for i in CORE5 if i in DISH)
+    why = "".join(f'<li><strong>{E(w["q"])}</strong>: {E(w["a"])}</li>' for w in inv["why"])
+    pn = "".join(f'<tr><th scope="row">{E(x["claim"])}</th><td>{state(x["state"])}</td></tr>' for x in inv["proven_not_proven"])
+    comp = rows(inv["completeness"], lambda c: [E(c["area"].title()), f'{c["digital"]} of 4', f'{c["real"]} of 4', f'{c["pro"]} of 3'])
+    rd = rows(inv["readiness"], lambda r: [E(r["dimension"].title()), f'{r["level"]} of 3', E(r["needs"])])
+    rk = rows(inv["risks"], lambda r: [E(r["risk"].title()), E(r["why"]), E(r["test"]), E(r["horizon"])])
+    st = rows(inv["stages"], lambda r: [E(r["stage"] + " " + r["name"].title()), E(r["funds"]), E(r["unlocks"]), E(r["claim"])])
+    uf = "".join(f'<li><strong>{E(u["category"].title())}</strong>: {E(u["unlocks"])}</li>' for u in inv["use_of_funds"])
+    gt = rows(inv["gates"], lambda g: [E(g["commitment"]), f'<strong>{E(g["stop"])}</strong>'])
+    fm = rows(inv["formats"], lambda f: [E(f["name"]), E(f["question"]), E(f["reversibility"])])
+    body = f'''<section aria-labelledby="h1"><div class="wrap stack">
+<p class="eyebrow">Investor view · private</p><h1 id="h1">What NASHA is, and what is actually proven.</h1>
+<p class="lede">{state("Concept stage")} {state("Not public")} {state("Not an offer")}</p>
+<p>NASHA is a concept for food and beer designed together, joining Indian and Mexican traditions, in Austin, Texas. This page is a private, unindexed concept view. It is not an offer, it does not ask for money, and no investor has been approached. Everything is labelled by how much is real.</p>
+<p>The pre-capital phase is being used to remove as much uncertainty as possible before anyone is asked to fund expensive uncertainty: what can be written down and designed with time and research is being documented; what can be tested personally will be tested; what needs money is named, with what each category would unlock.</p>
+<h2>What is documented, and what is not proven</h2>
+<table><caption class="visually-hidden">Proven and not proven</caption><tbody>{pn}</tbody></table>
+<p>The project's own readiness record shows physical evidence at {inv["evidence"]} of 95 and design at {inv["design"]} of 95. Design is not proof. Digital work never raises the evidence number.</p>
+<h2>Why this, and why a brewery</h2><ul>{why}</ul>
+<h2>The Core 5 food (designs for testing)</h2><ul>{core}</ul>
+<p>Nothing has been cooked. Photographs on this site are concept visualizations or illustrations, never photographs of NASHA food. The first home-kitchen test is prepared, with fixed pass and fail rules written before cooking.</p>
+<h2>The cheapest way to learn at each step</h2>
+<table><thead><tr><th scope="col">Format</th><th scope="col">The question it answers cheaply</th><th scope="col">Reversibility</th></tr></thead><tbody>{fm}</tbody></table>
+<h2>Capital gates (none has passed)</h2>
+<table><thead><tr><th scope="col">Commitment</th><th scope="col">Stop statement</th></tr></thead><tbody>{gt}</tbody></table>
+<h2>How complete is the blueprint?</h2>
+<p>Three separate scales, never merged into one score. A workstream can be well designed on paper, untested in the real world and unreviewed by professionals.</p>
+<table><thead><tr><th scope="col">Area</th><th scope="col">Designed</th><th scope="col">Tested in the real world</th><th scope="col">Professionally reviewed</th></tr></thead><tbody>{comp}</tbody></table>
+<h2>Investor readiness, honestly</h2>
+<table><thead><tr><th scope="col">Dimension</th><th scope="col">Level</th><th scope="col">What capital must solve</th></tr></thead><tbody>{rd}</tbody></table>
+<p>Pre-capital checklist: the criteria that need real cooking, photographs and receipts stand at {inv["physical_pct"]}% complete. The paper-and-model criteria are mostly written, but a written model with no real numbers in it is not a result.</p>
+<h2>Risks and how each will be tested</h2>
+<table><thead><tr><th scope="col">Risk</th><th scope="col">Why it matters</th><th scope="col">Cheapest test</th><th scope="col">When</th></tr></thead><tbody>{rk}</tbody></table>
+<h2>Capital stages</h2>
+<table><thead><tr><th scope="col">Stage</th><th scope="col">Funds</th><th scope="col">Unlocks</th><th scope="col">Status</th></tr></thead><tbody>{st}</tbody></table>
+<p>No fundraising target is set and no fundraising claim is made. Hospitality investors, strategic and brewery partners, angels and later debt are all possible; venture capital is not assumed.</p>
+<h2>Use of funds, by category</h2><ul>{uf}</ul>
+<p>No amounts are stated because none has been earned by evidence yet. There is no market-size claim, no projection, no customer, no sale, no quote and no professional opinion in this view.</p>
+<h2>The name</h2>
+<p>NASHA is the founder's internal working name. A same-name restaurant has been reported in Austin, so the name carries a legal question that must be reviewed by an attorney before any name-dependent spend. Nothing here claims clearance, ownership or exclusivity.</p>
+</div></section>'''
+    return layout("investor.html", "Investor view · NASHA", "A private, honest view of what NASHA is, what is proven and what is not, and how capital would be used.", body)
+
 ZONE_SVG = ""
 # ---------- Build ----------
 def main():
@@ -468,7 +518,7 @@ def main():
         if row["kind"] == "raster" and row["source_file"] and os.path.exists(os.path.join(REPO, row["source_file"])):
             RASTER_META[vid] = images.build_raster(row, imgdir)
     pages = (("index.html", page_index), ("experience.html", page_experience), ("space.html", page_space), ("food.html", page_food),
-             ("beer.html", page_beer), ("crossing.html", page_crossing), ("labs.html", page_labs), ("about.html", page_about))
+             ("beer.html", page_beer), ("crossing.html", page_crossing), ("labs.html", page_labs), ("investor.html", page_investor), ("about.html", page_about))
     for fn, fnc in pages:
         with open(os.path.join(DIST, fn), "w", encoding="utf-8") as f:
             f.write(fnc())
