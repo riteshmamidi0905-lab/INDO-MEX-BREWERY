@@ -20,8 +20,8 @@ Not allowed without a new founder decision: forming the business, filing tradema
 | **BRAND** | 2/4 | 0/4 | 0/3 | PG-1 name decision; PG-12 final identity | Name decision after counsel | brand/NASHA-BRAND-STRATEGY.md; identity system proposed; D-66 no logo |
 | **FOOD** | 3/4 | 0/4 | 0/3 | none for home prototypes; PG-6 for commercial sale | Session 1 and repeats | food/CORE5-FOOD-MATRIX.csv; frozen Session 1 protocol (D-74) |
 | **BEER** | 3/4 | 0/4 | 0/3 | PG-3 brewer; pilots | Brewer review and a pilot | beer/CORE5-BEER-MATRIX.csv; briefs; bm-beer-portfolio.csv |
-| **PAIRING** | 3/4 | 0/4 | 0/3 | needs cooked food and beer | A cooked flight with a real beer | food/CORE5-PAIRING-MATRIX.csv (hypotheses) |
-| **NA** | 2/4 | 0/4 | 0/3 | PG-6 for shelf life | A home trial of one drink per dish after Session 1 | bm-questions.csv NA rows; BEER-AND-NA-BUSINESS-SYSTEM.md |
+| **PAIRING** | 3/4 | 0/4 | 0/3 | needs cooked food and beer | A cooked flight with a real beer | food/CORE5-PAIRING-MATRIX.csv; CORE5-NA-PAIRING.csv (hypotheses) |
+| **NA** | 2/4 | 0/4 | 0/3 | PG-6 for shelf life | A home trial of one drink per dish after Session 1 | food/CORE5-NA-PAIRING.csv (per-dish hypotheses, safety notes);... |
 | **MENU** | 3/4 | 0/4 | 0/3 | none | Core 5 results decide the set | Core 5 matrix; OPENING-MENU-V2.md retained as history |
 | **OPERATIONS** | 3/4 | 0/4 | 0/3 | PG-6, PG-7; a pilot kitchen | A pop-up or residency | docs/company/data/bp-operations.csv (proposed, not field validated) |
 | **KITCHEN** | 3/4 | 0/4 | 0/3 | PG-9; PG-6 | Measured ticket times | bp-kitchen.csv; ops/kitchen/capacity-assumptions.json |
@@ -29,7 +29,7 @@ Not allowed without a new founder decision: forming the business, filing tradema
 | **SUPPLY CHAIN** | 3/4 | 0/4 | 0/3 | none to ask; quotes need contact (deferred) | Retail receipts, then quotes | supply-spec.csv; bm-supply-risk.csv |
 | **CUSTOMER EXPERIENCE** | 3/4 | 0/4 | 0/3 | a venue to test it | A residency or pop-up | bp-guest-journey.csv; BRAND-EXPERIENCE-AND-RESPONSIBLE-ALCOHOL.md |
 | **ARCHITECTURE** | 2/4 | 0/4 | 0/3 | PG-9; a site | A real site | bp-twin-spaces.csv; architecture/ docs; concept images (illustrative) |
-| **MARKET** | 2/4 | 1/4 | 0/3 | none for desk work | Walk and record competitors (founder) | AUSTIN-MARKET-MAP.md; COMPETITIVE-DIFFERENTIATION.md |
+| **MARKET** | 2/4 | 1/4 | 0/3 | none for desk work | Walk and record competitors (founder) | AUSTIN-MARKET-MAP.md; austin-thesis.csv; competitor-lessons.csv (public... |
 | **MVP** | 3/4 | 0/4 | 0/3 | CS2 | Session 1 result decides the first format | mvp-decision-tree.csv; bm-formats.csv |
 | **FINANCE** | 3/4 | 0/4 | 0/3 | accountant PG-8 | Real receipts and yields | tools/fin_model.py; food_costing.py; bm-inputs.csv (all values UNKNOWN) |
 | **CAPITAL** | 2/4 | 0/4 | 0/3 | CS2 onward | Costed next steps from quotes | capital-stages.csv; use-of-funds.csv; bm-gates.csv |
@@ -38,7 +38,7 @@ Not allowed without a new founder decision: forming the business, filing tradema
 | **REGULATORY** | 2/4 | 0/4 | 0/3 | PG-2, PG-6 | Authority answers | MINIMUM-LAWFUL-FOOD-TEST.md; question tree |
 | **TEAM** | 2/4 | 0/4 | 0/3 | hiring needs CS2+ | Conversations with potential partners | team-blueprint.csv |
 | **WEBSITE** | 3/4 | 0/4 | 0/3 | none | Real prototype media | website/ build, QA results; private, noindex |
-| **INVESTOR** | 2/4 | 0/4 | 0/3 | none | Reader test with a real person | docs/INVESTOR-DATA-ROOM.md; investor page (private build) |
+| **INVESTOR** | 3/4 | 0/4 | 0/3 | none | Reader test with a real person | exec-summary.csv; private Business page; INVESTOR-DATA-ROOM.md (sources T1/T2;... |
 | **DATA ROOM** | 3/4 | 0/4 | 0/3 | none | Real evidence to index | docs/INVESTOR-DATA-ROOM.md (generated index; paths checked) |
 | **EVIDENCE** | 3/4 | 0/4 | 0/3 | none | Session 1 originals | tools/intake.py; scoreboard; verification ledger |
 
@@ -82,7 +82,7 @@ Completion means nothing materially useful can be added without real-world evide
 | BEER | Recipes and process | **PROFESSIONAL REVIEW** | NO | HIGH | BLOCKED: PROFESSIONAL REVIEW |
 | PAIRING | One coherent food x beer x NA mechanism view | **BUILD NOW** | YES | HIGH | DONE (hypotheses only) |
 | PAIRING | Tasting any pairing | **REAL-WORLD INPUT** | YES | VERY HIGH | OPEN |
-| NA | NA pairing hypotheses and safety notes per dish | **BUILD NOW** | YES | HIGH | DONE (categories, not recipes) |
+| NA | NA pairing hypotheses and safety notes per dish | **BUILD NOW** | YES | HIGH | IN PROGRESS: category-level hypotheses and safety notes written;... |
 | NA | Shelf life, dairy-based or fresh-juice drink safety | **PROFESSIONAL REVIEW** | NO | MEDIUM | BLOCKED: PROFESSIONAL REVIEW |
 | MENU | Core 5 results deciding the menu | **REAL-WORLD INPUT** | YES | HIGH | OPEN |
 | OPERATIONS | Field validation | **REAL-WORLD INPUT** | NO | HIGH | OPEN: Horizon B/C |
@@ -105,12 +105,12 @@ Completion means nothing materially useful can be added without real-world evide
 | TEAM | Future capability map without invented advisors | **BUILD NOW** | YES | MEDIUM | DONE |
 | WEBSITE | Investor experience, pairing, lab, food, beer, business pages from canonical data | **BUILD NOW** | YES | VERY HIGH | DONE (private, noindex) |
 | WEBSITE | Real prototype media slot and replacement path | **BUILD NOW** | YES | HIGH | DONE (empty until real photos) |
-| INVESTOR | Executive summary, founder story, risks with cheapest tests, use of funds | **BUILD NOW** | YES | HIGH | DONE |
+| INVESTOR | Executive summary, founder story, risks with cheapest tests, use of funds | **BUILD NOW** | YES | HIGH | DONE as a draft; the reader test with a real person is open... |
 | INVESTOR | Real investor conversation | **FUTURE CAPITAL** | NO | n/a | NOT STARTED; no interest is claimed |
-| DATA ROOM | Navigable categories with plain titles, no internal junk | **BUILD NOW** | YES | HIGH | DONE |
-| EVIDENCE | Ingestion path for real inputs and media | **BUILD NOW** | YES | HIGH | DONE (ready) |
+| DATA ROOM | Navigable categories with plain titles, no internal junk | **BUILD NOW** | YES | HIGH | DONE as an index; items are PREPARED or PARTIAL, not independently... |
+| EVIDENCE | Ingestion path for real inputs and media | **BUILD NOW** | YES | HIGH | Tool built and self-tested; NOT yet run on a real photo or receipt |
 
-30-day zero-dollar test: if the founder had no additional dollars for 30 days, the meaningful digital work still open is the items marked BUILD NOW whose outcome is not DONE (0 in this audit); every other open item waits on the founder, a real-world result, a professional or capital. New BUILD NOW items will appear as real inputs arrive.
+30-day zero-dollar test: if the founder had no additional dollars for 30 days, the meaningful digital work still open is the items marked BUILD NOW whose outcome is not DONE (2 in this audit); every other open item waits on the founder, a real-world result, a professional or capital. New BUILD NOW items will appear as real inputs arrive.
 
 
 ## Pre-capital blueprint completion

@@ -68,6 +68,11 @@ def media_or_slot(B, fid, concept_html):
     return concept_html + '<p class="slot" role="note"><strong>Founder photograph: not yet.</strong> This space is reserved for the first real photograph of this dish. The drawing above is a concept illustration, not food that was cooked.</p>'
 
 
+def fix_regions(body):
+    """Scroll containers are landmarks: give each a unique label taken from its table caption."""
+    return re.sub(r'aria-label="Table, scrolls sideways on small screens">\s*<table><caption class="visually-hidden">(.*?)</caption>', lambda m: f'aria-label="{m.group(1)} (table, scrolls sideways on small screens)"><table><caption class="visually-hidden">{m.group(1)}</caption>', body)
+
+
 def subnav(cur):
     items = [("experience.html", "An evening"), ("space.html", "The hall")]
     return '<nav class="subnav" aria-label="The place">' + "".join(f'<a href="{f}"{" aria-current=\"page\"" if f == cur else ""}>{E(n)}</a>' for f, n in items) + "</nav>"
@@ -178,12 +183,12 @@ def beer_core_section(B, S):
 def page_business(B, S):
     ex = {e["section"]: e for e in S["exec"]}
     def e(k): return f'<h3>{E(ex[k]["heading"])}</h3><p>{E(ex[k]["text"])}</p>'
-    nav = [("sum", "Summary"), ("stage", "Where it stands"), ("diff", "Why it could differ"), ("austin", "Why Austin"), ("model", "Business model"), ("capital", "Capital path"), ("risks", "Risks"), ("team", "Team"), ("funds", "Use of funds"), ("room", "Data room"), ("founder", "Founder")]
+    nav = [("sum", "Summary"), ("stage", "Where it stands"), ("diff", "Why it could differ"), ("brewery", "Why a brewery"), ("austin", "Why Austin"), ("model", "Business model"), ("capital", "Capital path"), ("risks", "Risks"), ("team", "Team"), ("funds", "Use of funds"), ("room", "Data room"), ("founder", "Founder")]
     toc = "<nav class=\"toc\" aria-label=\"On this page\"><ul>" + "".join(f'<li><a href="#{a}">{E(t)}</a></li>' for a, t in nav) + "</ul></nav>"
     done = "".join(f"<li>{E(x)}</li>" for x in [t.strip() for t in re.split(r"; ", ex["done"]["text"].rstrip("."))] if x)
     notd = "".join(f"<li>{E(x.strip())}</li>" for x in re.split(r", ", ex["not_done"]["text"].replace("Nothing has been ", "").rstrip(".")) if x.strip())
     comp = "".join(f'<tr><th scope="row">{E(c["area"].title())}</th><td><span class="dots" role="img" aria-label="{c["digital"]} of 4">{"●" * c["digital"]}{"○" * (4 - c["digital"])}</span></td><td><span class="dots" role="img" aria-label="{c["real"]} of 4">{"●" * c["real"]}{"○" * (4 - c["real"])}</span></td><td><span class="dots" role="img" aria-label="{c["pro"]} of 3">{"●" * c["pro"]}{"○" * (3 - c["pro"])}</span></td><td>{E(c["next"])}</td></tr>' for c in S["completeness"])
-    groups = {"OBSERVED FACT": "Observed facts", "PUBLIC RESEARCH": "Public research", "HYPOTHESIS": "Hypotheses to test"}
+    groups = {"OBSERVED FACT": "Search-based observations (small samples, not verified)", "PUBLIC RESEARCH": "Public sources (summaries, not primary documents)", "HYPOTHESIS": "Hypotheses to test"}
     aus = ""
     for k, t in groups.items():
         items = [a for a in S["austin"] if a["class"] == k]
@@ -192,11 +197,11 @@ def page_business(B, S):
     rest = [c for c in S["chain"] if c["chain"] == "RESTAURANT"]; brew = [c for c in S["chain"] if c["chain"] == "BREWERY"]
     flow = lambda items: '<ol class="flow">' + "".join(f'<li><strong>{E(i["node"].title())}</strong><span>{E(i["relationship"].split(";")[0])}</span></li>' for i in items) + "</ol>"
     path = '<ol class="flow flow-path">' + "".join(f"<li><strong>{E(a)}</strong><span>{E(b)}</span></li>" for a, b in [("Product validation", "Do the dishes work, and what do they cost?"), ("MVP", "Will people pay, and how fast can a kitchen run?"), ("Repeatability", "Do guests come back?"), ("Permanent site", "Does a fixed site make money?"), ("Brewery scale", "Does house beer justify its capital?")]) + "</ol>"
-    stages = "".join(f'<li class="stagecard"><span class="stage">{E(c["stage"])}</span><h3>{E(c["name"].title())}</h3><p><strong>What has to be true.</strong> {E(c["true_first"])}</p><p><strong>What capital unlocks.</strong> {E(c["unlocks"])}</p><p><strong>Risk removed.</strong> {E(c["risk"])}</p><p class="muted">{E(c["claim"])}</p></li>' for c in S["stages"])
+    stages = "".join(f'<li class="stagecard"><span class="stage">Stage {k}</span><h3>{E(c["name"].title())}</h3><p><strong>What has to be true.</strong> {E(c["true_first"])}</p><p><strong>What capital unlocks.</strong> {E(c["unlocks"])}</p><p><strong>Risk removed.</strong> {E(c["risk"])}</p><p class="muted">{E(c["claim"])}</p></li>' for k, c in enumerate(S["stages"], 1))
     gates = "".join(f'<tr><th scope="row">{E(g["commitment"])}</th><td><strong>{E(g["stop"].title())}</strong></td><td>{E(g["pass"])}</td></tr>' for g in S["gates_full"])
     risks = "".join(f'<tr><th scope="row">{E(r["risk"].title())}</th><td>{E(r["why"])}</td><td>{E(r["test"])}</td><td>{E(r["decision"])}</td></tr>' for r in S["risks"])
     team = "".join(f'<tr><th scope="row">{E(t["role"])}</th><td>{E(t["founder"].title())}</td><td>{E(t["gap"])}</td></tr>' for t in S["team"])
-    funds = "".join(f'<li><strong>{E(u["category"].title())}</strong>: {E(u["unlocks"])}</li>' for u in S["use_of_funds"])
+    funds = "".join(f'<li><strong>{E(u["category"].title())}</strong>{" (earliest)" if i < 3 else ""}: {E(u["unlocks"])}</li>' for i, u in enumerate(S["use_of_funds"]))
     cats = []
     for d in S["dataroom"]:
         if d["category"] not in cats: cats.append(d["category"])
@@ -205,39 +210,42 @@ def page_business(B, S):
         room += f'<div class="card"><h3>{E(c[3:])}</h3><ul class="plain">' + "".join(f'<li>{E(d["item"])} <span class="chip">{E(d["status"].title())}</span></li>' for d in S["dataroom"] if d["category"] == c) + "</ul></div>"
     body = f'''<section aria-labelledby="h1"><div class="wrap stack">
 <p class="eyebrow">Business and investor view · private</p><h1 id="h1">What NASHA is, what exists, and what capital would solve.</h1>
-<p class="lede">{st("DOCUMENTED")} {st("IN DEVELOPMENT")} {st("EXTERNAL VALIDATION PENDING")}</p>
-<p>A private, unindexed view for a founder or a future investor. It is not an offer and it asks for no money; no investor has been approached. The founder used the pre-capital phase on purpose: to remove as much uncertainty as possible, at no cost, before asking capital to solve the expensive problems. That is capital discipline, not a limitation.</p>
+<p class="lede">{st("IN DEVELOPMENT")} {st("EXTERNAL VALIDATION PENDING")}</p>
+<p>A private, unindexed view for a founder or a future investor. It is not an offer and it asks for no money; no investor has been approached. The founder used the pre-capital phase deliberately: to remove as much uncertainty as possible, at no cost, before asking capital to solve the expensive problems.</p>
 {toc}
 <details class="legend"><summary>What the status words mean</summary>{legend()}</details>
 </div></section>
 <section class="alt" id="sum" aria-labelledby="s-sum"><div class="wrap"><h2 id="s-sum">The one-page summary.</h2><div class="grid cols-2"><div>{e("concept")}{e("opportunity")}{e("solution")}</div><div>{e("product")}{e("difference")}{e("capital")}</div></div></div></section>
 <section id="stage" aria-labelledby="s-stage"><div class="wrap"><h2 id="s-stage">Where it stands.</h2><p class="lede">{E(ex["stage"]["text"])}</p>
 <div class="grid cols-2"><div class="card"><h3>What has been done</h3><ul class="plain">{done}</ul></div><div class="card"><h3>What has not</h3><p class="muted">Nothing has been:</p><ul class="plain">{notd}</ul></div></div>
-<h3 class="sub">How complete is each part?</h3><p class="muted">Three separate scales. A part can be well designed on paper, untested in the real world and unreviewed by professionals.</p>
-<div class="scroll-x" tabindex="0" role="region" aria-label="Table, scrolls sideways on small screens"><table><caption class="visually-hidden">Completeness by area</caption><thead><tr><th scope="col">Area</th><th scope="col">Designed</th><th scope="col">Tested in reality</th><th scope="col">Professionally reviewed</th><th scope="col">What unlocks the next step</th></tr></thead><tbody>{comp}</tbody></table></div></div></section>
+<h3 class="sub">How complete is each part?</h3><p class="muted">Three separate scales. A part can be well written down, untested in the real world and unreviewed by professionals. No area has a physical test; one dot under "Tested in reality" means desk or public-source observation only. These are the project's own labels, not an outside assessment.</p>
+<div class="scroll-x" tabindex="0" role="region" aria-label="Table, scrolls sideways on small screens"><table><caption class="visually-hidden">Completeness by area</caption><thead><tr><th scope="col">Area</th><th scope="col">Written down</th><th scope="col">Tested in reality</th><th scope="col">Professionally reviewed</th><th scope="col">What unlocks the next step</th></tr></thead><tbody>{comp}</tbody></table></div></div></section>
 <section class="alt" id="diff" aria-labelledby="s-diff"><div class="wrap"><h2 id="s-diff">Why it could be different, and what the market teaches.</h2>
 <p class="lede">Indian food exists. Mexican food exists. Fusion exists. Breweries exist. Experiential hospitality exists. NASHA's hypothesis is about the combination and the execution.</p>
 <div class="scroll-x" tabindex="0" role="region" aria-label="Table, scrolls sideways on small screens"><table><caption class="visually-hidden">Market lessons</caption><thead><tr><th scope="col">Part of the market</th><th scope="col">What we can learn</th><th scope="col">NASHA's hypothesis</th><th scope="col">What we do not know</th></tr></thead><tbody>{comps}</tbody></table></div></div></section>
-<section id="austin" aria-labelledby="s-austin"><div class="wrap"><h2 id="s-austin">Why Austin: facts, research and hypotheses kept apart.</h2>
+<section id="brewery" aria-labelledby="s-brew"><div class="wrap"><h2 id="s-brew">Why a brewery at all.</h2>
+<p class="lede">The thesis, untested: beer designed with the food and poured at the same table is something guests cannot get by assembling food from one place and beer from another.</p>
+<p>The test that would disprove it: if beer from a host brewery or a collaboration (or a partner's beer) sells and pairs as well as NASHA's own beer would, a house brewhouse is not justified and the brewery stays unbuilt. That is why it is the last capital gate, not the first. Nobody has run this test yet, and no brewer has reviewed the idea.</p></div></section>
+<section class="alt" id="austin" aria-labelledby="s-austin"><div class="wrap"><h2 id="s-austin">Why Austin: facts, research and hypotheses kept apart.</h2>
 <p>Austin is the founder's chosen first market, not a proven one. These are the things that would have to be true, each labelled by how we know it.</p>{aus}</div></section>
-<section class="alt" id="model" aria-labelledby="s-model"><div class="wrap"><h2 id="s-model">How it could make money.</h2>
+<section id="model" aria-labelledby="s-model"><div class="wrap"><h2 id="s-model">How it could make money.</h2>
 <p>A decision model, not a forecast. Every input is unknown today and carries a label for how well it is known; nothing here is a revenue, cost, margin or demand figure.</p>
 <h3 class="sub">The restaurant</h3>{flow(rest)}<h3 class="sub">The brewery</h3>{flow(brew)}<h3 class="sub">The order of proof</h3>{path}
 <p class="muted">The cheapest format that answers each next question comes first: a private tasting, an invited event, a commissary pop-up or a brewery residency, a trailer, and only then a fixed site. A flagship is asked about last.</p></div></section>
-<section id="capital" aria-labelledby="s-cap"><div class="wrap"><h2 id="s-cap">The capital path, in stages.</h2><p>No fundraising amount is set. Amounts will follow real quotes. Venture capital is not assumed; hospitality investors, strategic and brewery partners, angels and later debt are all possible.</p>
+<section class="alt" id="capital" aria-labelledby="s-cap"><div class="wrap"><h2 id="s-cap">The capital path, in stages.</h2><p>No fundraising amount is set. Amounts will follow real quotes. Venture capital is not assumed; sources to consider much later (none has been approached): hospitality investors, strategic and brewery partners, angels and later debt.</p>
 <ol class="stagecards">{stages}</ol>
 <h3 class="sub">Gates that stop spending</h3><p class="muted">None of these has passed.</p>
 <div class="scroll-x" tabindex="0" role="region" aria-label="Table, scrolls sideways on small screens"><table><caption class="visually-hidden">Capital gates</caption><thead><tr><th scope="col">Commitment</th><th scope="col">Until it is true, the answer is</th><th scope="col">What has to pass</th></tr></thead><tbody>{gates}</tbody></table></div></div></section>
-<section class="alt" id="risks" aria-labelledby="s-risk"><div class="wrap"><h2 id="s-risk">Risks, the cheapest test, and what would change the plan.</h2>
+<section id="risks" aria-labelledby="s-risk"><div class="wrap"><h2 id="s-risk">Risks, the cheapest test, and what would change the plan.</h2>
 <div class="scroll-x" tabindex="0" role="region" aria-label="Table, scrolls sideways on small screens"><table><caption class="visually-hidden">Risks</caption><thead><tr><th scope="col">Risk</th><th scope="col">Why it matters</th><th scope="col">Cheapest test</th><th scope="col">What would change the plan</th></tr></thead><tbody>{risks}</tbody></table></div>
 <p class="muted">The name: NASHA is the founder's internal working name. A same-name restaurant has been reported in Austin, so the name carries a legal question that needs an attorney before any name-dependent spend. Nothing here claims clearance, ownership or exclusivity. Legal and other professional reviews are listed as future gates; none has happened.</p></div></section>
-<section id="team" aria-labelledby="s-team"><div class="wrap"><h2 id="s-team">The team, and what the company needs.</h2>
+<section class="alt" id="team" aria-labelledby="s-team"><div class="wrap"><h2 id="s-team">The team, and what the company needs.</h2>
 <p>One founder today. These are capabilities the future company needs, not people who have agreed to join; no advisor or partner is claimed.</p>
 <div class="scroll-x" tabindex="0" role="region" aria-label="Table, scrolls sideways on small screens"><table><caption class="visually-hidden">Capabilities</caption><thead><tr><th scope="col">Capability</th><th scope="col">Founder today</th><th scope="col">What is needed</th></tr></thead><tbody>{team}</tbody></table></div></div></section>
-<section class="alt" id="funds" aria-labelledby="s-funds"><div class="wrap"><h2 id="s-funds">What investment would unlock.</h2><ul class="plain">{funds}</ul><p class="muted">Amounts are not set.</p></div></section>
-<section id="room" aria-labelledby="s-room"><div class="wrap"><h2 id="s-room">The data room.</h2><p>Everything behind this page is organised for review, by topic. Status shows what is ready, what is prepared on hypotheses, what is partial and what does not exist yet. Documents are shared on request, in person, by the founder.</p><div class="grid cols-3">{room}</div></div></section>
-<section class="alt" id="founder" aria-labelledby="s-founder"><div class="wrap"><h2 id="s-founder">The founder.</h2><p class="lede">{E(ex["founder"]["text"])}</p><p>{E(ex["milestones"]["text"])}</p></div></section>'''
-    return B.layout("investor.html", "Business and investor view · NASHA", "A private, honest view of what NASHA is, what is documented versus tested, the capital path and the risks.", body)
+<section id="funds" aria-labelledby="s-funds"><div class="wrap"><h2 id="s-funds">What investment would unlock.</h2><p>In the order the money would be needed. Amounts are not set.</p><ol class="plain">{funds}</ol></div></section>
+<section class="alt" id="room" aria-labelledby="s-room"><div class="wrap"><h2 id="s-room">The data room.</h2><p>Everything behind this page is organised for review, by topic. Status shows what is ready, what is prepared on hypotheses, what is partial and what does not exist yet. The founder shares documents if and when the founder decides to show this to someone. Statuses are the project's own labels, not an outside certification.</p><div class="grid cols-3">{room}</div></div></section>
+<section id="founder" aria-labelledby="s-founder"><div class="wrap"><h2 id="s-founder">The founder.</h2><p class="lede">{E(ex["founder"]["text"])}</p><p><strong>The next proofs the founder is working toward.</strong> {E(ex["milestones"]["text"])}</p></div></section>'''
+    return B.layout("investor.html", "Business and investor view · NASHA", "A private, honest view of what NASHA is, what is documented versus tested, the capital path and the risks.", fix_regions(body))
 
 
 # ------------------------------------------------------------------ experience / space data sections

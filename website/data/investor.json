@@ -221,7 +221,7 @@
   },
   {
    "area": "INVESTOR",
-   "digital": 2,
+   "digital": 3,
    "real": 0,
    "pro": 0,
    "capital": "none",
@@ -676,7 +676,7 @@
  "austin": [
   {
    "id": "T01",
-   "statement": "Austin taprooms and brewpubs commonly pair an integrated kitchen with beer (Pinthouse, Lazarus, Brewtorium listed).",
+   "statement": "Several Austin taprooms and brewpubs appear in the market-map sample with an integrated kitchen (Pinthouse, Lazarus, Brewtorium listed); the sample is small.",
    "class": "OBSERVED FACT",
    "must_be_true": "Integrated kitchens are table stakes, so NASHA's kitchen must be judged on its own merit.",
    "evidence": "market-map.csv rows 2-9: Yelp listings (T2) and T1 summaries; pages not opened.",
@@ -716,9 +716,9 @@
   },
   {
    "id": "T05",
-   "statement": "Indian-Mexican fusion has been sold in Austin: Nasha (reported), Sivestar, Kurry Takos, Taco Twist, Austin Taco Project, Urban Turban (Round Rock).",
+   "statement": "Indian-Mexican fusion businesses are reported in Austin (T1 summaries, pages not opened): Nasha (reported), Sivestar, Kurry Takos, Taco Twist, Austin Taco Project, Urban Turban (Round Rock).",
    "class": "PUBLIC RESEARCH",
-   "must_be_true": "Fusion is proven to have an audience, so NASHA must not claim to be first or only.",
+   "must_be_true": "NASHA must not claim to be first or only; whether any of these trades today, or has an audience, is unknown.",
    "evidence": "market-map.csv rows 16-21 and COMPETITIVE-DIFFERENTIATION.md; T1, status unconfirmed.",
    "limit": "Search summaries only; current operation of most is UNKNOWN.",
    "test": "Founder checks each operator's current status by phone or visit.",
@@ -746,8 +746,8 @@
   },
   {
    "id": "T08",
-   "statement": "Austin has deep supply of Indian restaurants, which act as behavioural substitutes for an Indian meal.",
-   "class": "OBSERVED FACT",
+   "statement": "Austin appears to have many Indian restaurants in the Yelp sample; whether they substitute for a NASHA meal is an inference, not an observation.",
+   "class": "PUBLIC RESEARCH",
    "must_be_true": "NASHA offers a reason to choose it over a familiar Indian dinner, such as beer pairing or group fit.",
    "evidence": "market-map.csv rows 11-13: Yelp indpak listings (T2), many well reviewed.",
    "limit": "Yelp sample only; menus, prices and beer attach unknown.",
@@ -806,8 +806,8 @@
   },
   {
    "id": "T14",
-   "statement": "Patios are an expected feature of Austin taprooms and beer gardens.",
-   "class": "OBSERVED FACT",
+   "statement": "Patios appear as a common feature in the sampled Austin taproom and beer-garden listings and press snippets.",
+   "class": "PUBLIC RESEARCH",
    "must_be_true": "Shade is baseline, so only verified cooling or comfort could be a hook.",
    "evidence": "market-map.csv rows 31-32: Yelp listings (T2) and press snippets.",
    "limit": "Actual shade or cooling features at competitors unknown.",
@@ -933,7 +933,7 @@
   {
    "segment": "Indian-Mexican or Indian-Tex-Mex fusion",
    "exists": "Reported (T1, pages not opened): Sivestar, Kurry Takos, Taco Twist, Austin Taco Project, Urban Turban, and a restaurant named Nasha with reported locations at 1614 E 7th St and 8900 S Congress Ave; status UNKNOWN.",
-   "learn": "Fusion has had paying customers in Austin, so NASHA must not say first or only. The Nasha facts are publicly reported and unverified.",
+   "learn": "Fusion businesses are reported in Austin, so NASHA must not say first or only; whether any trades today, or has an audience, is unknown. The Nasha facts are publicly reported and unverified.",
    "hypothesis": "The open question is the combination of a brewery and a kitchen designed together around Indian-Mexican dishes.",
    "unknown": "Current operation of each, trademark position, any brewery link (none found), and guest preference are UNKNOWN."
   },
@@ -1056,7 +1056,7 @@
    "narr": {
     "food_id": "goat-birria",
     "what_it_is": "A slow braise of bone-in goat in a guajillo and ancho chile adobo, served as tacos with a small cup of consomme. It has not been cooked and is a long-lead item.",
-    "why_it_exists": "Birria de chivo is a Jalisco dish whose original meat is goat, and it lets NASHA make a rich, deep centrepiece that clearly reads as goat.",
+    "why_it_exists": "Birria de chivo is commonly made with goat in Jalisco (web sources, T1; a Mexican advisor is to confirm), and and it lets NASHA make a rich, deep centrepiece that clearly reads as goat.",
     "indian_component": "Technique only: dum-style sealed-pot braising, whole-spice toasting and bhuna-style frying of the adobo paste. Yogurt-papaya and curry-leaf ideas are tested against a plain adobo, not assumed.",
     "mexican_component": "Goat, chile adobo, consomme, corn tortillas, onion, cilantro, lime and salsa. These are historically supported from web sources, with a Mexican advisor still to confirm.",
     "fusion_logic": "The Mexican dish stays whole, and the Indian layer is included only where tasting shows it adds depth. The dipped and griddled taco form is a modern adaptation.",
@@ -1070,12 +1070,12 @@
     "primary_beer": "hefeweizen",
     "alternate_beer": "vienna-amber",
     "primary_na": "A tea-based drink with tamarind or hibiscus acid and warm spice, served cool or slightly warm, matching the dish's chile and cinnamon notes.",
-    "alternate_na": "A zero-proof beer in a malty amber style, with toast and gentle body to answer the braise.",
+    "alternate_na": "A non-alcoholic beer with a malty, toasty, gentle-bodied character (a brewer or supplier to define; strength and labelling to be confirmed) to answer the braise.",
     "mechanisms": "CONTRAST|AROMA_BRIDGE|ACIDITY|TEXTURE|BITTERNESS",
     "why_it_may_work": "Carbonation, acid and tannin cut the fat in the consomme, and warm spice in the drink can echo the adobo. The amber style bridges toasty malt to the braise.",
     "how_it_could_fail": "Clove and banana against the dish's clove and cinnamon is a gamble. A malty option could be heavy with a rich consomme. Too much sweetness would clog.",
     "deciding_test": "Taste the same goat portion with each option, alternating with the consomme, and note which one leaves the palate cleaner after a few bites.",
-    "na_safety_note": "Tea, hibiscus and spice infusions need review of brewing, cooling and holding, and any warm service needs hot-holding checks. Nothing here is a recipe; a food-safety professional must review shelf life, storage and service before any use.",
+    "na_safety_note": "Tea, hibiscus and spice infusions need review of brewing, cooling and holding, and any warm service needs hot-holding checks. Nothing here is a recipe; a food-safety professional must review shelf life, storage and service before any use. A non-alcoholic beer is a brewing and labelling matter for a qualified brewer and an alcohol attorney; no strength claim is made.",
     "status": "PROPOSED - NOT SENSORY TESTED"
    },
    "primary_beer": "Hefeweizen",
@@ -1412,7 +1412,7 @@
    "stage": "HOST",
    "goal": "Be acknowledged and told what happens next.",
    "principle": "Honesty about wait and options.",
-   "experience": "A calm greeting, a straight answer on seating, and notes from the booking already known.",
+   "experience": "A calm greeting, a straight answer on seating, and nothing to repeat if the guest chose to share a note ahead of time.",
    "staff": "Make eye contact, answer directly, ask about access or allergen needs without drama.",
    "avoid": "Ignoring guests, wrong promises, bar queue blocking the host.",
    "recovery": "Apologise, give the honest next step, and ask a lead to help."

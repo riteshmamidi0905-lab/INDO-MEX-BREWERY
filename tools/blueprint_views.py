@@ -161,7 +161,7 @@ L += ["", "NA safety: " + "; ".join(sorted({cell(x["na_safety_note"], 160) for x
 for b in beer:
     bp = next(x for x in port if x["beer"] == {"hefeweizen": "Hefeweizen", "mexican-lager": "Mexican-Style Lager", "vienna-amber": "Vienna Amber", "pilsner": "Pilsner", "witbier": "Witbier"}[b["id"]]); bn = bnar[b["id"]]
     L += [f"### {b['name']}", "", f"- **Style in plain words:** {bn['style_in_plain_words']}", f"- **Role on the list:** {bn['role_on_the_list']}", f"- **Flavor intent:** {bn['flavor_intent']}", f"- **Food role:** {bn['food_role']}",
-          f"- **Why it earns a tap:** {bn['why_it_earns_a_tap']}", f"- **What remains undecided:** {bn['what_remains_undecided']}", f"- **Status:** {bn['status_plain']} (matrix: {b['status']}; physical: {b['physical_status']})", f"- **For a non-brewer:** {bn['non_brewer_note']}",
+          f"- **Why it earns a tap:** {bn['why_it_earns_a_tap']}", f"- **What remains undecided:** {bn['what_remains_undecided']}", f"- **Status:** {bn['status_plain']} (physical: {b['physical_status']})", f"- **For a non-brewer:** {bn['non_brewer_note']}",
           f"- **Style references (not a NASHA result):** {cell(b['style_reference'], 120)}; glass: {cell(b['glass_role'], 90)}; tank occupancy {bp['tank_occupancy_class']}; quality sensitivity {cell(bp['quality_sensitivity'], 60)}; draft-velocity risk {cell(bp['draft_velocity_risk'], 70)}",
           f"- **Questions for a qualified brewer:** {cell(b['brewer_questions'], 240)}", f"- **Regulatory / ingredient issues:** {cell(b['regulatory_ingredient_issues'], 150)}", ""]
 L += ["## Ingredient specifications (from supply-spec.csv)", ""]

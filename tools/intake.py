@@ -6,7 +6,7 @@ records only what was OBSERVED (anything else is NOT OBSERVED), refuses to turn 
   python3 tools/intake.py record-purchase observed.json      rows of OBSERVED purchase fields (price = the receipt line TOTAL for the quantity bought, written 5.00; ISO dates) (Claude fills it from the images; the founder never types CSV)
   python3 tools/intake.py apply-prices observed.json         write RETAIL RECEIPT unit prices to food/costing/ingredients.csv (only rows that carry ingredient_id and a usable pack size)
   python3 tools/intake.py record-quote quote.json            vendor-issued quotes only; listings/snippets/retail prices are refused as quotes
-  python3 tools/intake.py register-media media.json          founder photographs of a real cook: preserves the original, registers it as FOUNDER PROTOTYPE media (the private site then shows it with its stage label); needs food_id, file, alt_text, captured_date
+  python3 tools/intake.py register-media media.json          founder photographs of a real cook: preserves the original, registers it as FOUNDER PROTOTYPE media (the private site then shows it with its stage label); needs food_id, file, alt_text, captured_date, an iteration_id already in ops/rd/iteration-log.csv, and confirm_real_cook_photo + confirm_no_personal_data
   python3 tools/intake.py selftest
 Originals go to evidence/<kind>/originals/ with evidence/<kind>/provenance.csv. Check images for personal data (card numbers, addresses) before committing."""
 import csv, datetime, hashlib, json, os, shutil, stat, sys, tempfile
@@ -134,24 +134,31 @@ def record_quote(items):
     return out
 MEDIA = "visuals/FOUNDER-PROTOTYPE-MEDIA.csv"; FOODS = "food/CORE5-FOOD-MATRIX.csv"
 def register_media(items, base=None):
-    """Founder prototype photographs only. The original is preserved first (read-only, SHA-256); the media row carries the original's hash so the site build can verify it. Concept media is never registered; promotion to VALIDATED PRODUCT or PROFESSIONAL FINAL is a founder decision made by editing the row, not by this command."""
+    """Founder prototype photographs of a REAL cook only. Validated first, preserved second (atomic): every item must name a known food, carry alt text, an ISO capture date, an iteration_id that exists in ops/rd/iteration-log.csv and BOTH confirmations (it is a real, unedited photo from a real cook; it shows no one who has not agreed and no personal data). Files under website/, visuals/ or architecture/ (concept media) are refused. The media row carries the original's SHA-256 so the site build can verify it. Promotion to VALIDATED PRODUCT or PROFESSIONAL FINAL is a founder decision made by editing the row, not by this command."""
     base = base or ROOT
     foods = {r["id"] for r in csv.DictReader(open(os.path.join(base, FOODS), encoding="utf-8"))}
-    f = os.path.join(base, MEDIA); rows = list(csv.DictReader(open(f, encoding="utf-8"))); hdr = ["media_id", "food_id", "file", "media_stage", "iteration_id", "captured_date", "original_sha256", "rights_owner", "alt_text", "edits"]
-    out = []
+    itf = os.path.join(base, "ops", "rd", "iteration-log.csv"); iters = {r["iteration_id"] for r in csv.DictReader(open(itf, encoding="utf-8"))} if os.path.exists(itf) else set()
     for it in items:
         if it.get("food_id") not in foods: raise SystemExit(f"unknown food_id {it.get('food_id')!r}: must be one of {sorted(foods)}")
         if not (it.get("alt_text") or "").strip(): raise SystemExit("alt_text is required (describe what the photograph actually shows)")
         if not _re.fullmatch(r"\d{4}-\d{2}-\d{2}", it.get("captured_date") or ""): raise SystemExit("captured_date must be an ISO date (YYYY-MM-DD)")
         if (it.get("media_stage") or "FOUNDER PROTOTYPE") != "FOUNDER PROTOTYPE": raise SystemExit("this command registers FOUNDER PROTOTYPE media only")
-        if not os.path.isfile(it.get("file") or ""): raise SystemExit(f"file not found: {it.get('file')}")
+        fp = it.get("file") or ""
+        if not os.path.isfile(fp): raise SystemExit(f"file not found: {fp}")
+        rel = os.path.relpath(os.path.realpath(fp), os.path.realpath(base))
+        if rel.split(os.sep)[0] in ("website", "visuals", "architecture", "interior", "brand"): raise SystemExit(f"{fp} is under a concept-media folder; concept or AI images are never registered as prototype evidence")
+        if (it.get("iteration_id") or "") not in iters: raise SystemExit(f"iteration_id {it.get('iteration_id')!r} is not in ops/rd/iteration-log.csv: record the cook first, then register its photographs")
+        if not (it.get("confirm_real_cook_photo") and it.get("confirm_no_personal_data")): raise SystemExit("set confirm_real_cook_photo and confirm_no_personal_data to true: the photo is an unedited original from the real cook and shows no personal data or anyone who has not agreed (location data is stripped from the web copy only; the preserved original keeps it, so do not commit originals to a public place)")
+    f = os.path.join(base, MEDIA); rows = list(csv.DictReader(open(f, encoding="utf-8"))); hdr = ["media_id", "food_id", "file", "media_stage", "iteration_id", "captured_date", "original_sha256", "rights_owner", "alt_text", "edits"]
+    out = []
+    for it in items:
         res = preserve("prototype_media", [it["file"]], base=base)
         if res[0][2].startswith("DUPLICATE"): raise SystemExit("this photograph is already preserved/registered")
         prov = [r for r in read_prov_at(base, "prototype_media") if r["file_id"] == res[0][1]][0]
-        row = dict(media_id=res[0][1], food_id=it["food_id"], file=prov["stored_as"], media_stage="FOUNDER PROTOTYPE", iteration_id=it.get("iteration_id") or NO, captured_date=it["captured_date"], original_sha256=prov["sha256"], rights_owner=it.get("rights_owner") or "founder", alt_text=it["alt_text"].strip(), edits=it.get("edits") or "none (original)")
+        row = dict(media_id=res[0][1], food_id=it["food_id"], file=prov["stored_as"], media_stage="FOUNDER PROTOTYPE", iteration_id=it["iteration_id"], captured_date=it["captured_date"], original_sha256=prov["sha256"], rights_owner=it.get("rights_owner") or "founder", alt_text=it["alt_text"].strip(), edits=it.get("edits") or "none (original)")
         rows.append(row); out.append(row)
-    with open(f, "w", encoding="utf-8", newline="") as o:
-        w = csv.DictWriter(o, fieldnames=hdr, lineterminator="\n", quoting=csv.QUOTE_ALL); w.writeheader(); w.writerows(rows)
+        with open(f, "w", encoding="utf-8", newline="") as o:
+            w = csv.DictWriter(o, fieldnames=hdr, lineterminator="\n", quoting=csv.QUOTE_ALL); w.writeheader(); w.writerows(rows)   # row written right after each preserve: no orphaned originals
     return out
 def route(kind=None):
     rows = list(csv.DictReader(open(p(ROUTER), encoding="utf-8")))
@@ -196,8 +203,13 @@ def selftest():
         good = record_quote([dict(doc_type="VENDOR QUOTE", source_doc_file_id="QUO-0001", vendor="TEST", price="10.00", pack="1 kg", unit="kg", valid_until="2026-12-31", date_requested="2026-01-01")])
         assert good[0]["evidence_tier"] == "QUOTE"
         ph = os.path.join(d, "cook.jpg"); open(ph, "wb").write(b"fake founder photo")
-        assert refused(lambda: register_media([dict(food_id="nope", file=ph, alt_text="x", captured_date="2026-01-01")], base=d)) and refused(lambda: register_media([dict(food_id="gobi-taco", file=ph, alt_text="", captured_date="2026-01-01")], base=d)) and refused(lambda: register_media([dict(food_id="gobi-taco", file=ph, alt_text="x", captured_date="1/1/26")], base=d)) and refused(lambda: register_media([dict(food_id="gobi-taco", file=ph, alt_text="x", captured_date="2026-01-01", media_stage="VALIDATED PRODUCT")], base=d))   # unknown food, no alt text, bad date, promotion all refused
-        mr = register_media([dict(food_id="gobi-taco", file=ph, alt_text="A plate of roasted cauliflower tacos on a white plate", captured_date="2026-01-01")], base=d); assert mr[0]["media_stage"] == "FOUNDER PROTOTYPE" and mr[0]["original_sha256"] == sha(ph) and refused(lambda: register_media([dict(food_id="gobi-taco", file=ph, alt_text="again", captured_date="2026-01-01")], base=d))   # registered with the original's hash; a duplicate is refused
+        os.makedirs(os.path.join(d, "ops", "rd")); open(os.path.join(d, "ops", "rd", "iteration-log.csv"), "w").write("iteration_id,product_id\nIT-1,gobi-taco\n")
+        ok = dict(food_id="gobi-taco", file=ph, alt_text="A plate of roasted cauliflower tacos on a white plate", captured_date="2026-01-01", iteration_id="IT-1", confirm_real_cook_photo=True, confirm_no_personal_data=True)
+        for bad in (dict(food_id="nope"), dict(alt_text=""), dict(captured_date="1/1/26"), dict(media_stage="VALIDATED PRODUCT"), dict(iteration_id="IT-9"), dict(iteration_id=""), dict(confirm_real_cook_photo=False), dict(confirm_no_personal_data=False)):
+            assert refused(lambda: register_media([dict(ok, **bad)], base=d)), bad   # unknown food, no alt text, bad date, promotion, unknown iteration, missing confirmations
+        os.makedirs(os.path.join(d, "website", "dist")); cp = os.path.join(d, "website", "dist", "concept.jpg"); open(cp, "wb").write(b"concept art"); assert refused(lambda: register_media([dict(ok, file=cp)], base=d))   # concept-media folders are refused
+        assert not os.path.exists(os.path.join(d, "evidence", "prototype_media")) or not read_prov_at(d, "prototype_media")   # nothing was preserved by the refusals
+        mr = register_media([ok], base=d); assert mr[0]["media_stage"] == "FOUNDER PROTOTYPE" and mr[0]["original_sha256"] == sha(ph) and mr[0]["iteration_id"] == "IT-1" and refused(lambda: register_media([dict(ok, alt_text="again")], base=d))   # registered with the original's hash; a duplicate is refused
         part = record_quote([dict(doc_type="EMAIL QUOTE", source_doc_file_id="QUO-0001", vendor="TEST", price="10.00")])
         assert part[0]["evidence_tier"].startswith("QUOTE-INCOMPLETE")
     ROOT = old

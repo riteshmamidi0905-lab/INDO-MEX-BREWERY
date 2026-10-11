@@ -204,7 +204,7 @@ def page_index():
 <div class="wrap hero-copy">
 <p class="eyebrow">Austin, Texas · In development</p>
 <h1 id="h1">Food and beer, designed together.</h1>
-<p class="lede">NASHA is a future Indo-Mex brewery and kitchen. Fire in the kitchen, fermentation in the glass hall, one long table between them.</p>
+<p class="lede">An Indo-Mex brewery and kitchen planned for Austin. Nothing is built, cooked or brewed yet. The idea: fire in the kitchen, fermentation in the glass hall, one long table between them.</p>
 <p class="disclosure">{E(DISCLOSE)} Equipment shown in images is illustrative: brewery size, tank count and layout are not decided.</p>
 </div></section>
 
@@ -215,7 +215,7 @@ def page_index():
 <div class="card"><h3>Austin</h3><p>The founder's chosen first market: a hypothesis to test, not a proven one. <a href="investor.html#austin">Why Austin</a>.</p></div>
 <div class="card"><h3>Craft, eventually</h3><p>House beer is the last thing to be built. A partner brewery can test the idea first. <a href="investor.html#capital">The staged path</a>.</p></div>
 <div class="card"><h3>Experiment first</h3><p>Dishes are developed by cooking, measuring, tasting and learning from failures. <a href="labs.html">Visit the Lab</a>.</p></div>
-<div class="card"><h3>What exists today</h3><p>A design system, a prepared first kitchen test and this private site. Nothing has been cooked, brewed or sold, and no restaurant, brewery or opening date exists.</p></div>
+<div class="card"><h3>What exists today</h3><p>A design system, a prepared first kitchen test and this private site. Nothing has been cooked, brewed or sold, and no restaurant, brewery or opening date exists. The name is a working name: a same-name Austin restaurant has been reported and legal clearance is pending.</p></div>
 </div></div></section>
 
 <section aria-labelledby="b2"><div class="wrap grid cols-2 center">
@@ -269,7 +269,7 @@ def page_index():
 <ol class="journey">{journey}</ol>
 <h3 class="sub">Honest status</h3>
 <ul class="path">{status_items}</ul>
-<p class="muted">Nothing is in Testing or Validated yet. We will say so when that changes. <a href="labs.html">See Labs</a>. About the word <em>nasha</em> and our commitments: <a href="about.html">About NASHA</a>.</p></div></section>
+<p class="muted">Nothing is in Testing or Validated yet. We will say so when that changes. <a href="labs.html">See The Lab</a>. About the word <em>nasha</em> and our commitments: <a href="about.html">About NASHA</a>.</p></div></section>
 
 <section class="alt" aria-labelledby="b10"><div class="wrap">
 <p class="eyebrow"><span class="beat-no">10</span> Follow the journey</p>
@@ -409,7 +409,7 @@ def page_beer():
 <div class="reveal">{raster_fig("NV-BREWERY-GLASS", "", sizes="(max-width: 700px) 100vw, 50vw")}</div></div></section>
 
 <section aria-labelledby="hs"><div class="wrap"><p class="eyebrow">Honest status</p><h2 id="hs">Not brewed yet.</h2>
-<p>No beer exists. There is no brewer on the team, no recipe and no licence. The first beers, if any, would likely be made with a partner brewery under rules we are still learning. <a href="labs.html">Follow the path in Labs</a>.</p></div></section>'''
+<p>No beer exists. There is no brewer on the team, no recipe and no licence. The first beers, if any, would likely be made with a partner brewery under rules we are still learning. <a href="labs.html">Follow the path in The Lab</a>.</p></div></section>'''
     return layout("beer.html", "Beer · NASHA", "Beer briefs for a future NASHA brewery, built for the table. Nothing has been brewed.", body)
 
 def page_crossing():
@@ -432,20 +432,6 @@ def page_crossing():
 <section aria-labelledby="cn"><div class="wrap"><h2 id="cn" class="visually-hidden">Note</h2><p class="muted">NASHA is an Indo-Mex kitchen in the sense of a designed fusion. We do not claim any dish is traditional to either country. The lattice pattern is contemporary geometry and is not a claim of shared history.</p></div></section>'''
     return layout("crossing.html", "The Crossing · NASHA", "Where Indian and Mexican cooking overlap, with honest notes on how sure we are.", body)
 
-def page_labs():
-    path = "".join(f'<li{" class=\"current\"" if p["stage"] == "Now" else ""}><span class="stage">{E(p["stage"])}</span><h3>{E(p["title"])}</h3><p>{E(p["body"])}</p><p class="muted">Needs: {E(p["needs"])}</p></li>' for p in labs["path"])
-    method = "".join(f"<li>{E(m)}</li>" for m in labs["method"])
-    entries = "<p>No entries yet. Labs publishes only real tests, with results, including failures. When there is a first test, it will appear here.</p>" if not labs["entries"] else ""
-    body = f'''<section aria-labelledby="h1"><div class="wrap">
-<p class="eyebrow">Labs</p><h1 id="h1">Tests, in public.</h1>
-<p class="lede">Labs is where NASHA will publish real tests and what we learn from them. It is empty today because nothing has been tested.</p>
-{entries}
-<div class="grid cols-2 center"><div><h2>How Labs works</h2><ul>{method}</ul></div>{svg_fig("NV-ILL-POPUP", art.popup_scene(uid("lp")), "", "960/500")}</div>
-<p class="muted">The pop-up drawing is one possible early form. It is not a final vehicle, a booked event or a decision. It shows the idea: test small, learn, then build.</p>
-<h2>The path from here</h2><ol class="path">{path}</ol>
-</div></section>'''
-    return layout("labs.html", "Labs · NASHA", "Where NASHA will publish real tests and results. Empty until there is something real to publish.", body)
-
 def page_about():
     body = f'''<section aria-labelledby="h1"><div class="wrap stack">
 <p class="eyebrow">About</p><h1 id="h1">About NASHA.</h1>
@@ -466,7 +452,7 @@ def page_about():
 <h2 id="rights">How we handle rights</h2>
 <p>Every file on this site is listed in a rights register: what it is, who made it, how, and under what licence. Fonts are Inter and Instrument Serif, both under the SIL Open Font License. We use no stock photos, no third-party scripts and no trackers.</p>
 <h2>Evidence and honesty</h2>
-<p>Design is not proof. This site shows what we have designed. It does not show that anyone wants it, that it can be brewed or cooked well, or that it can be built. Those are tests still to come, and Labs will report them. We publish no reviews, ratings, press, awards, waitlists or opening dates, because none exist.</p>
+<p>Design is not proof. This site shows what we have designed. It does not show that anyone wants it, that it can be brewed or cooked well, or that it can be built. Those are tests still to come, and The Lab will report them. We publish no reviews, ratings, press, awards, waitlists or opening dates, because none exist.</p>
 <h2>Contact</h2>
 <p>There is no public contact address or mailing list yet. We will add one when it is real.</p>
 </div></section>'''
