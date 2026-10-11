@@ -53,7 +53,7 @@ Founder-owned gates are **F-1..F-5**. G-6..G-12 are project gates that feed them
 - **Next action:** authorise 1 and 2 (scoped), ask for written scopes and fee quotes. **Owner:** Founder. **Status:** READY.
 
 ## F-3 Pilot-brewing route (and any collaboration)
-- **Why:** the Hefeweizen is the gate beer and nothing real can be learned without brewing; legality of serving pilot beer also matters.
+- **Why:** the Hefeweizen is the gate beer (older wording; superseded in proposal by the Sprint 18 development gate, beer/pilot-briefs/00-BREWER-HANDOFF.md section 0b; D-77 AGENT-PROPOSED, founder confirmation pending) and nothing real can be learned without brewing; legality of serving pilot beer also matters.
 - **Depends on:** F-2 (brewer and attorney). **Evidence now:** none beyond briefs. **Missing:** which brewers would partner, costs, TABC/TTB constraints on pilot/contract arrangements. **Cost:** TBD.
 - **Options compared (all unvalidated; attorney/brewer to confirm):**
 | Route | For | Against | Unknowns |

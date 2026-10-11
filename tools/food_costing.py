@@ -18,11 +18,12 @@ def analyse(ings, recs):
         if not i: errs.append(f"{r['dish_id']}: unknown ingredient {r['ingredient_id']}"); continue
         d = out.setdefault(r["dish_id"], {"cost": 0.0, "allergens": set(), "veg": True, "missing_price": []})
         try:
+            if (i.get("unit") or "").strip().lower() != (r.get("unit") or "").strip().lower(): d["missing_price"].append(f"{i['name']} (UNIT MISMATCH: ingredient {i.get('unit')} vs recipe {r.get('unit')}; not costed)"); continue
             price, yld, qty = float(i["price_per_unit"]), float(i["yield_pct"] or 100) / 100, float(r["qty_per_portion"])
             waste = float(i.get("waste_pct") or 0) / 100   # prep/spoilage waste, kept separate from usable yield; labour is never included here
             d["cost"] += qty * price / (yld * (1 - waste))
-            if (i.get("price_class") or "").strip().upper().startswith("RETAIL"): d.setdefault("retail_ref", True)
-        except ValueError: d["missing_price"].append(i["name"])
+            if (i.get("price_class") or "").strip().upper() not in ("QUOTE", "ACTUAL"): d.setdefault("retail_ref", True)   # anything not a QUOTE or ACTUAL price is R&D only
+        except (ValueError, ZeroDivisionError): d["missing_price"].append(i["name"])
         d["allergens"] |= {a.strip() for a in i["allergens"].split("|") if a.strip()}
         if (i["vegetarian"] or "").strip().lower() != "yes": d["veg"] = False
     return out, errs
@@ -40,6 +41,6 @@ def selftest():
 if len(sys.argv) > 1 and sys.argv[1] == "selftest": selftest(); sys.exit(0)
 ings, recs = load(ING), load(REC); out, errs = analyse(ings, recs)
 if not ings: print("No ingredient prices recorded yet: nothing to cost (no price is ever invented).")
-for d, v in out.items(): print(f"{d}: " + (f"cost/portion {v['cost']:.2f} (ingredients only; no labour; purchase price / usable yield / waste kept separate)" + (" RETAIL REFERENCE - NOT SUPPLIER QUOTE: R&D planning only, not investor financials" if v.get("retail_ref") else "") if not v['missing_price'] else f"NOT COSTABLE ({len(v['missing_price'])} ingredient prices/quantities missing; no partial cost is reported)") + f" (missing: {v['missing_price'] or 'none'}); allergens {sorted(v['allergens']) or 'none recorded'}; vegetarian as recorded: {v['veg']}")
+for d, v in out.items(): print(f"{d}: " + (f"cost/portion {v['cost']:.2f} (ingredients only; no labour; purchase price / usable yield / waste kept separate)" + (" UNCLASSIFIED OR RETAIL-REFERENCE PRICE - NOT A SUPPLIER QUOTE: R&D planning only, not investor financials" if v.get("retail_ref") else "") if not v['missing_price'] else f"NOT COSTABLE ({len(v['missing_price'])} ingredient prices/quantities missing; no partial cost is reported)") + f" (missing: {v['missing_price'] or 'none'}); allergens {sorted(v['allergens']) or 'none recorded'}; vegetarian as recorded: {v['veg']}")
 for e in errs: print("FAIL", e)
 sys.exit(1 if errs else 0)

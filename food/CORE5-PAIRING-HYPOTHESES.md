@@ -1,6 +1,6 @@
 # Core 5 pairing hypotheses (PROPOSED PAIRING - NOT SENSORY TESTED)
 These are the six CORE pairings of `food/CORE5-PAIRING-FLIGHT-1.csv` written as testable statements, plus the two optional ones. They are hypotheses chosen to decide what to taste first, not results; agreement between AI agents adds no confidence. No beer exists yet, so a first tasting would use a commercial stand-in of the same style, only where an attorney has cleared serving it, and every pairing needs a cooked food first. Each pairing also needs an equal-standing non-alcoholic pour that does the same job; no non-alcoholic recipe is proposed here. Two-Pour stays optional: one small pour by default, a second only if the guest chooses it.
-Scoring sheet (1-5 each): food improved by the beer; beer improved by the food; balance; would order again; tick mechanisms noticed; helped / neutral / hurt. With fewer than 8 tasters report raw scores only.
+Scoring sheet (1-5 each): food improved by the beer; beer improved by the food; balance; would order again; tick mechanisms noticed; helped / neutral / hurt. With fewer than 8 tasters report raw scores only (8 is an agent-proposed threshold).
 
 | ID | Pairing | Food driver | Beer driver | Expected interaction | Main risk | What the taster should notice | What would disprove it | Non-alcoholic pour must provide |
 |---|---|---|---|---|---|---|---|---|
@@ -13,4 +13,4 @@ Scoring sheet (1-5 each): food improved by the beer; beer improved by the food; 
 | PF-07 (optional) | Chicken 65 Totopos + Pilsner | as PF-01 | dry bitter noble hop | lager vs Pilsner comparison on the same food; also a Pilsner vs Mexican-Style Lager role check | bitterness plus chile heat | does Pilsner clean better or burn more than the Mexican lager | no difference reported | as PF-01 |
 | PF-08 (optional) | Butter Chicken Quesadilla + Hefeweizen | as PF-04 | as PF-05 | tests the older heuristic top pick against the assigned pick | yeast spice against garam masala | which of PF-04 and PF-08 balances better | PF-04 clearly better or equal | as PF-04 |
 
-**What a disproved pairing means:** write it down as negative evidence; do not rescue it by re-describing the beer. A pairing that helps, with three or more tasters, is "worth another test", not validated.
+**What a disproved pairing means:** write it down as negative evidence; do not rescue it by re-describing the beer. A pairing that most of at least 8 tasters mark "helped" is "worth another test", not validated; with fewer tasters report raw scores only.

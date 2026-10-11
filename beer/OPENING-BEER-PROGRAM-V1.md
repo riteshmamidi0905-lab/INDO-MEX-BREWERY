@@ -43,7 +43,7 @@ Full dossier: `HEFEWEIZEN-BENCHMARK.md` (corrected below, §8).
 | Yeast candidates (datasheets) | Wyeast 3068 (73-77% att., low floc, suspension), White Labs WLP380 (73-80%), Fermentis W-68 (78-84%), Lallemand Munich Classic. **Avoid** highly flocculent 3333 for a hazy hefe | |
 | Distinctly ours | Not a twist: it is the proof beer, poured with a ritual and **paired with chile-and-fat** (carbonation cuts fat; clove/banana echo warm spice) | |
 | Risks | Yeast balance, foam, carbonation equipment, freshness (serve within weeks) | |
-| Kill/gate | Pilot batch: faults 0; banana and clove each within ±0.5; foam ≥ 3 min; panel ≥ reference average. If not met, nothing else launches | |
+| Kill/gate | Pilot batch: faults 0; banana and clove each within ±0.5; foam ≥ 3 min; panel ≥ reference average. If not met, nothing else launches (older wording; superseded in proposal by the Sprint 18 development gate, beer/pilot-briefs/00-BREWER-HANDOFF.md section 0b; D-77 AGENT-PROPOSED, founder confirmation pending) | |
 
 ### 3.2 Mexican-Style Lager (HAWA)
 | Item | Reference | Target `[TEST]` |

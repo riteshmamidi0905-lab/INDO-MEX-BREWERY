@@ -4,7 +4,7 @@
 ## Data needed before choosing (none exists in the repo)
 Tap count and beer mix; seats and visit frequency; whether kegs leave the building and whether cans are planned; target annual barrels; lager vs ale share; the brewer's real lager and ale days; local labour rates and utility quotes; sewer and pretreatment limits; floor plan; the legal pathway (attorney).
 
-## Scale ladder, directional only
+## Scale ladder, directional only (agent reasoning; the staffing and turn ratings are unsourced planning guesses, not data)
 | Size | Variety | Lagering | Tank turns | Taproom supply | Packaging | Staffing | Floor, utilities, capex |
 |---|---|---|---|---|---|---|---|
 | Pilot | very high | impractical | n/a | cannot supply | none | 1 | unknown |

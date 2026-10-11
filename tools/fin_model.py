@@ -32,6 +32,7 @@ def run_all(rows=None):
         for r in rows:
             scn = (r.get("scenario") or "").strip()
             if scn and scn != sc: continue
+            if (r.get("provenance_class") or "UNKNOWN").strip().upper() == "UNKNOWN": continue   # UNKNOWN or unclassified rows never feed a model
             try: a[r["assumption_id"]] = float(r["value"])
             except (ValueError, KeyError): pass
         miss = [k for k in REQ if k not in a]
@@ -41,8 +42,10 @@ def selftest():
     a = dict(covers=10, avg_check=10, food_cogs_pct=.3, bev_cogs_pct=.2, bev_mix_pct=.5, labor_monthly=1000, occupancy_monthly=500, other_fixed_monthly=500, days_open=30)
     r = pnl(a); assert r["revenue"] == 3000 and abs(r["cogs"] - 750) < 1e-9 and abs(r["ebitda"] - 250) < 1e-9
     assert sensitivity(a, "covers")[0.1] > sensitivity(a, "covers")[-0.1]
-    rows = [dict(assumption_id=k, value=str(v), scenario="popup") for k, v in a.items()]
+    rows = [dict(assumption_id=k, value=str(v), scenario="popup", provenance_class="TEST") for k, v in a.items()]
     out = run_all(rows); assert out["popup"]["status"] == "RUN" and out["flagship"]["status"] == "NOT RUN" and out["mobile_mvp"]["status"] == "NOT RUN"
+    unk = [dict(r, provenance_class="UNKNOWN") for r in rows]; assert run_all(unk)["popup"]["status"] == "NOT RUN"   # a typed value on an UNKNOWN row must not feed the model
+    blank = [{k: v for k, v in r.items() if k != "provenance_class"} for r in rows]; assert run_all(blank)["popup"]["status"] == "NOT RUN"
     print("selftest ok (TEST numbers only, not a NASHA result):", {k: round(v, 1) for k, v in r.items()})
 if __name__ == "__main__":
     if sys.argv[1:] == ["selftest"]: selftest(); sys.exit()

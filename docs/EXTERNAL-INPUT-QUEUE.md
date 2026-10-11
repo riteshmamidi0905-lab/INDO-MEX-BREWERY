@@ -3,8 +3,8 @@ Everything below needs a human or real-world actor. Nothing has been sent; sendi
 
 | # | Who | What to send | What to ask | Output we need | Decision it unlocks |
 |---|---|---|---|---|---|
-| 1 | **Founder + 2-4 tasters** | `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md` | Cook Chicken 65 Totopos Session 1 | original photos, score sheets, temperatures, weights, code list | KEEP/REWORK/HOLD/CUT for the first dish; first real yields; concept-vs-reality |
-| 2 | **Founder (own computer)** | `tools/founder_download_candidates.sh` (or the ten links) | Download the 10 Figma originals before **2026-10-18** if it still matters | exact PNGs | exact-original provenance (currently 10 visually QA'd, 0 preserved); optional |
+| 1 | **Founder + 3-4 tasters (min. 3, roles in the card)** | `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md` | Cook Chicken 65 Totopos Session 1 | original photos, score sheets, temperatures, weights, code list | KEEP/REWORK/HOLD/CUT for the first dish; first real yields; concept-vs-reality |
+| 2 | **Founder (own computer)** | `tools/founder_download_candidates.sh` (or the ten links) | Download the 10 Figma originals before **2026-10-18** if it still matters | exact PNGs | exact-original provenance (currently 9 of 10 visually QA'd from lossy re-encodes as reported by the founder/session, A4 c1 not re-viewed, 0 exact originals preserved); optional |
 | 3 | **Head brewer** | `beer/pilot-briefs/00-BREWER-HANDOFF.md` + `BREWER-REVIEW-FORM.md` | Fill the form; say advisory vs sign-off | the completed form, raw | pilot order, Hefeweizen gate, Pilsner vs Mexican Lager, scale, yeast handling, glass assumptions |
 | 4 | **Indian culinary advisor** | `docs/CULTURAL-REVIEW-PACK.md` + `CULTURAL-REVIEW-RESPONSE-FORM.md` | Answer the ten points | the form | names, claims, terminology; whether any dish needs rework |
 | 5 | **Mexican culinary advisor** | same | same | the form | totopos/birria/quesadilla naming and respect |

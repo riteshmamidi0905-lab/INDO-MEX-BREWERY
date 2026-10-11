@@ -1,13 +1,14 @@
 # Session 1: Chicken 65 Totopos — FOUNDER MODE (phone-friendly)
 
 **What this is.** A plain-language version of sheets 11 and 13 for cooking in a home kitchen. Nothing in the experiment changes: same three constructions, same bare-chip control, same T+0 / T+5 / T+10 holds, same frozen D-74 pass/fail rule (sheet 11 §5b). If this page and sheet 11 ever disagree, sheet 11 wins. **No Terminal, Git or computer work is needed.** The only "recording" is paper scores and photos, which you send to Claude afterwards.
+**Deviations from the frozen sheet 11 (declared, same intent):** (D-1) plate codes are drawn by hand from slips instead of `tools/t1_randomize.py` with a sealed key, with the same blinding intent; (D-2) this phone card omits the stopwatch/grey-card/file-naming detail of sheet 11 (photos are renamed later); (D-3) timings and tolerances not stated here follow sheet 11. The gates, constructions, hold times and failure codes are unchanged.
 **Status:** NOT PERFORMED. This page is not a result. Nobody should be told which plate is "supposed" to win.
 
 ## 1. One-line goal
 Find out which plate shape (A, B or C) still tastes like Chicken 65, still tastes like corn totopos, and is still crisp and standing after 10 minutes. It is fine and useful if none of them passes.
 
 ## 2. People and jobs
-**You fry.** Helper 1 plates and runs the timers. Helper 2 photographs and writes down numbers. Helper 3 keeps the secret code slips and hands out score sheets. (Fewer people is fine; the code-keeper must not be a taster.) Then **2–4 tasters** (at least one person who knows Indian food, one who knows Mexican food, one ordinary diner). Tasters should not know which plate is A, B or C. Write down each taster's name and one line on their food background.
+**You fry.** Helper 1 plates and runs the timers. Helper 2 photographs and writes down numbers. Helper 3 keeps the secret code slips and hands out score sheets. (Fewer people is fine; the code-keeper must not be a taster.) Then **3–4 tasters (minimum 3: one who knows Indian food, one who knows Mexican food, one ordinary diner; the code-keeper is not a taster)** (at least one person who knows Indian food, one who knows Mexican food, one ordinary diner). Tasters should not know which plate is A, B or C. Write down each taster's name and one line on their food background. With 3-4 tasters the result is directional only, not market validation.
 
 ## 3. Buy (full list and quantities: sheet 13 §2)
 Chicken thighs 1.4 kg boneless skinless · 30 nixtamal corn tortillas (12 are cooked per round, 2 rounds; the rest are for test frying) (label: corn, water, lime only; **no lard**) · 4 L neutral oil · ginger-garlic paste · Kashmiri-type chilli powder · turmeric · coriander powder · salt · thick plain yogurt · lemons, limes · rice flour · cornflour · Mexican crema · fresh curry leaves · green chiles · 1 small white onion · paper towels, gloves, tape, pens.
@@ -24,12 +25,13 @@ If you cannot get one item, do not substitute silently: write the substitute on 
 Helper writes four slips: **A, B, C, BARE**. Shuffle them face down. For each iteration the helper picks them one at a time and writes a different random 3-digit number on each slip, then puts the numbers (not the letters) on the plates. The helper keeps the slips folded until all scores are in. Do this again fresh for iteration 2. (Tasters can still see the plates look different; that cannot be hidden, so judge flavour and texture honestly.)
 
 ## 6. Cook, iteration 1 (do it in this order)
+0. **Raw chicken hygiene and oil safety:** use a separate board and knife for raw chicken; wash hands and surfaces after touching it; never taste the marinade or raw chicken; never put cooked food on a plate or board that held raw chicken. Fill the pot no more than half full of oil and never leave hot oil unattended.
 1. **Safety rule you must not break:** chicken must reach **74 °C / 165 °F** in the middle of the piece. Probe every batch. **Under 74 °C = UNSAFE: do not serve or taste it.** Write "UNSAFE" on the sheet. Do not put it back in the oil and serve it for this test; ask a food-safety person before ever re-cooking. No one, including Claude, overrules the thermometer.
 2. Coat the marinated chicken with rice flour + cornflour just before frying.
-3. Fry the **chicken first**, small batches, oil at 175 °C (one person watches the thermometer). Probe each batch. Keep it on a rack in the oven at its lowest setting (aim for about 90 °C; many home ovens cannot go that low, so check with the probe and write down the real number).
-4. Fry curry leaves and green chile briefly; dry them on paper.
-5. Cut the dried tortillas into 6 wedges each. Fry the **chips last**, small batches, 175 °C, until bubbles slow and edges are golden (about 1–2 min; write the real time and oil temperature). Salt at once on a rack.
-6. Weigh and plate the four plates so they are all down within 3 minutes (the frozen protocol staggers plating about 3 minutes apart, so give each plate its own timer and write its start time), **same weights on every plate**: chicken 120 g, chips 60 g, crema 20 g, curry leaf ~1 g, chile ~5 g, onion ~10 g, 1/6 lime. The **BARE** plate is 30 g of chips and nothing else (the amount in sheet 13; sheet 11 says 60 g, so if you have extra chips use 60 g and write the weight down).
+3. Fry the **chicken first**, small batches, oil at 175 °C (one person watches the thermometer). Probe each batch. Hold it on a rack in the oven at its lowest setting (the frozen protocol says about 90 °C; many home ovens cannot go that low, so check with the probe and write down the real number). **AGENT-PROPOSED safety floor (a food-safety professional should confirm):** chicken must stay at or above 60 °C (140 °F) while waiting; if it falls below, treat it as not safe to serve for this test; do not hold it more than 1 hour.
+4. Pat the curry leaves and green chiles completely DRY with paper towels, then fry them briefly behind a splatter screen, standing back (water in hot oil spits violently). Fry them before the chips.
+5. Cut the dried tortillas into 6 wedges each. Fry the **chips last** in clean oil or a separate pot (not the chicken oil: milk and burnt-marinade carryover), small batches, 175 °C, until bubbles slow and edges are golden (about 1–2 min; write the real time and oil temperature). Salt at once on a rack.
+6. Weigh and plate the four plates **staggered about 3 minutes apart (as in sheet 11); give each plate its own timer and write its start time**, **same weights on every plate**: chicken 120 g, chips 60 g, crema 20 g, curry leaf ~1 g, chile ~5 g, onion ~10 g, 1/6 lime. The **BARE** plate is 60 g of chips and nothing else (the frozen sheet 11 value). If you only have enough chips for 30 g (sheet 13's smaller allowance), write "DEVIATION: 30 g" on the sheet.
    - **A (Integrated):** a loose layer of chips with the chicken pieces spread through and among them; garnish scattered; crema pool at the edge; lime beside.
    - **B (Ring):** chips standing/leaning in a ring round the edge; chicken piled in the middle; crema at the edge; lime beside.
    - **C (Composed):** chips, chicken and crema arranged on a board in controlled contact (a small rack or liner under the chicken).
@@ -55,7 +57,7 @@ Date; who was there and their food background; raw and trimmed chicken weight; m
 2. A photo of each score sheet and of your notebook page.
 3. The helper's list showing which code was A, B, C and BARE.
 4. One sentence: what surprised you.
-That is all. Claude will do the filing, the hashes, the scoring against the frozen gates and the comparison with the AI pictures. **Claude will not call the result "validated";** possible words are KEEP, REWORK, HOLD, CUT, PROVISIONAL LEADER, or NO CONSTRUCTION PASSED.
+That is all. Claude will do the filing, the hashes, the scoring against the frozen gates and the comparison with the AI pictures. **Claude will not call the result "validated";** possible words are KEEP, REWORK, HOLD, CUT, PROMISING PROTOTYPE (one good plate), or NONE PASSED (a valid result).
 
 ## 12. Stop rules
 Stop and write it down if: any chicken is under 74 °C (UNSAFE); oil smokes or catches fire (turn off the heat; use a lid, never water; keep a lid or extinguisher nearby); anyone in the group has an allergy to milk (yogurt, crema), corn, chile or ginger-garlic (ask first; check that your "cornflour" is corn starch with no wheat); any ingredient label shows beef, pork, lard or gelatin (D-54: do not use it).
