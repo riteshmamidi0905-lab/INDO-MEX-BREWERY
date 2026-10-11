@@ -1,6 +1,6 @@
 {
- "distHash": "0e8741b0457e8076",
- "date": "2026-10-11T02:52:01.010Z",
+ "distHash": "0cc552df8592bf8a",
+ "date": "2026-10-11T03:14:45.234Z",
  "pages": {
   "about.html": {
    "overflow": {
@@ -50,7 +50,7 @@
     }
    },
    "console": [],
-   "bytes": 99494,
+   "bytes": 99514,
    "requests": [
     "/about.html",
     "/styles.css",
@@ -60,16 +60,16 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 68
+    "lcp_ms": 60
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4486,
+    "textLen": 4506,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 99494,
+   "initialBytes": 99514,
    "reducedMotion": true
   },
   "beer.html": {
@@ -124,13 +124,13 @@
     }
    },
    "console": [],
-   "bytes": 197697,
+   "bytes": 193608,
    "requests": [
-    "/styles.css",
     "/beer.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/app.js",
+    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/app.js",
     "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
    "perf": {
@@ -139,12 +139,12 @@
    },
    "noJs": {
     "h1": 1,
-    "textLen": 7704,
+    "textLen": 8025,
     "hiddenFilters": true,
     "items": 9,
     "visibleItems": 9
    },
-   "initialBytes": 197697,
+   "initialBytes": 193608,
    "reducedMotion": true
   },
   "crossing.html": {
@@ -257,26 +257,26 @@
     }
    },
    "console": [],
-   "bytes": 116149,
+   "bytes": 116217,
    "requests": [
-    "/crossing.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
-    "/app.js",
-    "/fonts/inter-latin-wght-normal.woff2"
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/crossing.html",
+    "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 56
    },
    "noJs": {
     "h1": 1,
-    "textLen": 5593,
+    "textLen": 5661,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 116149,
+   "initialBytes": 116217,
    "reducedMotion": true
   },
   "experience.html": {
@@ -341,12 +341,12 @@
     }
    },
    "console": [],
-   "bytes": 169221,
+   "bytes": 169223,
    "requests": [
-    "/styles.css",
-    "/experience.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/experience.html",
     "/app.js",
     "/images/NV-SPACE-ENTRANCE-d-640.avif"
    ],
@@ -356,12 +356,12 @@
    },
    "noJs": {
     "h1": 1,
-    "textLen": 3825,
+    "textLen": 3827,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 169221,
+   "initialBytes": 169223,
    "reducedMotion": true
   },
   "food.html": {
@@ -412,27 +412,27 @@
     }
    },
    "console": [],
-   "bytes": 209712,
+   "bytes": 209780,
    "requests": [
-    "/food.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/food.html",
     "/app.js",
     "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 96
+    "lcp_ms": 120
    },
    "noJs": {
     "h1": 1,
-    "textLen": 14391,
+    "textLen": 14459,
     "hiddenFilters": true,
     "items": 16,
     "visibleItems": 16
    },
-   "initialBytes": 209712,
+   "initialBytes": 209780,
    "reducedMotion": true
   },
   "index.html": {
@@ -529,27 +529,27 @@
     }
    },
    "console": [],
-   "bytes": 250383,
+   "bytes": 250407,
    "requests": [
-    "/index.html",
-    "/styles.css",
     "/images/NV-HERO-01-d-1537.avif",
-    "/fonts/inter-latin-wght-normal.woff2",
+    "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/index.html",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 96
+    "lcp_ms": 88
    },
    "noJs": {
     "h1": 1,
-    "textLen": 6632,
+    "textLen": 6656,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 250383,
+   "initialBytes": 250407,
    "reducedMotion": true
   },
   "labs.html": {
@@ -614,26 +614,26 @@
     }
    },
    "console": [],
-   "bytes": 100853,
+   "bytes": 100863,
    "requests": [
     "/labs.html",
-    "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/app.js",
-    "/fonts/inter-latin-wght-normal.woff2"
+    "/styles.css",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 64
+    "lcp_ms": 68
    },
    "noJs": {
     "h1": 1,
-    "textLen": 3001,
+    "textLen": 3011,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 100853,
+   "initialBytes": 100863,
    "reducedMotion": true
   },
   "space.html": {
@@ -762,29 +762,29 @@
     }
    },
    "console": [],
-   "bytes": 196503,
+   "bytes": 196513,
    "requests": [
-    "/styles.css",
     "/space.html",
+    "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
+    "/images/NV-BREWERY-HALL-d-640.avif",
     "/images/NV-SPACE-EXT-DAY-d-640.avif",
-    "/images/NV-SPACE-ENTRANCE-d-640.avif",
-    "/images/NV-BREWERY-HALL-d-640.avif"
+    "/images/NV-SPACE-ENTRANCE-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 84
    },
    "noJs": {
     "h1": 1,
-    "textLen": 3575,
+    "textLen": 3585,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 196503,
+   "initialBytes": 196513,
    "reducedMotion": true
   }
  },
@@ -792,16 +792,16 @@
   "pages": 8,
   "axeViolations": 0,
   "overflowFailures": 0,
-  "maxBytes": 250383,
-  "maxInitialBytes": 250383,
-  "homeInitialBytes": 250383,
+  "maxBytes": 250407,
+  "maxInitialBytes": 250407,
+  "homeInitialBytes": 250407,
   "maxCls": 0,
-  "maxLcpMs": 108,
+  "maxLcpMs": 120,
   "consoleIssues": 0
  },
  "slow": {
   "profile": "1.6 Mbps, 150 ms RTT, 390px viewport",
-  "heroReadyMs": 1293,
+  "heroReadyMs": 1281,
   "heroSrc": "/images/NV-HERO-01-m-480.avif"
  },
  "imagesBlocked": {

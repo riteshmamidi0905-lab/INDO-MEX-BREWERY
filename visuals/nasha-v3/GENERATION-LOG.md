@@ -5,6 +5,9 @@
 ## Sprint 8 capability check (2026-10-11)
 The session has **no image-generation capability**: no image tool in the tool list (a tool search for image generation returned nothing), no image-model API keys or SDKs in the environment, no GPU, and outbound access is limited by proxy policy. **No image was generated and none was fabricated.** The prompt package is preserved and was tightened for Batch A (below). **Blocker for the founder:** run the batches in an external generator whose commercial-use terms the founder has checked, then ingest per `PROMPT-PACK.md`.
 
+## Sprint 9 capability re-check (2026-10-11)
+Re-audited. Image APIs and model hosts (Hugging Face, OpenAI, Stability, fal, Replicate) are unreachable from the sandbox; no GPU; no image tool; registry search shows only connectors the founder must authorise (Hugging Face, Adobe). **Still no image generated.** Added `tools/visual_qa.py` so the first candidates can be pre-checked. See `docs/ai/NASHA-AI-CAPABILITIES.md`.
+
 ## Batches (controlled, in order; do not generate all 33 blindly)
 | Batch | Contents | Gate before starting | Status |
 |---|---|---|---|

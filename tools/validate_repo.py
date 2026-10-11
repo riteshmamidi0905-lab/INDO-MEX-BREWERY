@@ -158,6 +158,18 @@ for k in ("INDIA reference","MEXICO reference","NASHA transformation","three-yes
 PP=open("visuals/nasha-v3/PROMPT-PACK.md",encoding="utf-8").read()
 for k in ("Never ask the generator to render NASHA text","No text anywhere in the image","TRUTH view","INDIA:"):
     if k not in PP: fail(f"prompt pack missing required rule: {k}")
+# Sprint 9: specialist agents and AI capability record
+AG=sorted(glob.glob(".claude/agents/*.md"))
+if len(AG)<10: fail(f".claude/agents has {len(AG)} agents, expected the 10 NASHA specialists")
+for f in AG:
+    t=open(f,encoding="utf-8").read()
+    if not t.startswith("---\nname:") or "\ndescription:" not in t or "\ntools:" not in t: fail(f"{f}: missing frontmatter name/description/tools")
+    for k in ("brand/NASHA-LOGO-GOVERNANCE.md","D-54","TEMPORARY TYPOGRAPHIC PLACEHOLDER"):
+        if k not in t: fail(f"{f}: missing shared rule '{k}'")
+CAP=open("docs/ai/NASHA-AI-CAPABILITIES.md",encoding="utf-8").read()
+for k in ("Installed and TESTED","Connected","Available but NOT authenticated","Rejected","Security","Blocked","0 images generated"):
+    if k not in CAP: fail(f"AI capability record missing section/term: {k}")
+if any(r["kind"]=="raster" and "sprint 9" in (r["creation_method"]+r["date"]).lower() for r in MAN): fail("manifest claims a Sprint 9 generated raster, but none was generated")
 # logo protection: vault stays empty of real files until founder approval is recorded; no stray logo files; no TM/R symbols in site sources
 for dname in ("PUBLIC-EXPORTS","CONTROLLED-MASTERS","LEGAL-OWNERSHIP"):
     extra=[x for x in os.listdir("brand/logo/"+dname) if x!="README.md"]

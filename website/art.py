@@ -6,11 +6,13 @@ PAL = dict(soot="#141110", char="#241E1B", bone="#F3ECDD", marigold="#E8870E", l
            smoke="#9A9087", copper="#C47A45", indigo="#1A2142", dusk="#2B3563", herb="#7D9A45", hibiscus="#9B2447",
            tamarind="#5A3A25", straw="#E9C46A", clay="#B5651D", brass="#C9A24B")
 
-# (liquid, head, haze 0-1, head_opacity). Colours follow style references in visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.md.
+# (liquid, head colour, haze 0-1). Head height per style is in HEAD below. Colours follow style references in visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.md.
 # Working-name pilot ideas have no settled style, so they use a neutral "ghost" colour instead of an invented one.
 BEER = {"hefeweizen": ("#F0C25A", "#FBF6EA", .22), "mexican-lager": ("#F6D56B", "#FFFDF4", 0), "vienna-amber": ("#C4691A", "#F2E6D0", 0),
-        "pilsner": ("#F7DC7E", "#FFFFFF", 0), "witbier": ("#F3DFA0", "#FFFDF4", .38), "dunkelweizen": ("#7A3A14", "#D9BE96", .18),
-        "deccan-sol": ("#8f867d", "#b4aca2", 0), "goa-baja": ("#8f867d", "#b4aca2", 0), "malabar-dark": ("#8f867d", "#b4aca2", 0)}
+        "pilsner": ("#F7DC7E", "#FFFFFF", 0), "witbier": ("#F3DFA0", "#FFFDF4", .38), "dunkelweizen": ("#8A4A1C", "#D9BE96", .18),
+        "deccan-sol": ("#8f867d", "#b4aca2", 0), "goa-baja": ("#8f867d", "#b4aca2", 0), "malabar-dark": ("#8f867d", "#b4aca2", 0)} 
+# Head height (px) per style, from the style descriptions: hefeweizen very thick and moussy, wit dense, dunkel thick and creamy, lagers medium
+HEAD = {"hefeweizen": 34, "witbier": 30, "dunkelweizen": 30, "vienna-amber": 26, "mexican-lager": 22, "pilsner": 24}
 
 def _svg(vb, label_id, title, desc, body, cls="", extra=""):
     return (f'<svg class="art {cls}" viewBox="{vb}" role="img" aria-labelledby="{label_id}-t {label_id}-d" xmlns="http://www.w3.org/2000/svg" {extra}>'
@@ -28,15 +30,21 @@ def glass(uid, beer="hefeweizen", fill=0.86, kind="weizen", animate=True, title=
         outline = "M26 14 L40 238 Q42 262 60 262 Q78 262 80 238 L94 14 Z"
         top, bottom = 14, 262
     liq_top = bottom - (bottom - top - 26) * fill
+    hh = HEAD.get(beer, 24)
     bubbles = "".join(f'<circle class="bub b{i}" cx="{48+ (i*9)%26}" cy="{235-i*8}" r="{1.2+(i%3)*.5}" fill="#fff" opacity=".55"/>' for i in range(9)) if animate else ""
     cond = "".join(f'<circle cx="{34+(i*17)%52}" cy="{70+(i*29)%150}" r="1.4" fill="#fff" opacity=".35"/>' for i in range(11))
     t = title or f"Concept glass of {beer.replace('-', ' ')}"
+    if ghost:  # working-name beers: no style, no liquid, no foam, no bubbles: one generic outline glass
+        outline = "M26 14 L40 238 Q42 262 60 262 Q78 262 80 238 L94 14 Z"
+        body = (f'<ellipse cx="60" cy="272" rx="46" ry="6" fill="#000" opacity=".25"/><path d="{outline}" fill="none" stroke="#9A9087" stroke-opacity=".8" stroke-width="2.2" stroke-dasharray="6 5"/>'
+                f'<path d="M34 214 Q60 222 86 214" fill="none" stroke="#9A9087" stroke-opacity=".8" stroke-width="3" stroke-dasharray="6 5"/>')
+        return _svg("0 0 120 284", uid, t, "A faint dashed outline of a generic collar glass. The beer is a working name with no settled style, so no liquid is drawn.", body, "glass-art" + (" big" if big else ""))
     body = (f'<defs><clipPath id="{uid}c"><path d="{outline}"/></clipPath>'
             f'<linearGradient id="{uid}g" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#000" stop-opacity=".18"/></linearGradient>'
             f'<linearGradient id="{uid}l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{liquid}"/><stop offset="1" stop-color="{liquid}" stop-opacity=".82"/></linearGradient></defs>'
             f'<ellipse cx="60" cy="272" rx="46" ry="6" fill="#000" opacity=".35"/>'
             f'<g clip-path="url(#{uid}c)" opacity="{0.45 if ghost else 1}"><rect class="liq" x="0" y="{liq_top:.1f}" width="120" height="{bottom-liq_top+4:.1f}" fill="url(#{uid}l)"/>'
-            f'<path class="foam" d="M0 {liq_top-24:.1f} Q30 {liq_top-34:.1f} 60 {liq_top-26:.1f} T120 {liq_top-24:.1f} V{liq_top+2:.1f} H0Z" fill="{foam}"/>'
+            f'<path class="foam" d="M0 {liq_top-hh:.1f} Q30 {liq_top-hh-10:.1f} 60 {liq_top-hh-2:.1f} T120 {liq_top-hh:.1f} V{liq_top+2:.1f} H0Z" fill="{foam}"/>'
             f'<rect x="0" y="{liq_top:.1f}" width="120" height="{bottom-liq_top+4:.1f}" fill="#fff" opacity="{haze}"/>{bubbles}{cond}<rect x="0" y="0" width="120" height="280" fill="url(#{uid}g)"/></g>'
             f'<path d="{outline}" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2.2"/>'
             f'<path d="M34 {bottom-48} Q60 {bottom-40} 86 {bottom-48}" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="3.5"/>')  # collar ring

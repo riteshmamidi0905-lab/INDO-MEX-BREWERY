@@ -96,7 +96,7 @@ def layout(fn, title, desc, body, head_extra="", body_class=""):
 <footer class="site-footer"><div class="wrap stack">
 <p><strong>NASHA</strong> is a future Indo-Mex brewery and kitchen in Austin, Texas, in development.</p>
 <p>The name was chosen by the founder. Legal clearance of the name is pending. Nothing here claims trademark ownership. There is no brewery, restaurant or truck open, and nothing is for sale. No site has been chosen.</p>
-<p>In Hindi and Urdu, <em>nasha</em> means intoxication or addiction. We chose it for the feeling of being captivated by food and beer. We take that meaning seriously and will never present excess or addiction as something to admire. Cultural advisors will review the name and our language before launch.</p>
+<p>In Hindi and Urdu, <em>nasha</em> means intoxication or addiction. We chose it for the feeling of being captivated by food, craft and company. We take that meaning seriously and will never present excess or addiction as something to admire. Cultural advisors will review the name and our language before launch.</p>
 <p>Images show a possible future. The photographic-style pictures are <strong>concept visualizations</strong> made with AI tools and edited, and the drawings are illustrations. They are not photographs of NASHA, of its food, or of its beer. <a href="about.html#images">About these images</a>.</p>
 <p>Menu items are designs for testing, not served food. Heat and vegetarian labels describe how a dish is designed, not a certified allergen or dietary statement. Ask before you eat if you have an allergy. If you drink, drink responsibly. Alcohol is for adults of legal drinking age.</p>
 <p>The word NASHA in the header and in some pictures is a <strong>temporary typographic placeholder</strong>, set in a standard font. It is not a logo, not an official brand mark, and no trademark is claimed. No logo has been approved or released.</p>
@@ -139,12 +139,14 @@ def dish_card(d, h="h2", with_art=False):
 <dt>Designed to pair with</dt><dd>{E(pair_names(d))}</dd></dl></article>'''
 
 def beer_card(b, h="h2"):
-    work = '<p class="muted">Working name. May change. Style and colour are not settled, so the glass is shown as a faint outline.</p>' if b["working"] else ""
+    work = '<p class="muted">WORKING NAME. May change. The regional name is a placeholder pending cultural-advisor review, and the style is not settled, so only a faint outline glass is shown.</p>' if b["working"] else ""
+    status_chip = "Working name · no style visual yet" if b["working"] else "Style-based concept visualization"
+    glass_line = "not defined" if b["working"] else b["glass"]
     g = art.glass(uid("bg"), b["id"], 0.86, gkind(b), animate=False, title=f"Concept glass for {b['name']}")
     return f'''<article class="card" data-item data-group="{E(b["group"])}">
 <div class="beer-row"><div class="mini-glass">{g}</div><div><{h}>{E(b["name"])}</{h}>
-<p>{E(b["line"])}</p><p>{chips(b["style"], b["season"], "Not brewed yet", "Style-based concept visualization")}</p>{work}
-<dl class="meta"><dt>Served in</dt><dd>{E(b["glass"])}</dd><dt>Designed to pair with</dt><dd>{E(", ".join(b["pairs"]))}</dd></dl></div></div></article>'''
+<p>{E(b["line"])}</p><p>{chips(b["style"], "Planned season: " + b["season"], "Not brewed yet", status_chip)}</p>{work}
+<dl class="meta"><dt>Glass</dt><dd>{E(glass_line)}</dd><dt>Designed to pair with</dt><dd>{E(", ".join(b["pairs"]))}</dd></dl></div></div></article>'''
 
 def filter_inputs(name, values):
     return "".join(f'<label><input type="checkbox" name="{name}" value="{E(v)}"> {E(t)}</label>' for v, t in values)
@@ -273,7 +275,7 @@ def page_experience():
      ("The fire", "Warmth", "A tandoor and a comal in an open kitchen, so you can watch food meet fire.", svg_fig("NV-ILL-FIRE", art.fire_scene(uid("fi")), "", "8/5")),
      ("The brewery", "Wonder", "Tanks behind glass: the slow work of fermentation, in view. Size and count are not decided.", raster_fig("NV-BREWERY-GLASS", "", sizes="(max-width: 700px) 100vw, 50vw")),
      ("The patio", "Staying", "A covered court under an oak, shade and fans for the heat, lights for the evening.", raster_fig("NV-SPACE-PATIO", "", sizes="(max-width: 700px) 100vw, 50vw")),
-     ("Night", "Wanting to come back", "By dusk the hall glows, the court fills, and nobody is in a hurry.", raster_fig("NV-HERO-01", "", sizes="(max-width: 700px) 100vw, 50vw"))]
+     ("Night", "Staying late", "By dusk the hall glows, the court fills, and nobody is in a hurry.", raster_fig("NV-HERO-01", "", sizes="(max-width: 700px) 100vw, 50vw"))]
     rows = "".join(f'<section class="scene{" alt" if i % 2 else ""}" aria-labelledby="sc{i}"><div class="wrap grid cols-2 center"><div class="reveal{" order-2" if i % 2 else ""}"><p class="eyebrow"><span class="beat-no">{i+1:02d}</span> {E(feel)}</p><h2 id="sc{i}">{E(t)}</h2><p class="lede">{E(txt)}</p></div><div class="reveal">{fig}</div></div></section>' for i, (t, feel, txt, fig) in enumerate(sc))
     body = f'''<section aria-labelledby="h1"><div class="wrap">
 <p class="eyebrow">Experience</p><h1 id="h1">An evening at NASHA.</h1>
@@ -328,7 +330,7 @@ def page_food():
     f = filter_inputs("category", [(c, c) for c in cats]) + filter_inputs("diet", [("veg", "Vegetarian as designed")]) + filter_inputs("heat", [(str(i), f"Heat {i}") for i in range(4)])
     body = f'''<section class="food-hero" aria-labelledby="h1"><div class="wrap grid cols-2 center">
 <div><p class="eyebrow">Food · Designs for testing</p><h1 id="h1">Hunger, designed.</h1>
-<p class="lede">A Chennai bar snack scooped with fresh masa chips. A braise that borrows from two kitchens. Twelve dishes are specified for a first round of kitchen tests. None are cooked for guests. None are for sale.</p>
+<p class="lede">Chicken 65 from South India, rethought for masa totopos. A braise that borrows from two kitchens. Twelve dishes are specified for a first round of kitchen tests. None are cooked for guests. None are for sale.</p>
 <p class="disclosure">{E(DISCLOSE)} The drawings are proposed presentation, not our finished dishes.</p></div>
 <div class="reveal"><div class="hero-plate">{plate_svg(hero)}</div><h2 class="h3">{E(hero["name"])}</h2><p>{E(hero["line"])}</p><p>{chips(hero["kind"], "Proposed presentation · not cooked or tested")}</p></div></div></section>
 
@@ -336,7 +338,7 @@ def page_food():
 <div class="grid cols-3">{cards}</div></div></section>
 
 <section aria-labelledby="vg"><div class="wrap grid cols-2 center"><div><p class="eyebrow">Vegetarian story</p><h2 id="vg">Vegetarian is not a side.</h2>
-<p class="lede">India has a deep vegetarian cooking tradition and Mexico builds great dishes on corn, beans and chile. NASHA designs vegetarian dishes as headliners, not substitutes.</p>
+<p class="lede">Both India and Mexico have strong plant-based cooking traditions we want to learn from. NASHA designs vegetarian dishes as headliners, not substitutes.</p>
 <p class="muted">Labels say “vegetarian as designed”. They are not a certified dietary statement; cross-contact is not assessed yet.</p></div>
 <ul class="veglist">{vegli}</ul></div></section>
 
@@ -367,7 +369,7 @@ def page_beer():
     sw = "".join(f'<button type="button" class="swatch" data-beer="{b}" aria-pressed="{"true" if b == "hefeweizen" else "false"}">{E(BEER[b]["name"])}</button>' for b in GATE_BEERS)
     body = f'''<section class="beer-hero" aria-labelledby="h1"><div class="wrap grid cols-2 center">
 <div><p class="eyebrow">Beer · Briefs for a brewer</p><h1 id="h1">Built for the table.</h1>
-<p class="lede">Beer designed to meet the food: crisp enough to cool the heat, round enough to hold a char. Nothing has been brewed. Each beer is a brief for a head brewer to critique, change, or reject.</p>
+<p class="lede">Beer designed to meet the food: designed to be crisp enough to cool the heat and round enough to hold a char. Nothing has been brewed. Each beer is a brief for a head brewer to critique, change, or reject.</p>
 <div class="swatches js-only" role="group" aria-label="Preview a beer colour">{sw}</div>
 <p class="disclosure">{E(DISCLOSE)} Alcohol is for adults of legal drinking age. Any future beer sales depend on licences we have not yet obtained.</p></div>
 <div class="macro" data-macro data-beer="hefeweizen" data-vid="NV-ILL-GLASS">{macro}<p class="tag-inline">Concept illustration · colour follows the style reference, not a brewed beer</p>
@@ -438,7 +440,7 @@ def page_about():
 <h2>The name</h2>
 <p>The word NASHA as it appears here is a temporary typographic wordmark, not a final logo. No NASHA logo has been designed, approved or released, and no logo exploration is published on this site.</p>
 <p>The founder chose the name NASHA. Legal clearance of the name has not been completed, and nothing here claims trademark ownership, registration, availability, or ownership of any domain or social handle. If a professional review finds a problem, the name returns to the founder for a decision.</p>
-<p><em>Nasha</em> means intoxication or addiction in Hindi and Urdu. We chose it for the feeling of being captivated by food and beer. We commit to never romanticising addiction, alcoholism or dangerous drinking, and to asking cultural advisors to review the name and our language before launch.</p>
+<p><em>Nasha</em> means intoxication or addiction in Hindi and Urdu. We chose it for the feeling of being captivated by food, craft and company. We commit to never romanticising addiction, alcoholism or dangerous drinking, and to asking cultural advisors to review the name and our language before launch.</p>
 <h2 id="images">About these images</h2>
 <p>NASHA is currently in development. Photographic-style images on this site are concept visualizations used to communicate the intended experience. They are not photographs of an operating NASHA location, finished dishes or brewed NASHA beer.</p>
 <ul><li><strong>Concept visualization</strong>: photographic-style images made with AI image tools by the founder and edited. People in them are synthetic and are not real individuals. A few details, such as the temporary NASHA lettering on a sign, were added by script. Equipment in them is illustrative.</li>

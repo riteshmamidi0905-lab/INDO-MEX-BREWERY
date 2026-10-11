@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 website/qa/node_modules/
 .imgcache/
+.baseline/

@@ -41,6 +41,7 @@ if os.path.exists(D+"/brand") or os.path.exists(D+"/ip"): fail("dist contains br
 files=sorted(glob.glob(D+"/*.html"))
 _beer=open(D+"/beer.html",encoding="utf-8").read() if os.path.exists(D+"/beer.html") else ""
 _food=open(D+"/food.html",encoding="utf-8").read() if os.path.exists(D+"/food.html") else ""
+if _beer and ("no style visual yet" not in _beer or "Glass</dt><dd>not defined" not in _beer): fail("working-name beers must show 'no style visual yet' and 'Glass: not defined' (no invented appearance)")
 if "Style-based concept visualization" not in _beer or "Not brewed yet" not in _beer: fail("beer page must label beers 'Not brewed yet' and 'Style-based concept visualization'")
 if "not cooked or tested" not in _food: fail("food page must label dishes 'Proposed presentation · not cooked or tested'")
 if "not sensory tested" not in _food.lower(): fail("pairings must say 'not sensory tested'")

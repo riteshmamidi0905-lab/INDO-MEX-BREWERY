@@ -1,10 +1,74 @@
 [
- {"id":"chile","theme":"Chile","india":"Chile peppers reached India in the 1500s, carried by Portuguese trade.","mexico":"Chile peppers were domesticated in Mexico.","nasha":"NASHA cooks with chile from both kitchens: dried guajillo and ancho beside Indian red chiles, each for a different job.","evidence":"Supported","note":"Origin in Mexico is well established. The exact route and year into India are still debated, so we state neither."},
- {"id":"spice","theme":"Toasted spice, seed and nut","india":"Many Indian sauces start by toasting and grinding spices, seeds or nuts.","mexico":"Many Mexican sauces, including mole, toast and grind chiles, seeds and nuts.","nasha":"Our Toasted Seed & Chile Vegetable Bowl uses this shared technique. It is our own dish.","evidence":"Analogy","note":"The similarity is a coincidence of technique. We found no evidence of a shared history and we do not claim one."},
- {"id":"acid","theme":"Acid","india":"Tamarind, lime, yogurt and pickles bring sourness.","mexico":"Lime, vinegar, tamarind and pickled onion bring sourness.","nasha":"Tamarind-chile glaze, lime slaw, pickled onion: acid to balance fat and heat.","evidence":"Analogy","note":"Both cuisines use tamarind. How it reached Mexico is unresolved, so we make no origin claim."},
- {"id":"smoke","theme":"Fire and char","india":"The tandoor: a hot clay oven for marinated meats, vegetables and breads.","mexico":"The comal and the grill: hot surfaces for tortillas, vegetables and meats.","nasha":"Our Tandoori Lamb Taco marries tandoori marination with Sonoran-style grilling. It is our own dish.","evidence":"Analogy","note":"Two independent cooking systems. We compare them; we do not claim a historical link."},
- {"id":"flatbreads","theme":"Flatbreads","india":"Roti and naan: wheat flatbreads.","mexico":"Tortillas of corn, and flour tortillas in the north.","nasha":"Corn and flour tortillas carry our fillings; flatbread logic returns in our later pizza idea.","evidence":"Analogy","note":"A human story is documented: Punjabi men and Mexican women formed families in California in the early 1900s. It is diaspora history, not a trade of recipes."},
- {"id":"rice","theme":"Rice and grain","india":"Rice dishes such as biryani, steamed in a sealed pot.","mexico":"Maize in all its forms; rice also appears in Mexican meals.","nasha":"Biryani is a later idea, waiting for a cook who can judge it. We will not use a regional name unless it is earned.","evidence":"Unresolved","note":"We make no claim about origins of biryani or of dum cooking; the stories are folklore."},
- {"id":"legumes","theme":"Lentils and beans","india":"Dal: lentils simmered long and finished with spiced butter or oil.","mexico":"Frijoles: beans simmered long, often with epazote.","nasha":"Our Dal-Frijol Dip is built on this shared patience. It is our own dish.","evidence":"Analogy","note":"Both are slow-simmered staples. Nothing more is claimed."},
- {"id":"fermentation","theme":"Fermentation","india":"Fermented drinks are documented in Indian texts, including a grain drink in the Rigveda.","mexico":"Chemical residue at Teotihuacan (about AD 200 to 550) is the earliest direct evidence of pulque found so far.","nasha":"Beer is our fermentation. It is a European-style craft beer program, not a revival of either tradition.","evidence":"Supported","note":"These are parallel human inventions with no established connection."}
+ {
+  "id": "chile",
+  "theme": "Chile",
+  "india": "Chile peppers reached India in the 1500s, carried by Portuguese trade.",
+  "mexico": "Chile peppers were domesticated in Mexico.",
+  "nasha": "NASHA would cook with chile from both kitchens: dried guajillo and ancho beside Indian red chiles, each for a different job.",
+  "evidence": "Supported",
+  "note": "Origin in Mexico is well established. The exact route and year into India are still debated, so we state neither."
+ },
+ {
+  "id": "spice",
+  "theme": "Toasted spice, seed and nut",
+  "india": "Many Indian sauces start by toasting and grinding spices, seeds or nuts.",
+  "mexico": "Many Mexican sauces, including mole, toast and grind chiles, seeds and nuts.",
+  "nasha": "Our designed Toasted Seed & Chile Vegetable Bowl uses this shared technique. It is our own dish.",
+  "evidence": "Analogy",
+  "note": "The similarity is one of technique. We found no evidence of a shared history and we do not claim one."
+ },
+ {
+  "id": "acid",
+  "theme": "Acid",
+  "india": "Tamarind, lime, yogurt and pickles bring sourness.",
+  "mexico": "Lime, vinegar, tamarind and pickled onion bring sourness.",
+  "nasha": "Tamarind-chile glaze, lime slaw, pickled onion: acid to balance fat and heat.",
+  "evidence": "Analogy",
+  "note": "Both cuisines use tamarind. How it reached Mexico is unresolved, so we make no origin claim."
+ },
+ {
+  "id": "smoke",
+  "theme": "Fire and char",
+  "india": "The tandoor: a hot clay oven for marinated meats, vegetables and breads.",
+  "mexico": "The comal and the grill: hot surfaces for tortillas, vegetables and meats.",
+  "nasha": "Our designed Tandoori Lamb Taco would marry tandoori marination with Sonoran-style grilling. It is our own dish, and the lamb cut is unresolved.",
+  "evidence": "Analogy",
+  "note": "Two independent cooking systems. We compare them; we do not claim a historical link."
+ },
+ {
+  "id": "flatbreads",
+  "theme": "Flatbreads",
+  "india": "Roti and naan: wheat flatbreads.",
+  "mexico": "Tortillas of corn, and flour tortillas in the north.",
+  "nasha": "Corn and flour tortillas carry our fillings; flatbread logic returns in our later pizza idea.",
+  "evidence": "Analogy",
+  "note": "A human story is documented: Punjabi men and Mexican women formed families in California in the early 1900s. It is diaspora history, not a trade of recipes."
+ },
+ {
+  "id": "rice",
+  "theme": "Rice and grain",
+  "india": "Rice dishes such as biryani, steamed in a sealed pot.",
+  "mexico": "Maize in all its forms; rice also appears in Mexican meals.",
+  "nasha": "Biryani is a later idea, waiting for a cook who can judge it. We will not use a regional name unless it is earned.",
+  "evidence": "Unresolved",
+  "note": "We make no claim about origins of biryani or of dum cooking; the stories are folklore."
+ },
+ {
+  "id": "legumes",
+  "theme": "Lentils and beans",
+  "india": "Dal: lentils simmered long and finished with spiced butter or oil.",
+  "mexico": "Frijoles: beans simmered long, often with epazote.",
+  "nasha": "Our designed Dal-Frijol Dip is built on this shared patience. It is our own dish.",
+  "evidence": "Analogy",
+  "note": "Both are slow-simmered staples. Nothing more is claimed."
+ },
+ {
+  "id": "fermentation",
+  "theme": "Fermentation",
+  "india": "Fermented drinks are documented in Indian texts, including a grain drink in the Rigveda.",
+  "mexico": "Chemical residue at Teotihuacan (about AD 200 to 550) is the earliest direct evidence of pulque found so far.",
+  "nasha": "Beer would be our fermentation: a European-style craft beer program, not a revival of either tradition.",
+  "evidence": "Supported",
+  "note": "These are parallel human inventions with no established connection."
+ }
 ]
