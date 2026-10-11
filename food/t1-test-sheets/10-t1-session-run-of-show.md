@@ -1,5 +1,7 @@
 # T1 SESSION PLAN: first R&D cook (Chicken 65 Totopos A/B/C and Paneer Tikka Taco)
 
+**Superseded for Session 1 by `11-chicken-65-totopos-prototype-protocol-FROZEN.md`.**
+
 **Status:** PLAN. **Nothing has been cooked.** This is a run-of-show so one real session produces clean evidence. It contains no results. Sheets to fill: `07-chicken-65-construction-comparison.md`, `03-paneer-tikka-taco.md`, `01-chicken-65-totopos.md` (ingredients, policy), `09-concept-vs-real-comparison.md`; data rows go in `food/t1-results/t1-results.csv` (real cooks only); photo rules in `food/PHOTOGRAPHY-PROTOCOL-T1.md`. D-54: no beef, no pork. The physical dish has authority over any AI concept image.
 
 ## Before the day (decide and write down BEFORE cooking)

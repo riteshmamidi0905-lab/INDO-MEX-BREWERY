@@ -4,9 +4,12 @@
   python3 tools/t1_record.py selftest   exercises the logic on in-memory TEST rows (never saved)"""
 import csv, os, re, statistics, sys
 P = "food/t1-results/t1-results.csv"
-NUM = ["chicken_identity_0_5", "totopo_identity_0_5", "flavor_0_5", "aroma_0_5", "texture_0_5", "fusion_coherence_0_5", "crispness_0_5", "structural_integrity_0_5", "appearance_0_5", "repeatability_0_5"]
+NUM = ["chicken_identity_0_5", "totopo_identity_0_5", "flavor_0_5", "aroma_0_5", "texture_0_5", "fusion_coherence_0_5", "crispness_0_5", "structural_integrity_0_5", "appearance_0_5", "repeatability_0_5", "another_bite_0_5"]  # column names keep the legacy suffix; the scale is 1-5 (Sprint 12)
+GATES = {"NOT_65", "NO_CORN", "SOGGY", "IMPRACTICAL", "COLLAPSE", "SAUCE_DOMINATES", "GENERIC_NACHOS", "UNRELATED_CHIPS", "D54", "UNSAFE"}
 D54 = re.compile(r"\b(beef|veal|pork|bacon|ham|lard|tallow|suet|gelatin|gelatine|chicharron|chorizo)\b", re.I)
-MIN_ITER, MIN_CRISP10, MIN_ID, MIN_FUSION = 2, 3.5, 3.5, 3.5   # PROVISIONAL defaults (chef review); the real rule must be pre-set on sheet 07 BEFORE cooking and edited here. An iteration passes only if EVERY gate is met; a construction needs 2 passing iterations.
+# FROZEN BEFORE COOKING (Sprint 12, 2026-10-11; founder's recommended starting rule, 1-5 scale; edit only BEFORE a test, with a decision-ledger note). Not industry standards.
+FROZEN = dict(chicken_identity=4.0, totopo_identity=4.0, fusion=4.0, crisp10=3.5, structure=3.5, another_bite=4.0)
+MIN_ITER = 2   # a construction needs this many iterations that pass EVERY gate
 
 def validate(rows):
     errs = []
@@ -18,7 +21,9 @@ def validate(rows):
         if r["time_min"] == "10" and not r["failure_modes"].strip(): errs.append(f"row {i}: failure_modes must be filled at T+10 (write 'none observed' if true)")
         if D54.search(" ".join(r.values())): errs.append(f"row {i}: D-54 beef/pork mention")
         for k in NUM:
-            if r[k].strip() and not re.fullmatch(r"[0-5](\.\d+)?", r[k].strip()): errs.append(f"row {i}: {k} must be 0-5")
+            if r[k].strip() and not re.fullmatch(r"[1-5](\.\d+)?", r[k].strip()): errs.append(f"row {i}: {k} must be on the 1-5 scale")
+        for g in [x.strip() for x in r.get("gate_failures", "").split("|") if x.strip()]:
+            if g not in GATES: errs.append(f"row {i}: unknown gate failure code {g} (allowed: {sorted(GATES)})")
     return errs
 
 def mean(rows, k):
@@ -42,21 +47,35 @@ def report(rows):
         passing = 0
         for it in {r["iteration"] for r in rs}:
             sub = [r for r in rs if r["iteration"] == it]; t10i = [r for r in sub if r["time_min"] == "10"]
-            vals = [mean(t10i, "crispness_0_5"), mean(sub, "chicken_identity_0_5"), mean(sub, "totopo_identity_0_5"), mean(sub, "fusion_coherence_0_5")]
-            bad = any(r["failure_modes"].strip().lower() not in ("", "none observed", "none") for r in t10i)
-            if all(v is not None for v in vals) and vals[0] >= MIN_CRISP10 and min(vals[1:3]) >= MIN_ID and vals[3] >= MIN_FUSION and not bad: passing += 1
+            m = dict(crisp10=mean(t10i, "crispness_0_5"), structure=mean(t10i, "structural_integrity_0_5"), chicken_identity=mean(sub, "chicken_identity_0_5"), totopo_identity=mean(sub, "totopo_identity_0_5"), fusion=mean(sub, "fusion_coherence_0_5"), another_bite=mean(sub, "another_bite_0_5"))
+            gate_fail = any(r.get("gate_failures", "").strip() for r in sub)
+            if all(v is not None for v in m.values()) and all(m[k] >= FROZEN[k] for k in FROZEN) and not gate_fail: passing += 1
         scores[(dish, con)] = dict(iters=iters, passing=passing)
     for dish in sorted({d for d, _ in scores}):
         ok = [(c, s) for (d, c), s in scores.items() if d == dish and s["passing"] >= MIN_ITER]
-        if len(ok) == 1: print(f"\n{dish}: candidate winner {ok[0][0]} (passed every gate in 2 iterations; with one cook and one panel this is directional, PROTOTYPE at best)")
+        if len(ok) == 1: print(f"\n{dish}: candidate winner {ok[0][0]} (passed every FROZEN gate in 2 iterations with no failure-gate codes; with one cook and one panel this is directional, a PROMISING PROTOTYPE at best, not a validated dish)")
         else: print(f"\n{dish}: NO WINNER DECLARED ({len(ok)} construction(s) meet the rule with >= {MIN_ITER} iterations)")
     print("\nConcept vs real: complete food/t1-test-sheets/09-concept-vs-real-comparison.md; advance visual_stage to PROTOTYPE at most, with stage_evidence_ref set.")
     return 0
 
 def selftest():
-    base = {k: "" for k in "run_id,date,dish_id,construction,iteration,time_min,data_source,cook,chicken_identity_0_5,totopo_identity_0_5,flavor_0_5,aroma_0_5,texture_0_5,fusion_coherence_0_5,crispness_0_5,sauce_migration,structural_integrity_0_5,temp_c,portion_g,appearance_0_5,complexity_1_5,repeatability_0_5,failure_modes,photo_ids,notes".split(",")}
-    good = dict(base, dish_id="TEST", construction="A", iteration="1", time_min="10", data_source="real_cook", photo_ids="TEST-1", crispness_0_5="4", panel_n="5", failure_modes="none observed")
+    base = {k: "" for k in open(P, encoding="utf-8").readline().strip().split(",")}
+    good = dict(base, dish_id="TEST", construction="A", iteration="1", time_min="10", data_source="real_cook", photo_ids="TEST-1", crispness_0_5="4", panel_n="5", failure_modes="none observed", gate_failures="")
     assert not validate([good]); assert validate([dict(good, data_source="ai")]); assert validate([dict(good, photo_ids="")]); assert validate([dict(good, time_min="7")])
+    import io, contextlib
+    def rows_for(con, it, ok=True, gate=""):
+        out = []
+        for tm in ("0", "5", "10"):
+            out.append(dict(good, construction=con, iteration=it, time_min=tm, chicken_identity_0_5="4.5" if ok else "3", totopo_identity_0_5="4.5", fusion_coherence_0_5="4.5", crispness_0_5="4", structural_integrity_0_5="4", another_bite_0_5="4.5", gate_failures=gate if tm == "10" else ""))
+        return out
+    def winner(rows):
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf): report(rows)
+        return buf.getvalue()
+    assert "candidate winner A" in winner(rows_for("A", "1") + rows_for("A", "2"))          # two passing iterations
+    assert "NO WINNER" in winner(rows_for("A", "1") + rows_for("A", "2", ok=False))          # one failing iteration
+    assert "NO WINNER" in winner(rows_for("A", "1") + rows_for("A", "2", gate="SOGGY"))      # failure gate
+    assert "NO WINNER" in winner(rows_for("A", "1"))                                         # one iteration is never enough
     print("t1_record selftest OK (TEST data, not saved)")
 
 if len(sys.argv) > 1 and sys.argv[1] == "selftest": selftest(); sys.exit(0)

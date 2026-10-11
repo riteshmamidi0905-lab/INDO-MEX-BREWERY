@@ -1,0 +1,6 @@
+# PANEER TIKKA TACO: SESSION 2 PREPARATION (status only)
+
+**Status: PREPARATION. Not cooked, not scheduled. Do not run in the Chicken 65 session** (one cook cannot do both dishes well). Use sheet `03-paneer-tikka-taco.md` for the test record and the same gates logic as sheet 11 once the founder freezes thresholds. D-54 applies.
+**Question for Session 2:** do recognisable paneer tikka and a recognisable corn-tortilla taco become one NASHA dish that holds structurally (India YES, Mexico YES, NASHA YES)?
+**Known so far (T1, V-40):** paneer tikka is a lightly charred, spiced-yogurt-crusted, soft-inside paneer; gram flour helps the marinade cling and char; overcooking makes paneer rubbery. **Open decisions (chef):** marinade (hung curd, ginger-garlic, kasuri methi, chaat masala, mustard oil, ajwain optional), onion/capsicum treatment, char method without a tandoor (grill, broiler, hot pan; record the limitation), tortilla (real corn tortillas, warmed on a dry pan or comal), acid and salsa, heat, assembly and hold.
+**Measure:** paneer identity, char, marinade adhesion, paneer moisture, tortilla compatibility (does the taco go soggy or tear), garnish, acid, heat, structure, flavour balance, India/Mexico/NASHA identity, hold at 0/5/10, repeatability, panel as in sheet 11. **Prepare after Session 1** and use its lessons (panel logistics, photo setup, recorder).

@@ -1,5 +1,7 @@
 # T1 TEST SHEET: Chicken 65 Totopos, three constructions
 
+**Superseded for Session 1 by `11-chicken-65-totopos-prototype-protocol-FROZEN.md`** (frozen thresholds, shopping list, quantities, randomization). Scale is 1-5.
+
 **Status:** TEST DOCUMENT. **None of these constructions has been cooked.** Every blank is filled during testing; nothing below is a result. D-54: no beef, no pork. Use with `01-chicken-65-totopos.md` (ingredients, policy screen, scoring) and `food/PHOTOGRAPHY-PROTOCOL-T1.md`.
 
 ## 1. Founder direction and the rule
@@ -22,16 +24,16 @@ Verify the reference truths against `visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.m
 ## 3. Measurements (leave blank until cooked; record per construction)
 | Measure | A | B | C |
 |---|---|---|---|
-| Overall flavour (0-5, panel average) | | | |
-| Aroma (0-5) | | | |
-| Texture (0-5) | | | |
-| Taste / balance (0-5, panel average) | | | |
-| Chicken 65 identity: would a South Indian eater call it a real 65? (0-5) | | | |
-| Totopo identity: would a Mexican cook call them proper totopos? (0-5) | | | |
-| Fusion coherence: one dish, not two foods? (0-5) | | | |
-| Chip crispness at 0 min (0-5) | | | |
-| Chip crispness at 5 min (0-5) | | | |
-| Chip crispness at 10 min (0-5) | | | |
+| Overall flavour (1-5, panel average) | | | |
+| Aroma (1-5) | | | |
+| Texture (1-5) | | | |
+| Taste / balance (1-5, panel average) | | | |
+| Chicken 65 identity: would a South Indian eater call it a real 65? (1-5) | | | |
+| Totopo identity: would a Mexican cook call them proper totopos? (1-5) | | | |
+| Fusion coherence: one dish, not two foods? (1-5) | | | |
+| Chip crispness at 0 min (1-5) | | | |
+| Chip crispness at 5 min (1-5) | | | |
+| Chip crispness at 10 min (1-5) | | | |
 | Sauce migration (none / slight / severe, where) | | | |
 | Structural integrity (what breaks, when) | | | |
 | Serving temperature at 0 / 5 / 10 min (probe, C) | | | |

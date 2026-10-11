@@ -1,3 +1,5 @@
 # T1 results (real cooks only)
 
 `t1-results.csv` is **header only**. A row may be added only after a person physically cooked and tasted the dish: `data_source` must be `real_cook`, `photo_ids` must name real photographs, and times are 0, 5 or 10 minutes after plating. Never enter a planned, estimated, simulated or AI-generated value. `python3 tools/t1_record.py report` summarises the rows, refuses to name a winner without enough real iterations, and prints the concept-vs-real skeleton. One cook is evidence for a **PROTOTYPE** stage at most (`food/t1-test-sheets/09-concept-vs-real-comparison.md`).
+
+Scale: **1-5** (columns keep the legacy `_0_5` suffix). Extra columns: `another_bite_0_5`, `gate_failures` (codes: NOT_65, NO_CORN, SOGGY, IMPRACTICAL, COLLAPSE, SAUCE_DOMINATES, GENERIC_NACHOS, UNRELATED_CHIPS, D54, UNSAFE; pipe-separated), `panel_n`, `panel_roles`, `blinded`. Frozen thresholds: `tools/t1_record.py` (`FROZEN`) and sheet 11 section 5b. Plate codes: `python3 tools/t1_randomize.py <run>`; `food/t1-results/keys/` holds the sealed keys.

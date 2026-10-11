@@ -183,6 +183,16 @@ for need in ("food/t1-test-sheets/10-t1-session-run-of-show.md","food/t1-test-sh
     if not os.path.exists(need): fail(f"missing {need}")
 for f in glob.glob("website/dist/*.html")+["website/data/dishes.json"]:
     if re.search(r"chicken 65 nachos",open(f,encoding="utf-8").read(),re.I): fail(f"{f}: use the canonical dish name 'Chicken 65 Totopos', not 'Chicken 65 Nachos'")
+# Sprint 12: frozen T1 rule must match between the protocol sheet and the recorder; protocol must stay a hypothesis
+SH=open("food/t1-test-sheets/11-chicken-65-totopos-prototype-protocol-FROZEN.md",encoding="utf-8").read()
+RC=open("tools/t1_record.py",encoding="utf-8").read()
+FZ=dict(re.findall(r"(\w+)=([0-9.]+)",re.search(r"FROZEN = dict\((.*?)\)",RC).group(1)))
+TAB={"chicken_identity":"Chicken 65 identity","totopo_identity":"Totopo identity","fusion":"NASHA fusion coherence","crisp10":"T+10 crispness","structure":"Structural integrity","another_bite":"Overall desire for another bite"}
+for k,lab in TAB.items():
+    m=re.search(r"\| "+re.escape(lab)+r" \| ([0-9.]+) \|",SH)
+    if not m or float(m.group(1))!=float(FZ[k]): fail(f"frozen rule mismatch for {lab}: sheet 11 vs tools/t1_record.py")
+if "PROTOTYPE HYPOTHESIS, NOT FINAL" not in SH or "Nothing has been cooked" not in SH and not T1: fail("sheet 11 must stay marked as a hypothesis until real results exist")
+if not T1 and re.search(r"(?i)(winner|winning construction)[^\n]{0,20}[:=]\s*[ABC]\b",SH): fail("sheet 11 appears to name a winner without results")
 # logo protection: vault stays empty of real files until founder approval is recorded; no stray logo files; no TM/R symbols in site sources
 for dname in ("PUBLIC-EXPORTS","CONTROLLED-MASTERS","LEGAL-OWNERSHIP"):
     extra=[x for x in os.listdir("brand/logo/"+dname) if x!="README.md"]
