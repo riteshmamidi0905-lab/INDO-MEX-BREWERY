@@ -2,7 +2,7 @@
 
 Status words are read from repository files. A cell says DONE only if a real recorded result exists. Today none does, so most cells are NOT DONE or OPEN on purpose. This page does not change any readiness score (see docs/readiness/VALIDATION-SCOREBOARD.md). A frozen gate is only meaningful once D-76 and sessions.json are committed and the founder has approved the thresholds.
 
-See also: `docs/CORE5-CONTROL-CENTER.md` (one page per product), `docs/EXTERNAL-INPUT-QUEUE.md` (who to ask), `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md` (cook Session 1).
+See also: `docs/CORE5-CONTROL-CENTER.md` (one page per product), `docs/FOUNDER-ACTION-BOARD.md` (who to ask), `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md` (cook Session 1).
 
 ## Foods
 

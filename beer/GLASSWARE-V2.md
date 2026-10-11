@@ -1,6 +1,6 @@
 # Glassware v2: the Collar Family
 
-> SUPERSEDED: see visuals/glass-studies/README.md (Glass V2) and brand/NASHA-LOGO-GOVERNANCE.md (D-66 bars any collar mark).
+> SUPERSEDED in part (collar-mark story; D-66 bars any mark). Capacity and concept values remain a reference; see visuals/glass-studies/README.md (Glass V2) and brand/NASHA-LOGO-GOVERNANCE.md.
 
 Refines the ten Phase One concepts (kept in `phase-one/07-glassware-and-rituals.md`). One idea carries the family: **a raised glass ring (the "collar")** that echoes the tank's marigold band and the ring-in-square mark. It is the thing a guest photographs and the thing they feel under their fingers. Beer performance comes first.
 

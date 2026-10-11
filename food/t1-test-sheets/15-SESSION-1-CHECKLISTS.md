@@ -1,5 +1,5 @@
 # Session 1 checklists (phone view of sheets 13 and 14; the full card is 14, the frozen rule is 11)
-Nothing here changes the experiment. If anything differs from sheet 11 or 13, they win. Tick boxes on your phone. If you forget something, write **NOT MEASURED**; never guess. Status: NOT PERFORMED.
+Nothing here changes the experiment. If sheets differ, sheet 11 (the frozen rule) wins; sheet 14 explains the plate staggering (about 3 minutes apart), the extra side chips for T+5/T+10 and the sacrificial chicken piece. Tick boxes on your phone. If you forget something, write **NOT MEASURED**; never guess. Status: NOT PERFORMED.
 
 ## 1. SHOPPING CHECKLIST (quantities from sheet 13)
 - [ ] Chicken thighs, boneless skinless: **1.4 kg**
@@ -19,8 +19,9 @@ Nothing here changes the experiment. If anything differs from sheet 11 or 13, th
 - [ ] Weigh trimmed chicken; write the number; cut into about 2.5 cm pieces
 - [ ] Mix marinade (sheet 13 section 3); marinate in the fridge overnight
 - [ ] Spread tortillas out uncovered to dry
-- [ ] Recruit 3-4 tasters (one who knows Indian food, one Mexican, one ordinary diner); helper for the secret plate-code slips; use this invitation wording: "private recipe-development test, concept stage; informal tasting" (no brand name, nothing public)
+- [ ] Recruit 3-4 tasters (one who knows Indian food, one Mexican, one ordinary diner); helper for the secret plate-code slips; use this invitation wording: "a private recipe-development test (concept stage; no restaurant or brewery exists)" (no brand name, nothing public)
 - [ ] Print or copy the score sheet (sheet 11 section 8), one per taster
+- [ ] Send each taster the allergen note with the invitation (milk/yogurt/crema, gluten check, nuts, corn, chile, ginger-garlic)
 
 ## 3. COOK-DAY SAFETY (do not skip)
 - [ ] Chicken must reach **74 C / 165 F**; below that it is UNSAFE: do not taste it
@@ -32,15 +33,15 @@ Nothing here changes the experiment. If anything differs from sheet 11 or 13, th
 - [ ] Raw weight, trimmed weight, marinate time, oil type, oil temperature
 - [ ] Chicken probe reading for each batch; cooked weight
 - [ ] Tortilla product, diameter, thickness; wedge count; fry time and oil temperature; finished chip weight
-- [ ] Plate weights: chicken 120 g, chips 60 g, crema 20 g (frozen protocol); bare plate chips weight
-- [ ] Plate start times; scores at T+0 / T+5 / T+10; failure words; panel names and food background
+- [ ] Plate weights: chicken 120 g, chips 60 g, crema 20 g (frozen protocol); bare plate = 60 g of chips (frozen sheet 11), or write DEVIATION: 30 g if you only have enough for 30 g
+- [ ] Plate start times; scores at T+0 / T+5 / T+10; failure words; panel as T1 to T4 (initials) with food background
 - [ ] Anything you changed or got wrong (a deviation)
 
 ## 5. PHOTO CHECKLIST (originals only; no filters or edits)
 - [ ] Fixed phone position and light; plain grey or white paper
 - [ ] For each plate: hero 45 degrees, top-down, close-up of chicken meeting chip, T+0, T+5, T+10, any failure; also the bare-chip plate
 - [ ] Photograph failures before touching them; keep them
-- [ ] Photograph receipts, labels, the score sheets, the helper's code list and your notebook page
+- [ ] Before photographing a receipt, cover card numbers, loyalty or phone numbers and your name. Identify tasters by initials or T1 to T4 only. Photograph receipts, labels, the score sheets, the helper's code list and your notebook page
 
 ## 6. SEND-BACK CHECKLIST (one message; then say INGEST THESE)
 - [ ] All original photos exactly as the phone saved them

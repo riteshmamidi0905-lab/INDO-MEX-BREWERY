@@ -25,7 +25,8 @@ for r in csv.DictReader(open("ops/finance/assumptions.csv", encoding="utf-8")):
     if (r["value"] or "").strip() and (r.get("provenance_class") or "UNKNOWN").upper() == "UNKNOWN": fail(f"assumptions.csv: {r['assumption_id']} has a value but provenance_class UNKNOWN")
 sheet13 = open("food/t1-test-sheets/13-session-1-quantity-audit-shopping-cook-card.md", encoding="utf-8").read(); chk = open("food/t1-test-sheets/15-SESSION-1-CHECKLISTS.md", encoding="utf-8").read()
 for token in ("1.4 kg", "4 L", "80 g", "20 g", "12 g", "150 g", "120 g"):
-    if token not in sheet13 or token not in chk: fail(f"Session 1 checklist and sheet 13 must both state {token}")
+    rx = re.compile(r"(?<![\d.])" + re.escape(token))
+    if not rx.search(sheet13) or not rx.search(chk): fail(f"Session 1 checklist and sheet 13 must both state {token}")
 for cmd, msg in ((["tools/founder_center.py", "--check"], "docs/FOUNDER-CONTROL-CENTER.md is stale: run python3 tools/founder_center.py"), (["tools/action_board.py", "--check"], "docs/FOUNDER-ACTION-BOARD.md is stale: run python3 tools/action_board.py"), (["tools/decision_register.py", "check"], "decision register/contradiction check failed: python3 tools/decision_register.py check")):
     r = subprocess.run([sys.executable] + cmd, capture_output=True, text=True)
     if r.returncode: fail(msg + " " + r.stdout[-300:])

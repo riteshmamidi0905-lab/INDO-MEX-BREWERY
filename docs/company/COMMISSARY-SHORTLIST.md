@@ -25,10 +25,10 @@ Gaps still open: no hood stated for 1, 2, 3 or 5; no comal named anywhere (a gri
 7. Minimum hours, term, deposit; one-off sessions allowed; cancellation?
 8. Full written price (utilities, storage, cleaning, grease) and may an invited group taste on site?
 
-## Founder first step (Lane A; no booking, no deposit)
+## Founder first step (after Session 1; action A11; no booking, no deposit)
 Start with PREP ATX or Commercial Kitchen Factories (a business phone appears in directories; confirm it on their own site first). Kramer and Wingman need the founder to find the operator route.
 
-Call script: "Hello, I'm planning a small private food recipe test, concept stage, a few sessions, with my own ingredients. I'm only gathering information. Could you tell me whether short or trial use is possible, what equipment and ventilation the kitchen has, what permit tenants need, and what the written pricing and minimums are? Could you email that to me?" Ask the 8 questions, note who answered and the date, and agree to nothing.
+Call script: "Hello, I'm planning a small a private recipe-development test (concept stage; no restaurant or brewery exists), a few sessions, with my own ingredients. I'm only gathering information. Could you tell me whether short or trial use is possible, what equipment and ventilation the kitchen has, what permit tenants need, and what the written pricing and minimums are? Could you email that to me?" Ask the 8 questions, note who answered and the date, and agree to nothing.
 
 Facility staff do not decide the permit route. Ask Austin Public Health (see `docs/company/MINIMUM-LAWFUL-FOOD-TEST.md`) and a food-safety professional.
 

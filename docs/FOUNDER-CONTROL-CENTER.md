@@ -154,7 +154,7 @@ Entry, exit, evidence and go/hold/kill questions per stage: `docs/company/data/s
 - **WHAT CAN I DO TODAY / WHO TO CONTACT / WHAT TO SEND / WHAT TO BUY:** `docs/FOUNDER-ACTION-BOARD.md` (next three actions at the top); Session 1 phone checklists: `food/t1-test-sheets/15-SESSION-1-CHECKLISTS.md`; send packs: `docs/send-packs/`; filing and ingestion: `docs/EVIDENCE-INTAKE.md` and `python3 tools/intake.py route`. Document map: `docs/DOCUMENT-MAP.md`.
 - Products: `docs/CORE5-CONTROL-CENTER.md` (ten products), `docs/PROTOTYPE-READINESS.md`, `docs/company/CORE5-COMMERCIAL-LOGIC.md`, `docs/company/BEER-AND-NA-BUSINESS-SYSTEM.md`, `docs/company/FOOD-FAILURE-CONTINGENCIES.md`.
 - Cook now: `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md`.
-- Real-world asks: `docs/EXTERNAL-INPUT-QUEUE.md`, `docs/company/PROFESSIONAL-REVIEW-PIPELINE.md`, `docs/company/OUTREACH-DRAFTS.md` (drafts, not sent).
+- Real-world asks: `docs/FOUNDER-ACTION-BOARD.md`, `docs/company/PROFESSIONAL-REVIEW-PIPELINE.md`, `docs/company/OUTREACH-DRAFTS.md` (drafts, not sent).
 - Customers: `research/customer-discovery/FIRST-30-LEARNING-PLAN.md`, `TASTING-FEEDBACK-FORM.md`, `CODING-SYSTEM.md`.
 - Market and site: `docs/company/AUSTIN-MARKET-MAP.md`, `docs/company/data/site-scorecard.csv`. Operations: `docs/company/OPERATING-DAY-MODEL.md`, `docs/company/STAFFING-ARCHITECTURE.md`, `docs/company/data/supply-spec.csv`.
 - Legal and IP: `docs/company/REGULATORY-QUESTION-TREE.md`, `ip/IP-ASSET-TRACKER.csv`. Money: `docs/MVP-AND-INVESTOR-READINESS.md`, `ops/finance/` (scenario fields; every value blank). Brand: `docs/company/BRAND-EXPERIENCE-AND-RESPONSIBLE-ALCOHOL.md`. Decisions: `docs/decisions/decision-register.csv` (`python3 tools/decision_register.py check`).

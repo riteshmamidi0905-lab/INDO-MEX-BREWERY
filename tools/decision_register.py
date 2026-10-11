@@ -22,6 +22,7 @@ def parse(text):
         ou = owner.upper()
         pending = ("PENDING" in ou or "PROPOSAL" in ou or "PROPOSED BY PROJECT AGENTS" in ou or "AGENT-PROPOSED" in ou or "FOUNDER APPROVAL OF THESE THRESHOLDS" in up)
         if pending and "FROZEN" in up: status = "FROZEN (thresholds agent-proposed; founder confirmation pending)"
+        elif pending and re.search(r"NEW EVIDENCE", up) and re.search(r"FINDING", ou): status = "FINDING (founder decision pending)"
         elif pending: status = "PROPOSED (founder confirmation pending)"
         elif "FROZEN" in up: status = "FROZEN"
         elif re.search(r"SUPERSEDED BY D-\d+", up): status = "SUPERSEDED"
@@ -34,6 +35,7 @@ def parse(text):
     # a later decision that says it (provisionally) CONFIRMS D-nn updates that decision's status; history is never rewritten
     byid = {r["id"]: r for r in out}
     for r in out:
+        if not (re.search(r"founder", r["owner_or_status_text"], re.I) and not re.search(r"proposal|agent", r["owner_or_status_text"], re.I)): continue   # only a founder-owned decision can confirm another
         for t in re.findall(r"(?:provisionally )?confirms (D-\d+)", r["decision"], flags=re.I):
             if t in byid and byid[t]["status"].startswith("PROPOSED"):
                 byid[t]["status"] = f"PROVISIONALLY CONFIRMED by founder ({r['id']})"; byid[t]["founder_required"] = ""
@@ -80,6 +82,8 @@ def selftest():
     with tempfile.TemporaryDirectory() as d:
         p = os.path.join(d, "x.md"); open(p, "w").write("If it fails, nothing else launches\n"); assert scan(d, [p])
         open(p, "w").write("If it fails, nothing else launches (older wording)\n"); assert not scan(d, [p])
+    t2 = "| D-1 | 2026-01-01 | X | Agent proposal; Founder confirmation pending | |\n| D-2 | 2026-01-02 | Agents say this confirms D-1 | Project agents (proposal) | |\n"
+    r2 = parse(t2); assert r2[0]["status"].startswith("PROPOSED")   # an agent-written decision cannot confirm another
     print("selftest ok: parse, supersedes/superseded-by, status, and superseded-phrase marker logic")
 if __name__ == "__main__":
     a = sys.argv[1:2]
