@@ -1,8 +1,11 @@
 # PROJECT ROADMAP
 
 **Project:** INDO MEX BREWERY (working name; parent brand unresolved) · **Founder:** Ritesh Mamidi · **Market:** Austin, Texas · **Branch:** `claude/loving-hypatia-jwilh1` (never merged to main)
-**Last updated:** 2026-10-11 (Phase-2 Sprint 3). **Rules:** nothing is deleted; rejected ideas live in `docs/decisions/REJECTED.md`; every factual claim carries an evidence tag and a source ID; beer and food are R&D targets until tested; images are concept visuals; **no website code yet**.
+**Last updated:** 2026-10-11 (Sprint 4). **Rules:** nothing is deleted; rejected ideas live in `docs/decisions/REJECTED.md`; every factual claim carries an evidence tag and a source ID; beer and food are R&D targets until tested; images are concept visuals; **no website code yet**.
 **Operating rule (D-49):** build the concept systematically and refine visuals only when they materially help. Phases overlap. No artificial blockers.
+
+## 0. Two parallel tracks (D-58)
+**Track A, VISION:** develop the strongest future version of the business (concept, brand, experience, space, menu, beer, visuals, website, financial architecture, investor story). May be ambitious; every artifact is labelled Concept / Proposed / Illustrative / Target / Planning assumption / Founder vision / Requires validation. **Track B, EVIDENCE:** build the proof that the vision works (primary-source verification, market research, interviews, food tests, beer pilots, suppliers, legal, architecture, quotes, trademark, cultural review). **Track A must never masquerade as Track B.** Progress of each track is shown in `docs/readiness/VALIDATION-SCOREBOARD.md` (design completeness vs evidence-backed readiness).
 
 ## 1. Phases at a glance
 | Phase | Name | Status | Primary files |
@@ -16,10 +19,28 @@
 | **7** | Website / Public Concept Experience | **Not started, by instruction** | `website/` empty |
 Overlap is expected: Phase 3 evidence feeds Phase 5 sizing; Phase 4 waits on trademark knockout; Phase 6 needs Phases 3 and 5.
 
+## 1b. Future journey (stages with dependencies; **no dates**)
+| Stage | Name | Entry needs | Exit criteria | Status now |
+|---|---|---|---|---|
+| 1 | Concept | Founder vision | Master concept, rules, canonical visuals | **Largely done** (`concept/`) |
+| 2 | Digital blueprint | Stage 1 | Brand, experience, space, menu/beer story, business-model map, financial architecture, investor story, website IA, scoreboard | **In progress (Sprint 4 drafted)** |
+| 3 | Validation | Stage 2 + budget for tests | Real interviews, T1 food tests, beer pilots, price survey, supplier statements, T0 verification | **Not started in reality** |
+| 4 | Professional feasibility | F-2 authorisations | Attorney memo, brewer sizing, architect ROM, insurance indication, advisor review | Not started |
+| 5 | Investor readiness | Stages 3-4 | Evidence level ≥ 3 in the core areas; costed model (M3); honest evidence/assumption/gap pages | Not started |
+| 6 | Capital formation | Stage 5 + counsel | Funding secured (structure per legal advice) | Not started |
+| 7 | Site selection | Stage 4-6 inputs | Site under control; zoning and flood cleared | Not started |
+| 8 | Design + permitting | Stage 7 | Permit-ready design; licences; trade-waste/health approvals | Not started |
+| 9 | Construction | Stage 8 | Certificate of occupancy path | Not started |
+| 10 | Pre-opening | Stage 9 | Hiring, training, supply chain, soft opening | Not started |
+| 11 | Opening | Stage 10 | Open | Not started |
+| 12 | Optimisation | Stage 11 | Stable operating metrics | Not started |
+| 13 | Expansion | Stage 12 | Proven single site; second-site case | Not started |
+
 ## 2. COMPLETED (documentation, research and tooling only; nothing physical)
 - Phases 1 and 1.5; Visual Lock (**ARC-01-D canonical day exterior, D-42**); destination-expansion study; historical audit; ARC-02 attempts (on hold, D-47); BRW-01 reference only (D-49).
 - Phase-2 Sprint 1: beer program v1, menu matrix v1, guest journey v1, master plan, Austin feasibility skeleton, brand system v0, GLS packages, research S-76..S-118.
 - Sprint 2: **D-54 (no beef, no pork; not halal-claimed)** with audit; Menu v1.1 (12-dish test set); T1 sheets (5); beer pilot briefs (3); GLS final package; market-survey and customer-discovery structures.
+- **Sprint 4 (Track A blueprint):** master concept; brand architecture; guest experience architecture; spatial vision; visual world and briefs; menu storytelling; beer brand experience; business-model map; financial-model architecture with a blank 70-variable assumptions register; investor story architecture; data-room map; website IA and experience; validation scoreboard and readiness score (**design 41%, evidence 5%**); brewery-scale decision analysis; validator extended; decision D-58. **No evidence was added by these documents.**
 - **Sprint 3:** evidence tiers and `research/VERIFICATION-LEDGER.md` (13 entries reached T1: 10 from T3, 1 from T2, 2 new; none T0); decision-gate system (`docs/decisions/DECISION-GATES.md`); 19 LOW-confidence price observations + 10 feature rows (`research/market-survey/`); T1 protocol and test-readiness upgrades, lamb-cut comparison design (`food/t1-test-sheets/`); brewer handoff (`beer/pilot-briefs/00-BREWER-HANDOFF.md`); Compact functional program (`architecture/COMPACT-FUNCTIONAL-PROGRAM.md`); cultural-integrity audit and advisor program (`brand/CULTURAL-INTEGRITY-AND-ADVISORS.md`); trademark screening workflow and preliminary web screen (`brand/TRADEMARK-SCREENING.md`); `tools/validate_repo.py`, expanded `tools/diet_audit.py`; decisions D-56, D-57.
 
 ## 3. READY FOR EXECUTION (documentation done; needs a person to act)

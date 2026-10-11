@@ -77,6 +77,7 @@ Founder-owned gates are **F-1..F-5**. G-6..G-12 are project gates that feed them
 
 ---
 ## G-6 Real fermenter/brewhouse size
+*(Full option analysis: `BREWERY-SCALE-DECISION-ANALYSIS.md`; no recommendation made.)*
 Question: what vessel size and count fit demand and budget? Why: canon tanks (~50 bbl working) vs ~780 bbl/yr demand benchmark (T3). Depends on F-2 brewer. Evidence: arithmetic in `architecture/MASTER-PLAN-PHASE2.md` §5. Missing: brewer recommendation, vendor quotes. Cost: TBD. Professional: head brewer. R3. Delay risk: architect and model on wrong scale. Wrong risk: over- or under-capacity, wasted capex. Next: brewer sizing proposal. Owner: head brewer. Status: WAITING.
 ## G-7 Oven/pizza decision
 Question: deck/wood oven now or later? Why: Paneer Tikka Pizza (Wave 2), Birria Pizza (conditional). Depends on kitchen layout, architect, fuel/hood. Evidence: matrix only. Missing: kitchen design, cost, Austin pizza competitor saturation data (price survey). Cost TBD. Professional: chef/architect/MEP. R2. Delay risk low (Wave 1 needs no oven). Wrong risk: capex/space tied to a weak category. Next: defer; revisit after T1 wave 1 and the survey. Owner: Founder + chef. Status: OPEN.

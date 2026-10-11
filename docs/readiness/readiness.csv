@@ -1,0 +1,17 @@
+area,design_0_5,evidence_0_5,evidence_basis,evidence_ref,primary_or_external_evidence,what_blocks_readiness
+Concept,3,1,Designed in depth; background evidence only T1-T3 secondary,research/VERIFICATION-LEDGER.md,no,No customer validation; no professional review
+Brand,2,0,"Architecture and rules drafted; no name, no identity, no advisors",brand/BRAND-ARCHITECTURE-V1.md,no,Trademark search; name; advisors; identity design
+Market,2,1,Secondary research (T1-T3) + 19 LOW-confidence price observations,research/market-survey/observations.csv,no,Completed price survey; Austin demand sizing
+Customer,2,0,Interview instrument ready; ZERO interviews,research/customer-discovery/INTERVIEW-GUIDE.md,no,30 real interviews
+Food,3,0,12-dish test set designed; nothing cooked,food/MENU-V1.1-TEST-MENU.md,no,T1-T4 testing; supplier statements; costing
+Beer,3,0,Pilot briefs and handoff; nothing brewed,beer/pilot-briefs/00-BREWER-HANDOFF.md,no,Head brewer; pilot batches; panel
+Location,1,0,Criteria only; no site,business/AUSTIN-FEASIBILITY-V1.md,no,Geography; comps; zoning
+Architecture,2,0,Concept and functional program; no architect,architecture/COMPACT-FUNCTIONAL-PROGRAM.md,no,Architect/cost consultant; code/MEP
+Legal,1,1,T1 summaries of official pages; attorney not engaged,research/VERIFICATION-LEDGER.md,no,Attorney memo; T0 verification
+Financial,2,0,Model architecture; all assumptions blank,business/FINANCIAL-MODEL-ARCHITECTURE-V1.md,no,"Inputs, quotes, accountant"
+Operations,2,0,Flows and functional program; no operating plan,architecture/COMPACT-FUNCTIONAL-PROGRAM.md,no,Operating plan; staffing data; kitchen design
+Supply chain,1,0,Dietary spec; no supplier contact,food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md,no,Supplier statements and quotes
+Team,1,0,Founder only; roles listed,docs/decisions/DECISION-GATES.md,no,"Brewer, chef, GM, architect, attorney, advisors"
+Cultural integrity,3,0,Rules and audit written; no advisors,brand/CULTURAL-INTEGRITY-AND-ADVISORS.md,no,Advisors review
+IP/trademark,2,1,Workflow plus preliminary web screen only,brand/TRADEMARK-SCREENING.md,no,Attorney knockout search
+Website/presentation,3,0,Information architecture designed; nothing built,website/WEBSITE-IA-AND-EXPERIENCE-V1.md,no,"Brand, hero visuals, build"

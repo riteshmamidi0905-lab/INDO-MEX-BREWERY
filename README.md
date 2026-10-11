@@ -54,6 +54,9 @@ Phase One baseline (kept; Phase 1.5 governs conflicts): `phase-one/00-FOUNDING-V
 ## Visual Lock (current)
 `visuals/VISUAL-DNA.md` (canonical rules) → `visuals/LOCKED-SCENE-DNA.md` (geometry) → `visuals/generation-batch-01/` (5 prompts to generate first; do not generate the other 52 until reviewed).
 
+## Status (2026-10-11, Sprint 4: digital blueprint, Track A)
+Start at `concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md` and `docs/readiness/VALIDATION-SCOREBOARD.md`. Sprint 4 added the master concept, brand architecture, guest experience architecture, spatial vision, visual world and briefs, menu storytelling, beer brand experience, business-model map, financial-model architecture (blank 70-variable register), investor story and data-room map, website IA, readiness scoreboard (**design completeness 41%, evidence-backed readiness 5%**) and the brewery-scale decision analysis. **Track A documents add no evidence.** Two-track rule: D-58.
+
 ## Status (2026-10-11, Phase 2 Sprint 3)
 Sprint 3 added `research/VERIFICATION-LEDGER.md` (evidence tiers; no T0 facts), `docs/decisions/DECISION-GATES.md` (F-1..F-5, G-6..G-12), `research/market-survey/observations.csv` (19 LOW-confidence rows), `brand/TRADEMARK-SCREENING.md` (preliminary web screen, not clearance), `brand/CULTURAL-INTEGRITY-AND-ADVISORS.md`, `architecture/COMPACT-FUNCTIONAL-PROGRAM.md`, `beer/pilot-briefs/00-BREWER-HANDOFF.md`, `food/t1-test-sheets/` upgrades, `tools/validate_repo.py`. Still nothing brewed, cooked, interviewed, quoted or generated.
 

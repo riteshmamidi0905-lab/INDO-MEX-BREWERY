@@ -63,5 +63,38 @@ o=list(csv.DictReader(open("research/market-survey/observations.csv")))
 for r in o:
     if not r["source_url"] or not r["capture_date"] or not r["price_type"]: fail(f"observation {r['obs_id']} missing source/date/price_type")
 print(f"market observations (long form): {len(o)} price rows; confidences: {sorted({r['confidence'] for r in o})}")
+
+# 10 financial assumption register: no value without class+ref; allowed classes
+ALLOWED={"founder_assumption","benchmark_T3","benchmark_T1","observation_LOW","interview_real","popup_real","supplier_quote","vendor_quote","architect_estimate","professional_advice","calculated","illustrative"}
+a=list(csv.DictReader(open("business/model/assumptions-template.csv")))
+filled=[r for r in a if (r["value"] or "").strip()]
+for r in filled:
+    if r["source_class"] not in ALLOWED or not (r["source_ref"] or "").strip(): fail(f"assumption {r['id']} has a value without a valid source_class/source_ref")
+    if r["source_class"]=="illustrative": warn(f"assumption {r['id']} is ILLUSTRATIVE; must not appear in investor outputs")
+ids_a=[r["id"] for r in a]
+if len(ids_a)!=len(set(ids_a)): fail("duplicate assumption ids")
+print(f"assumptions register: {len(a)} variables, {len(filled)} with values")
+# 11 readiness register consistency
+import os as _os
+if _os.path.exists("docs/readiness/readiness.csv"):
+    rd=list(csv.DictReader(open("docs/readiness/readiness.csv")))
+    for r in rd:
+        ev=int(r["evidence_0_5"]); de=int(r["design_0_5"])
+        if not _os.path.exists((r["evidence_ref"] or "").split(";")[0].strip()): fail(f"readiness {r['area']}: evidence_ref file missing")
+        if ev>=3 and r["primary_or_external_evidence"].strip().lower()!="yes": fail(f"readiness {r['area']}: evidence {ev}>=3 requires primary/external evidence = yes")
+        if ev>2 and not r["evidence_ref"].strip(): fail(f"readiness {r['area']}: evidence>2 needs a reference")
+    td=sum(int(r["design_0_5"]) for r in rd); te=sum(int(r["evidence_0_5"]) for r in rd); n=5*len(rd)
+    print(f"readiness: design completeness {td}/{n} = {100*td/n:.0f}% ; evidence-backed readiness {te}/{n} = {100*te/n:.0f}% across {len(rd)} areas")
+# 12 Track A docs must carry a status/label near the top
+TRACKA=["concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md","brand/BRAND-ARCHITECTURE-V1.md","experience/GUEST-EXPERIENCE-ARCHITECTURE-V1.md","architecture/SPATIAL-VISION-V1.md","visuals/VISUAL-WORLD-AND-BRIEFS-V1.md","food/MENU-STORYTELLING-V1.md","beer/BEER-BRAND-EXPERIENCE-V1.md","business/BUSINESS-MODEL-MAP-V1.md","business/FINANCIAL-MODEL-ARCHITECTURE-V1.md","investor/INVESTOR-STORY-ARCHITECTURE-V1.md","investor/DATA-ROOM-MAP.md","website/WEBSITE-IA-AND-EXPERIENCE-V1.md","docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md"]
+LABELS=re.compile(r"\[(CONCEPT|PROPOSED|DESIGN|STRUCTURE|PLAN|ANALYSIS|FOUNDER VISION)\]|`\[(CONCEPT|PROPOSED|DESIGN|STRUCTURE|PLAN|ANALYSIS)\]`")
+for f in TRACKA:
+    if not os.path.exists(f): fail(f"missing Track A document {f}"); continue
+    head="".join(open(f).readlines()[:6])
+    if not LABELS.search(head): fail(f"{f}: no Track A status label (CONCEPT/PROPOSED/DESIGN/STRUCTURE/PLAN/ANALYSIS) in the first lines")
+# 13 investor-facing docs must not contain return/valuation claims
+for f in glob.glob("investor/*.md")+["business/FINANCIAL-MODEL-ARCHITECTURE-V1.md"]:
+    for i,l in enumerate(open(f),1):
+        if re.search(r"\b(IRR|ROI|valuation of|expected return|guaranteed)\b",l) and not re.search(r"no |not |never|until|without",l,re.I): warn(f"{f}:{i}: return/valuation wording: {l.strip()[:100]}")
 print(f"\nSUMMARY: {len(fails)} fail, {len(warns)} warn")
 sys.exit(1 if fails else 0)
