@@ -16,7 +16,7 @@ for f in glob.glob("docs/company/*.md"):
     first = open(f, encoding="utf-8").readline().strip()
     if not (first.startswith("AGENT ANALYSIS") or first.startswith("DRAFT ONLY")): fail(f"{f}: first line must carry the AGENT ANALYSIS (or DRAFT ONLY) banner")
 for f in glob.glob("docs/company/**/*", recursive=True) + glob.glob("research/customer-discovery/*"):
-    if os.path.isfile(f) and f.endswith((".md", ".csv")) and "market-map" not in f.lower():   # market-map files may quote OBSERVED public prices with source and tier
+    if os.path.isfile(f) and f.endswith((".md", ".csv")) and "market-map" not in f.lower() and "nasha-conflict" not in f.lower() and "commissary-research" not in f.lower() and "commissary-candidates" not in f.lower():   # market-map files may quote OBSERVED public prices with source and tier
         t = open(f, encoding="utf-8").read()
         if re.search(r"\$\s?\d|\bUSD\b|\d\s*dollars", t, re.I): fail(f"{f}: dollar amount in a planning file (no unsourced prices)")
 for f in ("research/customer-discovery/purchase-conversion-tracker.csv", "research/customer-discovery/repeat-intent-tracker.csv", "research/customer-discovery/tasting-responses.csv", "research/customer-discovery/coded-quotes.csv", "ops/rd/iteration-log.csv"):

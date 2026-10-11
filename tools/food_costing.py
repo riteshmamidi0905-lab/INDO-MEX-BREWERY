@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Food costing, allergen and D-54 checks for NASHA recipes (Sprint 9). Reads food/costing/ingredients.csv and recipes.csv, both BLANK TEMPLATES until real
+"""Percent columns in the costing CSVs are 0-100 (yield_pct = usable yield after trim/cook, waste_pct = extra prep/spoilage waste); the finance model uses fractions 0-1. A retail receipt is an R&D price (use price_class RETAIL RECEIPT), not a supplier quote.
+Food costing, allergen and D-54 checks for NASHA recipes (Sprint 9). Reads food/costing/ingredients.csv and recipes.csv, both BLANK TEMPLATES until real
 supplier prices and a real tested recipe exist: this tool never invents a price, a yield or a recipe. Planning support only; not a tested recipe.
   python3 tools/food_costing.py            report (empty templates report nothing to cost)
   python3 tools/food_costing.py selftest   exercise the logic on in-memory TEST data (never saved)"""
 import csv, os, re, sys
 ING, REC = "food/costing/ingredients.csv", "food/costing/recipes.csv"
 D54 = re.compile(r"\b(beef|veal|pork|bacon|ham|lard|chorizo|pancetta|prosciutto|sausage|gelatin(?:e)?)\b", re.I)   # NO BEEF, NO PORK (D-54)
+CONV = {("g", "kg"): 0.001, ("ml", "l"): 0.001, ("kg", "g"): 1000.0, ("l", "ml"): 1000.0}   # recipes are in g/ml, purchases in kg/L; any other mismatch is refused
 ALLERGENS = ("milk", "egg", "peanut", "tree nut", "wheat", "soy", "fish", "shellfish", "sesame")
 
 def analyse(ings, recs):
@@ -18,8 +20,9 @@ def analyse(ings, recs):
         if not i: errs.append(f"{r['dish_id']}: unknown ingredient {r['ingredient_id']}"); continue
         d = out.setdefault(r["dish_id"], {"cost": 0.0, "allergens": set(), "veg": True, "missing_price": []})
         try:
-            if (i.get("unit") or "").strip().lower() != (r.get("unit") or "").strip().lower(): d["missing_price"].append(f"{i['name']} (UNIT MISMATCH: ingredient {i.get('unit')} vs recipe {r.get('unit')}; not costed)"); continue
-            price, yld, qty = float(i["price_per_unit"]), float(i["yield_pct"] or 100) / 100, float(r["qty_per_portion"])
+            iu, ru = (i.get("unit") or "").strip().lower(), (r.get("unit") or "").strip().lower()
+            if iu != ru and (ru, iu) not in CONV: d["missing_price"].append(f"{i['name']} (UNIT MISMATCH: ingredient {i.get('unit')} vs recipe {r.get('unit')}; not costed)"); continue
+            price, yld, qty = float(i["price_per_unit"]), float(i["yield_pct"] or 100) / 100, float(r["qty_per_portion"]) * (CONV[(ru, iu)] if iu != ru else 1)
             waste = float(i.get("waste_pct") or 0) / 100   # prep/spoilage waste, kept separate from usable yield; labour is never included here
             d["cost"] += qty * price / (yld * (1 - waste))
             if (i.get("price_class") or "").strip().upper() not in ("QUOTE", "ACTUAL"): d.setdefault("retail_ref", True)   # anything not a QUOTE or ACTUAL price is R&D only
@@ -31,6 +34,9 @@ def analyse(ings, recs):
 def load(p): return list(csv.DictReader(open(p, encoding="utf-8"))) if os.path.exists(p) else []
 
 def selftest():
+    gi = [dict(ingredient_id="a", name="Paneer", category="dairy", unit="kg", price_per_unit="10", yield_pct="100", waste_pct="", allergens="", vegetarian="yes", supplier="TEST", price_source="TEST", price_date="x", notes="", price_class="QUOTE")]
+    out, _ = analyse(gi, [dict(dish_id="G", ingredient_id="a", qty_per_portion="100", unit="g", notes="")]); assert abs(out["G"]["cost"] - 1.0) < 1e-9, out   # 100 g of a 10-per-kg item costs 1
+    out, _ = analyse(gi, [dict(dish_id="G", ingredient_id="a", qty_per_portion="1", unit="cups", notes="")]); assert out["G"]["missing_price"]   # unknown unit conversion is refused
     ings = [dict(ingredient_id="a", name="Paneer", category="dairy", unit="kg", price_per_unit="10", yield_pct="90", allergens="milk", vegetarian="yes", supplier="TEST", price_source="TEST", price_date="", notes=""),
             dict(ingredient_id="b", name="Corn tortilla", category="grain", unit="kg", price_per_unit="4", yield_pct="100", allergens="", vegetarian="yes", supplier="TEST", price_source="TEST", price_date="", notes="")]
     recs = [dict(dish_id="T", ingredient_id="a", qty_per_portion="0.1", unit="kg", notes=""), dict(dish_id="T", ingredient_id="b", qty_per_portion="0.05", unit="kg", notes="")]

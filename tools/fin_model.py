@@ -8,19 +8,24 @@ import csv, os, sys
 F = "ops/finance/assumptions.csv"; REQ = ["covers","avg_check","food_cogs_pct","bev_cogs_pct","bev_mix_pct","labor_monthly","occupancy_monthly","other_fixed_monthly","days_open"]
 def pnl(a):
     rev = a["covers"] * a["avg_check"] * a["days_open"]; cogs = rev * ((1 - a["bev_mix_pct"]) * a["food_cogs_pct"] + a["bev_mix_pct"] * a["bev_cogs_pct"])
-    fixed = a["labor_monthly"] + a["occupancy_monthly"] + a["other_fixed_monthly"]
-    cm = rev - cogs; be_rev = fixed / (cm / rev) if cm > 0 else float("inf")
+    cogs += rev * a.get("transaction_fee_pct", 0) + a["covers"] * a["days_open"] * a.get("variable_cost_per_cover", 0)   # optional variable costs, only if entered
+    # other_fixed_monthly must EXCLUDE any line item entered separately below (no double counting)
+    fixed = a["labor_monthly"] + a["occupancy_monthly"] + a["other_fixed_monthly"] + sum(a.get(k, 0) for k in OPTIONAL_FIXED)
+    cm = rev - cogs
+    if rev <= 0 or cm <= 0: return dict(revenue=rev, cogs=cogs, gross_profit=cm, fixed=fixed, ebitda=cm - fixed, breakeven_revenue=float("inf"))
+    be_rev = fixed / (cm / rev)
     return dict(revenue=rev, cogs=cogs, gross_profit=cm, fixed=fixed, ebitda=cm - fixed, breakeven_revenue=be_rev)
 def sensitivity(a, key, deltas=(-.1, 0, .1)): return {d: round(pnl({**a, key: a[key] * (1 + d)})["ebitda"], 2) for d in deltas}
+OPTIONAL_FIXED = ("insurance_monthly", "utilities_monthly", "maintenance_monthly", "marketing_monthly", "commissary_monthly", "debt_service_monthly", "depreciation_monthly")
 SCENARIOS = ("private_tasting", "popup", "brewery_residency", "food_trailer", "food_truck", "small_permanent", "flagship")   # mobile_mvp was split into trailer and truck (Sprint 19); fields per scenario: ops/finance/scenario-fields.csv
-def load(scenario=None):
+def load(scenario=None):   # not used by run_all; kept consistent: blank provenance counts as UNKNOWN
     """Assumptions for one scenario (rows whose 'scenario' column equals it); rows with an empty scenario apply to every scenario. No defaults."""
     if not os.path.exists(F): return {}
     out = {}
     for r in csv.DictReader(open(F, encoding="utf-8")):
         sc = (r.get("scenario") or "").strip()
         if sc and scenario and sc != scenario: continue
-        if (r.get("provenance_class") or "").strip().upper() == "UNKNOWN": continue   # UNKNOWN is the default and never feeds a model; only QUOTE/ACTUAL rows may feed investor-facing output, FOUNDER ASSUMPTION / INDUSTRY or PUBLIC REFERENCE rows only sensitivity ranges and must be labelled
+        if (r.get("provenance_class") or "UNKNOWN").strip().upper() == "UNKNOWN": continue   # UNKNOWN is the default and never feeds a model; only QUOTE/ACTUAL rows may feed investor-facing output, FOUNDER ASSUMPTION / INDUSTRY or PUBLIC REFERENCE rows only sensitivity ranges and must be labelled
         try: out[r["assumption_id"]] = float(r["value"])
         except (ValueError, KeyError): pass
     return out
@@ -48,6 +53,8 @@ def selftest():
     out = run_all(rows); assert out["popup"]["status"] == "RUN" and out["flagship"]["status"] == "NOT RUN" and out["food_trailer"]["status"] == "NOT RUN"
     unk = [dict(r, provenance_class="UNKNOWN") for r in rows]; assert run_all(unk)["popup"]["status"] == "NOT RUN"   # a typed value on an UNKNOWN row must not feed the model
     blank = [{k: v for k, v in r.items() if k != "provenance_class"} for r in rows]; assert run_all(blank)["popup"]["status"] == "NOT RUN"
+    assert pnl(dict(a, covers=0))["breakeven_revenue"] == float("inf")   # a free event has zero revenue but cost: no division crash
+    assert pnl(dict(a, insurance_monthly=100))["fixed"] == pnl(a)["fixed"] + 100
     print("selftest ok (TEST numbers only, not a NASHA result):", {k: round(v, 1) for k, v in r.items()})
 if __name__ == "__main__":
     if sys.argv[1:] == ["selftest"]: selftest(); sys.exit()

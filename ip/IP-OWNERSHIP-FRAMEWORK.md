@@ -50,3 +50,9 @@ Entity/ownership questions as appropriate · trademark searches and filing strat
 
 ## 9. Where things stand today
 No trademark filed or cleared; no entity documented in the repository; the repository's remote account is a personal/lab GitHub account (owner of record = that account, observed from the remote URL); no website, brand files, photography, video, domains or social handles are documented; AI-generated concept images and AI-assisted text exist; **no contractor agreements, advisor agreements or IP assignments exist**. See the register.
+
+## Sprint 20 notes (corrections, 2026-10-11)
+- The website asset register is no longer header-only: it lists 33 rows, and a concept website exists (static, noindex, not deployed). Statements above that no website exists are superseded.
+- `ip/founder-asset-register.csv` FA-04 should be read as "concept website, noindex" (not NOT_CREATED).
+- Wording such as "owned by project", "commercial_use_ok yes" and "transferable yes" for AI-assisted items overstates what we can say; treat those cells as UNRESOLVED pending counsel (see the attorney package, question 8).
+- Name risk: D-78 and `brand/TRADEMARK-SCREENING.md`.

@@ -1,4 +1,49 @@
-# NASHA: Trademark Attorney Package
+# NASHA: request for trademark counsel's review (concise package; NOT SENT)
+**Status: `[ANALYSIS]` (draft for counsel; not sent).** **Prepared 2026-10-11 (Sprint 20) by AI planning support for the founder. Not legal advice. No legal conclusion is drawn or implied. The founder reviews and decides whether to send.** Target reading time about 20 minutes. Fact base: `docs/company/NASHA-CONFLICT-FACTS.md` (every item PUBLICLY REPORTED or UNVERIFIED; sources were web-search summaries, no primary page could be opened here).
+
+## 1. The name and its meaning
+NASHA is the founder-selected working name (D-62): SELECTED_BY_FOUNDER, LEGAL CLEARANCE PENDING. *Nasha* is reported to be a common Hindi/Urdu word for intoxication or addiction (ledger V-33, not primary-verified). We ask counsel how that meaning affects registrability and advertising for restaurants and alcohol.
+
+## 2. Stage, stated plainly
+A concept. Nothing is open, brewed, cooked, sold or tested; no professional has reviewed anything. We know of no use in commerce. No logo exists (D-66); the word appears only as a temporary typographic placeholder on a concept website that is set to noindex and not deployed. No TM or registered symbol is used. No entity, domain, handle, filing or trademark search has been done or confirmed.
+
+## 3. Planned goods and services (for counsel to classify)
+An Indian-Mexican restaurant and kitchen; a craft brewery and taproom; beer and non-alcoholic beverages (packaged beer possibly later); merchandise; a website; possible later events, catering, a mobile or pop-up format, glassware and apparel. Proposed descriptor "Indo-Mex Brewery & Kitchen" (stage-dependent, not final). Austin, Texas first; online reach national. Owner of any future mark undecided (founder or a future company).
+
+## 4. Reported existing Austin restaurant named Nasha (PUBLICLY REPORTED, UNVERIFIED)
+- Reported at 1614 E 7th St (press mentions from about 2015; one source says it opened in 2014), a second location on S Congress reported from about April 2023, and a Bee Cave listing seen in December 2025. Current status is unknown; no 2026 evidence and no closure report was found.
+- Reported concept: Indian and Tex-Mex fusion ("Tex-Mex-Indo"), a tacos section, paneer and tandoori items in tortilla formats, a full bar (a curry-leaf margarita and happy hour reported), online ordering through third-party platforms and a website nashaindia.com (UNVERIFIED), and reported recognition in Austin Chronicle First Plates 2016 (nature of the award unconfirmed).
+- Reported public branding text includes a sign line that plays on the word's intoxication meaning ("get high on Indian cuisine"), reported in a secondary source.
+- We do not know: its legal entity, whether it owns registered or common-law rights, its exact goods and services, its geographic reach, or its ownership. We found no brewery link and no other Nasha in Texas food and beverage in one general search. A business registration would not by itself establish trademark ownership.
+- Separately: "Brewer's Table", a working label in our beer documents, is also the name of an Austin restaurant; we treat it as a separate question.
+
+## 5. Overlap and distinction (neutral; relevance is for counsel)
+| Overlap | Distinction (as planned, none yet real) |
+|---|---|
+| Same word | An in-house brewery and taproom; a house beer list |
+| Same city | Pairing-led model: food and beer designed together |
+| Indian-Mexican cuisine; tikka and taco/quesadilla concepts | A fixed five-dish core and five-beer core (Core 5) |
+| Alcohol service | Concept stage: no operating business, no visual identity |
+| Likely web and delivery presence | No logo; concept website not deployed |
+
+## 6. Questions for counsel
+1. Likelihood of confusion with the reported restaurant and any other marks, for restaurant, bar, brewery, beer, non-alcoholic beverages, merchandise and website services.
+2. Common-law rights of a restaurant reported since about 2014-2015, and their geographic scope; effect of its reported multiple Austin-area locations.
+3. Federal and state (including Texas, label and permit names) searches, with phonetic and visual variants.
+4. Effect of the word's meaning on descriptiveness, foreign-equivalents doctrine and alcohol advertising and labelling.
+5. Whether coexistence, consent or a modified mark is realistic (we propose no approach).
+6. Proceed, modify or choose an alternative. We ask counsel to advise on the fallback material already in our files (the five screened candidates in `brand/TRADEMARK-SCREENING.md`; the shortlists in `brand/NAMING-UNIVERSE-V2.md`) rather than proposing new names now; none has had a legal search.
+7. Filing strategy: intent-to-use or after use, classes, entity, and whether to disclaim the descriptor.
+8. Ownership of AI-assisted and AI-generated assets and the founder's rights; assignment terms for any future designer or contractor.
+9. Whether a combined consult with our Texas alcohol attorney makes sense.
+What we need back: a written opinion on whether the proposed brand is commercially viable, a risk ranking (proceed, modify, abandon), recommended search scope and next steps, advice on the shortlist and on AI-asset ownership, and a rough fee scope if the attorney chooses to give one.
+
+## 7. Assets counsel should know about
+All text and code were drafted with AI assistance and are human-directed; the copyright position of such work is unsettled and we claim no ownership conclusion. 33 website assets are listed in `ip/website-asset-rights-register.csv` (fonts under SIL OFL; AI-generated concept images PROVISIONAL-LOCAL-ONLY with the provider's terms reviewed only through secondary summaries; scripted vector art written by an AI coding assistant). No contractor, advisor or assignment agreements exist. The repository is under a personal account, which is access, not ownership.
+Corrections to our own files made alongside this package: see the Sprint 20 notes in `ip/IP-OWNERSHIP-FRAMEWORK.md`.
+
+---
+## Appendix: earlier package content (Sprint 15), retained
 
 **Status:** `[PLAN]` briefing for an IP/trademark attorney. **No search has been run, no application filed, no clearance exists, no advice has been received.** Name status: `SELECTED_BY_FOUNDER — LEGAL CLEARANCE PENDING` (D-62). Nothing here is legal advice.
 
