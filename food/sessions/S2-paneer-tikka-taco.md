@@ -157,7 +157,7 @@ Score each gate at its time (1-5, panel mean). Do not re-crisp or repair plates 
 - Rule: WEEPING is judged at T+5 together with the moisture gate.
 - **Panel:** Minimum 4 tasters, at least 3 of whom did not cook; same tasting order for everyone, plain unsalted tortilla/cracker and room-temperature water between samples; blind codes from `python3 tools/t1_randomize.py <run>` plated by a second person (not double-blind). n<8: raw values only.
 - No beef, no pork, no hidden derivatives (lard in tortillas, stocks/bouillon/gelatin, animal rennet from a bovine source, Worcestershire, processing aids). No halal claim.
-- EXCLUDED from all baselines (ledger V-72: FDA Import Alert 26-04 treats expressed mustard oil as an unsafe food additive; labelling it 'external use only' does not change that). Use a neutral oil. Flag for regulatory review; never improvise a legal conclusion.
+- EXCLUDED from all baselines (ledger V-72: FDA Import Alert 26-04 reportedly treats expressed mustard oil as an unsafe food additive (T1: search snippet only, the primary page was not read; it may also reach products labelled 'external use'). Excluded as a precaution; regulatory review pending, no legal conclusion). Use a neutral oil. Flag for regulatory review; never improvise a legal conclusion.
 - Allergens: see `food/ALLERGEN-MATRIX.csv`; cross-contact is a process issue; no allergen-free claim.
 
 ## After the cook

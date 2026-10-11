@@ -10,6 +10,9 @@ import csv, hashlib, json, os, sys
 SPEC, RES = "food/sessions/sessions.json", "food/sessions/results.csv"
 COLS = ["run_id", "date", "dish_id", "construction", "iteration", "time_min", "kind", "gate_or_measure", "value", "failure_codes", "photo_ids", "panel_n", "panel_roles", "blinded", "data_source", "notes"]
 MIN_ITER = 2
+def _num(x):
+    try: return float(x)
+    except Exception: return None
 def spec(p=SPEC): return json.load(open(p, encoding="utf-8"))
 def canonical(s):
     keep = ("constructions", "test_variable", "gates", "failure_gates", "times")   # protocol details (shopping, quantities, day plans, safety lines) may be corrected before tasting
@@ -23,13 +26,17 @@ def problems(rs, s):
         if r["data_source"] != "real_cook": errs.append(f"row {i}: data_source must be real_cook"); continue
         if d not in s["sessions"]: errs.append(f"row {i}: unknown dish {d}"); continue
         ss = s["sessions"][d]
-        if r["construction"] not in ss["constructions"] and not r["construction"].startswith("control"): errs.append(f"row {i}: unknown construction {r['construction']}")
+        if r["construction"] not in ss["constructions"]: errs.append(f"row {i}: unknown construction {r['construction']}")
         if r["kind"] == "score":
             if r["gate_or_measure"] not in ss["gates"]: errs.append(f"row {i}: unknown gate {r['gate_or_measure']}")
             try:
                 v = float(r["value"]); assert 1 <= v <= 5
             except Exception: errs.append(f"row {i}: score must be 1-5 (never estimate or fill from memory)")
             if not r["photo_ids"].strip() or not r["panel_n"].strip(): errs.append(f"row {i}: score rows need photo_ids and panel_n")
+            else:
+                try: assert int(float(r["panel_n"])) >= 4
+                except Exception: errs.append(f"row {i}: frozen panel rule needs panel_n >= 4 (at least 3 non-cooks)")
+            if r["blinded"].strip().lower() not in ("yes", "single"): errs.append(f"row {i}: blinded must be yes or single (blind tasting is required)")
         for c in filter(None, r["failure_codes"].replace(";", "|").split("|")):
             if c.strip() not in ss["failure_gates"]: errs.append(f"row {i}: unknown failure code {c}")
     return errs
@@ -47,14 +54,17 @@ def evaluate(rs, s):
                 miss, bad = [], []
                 for g, spec_g in ss["gates"].items():
                     if spec_g.get("control_exempt") and c.startswith(("control", "A")) and d == "goat-birria" and c == "A": continue
-                    vals = [float(r["value"]) for r in cr if r["kind"] == "score" and r["gate_or_measure"] == g and r["time_min"] == str(spec_g["at"])]
+                    vals = [float(r["value"]) for r in cr if r["kind"] == "score" and r["gate_or_measure"] == g and _num(r["time_min"]) == _num(spec_g["at"])]
                     if not vals: miss.append(g)
                     elif sum(vals) / len(vals) < spec_g["min"]: bad.append(f"{g} {sum(vals)/len(vals):.2f}<{spec_g['min']}")
                 iters[it] = dict(pass_=not miss and not bad and not fails, missing=miss, below=bad, failure_gates=fails)
-            n_pass = sum(v["pass_"] for v in iters.values())
+            # two iterations count only if they come from different cooks (run_id and date)
+            passing = [it for it, v in iters.items() if v["pass_"]]
+            cooks = {(r["run_id"], r["date"]) for r in mine if r["construction"] == c and r["iteration"] in passing}
+            n_pass = min(len(passing), len(cooks))
             det[c] = dict(iterations=iters, passing=n_pass, status=("PASSES (2+ iterations)" if n_pass >= MIN_ITER else "INCOMPLETE/REWORK: " + (f"{n_pass} passing iteration(s); need {MIN_ITER}" )))
         winners = [c for c, v in det.items() if v["passing"] >= MIN_ITER and not (d == "goat-birria" and c == "A")]
-        status = "NO WINNER YET" if not winners else (f"WINNER CANDIDATE {winners[0]}" if len(winners) == 1 else "NO SINGLE WINNER (several qualify)")
+        status = "NO WINNER YET" if not winners else (f"PROVISIONAL LEADER {winners[0]} (directional, small panel, raw means; not a validated result)" if len(winners) == 1 else "NO SINGLE WINNER (several qualify)")
         out[d] = dict(status=status, detail=det)
     return out
 def selftest():
@@ -63,12 +73,16 @@ def selftest():
     g = s["sessions"]["paneer-tikka-taco"]["gates"]
     def mk(it, val, fail=""):
         rs = []
-        for k, v in g.items(): rs.append(dict(run_id="T", date="x", dish_id="paneer-tikka-taco", construction="A", iteration=str(it), time_min=str(v["at"]), kind="score", gate_or_measure=k, value=str(val), failure_codes="", photo_ids="P1", panel_n="5", panel_roles="", blinded="no", data_source="real_cook", notes=""))
+        for k, v in g.items(): rs.append(dict(run_id="T%d" % it, date="d%d" % it, dish_id="paneer-tikka-taco", construction="A", iteration=str(it), time_min=str(v["at"]), kind="score", gate_or_measure=k, value=str(val), failure_codes="", photo_ids="P1", panel_n="5", panel_roles="", blinded="yes", data_source="real_cook", notes=""))
         if fail: rs[0]["failure_codes"] = fail
         return rs
-    assert evaluate(mk(1, 4.5) + mk(2, 4.5), s)["paneer-tikka-taco"]["status"].startswith("WINNER")
+    assert evaluate(mk(1, 4.5) + mk(2, 4.5), s)["paneer-tikka-taco"]["status"].startswith("PROVISIONAL LEADER")
     assert evaluate(mk(1, 4.5) + mk(2, 3.0), s)["paneer-tikka-taco"]["status"] == "NO WINNER YET"
     assert evaluate(mk(1, 4.5) + mk(2, 4.5, "RUBBERY"), s)["paneer-tikka-taco"]["status"] == "NO WINNER YET"
+    one = mk(1, 4.5) + mk(1, 4.5); [r.update(run_id="T1", date="d1", iteration=str(2 if k >= len(one) // 2 else 1)) for k, r in enumerate(one)]
+    assert evaluate(one, s)["paneer-tikka-taco"]["status"] == "NO WINNER YET"   # two labels from one cook do not count
+    thin = mk(1, 4.5); thin[0]["panel_n"] = "1"; assert problems(thin, s)
+    nb = mk(1, 4.5); nb[0]["blinded"] = "no"; assert problems(nb, s)
     bad = mk(1, 4.5); bad[0]["value"] = "9"; assert problems(bad, s)
     sim = mk(1, 4.5); sim[0]["data_source"] = "simulated"; assert problems(sim, s)
     print("selftest ok: NOT PERFORMED with no rows; 2 passing iterations win; a failing iteration or failure gate blocks; invalid and simulated rows rejected")

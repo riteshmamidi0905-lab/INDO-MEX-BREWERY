@@ -2,7 +2,7 @@
 
 **Who this is for.** You do not need to know GitHub or read any other file. **What we are asking.** Five dishes are proposed for a future Austin, Texas restaurant and brewery called NASHA (the name is selected by the founder and not legally cleared). None has been cooked, tested or served. We want you to tell us where we are being inaccurate, disrespectful, gimmicky or misleading, and to answer the questions below in your own words. **This pack has not been sent to anyone, and no advisor has reviewed anything.** AI helped prepare it; AI is not the advisor.
 
-**Ground rules.** No beef and no pork are used anywhere. NASHA makes no halal claim. The name *nasha* can mean intoxication or addiction in Hindi and Urdu; the founder chose it for the feeling of being drawn in, and we want your view on that too. The sources cited are search summaries and encyclopedia-level pages unless stated; none is primary or scholarly unless you say so. We list what we believe, how sure we are, and what we do not know.
+**Ground rules.** No beef and no pork are used anywhere. NASHA makes no halal claim. The name *nasha* can mean intoxication or addiction in Hindi and Urdu; the founder chose it for the feeling of being drawn in, and we want your view on that too. The sources cited are search summaries and encyclopedia-level pages unless stated; none is primary or scholarly unless you say so. We list what we believe, how sure we are, and what we do not know; every origin claim is a T1 search-summary level belief unless marked otherwise, and none is verified.
 
 ## Please flag (any of these, anywhere)
 False or invented origin stories; regional flattening (treating India or Mexico as one cuisine); inappropriate terminology or names; gimmicky fusion; names that mislead; visual stereotypes; concerns about the name and alcohol; any ingredient or technique that makes the reference unrecognisable; anything that feels like costume rather than respect.
@@ -10,14 +10,14 @@ False or invented origin stories; regional flattening (treating India or Mexico 
 ## 1. Chicken 65 Totopos
 - **Cultural anchors:** Chicken 65, a South Indian dish usually described as dry or lightly coated, deep-fried boneless chicken with curry leaf and green chile; and fried corn *totopos* (a chip from Oaxaca-associated tradition, traditionally thin and baked).
 - **NASHA idea:** the chip becomes the plate: fried corn chips and the chicken are built to be eaten together, with crema (not raita) optional.
-- **What we believe (sources are summaries):** the common modern method is yogurt-spice marinade, rice-flour and cornflour coating, deep fry, curry leaf and green chile tossed through (recipe sites). Origin is contested: the Buhari Hotel in Chennai (1965) is the most cited story and the name theories (1965, 65 chiles, 65-day chickens, 65 pieces, a military code) are unresolved. We would write only "Chennai-associated; origin contested". A saucy Hyderabad style is described by news and recipe sites; we are unsure of the Chennai original (dry or sauced).
+- **What we believe (sources are summaries):** the common modern method is yogurt-spice marinade, rice-flour and cornflour coating, deep fry, curry leaf and green chile tossed through (recipe sites). Origin is contested: the Buhari Hotel in Chennai (1965) is the most cited story (T1 summary) and the name theories (1965, 65 chiles, 65-day chickens, 65 pieces, a military code) are unresolved. We would write only "Chennai-associated; origin contested". A saucy Hyderabad style is described by news and recipe sites; we are unsure of the Chennai original (dry or sauced).
 - **What we are unsure about:** which regional lineage we may name; whether "Chicken 65" is acceptable next to masa chips; our thick, fried, blistered chip is our own design and is NOT presented as a totopo standard.
 - **Questions:** see Q1 and Q5.
 
 ## 2. Paneer Tikka Taco
 - **Cultural anchors:** paneer tikka (marinated paneer, char, onion and capsicum; a North Indian/Punjabi restaurant tradition; no documented inventor) and a corn-tortilla taco with salsa, onion, cilantro and lime.
 - **NASHA idea:** tandoor-style char on a small taco; the salsa and acid do the job that raita or chutney does.
-- **What we believe:** a thick hung-curd marinade, char, soft paneer, onion/capsicum; overcooking makes paneer rubbery (home-recipe sites). Mustard oil is excluded from our baseline (US food-safety question).
+- **What we believe:** a thick hung-curd marinade, char, soft paneer, onion/capsicum; overcooking makes paneer rubbery (home-recipe sites). Mustard oil is excluded from our baseline as a precaution (a reported US import-alert question; unverified, snippet-level source).
 - **What we are unsure about:** pineapple (an echo of *al pastor*, a pork dish; we exclude it from the first test and never call the dish al pastor); the "tacos al carbón" inspiration is unsourced and we have removed it from public text; whether a charbroiler/comal result may be called "tikka" without a tandoor.
 - **Questions:** Q3 and Q8.
 
@@ -38,7 +38,7 @@ False or invented origin stories; regional flattening (treating India or Mexico 
 ## 5. Butter Chicken & Roasted Poblano Quesadilla
 - **Cultural anchors:** murgh makhani (a tomato-butter-cream chicken gravy) and quesadilla con rajas (roasted poblano strips and melting cheese on a griddled tortilla).
 - **NASHA idea:** a thick, reduced butter-chicken filling with charred chicken inside a crisp quesadilla; roasted poblano supplies smoke and acid against the richness; the dip, if any, is separate.
-- **What we believe:** the origin of butter chicken is contested in a court case between two Delhi restaurant families (we pick neither); Oaxaca-style cheese melts and stretches.
+- **What we believe:** the origin of butter chicken is contested in a court case between two Delhi restaurant families (T1 summary; we pick neither); Oaxaca-style cheese melts and stretches.
 - **What we are unsure about:** poblano versus "rajas" naming, Oaxaca or Chihuahua cheese, corn or flour tortilla, whether a quesadilla with curry-style filling reads as a caricature.
 - **Questions:** Q3 and Q7.
 
@@ -47,7 +47,7 @@ False or invented origin stories; regional flattening (treating India or Mexico 
 2. **(Indian)** Should the Gobi Taco name Gobi 65, Manchurian or tandoori gobi, and is a tamarind-guajillo glaze respectful or confusing?
 3. **(Indian)** Is putting butter chicken or paneer tikka inside a tortilla fair fusion, or does it read as a caricature of North Indian food? What is the minimum marinade for paneer to still be called "tikka"?
 4. **(Indian)** Is borrowing "dum" for a goat braise appropriate when it is not a birria tradition, and does a yogurt-papaya marinade count as an Indian layer or as forced fusion?
-5. **(Mexican)** Is "totopos" acceptable for a thick, fried, blistered chip (Oaxacan totopos are thin and baked), or should the name change?
+5. **(Mexican)** Is "totopos" acceptable for a thick, fried, blistered chip (Oaxacan totopos are thin and baked (T1 summary)), or should the name change?
 6. **(Mexican)** Is a cheese-free goat birria with an Indian-technique layer still honest under the name "birria", and how should we credit the Tijuana dipped taco?
 7. **(Mexican)** Does the butter-chicken quesadilla respect the quesadilla and rajas tradition (poblano or rajas, Oaxaca or Chihuahua cheese, corn or flour tortilla)?
 8. **(Both)** Is pineapple on a paneer taco acceptable given its al pastor association? Which words ("fusion", "inspired by", "our own") feel honest, and which feel like costume or erasure?

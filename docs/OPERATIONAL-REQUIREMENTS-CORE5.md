@@ -1,6 +1,6 @@
 # Operational requirements for the Core 5 (for a restaurant architect and an equipment/kitchen consultant)
 
-**Status: PLANNING INPUT. Not an architect-approved plan, not a HACCP plan, not a code review.** Nothing here has been cooked, timed or reviewed by a person. Capacity numbers are assumptions (`ops/kitchen/capacity-assumptions.json`, rebuilt by `python3 tools/kitchen_capacity.py`), labelled CAPACITY PLANNING EXERCISES. Food-safety figures are US FDA Food Code general values used as planning defaults and are UNVERIFIED for Austin/Texas; the health authority decides.
+**Status: PLANNING INPUT. Not an architect-approved plan, not a HACCP plan, not a code review.** Nothing here has been cooked, timed or reviewed by a person. Capacity numbers are assumptions (`ops/kitchen/capacity-assumptions.json`, rebuilt by `python3 tools/kitchen_capacity.py`), labelled CAPACITY PLANNING EXERCISES. Food-safety figures are T4 (general knowledge of US FDA Food Code values, not read from the Code) used as planning defaults and are UNVERIFIED for Austin/Texas; the health authority decides.
 
 ## 1. What the five dishes ask of a kitchen
 | Station | Chicken 65 Totopos | Paneer Tikka Taco | Gobi Taco | Butter Chicken Quesadilla | Goat Birria |
@@ -15,11 +15,11 @@
 Unknowns to put to the professionals: whether a tandoor or a charbroiler is wanted (and hood, clearances, fire-suppression, gas/solid-fuel constraints: regulatory matrix says NOT FOUND, not resolved); comal/plancha size and heat-recovery; fryer oil volume and a dedicated vegetarian oil path (cross-contact with chicken in one fryer is a real design question: allergen matrix lists contains vs may cross-contact); walk-in space for braise cooling; ventilation for charred chile smoke.
 
 ## 2. Capacity planning exercise: where the pressure is
-Method: slot-minutes per plate with low/base/high ranges, 10 000 seeded samples (mean station demand over stations with 1-3 fryer baskets, 8-16 comal positions, 2-4 cooks, 1-2 pass positions). Orders arrive at once (10, 20, 30). Clear time is a lower bound (no queueing delay, no walking).
-- **Equal mix:** cooks (labour) is the bottleneck in about half of sampled ranges (clear time about 4.6/9.2/13.8 min at 10/20/30 orders, base case); comal and pass each about a quarter. The fryer is never the limit.
-- **Comal-heavy mix (goat + quesadilla popular):** the comal is the bottleneck in about 80% of samples; about 6.9/13.9/20.8 min at 10/20/30 base case. The quesadilla alone (assumed 18 slot-minutes per plate) drives this. **Measure first:** minutes one quesadilla occupies a comal position at service temperature, and how many positions are usable at once.
+Method: slot-minutes per plate with low/base/high ranges, seeded random draws from the invented ranges (1-3 fryer baskets, 8-16 comal positions, 2-4 cooks, 1-2 pass positions). Orders arrive at once (10, 20, 30). Clear time is a lower bound (no queueing delay, no walking).
+- **Equal mix:** cooks (labour) is the bottleneck in about half of sampled ranges (clear time roughly 5 / 9 / 14 min at 10/20/30 orders, base case); comal and pass each roughly a quarter. The fryer is never the limit in these assumed ranges. Shares are the fraction of INVENTED ranges in which a station comes out highest, not a probability of anything real.
+- **Comal-heavy mix (goat + quesadilla popular):** the comal is the bottleneck in about 80% of samples; roughly 7 / 14 / 21 min at 10/20/30 base case. The quesadilla alone (assumed 18 slot-minutes per plate) drives this. **Measure first:** minutes one quesadilla occupies a comal position at service temperature, and how many positions are usable at once.
 - **Fry-heavy mix (Chicken 65 popular):** cooks again about 54%, fryer about 18%, pass about 28%.
-- Reading: with these assumptions the five-dish menu is **labour-and-comal bound, not fryer bound**. Real ticket times would change that; until then it is a hypothesis, not a forecast.
+- Reading: this assumption set points to labour and comal rather than the fryer; no kitchen data exists. Real ticket times would change that; until then it is a hypothesis, not a forecast.
 
 ## 3. What to measure first (cheap, in a home kitchen or pop-up)
 1. Quesadilla comal minutes per plate (Session 4 times record this).
