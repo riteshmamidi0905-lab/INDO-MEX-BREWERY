@@ -111,7 +111,7 @@ for f in ["investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","validation/MOBILE-
     t=open(f).read()
     if not re.search(r"No investor has been identified|No marketing has been done|NOT validated|No permit, cost",t): fail(f"{f}: missing honesty disclaimer")
 # 12 Track A docs must carry a status/label near the top
-TRACKA=["concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md","brand/BRAND-ARCHITECTURE-V1.md","experience/GUEST-EXPERIENCE-ARCHITECTURE-V1.md","architecture/SPATIAL-VISION-V1.md","visuals/VISUAL-WORLD-AND-BRIEFS-V1.md","food/MENU-STORYTELLING-V1.md","beer/BEER-BRAND-EXPERIENCE-V1.md","business/BUSINESS-MODEL-MAP-V1.md","business/FINANCIAL-MODEL-ARCHITECTURE-V1.md","investor/INVESTOR-STORY-ARCHITECTURE-V1.md","investor/DATA-ROOM-MAP.md","website/WEBSITE-IA-AND-EXPERIENCE-V1.md","docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md","validation/MOBILE-MVP-STRATEGY.md","validation/TRACTION-METRICS.md","investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","ip/IP-OWNERSHIP-FRAMEWORK.md","marketing/MARKETING-AND-BUILD-IN-PUBLIC-FOUNDATION.md","docs/decisions/ATTORNEY-QUESTIONS.md","brand/NASHA-BRAND-STRATEGY.md","brand/NASHA-IDENTITY-SYSTEM.md","website/DESIGN-SYSTEM.md","visuals/NASHA-VISUAL-AUDIT-AND-GENERATION-QUEUE.md","ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md","marketing/NASHA-DOMAIN-AND-HANDLE-INVENTORY.md","visuals/NASHA-VISUAL-DIRECTION-V3.md","visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.md","brand/NASHA-LOGO-GOVERNANCE.md","visuals/nasha-v3/PROMPT-PACK.md","marketing/NASHA-MARKETING-HOOKS.md"]
+TRACKA=["concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md","brand/BRAND-ARCHITECTURE-V1.md","experience/GUEST-EXPERIENCE-ARCHITECTURE-V1.md","architecture/SPATIAL-VISION-V1.md","visuals/VISUAL-WORLD-AND-BRIEFS-V1.md","food/MENU-STORYTELLING-V1.md","beer/BEER-BRAND-EXPERIENCE-V1.md","business/BUSINESS-MODEL-MAP-V1.md","business/FINANCIAL-MODEL-ARCHITECTURE-V1.md","investor/INVESTOR-STORY-ARCHITECTURE-V1.md","investor/DATA-ROOM-MAP.md","website/WEBSITE-IA-AND-EXPERIENCE-V1.md","docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md","validation/MOBILE-MVP-STRATEGY.md","validation/TRACTION-METRICS.md","investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","ip/IP-OWNERSHIP-FRAMEWORK.md","marketing/MARKETING-AND-BUILD-IN-PUBLIC-FOUNDATION.md","docs/decisions/ATTORNEY-QUESTIONS.md","brand/NASHA-BRAND-STRATEGY.md","brand/NASHA-IDENTITY-SYSTEM.md","website/DESIGN-SYSTEM.md","visuals/NASHA-VISUAL-AUDIT-AND-GENERATION-QUEUE.md","ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md","marketing/NASHA-DOMAIN-AND-HANDLE-INVENTORY.md","visuals/NASHA-VISUAL-DIRECTION-V3.md","visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.md","brand/NASHA-LOGO-GOVERNANCE.md","visuals/nasha-v3/PROMPT-PACK.md","marketing/NASHA-MARKETING-HOOKS.md","beer/GLASS-SPECIFICATION-CHECKLIST.md","beer/BEER-DEVELOPMENT-PROGRESSION.md","food/PHOTOGRAPHY-PROTOCOL-T1.md","docs/ai/FIGMA-AI-TERMS-REVIEW.md"]
 LABELS=re.compile(r"\[(CONCEPT|PROPOSED|DESIGN|STRUCTURE|PLAN|ANALYSIS|FOUNDER VISION)\]|`\[(CONCEPT|PROPOSED|DESIGN|STRUCTURE|PLAN|ANALYSIS)\]`")
 for f in TRACKA:
     if not os.path.exists(f): fail(f"missing Track A document {f}"); continue
@@ -171,6 +171,18 @@ CAP=open("docs/ai/NASHA-AI-CAPABILITIES.md",encoding="utf-8").read()
 for k in ("Installed and TESTED","Connected","Candidates raised for the founder","Rejected","Security","Blocked","0 integrated"):
     if k not in CAP: fail(f"AI capability record missing section/term: {k}")
 if any(r["kind"]=="raster" and "sprint 9" in (r["creation_method"]+r["date"]).lower() for r in MAN): fail("manifest claims a Sprint 9 generated raster, but none was generated")
+# Sprint 11: real T1 results discipline (evidence only from real cooks) and naming
+T1=list(csv.DictReader(open("food/t1-results/t1-results.csv",encoding="utf-8")))
+for i,r in enumerate(T1,2):
+    if r["data_source"].strip()!="real_cook" or not r["photo_ids"].strip(): fail(f"t1-results.csv row {i}: needs data_source=real_cook and real photo_ids")
+RD=list(csv.DictReader(open("docs/readiness/readiness.csv",encoding="utf-8")))
+for r in RD:
+    if r["area"]=="Food" and int(r["evidence_0_5"])>0 and not T1: fail("Food evidence >0 requires real rows in food/t1-results/t1-results.csv (generated images and tooling are not evidence)")
+if "## 17. Culinary design memory" not in LIB: fail("reference library missing section 17 (culinary design memory)")
+for need in ("food/t1-test-sheets/10-t1-session-run-of-show.md","food/t1-test-sheets/07-chicken-65-construction-comparison.md","tools/t1_record.py","tools/founder_download_candidates.sh"):
+    if not os.path.exists(need): fail(f"missing {need}")
+for f in glob.glob("website/dist/*.html")+["website/data/dishes.json"]:
+    if re.search(r"chicken 65 nachos",open(f,encoding="utf-8").read(),re.I): fail(f"{f}: use the canonical dish name 'Chicken 65 Totopos', not 'Chicken 65 Nachos'")
 # logo protection: vault stays empty of real files until founder approval is recorded; no stray logo files; no TM/R symbols in site sources
 for dname in ("PUBLIC-EXPORTS","CONTROLLED-MASTERS","LEGAL-OWNERSHIP"):
     extra=[x for x in os.listdir("brand/logo/"+dname) if x!="README.md"]

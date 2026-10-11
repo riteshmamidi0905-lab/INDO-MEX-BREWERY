@@ -5,7 +5,21 @@
 Dish: ______  Concept image id: ______  Real photo ids (hero / truth / construction / hold 0-5-10 / failure / portion): ______
 Cook date: ______  Cook: ______  Construction tested: ______
 
-## Compare
+## Compare (the AI concept never dictates the plate; the physical dish has authority)
+| Attribute | AI concept | Real test | Gap | Action |
+|---|---|---|---|---|
+| Chicken texture | | | | |
+| Colour | | | | |
+| Chip structure | | | | |
+| Garnish | | | | |
+| Sauce | | | | |
+| Portion | | | | |
+| Height | | | | |
+| Plate / vessel | | | | |
+| Appetite appeal | | | | |
+| Practicality (service, hold) | | | | |
+
+## Detail
 | Aspect | Concept target | Physical result | What translated | What failed | What improved | What must change |
 |---|---|---|---|---|---|---|
 | Components and proportions | | | | | | |

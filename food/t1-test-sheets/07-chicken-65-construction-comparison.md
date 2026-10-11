@@ -22,6 +22,9 @@ Verify the reference truths against `visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.m
 ## 3. Measurements (leave blank until cooked; record per construction)
 | Measure | A | B | C |
 |---|---|---|---|
+| Overall flavour (0-5, panel average) | | | |
+| Aroma (0-5) | | | |
+| Texture (0-5) | | | |
 | Taste / balance (0-5, panel average) | | | |
 | Chicken 65 identity: would a South Indian eater call it a real 65? (0-5) | | | |
 | Totopo identity: would a Mexican cook call them proper totopos? (0-5) | | | |
@@ -36,6 +39,7 @@ Verify the reference truths against `visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.m
 | Appearance (photo reference ids) | | | |
 | Repeatability (3 plates, same weights?) | | | |
 | Execution complexity (1-5) and ticket time (min) | | | |
+| Failure modes observed | | | |
 | Beer pairing hypothesis tested (which beer, what it did) | | | |
 
 ## 4. Hold test (photograph each at the three times)
