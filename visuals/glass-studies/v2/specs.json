@@ -1,0 +1,167 @@
+{
+ "status": "CONCEPT GEOMETRY - MANUFACTURABILITY UNVERIFIED. Control points, wall, base, ring and volumes are DESIGN ASSUMPTIONS (ledger V-73: no standard capacity or fill-line convention was found). No logo, text or mark (D-66).",
+ "common": {
+  "wall_mm": 2.4,
+  "base_thickness_mm": 9.0,
+  "base_corner_radius_mm": 3.5,
+  "lip_radius_mm": 0.6,
+  "floor_fillet_mm": 3.0,
+  "glass_density_g_cm3_ASSUMED": 2.5,
+  "liquid_density_g_ml_ASSUMED": 1.01,
+  "min_headspace_mm_design_rule": 20
+ },
+ "ring": {
+  "note": "OPTIONAL family-DNA hypothesis, OFF in the baseline (operations and industrial-design reviews: 1.4 mm is barely tactile, adds mould complexity, a chip point, a cleaning crevice and a nesting snag). The ring variant is always computed for comparison. One smooth radiused band at about 40% of the height; never a mark.",
+  "height_fraction_of_total": 0.4,
+  "band_height_mm": 8.0,
+  "projection_mm": 1.4,
+  "default_enabled": false
+ },
+ "glasses": {
+  "hefeweizen": {
+   "height_mm": 235,
+   "base_r_mm": 31,
+   "points": [
+    [
+     3.5,
+     31
+    ],
+    [
+     30,
+     31.5
+    ],
+    [
+     80,
+     29.5
+    ],
+    [
+     130,
+     33.5
+    ],
+    [
+     175,
+     38.0
+    ],
+    [
+     210,
+     37.0
+    ],
+    [
+     235,
+     34.0
+    ]
+   ],
+   "brimful_target_ml": 680,
+   "serving_ml": 500,
+   "intent": "tall wheat-beer vase: narrow stable foot, belly, slightly closed rim for foam and aroma"
+  },
+  "mexican-lager": {
+   "height_mm": 195,
+   "base_r_mm": 29,
+   "points": [
+    [
+     3.5,
+     29
+    ],
+    [
+     60,
+     30
+    ],
+    [
+     125,
+     31.5
+    ],
+    [
+     195,
+     34.5
+    ]
+   ],
+   "brimful_target_ml": 470,
+   "serving_ml": 400,
+   "intent": "clean tall cone: readable colour and carbonation, wide mouth, quick refreshment"
+  },
+  "vienna-amber": {
+   "height_mm": 150,
+   "base_r_mm": 29,
+   "points": [
+    [
+     3.5,
+     29
+    ],
+    [
+     35,
+     32.5
+    ],
+    [
+     75,
+     39.5
+    ],
+    [
+     110,
+     39.0
+    ],
+    [
+     150,
+     35.0
+    ]
+   ],
+   "brimful_target_ml": 440,
+   "serving_ml": 350,
+   "intent": "balanced bowl/cone: colour and malt aroma close to the nose"
+  },
+  "pilsner": {
+   "height_mm": 210,
+   "base_r_mm": 28.5,
+   "points": [
+    [
+     3.5,
+     28.5
+    ],
+    [
+     60,
+     29
+    ],
+    [
+     130,
+     28.5
+    ],
+    [
+     210,
+     31.5
+    ]
+   ],
+   "brimful_target_ml": 430,
+   "serving_ml": 330,
+   "intent": "slender taper to a wider mouth: shows colour and a dense head; stability is the design risk"
+  },
+  "witbier": {
+   "height_mm": 135,
+   "base_r_mm": 28,
+   "points": [
+    [
+     3.5,
+     28
+    ],
+    [
+     25,
+     31.5
+    ],
+    [
+     55,
+     40.0
+    ],
+    [
+     95,
+     39.0
+    ],
+    [
+     135,
+     36.0
+    ]
+   ],
+   "brimful_target_ml": 420,
+   "serving_ml": 330,
+   "intent": "short wheat-family bowl, distinct from the Hefeweizen: opens coriander and peel aroma"
+  }
+ }
+}

@@ -4,3 +4,5 @@ website/qa/node_modules/
 .imgcache/
 .baseline/
 .cache/
+# Regenerable Glass V2 meshes (~90 MB): rebuild with `python3 tools/glass_v2.py build`
+visuals/glass-studies/v2/*.stl

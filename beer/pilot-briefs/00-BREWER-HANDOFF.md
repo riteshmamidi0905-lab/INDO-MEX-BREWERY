@@ -1,4 +1,40 @@
-# Brewer Handoff Package (Sprint 3)
+# Brewer Handoff Package (Sprint 3; Core 5 update Sprint 17)
+
+**START HERE (Core 5, D-75, Sprint 17).** NASHA is developing five house beers first: Hefeweizen, Mexican-Style Lager, Vienna Amber, Pilsner, Witbier. Every one is NOT BREWED and has a brief in this folder (`01`-`05`). This is what we ask you to do, in order: (1) critique the five briefs and the pilot order below; (2) tell us the pilot route you consider legal and practical (partner brewery, qualified pilot system, permitted tasting pathway; we do not know which is lawful: attorney/TABC); (3) reconcile the Mexican-Style Lager IBU window; (4) review the Pilsner vs Mexican-Style Lager differentiation test; (5) answer the numbered questions in section 6. We supply intent, faults to avoid and tests; we do NOT dictate recipes (section 5). Nothing here is a recipe or a validated spec; the style numbers are style-typical (T1) or `[TEST]`. Pairings with food are hypotheses (`food/CORE5-PAIRING-FLIGHT-1.csv`).
+
+## 0. Core 5 handoff summary
+| # | Beer | Product role | Brief | Pilot success (one line) | Open brewer questions |
+|---|---|---|---|---|---|
+| 1 | Hefeweizen (BJCP 10A) | proof/gate beer; banana-clove, hazy, creamy; carbonation cuts fat | `01-hefeweizen.md` | brewer-released, faults 0, banana/clove balanced, stable haze and foam, panel at or above the reference, 3 consistent batches | yeast strain and temperature/pitch trial; ferulic rest worth; open vs closed fermentation; sediment strategy |
+| 2 | Mexican-Style Lager (BJCP 2A nearest; BA) | session beer for chile heat; low bitterness | `02-mexican-style-lager.md` | clean, crisp, no skunk, IBU window reconciled, passes the Pilsner distinction test | does an adjunct earn its place; lager time; water; light-strike |
+| 3 | Vienna Amber (BJCP 7A) | malt bridge to char and braise | `03-vienna-amber.md` | toast without roast or sweetness; includes a warmer-service arm; wins some pairing trials | malt balance; avoid sweetness; lager time |
+| 4 | Pilsner (BJCP 5D) | brewer-credibility beer; dry, snappy, noble hops | `04-pilsner.md` | dry, brilliant, clean; soft-water lessons documented; passes the Mexican Lager distinction test | mash pH vs soft Austin water; hops cost and supply; clarity |
+| 5 | Witbier (BJCP 24A) | seasonal (Mar-Sep) citrus-aroma beer for paneer, vegetables, char | `05-witbier.md` | soft aroma-only coriander/orange peel, intentional haze, no soapiness, no ale-yeast contamination problem | spice dose/timing; peel sourcing; haze stability; yeast cross-contamination |
+
+## 0a. Recommended pilot order (recommendation; the founder may override at any time)
+**Default: Hefeweizen, Mexican-Style Lager, Vienna Amber, Pilsner, Witbier (the founder sequence).** Reasons (analysis by the master-brewer agent, not a professional's opinion): the Pilsner reuses lager and water lessons and is the least forgiving fault-exposing lager; the Pilsner vs Mexican Lager distinction test needs both beers early; the Witbier's seasonal argument (Mar-Sep) has expired for a pilot started now; the Hefeweizen already covers paneer pairings. **Conditional rule:** run Witbier before Pilsner only if (a) a pilot or partner slot is free while a lager is still conditioning (about 14 days for an ale vs about 30 for a lager; both UNSOURCED planning assumptions) AND (b) you want an ale-yeast cross-contamination check on the shared system first, or a slot falls around Dec-Feb so the beer is ready for March. Partner-brewery availability and fermenter/glycol limits can override any order; G-6 stays open.
+
+## 0b. The Hefeweizen gate, restated as a development gate
+Not an emotional rule ('if Hefe fails nothing launches'). NASHA does not CLAIM an integrated brewery-and-kitchen program until at least one house beer shows (a) quality, by your written release (faults 0, style-appropriate), repeat batches and a blind panel at or above a named reference beer, and (b) food compatibility, by blind pairings with real dishes (at least 3, per the program's P3 gate). A Hefeweizen failure triggers a root-cause review and a rework by you; it does not stop work on the other beers. Results from one legal pathway are not evidence for another.
+
+## 0c. Pilsner vs Mexican-Style Lager: pre-brew differentiation hypothesis
+| Dimension | Pilsner (5D) | Mexican-Style Lager (2A / BA nearest) |
+|---|---|---|
+| Hop expression | floral/herbal noble hops, moderate | faint or none |
+| Bitterness | 22-40 style; repo window 28-34 | repo window 14-18 is UNRECONCILED (BJCP 2A 18-25, BA 15-22): if raised the contrast narrows |
+| Dryness and finish | crisp, dry, snappy | light, fairly dry, softer finish |
+| Malt | bready pale malt | cracker-like; optional corn only if it earns its place |
+| Food role (hypothesis) | fried and rich food; bitterness as a reset | heat relief; low bitterness does not amplify chile |
+We do not claim more difference than the references support; perceived bitterness also depends on dryness and malt.
+
+## 0d. Future triangle test (design only, NOT RUN)
+Question: are the NASHA Pilsner and Mexican-Style Lager perceptibly AND usefully distinct? Panel 18-30 adult lager drinkers (not trained, not involved in the brew), the brewer outside the count; opaque or dark-tinted cups, random 3-digit codes, a neutral server; the six triangle orders balanced equally; 4 C primary arm (a warmer 6-9 C arm as a separate session, because warmth helps noble-hop aroma); 30-60 ml per cup, spitting allowed, unsalted crackers and water, 1-2 minutes between triangles. **Pre-set criterion (one-sided binomial, chance 1/3; fix panel size, alpha and the pass count before tasting and never change them):** minimum correct identifications at alpha 0.05 / 0.10: n=12: 8 / 7; n=18: 10 / 10; n=24: 13 / 12; n=30: 15 / 14 (verified with scipy.stats.binomtest). A significant triangle shows detectability only; add a descriptive follow-up (which of hop aroma, bitterness, dryness, malt, finish differs and how) and a use question (which with fried food, which with a chile dish); detectably different but not matching the intended roles = partial pass. If distinction fails: rework the specs first (hop aroma, bitterness window, dryness, malt, adjunct), retest, log it; removing either beer is a founder decision, never a silent deletion. Small panel = directional evidence only; it does not transfer to other batches or pathways.
+
+## 0e. Non-alcoholic role
+A non-drinker should get an equally intentional pairing, not an imitation beer: culinary (a house agua, a spiced or fermented non-alcoholic drink, a licensed non-alcoholic beer) matched to the same dish by the same mechanisms (acid, carbonation, cooling, aroma). The Core 5 does not remove the earlier non-alcoholic option; no product is defined here.
+
+## 0f. Data format
+The official BeerJSON schema is vendored (`tools/vendor/beerjson/`, validate with `tools/beerjson_check.py`). BeerJSON describes recipes and equipment, not concept briefs, so NO BeerJSON file exists: there is no recipe. A BeerJSON file becomes appropriate only when a qualified brewer produces a real formulation.
 
 **For:** a licensed/qualified head brewer or brewing consultant `[PRO]`. **Status:** nothing has been brewed; no pilot results exist; no recipe is supplied. This page orients a brewer and lists the questions we need answered. Details: `01-hefeweizen.md`, `02-mexican-style-lager.md`, `03-vienna-amber.md`; full program `beer/OPENING-BEER-PROGRAM-V1.md`.
 
@@ -11,7 +47,7 @@ A destination brewpub in Austin, Texas: visible brewhouse, six fermenters (visua
 | 1 | Hefeweizen (BJCP 10A) | Flagship, credibility test | Benchmark panel + 3 consistent batches |
 | 2 | Mexican-Style Lager (BJCP 2A as nearest) | Session beer for chile food | Clean, crisp, faults 0; beats Hefe as partner for ≥2 heat-2 dishes |
 | 3 | Vienna Amber (BJCP 7A) | Pairing workhorse for char/braise | Toast without roast; wins pairing trials |
-Later (not yet briefed): Pilsner, Witbier, Dunkelweizen/Malabar Dark, Deccan Sol, Goa Baja. Ingredient-driven beers need foam, stability and **TTB formula** review first (tier T1: exempt list not yet checked for kokum, tamarind, hibiscus, mango, saffron, chile; `research/VERIFICATION-LEDGER.md` V-09).
+Pilsner and Witbier are now briefed (`04`, `05`). Later (not yet briefed, R&D backlog): Dunkelweizen/Malabar Dark, Deccan Sol, Goa Baja. Ingredient-driven beers need foam, stability and **TTB formula** review first (tier T1: exempt list not yet checked for kokum, tamarind, hibiscus, mango, saffron, chile; `research/VERIFICATION-LEDGER.md` V-09).
 
 ## 3. Service context
 Draft first (kegs); glass family: 0.5 L weizen glass, 0.4 L lager glass, 4 oz flight glass; Two-Pour ritual for the Hefeweizen; serving temperatures are targets only. Packaging (cans) is a possible later phase, not Phase A.

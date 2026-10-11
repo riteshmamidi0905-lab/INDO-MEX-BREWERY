@@ -1,0 +1,9 @@
+pairing_id,food_id,beer_id,sitting,tier,agent_mechanisms,predicted_risk,prerequisites,status
+PF-01,chicken-65-totopos,mexican-lager,1,CORE,HEAT|CONTRAST,low bitterness should not amplify chile; may be too thin for the fat,Chicken 65 cooked as a separate event from D-74 Session 1 (its frozen rules are not reused); surrogate commercial lager until NASHA beer exists,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+PF-02,gobi-taco,pilsner,1,CORE,CONTRAST|BODY|HEAT (counter-test),bitterness beside chile heat may amplify burn,Gobi fry-vs-roast decided (pairing assumes the roast arm); surrogate Pilsner,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+PF-03,paneer-tikka-taco,witbier,1,CORE,ECHO|ACID,coriander/citrus clash with lime or yogurt (soapy),Paneer Session 2 cooked; surrogate Witbier,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+PF-04,butter-chicken-quesadilla,vienna-amber,2,CORE,BRIDGE|SWEET (risk)|BODY,Vienna malt may cloy on a sweet cream sauce,Quesadilla Session 4 cooked; surrogate Vienna,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+PF-05,goat-birria,hefeweizen,2,CORE,CONTRAST|ECHO,clove/banana against clove/cinnamon is a congruence gamble,Goat Session 5 cooked; same goat portion as PF-06; surrogate Hefeweizen,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+PF-06,goat-birria,vienna-amber,2,CORE,BRIDGE|BODY,may be heavy with a rich consomme,Goat Session 5 cooked; same goat portion as PF-05; surrogate Vienna,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+PF-07,chicken-65-totopos,pilsner,2,OPTIONAL,CONTRAST|BODY (lager vs Pilsner on the same food),bitterness plus chile heat,Same as PF-01; doubles as a Pilsner vs Mexican Lager role check,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+PF-08,butter-chicken-quesadilla,hefeweizen,2,OPTIONAL,CONTRAST|ECHO,yeast spice against garam masala,Same as PF-04; tests the heuristic's unconstrained top against the assigned pick,PAIRING HYPOTHESIS - NOT SENSORY TESTED

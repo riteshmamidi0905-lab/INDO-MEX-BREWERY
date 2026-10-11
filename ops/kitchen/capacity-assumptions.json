@@ -1,0 +1,22 @@
+{
+ "status": "CAPACITY PLANNING EXERCISE: every number below is an ASSUMPTION with a low/base/high range, NOT data, NOT a forecast and NOT observed in any kitchen. Its only purpose is to show which station is the bottleneck under plausible ranges and what real ticket-time data to measure first.",
+ "units": "slot-minutes per plate (one 'slot' is one parallel working position on a station for one minute); a plate = the dish as served (2 tacos, or 1 quesadilla, or 1 chicken-65 board)",
+ "stations": {
+  "fryer": {"slots": [1, 2, 3], "note": "baskets/fry positions available at once"},
+  "comal": {"slots": [8, 12, 16], "note": "taco-tortilla-sized positions on a dry comal/plancha"},
+  "char_tandoor": {"slots": [2, 4, 6], "note": "charbroiler/tandoor positions for paneer (or a substitute)"},
+  "pass": {"slots": [1, 2, 2], "note": "plating positions at the pass"},
+  "cooks": {"slots": [2, 3, 4], "note": "hands-on cook positions for finishing; labour as a capacity"}
+ },
+ "dishes": {
+  "chicken-65-totopos": {"fryer": [0.8, 1.2, 1.8], "comal": [0, 0, 0], "char_tandoor": [0, 0, 0], "pass": [0.4, 0.6, 1.0], "cooks": [0.8, 1.2, 2.0]},
+  "paneer-tikka-taco": {"fryer": [0, 0, 0], "comal": [0.8, 1.4, 2.0], "char_tandoor": [0.6, 1.0, 1.6], "pass": [0.4, 0.6, 1.0], "cooks": [0.8, 1.3, 2.0]},
+  "goat-birria": {"fryer": [0, 0, 0], "comal": [4.0, 6.0, 8.0], "char_tandoor": [0, 0, 0], "pass": [0.6, 0.9, 1.4], "cooks": [1.0, 1.6, 2.5]},
+  "gobi-taco": {"fryer": [0.0, 1.0, 1.6], "comal": [0.8, 1.4, 2.0], "char_tandoor": [0, 0, 0], "pass": [0.4, 0.6, 1.0], "cooks": [0.8, 1.2, 2.0], "note": "fryer demand applies to the batter-fried arm; low=0 is the roast arm"},
+  "butter-chicken-quesadilla": {"fryer": [0, 0, 0], "comal": [12.0, 18.0, 24.0], "char_tandoor": [0, 0, 0], "pass": [0.5, 0.8, 1.2], "cooks": [1.0, 1.6, 2.5]}
+ },
+ "mixes": {"equal": {"chicken-65-totopos": 1, "paneer-tikka-taco": 1, "goat-birria": 1, "gobi-taco": 1, "butter-chicken-quesadilla": 1},
+           "comal_heavy": {"chicken-65-totopos": 1, "paneer-tikka-taco": 1, "goat-birria": 3, "gobi-taco": 1, "butter-chicken-quesadilla": 3},
+           "fry_heavy": {"chicken-65-totopos": 4, "paneer-tikka-taco": 1, "goat-birria": 1, "gobi-taco": 2, "butter-chicken-quesadilla": 1}},
+ "scenarios_simultaneous_orders": [10, 20, 30]
+}

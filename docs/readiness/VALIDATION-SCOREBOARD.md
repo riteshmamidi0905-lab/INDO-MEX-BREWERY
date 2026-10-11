@@ -59,3 +59,5 @@
 Scores change only when a file in `evidence_ref` shows new evidence; each change is logged in the commit message and `DECISIONS.md` if material. Raising a score by rewriting prose is not allowed.
 
 **Sprint 15 and 16 (no change):** design stays 43/95 and evidence 4/95. The Core 5 matrices, pairing hypotheses, glass family, pilot briefs and cost/allergen structures keep Food and Beer at design 3 (detailed working version): rubric level 4 needs review by someone qualified (a chef, brewer, glass vendor or advisor), which AI agent reviews are not. The Yelp sample and 5 + 3 literature abstracts are secondary (evidence level 1 for Market already). No physical, customer or professional input exists.
+
+**Sprint 17 (no change):** design stays 43/95 and evidence 4/95. Sessions 2-5 protocols, brewer handoff, Glass V2, pairing v2 and the capacity exercise are planning artifacts; no cook, brew, tasting or qualified review occurred.

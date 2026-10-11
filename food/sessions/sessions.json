@@ -1,0 +1,851 @@
+{
+ "_meta": {
+  "status": "FROZEN at D-76 before any physical tasting of Sessions 2-5. The founder may amend a session's gates only BEFORE that session's first tasting, as a new decision; never after tasting.",
+  "scale": "1-5 panel mean per gate; 'photo_ids' and 'panel_n' required with every score; a small directional R&D panel (n<8) reports raw values.",
+  "thresholds_label": "NASHA R&D THRESHOLDS: NOT INDUSTRY STANDARDS. 1-5 scale. A construction passes an iteration only if EVERY gate is met at its stated time and no failure gate fires; two passing iterations before any winner; NONE WINS is valid.",
+  "d54": "No beef, no pork, no hidden derivatives (lard in tortillas, stocks/bouillon/gelatin, animal rennet from a bovine source, Worcestershire, processing aids). No halal claim.",
+  "mustard_oil": "EXCLUDED from all baselines (ledger V-72: FDA Import Alert 26-04 treats expressed mustard oil as an unsafe food additive; labelling it 'external use only' does not change that). Use a neutral oil. Flag for regulatory review; never improvise a legal conclusion.",
+  "panel": "Minimum 4 tasters, at least 3 of whom did not cook; same tasting order for everyone, plain unsalted tortilla/cracker and room-temperature water between samples; blind codes from `python3 tools/t1_randomize.py <run>` plated by a second person (not double-blind). n<8: raw values only.",
+  "verify_all_labels": "Read every jar, can, paste and packet label for animal ingredients (D-54) before cooking.",
+  "gate_scope": "The frozen hash covers constructions, test variable, gates, failure gates and times. Shopping, quantities, day plans and safety lines may be corrected before tasting without changing the gates."
+ },
+ "sessions": {
+  "paneer-tikka-taco": {
+   "session": 2,
+   "dish": "Paneer Tikka Taco",
+   "state": "FROZEN PROTOCOL, NOT PERFORMED",
+   "question": "Can recognizable paneer tikka and a credible Mexican taco become one coherent NASHA dish without either side disappearing, and which AVAILABLE heat source preserves the tikka identity well enough for early testing?",
+   "constructions": {
+    "A": "Charbroiler / high-heat grill",
+    "B": "Comal or plancha (flat, dry-seared)",
+    "C": "Tandoor (ONLY if a real appropriate tandoor is available; otherwise skip, do not simulate)"
+   },
+   "controls": [
+    "Control: unmarinated paneer charred on the A heat source (shows what the marinade adds)"
+   ],
+   "controlled": [
+    "same paneer block and cut",
+    "same marinade batch and time",
+    "same corn tortilla batch, warmed the same way",
+    "same salsa, onion, cilantro, lime",
+    "same plate; 2 small tacos per plate"
+   ],
+   "test_variable": "heat source (A vs B, C if available). A substitute is NOT the same as a tandoor; record the limitation.",
+   "hypothesis": "ANALYSIS, not evidence: very high direct heat for a short time gives char without drying the paneer; the marinade must be thick (hung curd) to cling; the tortilla and fresh salsa carry the Mexican identity; the dish is a taco if it is small, folded and eaten by hand, not a wrap.",
+   "gates": {
+    "paneer_tikka_identity": {
+     "min": 4.0,
+     "at": 0
+    },
+    "taco_identity": {
+     "min": 4.0,
+     "at": 0
+    },
+    "nasha_coherence": {
+     "min": 4.0,
+     "at": 0
+    },
+    "moisture": {
+     "min": 3.5,
+     "at": 5
+    },
+    "char": {
+     "min": 3.5,
+     "at": 0
+    },
+    "tortilla_integrity": {
+     "min": 3.5,
+     "at": 10
+    },
+    "structural_integrity": {
+     "min": 3.5,
+     "at": 10
+    },
+    "another_bite": {
+     "min": 4.0,
+     "at": 0
+    },
+    "service_practicality": {
+     "min": 3.5,
+     "at": 0
+    }
+   },
+   "gate_notes": {
+    "moisture": "paneer neither weeping nor dry (also judge WEEPING here at T+5)",
+    "char": "visible char without bitterness",
+    "service_practicality": "can be finished to order at a plausible service pace (cook records minutes per plate)"
+   },
+   "failure_gates": {
+    "NOT_TIKKA": "reads as grilled cheese or generic cheese taco",
+    "NOT_TACO": "reads as a wrap or naan roll",
+    "RUBBERY": "paneer is chewy or rubbery",
+    "NO_CHAR": "no real char",
+    "WEEPING": "marinade or whey pools; coating slides off",
+    "TORTILLA_TEAR": "tortilla tears or goes soggy by T+10",
+    "SALSA_DOMINATES": "salsa erases the tikka",
+    "IMPRACTICAL": "cannot be finished to order at service pace",
+    "D54": "any beef/pork derivative incl. bovine rennet in a cheese or lard in tortillas",
+    "UNSAFE": "food-safety temperature or handling failure"
+   },
+   "times": [
+    0,
+    5,
+    10
+   ],
+   "baseline": {
+    "label": "T2 BASELINE MARINADE: R&D HYPOTHESIS, NOT FINAL NASHA RECIPE (proportions are ordinary home-recipe patterns; no source gives restaurant weights)",
+    "marinate": "2 h refrigerated (30 min to 4 h is the commonly observed range; never past 8 h)",
+    "paneer": "block cut into about 2 cm cubes, cold, patted dry; about 6 cubes (about 55 g, WEIGH them) per taco as a TEST START; marinate 600 g, keep 240 g plain (salted 2 g) for the control plates",
+    "tortilla": "fresh nixtamal corn, 12-15 cm, lard-free, warmed on a dry comal",
+    "salsa": "salsa verde (tomatillo, serrano, cilantro, lime, salt) 15 g per taco; raw white onion 8 g; cilantro 2 g; lime wedge",
+    "per_600g_paneer": {
+     "hung curd (from 500 g yogurt hung 2 h)": "150 g",
+     "ginger-garlic paste": "18 g",
+     "red chilli powder (Kashmiri type)": "4.5 g",
+     "turmeric": "1.2 g",
+     "kasuri methi (crushed)": "1.8 g",
+     "chaat masala": "3 g",
+     "salt": "6 g",
+     "lemon juice": "9 ml",
+     "neutral oil": "12 ml",
+     "mustard oil": "NONE (excluded, V-72)",
+     "besan": "NONE in baseline (a later variable)"
+    }
+   },
+   "variables": [
+    {
+     "v": "paneer source",
+     "class": "NASHA R&D CHOICE",
+     "note": "buy ONE block type for the test and record brand/label; in-house vs bought is a later variable (coagulation temperature changes firmness: L-008, Hussain 2024)"
+    },
+    {
+     "v": "cube size about 2 cm",
+     "class": "COMMONLY OBSERVED",
+     "note": "home blogs differ (1.5-5 cm); uneven pieces cook unevenly"
+    },
+    {
+     "v": "hung curd marinade",
+     "class": "SOURCE-SUPPORTED (T1 blogs)",
+     "note": "undrained curd makes the marinade runny; thick clings"
+    },
+    {
+     "v": "marinate 1-4 h, not past 8 h",
+     "class": "COMMONLY OBSERVED",
+     "note": "texture softens and marinade waters after long salt exposure"
+    },
+    {
+     "v": "rubbery paneer = overcooking and moisture loss",
+     "class": "COMMONLY OBSERVED",
+     "note": "pull when edges are charred and the centre is still soft"
+    },
+    {
+     "v": "mustard oil",
+     "class": "UNVERIFIED / EXCLUDED",
+     "note": "FDA Import Alert 26-04 (V-72); regulatory review"
+    },
+    {
+     "v": "besan in marinade",
+     "class": "NASHA R&D CHOICE",
+     "note": "not in baseline; later single-variable test"
+    },
+    {
+     "v": "pineapple",
+     "class": "UNCERTAIN / ADVISOR",
+     "note": "al pastor echo; excluded from the baseline; never called al pastor"
+    },
+    {
+     "v": "tandoor throughput and hood needs",
+     "class": "UNVERIFIED",
+     "note": "Austin hood/fire rules not found (V-66)"
+    }
+   ],
+   "measurements": [
+    "raw paneer weight and cooked weight per plate (g)",
+    "marinade weight clinging (g, paneer before/after marinating)",
+    "seconds on heat per batch and surface temperature if measurable",
+    "char area from top-down photo (visual estimate)",
+    "minutes per plate (active)",
+    "paneer core temperature (record; paneer is a held dairy item)"
+   ],
+   "photos": [
+    "paneer block label",
+    "raw cubes weighed",
+    "marinated cubes",
+    "cooked cubes alone (45 degrees)",
+    "plated taco hero 45 degrees",
+    "top-down",
+    "cross-section (cut one taco)",
+    "T+5",
+    "T+10",
+    "failure photos",
+    "control"
+   ],
+   "equipment_required": [
+    "heat source A (charbroiler or very hot grill pan/grill) preheated 10 min",
+    "comal or plancha or heavy cast iron (B) preheated 10 min",
+    "infrared thermometer for surface temperature (record it for A and B)",
+    "instant-read probe thermometer",
+    "1 g scale",
+    "timers x2",
+    "same plates x7",
+    "second person for plating/codes"
+   ],
+   "shopping": {
+    "REQUIRED": [
+     "paneer block 1.0 kg (one brand, one lot)",
+     "plain yogurt 500 g to hang (or Greek-style strained yogurt 350 g)",
+     "fresh nixtamal corn tortillas 24, 12-15 cm, label shows no lard",
+     "tomatillos 300 g, serrano 3, cilantro 1 bunch, white onion 2, limes 4, lemon 1",
+     "ginger-garlic paste 30 g, Kashmiri-type chilli powder 8 g, turmeric 3 g, kasuri methi 4 g, chaat masala 6 g, fine salt 30 g (marinade, control and salsa)",
+     "neutral cooking oil 100 ml"
+    ],
+    "SUBSTITUTE ALLOWED FOR SCREENING": [
+     "jarred salsa verde (record label)",
+     "Greek yogurt instead of hanging curd (record fat %)",
+     "frozen paneer (record; texture differs)"
+    ],
+    "SUBSTITUTE NOT ACCEPTABLE": [
+     "mustard oil (excluded, V-72)",
+     "tortillas with lard or unreadable label (D-54)",
+     "flour tortillas (that is a different dish)",
+     "pre-seasoned 'tikka masala' paste in place of the marinade (not the test)"
+    ],
+    "SOURCE TO VERIFY": [
+     "paneer label: milk and acid only (no animal rennet; D-54)",
+     "tortilla ingredient list",
+     "whether the paneer is cow or buffalo milk (record)"
+    ]
+   },
+   "quantity_audit": "2 constructions (A, B) x 2 iterations = 4 marinated plates + 1 spare = 5 x 120 g = 600 g marinated; 2 control plates (A heat source only, NOT compared with arms A/B) = 240 g plain. Total 7 plates; buy 1.0 kg. Tortillas 2 per plate x 7 = 14 + 6 trial = 24 (fresh nixtamal tortillas are often sold in 10-12 cm packs: record the diameter you get). ASSUMPTIONS: weigh real yields.",
+   "after_cook": "python3 tools/session_record.py add ... (see food/sessions/README.md) then python3 tools/session_record.py report",
+   "day_plan": [
+    "T-4 h: put yogurt in a cloth/sieve over a bowl in the fridge to hang (weigh result; about 250 g)",
+    "T-2 h: weigh paneer, cut cubes; marinate 600 g in a covered bowl at 5 C or below; keep 240 g plain, salted",
+    "T-1 h: make salsa verde, chop onion and cilantro, set plates and photo corner, run `python3 tools/t1_randomize.py <run>`",
+    "T-10 min: preheat heat sources A and B; warm tortillas on a dry comal only when plating",
+    "Cook identical small batches per arm; pull at 60 C core (record seconds on heat); plate within 3 min of each other",
+    "Score immediately (T+0), again at T+5 (moisture/WEEPING) and T+10 (tortilla, structure); photos at each time",
+    "Within the 10-minute window hold cooked cubes at 60 C or above, then discard"
+   ],
+   "safety": [
+    "Marinate at 5 C or below; discard marinated or cooked paneer left out of temperature control 2 h or more.",
+    "Paneer is ready-to-eat dairy: cross-contact and clean hands/boards are the real risk.",
+    "Record core temperature of every batch; UNSAFE = record and do not taste.",
+    "Rule: WEEPING is judged at T+5 together with the moisture gate."
+   ],
+   "panel": "Minimum 4 tasters, at least 3 of whom did not cook; same tasting order for everyone, plain unsalted tortilla/cracker and room-temperature water between samples; blind codes from `python3 tools/t1_randomize.py <run>` plated by a second person (not double-blind). n<8: raw values only.",
+   "verify_labels": "Read every jar, can, paste and packet label for animal ingredients (D-54) before cooking."
+  },
+  "gobi-taco": {
+   "session": 3,
+   "dish": "Gobi Taco",
+   "state": "FROZEN PROTOCOL, NOT PERFORMED",
+   "question": "Which cauliflower treatment delivers unmistakable cauliflower structure, strong Indian identity and good taco performance after holding?",
+   "constructions": {
+    "A": "Roast-first (blanch, steam-dry, thin yogurt-besan film, hot roast, glaze to order)",
+    "B": "Batter-fried (thin rice-flour/cornflour batter, fry, glaze to order)"
+   },
+   "controls": [],
+   "controlled": [
+    "same cauliflower lot and floret size (walnut-sized, stem attached)",
+    "same blanch time",
+    "SAME yogurt-besan-spice MARINADE on both arms (arm B adds a thin batter over it just before frying; that and frying vs roasting are the only differences)",
+    "same glaze batch and weight per taco",
+    "same lime-cabbage slaw, pickled onion, salsa, cilantro",
+    "same corn tortilla batch",
+    "same plate; 2 small tacos per plate"
+   ],
+   "test_variable": "cooking treatment (roast-first vs batter-fried). No third arm unless a gate failure justifies one.",
+   "hypothesis": "ANALYSIS, not evidence: roast-first keeps visible floret structure and avoids a fried-chicken look; batter-fry gives a stronger gobi-65 read and crunch but risks nugget look and fast softening under glaze. Fryer pressure is a real operational difference but culinary quality ranks first.",
+   "gates": {
+    "cauliflower_recognition": {
+     "min": 4.0,
+     "at": 0
+    },
+    "indian_identity": {
+     "min": 4.0,
+     "at": 0
+    },
+    "taco_identity": {
+     "min": 4.0,
+     "at": 0
+    },
+    "nasha_coherence": {
+     "min": 4.0,
+     "at": 0
+    },
+    "browning": {
+     "min": 3.5,
+     "at": 0
+    },
+    "crispness": {
+     "min": 3.5,
+     "at": 10
+    },
+    "interior_tenderness": {
+     "min": 3.5,
+     "at": 0
+    },
+    "glaze_adhesion": {
+     "min": 3.5,
+     "at": 5
+    },
+    "tortilla_integrity": {
+     "min": 3.5,
+     "at": 10
+    },
+    "another_bite": {
+     "min": 4.0,
+     "at": 0
+    }
+   },
+   "gate_notes": {
+    "cauliflower_recognition": "VISUAL GATE: the food must visibly read as cauliflower (florets, cream stems, dark tips), not chicken, popcorn chicken or anonymous nuggets",
+    "crispness": "surface crunch at T+10"
+   },
+   "failure_gates": {
+    "NOT_CAULIFLOWER": "reads as chicken/nuggets (visual failure)",
+    "SOGGY": "crisp surface lost by T+5",
+    "RAW_CENTER": "hard or raw centre",
+    "MUSHY": "interior collapses",
+    "BURNT": "bitter burnt edges",
+    "GLAZE_SLIDES": "glaze pools or slides off",
+    "TORTILLA_TEAR": "tortilla tears or soggy by T+10",
+    "IMPRACTICAL": "cannot be finished to order at service pace",
+    "D54": "any beef/pork derivative (lard in tortillas, gelatin in glaze)",
+    "UNSAFE": "food-safety failure"
+   },
+   "times": [
+    0,
+    5,
+    10,
+    15
+   ],
+   "baseline": {
+    "label": "T3 BASELINE: R&D HYPOTHESIS, NOT FINAL NASHA RECIPE (no source gives restaurant weights; tamarind-guajillo pairing is a house composition)",
+    "arm_B_batter": "over the marinated florets: rice flour 20 g + cornflour 20 g per 400 g batch, water to a thin coat, just before frying at about 175 C",
+    "glaze_per_8_tacos": "tamarind paste 40 g, soaked guajillo 15 g (blended), sugar or jaggery 10 g, water 40 ml, reduced to coat a spoon (ASSUMPTION; weigh glaze applied per taco)",
+    "slaw": "green cabbage 60 g, lime juice, salt per plate; pickled onion 10 g; cilantro 2 g",
+    "cook": "blanch about 3 min; roast about 200 C to dark tips (A); fry about 175 C (B)",
+    "tortilla": "corn, 12-15 cm, lard-free",
+    "per_taco": "3-4 florets (about 60-80 g)",
+    "per_1600g_florets_both_arms": {
+     "yogurt": "240 g",
+     "besan": "48 g",
+     "red chilli powder": "10 g",
+     "turmeric": "2.4 g",
+     "chaat masala": "8 g",
+     "salt": "16 g",
+     "lemon juice": "24 ml"
+    },
+    "batch": "ONE batch = 400 g raw florets per arm per iteration (about 280 g cooked = 4 tacos of about 70 g: 2 plates, one scored at T+0/T+5, one held for T+10/T+15)"
+   },
+   "variables": [
+    {
+     "v": "blanch then steam-dry",
+     "class": "COMMONLY OBSERVED",
+     "note": "dry surface needed for marinade stick and browning (T1 recipe pages)"
+    },
+    {
+     "v": "roast about 200 C, no crowding",
+     "class": "COMMONLY OBSERVED",
+     "note": "qualitative only; source authority low"
+    },
+    {
+     "v": "batter pattern (cornflour + rice flour), 175-180 C",
+     "class": "COMMONLY OBSERVED",
+     "note": "gobi 65 recipes"
+    },
+    {
+     "v": "Gobi Manchurian",
+     "class": "SOURCE-SUPPORTED (Indo-Chinese, origin disputed)",
+     "note": "not the reference; name only if used"
+    },
+    {
+     "v": "tamarind-guajillo glaze",
+     "class": "NASHA R&D CHOICE",
+     "note": "no source; tested for adhesion and tortilla effect"
+    },
+    {
+     "v": "holding data for fried/glazed cauliflower",
+     "class": "UNVERIFIED",
+     "note": "not found; measured here"
+    }
+   ],
+   "measurements": [
+    "floret weight before/after blanch and after cooking (%)",
+    "glaze grams applied per taco",
+    "% of floret surface dark (visual from top-down photo)",
+    "crunch score at 0/5/10/15 min",
+    "minutes of tortilla softening/tear time",
+    "minutes per plate (active); oil temperature for B"
+   ],
+   "photos": [
+    "raw florets weighed",
+    "after blanch",
+    "cooked florets alone (45 degrees)",
+    "plated taco hero",
+    "top-down",
+    "cross-section of a floret",
+    "T+5, T+10, T+15",
+    "failure photos"
+   ],
+   "equipment_required": [
+    "oven (A) and fryer or deep pot with thermometer (B)",
+    "comal",
+    "thermometer",
+    "1 g scale",
+    "timers x2",
+    "same plates x4",
+    "second person"
+   ],
+   "shopping": {
+    "REQUIRED": [
+     "cauliflower: 3 firm heads, same store/lot",
+     "plain yogurt 300 g, besan 60 g, rice flour 50 g, cornflour 50 g",
+     "tamarind paste 60 g, dried guajillo 30 g, sugar/jaggery 20 g",
+     "green cabbage 250 g, limes 5, red onion 1, cilantro 1 bunch, salsa verde 100 g",
+     "corn tortillas 22, 12-15 cm, no lard on the label",
+     "chilli powder 12 g, turmeric 3 g, chaat masala 10 g, salt 30 g, lemon 1",
+     "neutral oil 2.5 L (arm B)"
+    ],
+    "SUBSTITUTE ALLOWED FOR SCREENING": [
+     "tamarind concentrate instead of paste (record)",
+     "jarred salsa verde",
+     "ancho in place of guajillo if guajillo is unavailable (record: changes the glaze)"
+    ],
+    "SUBSTITUTE NOT ACCEPTABLE": [
+     "frozen cauliflower rice or pre-battered products",
+     "tortillas with lard (D-54)",
+     "gelatin or beef/pork-containing sauces"
+    ],
+    "SOURCE TO VERIFY": [
+     "tortilla label",
+     "tamarind paste ingredient list (no animal products)",
+     "cauliflower head/floret condition (record)"
+    ]
+   },
+   "quantity_audit": "2 arms x 2 iterations = 4 batches x 400 g = 1.6 kg trimmed florets = buy 3 heads (about 2.4 kg whole). Tortillas: 4 per batch x 4 = 16 + 6 spare = 22. Oil: 2.5 L in a 4-5 L heavy pot for arm B (only 2 fry batches), plus a thermometer. ASSUMPTIONS: weigh real yields.",
+   "after_cook": "python3 tools/session_record.py add ... then report",
+   "day_plan": [
+    "Soak guajillo in hot water 20 min, blend with tamarind, sugar, water; reduce the glaze (weigh); make slaw, pickled onion, salsa",
+    "Blanch florets about 3 min, steam-dry on a rack until the surface is dry; weigh",
+    "Marinate all florets with the same marinade 30-60 min at 5 C or below",
+    "Arm A: roast about 200 C on an uncrowded tray; Arm B: batter just before frying at about 175 C in small batches (thermometer in the oil; lid nearby)",
+    "Glaze to order (weigh grams per taco); plate within 3 min; score at T+0, T+5 (glaze_adhesion), T+10 (crispness, tortilla), record crunch at T+15",
+    "Cool the oil completely before disposing of it (not down the drain)"
+   ],
+   "safety": [
+    "Hot oil: heavy pot, thermometer, lid or fire blanket nearby, never leave unattended, pot no more than half full.",
+    "Marinated florets at 5 C or below until cooking.",
+    "Score cauliflower_recognition from the top-down and 45-degree photos BEFORE tasting; the failure NOT_CAULIFLOWER is judged from the same photos.",
+    "SOGGY: record panel crunch at T+5 as the evidence (thresholds unchanged)."
+   ],
+   "panel": "Minimum 4 tasters, at least 3 of whom did not cook; same tasting order for everyone, plain unsalted tortilla/cracker and room-temperature water between samples; blind codes from `python3 tools/t1_randomize.py <run>` plated by a second person (not double-blind). n<8: raw values only.",
+   "verify_labels": "Read every jar, can, paste and packet label for animal ingredients (D-54) before cooking."
+  },
+  "butter-chicken-quesadilla": {
+   "session": 4,
+   "dish": "Butter Chicken & Roasted Poblano Quesadilla",
+   "state": "FROZEN PROTOCOL, NOT PERFORMED",
+   "question": "Can butter chicken stay recognizable while the quesadilla stays crisp enough to function as a quesadilla? (Central problem: moisture.)",
+   "constructions": {
+    "A": "Thick-reduced makhani (coats a spoon and holds a drawn line), cheese against both tortilla faces as barrier",
+    "B": "Moderately reduced makhani (pourable-thick), same cheese barrier"
+   },
+   "controls": [],
+   "controlled": [
+    "same chicken (tandoori-style charred thigh, about 1 cm dice) and same marinade",
+    "same cheese and weight",
+    "same roasted poblano (drained, patted dry) and weight",
+    "same flour tortilla batch (25 cm); corn as a LATER comparison",
+    "same comal temperature and griddle time",
+    "dip served separately only as a later iteration (not in the first test)"
+   ],
+   "test_variable": "sauce thickness at assembly (A vs B). Cheese barrier is a stated hypothesis kept constant in this session; chicken size and dip are later single-variable tests.",
+   "hypothesis": "ANALYSIS, not evidence: a clingy reduced sauce on small charred chicken, chilled before assembly, with cheese against both tortilla faces, limits leak and sog; poblano smoke/acid is the counterweight to richness. Cheese is dairy and rennet source must be recorded.",
+   "gates": {
+    "butter_chicken_identity": {
+     "min": 4.0,
+     "at": 0
+    },
+    "quesadilla_identity": {
+     "min": 4.0,
+     "at": 0
+    },
+    "nasha_coherence": {
+     "min": 4.0,
+     "at": 0
+    },
+    "tortilla_crispness": {
+     "min": 3.5,
+     "at": 10
+    },
+    "leak_control": {
+     "min": 3.5,
+     "at": 10
+    },
+    "filling_integrity": {
+     "min": 3.5,
+     "at": 5
+    },
+    "poblano_presence": {
+     "min": 3.5,
+     "at": 0
+    },
+    "another_bite": {
+     "min": 4.0,
+     "at": 0
+    },
+    "service_practicality": {
+     "min": 3.5,
+     "at": 0
+    }
+   },
+   "gate_notes": {
+    "leak_control": "5 = no leakage; use the recorded blot weight (g) and the photo",
+    "filling_integrity": "cross-section holds a clear layer of chicken, sauce, cheese, poblano"
+   },
+   "failure_gates": {
+    "SOGGY": "tortilla soft/wet at T+10",
+    "LEAKS": "sauce escapes at cut or by T+10",
+    "NOT_BUTTER_CHICKEN": "gravy/chicken unrecognizable (reads as plain cheese quesadilla)",
+    "NOT_QUESADILLA": "reads as a wrap or sandwich",
+    "NO_POBLANO": "poblano flavour absent",
+    "TOO_RICH_SWEET": "cloying, heavy",
+    "IMPRACTICAL": "cannot be made quickly at volume on the comal",
+    "D54": "lard in tortilla or bovine rennet in the cheese",
+    "UNSAFE": "chicken or hold temperature failure"
+   },
+   "times": [
+    0,
+    5,
+    10
+   ],
+   "baseline": {
+    "label": "T4 BASELINE: R&D HYPOTHESIS, NOT FINAL NASHA RECIPE (murgh makhani origin is contested; proportions are ordinary recipe patterns)",
+    "chicken": "thigh, yogurt-spice marinade (ginger-garlic, kasuri methi, chilli, salt), charred hot (grill/broiler/comal), cut about 1 cm dice",
+    "sauce": "ONE batch: tomato base, butter, cream, kasuri methi, garam masala; cook a shared base, weigh it, SPLIT into two pots, reduce A to 55-60% of the weighed raw weight and B to about 75%; add salt AFTER reduction; record weights and minutes (A and B then differ mainly in thickness, not in seasoning load)",
+    "cashew": "NOT used (default nut-free)",
+    "per_quesadilla": "cheese 45 g (against both faces), chicken-sauce filling 60 g (chicken about 35 g), roasted poblano rajas 25 g drained, 25 cm flour tortilla folded",
+    "cook": "dry comal, medium heat, light press, rest 1-2 min, cut into 3 wedges",
+    "chill": "filling chilled fully before assembly",
+    "chicken_marinade": "yogurt-spice marinade 2 h at 5 C or below; separate board and hand-wash for raw chicken; cook to 74 C core; char hot",
+    "poblano": "roast over flame/broiler until blistered (about 30 min total with steaming), steam in a covered bowl 10 min, peel, strip, drain and pat dry",
+    "cheese": "record form (shredded vs torn) and rennet type; 45 g per quesadilla against both tortilla faces"
+   },
+   "variables": [
+    {
+     "v": "sauce reduction",
+     "class": "NASHA R&D CHOICE",
+     "note": "the test variable"
+    },
+    {
+     "v": "cheese as barrier",
+     "class": "NASHA R&D CHOICE (hypothesis)",
+     "note": "constant here; may overwhelm butter chicken (a risk to watch)"
+    },
+    {
+     "v": "Oaxaca-style cheese melts and stretches",
+     "class": "COMMONLY OBSERVED",
+     "note": "record rennet source (D-54: bovine rennet)"
+    },
+    {
+     "v": "low heat so cheese melts before tortilla browns",
+     "class": "COMMONLY OBSERVED",
+     "note": "comal technique pages (T1)"
+    },
+    {
+     "v": "poblano roasted then steamed to loosen skin",
+     "class": "COMMONLY OBSERVED",
+     "note": "rajas pages (T1)"
+    },
+    {
+     "v": "murgh makhani origin",
+     "class": "CONTESTED (court case Moti Mahal vs Daryaganj)",
+     "note": "never pick one"
+    },
+    {
+     "v": "dip or no dip",
+     "class": "NASHA R&D CHOICE",
+     "note": "later iteration; the 'raita-crema' vs 'butter-chicken dip' disagreement stays open"
+    }
+   ],
+   "measurements": [
+    "sauce weight before/after reduction (%)",
+    "filling, cheese and rajas weights per quesadilla",
+    "comal temperature and minutes per side",
+    "leak weight (g of sauce on plate at T+10, paper-towel blot method)",
+    "minutes per quesadilla (active)",
+    "chicken and filling temperature"
+   ],
+   "photos": [
+    "cheese label (rennet)",
+    "sauce at reduction end (spoon-coat)",
+    "assembled before cook",
+    "cooked whole 45 degrees",
+    "cross-section of a wedge",
+    "top-down",
+    "T+5, T+10",
+    "leak on plate",
+    "failures"
+   ],
+   "equipment_required": [
+    "comal or flat-top",
+    "grill or broiler for the chicken",
+    "saucepan",
+    "thermometer",
+    "1 g scale",
+    "timers x2",
+    "spatula for light pressing",
+    "same plates x4",
+    "second person"
+   ],
+   "shopping": {
+    "REQUIRED": [
+     "chicken thigh boneless skinless 500 g",
+     "plain yogurt 100 g, ginger-garlic paste 20 g, kasuri methi 6 g, chilli powder 6 g, garam masala 4 g, salt",
+     "tomato passata or ripe tomatoes 700 g, unsalted butter 80 g, cream 150 ml",
+     "poblano chiles 4 large (about 400 g), white onion 1",
+     "Oaxaca-style cheese 300 g (label shows rennet type)",
+     "flour tortillas 25 cm x 8, label shows no lard"
+    ],
+    "SUBSTITUTE ALLOWED FOR SCREENING": [
+     "low-moisture mozzarella or Chihuahua-style cheese (record)",
+     "tomato passata instead of fresh",
+     "grill pan instead of tandoor for the chicken"
+    ],
+    "SUBSTITUTE NOT ACCEPTABLE": [
+     "jarred butter chicken sauce (not the test)",
+     "cheese with animal-origin rennet of unknown source (D-54 flag)",
+     "tortillas with lard",
+     "cashew paste in the baseline"
+    ],
+    "SOURCE TO VERIFY": [
+     "cheese rennet type",
+     "tortilla ingredient list",
+     "butter/cream labels"
+    ]
+   },
+   "quantity_audit": "One sauce batch from 700 g passata/tomato, 80 g butter, 150 ml cream split into two pots (record weight per arm). 4 scored quesadillas + 2 spare = 6: cheese 270 g, filling 360 g (chicken about 220 g raw), rajas 150 g, tortillas 8. ASSUMPTIONS: weigh real yields.",
+   "after_cook": "python3 tools/session_record.py add ... then report",
+   "day_plan": [
+    "T-3 h: marinate chicken (yogurt-spice) at 5 C or below",
+    "T-2.5 h: char chicken to 74 C core, cool, dice about 1 cm; roast/steam/peel poblanos (30 min), drain and pat dry",
+    "T-2 h: cook the shared sauce base, weigh, split, reduce A and B to their weight targets; salt after; fold in chicken",
+    "Chill filling in SHALLOW trays to 5 C or below within 2 h; do not assemble warm",
+    "T-20 min: preheat dry comal medium; assemble (cheese against both faces, filling centre, rajas against cheese)",
+    "Griddle, light press, rest 1-2 min; the centre must reach 74 C (probe); cut 3 wedges; plate within 3 min; score at T+0, T+5 (filling integrity), T+10 (crispness, leak); blot leak at T+10 and weigh"
+   ],
+   "safety": [
+    "Raw chicken: separate board, hand-wash, 74 C core; filling chilled to 5 C or below within 2 h; assembled quesadilla reheated on the comal to 74 C in the centre before scoring; UNSAFE = record and do not taste.",
+    "Rennet of the cheese: read the label (bovine rennet = D-54 flag).",
+    "leak_control: the recorded leak weight (g, blot method) is the objective evidence the panel uses with the photo."
+   ],
+   "panel": "Minimum 4 tasters, at least 3 of whom did not cook; same tasting order for everyone, plain unsalted tortilla/cracker and room-temperature water between samples; blind codes from `python3 tools/t1_randomize.py <run>` plated by a second person (not double-blind). n<8: raw values only.",
+   "verify_labels": "Read every jar, can, paste and packet label for animal ingredients (D-54) before cooking."
+  },
+  "goat-birria": {
+   "session": 5,
+   "dish": "Goat Birria, Sealed-Pot Braise",
+   "state": "FROZEN PROTOCOL, NOT PERFORMED (start sourcing now: long lead)",
+   "question": "Does a NASHA adaptation (Indian technique layer) make Jalisco-style goat birria better than the plain Mexican adobo control while keeping the Mexican reference legible and the goat identity clear?",
+   "constructions": {
+    "A": "CONTROL: plain Mexican guajillo-ancho adobo, braised (no Indian layer)",
+    "B": "A + technique layer only: whole spices dry-toasted and the adobo paste bhuna-fried until the oil separates; sealed pot",
+    "C": "A + yogurt-papaya pre-marinade (tenderiser/flavour test); no other change"
+   },
+   "controls": [
+    "The plain adobo (A) is the control: do NOT make it 'more Indian'. B and C must earn their place against A."
+   ],
+   "controlled": [
+    "same goat cut, trim and weight per arm",
+    "ALL arms sealed identically (same lidded pot type; foil or dough seal) and braised at the same oven temperature",
+    "same chile lot, same vinegar",
+    "same stock (unsalted chicken or vegetable; no bouillon) and at least 500 ml braising liquid per pot",
+    "same corn tortillas, onion, cilantro, lime, salsa",
+    "same consomme cup and 30 ml tasting portion",
+    "tasted from blind codes with the control NOT identified to the panel"
+   ],
+   "test_variable": "adaptation layer (A control vs B technique vs C yogurt-papaya). Curry-leaf tadka is NOT in the first round (UNCERTAIN/ADVISOR).",
+   "hypothesis": "ANALYSIS, not evidence: bone-in shoulder braised low and slow gives tender fibrous goat and a drinkable consomme; bhuna-frying the paste may add depth; yogurt-papaya may tenderise but risks a curry-like or lactic note. The Mexican reference (adobo, vinegar, consomme, onion, cilantro, lime) must stay legible; no cheese; no cheese-pull imagery.",
+   "gates": {
+    "birria_identity": {
+     "min": 4.0,
+     "at": 0
+    },
+    "goat_identity": {
+     "min": 4.0,
+     "at": 0
+    },
+    "tenderness": {
+     "min": 3.5,
+     "at": 0
+    },
+    "consomme_quality": {
+     "min": 3.5,
+     "at": 0
+    },
+    "taco_hold": {
+     "min": 3.5,
+     "at": 10
+    },
+    "improves_over_control": {
+     "min": 3.5,
+     "at": 0,
+     "control_exempt": true
+    },
+    "another_bite": {
+     "min": 4.0,
+     "at": 0
+    },
+    "service_practicality": {
+     "min": 3.5,
+     "at": 0
+    }
+   },
+   "gate_notes": {
+    "improves_over_control": "blind codes; B and C only (A, the control, is exempt); 1=worse, 3=same, 5=clearly better than the plain adobo (the control is not identified to the panel)",
+    "goat_identity": "reads as goat, not beef quesabirria or lamb",
+    "service_practicality": "cook judges batch, cooling, reheating and hold feasibility from measured data",
+    "taco_hold": "clock starts when the plate goes down"
+   },
+   "failure_gates": {
+    "TOUGH": "tough or stringy",
+    "GAMY": "gaminess beyond guest comfort",
+    "GREASY_CONSOMME": "fat slick not skimmable",
+    "GENERIC_CURRY": "reads as Indian goat curry in a tortilla",
+    "GENERIC_QUESABIRRIA": "reads as beef-style quesabirria (cheese pull, uniform red shredded meat)",
+    "POOR_YIELD": "cooked yield or trim waste makes the batch impractical (measured, then judged)",
+    "TORTILLA_FAIL": "dipped tortilla falls apart",
+    "D54": "beef/pork in stock or bones, lard in tortillas",
+    "UNSAFE": "cooling/reheating/hold temperature failure (professional review required)"
+   },
+   "times": [
+    0,
+    10
+   ],
+   "baseline": {
+    "label": "T5 BASELINE: R&D HYPOTHESIS, NOT FINAL NASHA RECIPE (no authoritative goat braise temperature found; a chef sets the process; food-safety professional sets cooling/reheating)",
+    "per_arm_goat": "about 600 g bone-in shoulder/leg pieces, seared",
+    "adobo": "dried guajillo and ancho toasted, soaked, blended with garlic, onion, cider vinegar, Mexican oregano, cumin, cinnamon, clove, bay (A)",
+    "arm_B": "A plus ONLY: whole spices dry-toasted then ground, and the adobo paste fried until the oil separates before liquid is added (sealing is identical in all arms)",
+    "arm_C": "A plus ONLY a yogurt-papaya pre-marinade, FIXED at 2 h at 5 C or below, about 50 g plain yogurt and 40 g ripe papaya per 600 g goat (ASSUMPTION: papaya enzyme can over-tenderise, so time and amount are fixed and recorded)",
+    "braise": "covered/sealed, low oven; time and temperature recorded; sampling for tenderness",
+    "stock": "goat/chicken/vegetable only",
+    "service": "goat in 2 small tacos on dipped-and-griddled corn tortillas; 30 ml consomme in a small cup; onion, cilantro, lime, salsa"
+   },
+   "variables": [
+    {
+     "v": "bone-in shoulder/leg, adobo of guajillo/ancho, vinegar, spices, consomme",
+     "class": "SOURCE-SUPPORTED (T1)",
+     "note": "Saveur, Pati Jinich recipe pages (V-65 context)"
+    },
+    {
+     "v": "dipped griddled taco",
+     "class": "COMMONLY OBSERVED / adaptation (Tijuana/LA, typically beef)",
+     "note": "label honestly"
+    },
+    {
+     "v": "goat age/cut standard",
+     "class": "UNVERIFIED",
+     "note": "NOT FOUND; record what the supplier says"
+    },
+    {
+     "v": "braise temperature",
+     "class": "UNVERIFIED",
+     "note": "goat studies (L-010..L-012) are mostly sous-vide; collagen denatures near 55-67 C depending on heating rate; cooking above about 60 C raises cooking loss"
+    },
+    {
+     "v": "bhuna-style paste frying and whole-spice toasting",
+     "class": "NASHA R&D CHOICE",
+     "note": "technique, not an Indian flavour"
+    },
+    {
+     "v": "yogurt-papaya, curry leaf",
+     "class": "UNCERTAIN / ADVISOR",
+     "note": "yogurt-papaya tested as arm C; curry leaf deferred"
+    }
+   ],
+   "measurements": [
+    "goat weight as bought, trimmed, cooked (g and %)",
+    "trim and bone waste (g)",
+    "braise time/temperature log",
+    "fat skimmed (g) and consomme volume (ml)",
+    "tenderness check times (fork/probe)",
+    "cooling log: core temperature at 0, 30, 60, 120 min (a food-safety professional sets the limits)",
+    "reheat and hold log (60 and 120 min) and tortilla dip time"
+   ],
+   "photos": [
+    "goat label/butcher info",
+    "raw cuts weighed",
+    "adobo",
+    "after sear",
+    "end of braise in pot",
+    "consomme before/after skim",
+    "plated 2 tacos 45 degrees",
+    "top-down",
+    "cross-section of meat",
+    "consomme cup",
+    "A vs B vs C side by side",
+    "failures"
+   ],
+   "equipment_required": [
+    "oven and 3 equal heavy lidded pots (or one pot with partitions only if validated)",
+    "thermometer with probe",
+    "1 g scale",
+    "comal/griddle",
+    "fat separator or ladle",
+    "timers",
+    "ice bath/shallow pans for cooling",
+    "same cups and plates",
+    "second person"
+   ],
+   "shopping": {
+    "REQUIRED": [
+     "bone-in goat shoulder or leg, 3.0 kg total (ask the butcher for the cut, age if known and source; ask whether beef/pork are handled on the same board; record)",
+     "dried guajillo 150 g, ancho 100 g",
+     "garlic 2 heads, white onion 4, cider vinegar 250 ml, Mexican oregano, cumin, cinnamon sticks, cloves, bay",
+     "stock: UNSALTED chicken or vegetable stock 2 L (read the label; no bouillon cubes; goat stock is not buyable)",
+     "fresh corn tortillas 28, no lard on the label",
+     "cilantro 2 bunches, limes 5, salsa ingredients",
+     "plain yogurt 100 g and ripe papaya 100 g (arm C)"
+    ],
+    "SUBSTITUTE ALLOWED FOR SCREENING": [
+     "lamb shoulder for a trial braise ONLY as the comparison taco, never as the goat arm",
+     "ancho for guajillo shortage (record)",
+     "boneless goat only if bone-in is unavailable (record; a change)"
+    ],
+    "SUBSTITUTE NOT ACCEPTABLE": [
+     "beef or pork stock, bones, bouillon cubes with unknown animal content (D-54)",
+     "tortillas with lard",
+     "cheese (not in this dish)",
+     "curry leaf/garam masala as the main flavour (that is a curry, not the test)"
+    ],
+    "SOURCE TO VERIFY": [
+     "goat supplier, cut, age, whether halal-slaughtered (a supply attribute only; NASHA makes no halal claim)",
+     "stock label",
+     "tortilla label"
+    ]
+   },
+   "quantity_audit": "3 arms x 600 g bone-in = 1.8 kg cooks to about 300 g meat per arm, which is thin: buy 3.0 kg (800 g bone-in per arm plus a trial margin). Tortillas 3 arms x 2 tacos x 4 tasters + spare = 28. Stock/liquid 1.8 L. Dried chiles: about 50 g guajillo + 35 g ancho per arm = buy 150 g + 100 g. Yield, trim and consomme volume are MEASURED, not assumed.",
+   "after_cook": "python3 tools/session_record.py add ... then report",
+   "day_plan": [
+    "DAY 0 (sourcing): confirm goat cut/source and a food-safety plan; no purchase without a recorded source",
+    "DAY 1 AM: weigh goat (as bought), trim, weigh trim; arm C marinade 2 h at 5 C or below; toast/soak chiles, build adobo(s)",
+    "DAY 1: sear, braise A/B/C sealed in the oven (log time and temperature, test tenderness with a probe), rest",
+    "DAY 1 evening: cool IMMEDIATELY in shallow pans (no deep pots); log core temperature at 1 h, 2 h, 4 h, 6 h; refrigerate",
+    "DAY 2: skim the fat COLD (weigh), reheat to 74 C (165 F) within 2 hours, hold at 57 C (135 F) or above, dip tortillas in the surface fat and griddle to order",
+    "Plate within 3 min, score at T+0 and T+10 (clock starts when the plate goes down); photos; log reheat and hold at 60 and 120 min"
+   ],
+   "safety": [
+    "US FDA Food Code general values (T4 from general knowledge, NOT verified for Austin; local rules govern; a food-safety professional or the health department must confirm): cool from 57 C (135 F) to 21 C (70 F) within 2 h and to 5 C (41 F) within 4 more hours; reheat to 74 C (165 F) within 2 h; hold hot at 57 C (135 F) or above. Use shallow pans; never cool a big pot in the fridge.",
+    "If any cooling or reheating limit is missed the batch is UNSAFE: record and do not taste.",
+    "goat: strictly goat (D-54); not halal-claimed; ask the butcher about shared boards with beef/pork.",
+    "GAMY: record a 1-5 gaminess score per sample; the failure fires if the panel mean is 4.0 or higher."
+   ],
+   "panel": "Minimum 4 tasters, at least 3 of whom did not cook; same tasting order for everyone, plain unsalted tortilla/cracker and room-temperature water between samples; blind codes from `python3 tools/t1_randomize.py <run>` plated by a second person (not double-blind). n<8: raw values only.",
+   "verify_labels": "Read every jar, can, paste and packet label for animal ingredients (D-54) before cooking."
+  }
+ }
+}
