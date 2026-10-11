@@ -1,0 +1,11 @@
+role,department,headcount,hourly_wage_usd,basis_source,evidence_tier,notes
+GM,management,,,,,
+kitchen_lead,kitchen,,,,,
+cook,kitchen,,,,,
+prep,kitchen,,,,,
+dish,kitchen,,,,,
+bartender,bar,,,,,
+server,floor,,,,,
+host,floor,,,,,
+brewer,brewery,,,,,
+cellar,brewery,,,,,

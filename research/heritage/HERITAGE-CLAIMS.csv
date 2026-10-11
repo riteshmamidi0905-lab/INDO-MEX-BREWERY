@@ -1,0 +1,8 @@
+claim_id,country,region,topic,claim,source_ledger_id,evidence_tier,confidence,cultural_advisor_status,website_usage
+H-001,India,Tamil Nadu,Chicken 65,Chicken 65 is Chennai-associated; origin folklore contested (Buhari Hotel 1965 most cited; name theories unresolved),V-61,T1,medium,NOT REVIEWED,use only the wording 'Chennai-associated; origin contested'
+H-002,India,Telangana,Chicken 65,Hyderabad adapted it with a saucy/tangy style (label sauced versions Hyderabad-style),V-60,T1,low,NOT REVIEWED,none yet
+H-003,India,pan-India,Chicken 65,Modern pattern: yogurt/ginger-garlic/lemon marinade; cornflour+rice flour coating; deep fry; curry leaf and green chile,V-59,T1,medium,NOT REVIEWED,none yet
+H-004,India,pan-India,Chaat,Crisp base + soft toppings + green and tamarind chutney + yogurt + sev + chaat masala; regional names vary,V-62,T1,low-medium,NOT REVIEWED,none (Chaat Elote reference gate still open)
+H-005,Mexico,pan-Mexico,Nixtamalization,Lime-cooked corn (about 0.5-1.5% lime) ground to masa; chip fry moisture/oil figures are from industrial patents,V-63,T1,medium,NOT REVIEWED,none yet
+H-006,Mexico,Jalisco,Birria,Goat traditional (lamb also); Tijuana beef quesabirria with consomme is a later adaptation,V-65,T1,low-medium,NOT REVIEWED,none yet
+H-007,Mexico,pan-Mexico,Comal/plancha,Comal is a thin traditional griddle (clay or metal); plancha is a hotter flat-top; differences thinly sourced,V-64,T1,low,NOT REVIEWED,none yet

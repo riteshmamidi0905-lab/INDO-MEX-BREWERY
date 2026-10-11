@@ -1,4 +1,6 @@
-# NASHA Capability Matrix (canonical; Sprint 14, 2026-10-11)
+# NASHA Capability Matrix (canonical; Sprint 15 update, 2026-10-11)
+
+Correction (Sprint 15): the '618.5 ml' quoted in the Sprint 14 report was the SOLID volume (cm3) of an uncut revolved test shape, not a drinking capacity; use `tools/glass_params.py` for capacity.
 
 Status words are earned: **INSTALLED** = install succeeded; **TESTED** = one representative operation succeeded (synthetic data counts only as TESTED); **OPERATIONAL** = used on real NASHA work. Other states: CONNECTED, AUTH REQUIRED, CONFIG REQUIRED, BLOCKED, PAID, REJECTED, NOT AVAILABLE. Tiers: A core, B specialist, C future.
 Tools are leverage, not evidence: nothing here moves evidence readiness (4/95) or design completeness (43/95). Environment: cloud container, root, apt/pip/npm reachable; most other hosts blocked by the proxy (see Blocked).
@@ -26,7 +28,7 @@ Tools are leverage, not evidence: nothing here moves evidence readiness (4/95) o
 | CAD | FreeCAD | full CAD | not installed (GUI-bound; no headless) | none | no | free | LGPL | later, on a workstation | wasted disk here | NOT INSTALLED (deferred) | C |
 | 3D mesh | trimesh | volume/watertight checks | Sprint 14 (pip) | none | glass volume | free | MIT | glass_model | low | TESTED | B |
 | Glass | tools/glass_model.py | profile -> STL, brimful ml, fill line | built | none | selftest + 400 ml pint-profile test | free | project | beer/GLASS-SPECIFICATION-CHECKLIST.md | MANUFACTURABILITY UNVERIFIED; test dims are not a spec | TESTED | B |
-| Geospatial | GeoPandas, pyproj, Shapely, GDAL 3.8 | trade-area maths | Sprint 14 | none | imports/gdalinfo version | free | BSD/MIT | future Austin analysis | no data fetched; census/OSM hosts blocked | INSTALLED | C |
+| Geospatial | GeoPandas, pyproj, Shapely, GDAL 3.8 | trade-area maths | Sprint 14 | none | used in trade_area.py selftest | free | BSD/MIT | future Austin analysis | no real data fetched; census/OSM hosts blocked | TESTED | C |
 | Statistics | NumPy, pandas, SciPy, statsmodels, scikit-learn, matplotlib | analysis | pre-existing + Sprint 14 | none | scipy in experiment_stats | free | BSD | T1/sensory/pricing | tiny n | TESTED | A |
 | Experiments | tools/experiment_stats.py | descriptives, bootstrap CI (n>=8), guards | built | none | selftest | free | project | T1 results | refuses inference at n<8 | TESTED | A |
 | Experiments | tools/t1_randomize.py, t1_record.py | sealed plate codes; frozen D-74 recorder | Sprint 12 | none | selftests | free | project | Chicken 65 Totopos | frozen | TESTED | A |
@@ -49,13 +51,29 @@ Tools are leverage, not evidence: nothing here moves evidence readiness (4/95) o
 | Mail | Gmail MCP | threads/drafts | connected | OAuth (done) | not used | free | Google | vendor/advisor drafts only on founder request | outbound risk | CONNECTED (not used) | C |
 | Docs | Claude Docs connector, xlsx/pptx/pdf/docx skills | documents, decks | connected | n/a | not used this sprint | free | n/a | investor/vendor docs | do not build decks on fabricated traction | CONNECTED | B |
 | Research | WebSearch | discovery (T1) | built-in | none | used | free | n/a | everything, tier T1 | summaries not primary sources | OPERATIONAL | A |
-| Agents | 21 specialist agents (.claude/agents) | role-routed review | built | none | 4 new ones tested (docs/ai/AGENT-TEST-LOG.md) | tokens | project | see log | model output, not professional approval | TESTED (4/11 new) | A |
+| Agents | 21 specialist agents (.claude/agents) | role-routed review | built | none | 10 of the 11 new ones tested (docs/ai/AGENT-TEST-LOG.md) | tokens | project | see log | model output, not professional approval | TESTED (10/11 new) | A |
+
+| Market data | Yelp MCP connector | Austin listing search (rating, review count, categories, price tier, address; no coordinates/hours/review text) | connected (authless) | none | 9 real searches, 49 listings | free | Yelp terms UNVERIFIED | ops/data/austin-yelp-observed.csv, tools/competitor_summary.py | storage/republication terms unknown; sample not census | OPERATIONAL (internal use only) | B |
+| Literature | Consensus connector | peer-reviewed paper search (10/query free; no DOI on free tier) | connected | account (done) | crispness query, 5 papers logged | free tier (Pro not purchased) | paper-specific | research/LITERATURE-LEDGER.csv via tools/lit_ledger.py | abstracts only | OPERATIONAL | B |
+| Literature | tools/lit_ledger.py | append-only citation ledger; refuses entries without DOI/URL and grade | built | none | selftest + 5 real entries | free | project | Chain A | records, never fetches | OPERATIONAL | A |
+| Brewing | BeerJSON schema (vendored) + tools/beerjson_check.py + jsonschema | validate a future brewer-handoff file's structure | Sprint 15 | none | schema loads, valid/invalid docs | free | MIT (beerjson, commit 264da13) | brewer handoff | structure only; NASHA has no recipe | TESTED | C |
+| Glass | tools/glass_params.py | profile + collar ring (single/double), capacity, glass mass, centre of mass, fill line, tip angle | built | none | selftest + 5 collar studies (visuals/glass-studies/) | free | project | Chain C | MANUFACTURABILITY UNVERIFIED; density/liquid assumed | TESTED | B |
+| 3D | tools/render_ortho.py (Blender) | orthographic comparison montage | built | none | collar-studies-montage.png | free | project | collar studies | low-contrast preview | TESTED | B |
+| Geospatial | tools/trade_area.py | straight-line radius counts on supplied points | built | none | synthetic selftest only | free | project | needs coordinates (Yelp gives none; geocoding blocked) | NOT drive time | TESTED (no real data) | C |
+| Finance | tools/fin_model.py scenarios | mobile_mvp, popup, brewery_residency, small_permanent, flagship; refuses missing inputs | built | none | selftest + empty refusal | free | project | founder inputs | no inputs exist | TESTED | C |
+| Search | tools/nasha_search.py filters | --decisions/--evidence/--food/--beer/--dir | built | none | selftest, real queries | free | project | agents | cache only | OPERATIONAL | A |
+| Skills | 4 project skills (.claude/skills: nasha-evidence-audit, nasha-food-rd, nasha-rights-audit, nasha-sprint-close) | repeatable audits | built | none | first three exercised by subagents; sprint-close UNTESTED | free | project | all sprints | model output, not professional review | TESTED (3 of 4) | A |
+| Research | /deep-research and /skill-creator (claude.ai skills) | multi-source research; skill authoring | exposed | none | deep-research REFUSED by harness (reserved for explicit user invocation) | free | n/a | founder may invoke | cannot be run by the agent | NOT AVAILABLE TO AGENT | C |
 
 ## Candidates found in the connector/plugin catalog (not installed; need the founder to connect in claude.ai)
 | Candidate | Why | Cost/auth | Verdict |
 |---|---|---|---|
-| Yelp (authless MCP, local business search) | Austin competitor mapping from public listings | free, authless; check terms | **RECOMMEND TRY (Tier B)**; founder enables in claude.ai |
-| Consensus (scientific research search) | food science / sensory literature | account; plan unknown | Tier B, founder decision |
+| Yelp | now connected and tested (see table above) | free | DONE |
+| Consensus | now connected and tested (free tier) | free; Pro adds DOI/design/takeaways (not purchased) | DONE; Pro is a founder spend decision |
+| PubMed (authless MCP) | food safety, nutrition, alcohol literature | free, authless | Tier B, founder connects in claude.ai (untested) |
+| USAFacts government data (authless MCP) | possible Census-derived demographics | free, authless | Tier B, founder connects (untested; coverage unknown) |
+| SurveyMonkey / Tally / Rally | future customer research | account | Tier C |
+| IBISWorld / Yardi Matrix | industry and CRE data | paid | Tier C, record only |
 | Felt Maps / TomTom Maps / GIS Cloud | trade-area maps, POI, routing | account/API key, likely paid tiers | Tier C; local GeoPandas first |
 | Haloo Trademark Clearance | automated trademark search | paid account assumed | Tier C: AI search never equals attorney clearance; hold for counsel |
 | Midpage / Paxton / CoCounsel / LegalZoom | US legal research / attorney review | paid | Tier C, founder + counsel decision |

@@ -149,3 +149,6 @@ Menu M-1..M-7 (M-1/M-2/M-3 superseded by D-54) · Journey J-1..J-6 · Brand BR-1
 
 ## Sprint 14 (infrastructure; no score change)
 Tooling expansion recorded in `docs/tools/NASHA-CAPABILITY-MATRIX.md`; agent tests in `docs/ai/AGENT-TEST-LOG.md`. Evidence readiness 4/95 and design completeness 43/95 unchanged (tools are not evidence). Chicken 65 Totopos: NOT PERFORMED. Next action: the physical cook (sheet 13), and the Figma originals before 2026-10-18.
+
+## Sprint 15 (external intelligence; no score change)
+See `research/EXTERNAL-INTELLIGENCE-S15.md`. Evidence 4/95 and design 43/95 unchanged. Next physical action: cook Chicken 65 Totopos (sheet 13). Open founder items: Figma originals before 2026-10-18; optional network allow-list; optional connectors (PubMed, USAFacts); OpenAI provider terms never researched.

@@ -1,0 +1,558 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/beerjson/beerjson/main/json/measureable_units.json",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "VolumeType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/VolumeUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "MassType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/MassUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "DiastaticPowerType": {
+      "type": "object",
+      "description": "Diastatic power is a measurement of malted grains enzymatic content. A value of 35 Lintner is needed to self convert, while a value of 100 or more is desirable for base malts.",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/DiastaticPowerUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "TemperatureType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/TemperatureUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "PressureType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/PressureUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "AcidityType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/AcidityUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "TimeType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/TimeUnitType"
+        },
+        "value": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "ColorType": {
+      "type": "object",
+      "description": "ColorType supports both grain color properties, such as Lovibond, and wort color properties such as SRM and EBC.",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/ColorUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "CarbonationType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/CarbonationUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "BitternessType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/BitternessUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "GravityType": {
+      "type": "object",
+      "description": "Gravity refers to the both the measurements of percent of sugar content, ie plato and brix, as well as relative density ie specific gravity.",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/GravityUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "SpecificHeatType": {
+      "type": "object",
+      "description": "Specific heat is the measurement of the amount of heat required to raise a given mass one degree..",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/SpecificHeatUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "ConcentrationType": {
+      "type": "object",
+      "description": "Examples for concentration include ppm, ppb, and mg/l. ",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/ConcentrationUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "SpecificVolumeType": {
+      "type": "object",
+      "description": "Specific volume is the inverse of density, with units of volume over mass, ie qt/lb or L/kg. Commonly used for mash thickness.",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/SpecificVolumeUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "UnitType": {
+      "type": "object",
+      "description": "UnitType is used where unitless amounts are required, such as 1 apple, or 1 yeast packet.",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/UnitUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "ViscosityType": {
+      "type": "object",
+      "description": "Viscosity of fluids",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/ViscosityUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "CarbonationRangeType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minimum": {
+          "$ref": "#/$defs/CarbonationType"
+        },
+        "maximum": {
+          "$ref": "#/$defs/CarbonationType"
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ]
+    },
+    "BitternessRangeType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minimum": {
+          "$ref": "#/$defs/BitternessType"
+        },
+        "maximum": {
+          "$ref": "#/$defs/BitternessType"
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ]
+    },
+    "TemperatureRangeType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minimum": {
+          "$ref": "#/$defs/TemperatureType"
+        },
+        "maximum": {
+          "$ref": "#/$defs/TemperatureType"
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ]
+    },
+    "ColorRangeType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minimum": {
+          "$ref": "#/$defs/ColorType"
+        },
+        "maximum": {
+          "$ref": "#/$defs/ColorType"
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ]
+    },
+    "GravityRangeType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minimum": {
+          "$ref": "#/$defs/GravityType"
+        },
+        "maximum": {
+          "$ref": "#/$defs/GravityType"
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ]
+    },
+    "PercentRangeType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minimum": {
+          "$ref": "#/$defs/PercentType"
+        },
+        "maximum": {
+          "$ref": "#/$defs/PercentType"
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ]
+    },
+    "VolumeUnitType": {
+      "type": "string",
+      "enum": [
+        "ml",
+        "l",
+        "tsp",
+        "tbsp",
+        "floz",
+        "cup",
+        "pt",
+        "qt",
+        "gal",
+        "bbl",
+        "ifloz",
+        "ipt",
+        "iqt",
+        "igal",
+        "ibbl"
+      ]
+    },
+    "MassUnitType": {
+      "type": "string",
+      "enum": [
+        "mg",
+        "g",
+        "kg",
+        "lb",
+        "oz"
+      ]
+    },
+    "DiastaticPowerUnitType": {
+      "type": "string",
+      "enum": [
+        "Lintner",
+        "WK"
+      ]
+    },
+    "TemperatureUnitType": {
+      "type": "string",
+      "enum": [
+        "C",
+        "F"
+      ]
+    },
+    "AcidityUnitType": {
+      "type": "string",
+      "enum": [
+        "pH"
+      ]
+    },
+    "PressureUnitType": {
+      "type": "string",
+      "enum": [
+        "kPa",
+        "psi",
+        "bar"
+      ]
+    },
+    "TimeUnitType": {
+      "type": "string",
+      "enum": [
+        "sec",
+        "min",
+        "hr",
+        "day",
+        "week"
+      ]
+    },
+    "ColorUnitType": {
+      "type": "string",
+      "enum": [
+        "EBC",
+        "Lovi",
+        "SRM"
+      ]
+    },
+    "CarbonationUnitType": {
+      "type": "string",
+      "enum": [
+        "vols",
+        "g/l"
+      ]
+    },
+    "BitternessUnitType": {
+      "type": "string",
+      "enum": [
+        "IBUs"
+      ]
+    },
+    "GravityUnitType": {
+      "type": "string",
+      "enum": [
+        "sg",
+        "plato",
+        "brix"
+      ]
+    },
+    "ConcentrationUnitType": {
+      "type": "string",
+      "enum": [
+        "ppm",
+        "ppb",
+        "mg/l"
+      ]
+    },
+    "SpecificHeatUnitType": {
+      "type": "string",
+      "enum": [
+        "Cal/(g C)",
+        "J/(kg K)",
+        "BTU/(lb F)"
+      ]
+    },
+    "SpecificVolumeUnitType": {
+      "type": "string",
+      "enum": [
+        "qt/lb",
+        "gal/lb",
+        "gal/oz",
+        "l/g",
+        "l/kg",
+        "floz/oz",
+        "m^3/kg",
+        "ft^3/lb"
+      ]
+    },
+    "UnitUnitType": {
+      "type": "string",
+      "enum": [
+        "1",
+        "unit",
+        "each",
+        "dimensionless",
+        "pkg"
+      ]
+    },
+    "DateType": {
+      "type": "string",
+      "pattern": "\\d{4}-\\d{2}-\\d{2}|\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+    },
+    "PercentType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/PercentUnitType"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "PercentUnitType": {
+      "type": "string",
+      "enum": [
+        "%"
+      ]
+    },
+    "QualitativeRangeType": {
+      "type": "string",
+      "enum": [
+        "very low",
+        "low",
+        "medium low",
+        "medium",
+        "medium high",
+        "high",
+        "very high"
+      ]
+    },
+    "VersionType": {
+      "description": "The version of the BeerJSON format this document is written against, as MAJOR.MINOR. A schema accepts its own version and the earlier ones it can still validate. Note that JSON has no decimal type, so 3.0 is written as the number 3.",
+      "type": "number",
+      "enum": [
+        2.01,
+        2.06,
+        3
+      ]
+    },
+    "ViscosityUnitType": {
+      "type": "string",
+      "enum": [
+        "cP",
+        "mPa-s"
+      ]
+    }
+  }
+}
