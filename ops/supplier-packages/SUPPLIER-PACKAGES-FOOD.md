@@ -27,7 +27,7 @@ Status: no supplier contacted, no price, no quote. Quantities are TEST-BATCH qua
 - DRAFT: Hello [name], we are testing recipes and need about [1 kg] of fresh paneer, one lot. Please confirm in writing the milk type and coagulant/rennet (microbial or plant, no animal rennet), pack size, price per unit, minimum order, lead time, delivery or pickup and temperature at hand-off, lot coding and returns. Information request only. [founder name, contact].
 
 ## 3. Goat
-- SPEC: bone-in shoulder or leg, goat only, bones visible, documented source; age and cut TO CONFIRM; no lamb/mutton substitution.
+- SPEC: bone-in shoulder or leg, goat only, bones visible, documented source; age and cut TO CONFIRM; no lamb or mutton as the goat arm (lamb is permitted only as a separate comparison item).
 - QUANTITY (test batch): S5 3.0 kg bone-in (3 arms); yield and trim measured, not assumed.
 - PACKAGING: vacuum or butcher paper, species and cut labelled.
 - DELIVERY/PICKUP: chilled or frozen; TO CONFIRM.
@@ -111,4 +111,12 @@ Status: no supplier contacted, no price, no quote. Quantities are TEST-BATCH qua
 - DIETARY: ask whether pork/beef are prepped there and what separation, tool and fryer-oil controls exist (D-54); no halal claim.
 - ACCEPTANCE (site visit): clean surfaces, working refrigeration with temperature log, posted licence/permit, pest-free, adequate ventilation, equipment listed is present and working.
 - QUESTIONS: hourly/monthly rate and deposit, minimum hours, insurance required, contract term, who holds the permit, whether tenants' food can be tasted by outside panels (TO CONFIRM with authority), access hours, alcohol-free rule, allergen cross-contact, shared-fryer rules, waste/grease disposal, whether brewery use is prohibited. Licensing questions go to the local health authority and a qualified professional; no legal or permit conclusion here.
-- DRAFT: Hello [name], we are a pre-opening concept planning about [5] recipe test cooks of [hours] each in [month]. Could you tell us your rates and deposit, available hours, equipment list, refrigerated/dry storage, insurance and licence requirements, tenant rules (including handling of beef/pork and fryer oil), and whether we can hold small tastings on site? We are asking for information only and have not signed anything. [founder name, contact].
+- DRAFT: Hello [name], we are an early-stage recipe-testing project (no business is open or licensed) planning about [5] recipe test cooks of [hours] each in [month]. Could you tell us your rates and deposit, available hours, equipment list, refrigerated/dry storage, insurance and licence requirements, tenant rules (including handling of beef/pork and fryer oil), and whether we can hold small tastings on site? We are asking for information only and have not signed anything. [founder name, contact].
+
+
+## Package 11: stock, passata, vinegar, sugar (D-54 label checks)
+- **Product specification:** S5 stock about 2 L (unsalted chicken or vegetable; no bouillon cubes or powders; no beef or pork derivative); S4 tomato passata about 700 g; cider/white vinegar; sugar or jaggery (read labels for animal content; TO CONFIRM exact products).
+- **Quantity assumption:** test-batch amounts from the Session 4 and 5 cards, not forecasts.
+- **Acceptance:** ingredient label read before purchase and photographed; refuse any product listing beef, pork, lard, gelatin or unspecified 'natural flavours' from animal sources without a written declaration.
+- **Questions:** written ingredient declaration, allergen statement, lot code, shelf life.
+- **Flour tortillas (S4, about 25 cm, 8):** label must show no lard or animal shortening; spec TO CONFIRM.

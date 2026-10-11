@@ -1,11 +1,11 @@
 # NASHA: request for trademark counsel's review (concise package; NOT SENT)
-**Status: `[ANALYSIS]` (draft for counsel; not sent).** **Prepared 2026-10-11 (Sprint 20) by AI planning support for the founder. Not legal advice. No legal conclusion is drawn or implied. The founder reviews and decides whether to send.** Target reading time about 20 minutes. Fact base: `docs/company/NASHA-CONFLICT-FACTS.md` (every item PUBLICLY REPORTED or UNVERIFIED; sources were web-search summaries, no primary page could be opened here).
+**Status: `[ANALYSIS]` (draft for counsel; not sent).** **Prepared 2026-10-11 (Sprint 20) by AI planning support for the founder. Not legal advice. No legal conclusion is drawn or implied. The founder reviews and decides whether to send.** Target reading time about 20 minutes. Fact base: `docs/company/NASHA-CONFLICT-FACTS.md` (every item classed PUBLICLY REPORTED, UNVERIFIED or LEGAL REVIEW REQUIRED; sources were web-search summaries, no primary page could be opened here).
 
 ## 1. The name and its meaning
 NASHA is the founder-selected working name (D-62): SELECTED_BY_FOUNDER, LEGAL CLEARANCE PENDING. *Nasha* is reported to be a common Hindi/Urdu word for intoxication or addiction (ledger V-33, not primary-verified). We ask counsel how that meaning affects registrability and advertising for restaurants and alcohol.
 
 ## 2. Stage, stated plainly
-A concept. Nothing is open, brewed, cooked, sold or tested; no professional has reviewed anything. We know of no use in commerce. No logo exists (D-66); the word appears only as a temporary typographic placeholder on a concept website that is set to noindex and not deployed. No TM or registered symbol is used. No entity, domain, handle, filing or trademark search has been done or confirmed.
+A concept. Nothing is open, brewed, cooked, sold or tested; no professional has reviewed anything. We know of no use in commerce. No logo exists (D-66); the word appears only as a temporary typographic placeholder on a concept website that is set to noindex and not deployed. No TM or registered symbol is used. No trademark-database, entity, domain or handle search has been done by us; only web-search summaries, none opened; no filing made.
 
 ## 3. Planned goods and services (for counsel to classify)
 An Indian-Mexican restaurant and kitchen; a craft brewery and taproom; beer and non-alcoholic beverages (packaged beer possibly later); merchandise; a website; possible later events, catering, a mobile or pop-up format, glassware and apparel. Proposed descriptor "Indo-Mex Brewery & Kitchen" (stage-dependent, not final). Austin, Texas first; online reach national. Owner of any future mark undecided (founder or a future company).
@@ -13,7 +13,7 @@ An Indian-Mexican restaurant and kitchen; a craft brewery and taproom; beer and 
 ## 4. Reported existing Austin restaurant named Nasha (PUBLICLY REPORTED, UNVERIFIED)
 - Reported at 1614 E 7th St (press mentions from about 2015; one source says it opened in 2014), a second location on S Congress reported from about April 2023, and a Bee Cave listing seen in December 2025. Current status is unknown; no 2026 evidence and no closure report was found.
 - Reported concept: Indian and Tex-Mex fusion ("Tex-Mex-Indo"), a tacos section, paneer and tandoori items in tortilla formats, a full bar (a curry-leaf margarita and happy hour reported), online ordering through third-party platforms and a website nashaindia.com (UNVERIFIED), and reported recognition in Austin Chronicle First Plates 2016 (nature of the award unconfirmed).
-- Reported public branding text includes a sign line that plays on the word's intoxication meaning ("get high on Indian cuisine"), reported in a secondary source.
+- A reviewer reported a sign line, "get high on Indian cuisine" (sign not seen; may be historic; whether it alludes to the word's meaning is for counsel).
 - We do not know: its legal entity, whether it owns registered or common-law rights, its exact goods and services, its geographic reach, or its ownership. We found no brewery link and no other Nasha in Texas food and beverage in one general search. A business registration would not by itself establish trademark ownership.
 - Separately: "Brewer's Table", a working label in our beer documents, is also the name of an Austin restaurant; we treat it as a separate question.
 
@@ -24,11 +24,11 @@ An Indian-Mexican restaurant and kitchen; a craft brewery and taproom; beer and 
 | Same city | Pairing-led model: food and beer designed together |
 | Indian-Mexican cuisine; tikka and taco/quesadilla concepts | A fixed five-dish core and five-beer core (Core 5) |
 | Alcohol service | Concept stage: no operating business, no visual identity |
-| Likely web and delivery presence | No logo; concept website not deployed |
+| Possible future web and delivery presence (none now); the reported restaurant has third-party delivery listings | No logo; concept website not deployed |
 
 ## 6. Questions for counsel
 1. Likelihood of confusion with the reported restaurant and any other marks, for restaurant, bar, brewery, beer, non-alcoholic beverages, merchandise and website services.
-2. Common-law rights of a restaurant reported since about 2014-2015, and their geographic scope; effect of its reported multiple Austin-area locations.
+2. Whether the reported restaurant holds common-law, state or registered rights, from what date and in what area; effect of its reported multiple Austin-area locations.
 3. Federal and state (including Texas, label and permit names) searches, with phonetic and visual variants.
 4. Effect of the word's meaning on descriptiveness, foreign-equivalents doctrine and alcohol advertising and labelling.
 5. Whether coexistence, consent or a modified mark is realistic (we propose no approach).
@@ -36,24 +36,24 @@ An Indian-Mexican restaurant and kitchen; a craft brewery and taproom; beer and 
 7. Filing strategy: intent-to-use or after use, classes, entity, and whether to disclaim the descriptor.
 8. Ownership of AI-assisted and AI-generated assets and the founder's rights; assignment terms for any future designer or contractor.
 9. Whether a combined consult with our Texas alcohol attorney makes sense.
-What we need back: a written opinion on whether the proposed brand is commercially viable, a risk ranking (proceed, modify, abandon), recommended search scope and next steps, advice on the shortlist and on AI-asset ownership, and a rough fee scope if the attorney chooses to give one.
+What we need back: a written legal risk assessment (proceed, modify or abandon), recommended search scope and next steps, advice on the shortlist and on AI-asset ownership, and a rough fee scope if the attorney chooses to give one.
 
 ## 7. Assets counsel should know about
 All text and code were drafted with AI assistance and are human-directed; the copyright position of such work is unsettled and we claim no ownership conclusion. 33 website assets are listed in `ip/website-asset-rights-register.csv` (fonts under SIL OFL; AI-generated concept images PROVISIONAL-LOCAL-ONLY with the provider's terms reviewed only through secondary summaries; scripted vector art written by an AI coding assistant). No contractor, advisor or assignment agreements exist. The repository is under a personal account, which is access, not ownership.
 Corrections to our own files made alongside this package: see the Sprint 20 notes in `ip/IP-OWNERSHIP-FRAMEWORK.md`.
 
 ---
-## Appendix: earlier package content (Sprint 15), retained
+## Appendix: earlier package content (Sprint 15), retained. Where the appendix and sections 1-7 differ, sections 1-7 control.
 
-**Status:** `[PLAN]` briefing for an IP/trademark attorney. **No search has been run, no application filed, no clearance exists, no advice has been received.** Name status: `SELECTED_BY_FOUNDER — LEGAL CLEARANCE PENDING` (D-62). Nothing here is legal advice.
+**Status:** `[PLAN]` briefing for an IP/trademark attorney. **No USPTO, state or common-law database search has been run (only web-search summaries, see the top of this file); no application filed; no clearance exists; no advice received.** Nothing was filed; no advice has been received. Name status: `SELECTED_BY_FOUNDER — LEGAL CLEARANCE PENDING` (D-62). Nothing here is legal advice.
 
-## 1. The mark and intended use
+## A1. The mark and intended use
 - **Mark:** NASHA (word); later a logo (none designed). Possible descriptor "Indo-Mex Brewery & Kitchen" (proposed, stage-dependent; `brand/NASHA-BRAND-STRATEGY.md` §2).
-- **Intended goods/services (to be classified by counsel):** restaurant and bar services; catering and mobile food service; beer (and possibly brewery services, taproom, events, merchandise). Stage A is digital only (website, content); stage B+ pop-ups and tastings. **No use in commerce yet.**
+- **Intended goods/services (to be classified by counsel):** restaurant and bar services; catering and mobile food service; beer (and possibly brewery services, taproom, events, merchandise). Stage A is digital only (a concept website, noindex, not deployed; content); stage B+ pop-ups and tastings. **No use in commerce yet.**
 - **Owner of the future mark:** undecided (founder vs future company); to be set by counsel so the mark sits in the right entity from the start.
 - **Geography:** Austin, Texas first; online reach is national. Any federal strategy is counsel's call.
 
-## 2. Known facts and weak spots (all unverified beyond T1/T2)
+## A2. Known facts and weak spots (all unverified beyond T1/T2)
 | Point | Status |
 |---|---|
 | Meaning | *Nasha* is a common Hindi-Urdu word (intoxication/addiction; `research/VERIFICATION-LEDGER.md` V-33). Not an invented word; descriptiveness/suggestiveness for alcohol is a question for counsel. |
@@ -64,7 +64,7 @@ Corrections to our own files made alongside this package: see the Sprint 20 note
 | Federal alcohol label rules | Beer labels need federal approval and alcohol-related name rules; not examined. |
 | Domains/handles | `marketing/NASHA-DOMAIN-AND-HANDLE-INVENTORY.md`: nothing verified or owned. |
 
-## 3. Questions for counsel
+## A3. Questions for counsel
 1. Full clearance (federal, state, common-law, domains) for NASHA in the classes above; **ranked risk and your recommendation to proceed, modify or abandon.**
 2. Is "NASHA" likely registrable for restaurants/bars and beer? Any descriptiveness or foreign-equivalents issue given its meaning?
 3. Conflict risk with existing marks in food, beverage, hospitality and entertainment, including phonetic variants (NASHA/NASSA/NASH, etc.).
@@ -77,8 +77,8 @@ Corrections to our own files made alongside this package: see the Sprint 20 note
 10. Trade-secret protocol for recipes; NDAs for advisors and the brewer.
 11. Budget: ranges for clearance, filing, office actions.
 
-## 4. If counsel finds a material obstacle
+## A4. If counsel finds a material obstacle
 The **name returns to the founder** for a decision. The project does not quietly substitute another name. Prior shortlisted names stay on record (`brand/BRAND-ARCHITECTURE-V1.md`, `brand/TRADEMARK-SCREENING.md`).
 
-## 5. What the founder should bring
+## A5. What the founder should bring
 This file; `brand/NASHA-BRAND-STRATEGY.md`; the website prototype (`website/dist/`, no commerce); the asset registers. Ask the attorney whether a combined consult with the Texas alcohol attorney is sensible (`docs/decisions/ATTORNEY-QUESTIONS.md` §B).

@@ -2,11 +2,11 @@ AGENT ANALYSIS - NOT PROFESSIONAL REVIEW - NOT EVIDENCE
 
 # Austin shared kitchen / commissary research (T1 web-search summaries)
 
-Seen 2026-10-11. Data: `docs/company/data/commissary-candidates.csv` (16 rows). This file is its sibling note, so the CSV carries no banner. Builds on `validation/MOBILE-MVP-STRATEGY.md` sections 2 and 4 (commissary availability and cost listed as TBD) and `docs/regulatory/REGULATORY-MATRIX.csv` Q-09..Q-13 (orientation only).
+Seen 2026-10-11 (date_seen is the date of OUR search, not the listing date). Data: `docs/company/data/commissary-candidates.csv` (16 rows). This file is its sibling note, so the CSV carries no banner. Builds on `validation/MOBILE-MVP-STRATEGY.md` sections 2 and 4 (commissary availability and cost listed as TBD) and `docs/regulatory/REGULATORY-MATRIX.csv` Q-09..Q-13 (orientation only).
 
 ## Method and limits
 - 15 WebSearch queries were run (the brief capped at 14; one over, recorded as a deviation). No page was opened; every fact is a search-result summary = T1, never VERIFIED. Most facts come from ONE third-party directory (The Food Corridor "Kitchen Door") plus roundups; listings can be stale or wrong. Operator sites were not read.
-- Classification: CONFIRMED PUBLIC = a search result states it (still a listing, not the operator). UNVERIFIED = currency/status unknown. ASSUMPTION = my inference, marked as such.
+- Classification: LISTED (T1; third-party listing, not confirmed with the operator) = a search result states it (still a listing, not the operator). UNVERIFIED = currency/status unknown. ASSUMPTION = my inference, marked as such.
 - NO facility is claimed available. No contact, booking or payment. No prices estimated; every figure is verbatim in the CSV with source and limits.
 - Not used: Giggster's generic Austin average of about $366-$376/hr (platform average, not a shared-kitchen price); a Dallas-area $25/hr listing and a Cedar Park/Leander "~50 hours/month $900" listing (other facilities, not Austin candidates). Virtual Fork (kitchen marketplace) appeared only as a headline; not assessed.
 
@@ -28,7 +28,7 @@ Seen 2026-10-11. Data: `docs/company/data/commissary-candidates.csv` (16 rows). 
 15. Austin Public Health shared kitchen commissary permit requirements food manager tenant own permit (the over-cap query; used only for licensing)
 
 ## What the results say (themes, with source)
-- **Equipment nearest Core 5 needs (listing statements):** Kramer Kitchen lists a 72 inch griddle, fryer, 4 ovens, steam kettle, tilt skillet, 3-compartment sink, dishwashing machine, two walk-in coolers and a walk-in freezer. Commercial Kitchen Factories (Ralph Ablanedo) lists fryer, deck oven, griddle, cold and freezer storage. Wingman Kitchens lists charbroiler, convection oven, fryer, range, dry/cold/freezer storage. PREP ATX: Type I hoods, grease traps, NSF warewashing (broker listing), no named fryer or griddle. Others: no equipment found.
+- **Equipment nearest Core 5 needs (listing statements):** Kramer Kitchen lists a 72 inch griddle, fryer, 4 ovens, steam kettle, tilt skillet, 3-compartment sink, dishwashing machine, two walk-in coolers and a walk-in freezer. Commercial Kitchen Factories (Ralph Ablanedo Dr listing) lists fryer, deck oven, griddle, cold and freezer storage. Wingman Kitchens lists charbroiler, convection oven, fryer, range, dry/cold/freezer storage. PREP ATX: Type I hoods, grease traps, NSF warewashing (broker listing), no named fryer or griddle. Others: no equipment found.
 - **Comal:** no result names a comal. Closest are "griddle" (Kramer, CKF) and "range". Whether a griddle matches a comal's heat and size is a question for a chef (inference).
 - **Hood/ventilation:** only PREP ATX (broker listing) states hoods. Hoods at Kramer, CKF, Wingman are NOT stated; do not assume.
 - **Licensing:** no facility's licensing terms appeared. Austin Public Health (via search) describes plan review, pre-opening inspection, routine inspection and annual renewal. An Austin CFO application document says the pre-opening inspection verifies the space complies and has a designated Certificate of Occupancy (what "CFO" stands for was not stated in the result). Whether a renting business needs its own Austin permit or can operate under the host's was NOT established; only California county guidelines (not applicable) appeared. Needs Austin Public Health and a food-safety professional; not contacted.

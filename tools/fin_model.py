@@ -12,11 +12,11 @@ def pnl(a):
     # other_fixed_monthly must EXCLUDE any line item entered separately below (no double counting)
     fixed = a["labor_monthly"] + a["occupancy_monthly"] + a["other_fixed_monthly"] + sum(a.get(k, 0) for k in OPTIONAL_FIXED)
     cm = rev - cogs
-    if rev <= 0 or cm <= 0: return dict(revenue=rev, cogs=cogs, gross_profit=cm, fixed=fixed, ebitda=cm - fixed, breakeven_revenue=float("inf"))
+    if rev <= 0 or cm <= 0: return dict(revenue=rev, cogs=cogs, gross_profit=cm, fixed=fixed, ebitda=cm - fixed, breakeven_revenue=float("inf"))   # ebitda = before debt service and depreciation (and net of payment fees if entered)
     be_rev = fixed / (cm / rev)
     return dict(revenue=rev, cogs=cogs, gross_profit=cm, fixed=fixed, ebitda=cm - fixed, breakeven_revenue=be_rev)
 def sensitivity(a, key, deltas=(-.1, 0, .1)): return {d: round(pnl({**a, key: a[key] * (1 + d)})["ebitda"], 2) for d in deltas}
-OPTIONAL_FIXED = ("insurance_monthly", "utilities_monthly", "maintenance_monthly", "marketing_monthly", "commissary_monthly", "debt_service_monthly", "depreciation_monthly")
+OPTIONAL_FIXED = ("insurance_monthly", "utilities_monthly", "maintenance_monthly", "marketing_monthly", "commissary_monthly")   # debt service and depreciation sit BELOW EBITDA and are deliberately not included
 SCENARIOS = ("private_tasting", "popup", "brewery_residency", "food_trailer", "food_truck", "small_permanent", "flagship")   # mobile_mvp was split into trailer and truck (Sprint 19); fields per scenario: ops/finance/scenario-fields.csv
 def load(scenario=None):   # not used by run_all; kept consistent: blank provenance counts as UNKNOWN
     """Assumptions for one scenario (rows whose 'scenario' column equals it); rows with an empty scenario apply to every scenario. No defaults."""

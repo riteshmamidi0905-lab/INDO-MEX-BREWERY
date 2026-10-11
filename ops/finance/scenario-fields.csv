@@ -16,7 +16,7 @@ private_tasting,marketing_monthly,input,USD,spend actually planned,UNKNOWN
 private_tasting,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
 private_tasting,covers,input,covers per day,from real events,UNKNOWN
 private_tasting,days_open,input,days per month,operating days,UNKNOWN
-private_tasting,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+private_tasting,event_capacity,input,guests per session,NOT USED BY tools/fin_model.py YET (record only); physical or permit limit,UNKNOWN
 private_tasting,break_even,computed,covers or USD,computed by tools/fin_model.py: breakeven_revenue only (break-even covers not yet computed); a free event has zero revenue and positive cost,UNKNOWN
 private_tasting,cash_required,computed,USD,"NOT YET COMPUTED by the tool; fill from capex, working capital and expected losses by hand with sources",UNKNOWN
 private_tasting,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
@@ -37,7 +37,7 @@ popup,marketing_monthly,input,USD,spend actually planned,UNKNOWN
 popup,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
 popup,covers,input,covers per day,from real events,UNKNOWN
 popup,days_open,input,days per month,operating days,UNKNOWN
-popup,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+popup,event_capacity,input,guests per session,NOT USED BY tools/fin_model.py YET (record only); physical or permit limit,UNKNOWN
 popup,break_even,computed,covers or USD,computed by tools/fin_model.py: breakeven_revenue only (break-even covers not yet computed); a free event has zero revenue and positive cost,UNKNOWN
 popup,cash_required,computed,USD,"NOT YET COMPUTED by the tool; fill from capex, working capital and expected losses by hand with sources",UNKNOWN
 popup,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
@@ -58,7 +58,7 @@ brewery_residency,marketing_monthly,input,USD,spend actually planned,UNKNOWN
 brewery_residency,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
 brewery_residency,covers,input,covers per day,from real events,UNKNOWN
 brewery_residency,days_open,input,days per month,operating days,UNKNOWN
-brewery_residency,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+brewery_residency,event_capacity,input,guests per session,NOT USED BY tools/fin_model.py YET (record only); physical or permit limit,UNKNOWN
 brewery_residency,break_even,computed,covers or USD,computed by tools/fin_model.py: breakeven_revenue only (break-even covers not yet computed); a free event has zero revenue and positive cost,UNKNOWN
 brewery_residency,cash_required,computed,USD,"NOT YET COMPUTED by the tool; fill from capex, working capital and expected losses by hand with sources",UNKNOWN
 brewery_residency,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
@@ -79,7 +79,7 @@ food_trailer,marketing_monthly,input,USD,spend actually planned,UNKNOWN
 food_trailer,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
 food_trailer,covers,input,covers per day,from real events,UNKNOWN
 food_trailer,days_open,input,days per month,operating days,UNKNOWN
-food_trailer,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+food_trailer,event_capacity,input,guests per session,NOT USED BY tools/fin_model.py YET (record only); physical or permit limit,UNKNOWN
 food_trailer,break_even,computed,covers or USD,computed by tools/fin_model.py: breakeven_revenue only (break-even covers not yet computed); a free event has zero revenue and positive cost,UNKNOWN
 food_trailer,cash_required,computed,USD,"NOT YET COMPUTED by the tool; fill from capex, working capital and expected losses by hand with sources",UNKNOWN
 food_trailer,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
@@ -100,7 +100,7 @@ food_truck,marketing_monthly,input,USD,spend actually planned,UNKNOWN
 food_truck,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
 food_truck,covers,input,covers per day,from real events,UNKNOWN
 food_truck,days_open,input,days per month,operating days,UNKNOWN
-food_truck,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+food_truck,event_capacity,input,guests per session,NOT USED BY tools/fin_model.py YET (record only); physical or permit limit,UNKNOWN
 food_truck,break_even,computed,covers or USD,computed by tools/fin_model.py: breakeven_revenue only (break-even covers not yet computed); a free event has zero revenue and positive cost,UNKNOWN
 food_truck,cash_required,computed,USD,"NOT YET COMPUTED by the tool; fill from capex, working capital and expected losses by hand with sources",UNKNOWN
 food_truck,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
@@ -121,7 +121,7 @@ small_permanent,marketing_monthly,input,USD,spend actually planned,UNKNOWN
 small_permanent,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
 small_permanent,covers,input,covers per day,from real events,UNKNOWN
 small_permanent,days_open,input,days per month,operating days,UNKNOWN
-small_permanent,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+small_permanent,event_capacity,input,guests per session,NOT USED BY tools/fin_model.py YET (record only); physical or permit limit,UNKNOWN
 small_permanent,break_even,computed,covers or USD,computed by tools/fin_model.py: breakeven_revenue only (break-even covers not yet computed); a free event has zero revenue and positive cost,UNKNOWN
 small_permanent,cash_required,computed,USD,"NOT YET COMPUTED by the tool; fill from capex, working capital and expected losses by hand with sources",UNKNOWN
 small_permanent,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
@@ -142,42 +142,42 @@ flagship,marketing_monthly,input,USD,spend actually planned,UNKNOWN
 flagship,avg_check,input,USD,from real sales or a clearly labelled founder assumption,UNKNOWN
 flagship,covers,input,covers per day,from real events,UNKNOWN
 flagship,days_open,input,days per month,operating days,UNKNOWN
-flagship,event_capacity,input,guests per session,physical or permit limit,UNKNOWN
+flagship,event_capacity,input,guests per session,NOT USED BY tools/fin_model.py YET (record only); physical or permit limit,UNKNOWN
 flagship,break_even,computed,covers or USD,computed by tools/fin_model.py: breakeven_revenue only (break-even covers not yet computed); a free event has zero revenue and positive cost,UNKNOWN
 flagship,cash_required,computed,USD,"NOT YET COMPUTED by the tool; fill from capex, working capital and expected losses by hand with sources",UNKNOWN
 flagship,learning_value,qualitative,text,what evidence this scenario produces (see validation-ladder.csv),UNKNOWN
-private_tasting,events_per_month,input,events,"for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
-private_tasting,ticket_price,input,USD,only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
-private_tasting,per_event_fixed_cost,input,USD,"kitchen hours x hourly rate quote, permits per event",UNKNOWN
-private_tasting,deposit_refund_no_show,input,fractions,deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
+private_tasting,events_per_month,input,events,"NOT USED BY tools/fin_model.py YET (record only); for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
+private_tasting,ticket_price,input,USD,NOT USED BY tools/fin_model.py YET (record only); only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
+private_tasting,per_event_fixed_cost,input,USD,"NOT USED BY tools/fin_model.py YET (record only); kitchen hours x hourly rate quote, permits per event",UNKNOWN
+private_tasting,deposit_refund_no_show,input,fractions,NOT USED BY tools/fin_model.py YET (record only); deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
 private_tasting,name_change_exposure,qualitative,text,track name-dependent spend as sunk/refundable/reusable (D-78); no amounts assumed,UNKNOWN
-popup,events_per_month,input,events,"for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
-popup,ticket_price,input,USD,only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
-popup,per_event_fixed_cost,input,USD,"kitchen hours x hourly rate quote, permits per event",UNKNOWN
-popup,deposit_refund_no_show,input,fractions,deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
+popup,events_per_month,input,events,"NOT USED BY tools/fin_model.py YET (record only); for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
+popup,ticket_price,input,USD,NOT USED BY tools/fin_model.py YET (record only); only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
+popup,per_event_fixed_cost,input,USD,"NOT USED BY tools/fin_model.py YET (record only); kitchen hours x hourly rate quote, permits per event",UNKNOWN
+popup,deposit_refund_no_show,input,fractions,NOT USED BY tools/fin_model.py YET (record only); deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
 popup,name_change_exposure,qualitative,text,track name-dependent spend as sunk/refundable/reusable (D-78); no amounts assumed,UNKNOWN
-brewery_residency,events_per_month,input,events,"for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
-brewery_residency,ticket_price,input,USD,only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
-brewery_residency,per_event_fixed_cost,input,USD,"kitchen hours x hourly rate quote, permits per event",UNKNOWN
-brewery_residency,deposit_refund_no_show,input,fractions,deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
+brewery_residency,events_per_month,input,events,"NOT USED BY tools/fin_model.py YET (record only); for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
+brewery_residency,ticket_price,input,USD,NOT USED BY tools/fin_model.py YET (record only); only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
+brewery_residency,per_event_fixed_cost,input,USD,"NOT USED BY tools/fin_model.py YET (record only); kitchen hours x hourly rate quote, permits per event",UNKNOWN
+brewery_residency,deposit_refund_no_show,input,fractions,NOT USED BY tools/fin_model.py YET (record only); deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
 brewery_residency,name_change_exposure,qualitative,text,track name-dependent spend as sunk/refundable/reusable (D-78); no amounts assumed,UNKNOWN
-food_trailer,events_per_month,input,events,"for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
-food_trailer,ticket_price,input,USD,only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
-food_trailer,per_event_fixed_cost,input,USD,"kitchen hours x hourly rate quote, permits per event",UNKNOWN
-food_trailer,deposit_refund_no_show,input,fractions,deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
+food_trailer,events_per_month,input,events,"NOT USED BY tools/fin_model.py YET (record only); for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
+food_trailer,ticket_price,input,USD,NOT USED BY tools/fin_model.py YET (record only); only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
+food_trailer,per_event_fixed_cost,input,USD,"NOT USED BY tools/fin_model.py YET (record only); kitchen hours x hourly rate quote, permits per event",UNKNOWN
+food_trailer,deposit_refund_no_show,input,fractions,NOT USED BY tools/fin_model.py YET (record only); deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
 food_trailer,name_change_exposure,qualitative,text,track name-dependent spend as sunk/refundable/reusable (D-78); no amounts assumed,UNKNOWN
-food_truck,events_per_month,input,events,"for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
-food_truck,ticket_price,input,USD,only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
-food_truck,per_event_fixed_cost,input,USD,"kitchen hours x hourly rate quote, permits per event",UNKNOWN
-food_truck,deposit_refund_no_show,input,fractions,deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
+food_truck,events_per_month,input,events,"NOT USED BY tools/fin_model.py YET (record only); for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
+food_truck,ticket_price,input,USD,NOT USED BY tools/fin_model.py YET (record only); only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
+food_truck,per_event_fixed_cost,input,USD,"NOT USED BY tools/fin_model.py YET (record only); kitchen hours x hourly rate quote, permits per event",UNKNOWN
+food_truck,deposit_refund_no_show,input,fractions,NOT USED BY tools/fin_model.py YET (record only); deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
 food_truck,name_change_exposure,qualitative,text,track name-dependent spend as sunk/refundable/reusable (D-78); no amounts assumed,UNKNOWN
-small_permanent,events_per_month,input,events,"for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
-small_permanent,ticket_price,input,USD,only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
-small_permanent,per_event_fixed_cost,input,USD,"kitchen hours x hourly rate quote, permits per event",UNKNOWN
-small_permanent,deposit_refund_no_show,input,fractions,deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
+small_permanent,events_per_month,input,events,"NOT USED BY tools/fin_model.py YET (record only); for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
+small_permanent,ticket_price,input,USD,NOT USED BY tools/fin_model.py YET (record only); only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
+small_permanent,per_event_fixed_cost,input,USD,"NOT USED BY tools/fin_model.py YET (record only); kitchen hours x hourly rate quote, permits per event",UNKNOWN
+small_permanent,deposit_refund_no_show,input,fractions,NOT USED BY tools/fin_model.py YET (record only); deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
 small_permanent,name_change_exposure,qualitative,text,track name-dependent spend as sunk/refundable/reusable (D-78); no amounts assumed,UNKNOWN
-flagship,events_per_month,input,events,"for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
-flagship,ticket_price,input,USD,only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
-flagship,per_event_fixed_cost,input,USD,"kitchen hours x hourly rate quote, permits per event",UNKNOWN
-flagship,deposit_refund_no_show,input,fractions,deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
+flagship,events_per_month,input,events,"NOT USED BY tools/fin_model.py YET (record only); for event scenarios; covers = guests per event, days_open = open days",UNKNOWN
+flagship,ticket_price,input,USD,NOT USED BY tools/fin_model.py YET (record only); only for ticketed events; paid vs comped guests tracked in actuals,UNKNOWN
+flagship,per_event_fixed_cost,input,USD,"NOT USED BY tools/fin_model.py YET (record only); kitchen hours x hourly rate quote, permits per event",UNKNOWN
+flagship,deposit_refund_no_show,input,fractions,NOT USED BY tools/fin_model.py YET (record only); deposits are a liability until the event; refunds and no-shows tracked from actuals,UNKNOWN
 flagship,name_change_exposure,qualitative,text,track name-dependent spend as sunk/refundable/reusable (D-78); no amounts assumed,UNKNOWN

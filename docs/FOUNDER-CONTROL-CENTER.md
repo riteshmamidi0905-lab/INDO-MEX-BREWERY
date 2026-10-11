@@ -4,7 +4,7 @@
 
 **Two lanes.** Lane A needs the real world (cooking, brewing, tasting, customers, quotes, professionals). Lane B is autonomous digital work. A blocked Lane A item does not stop Lane B. Blockers are reported per workstream, not for the whole company.
 
-**Top alert (D-78):** an Austin restaurant named Nasha was found by T1 searches: the name carries HIGH CONFLICT RISK until an IP attorney reviews it. `docs/decisions/DECISIONS.md` D-78; `brand/TRADEMARK-SCREENING.md`.
+**Top alert (D-78):** an Austin restaurant named Nasha was found by T1 searches: the name carries HIGH CONFLICT RISK until an IP attorney reviews it. `docs/decisions/DECISIONS.md` D-78; `brand/TRADEMARK-SCREENING.md`. **D-79 (agent-proposed, founder confirmation pending):** interim handling: neutral project label for internal work, no name-dependent spend or public use until counsel's written view; the concise attorney package is ready and NOT sent.
 
 ## Where NASHA is today
 

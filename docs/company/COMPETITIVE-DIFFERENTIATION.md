@@ -49,7 +49,7 @@ Indian-Mexican food already exists in Austin: a restaurant named Nasha, Sivestar
 Neutral rule: describe NASHA by what it intends to do and what has been tested, never by what others lack.
 
 ## 5. Benchmark sentences (neutral, repo data only; T1/T2, status unconfirmed)
-- **Nasha (restaurant, 1614 E 7th St; 8900 S Congress Ave):** Reported by search summaries as an Indian Tex-Mex fusion restaurant with a full bar, operating in Austin since about 2014. It shares the founder-selected working name; the name matter belongs to a trademark attorney.
+- **Nasha (restaurant, 1614 E 7th St; 8900 S Congress Ave):** Reported by search summaries as an Indian Tex-Mex fusion restaurant with a full bar, reported by search summaries (T1) as an Indian Tex-Mex fusion restaurant with a full bar; first reported opening 2014 per one 2017 article, earliest dated mention seen 2015; locations reported at 1614 E 7th St, 8900 S Congress Ave and Bee Cave; current operating status unknown. It shares the founder-selected working name; the name matter belongs to a trademark attorney.
 - **Whip In:** Reported as a South Austin market, pub and (historically) brewery run by an Indian-immigrant family, with Gujarati and Tex-Mex dishes and a large tap list.
 - **Sivestar Indian Tacos:** Reported as a southwest Austin restaurant serving Indian-Mexican items such as a paneer tikka burrito and a lamb barbacoa taco.
 - **Austin Taco Project:** Reported as a downtown taco restaurant with a global menu that includes a chicken tikka taco.
