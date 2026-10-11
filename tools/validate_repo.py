@@ -133,7 +133,8 @@ for r in MAN:
         if r["rights_status"]!="PROVISIONAL-LOCAL-ONLY" and not r["rights_status"].startswith("CLEARED"): fail(f"manifest {r['id']}: raster rights must be PROVISIONAL-LOCAL-ONLY or CLEARED*")
         if not r["unresolved_restrictions"].strip(): fail(f"manifest {r['id']}: unresolved_restrictions must be stated")
         if "concept" not in r["concept_or_real"].lower() and "real" not in r["concept_or_real"].lower(): fail(f"manifest {r['id']}: concept_or_real unclear")
-    if r["kind"]=="raster-planned" and r["status"]!="NOT GENERATED (prompt ready)": fail(f"manifest {r['id']}: planned row must say NOT GENERATED")
+    if r["kind"]=="raster-planned" and r["status"] not in ("NOT GENERATED (prompt ready)","CANDIDATE GENERATED (not integrated)"): fail(f"manifest {r['id']}: planned row status must be NOT GENERATED or CANDIDATE GENERATED (not integrated)")
+    if r["status"].startswith("CANDIDATE") and ("Not accepted" not in r["qa_result"] or "UNVERIFIED" not in r["commercial_use_status"]): fail(f"manifest {r['id']}: candidate must say not accepted and keep commercial use UNVERIFIED")
 STAGES={"CONCEPT VISUALIZATION","CONCEPT ILLUSTRATION","PROTOTYPE","TESTED PRODUCT","FINAL PHOTOGRAPHY"}
 for r in MAN:
     st=r["visual_stage"]
@@ -167,7 +168,7 @@ for f in AG:
     for k in ("brand/NASHA-LOGO-GOVERNANCE.md","D-54","TEMPORARY TYPOGRAPHIC PLACEHOLDER"):
         if k not in t: fail(f"{f}: missing shared rule '{k}'")
 CAP=open("docs/ai/NASHA-AI-CAPABILITIES.md",encoding="utf-8").read()
-for k in ("Installed and TESTED","Connected","Available but NOT authenticated","Rejected","Security","Blocked","0 images generated"):
+for k in ("Installed and TESTED","Connected","Candidates raised for the founder","Rejected","Security","Blocked","0 integrated"):
     if k not in CAP: fail(f"AI capability record missing section/term: {k}")
 if any(r["kind"]=="raster" and "sprint 9" in (r["creation_method"]+r["date"]).lower() for r in MAN): fail("manifest claims a Sprint 9 generated raster, but none was generated")
 # logo protection: vault stays empty of real files until founder approval is recorded; no stray logo files; no TM/R symbols in site sources
