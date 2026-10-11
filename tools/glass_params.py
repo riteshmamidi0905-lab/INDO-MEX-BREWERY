@@ -37,7 +37,8 @@ def build(name, out, rim_d=80, max_d=84, base_d=60, height=170, wall=2.2, base_t
     open(sf, "w").write(f"difference(){{ {scad_of(outer)} {scad_of(inner)} }}")
     r = subprocess.run(["openscad", "-o", stl, sf], capture_output=True, text=True)
     if r.returncode: raise SystemExit(r.stderr)
-    m = trimesh.load(stl); cav = trimesh.creation.revolve(np.array(inner + [(0, inner[-1][1])]), sections=96); cap = float(cav.volume) / 1000
+    m = trimesh.load(stl); m.export(stl, file_type="stl")   # re-save as compact BINARY STL (OpenSCAD writes large ASCII)
+    cav = trimesh.creation.revolve(np.array(inner + [(0, inner[-1][1])]), sections=96); cap = float(cav.volume) / 1000
     glass_cm3 = float(m.volume) / 1000; gm = glass_cm3 * GLASS_RHO; com_empty = float(m.center_mass[2])
     res = dict(name=name, height_mm=height, rim_dia_mm=rim_d, max_body_dia_mm=max_d, ring_outer_dia_mm=round(max_d * 0 + 2 * float(np.interp(ring_z, [q[1] for q in body], [q[0] for q in body])) + 2 * ring_proj, 1) if ring_proj and ring_z is not None else None, wall_at_ring_mm=round(wall + ring_proj, 2) if ring_proj else wall, fill_line_datum="height above the outside bottom (z=0), liquid only (serving volume excludes foam head)", base_dia_mm=base_d, wall_mm=wall, base_thickness_mm=base_t,
                ring_height_mm=ring_h, ring_projection_mm=ring_proj, brimful_ml=round(cap, 1), glass_volume_cm3=round(glass_cm3, 1), glass_mass_g_assumed=round(gm, 0),
