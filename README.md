@@ -54,7 +54,10 @@ Phase One baseline (kept; Phase 1.5 governs conflicts): `phase-one/00-FOUNDING-V
 ## Visual Lock (current)
 `visuals/VISUAL-DNA.md` (canonical rules) → `visuals/LOCKED-SCENE-DNA.md` (geometry) → `visuals/generation-batch-01/` (5 prompts to generate first; do not generate the other 52 until reviewed).
 
-## Status (2026-10-10, Phase 2 Sprint 2)
+## Status (2026-10-11, Phase 2 Sprint 3)
+Sprint 3 added `research/VERIFICATION-LEDGER.md` (evidence tiers; no T0 facts), `docs/decisions/DECISION-GATES.md` (F-1..F-5, G-6..G-12), `research/market-survey/observations.csv` (19 LOW-confidence rows), `brand/TRADEMARK-SCREENING.md` (preliminary web screen, not clearance), `brand/CULTURAL-INTEGRITY-AND-ADVISORS.md`, `architecture/COMPACT-FUNCTIONAL-PROGRAM.md`, `beer/pilot-briefs/00-BREWER-HANDOFF.md`, `food/t1-test-sheets/` upgrades, `tools/validate_repo.py`. Still nothing brewed, cooked, interviewed, quoted or generated.
+
+## Status (Sprint 2, 2026-10-10)
 **Dietary policy D-54: no beef, no pork (not claimed halal).** Sprint 2 added `food/MENU-V1.1-TEST-MENU.md`, `food/t1-test-sheets/`, `beer/pilot-briefs/`, `research/market-survey/`, `research/customer-discovery/`, `docs/decisions/DIETARY-AUDIT-D54.md`, `tools/diet_audit.py`. Nothing has been cooked, brewed, surveyed or generated.
 
 ## Status (Phase 2 Sprint 1)

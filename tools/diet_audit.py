@@ -13,4 +13,14 @@ for pat in SCOPE:
                 seen+=1
                 if not OK.search(l): bad+=1; print(f"UNMARKED {f}:{i}: {l.strip()[:140]}")
 print(f"checked scope; {seen} marked/policy occurrences, {bad} unmarked")
+# WATCH pass (Sprint 3): hidden-derivative words in current-product files that carry NO qualifier. Informational, never fails.
+HID=re.compile(r"\b(stock|broth|bouillon|consomm\u00e9|shortening|rennet|gelatin|lard|animal fat|tallow|worcestershire|isinglass)\b",re.I)
+QUAL=re.compile(r"goat|chicken|vegetable|no beef|no pork|D-54|lard-free|statement|spec|supplier|policy|prohibited|never|must|screen|derivative|fining|no gelatin|vegetarian|question",re.I)
+watch=0
+for pat in SCOPE:
+    for f in sorted(glob.glob(pat)):
+        for i,l in enumerate(open(f),1):
+            if HID.search(l) and not QUAL.search(l):
+                watch+=1; print(f"WATCH (hidden-derivative word without qualifier) {f}:{i}: {l.strip()[:120]}")
+print(f"watch pass: {watch} unqualified hidden-derivative mentions (informational)")
 sys.exit(1 if bad else 0)

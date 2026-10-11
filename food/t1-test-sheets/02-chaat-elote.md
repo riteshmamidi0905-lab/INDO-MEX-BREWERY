@@ -5,6 +5,11 @@
 ## 1. Objective
 Test whether Mexican street corn and Indian bhutta/chaat share enough structure (lime, salt, heat, cream, crunch) to make one balanced, shareable vegetarian dish.
 
+## 1b. Hypothesis and control
+**Hypothesis:** H1: Charred corn with a crema-raita dressing, chaat masala and a crisp topping is read by tasters from both traditions as a coherent single dish rather than 'elote with spice'. H0: tasters describe it as one cuisine with an add-on, or the dressing breaks.
+
+**Control / comparison:** Control = classic elote preparation (mayo/crema, cotija-style cheese, chile, lime). Test the chaat version against it blind.
+
 ## 2. Source dishes and traditions (research references, not claims of a shared history)
 - Elote / esquites (Mexican street corn)
 - Bhutta and chaat (Indian roadside corn; chaat masala)
@@ -20,6 +25,12 @@ Test whether Mexican street corn and Indian bhutta/chaat share enough structure 
 - Chaat masala dose (record grams per portion)
 - Cheese (cotija-style): rennet source, salt level
 - Sev timing
+
+## 4b. Equipment required
+Grill or comal, scale, probe thermometer, timer, squeeze bottles, camera.
+
+## 4c. Ingredient checklist (names only; no quantities pre-filled)
+Corn (record variety/source/season); crema; yogurt/raita base; cheese (rennet statement); chaat masala; lime; cilantro; sev or crisp topping (oil statement). Quantities to be recorded.
 
 ## 5. Policy and ingredient screen (D-54)
 Vegetarian; cheese rennet source recorded; no bacon or lard anywhere; confirm sev oil.
@@ -55,7 +66,20 @@ Operational difficulty (1-5, cook's rating): ___ Equipment dependency actually u
 - Dressing separates or pools
 - Messy to share
 
+## 9b. Decision rule (set BEFORE cooking)
+Pre-set: identity score threshold ____; KEEP if the chaat version beats or equals the control on balance AND scores identity ≥ threshold from both-background tasters. Otherwise REWORK/HOLD.
+
 ## 10. Outcome and next iteration
 Result: KEEP / REWORK / CUT / HOLD   Reason: ______
 What changes next time: ______
 Open supplier or equipment questions: ______
+
+## 11. Photo documentation (required)
+Photograph: every ingredient label/packaging (statements about lard, rennet, stock, gelatin); raw weights on the scale; the cooking stage; the plated dish top-down and 45° with a ruler or 10 cm marker in frame; the cross-section; the hold test at time 0 and at the hold limit. Name files `<dish>-<iteration>-<stage>.jpg`; store outside git unless the founder wants them committed.
+
+## 12. Revision log
+| Iteration | Date | Change made (one variable) | Result summary (observed) | Decision |
+|---|---|---|---|---|
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |

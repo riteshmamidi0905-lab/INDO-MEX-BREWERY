@@ -29,7 +29,7 @@ Locked-canon fermenters (5 ft × 19 ft) are **~63 bbl gross (~50 working) each**
 | **A: 15 bbl** | ~15 / ~12 | 860 / 1,440 / 1,870 | ~560-1,220 | **Yes** (baseline hypothesis) |
 | **B: 30 bbl** | ~30 / ~24 | 1,730 / 2,880 / 3,740 | ~1,120-2,430 | Only with packaging/self-distribution/events |
 | **C: 60 bbl (visual canon)** | ~60 / ~48 | 3,460 / 5,760 / 7,490 | ~2,250-4,870 | **No**, unless a packaging/wholesale business is intended |
-Texas BP production cap is 10,000 bbl per location (`S-90`, to confirm); self-distribution to retailers is capped at 1,000 bbl/location (2,500 per licensee) and requires conditions (§13). A 780-bbl on-site demand is a **taproom-median extrapolation**, not a forecast; a restaurant-led destination may drink more or less. **Decision (D-51):** feasibility baseline = Scenario A/B; the visual canon stays illustrative.
+Texas BP production cap is 10,000 bbl per location and self-distribution to retailers is capped at 1,000 bbl/location (2,500 per licensee) with conditions (**tier T1**, official-domain summaries, not opened; `research/VERIFICATION-LEDGER.md` V-01/V-02; attorney to confirm; §13). A 780-bbl on-site demand is a **taproom-median extrapolation**, not a forecast; a restaurant-led destination may drink more or less. **Decision (D-51):** feasibility baseline = Scenario A/B; the visual canon stays illustrative.
 
 ## 6. Restaurant seating scenarios (assumptions)
 | Zone | Compact | Recommended | Destination | Note |
@@ -43,7 +43,7 @@ Dwell, turns and check averages are **unresolved** (need pop-up data).
 ## 7. Family-area implications
 | Topic | Implication | Status |
 |---|---|---|
-| Minors on premises | A TABC spokesperson says no state law bars minors from bars/restaurants; under-21 drinking only with parent/guardian/spouse (`S-92`); **no brewpub-specific bar found** | Attorney/TABC written confirmation |
+| Minors on premises | TABC FAQ (tier T1, summary of an official page, ledger V-05): minors may generally enter licensed premises if they do not possess/consume alcohol, and a licensee may set a house rule excluding minors; under-21 drinking only with parent/guardian/spouse (`S-92`); **no brewpub-specific bar found; arcades/play areas near alcohol not addressed** | Attorney/TABC written confirmation |
 | Liability/insurance | Playground, arcade, liquor liability, minors: **no public cost data found** | Broker quote |
 | Playground standards | CPSC Handbook updated 2025; ASTM F1487/F1292; ADA §240/§1008 (`S-97`) | CPSI + designer |
 | Heat | Shade ~60% of play area, light natural surfaces (`FAMILY-DESTINATION-EXPANSION.md`) | Engineering |

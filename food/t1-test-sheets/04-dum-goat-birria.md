@@ -5,6 +5,11 @@
 ## 1. Objective
 Prove that a sealed (dum-inspired) low, slow braise of goat in a guajillo-ancho adobo produces deep meat and a drinkable consommé, served as griddled tacos with consommé to dip. It must be clearly different from the Tandoori Lamb Taco.
 
+## 1b. Hypothesis and control
+**Hypothesis:** H1: A sealed low braise of goat in a guajillo-ancho adobo yields shreddable meat and a clean, drinkable consommé that holds for service, and the taco tastes distinct from the lamb taco. H0: goat is tough or too gamey, consommé is greasy/flat, yield is unworkable, or tasters cannot tell it from the lamb taco.
+
+**Control / comparison:** Control = open-pot braise of the same goat and adobo (no sealed 'dum' step) to test whether the seal changes the result. Blind pair with the lamb taco.
+
 ## 2. Source dishes and traditions (research references, not claims of a shared history)
 - Birria (Jalisco goat tradition; consommé and quesabirria forms from Tijuana; `research/MEXICAN-CULINARY-BENCHMARKS.md`)
 - Dum braising (sealed-pot technique associated with Hyderabadi cooking; origin stories are folklore, see `research/HISTORICAL-CLAIMS-AUDIT.md`)
@@ -23,6 +28,12 @@ Prove that a sealed (dum-inspired) low, slow braise of goat in a guajillo-ancho 
 - Seal method
 - Consommé: fat skim level, seasoning, tadka at the table
 - Chicken/vegetable stock use (no beef bones)
+
+## 4b. Equipment required
+Braise kettle or combi oven with temperature log, seal materials, scale, probe thermometer, fat separator, fine strainer, comal, timer, camera.
+
+## 4c. Ingredient checklist (names only; no quantities pre-filled)
+Goat (record cut, bone-in/out, supplier, cold-chain); dried chiles; vinegar; aromatics; whole spices; yogurt-papaya marinade components; corn tortillas (lard-free statement); stock components (goat/chicken/vegetable only, no beef or pork bones); onion, cilantro, lime. Quantities to be recorded.
 
 ## 5. Policy and ingredient screen (D-54)
 Goat only; stock must be goat/chicken/vegetable; no beef or pork bones, no commercial bases without spec; tortillas lard-free.
@@ -60,7 +71,20 @@ Operational difficulty (1-5, cook's rating): ___ Equipment dependency actually u
 - Cannot hold for service
 - Not distinguishable from the lamb taco in a blind comparison
 
+## 9b. Decision rule (set BEFORE cooking)
+Pre-set: minimum cooked yield ____ % of raw (set from first iteration, then fixed); consommé fat limit (taster rating); KEEP only if yield, tenderness, consommé and distinctness all pass in 2 of 3 iterations.
+
 ## 10. Outcome and next iteration
 Result: KEEP / REWORK / CUT / HOLD   Reason: ______
 What changes next time: ______
 Open supplier or equipment questions: ______
+
+## 11. Photo documentation (required)
+Photograph: every ingredient label/packaging (statements about lard, rennet, stock, gelatin); raw weights on the scale; the cooking stage; the plated dish top-down and 45° with a ruler or 10 cm marker in frame; the cross-section; the hold test at time 0 and at the hold limit. Name files `<dish>-<iteration>-<stage>.jpg`; store outside git unless the founder wants them committed.
+
+## 12. Revision log
+| Iteration | Date | Change made (one variable) | Result summary (observed) | Decision |
+|---|---|---|---|---|
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |

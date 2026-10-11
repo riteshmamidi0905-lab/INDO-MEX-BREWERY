@@ -18,7 +18,7 @@
 | 11 | **Mole-Salan Bowl** | Vegetables | Vegetarian signature "third thing" | Mill/blender, kettle | 3 | L | Dunkelweizen / Malabar Dark | |
 | 12 | **Cardamom Churros** | Dough | Dessert; margin; lard-free required | Fryer | 2 | L | Weizenbock (later) / Dunkelweizen | |
 
-**Balance:** vegetarian (no meat or fish) = 6 of 12 (2, 3, 5, 6, 11, 12) plus the cheese/paneer items; chicken 3 (1, 4, 10); goat 1; lamb 1; fish 1. **Equipment for wave 1:** fryer, comal/flat-top, tandoor or charbroiler, braise kettle. **No pizza oven and no biryani batch system is needed to test this wave.**
+**Balance (provisional):** vegetarian (no meat or fish) = 6 of 12 (2, 3, 5, 6, 11, 12) **as designed; strict vegetarian status also depends on cheese rennet, stock and gelatin verification (unconfirmed)** plus the cheese/paneer items; chicken 3 (1, 4, 10); goat 1; lamb 1; fish 1. **Equipment for wave 1:** fryer, comal/flat-top, tandoor or charbroiler, braise kettle. **No pizza oven and no biryani batch system is needed to test this wave.**
 
 ## 2. Not in wave 1 (kept in the pool)
 | Dish | Status | Reason (operational logic) | When it returns |

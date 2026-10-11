@@ -5,6 +5,11 @@
 ## 1. Objective
 Test whether butter chicken's rich sweet tomato-cream sauce gains structure and smoke from charred poblano rajas and cheese in a griddled quesadilla, with the sauce thick enough not to pool.
 
+## 1b. Hypothesis and control
+**Hypothesis:** H1: A thick, restrained butter-chicken sauce with charred poblano and melting cheese holds inside a griddled flour tortilla without leaking and reads as both a butter chicken and a quesadilla. H0: leaks, goes soggy, or loses one identity.
+
+**Control / comparison:** Control = plain chicken-and-cheese quesadilla (shows what the sauce and rajas add). Compare sauce thickness levels.
+
 ## 2. Source dishes and traditions (research references, not claims of a shared history)
 - Murgh makhani / butter chicken (North Indian)
 - Quesadilla with rajas con queso (Mexican)
@@ -21,6 +26,12 @@ Test whether butter chicken's rich sweet tomato-cream sauce gains structure and 
 - Rajas char level
 - Tortilla: flour (lard-free) vs corn
 - Dipping sauce: Raita-Crema
+
+## 4b. Equipment required
+Comal/flat-top, saucepan, scale, probe thermometer, timer, camera, cutting board.
+
+## 4c. Ingredient checklist (names only; no quantities pre-filled)
+Chicken thigh; tomato; butter/ghee; cream or alternative (record); kasuri methi; poblano; cheese (rennet statement); flour tortilla (lard-free statement); Raita-Crema components. Quantities to be recorded.
 
 ## 5. Policy and ingredient screen (D-54)
 Chicken; cheese rennet source recorded; flour tortilla confirmed lard-free; butter/ghee only.
@@ -56,7 +67,20 @@ Operational difficulty (1-5, cook's rating): ___ Equipment dependency actually u
 - Poblano flavour absent
 - Cannot be made quickly at volume on the comal
 
+## 9b. Decision rule (set BEFORE cooking)
+Pre-set: leak/sog limit at ____ min after cooking; KEEP if no leak at that time and identity scores pass in 2 of 3 iterations.
+
 ## 10. Outcome and next iteration
 Result: KEEP / REWORK / CUT / HOLD   Reason: ______
 What changes next time: ______
 Open supplier or equipment questions: ______
+
+## 11. Photo documentation (required)
+Photograph: every ingredient label/packaging (statements about lard, rennet, stock, gelatin); raw weights on the scale; the cooking stage; the plated dish top-down and 45° with a ruler or 10 cm marker in frame; the cross-section; the hold test at time 0 and at the hold limit. Name files `<dish>-<iteration>-<stage>.jpg`; store outside git unless the founder wants them committed.
+
+## 12. Revision log
+| Iteration | Date | Change made (one variable) | Result summary (observed) | Decision |
+|---|---|---|---|---|
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |

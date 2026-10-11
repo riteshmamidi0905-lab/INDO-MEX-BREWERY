@@ -234,3 +234,5 @@ Primary pages for each Austin venue, the current TABC brewpub page, Michelin/50 
 | S-116 | Live Oak Brewing, The Beer (Hefeweizen 5.3% ABV, 10 IBU) | https://www.liveoakbrewing.com/the-beer | A |
 | S-117 | Austin wage data: Indeed salary pages (line cook, bartender), Indeed Flex, WageDex (BLS OEWS republisher) (Oct-Nov 2025) | https://www.indeed.com/salaries/line-cook-Salaries,-Austin-TX ; https://wagedex.com/jobs/chefs-and-head-cooks/metro/austin-round-rock-san-marcos-tx | B/C |
 | S-118 | Land asking prices: LoopNet/Crexi listings (Pflugerville, Manor, Del Valle); Texas A&M RERC via Land Report (asking prices, not closed sales) | https://landreport.com/?p=78372 | C |
+
+**Sprint 3 note (D-56):** official-domain sources consulted via search summaries on 2026-10-11 (TABC, statutes.capitol.texas.gov, BJCP, Austin Water, TTB, CPSC, Federal Register, and venue sites) are listed with tiers in `research/VERIFICATION-LEDGER.md` and `research/market-survey/observations.csv`; none was opened directly.

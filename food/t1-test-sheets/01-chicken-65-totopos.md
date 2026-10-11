@@ -5,6 +5,11 @@
 ## 1. Objective
 Prove that Chennai/Hyderabad-style Chicken 65 and fresh masa totopos work as one shareable bar snack that holds crisp for the length of a table conversation.
 
+## 1b. Hypothesis and control
+**Hypothesis:** H1: A 65-style chicken with a restrained marinade stays crisp and juicy for at least the hold time set below when served with chips and sauce on the side. H0 (what would disprove it): chicken dries or toughens, or chips go soft, within that time.
+
+**Control / comparison:** Control = the simplest version (single fry, sauce tossed). Compare against one change at a time (double fry; sauce on the side). Keep one batch of chips constant while testing chicken, and vice versa.
+
 ## 2. Source dishes and traditions (research references, not claims of a shared history)
 - Chicken 65 (South Indian bar-snack tradition; see `research/INDIAN-CULINARY-BENCHMARKS.md`)
 - Totopos / fried masa chips (Mexican; `research/MEXICAN-CULINARY-BENCHMARKS.md`)
@@ -20,6 +25,12 @@ Prove that Chennai/Hyderabad-style Chicken 65 and fresh masa totopos work as one
 - Chip: par-fried vs fried to order; thickness
 - Sauce placement: tossed vs side (Lal vs Hari vs Raita-Crema)
 - Curry-leaf timing
+
+## 4b. Equipment required
+Fryer with thermometer, probe thermometer, scale (0.1 g), timer, holding station or heat lamp, camera, food-safe labels.
+
+## 4c. Ingredient checklist (names only; no quantities pre-filled)
+Chicken thigh; yogurt; ginger-garlic; Lal sauce components; curry leaf; green chile; lime; achari onion components; masa/chips (lard-free, supplier statement); frying oil (vegetable; supplier statement). Quantities: to be recorded, not pre-set.
 
 ## 5. Policy and ingredient screen (D-54)
 Chicken only; check marinade ingredients and any bouillon; frying oil vegetable (no lard); masa chips lard-free.
@@ -55,7 +66,20 @@ Operational difficulty (1-5, cook's rating): ___ Equipment dependency actually u
 - Heat above level 2 for a first-time guest
 - Ticket time over the target set at T1 for a shared snack
 
+## 9b. Decision rule (set BEFORE cooking)
+Pre-set before cooking (write here): minimum hold time ____ min; minimum panel average taste ____, identity ____ . KEEP only if both met in 2 of 3 iterations and no failure criterion is hit. Otherwise REWORK (max 3 more iterations) then CUT or HOLD.
+
 ## 10. Outcome and next iteration
 Result: KEEP / REWORK / CUT / HOLD   Reason: ______
 What changes next time: ______
 Open supplier or equipment questions: ______
+
+## 11. Photo documentation (required)
+Photograph: every ingredient label/packaging (statements about lard, rennet, stock, gelatin); raw weights on the scale; the cooking stage; the plated dish top-down and 45° with a ruler or 10 cm marker in frame; the cross-section; the hold test at time 0 and at the hold limit. Name files `<dish>-<iteration>-<stage>.jpg`; store outside git unless the founder wants them committed.
+
+## 12. Revision log
+| Iteration | Date | Change made (one variable) | Result summary (observed) | Decision |
+|---|---|---|---|---|
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |

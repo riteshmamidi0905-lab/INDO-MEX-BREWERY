@@ -5,6 +5,11 @@
 ## 1. Objective
 Prove that tandoor-charred marinated paneer works as a taco filling: firm, smoky and juicy, not rubbery, with a fast 90-second finish.
 
+## 1b. Hypothesis and control
+**Hypothesis:** H1: Marinated paneer with real char and a short finish stays tender (not rubbery) in a corn tortilla at service pace. H0: paneer toughens or leaks, or the taco cannot be finished in the target ticket time.
+
+**Control / comparison:** Control = unmarinated charred paneer in the same taco (to show what the marinade adds). Also compare heat source (tandoor vs charbroiler vs comal) if more than one is available.
+
 ## 2. Source dishes and traditions (research references, not claims of a shared history)
 - Paneer tikka (North Indian tandoori tradition)
 - Tacos al carbon / charred taco fillings, hari-style green salsa (Mexican)
@@ -20,6 +25,12 @@ Prove that tandoor-charred marinated paneer works as a taco filling: firm, smoky
 - Tandoor vs charbroiler vs comal
 - Tortilla: corn (default) vs flour
 - Garnish: hari, charred pineapple, achari onion
+
+## 4b. Equipment required
+Tandoor OR charbroiler OR comal (record which), skewers/tray, scale, probe thermometer, timer, camera.
+
+## 4c. Ingredient checklist (names only; no quantities pre-filled)
+Paneer (record source; acid-set; in-house vs bought); yogurt marinade components; ajwain; chile; hari sauce components; pineapple; corn tortillas (lard-free statement). Quantities to be recorded.
 
 ## 5. Policy and ingredient screen (D-54)
 Vegetarian; paneer is acid-set (confirm supplier); corn tortillas lard-free.
@@ -55,7 +66,20 @@ Operational difficulty (1-5, cook's rating): ___ Equipment dependency actually u
 - Tortilla tears or soaks through
 - Ticket time above target; sauce too wet
 
+## 9b. Decision rule (set BEFORE cooking)
+Pre-set: ticket-time limit ____ min; texture threshold ____ . KEEP only if texture and char pass in 2 of 3 iterations at service pace.
+
 ## 10. Outcome and next iteration
 Result: KEEP / REWORK / CUT / HOLD   Reason: ______
 What changes next time: ______
 Open supplier or equipment questions: ______
+
+## 11. Photo documentation (required)
+Photograph: every ingredient label/packaging (statements about lard, rennet, stock, gelatin); raw weights on the scale; the cooking stage; the plated dish top-down and 45° with a ruler or 10 cm marker in frame; the cross-section; the hold test at time 0 and at the hold limit. Name files `<dish>-<iteration>-<stage>.jpg`; store outside git unless the founder wants them committed.
+
+## 12. Revision log
+| Iteration | Date | Change made (one variable) | Result summary (observed) | Decision |
+|---|---|---|---|---|
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |
