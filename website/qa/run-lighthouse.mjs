@@ -8,7 +8,7 @@ const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split
 await new Promise(r => srv.listen(0, r)); const base = `http://127.0.0.1:${srv.address().port}`;
 const chrome = await chromeLauncher.launch({ chromePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome", chromeFlags: ["--headless=new", "--no-sandbox"] });
 const out = { date: new Date().toISOString(), tool: "lighthouse " + (JSON.parse(fs.readFileSync(path.join(here, "node_modules/lighthouse/package.json"))).version), runs: {} };
-for (const pg of ["index.html", "food.html", "beer.html", "space.html"]) for (const form of ["mobile", "desktop"]) {
+for (const pg of ["index.html", "food.html", "beer.html", "space.html", "pairings.html", "labs.html", "investor.html"]) for (const form of ["mobile", "desktop"]) {
   const cfg = form === "desktop" ? { extends: "lighthouse:default", settings: { formFactor: "desktop", screenEmulation: { mobile: false, width: 1350, height: 940, deviceScaleFactor: 1, disabled: false }, throttling: { rttMs: 40, throughputKbps: 10240, cpuSlowdownMultiplier: 1 } } } : undefined;
   const r = await lighthouse(`${base}/${pg}`, { port: chrome.port, output: "json", logLevel: "error", onlyCategories: ["performance", "accessibility", "best-practices", "seo"] }, cfg);
   const c = r.lhr.categories, a = r.lhr.audits;

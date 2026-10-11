@@ -1,5 +1,5 @@
 {
- "date": "2026-10-11T05:06:32.360Z",
+ "date": "2026-10-11T21:49:55.011Z",
  "tool": "lighthouse 13.5.0",
  "runs": {
   "index.html:mobile": {
@@ -7,80 +7,140 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 1898,
+   "lcpMs": 1960,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 201
+   "transferKB": 209
   },
   "index.html:desktop": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 427,
+   "lcpMs": 424,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 246
+   "transferKB": 253
   },
   "food.html:mobile": {
    "performance": 99,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 1959,
+   "lcpMs": 2108,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 206
+   "transferKB": 202
   },
   "food.html:desktop": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 487,
+   "lcpMs": 489,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 206
+   "transferKB": 202
   },
   "beer.html:mobile": {
-   "performance": 99,
+   "performance": 98,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 1953,
+   "lcpMs": 2109,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 191
+   "transferKB": 197
   },
   "beer.html:desktop": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 443,
+   "lcpMs": 483,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 191
+   "transferKB": 197
   },
   "space.html:mobile": {
    "performance": 99,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 1877,
+   "lcpMs": 1878,
    "cls": 0,
-   "tbtMs": 0,
-   "transferKB": 206
+   "tbtMs": 9,
+   "transferKB": 216
   },
   "space.html:desktop": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 425,
+   "lcpMs": 444,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 262
+   "transferKB": 272
+  },
+  "pairings.html:mobile": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 60,
+   "lcpMs": 1502,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 111
+  },
+  "pairings.html:desktop": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 60,
+   "lcpMs": 364,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 111
+  },
+  "labs.html:mobile": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 60,
+   "lcpMs": 1502,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 110
+  },
+  "labs.html:desktop": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 60,
+   "lcpMs": 361,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 110
+  },
+  "investor.html:mobile": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 60,
+   "lcpMs": 1804,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 145
+  },
+  "investor.html:desktop": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 60,
+   "lcpMs": 443,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 145
   }
  }
 }

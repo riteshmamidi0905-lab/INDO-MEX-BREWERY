@@ -6,7 +6,7 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 |---|---|---|---|
 | `action_board.py` | GENERATOR | Generate docs/FOUNDER-ACTION-BOARD.md from docs/company/data/actions.csv and contact-targets.csv: ONLY actions | 3 |
 | `beerjson_check.py` | HELPER / MODEL | Validate a BeerJSON file against the vendored official schema (Sprint 15). Structure check only: a valid file  | 2 |
-| `blueprint_views.py` | HELPER / MODEL | Generate the pre-capital blueprint views from canonical CSV data (Sprint 22). Invents nothing: every number-be | 6 |
+| `blueprint_views.py` | HELPER / MODEL | Generate the pre-capital blueprint views from canonical CSV data (Sprint 22). Invents nothing: every number-be | 7 |
 | `brew_calc.py` | HELPER / MODEL | Brewing arithmetic for NASHA PLANNING (Sprint 9). AI planning support only: NOT operating instructions, NOT pr | 4 |
 | `competitor_summary.py` | HELPER / MODEL | Summarise ops/data/austin-yelp-observed.csv by group (Sprint 15). OBSERVED values only; nothing is inferred ab | 3 |
 | `control_center.py` | GENERATOR | Generate docs/CORE5-CONTROL-CENTER.md: one place for the ten Core 5 products. Reads the canonical matrices, se | 3 |
@@ -22,7 +22,7 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 | `glass_model.py` | HELPER / MODEL | Parametric glass CONCEPT model (Sprint 14). Draws a revolved profile with OpenSCAD, measures volume with trime | 2 |
 | `glass_params.py` | HELPER / MODEL | Parametric glass CONCEPT geometry with optional collar ring (Sprint 15). CONCEPT GEOMETRY - MANUFACTURABILITY  | 3 |
 | `glass_v2.py` | HELPER / MODEL | Glass family V2 geometry system (Sprint 17). CONCEPT GEOMETRY - MANUFACTURABILITY UNVERIFIED; no logo/text/mar | 3 |
-| `intake.py` | RECORDER / INGEST | REAL INPUT INGESTION (Sprint 21). One tool for receipts, labels, packages, supplier quotes and raw professiona | 12 |
+| `intake.py` | RECORDER / INGEST | REAL INPUT INGESTION (Sprint 21). One tool for receipts, labels, packages, supplier quotes and raw professiona | 13 |
 | `kitchen_capacity.py` | HELPER / MODEL | Core 5 kitchen CAPACITY PLANNING EXERCISE (Sprint 17). Not a forecast. Reads ops/kitchen/capacity-assumptions. | 4 |
 | `lit_ledger.py` | RECORDER / INGEST | Literature ledger (Sprint 15): Question -> candidate paper -> DOI -> metadata -> abstract note -> evidence qua | 2 |
 | `make_session_cards.py` | GENERATOR | Generate the Core 5 SESSION CARDS (food/sessions/S2..S5-*.md) and the R&D book index (food/sessions/README.md) | 2 |
