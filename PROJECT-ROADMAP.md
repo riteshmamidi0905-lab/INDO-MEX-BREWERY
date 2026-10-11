@@ -145,3 +145,7 @@ Menu M-1..M-7 (M-1/M-2/M-3 superseded by D-54) · Journey J-1..J-6 · Brand BR-1
 | Brand | `brand/{BRAND-SYSTEM-V0,BRAND-WORLDS,NAMING-UNIVERSE-V2,PARENT-BRAND-CANDIDATES}.md` |
 | Research | `research/{SOURCES,HISTORICAL-CLAIMS-AUDIT,RESEARCH-BACKLOG,AUSTIN-COMPETITIVE-LANDSCAPE,...}.md` |
 | Visuals | `visuals/{VISUAL-DNA,LOCKED-SCENE-DNA}.md`, `visuals/generation-batch-01/`, `visuals/generated/` (ARC-01-D canonical; LOG.md), `visuals/tools/` |
+
+
+## Sprint 14 (infrastructure; no score change)
+Tooling expansion recorded in `docs/tools/NASHA-CAPABILITY-MATRIX.md`; agent tests in `docs/ai/AGENT-TEST-LOG.md`. Evidence readiness 4/95 and design completeness 43/95 unchanged (tools are not evidence). Chicken 65 Totopos: NOT PERFORMED. Next action: the physical cook (sheet 13), and the Figma originals before 2026-10-18.

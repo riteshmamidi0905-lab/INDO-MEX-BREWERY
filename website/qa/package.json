@@ -15,5 +15,12 @@
     "pixelmatch": "^8.0.0",
     "playwright-core": "^1.64.0",
     "pngjs": "^7.0.0"
+  },
+  "devDependencies": {
+    "html-validate": "^11.16.2",
+    "license-checker-rseidelsohn": "^4.4.2",
+    "linkinator": "^8.1.0",
+    "sharp": "^0.35.5",
+    "svgo": "^4.1.0"
   }
 }

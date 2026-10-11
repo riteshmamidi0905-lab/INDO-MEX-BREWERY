@@ -35,7 +35,7 @@ def _save(im, path, fmt):
 def build_raster(row, out_dir):
     """row: manifest dict with id, source_file (path from repo root), src_crop, mobile_ar ('4:5'), mobile_focus_x. Returns metadata."""
     src = os.path.join(REPO, row["source_file"])
-    key = hashlib.sha1((open(src, "rb").read() + json.dumps([row["src_crop"], row["mobile_ar"], row["mobile_focus_x"], D_WIDTHS, M_WIDTHS]).encode())).hexdigest()[:12]
+    key = hashlib.sha1(usedforsecurity=False, string=(open(src, "rb").read() + json.dumps([row["src_crop"], row["mobile_ar"], row["mobile_focus_x"], D_WIDTHS, M_WIDTHS]).encode())).hexdigest()[:12]
     cdir = os.path.join(CACHE, row["id"] + "-" + key)
     meta_path = os.path.join(cdir, "meta.json")
     if not os.path.exists(meta_path):

@@ -460,8 +460,6 @@ ZONE_SVG = ""
 # ---------- Build ----------
 def main():
     global ZONE_SVG
-    ns = {}
-    exec(open("/tmp/zone_svg.py").read() if False else "", ns)
     ZONE_SVG = zone_svg()
     if os.path.isdir(DIST):
         shutil.rmtree(DIST)
