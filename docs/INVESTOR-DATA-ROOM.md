@@ -15,7 +15,7 @@ NASHA is a concept for a food-and-beer house joining Indian and Mexican traditio
 
 ## Data room index (READY / PARTIAL / FUTURE; PROFESSIONAL REVIEW REQUIRED where noted)
 
-READY means the document exists and is current. It says nothing about whether its content is tested or correct; the Note column says what is still unknown.
+READY = a generated or reference document that is complete as a document. PREPARED = written and current but built on hypotheses, unknown inputs or unsent packages (not tested, not reviewed). PARTIAL = incomplete. FUTURE = does not exist yet. Neither READY nor PREPARED says anything about whether the content is tested or correct.
 
 ### 00 Executive Overview
 
@@ -31,22 +31,22 @@ READY means the document exists and is current. It says nothing about whether it
 | Brand strategy | `brand/NASHA-BRAND-STRATEGY.md` | **PARTIAL** | name under D-78/D-79; no logo (D-66) |
 | Trademark screening and conflict facts | `brand/TRADEMARK-SCREENING.md` | **PARTIAL** | LEGAL REVIEW REQUIRED |
 | Brand contingency | `docs/company/BRAND-CONTINGENCY.md` | **READY** | name-independent work continues |
-| Brand experience and responsible alcohol | `docs/company/BRAND-EXPERIENCE-AND-RESPONSIBLE-ALCOHOL.md` | **READY** | proposed |
+| Brand experience and responsible alcohol | `docs/company/BRAND-EXPERIENCE-AND-RESPONSIBLE-ALCOHOL.md` | **PREPARED** | proposed |
 
 ### 02 Product
 
 | Item | Path | Status | Note |
 |---|---|---|---|
 | Product bible | `docs/PRODUCT-BIBLE.md` | **READY** | generated |
-| Core 5 food matrix | `food/CORE5-FOOD-MATRIX.csv` | **READY** | design hypotheses |
-| Core 5 beer matrix | `beer/CORE5-BEER-MATRIX.csv` | **READY** | design hypotheses |
+| Core 5 food matrix | `food/CORE5-FOOD-MATRIX.csv` | **PREPARED** | design hypotheses |
+| Core 5 beer matrix | `beer/CORE5-BEER-MATRIX.csv` | **PREPARED** | design hypotheses |
 | Core 5 control center | `docs/CORE5-CONTROL-CENTER.md` | **READY** | generated |
 
 ### 03 Food R&D
 
 | Item | Path | Status | Note |
 |---|---|---|---|
-| Session 1 founder mode and checklists | `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md` | **READY** | not performed |
+| Session 1 founder mode and checklists | `food/t1-test-sheets/14-SESSION-1-FOUNDER-MODE.md` | **PREPARED** | not performed |
 | Pairing matrix (hypotheses) | `food/CORE5-PAIRING-MATRIX.csv` | **PARTIAL** | not sensory tested |
 | Iteration log | `ops/rd/iteration-log.csv` | **FUTURE** | empty until cooks happen |
 
@@ -69,21 +69,21 @@ READY means the document exists and is current. It says nothing about whether it
 
 | Item | Path | Status | Note |
 |---|---|---|---|
-| Validation path | `docs/company/VALIDATION-PATH.md` | **READY** | no customers yet |
-| First 30 learning plan | `research/customer-discovery/FIRST-30-LEARNING-PLAN.md` | **READY** | templates empty |
+| Validation path | `docs/company/VALIDATION-PATH.md` | **PREPARED** | no customers yet |
+| First 30 learning plan | `research/customer-discovery/FIRST-30-LEARNING-PLAN.md` | **PREPARED** | templates empty |
 
 ### 07 Operations
 
 | Item | Path | Status | Note |
 |---|---|---|---|
-| Operating blueprint | `docs/OPERATING-BLUEPRINT.md` | **READY** | PROPOSED OPERATING MODEL - NOT FIELD VALIDATED |
+| Operating blueprint | `docs/OPERATING-BLUEPRINT.md` | **PREPARED** | PROPOSED OPERATING MODEL - NOT FIELD VALIDATED |
 | Operating day model | `docs/company/OPERATING-DAY-MODEL.md` | **PARTIAL** | assumptions |
 
 ### 08 Financial Model
 
 | Item | Path | Status | Note |
 |---|---|---|---|
-| Business model control system | `docs/BUSINESS-MODEL-CONTROL.md` | **READY** | all inputs UNKNOWN |
+| Business model control system | `docs/BUSINESS-MODEL-CONTROL.md` | **PREPARED** | all inputs UNKNOWN |
 | Assumptions store | `ops/finance/assumptions.csv` | **FUTURE** | empty until real inputs |
 
 ### 09 Architecture
@@ -104,7 +104,7 @@ READY means the document exists and is current. It says nothing about whether it
 
 | Item | Path | Status | Note |
 |---|---|---|---|
-| Attorney package | `ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md` | **READY** | LEGAL REVIEW REQUIRED; not sent |
+| Attorney package | `ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md` | **PREPARED** | LEGAL REVIEW REQUIRED; not sent |
 | IP asset tracker | `ip/IP-ASSET-TRACKER.csv` | **READY** | tracker |
 
 ### 12 Evidence
@@ -118,7 +118,7 @@ READY means the document exists and is current. It says nothing about whether it
 
 | Item | Path | Status | Note |
 |---|---|---|---|
-| Investor risks with tests | `docs/company/data/investor-risks.csv` | **READY** | tests not yet executed |
+| Investor risks with tests | `docs/company/data/investor-risks.csv` | **PREPARED** | tests not yet executed |
 
 ### 14 Roadmap
 
@@ -131,10 +131,10 @@ READY means the document exists and is current. It says nothing about whether it
 
 | Item | Path | Status | Note |
 |---|---|---|---|
-| Capital stages | `docs/company/data/capital-stages.csv` | **READY** | no amounts |
-| Use of funds | `docs/company/data/use-of-funds.csv` | **READY** | no amounts |
-| Capital gates | `docs/company/data/bm-gates.csv` | **READY** | none passed |
-| Professional gates register | `docs/company/data/professional-gates.csv` | **READY** | unfunded |
+| Capital stages | `docs/company/data/capital-stages.csv` | **PREPARED** | no amounts |
+| Use of funds | `docs/company/data/use-of-funds.csv` | **PREPARED** | no amounts |
+| Capital gates | `docs/company/data/bm-gates.csv` | **PREPARED** | none passed |
+| Professional gates register | `docs/company/data/professional-gates.csv` | **PREPARED** | unfunded |
 
 ## Capital stages (no amounts; hospitality investors, strategic and brewery partners, angels, later debt and founder capital all considered; venture capital is not assumed)
 

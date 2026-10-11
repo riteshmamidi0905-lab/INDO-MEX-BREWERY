@@ -141,7 +141,7 @@
   },
   {
    "area": "CAPITAL",
-   "digital": 3,
+   "digital": 2,
    "real": 0,
    "pro": 0
   },
@@ -520,7 +520,7 @@
    "reversibility": "VERY LOW"
   }
  ],
- "pre_capital_pct": 58,
+ "pre_capital_pct": 53,
  "physical_pct": 0,
  "pre_capital_method": "count of criteria (DONE=1, PARTIAL=0.5) over 18; not a readiness score"
 }

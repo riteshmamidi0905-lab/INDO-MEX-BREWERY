@@ -32,8 +32,8 @@ Not allowed without a new founder decision: forming the business, filing tradema
 | **MARKET** | 2/4 | 1/4 | 0/3 | AUSTIN-MARKET-MAP.md; COMPETITIVE-DIFFERENTIATION.md | public observations (T1), low confidence |
 | **MVP** | 3/4 | 0/4 | 0/3 | mvp-decision-tree.csv; bm-formats.csv | none |
 | **FINANCE** | 3/4 | 0/4 | 0/3 | tools/fin_model.py; food_costing.py; bm-inputs.csv (all values UNKNOWN) | no real cost, price or sale |
-| **CAPITAL** | 3/4 | 0/4 | 0/3 | capital-stages.csv; use-of-funds.csv; bm-gates.csv | none raised or sought |
-| **IP** | 2/4 | 0/4 | 0/3 | ip/ trackers; attorney package ready | none |
+| **CAPITAL** | 2/4 | 0/4 | 0/3 | capital-stages.csv; use-of-funds.csv; bm-gates.csv | none raised or sought |
+| **IP** | 2/4 | 0/4 | 0/3 | ip/ trackers; attorney package prepared, not sent | none |
 | **LEGAL** | 2/4 | 0/4 | 0/3 | REGULATORY-QUESTION-TREE.md; professional-gates.csv | none |
 | **REGULATORY** | 2/4 | 0/4 | 0/3 | MINIMUM-LAWFUL-FOOD-TEST.md; question tree | no authority contacted |
 | **TEAM** | 2/4 | 0/4 | 0/3 | team-blueprint.csv | founder only |
@@ -42,7 +42,7 @@ Not allowed without a new founder decision: forming the business, filing tradema
 | **DATA ROOM** | 3/4 | 0/4 | 0/3 | docs/INVESTOR-DATA-ROOM.md (generated index; paths checked) | n/a |
 | **EVIDENCE** | 3/4 | 0/4 | 0/3 | tools/intake.py; scoreboard; verification ledger | 4 of 95; no physical test |
 
-**digital scale:** 0 = nothing; 1 = outlined; 2 = drafted in docs or data; 3 = data-backed, validated by tools, generated view where applicable; 4 = everything possible at zero cost is done and independently reviewed
+**digital scale:** 0 = nothing; 1 = outlined; 2 = drafted in docs or data; 3 = data-backed STRUCTURE validated by tools, generated view where applicable (inputs may all still be unknown); 4 = everything possible at zero cost is done and independently reviewed
 **real_world scale:** 0 = no real-world observation; 1 = desk or public-source observation only; 2 = one personal prototype or measurement with preserved originals; 3 = repeated personal prototypes with documented iteration; 4 = external real-world evidence (guests, vendors, sales)
 **professional scale:** 0 = no professional input (agent analysis is NOT professional review); 1 = one professional informal input recorded; 2 = a qualified professional review of part; 3 = a qualified professional review complete
 
@@ -69,7 +69,7 @@ Agent analysis is never counted as professional review. Real-world level 1 means
 
 ## Pre-capital blueprint completion
 
-**Structured assessment: 58% by count** (8 done, 5 partial, 5 not done of 18 criteria; DONE = 1, PARTIAL = 0.5). Method: criteria are listed below; the percentage counts criteria, it does not weight quality or importance, and it is NOT a readiness score and NOT declared complete. Split: digital and desk criteria 10.5 of 13 (81%); criteria that need the founder's physical work (cooking, photographs, receipts) 0 of 5 (0%). The headline number therefore overstates progress on real evidence: physical completion is the number that matters most.
+**Lead with this: 0 of 5 criteria that need the founder's real cooking, photographs and receipts are done.** Overall count for context only: 53% (7 done, 5 partial, 6 not done of 18 criteria; DONE = 1, PARTIAL = 0.5). Method: criteria are listed below; the percentage counts criteria, it does not weight quality or importance, and it is NOT a readiness score and NOT declared complete. Split: digital and desk criteria 9.5 of 13 (73%); criteria that need the founder's physical work (cooking, photographs, receipts) 0 of 5 (0%). The headline number therefore overstates progress on real evidence: physical completion is the number that matters most.
 
 | Criterion | How checked | Status | Zero dollars? | Note |
 |---|---|---|---|---|
@@ -88,9 +88,9 @@ Agent analysis is never counted as professional review. Real-world level 1 means
 | Risk register with tests | investor-risks.csv | **DONE** | YES | tests not yet executed |
 | Professional-review plan and gates register | professional-gates.csv | **DONE** | YES | unfunded |
 | Name contingency | BRAND-CONTINGENCY.md | **DONE** | YES | D-79 |
-| Investor data room index | docs/INVESTOR-DATA-ROOM.md | **DONE** | YES | index and pointers |
+| Investor data room index | docs/INVESTOR-DATA-ROOM.md | **PARTIAL** | YES | index and path checks exist; contents are untested |
 | Founder narrative (zero-dollar story) | docs/INVESTOR-DATA-ROOM.md | **PARTIAL** | YES | draft in the investor page |
-| Adversarial AI investor review finds no unsupported claim (an AI exercise, NOT an external investor) | review record in the sprint report | **PARTIAL** | YES | first round run in Sprint 22; findings applied |
+| Adversarial AI investor review finds no unsupported claim (an AI exercise, NOT an external investor) | a review record file in the repository (does not... | **NOT DONE** | YES | AI review rounds run in Sprint 22 (see sprint report); no... |
 
 PRE-CAPITAL BLUEPRINT COMPLETE will mean: every criterion above is DONE, every area is at digital level 3 or higher or marked as needing a professional, and an independent investor red-team finds no unsupported claim. It is not declared now.
 

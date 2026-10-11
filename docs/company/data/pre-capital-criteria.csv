@@ -14,6 +14,6 @@
 "Risk register with tests","investor-risks.csv","DONE","YES","tests not yet executed"
 "Professional-review plan and gates register","professional-gates.csv","DONE","YES","unfunded"
 "Name contingency","BRAND-CONTINGENCY.md","DONE","YES","D-79"
-"Investor data room index","docs/INVESTOR-DATA-ROOM.md","DONE","YES","index and pointers"
+"Investor data room index","docs/INVESTOR-DATA-ROOM.md","PARTIAL","YES","index and path checks exist; contents are untested"
 "Founder narrative (zero-dollar story)","docs/INVESTOR-DATA-ROOM.md","PARTIAL","YES","draft in the investor page"
-"Adversarial AI investor review finds no unsupported claim (an AI exercise, NOT an external investor)","review record in the sprint report","PARTIAL","YES","first round run in Sprint 22; findings applied"
+"Adversarial AI investor review finds no unsupported claim (an AI exercise, NOT an external investor)","a review record file in the repository (does not exist yet)","NOT DONE","YES","AI review rounds run in Sprint 22 (see sprint report); no review-record file exists yet"

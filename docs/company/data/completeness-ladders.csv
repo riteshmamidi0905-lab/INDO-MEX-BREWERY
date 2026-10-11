@@ -2,7 +2,7 @@
 "digital","0","nothing"
 "digital","1","outlined"
 "digital","2","drafted in docs or data"
-"digital","3","data-backed, validated by tools, generated view where applicable"
+"digital","3","data-backed STRUCTURE validated by tools, generated view where applicable (inputs may all still be unknown)"
 "digital","4","everything possible at zero cost is done and independently reviewed"
 "real_world","0","no real-world observation"
 "real_world","1","desk or public-source observation only"

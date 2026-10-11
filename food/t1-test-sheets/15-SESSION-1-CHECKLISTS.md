@@ -51,7 +51,7 @@ Nothing here changes the experiment. If sheets differ, sheet 11 (the frozen rule
 Claude then preserves the originals, records the data against the frozen gates, compares the plate with the AI concept, and asks only for what cannot be recovered.
 
 ## 7. OPTIONAL COST-AND-TIME NOTES (for the business model; separate from the taste test)
-Done by a helper or by you while cooking, never by asking a taster anything. These notes do not change the cook, the plates, the scoring or any D-74 rule, and nothing here is to be shared with tasters before the sheets are collected. Write "NOT MEASURED" for anything you skip.
+Do this only after all plates are served, or by a helper who is not plating, and never at the cost of the plating timing or any D-74 rule. Done by a helper or by you, never by asking a taster anything. These notes do not change the cook, the plates, the scoring or any D-74 rule, and nothing here is to be shared with tasters before the sheets are collected. Write "NOT MEASURED" for anything you skip.
 - Weigh and write down: raw chicken as bought, trimmed chicken, cooked chicken, the finished chip weight, the sauce or garnish you made, and everything you throw away (trim, failed pieces, other), kept in separate piles if you can.
 - Frying oil: measure how much oil goes into the pot and how much comes out afterwards.
 - Clock time: when prep starts and ends, and a rough tally of minutes you were actively working (not waiting).

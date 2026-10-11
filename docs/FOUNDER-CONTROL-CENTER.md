@@ -30,13 +30,13 @@ Entry, exit, evidence and go/hold/kill questions per stage: `docs/company/data/s
 
 ## Workstreams
 
-12 active, 7 blocked on external input. Detail (what we know/don't know, decision unlocked, owner, evidence level): `docs/company/data/workstreams.csv`.
+12 active, 6 blocked on external input. Detail (what we know/don't know, decision unlocked, owner, evidence level): `docs/company/data/workstreams.csv`.
 
 | Workstream | Status | Current blocker | Next digital action | Next real-world action | Pri |
 |---|---|---|---|---|---|
-| **BRAND** | ACTIVE (planning level) | Name conflict review; legal clearance of the name | Brand contingency prepared (docs/company/BRAND-CONTINGENCY.md): asset split, spend discipline, process if... | IP attorney clearance review; cultural advisor review | 1 |
+| **BRAND** | ACTIVE (planning level) | Name conflict review; legal clearance of the name | Brand contingency prepared (docs/company/BRAND-CONTINGENCY.md): asset split, spend discipline, process if... | IP attorney clearance review; cultural advisor review (both READY WHEN FUNDED, D-81) | 1 |
 | **FOOD** | BLOCKED - EXTERNAL INPUT REQUIRED | BLOCKED ON PHYSICAL SESSION 1 | Fallback logic for dish failure (docs/company/FOOD-FAILURE-CONTINGENCIES.md); supply specs | Founder cooks Session 1; then confirm D-76 gates before Session 2 | 1 |
-| **IP** | BLOCKED - EXTERNAL INPUT REQUIRED | IP attorney review; founder decision on the name | Concise attorney package ready (ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md, not sent); fact base on the existing... | Send the trademark package, now including the Nasha finding, to an IP attorney (founder action; F-5) | 1 |
+| **IP** | WAITING - UNFUNDED (D-81); LEGAL REVIEW REQUIRED | No funds for an IP attorney (D-81); founder decision on the name after counsel | Concise attorney package ready (ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md, not sent); fact base on the existing... | Package prepared and NOT sent; send to an IP attorney when funded (READY WHEN FUNDED, F-5) | 1 |
 | **LEGAL/REGULATORY** | BLOCKED - EXTERNAL INPUT REQUIRED | BLOCKED ON PROFESSIONAL REVIEW | Question tree and ordered attorney agenda | Texas alcohol attorney consultation | 1 |
 | **MVP** | ACTIVE | Legal path unverified; no product evidence | Keep the validation ladder and economics fields ready | Attorney + health-authority answers; find a commissary and a brewery partner (outreach is a founder action) | 1 |
 | **PRODUCT** | ACTIVE | Physical evidence (lane A) | Keep the Core 5 control center current; stress-test the set as a commercial system... | Cook Session 1 | 1 |
@@ -113,7 +113,7 @@ Entry, exit, evidence and go/hold/kill questions per stage: `docs/company/data/s
 | # | Risk | Reduced by | Lane |
 |---|---|---|---|
 | 1 | No physical evidence exists for any dish or beer | Cook Session 1 and the following sessions; a qualified brewer pilot | A |
-| 2 | An Austin restaurant named Nasha (Indian Tex-Mex fusion with a bar) already exists per T1 searches: HIGH NAME-CONFLICT RISK (D-78) | IP attorney clearance review now; founder decision on keep/modify/fallback shortlist; no further name-dependent spend or public use until decided | A |
+| 2 | An Austin restaurant named Nasha (Indian Tex-Mex fusion with a bar) already exists per T1 searches: HIGH NAME-CONFLICT RISK (D-78) | IP attorney clearance review when funded (D-81; until then neutral wording and no name-dependent spend); founder decision on keep/modify/fallback shortlist; no further name-dependent spend or public... | A |
 | 3 | No lawful structure may exist to link food and beer before a brewery exists (H11) | Texas alcohol attorney; commissary/health checks; food-only first tests | A |
 | 4 | The fusion may read as gimmick or caricature (H2, H8) | Cultural advisor review; blinded tasting; dish-by-dish cut/rework rule | A |
 | 5 | Unit economics are unknown (no price, yield, rent, labour, quote) | Real receipts and quotes; scenario model with provenance classes | A |
@@ -129,7 +129,7 @@ Entry, exit, evidence and go/hold/kill questions per stage: `docs/company/data/s
 
 | Phase | Digital (lane B) | Founder | Professional | Physical (lane A) | Exit signal |
 |---|---|---|---|---|---|
-| **NOW** | Keep the founder control center, stage model and decision register current; refresh the Core 5... | Shop and cook Chicken 65 Totopos Session 1 with the founder-mode card; confirm or amend... | Founder decides whether to send the concise IP attorney package... | Session 1 cook, photos, temperatures, weights, panel scores | Session 1 evidence package exists (or a recorded reason it did not... |
+| **NOW** | Keep the founder control center, stage model and decision register current; refresh the Core 5... | Shop and cook Chicken 65 Totopos Session 1 with the founder-mode card; confirm or amend... | IP attorney package (ip/NASHA-TRADEMARK-ATTORNEY-PACKAGE.md) is prepared and not sent;... | Session 1 cook, photos, temperatures, weights, panel scores | Session 1 evidence package exists (or a recorded reason it did not... |
 | **NEXT** | Prepare to ingest Session 1 (recorder, photo ingest, concept-vs-reality); keep the MVP economics... | Decide who to contact first (brewer, advisors, attorney); approve any outreach before it... | Request: brewer review of the handoff; Indian and Mexican advisor reviews; first Texas... | Second cook only if Session 1 exposes a gap (do not start Session 2 before... | At least one external professional response, preserved raw |
 | **AFTER FIRST FOOD TEST** | Analyse Session 1 against the frozen gates; update matrices, concept-vs-reality, control center;... | Confirm D-76 gates for Session 2; choose whether Session 2 (paneer) is next | Food-safety professional on holding/cooling if goat is next | Session 2 (paneer heat-source test) per its card; start goat sourcing in... | Decision recorded: KEEP/REWORK/HOLD/CUT for Chicken 65; Session 2... |
 | **AFTER BREWER REVIEW** | Record the review raw, then separate what confirms, contradicts and needs testing; update pilot... | Confirm or reject D-77; decide on a pilot route with the brewer | Brewer scopes pilot; attorney confirms the pilot pathway before any beer is served | Pilot or collaboration brew only after the pathway is verified | Pilot route chosen and legality verified, or a recorded block |
