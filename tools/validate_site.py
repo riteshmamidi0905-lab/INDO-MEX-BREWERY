@@ -39,6 +39,11 @@ for x in glob.glob(D+"/**/*",recursive=True):
         if re.search(r"logo|master|exploration|rejected|attorney|trademark|\.psd|\.ai$|\.fig|\.sketch|\.eps",rel,re.I): fail(f"dist file name suggests protected material: {rel}")
 if os.path.exists(D+"/brand") or os.path.exists(D+"/ip"): fail("dist contains brand/ or ip/ directory")
 files=sorted(glob.glob(D+"/*.html"))
+_beer=open(D+"/beer.html",encoding="utf-8").read() if os.path.exists(D+"/beer.html") else ""
+_food=open(D+"/food.html",encoding="utf-8").read() if os.path.exists(D+"/food.html") else ""
+if "Style-based concept visualization" not in _beer or "Not brewed yet" not in _beer: fail("beer page must label beers 'Not brewed yet' and 'Style-based concept visualization'")
+if "not cooked or tested" not in _food: fail("food page must label dishes 'Proposed presentation · not cooked or tested'")
+if "not sensory tested" not in _food.lower(): fail("pairings must say 'not sensory tested'")
 if not files: fail("no website/dist/*.html (run python3 website/build.py)"); print("SITE:",len(fails),"fail"); sys.exit(1)
 pages={}
 for f in files:
@@ -151,6 +156,15 @@ else:
     h=hashlib.sha256(b"".join(open(os.path.join(D,f),"rb").read() for f in sorted(os.listdir(D)) if re.search(r"\.(html|css|js)$",f))).hexdigest()[:16]
     if q.get("distHash")!=h: fail("QA results are stale: dist changed since run-qa.mjs (rerun build and QA)")
     if set(q["pages"])!=set(pages): fail("QA result covers different pages than dist")
+    mq=q.get("manual")
+    if not mq: fail("QA lacks manual-review aids (focus, text spacing, 200% zoom)")
+    else:
+        for pg,x in mq["focus"].items():
+            if x["withoutVisibleOutline"]: fail(f"{pg}: focusable elements without a visible focus outline: {x['sample']}")
+        for pg,x in mq["textSpacing"].items():
+            if x["overflowX"]: fail(f"{pg}: text-spacing override (WCAG 1.4.12) causes horizontal overflow")
+        for pg,x in mq["zoom200"].items():
+            if x["overflowX"]: fail(f"{pg}: 200% zoom reflow overflows horizontally")
     if not q["interaction"]["firstTabIsSkipLink"]: fail("QA: skip link is not first tab stop")
 print(f"SITE: {len(files)} pages, {len(allfiles)} files, {len(fails)} fail")
 sys.exit(1 if fails else 0)

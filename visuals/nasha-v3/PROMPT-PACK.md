@@ -5,6 +5,19 @@
 ## Shared base (prepend to every prompt)
 > Photorealistic hospitality photography of a future Indo-Mex brewery and kitchen in Austin, Texas. Warm practical light (2200-2400K), natural textures, restrained styling, approachable not luxury. India and Mexico appear through materials, fire, geometry and tableware, not costume or cliche. Matte black stoneware plates with raw rim, stainless katori, pecan tables, limestone and glass. **No text, no logos, no readable signage, no prices, no real people or celebrities. No beef or pork. No orange-teal grade, no heavy haze, no floating ingredients, no impossible architecture.** Natural proportions of food, glass and beer exactly as they would exist in a working kitchen and bar.
 
+## Logo and lettering rule (D-66, absolute)
+Never ask the generator to render NASHA text, a logo, icon, monogram, symbol or lockup, and never upload any NASHA artwork. Every sign in a prompt is **blank** ("a blank dark monument sign", "a blank fascia"). The temporary typographic NASHA placeholder, where needed, is added **afterwards by deterministic script** (`website/tools/make_sources.py`). Reject any output with generator-made lettering.
+
+## Batch A continuity bible (use in every Batch A prompt so it is the SAME restaurant)
+Limestone walls and pale Texas limestone plinth; black-framed floor-to-ceiling glass; cedar and pecan timber; dark perforated blackened-steel screens with a regular grid of round holes (jali-like light and shadow); long pecan bar with a front of square handmade matte tiles in bone and marigold; blackened steel shelving and rails; speckled terrazzo floor; matte black stoneware; thali trays and stainless katori; indigo-and-bone linen; warm 2200-2400K practical light; collar glassware. Landscape: live oak, native grasses, gravel, limestone. **Brewery rule (G-6): show the brewery only partially, through glass partitions, in perspective or cropped; never a full row of tanks, never a countable set, no capacity, no layout.** No NASHA text, no logos, blank signage. People are synthetic, candid, diverse, mid-activity, not looking at the camera.
+
+## Reality-first rules for food and beer (Sprint 8, mandatory)
+- **Never** prompt with only "Indian-Mexican X". Each food prompt below states the INDIA reference, the MEXICO reference and the NASHA transformation; read `NASHA-FOOD-BEER-REFERENCE-LIBRARY.md` §7 first and pass its three-yes test.
+- **Two views per dish:** a HERO view (45-degree editorial restaurant photograph) and a TRUTH view (top-down or slightly elevated, exactly what is on the plate). Generate several plating candidates for the hero dish and log the scoring.
+- **No text anywhere in the image:** no dish names, beer names, labels, menu or sign lettering. Add names in HTML/CSS.
+- Beer: research the style first (reference library §4), use the matching NASHA collar glass (§10), no invented beer, never the working-name beers.
+- Reference photographs are research only: never copy, trace, publish or imply affiliation.
+
 ## Realism rules
 Follow `visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.md` §3-§5 for every dish and beer. **Reject** any output that fails the two truth questions. Tank size and count are undecided (G-6): do not depict a number or scale as final.
 
@@ -16,7 +29,7 @@ Follow `visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.md` §3-§5 for every dish and
 ## EXT-BLUEHOUR
 **Manifest ID:** `NV-PLAN-EXT-BLUEHOUR` · **Priority:** P1 · **Page:** index.html
 
-Exterior of a contemporary Austin Hill-Country-style limestone and glass brewery-restaurant at blue hour, long covered timber arcade with dark perforated screens casting jali-like light patterns, generous patio with long communal tables and a live oak, warm interior glow, glimpses of stainless fermentation tanks behind glass (do not state a number or size), a plain dark fascia sign with no readable lettering (lettering to be added later), a few relaxed people, no address, no street signs.
+Exterior of a contemporary Austin Hill-Country-style limestone and glass brewery-restaurant at blue hour, long covered timber arcade with dark perforated screens casting jali-like light patterns, generous patio with long communal tables and a live oak, warm interior glow, glimpses of stainless fermentation tanks behind glass (do not state a number or size), a BLANK dark fascia and a BLANK monument sign (no lettering at all), a few relaxed people, no address, no street signs.
 
 **Alt text to write at integration:** describe what is seen, then "Concept visualization."
 
@@ -65,7 +78,7 @@ Dining hall with long communal tables, jali-like screen shadow on limestone, pla
 ## FOOD-C65
 **Manifest ID:** `NV-PLAN-FOOD-C65` · **Priority:** P1 · **Page:** food.html
 
-Chicken 65 Totopos: bite-size crisp red-orange chicken pieces with curry leaves and sliced green chile beside a loose fan of thick irregular corn totopos on a matte black stoneware plate, a small stainless katori of raita-crema, lime wedge. Restrained garnish, real fried texture, 45 degrees, side window light.
+INDIA: authentic Chicken 65, bite-size boneless chicken with a crisp fried red-orange coating, curry leaves and sliced green chile. MEXICO: real totopos, thick sturdy irregular fried corn-masa pieces (not thin supermarket chips). NASHA: an INTEGRATED plate in which the chicken pieces sit among a loose open layer of totopos so chips stay crisp, raita-crema as a restrained drizzle or small pool, lime wedge, matte black stoneware. Two views: hero at 45 degrees with side window light, and a top-down truth view. Candidates: integrated, layered-open, side-by-side; score all.
 
 **Alt text to write at integration:** describe what is seen, then "Concept visualization."
 

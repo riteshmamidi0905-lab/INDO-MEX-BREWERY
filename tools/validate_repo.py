@@ -134,6 +134,18 @@ for r in MAN:
         if not r["unresolved_restrictions"].strip(): fail(f"manifest {r['id']}: unresolved_restrictions must be stated")
         if "concept" not in r["concept_or_real"].lower() and "real" not in r["concept_or_real"].lower(): fail(f"manifest {r['id']}: concept_or_real unclear")
     if r["kind"]=="raster-planned" and r["status"]!="NOT GENERATED (prompt ready)": fail(f"manifest {r['id']}: planned row must say NOT GENERATED")
+STAGES={"CONCEPT VISUALIZATION","CONCEPT ILLUSTRATION","PROTOTYPE","TESTED PRODUCT","FINAL PHOTOGRAPHY"}
+for r in MAN:
+    st=r["visual_stage"]
+    if r["kind"] in ("raster","vector","raster-planned") and st not in STAGES: fail(f"manifest {r['id']}: visual_stage must be one of {sorted(STAGES)}")
+    if st in ("PROTOTYPE","TESTED PRODUCT","FINAL PHOTOGRAPHY") and not os.path.exists((r["stage_evidence_ref"] or "").strip()): fail(f"manifest {r['id']}: stage {st} needs an existing stage_evidence_ref file (evidence before status)")
+    if r["kind"]=="raster" and not r["qa_result"].strip(): fail(f"manifest {r['id']}: raster needs a recorded qa_result against visuals/nasha-v3/IMAGE-QA.md")
+    if r["kind"]=="raster-planned" and not r["batch"].strip(): fail(f"manifest {r['id']}: planned row needs a batch")
+for need in ("visuals/nasha-v3/GENERATION-LOG.md","visuals/nasha-v3/IMAGE-QA.md"):
+    if not os.path.exists(need): fail(f"missing {need}")
+GL=open("visuals/nasha-v3/GENERATION-LOG.md",encoding="utf-8").read()
+if sum(1 for r in MAN if r["kind"]=="raster" and "generation" in r["creation_method"].lower())>0 and "Run record" not in GL: fail("GENERATION-LOG.md lacks a run record section")
+if os.path.exists("visuals/archive") and any(os.path.exists(os.path.join("website/dist",x)) for x in ("archive","rejected")): fail("rejected candidates must never be in dist")
 print(f"visual manifest: {len(MAN)} rows; rasters integrated: {sum(1 for r in MAN if r['kind']=='raster')}; planned: {sum(1 for r in MAN if r['kind']=='raster-planned')}")
 LIB=open("visuals/NASHA-FOOD-BEER-REFERENCE-LIBRARY.md",encoding="utf-8").read()
 for b in json.load(open("website/data/beers.json")):
@@ -141,6 +153,11 @@ for b in json.load(open("website/data/beers.json")):
     if b["working"] and "WORKING NAME" not in LIB.split(b["name"],1)[1][:30]: fail(f"reference library must keep WORKING NAME for {b['name']}")
 for d in ("Chicken 65 Totopos","Paneer Tikka Taco","Gobi Taco","Butter Chicken & Roasted Poblano Quesadilla","Goat Birria, Sealed-Pot Braise","Chaat Elote","Cardamom Churros"):
     if d not in LIB: fail(f"reference library lacks dish {d}")
+for k in ("INDIA reference","MEXICO reference","NASHA transformation","three-yes","HERO view","TRUTH view","Names stay out of the picture","NASHA glass family"):
+    if k.lower() not in LIB.lower(): fail(f"reference library missing required section/term: {k}")
+PP=open("visuals/nasha-v3/PROMPT-PACK.md",encoding="utf-8").read()
+for k in ("Never ask the generator to render NASHA text","No text anywhere in the image","TRUTH view","INDIA:"):
+    if k not in PP: fail(f"prompt pack missing required rule: {k}")
 # logo protection: vault stays empty of real files until founder approval is recorded; no stray logo files; no TM/R symbols in site sources
 for dname in ("PUBLIC-EXPORTS","CONTROLLED-MASTERS","LEGAL-OWNERSHIP"):
     extra=[x for x in os.listdir("brand/logo/"+dname) if x!="README.md"]

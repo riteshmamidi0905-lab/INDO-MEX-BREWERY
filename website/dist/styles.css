@@ -153,7 +153,7 @@ dl.meta{margin:0}dl.meta dt{font:600 .7rem var(--font-body);letter-spacing:.12em
 .tag{position:absolute;left:var(--s-3);bottom:var(--s-3);background:#141110;color:#F3ECDD;font:600 .68rem/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;padding:.45rem .6rem;border:1px solid #5a4d44;border-radius:2px}
 .tag-inline{font:600 .7rem var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);margin:var(--s-3) 0}
 .fig-hero{border-radius:0;max-height:82vh;width:100%}
-.fig-hero img{max-height:82vh;object-position:50% 40%}
+.fig-hero img{max-height:82vh;object-position:50% 58%}
 .fig-hero img{animation:reveal-hero 2.4s ease-out both}
 @keyframes reveal-hero{from{opacity:.0;transform:scale(1.04)}to{opacity:1;transform:none}}
 .hero .tag{left:auto;right:var(--s-4)}
@@ -271,3 +271,15 @@ dl.meta{margin:0}dl.meta dt{font:600 .7rem var(--font-body);letter-spacing:.12em
 .food-hero,.beer-hero{padding-top:var(--s-7)}
 @media (max-width:40rem){.flight-card ul{grid-template-columns:1fr}.menu-card,.flight-card{padding:var(--s-4)}}
 #beer-list{grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr))}
+
+/* journey */
+.journey{list-style:none;margin:var(--s-6) 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:var(--s-5);position:relative}
+.journey li{position:relative;padding-top:var(--s-5);border-top:2px solid var(--rule)}
+.journey li[aria-current="step"]{border-top-color:var(--accent)}
+.j-dot{position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--rule)}
+.journey li[aria-current="step"] .j-dot{background:var(--accent);border-color:var(--accent)}
+.js .journey li:nth-child(2){transition-delay:.15s}.js .journey li:nth-child(3){transition-delay:.3s}.js .journey li:nth-child(4){transition-delay:.45s}
+.sub{font-size:1.4rem;margin-top:var(--s-6)}
+.beer-info{margin-top:var(--s-4);text-align:left;border-left:3px solid var(--accent);padding-left:var(--s-4)}
+.bi-name{font-family:var(--font-display);font-size:1.5rem;line-height:1.1;margin:0 0 var(--s-1)}
+.beer-info p{margin:0 0 var(--s-1)}

@@ -35,7 +35,7 @@ for (const pg of pages) {
     await page.waitForTimeout(3000);
     await page.addScriptTag({ content: axeSrc });
     const res = await page.evaluate(() => axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"] } }));
-    rec.axe[scheme] = { violations: res.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.length, sample: v.nodes[0]?.html?.slice(0, 140), why: v.nodes[0]?.failureSummary?.slice(0, 200) })), passes: res.passes.length, incomplete: res.incomplete.map(i => i.id) };
+    rec.axe[scheme] = { violations: res.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.length, sample: v.nodes[0]?.html?.slice(0, 140), why: v.nodes[0]?.failureSummary?.slice(0, 200) })), passes: res.passes.length, incomplete: res.incomplete.map(i => i.id), incompleteDetail: res.incomplete.filter(i => i.id === "color-contrast").flatMap(i => i.nodes.map(n => ({ target: n.target.join(" "), reason: (n.any[0] && n.any[0].data && n.any[0].data.messageKey) || (n.any[0] && n.any[0].message) || "" }))).slice(0, 40) };
     if (scheme === "dark") { rec.bytes = bytes; rec.perf = await page.evaluate(() => ({ cls: Number(window.__cls.toFixed(4)), lcp_ms: Math.round(window.__lcp) })); }
     await ctx.close();
   }
@@ -64,6 +64,16 @@ for (const pg of pages) {
 for (const pg of ["index.html", "space.html"]) { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const page = await ctx.newPage();
   await page.route(/\.(avif|webp|jpg)$/, r => r.abort()); await page.goto(`${base}/${pg}`, { waitUntil: "load" });
   out.imagesBlocked[pg] = await page.evaluate(() => ({ imgs: document.querySelectorAll("figure img").length, withAlt: [...document.querySelectorAll("figure img")].filter(i => i.alt && i.alt.length > 20).length, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth, h1: !!document.querySelector("h1") })); await ctx.close(); }
+// Manual-review aids run in a real browser: focus visibility of every focusable element, WCAG 1.4.12 text spacing, 200% zoom reflow
+out.manual = { focus: {}, textSpacing: {}, zoom200: {} };
+for (const pg of pages) { const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } }); const page = await ctx.newPage(); await page.goto(`${base}/${pg}`, { waitUntil: "load" });
+  const els = await page.$$('a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'); let total = 0, bad = []; 
+  for (const el of els) { if (!(await el.isVisible())) continue; total++; await el.focus(); const ok = await el.evaluate(e => { const s = getComputedStyle(e); const f = e.matches(":focus-visible"); return { f, outline: s.outlineStyle !== "none" && parseFloat(s.outlineWidth) >= 2 }; }); if (!ok.outline) bad.push(await el.evaluate(e => e.outerHTML.slice(0, 80))); }
+  out.manual.focus[pg] = { focusable: total, withoutVisibleOutline: bad.length, sample: bad.slice(0, 3) };
+  await page.addStyleTag({ content: "*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}p{margin-bottom:2em!important}" });
+  out.manual.textSpacing[pg] = await page.evaluate(() => ({ overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth })); await ctx.close();
+  const c2 = await browser.newContext({ viewport: { width: 640, height: 400 } }); const p2 = await c2.newPage(); await p2.goto(`${base}/${pg}`, { waitUntil: "load" });
+  out.manual.zoom200[pg] = await p2.evaluate(() => ({ overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth })); await c2.close(); }
 // Filter interaction + keyboard test on food page
 { const ctx = await browser.newContext({ viewport: { width: 390, height: 800 } }); const page = await ctx.newPage(); await page.goto(`${base}/food.html`);
   const total = await page.locator("[data-item]").count();

@@ -21,6 +21,9 @@ def glass(uid, beer="hefeweizen", fill=0.86, kind="weizen", animate=True, title=
     if kind == "weizen":
         outline = "M30 14 C22 60 18 140 36 238 Q40 262 60 262 Q80 262 84 238 C102 140 98 60 90 14 Z"
         top, bottom = 14, 262
+    elif kind == "pilsner":
+        outline = "M33 14 L45 238 Q47 262 60 262 Q73 262 75 238 L87 14 Z"
+        top, bottom = 14, 262
     else:
         outline = "M26 14 L40 238 Q42 262 60 262 Q78 262 80 238 L94 14 Z"
         top, bottom = 14, 262
@@ -44,14 +47,22 @@ def plate(uid, kind):
     base = (f'<circle cx="200" cy="200" r="188" fill="#0b0a09"/><circle cx="200" cy="200" r="176" fill="#241E1B"/><circle cx="200" cy="200" r="150" fill="{ink["bone"]}"/>'
             f'<circle cx="200" cy="200" r="150" fill="none" stroke="#d8cdb6" stroke-width="2"/>')
     if kind == "totopos":
-        chips = ""
-        for i in range(11):
-            a = i * 33; r = 60 + (i % 3) * 18
-            x, y = 200 + r * math.cos(math.radians(a)), 205 + r * math.sin(math.radians(a))
-            chips += f'<polygon points="0,-34 30,26 -30,26" transform="translate({x:.0f} {y:.0f}) rotate({a+90})" fill="#E3B04B" stroke="#B9822A" stroke-width="2"/>'
-        leaves = "".join(f'<ellipse cx="{x}" cy="{y}" rx="9" ry="4" transform="rotate({r} {x} {y})" fill="{ink["herb"]}"/>' for x, y, r in [(150, 170, 30), (240, 160, -40), (180, 255, 70), (255, 235, 10), (205, 140, 100)])
-        chiles = "".join(f'<circle cx="{x}" cy="{y}" r="5" fill="{ink["hibiscus"]}"/>' for x, y in [(170, 215), (228, 195), (210, 250), (155, 245)])
-        food = chips + leaves + chiles + f'<circle cx="290" cy="292" r="30" fill="#C9CCCB"/><circle cx="290" cy="292" r="24" fill="#F3ECDD"/><circle cx="290" cy="292" r="14" fill="#EDE6D2"/>'
+        # INTEGRATED: thick irregular totopos in a loose open layer with Chicken 65 pieces distributed through them
+        import random
+        rnd = random.Random(65)
+        parts = ""
+        for i in range(13):
+            a = i * 29 + rnd.randint(-8, 8); r = 30 + (i % 4) * 26
+            x, y = 200 + r * math.cos(math.radians(a)), 200 + r * math.sin(math.radians(a))
+            sc = rnd.uniform(.85, 1.15)
+            parts += f'<polygon points="0,-33 31,25 -29,28" transform="translate({x:.0f} {y:.0f}) rotate({a+rnd.randint(0,60)}) scale({sc:.2f})" fill="#DDA84B" stroke="#A8731F" stroke-width="3" stroke-linejoin="round"/>'
+        chick = ""
+        for i, (x, y) in enumerate([(165, 175), (225, 165), (200, 215), (150, 240), (245, 235), (190, 140), (215, 265)]):
+            chick += (f'<g transform="translate({x} {y}) rotate({i*47})"><rect x="-17" y="-12" width="34" height="24" rx="9" fill="#B5361C"/><rect x="-17" y="-12" width="34" height="24" rx="9" fill="none" stroke="#7a1e0c" stroke-width="2"/>'
+                      f'<path d="M-9 -4 q6 -5 12 0 M-3 5 q6 -4 12 0" stroke="#E8870E" stroke-width="2.5" fill="none" opacity=".8"/></g>')
+        leaves = "".join(f'<ellipse cx="{x}" cy="{y}" rx="9" ry="3.6" transform="rotate({r} {x} {y})" fill="{ink["herb"]}"/>' for x, y, r in [(180, 190, 30), (232, 200, 120), (205, 245, 60), (160, 215, 150)])
+        chiles = "".join(f'<circle cx="{x}" cy="{y}" r="4.5" fill="#6B8F2C" stroke="#E4EDB0" stroke-width="1.5"/>' for x, y in [(210, 185), (170, 255), (240, 215), (195, 160)])
+        food = parts + chick + leaves + chiles + f'<circle cx="300" cy="300" r="26" fill="#C9CCCB"/><circle cx="300" cy="300" r="20" fill="#F3ECDD"/><path d="M285 297 q15 -8 30 0" stroke="#fff" stroke-width="3" fill="none"/><path d="M318 262 a22 22 0 0 1 28 24 l-26 -8 z" fill="{ink["herb"]}" opacity=".9"/>'
     elif kind in ("taco", "taco2"):
         def tac(cx, cy, rot, filling):
             if filling == "paneer":
@@ -122,7 +133,7 @@ def ferment_scene(uid="ferm"):
             f'<path d="M340 150 q60 -50 120 0" fill="none" stroke="#C9CCCB" stroke-width="8"/><g stroke="#C9CCCB" stroke-width="5"><path d="M310 390 v70 M490 390 v70"/></g>')
     return _svg("0 0 800 500", uid, "Concept illustration: fermentation", "A stylised stainless fermentation tank with a marigold band and rising bubbles, drawn as a concept illustration. Not a final tank size.", body, "ferment-art")
 
-def jali(uid, fg="#E8870E", bg="#1A2142", op=.22):
+def jali(uid, fg="#E8870E", bg="#1A2142", op=.12):
     """Jali-inspired lattice meeting a tile-like grid. Contemporary geometry, no claim of historical link."""
     body = (f'<defs><pattern id="{uid}" width="80" height="80" patternUnits="userSpaceOnUse"><rect width="80" height="80" fill="{bg}"/>'
             f'<path d="M40 6 L74 40 L40 74 L6 40Z" fill="none" stroke="{fg}" stroke-width="2" opacity="{op*3}"/><circle cx="40" cy="40" r="12" fill="none" stroke="{fg}" stroke-width="2" opacity="{op*3}"/>'

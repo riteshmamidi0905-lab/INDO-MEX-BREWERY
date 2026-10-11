@@ -35,3 +35,6 @@ Brand consistency; cultural sensitivity; food plausibility; beer plausibility (`
 
 ## 10. What no image may do
 Imply a built place, a site, an opening date, real guests, real food, a brewed beer, ABV or awards, a final logo, or social proof.
+
+## 11. Reality-first food and beer pipeline (Sprint 8)
+References (India, Mexico, beer-style) → NASHA concept → photoreal concept visualization → kitchen or brewery prototype → revision → final product → real professional photography. Full rules, the two-source fusion table, hero and truth views, the glass family and the three-yes test are in `NASHA-FOOD-BEER-REFERENCE-LIBRARY.md` §7-§12. Names never appear inside generated images.

@@ -26,8 +26,10 @@ HTML+CSS+JS ≤ 150 KB per page; fonts ≤ 200 KB; CLS ≤ 0.1; LCP ≤ 2.5 s (l
 ## 8. Rights
 `ip/website-asset-rights-register.csv` is regenerated from `dist/` by the build; the validator fails if any shipped file is missing. AI-assisted authorship is declared.
 
-## 9. Known QA limits (honest)
-axe reported **0 violations** but marked colour contrast as **"incomplete" (needs manual check) on `index.html` and `beer.html`** (text over gradient/SVG areas and the glass icons). Manual contrast review is owed. No real-device, no screen-reader, no slow-network tests were run; LCP/CLS are from a local server in headless Chromium.
+## 9. Accessibility review record (Sprint 8; what was and was not done)
+**Automated (real Chromium, `website/qa/run-qa.mjs`):** axe-core WCAG 2.0/2.1/2.2 A and AA plus best practice, dark and light, all 8 pages: 0 violations. **Keyboard:** first Tab stop is the skip link; every focusable element on every page (12-25 per page) shows a visible outline of at least 2 px when focused; filters, Two-Pour and beer swatches are native buttons/inputs. **Zoom/reflow:** no horizontal scroll at 320 px (400%) or 640 px (200%) on any page; WCAG 1.4.12 text-spacing override causes no overflow. **Images off:** alt text present on every image and layout holds. **JS off:** pages render fully (filters and swatches absent, all content visible). **Reduced motion:** animation static.
+**Manual contrast review (computed, because axe cannot measure text over SVG patterns):** bone text on the indigo/lattice bands is at worst 7.3:1 against the lattice line colour and 13.3:1 on plain indigo; straw accent text is 5.1:1 on the lattice line and 9.4:1 on indigo; zone diagram labels are 5.6:1 or better; image tags are 16:1. axe still lists these as "needs review" for the lattice bands and the zone diagram because it cannot evaluate overlaid SVG.
+**NOT performed:** screen-reader testing (NVDA/JAWS/VoiceOver), real-device testing, real-network testing. Do not claim them.
 
 ## 10. Sprint 7 additions
 - **Pages:** Experience, Space added; Home rebuilt as ten beats; Food, Beer, The Crossing rebuilt editorially; Labs shows the pop-up illustration.
@@ -37,3 +39,6 @@ axe reported **0 violations** but marked colour contrast as **"incomplete" (need
 - **Logo protection (D-66):** the NASHA lettering is a disclosed temporary typographic placeholder; the favicon is empty; `dist/` may contain only web assets; nothing from `brand/logo/` is ever read.
 - **Motion:** flame flicker, rising bubbles, reveal-on-scroll, Two-Pour steps and beer-colour preview; all static under `prefers-reduced-motion`.
 - **QA additions:** slow-connection profile, image-failure test, stale-QA hash check, home initial-transfer budget (450 KB).
+
+## 11. Sprint 8 additions
+Asset status mechanism (`visual_stage` in the manifest: concept visualization, prototype, tested product, final photography; the on-page tag changes with the stage and the validator demands an evidence file before any advanced stage); a Building NASHA journey on the home page; a beer explorer that updates the liquid colour, style, status and pairing; edge-frame trimming of generated originals; manual-review aids in QA (focus, text spacing, 200% zoom); hero kept temporarily as a partial-view crop (G-6). **No new photoreal assets: no generator was available** (`visuals/nasha-v3/GENERATION-LOG.md`).

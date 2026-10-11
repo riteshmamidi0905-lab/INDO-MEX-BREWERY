@@ -62,6 +62,8 @@
         macro.querySelectorAll(".liq").forEach(function (e) { e.setAttribute("fill", c[0]); e.style.fill = c[0]; });
         macro.querySelectorAll(".foam").forEach(function (e) { e.setAttribute("fill", c[1]); e.style.fill = c[1]; });
         document.querySelectorAll(".swatch").forEach(function (s) { s.setAttribute("aria-pressed", String(s === b)); });
+        var info = document.querySelector("[data-beer-info]");
+        if (info) { try { var d = JSON.parse(info.getAttribute("data-beers"))[b.getAttribute("data-beer")]; if (d) { ["name", "style", "status", "pair"].forEach(function (k) { var el = info.querySelector('[data-bi="' + k + '"]'); if (el) el.textContent = d[k]; }); } } catch (e) {} }
       });
     });
   }

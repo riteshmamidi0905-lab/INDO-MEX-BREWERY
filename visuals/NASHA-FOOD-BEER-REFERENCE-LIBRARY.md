@@ -34,8 +34,8 @@ Canonical names and styles from `beers.json`. Colours in the website drawings fo
 | **Hefeweizen** (gate beer) | Bavarian-style wheat beer | Pale straw to gold (repo benchmark SRM 2-6) | Cloudy-hazy, glowing; not brilliant | Very thick, moussy, long-lasting **white** head; not whipped-cream stiff | Fine, steady rise, visible in a tall vase | Tall weizen vase (Collar Weizen concept, GLS-01) | BJCP 10A, V-36 (T1); `beer/HEFEWEIZEN-BENCHMARK.md` |
 | **Mexican-Style Lager** | Pale lager | Pale to deep gold | **Clear, no chill haze** | White, medium, fades to a lacing ring | Fine bubbles | Tall conical lager (Collar Lager concept) | BA via mirror, V-37 (T1); `beer/OPENING-BEER-PROGRAM-V1.md` |
 | **Vienna Amber** | Vienna-style lager | Light reddish amber to copper (SRM 9-15, mirror) | Bright, clear | Large, **off-white**, persistent | Fine | Collar Lager concept | BJCP 7A, V-35 (T1) |
-| **Pilsner** | German-style pilsner | Pale yellow to light gold | Brilliant | Dense white | Fine, steady | Tall pilsner/lager glass | General style knowledge (T4); verify against BJCP before generation |
-| **Witbier** | Belgian-style wheat beer | Very pale straw to light gold | Very hazy, milky | Dense white | Fine | Collar Weizen concept (or a plain tumbler) | General style knowledge (T4); verify |
+| **Pilsner** | German-style pilsner | Straw to light gold (SRM 2-4) | Brilliant to very clear | Creamy, long-lasting white | Fine, steady | Tall slender NASHA collar pilsner/lager variant | BJCP 5D German Pils, V-44 (T1) |
+| **Witbier** | Belgian-style wheat beer | Very pale straw to deep yellow (SRM 2-4) | Very cloudy, milky | Dense white moussy, good retention | Fine | Collar Weizen concept (data); a wheat tumbler variant only if justified | BJCP 24A, V-45 (T1) |
 | **Dunkelweizen** | Dark wheat beer | Light copper to mahogany brown (SRM 14-23) | Hazy to dark clear | Thick, creamy, tan | Fine | Collar Weizen concept | BJCP Dunkles Weissbier, V-36 (T1) |
 | **Deccan Sol** *(WORKING NAME)* | Wheat lager, R&D idea | **Not specified**: style not settled | n/a | n/a | n/a | n/a | Repo marks it a pilot idea; **no colour invented** |
 | **Goa Baja** *(WORKING NAME)* | Coastal lager, pilot idea | **Not specified** | n/a | n/a | n/a | n/a | Same |
@@ -50,3 +50,41 @@ Working-name beers are drawn as a **faint outline glass**, never as a coloured b
 
 ## 6. Use status
 References are for research. No reference photograph is stored, copied or published. Every concept image made from these specs is labelled **Concept visualization** (photographic style) or **Concept illustration** (drawn), and is replaced by real photography after T1 cooking and pilot brewing.
+
+## 7. Two-source fusion rule (mandatory for every signature dish, Sprint 8 addition)
+Before any image is accepted, the entry below must be filled and the **three-yes test passed (all three questions answered YES)**: (1) Could someone familiar with **Indian** food recognise the Indian component? (2) Could someone familiar with **Mexican** food recognise the Mexican component? (3) Does the plate read as **one intentional restaurant dish**, not two foods placed together? References are for **research only**: no reference photograph is copied, traced, published or implied as affiliated; the NASHA presentation is original. Research here is by **web-search summaries (T1, V-38..V-45)** because photographs cannot be inspected in this environment; the visual truths below therefore rest on text descriptions and general culinary knowledge, flagged where they are only the latter.
+
+| Dish | INDIA reference (must stay recognisable) | MEXICO reference (must stay recognisable) | NASHA transformation (original, executable) | Research caveats |
+|---|---|---|---|---|
+| **Chicken 65 Totopos** (hero dish) | Bite-size boneless chicken, crisp fried coating tinted red-orange; curry leaf and green chile are common but **vary by recipe** (V-38) | **Real totopos**: thick, sturdy, irregular masa-corn pieces, not thin bagged chips (V-39); shape varies by kitchen | **Integrated** composition: totopos laid in a loose, open layer with the Chicken 65 pieces distributed *through* them, curry leaf, sliced green chile, lime, raita-crema only where it sensibly goes (a small pool or a restrained drizzle, so chips stay crisp), on black stoneware. Evaluate also the "side by side" option as a labelled alternative, but the winner must read as one dish | Garnish is a design choice; chip thickness anecdotal |
+| **Paneer Tikka Taco** | Paneer tikka: lightly charred, spiced yoghurt crust clinging to soft cream-coloured paneer; cubes keep structure (V-40) | A real **corn tortilla** taco: about 12-15 cm, warm, folded, small filling, cilantro, onion, salsa on the side | Two small tacos, three to four paneer cubes each with visible char and marinade film, thin red onion, cilantro, green salsa | Restaurant colour (orange-red) is T4; must not look like grilled cheese cubes |
+| **Gobi Taco** | Spiced fried or roasted cauliflower (florets, browned tips, glaze) | Real corn tortilla taco with lime slaw | Florets visibly cauliflower, tamarind-chile glaze (glossy, not drowning), pale lime slaw, two tacos | Not sourced this sprint (general knowledge, T4): verify |
+| **Butter Chicken & Roasted Poblano Quesadilla** | Murgh makhani: smooth glossy red-orange sauce, charred yoghurt-marinated chicken pieces (V-42) | Quesadilla with rajas: blistered golden tortilla, melting cheese, roasted poblano strips (V-42) | Wedges showing cheese and green poblano at the cut, small chicken pieces coated in the sauce inside (not an orange-filled pastry), a small bowl of butter-chicken dip alongside | Sauce colour from a low-authority blog |
+| **Goat Birria, Sealed-Pot Braise** | Dum / sealed-pot slow braising idea (technique, not a visual claim) | Birria: chile-adobo goat, shredded; tortillas dipped in the broth/fat and griddled (so they are red-tinged with crisp edges); consomme on the side with onion, cilantro, lime (V-41) | Three small griddled red tacos, visibly **goat** (dark, lean, stringy shreds; never beef or pork, D-54), consomme cup with a fat sheen | Beef is common in the wild; goat is traditional (sources conflict slightly). Inspect for any beef-like look |
+| **Chaat Elote** | Chaat: crunchy, tangy, spiced street snack (sev, chutneys, chaat masala): **Indian chaat reference still open** (V-43 did not cover it) | Elote/esquites: charred kernels, crema, cotija, chile, lime (V-43) | Restrained: charred corn (cup or cob), crema-raita, cotija-style cheese, chaat masala dusting, a small crunchy element; every component has a culinary reason; no random colour | Blocked from generation until an Indian chaat reference is gathered |
+| **Cardamom Churros** | Cardamom as dessert spice (flavour only; no visual change to the churro) | Real churros: ridged star-shaped extrusion, golden-brown, sugar crust, soft interior | Unmistakable ridged churros dusted with cardamom sugar, small dip bowl | Not sourced this sprint (T4): verify |
+
+## 8. Two views per dish, multiple candidates
+For every dish generate **a HERO view** (45-degree editorial restaurant photograph: natural directional light, controlled shallow depth of field, restrained styling) **and a TRUTH view** (top-down or slightly elevated, showing exactly what is on the plate, so beauty cannot hide an implausible dish). Generate several plating candidates for the hero dish (Chicken 65 Totopos: integrated, layered-open, side-by-side) and score them for: Chicken 65 authenticity, totopo authenticity, appetite appeal, structural integrity (chips stay crisp), portion realism, service feasibility, NASHA distinctiveness. Record scores in `visuals/nasha-v3/GENERATION-LOG.md`. The winner must look like something a serious kitchen could reproduce. Status stays **PROPOSED PRESENTATION — NOT COOKED OR TESTED**.
+
+## 9. Names stay out of the picture
+No dish name, beer name, menu text, sign or packaging lettering is ever generated into an image. Names come from the page (HTML/CSS), from `dishes.json` and `beers.json`, keeping accessibility, naming control, typography control and logo protection. Reject any output that contains readable text.
+
+## 10. NASHA glass family (beer to glass)
+The collar/ring is the shared family trait; geometry follows the beer (family, not clones). Concept glassware only; no manufacturing, capacity or supplier claim. Source guides: `visuals/generated/GLS-inputs/`.
+| Beer | Glass concept | Note |
+|---|---|---|
+| Hefeweizen | NASHA Collar Weizen: tall, flared wheat-beer vase with collar | Room for the large head |
+| Mexican-Style Lager | NASHA Collar Lager: clean tall conical | |
+| Vienna Amber | NASHA Collar Lager (amber-lager variant) | Preserve the true copper colour |
+| Pilsner | NASHA Collar Lager, slimmer pilsner variant | |
+| Witbier | NASHA Collar Weizen per `beers.json`; a wheat tumbler only if justified | |
+| Dunkelweizen | NASHA Collar Weizen | |
+| Working-name beers | **Not defined; blocked** | No liquid or glass invented |
+Beer cards pair the **beer name (UI)** + **style-accurate concept liquid** + **NASHA glass concept** + status "Not brewed yet · style-based concept visualization".
+
+## 11. Pipeline (permanent)
+REAL CULINARY / BEER-STYLE REFERENCES (India, Mexico, BJCP/BA) → NASHA CONCEPT DEVELOPMENT → PHOTOREAL CONCEPT VISUALIZATION (communicates intent only) → KITCHEN / BREWERY PROTOTYPE (physical test) → REVISION (the concept changes to match reality) → FINAL PRODUCT → REAL PROFESSIONAL PHOTOGRAPHY (replaces the render). The concept image never dictates the product. Website stages: `CONCEPT VISUALIZATION` → `PROTOTYPE` → `TESTED PRODUCT` → `FINAL PHOTOGRAPHY`, each requiring evidence.
+
+## 12. Final visual tests (reject and regenerate on any NO)
+Food: with the caption removed, would someone familiar with these cuisines recognise the actual components? Beer: would a knowledgeable beer drinker accept it as a plausible representation of the stated style? Glass: does it read as an intentional NASHA family and remain physically plausible?

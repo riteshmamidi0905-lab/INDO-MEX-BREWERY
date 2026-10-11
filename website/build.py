@@ -45,20 +45,25 @@ def uid(p="u"):
     return f"{p}{_uid[0]}"
 
 # ---------- figures ----------
-def tag_html(kind):
-    if kind == "raster":
-        return ('<figcaption class="tag">Concept visualization<span class="visually-hidden">. Not a photograph of NASHA. '
-                'Final architecture is subject to professional design and site conditions.</span></figcaption>')
-    return '<figcaption class="tag">Concept illustration<span class="visually-hidden">. A drawing, not a photograph.</span></figcaption>'
+STAGE_TAG = {"CONCEPT VISUALIZATION": ("Concept visualization", ". Not a photograph of NASHA. Final architecture is subject to professional design and site conditions."),
+             "CONCEPT ILLUSTRATION": ("Concept illustration", ". A drawing, not a photograph."),
+             "PROTOTYPE": ("Prototype photograph", ". A photograph of a prototype dish or beer from a kitchen or pilot test, not a finished product."),
+             "TESTED PRODUCT": ("Tested product photograph", ". A photograph of a product that passed a documented test."),
+             "FINAL PHOTOGRAPHY": ("Photograph", ". Final photography of NASHA.")}
+
+def tag_html(vid):
+    stage = VIS[vid]["visual_stage"] or "CONCEPT VISUALIZATION"
+    t, extra = STAGE_TAG[stage]
+    return f'<figcaption class="tag" data-stage="{stage}">{t}<span class="visually-hidden">{extra}</span></figcaption>'
 
 def raster_fig(vid, cls="", eager=False, sizes="100vw"):
     row = VIS[vid]; meta = RASTER_META[vid]
     pic = images.picture_html(row, meta, E(row["alt_text"]), sizes, eager)
     st = f'--ar-d:{meta["d"]["w"]}/{meta["d"]["h"]};--ar-m:{meta["m"]["w"]}/{meta["m"]["h"]}'
-    return f'<figure class="fig {cls}" data-vid="{vid}" style="{st}">{pic}{tag_html("raster")}</figure>'
+    return f'<figure class="fig {cls}" data-vid="{vid}" style="{st}">{pic}{tag_html(vid)}</figure>'
 
 def svg_fig(vid, svg, cls="", ar="16/10"):
-    return f'<figure class="fig fig-art {cls}" data-vid="{vid}" style="--ar-d:{ar};--ar-m:{ar}">{svg}{tag_html("vector")}</figure>'
+    return f'<figure class="fig fig-art {cls}" data-vid="{vid}" style="--ar-d:{ar};--ar-m:{ar}">{svg}{tag_html(vid)}</figure>'
 
 # ---------- layout ----------
 def layout(fn, title, desc, body, head_extra="", body_class=""):
@@ -109,6 +114,11 @@ def heat(n):
     dots = "".join(f'<i class="{"on" if k < n else ""}"></i>' for k in range(3))
     return f'<span class="heat" aria-hidden="true">{dots}</span><span class="visually-hidden">Heat {n} of 3</span>'
 
+def gkind(b):
+    """NASHA collar glass family: geometry follows the beer (reference library section 10)."""
+    if b["id"] == "pilsner": return "pilsner"
+    return "weizen" if b["glass"] == "Collar Weizen" else "lager"
+
 def pair_names(d):
     return ", ".join(d["pairing"])
 
@@ -130,10 +140,10 @@ def dish_card(d, h="h2", with_art=False):
 
 def beer_card(b, h="h2"):
     work = '<p class="muted">Working name. May change. Style and colour are not settled, so the glass is shown as a faint outline.</p>' if b["working"] else ""
-    g = art.glass(uid("bg"), b["id"], 0.86, "weizen" if b["glass"] == "Collar Weizen" else "lager", animate=False, title=f"Concept glass for {b['name']}")
+    g = art.glass(uid("bg"), b["id"], 0.86, gkind(b), animate=False, title=f"Concept glass for {b['name']}")
     return f'''<article class="card" data-item data-group="{E(b["group"])}">
 <div class="beer-row"><div class="mini-glass">{g}</div><div><{h}>{E(b["name"])}</{h}>
-<p>{E(b["line"])}</p><p>{chips(b["style"], b["season"], "Not brewed yet")}</p>{work}
+<p>{E(b["line"])}</p><p>{chips(b["style"], b["season"], "Not brewed yet", "Style-based concept visualization")}</p>{work}
 <dl class="meta"><dt>Served in</dt><dd>{E(b["glass"])}</dd><dt>Designed to pair with</dt><dd>{E(", ".join(b["pairs"]))}</dd></dl></div></div></article>'''
 
 def filter_inputs(name, values):
@@ -142,10 +152,10 @@ def filter_inputs(name, values):
 # ---------- shared components ----------
 def pairing_comp(dish_id, beer_id, label_h="h3"):
     d, b = DISH[dish_id], BEER[beer_id]
-    g = art.glass(uid("pg"), beer_id, .86, "weizen" if b["glass"] == "Collar Weizen" else "lager", animate=False, title=f"Concept glass of {b['name']}")
+    g = art.glass(uid("pg"), beer_id, .86, gkind(b), animate=False, title=f"Concept glass of {b['name']}")
     return f'''<article class="pair reveal" data-vid="NV-ILL-PLATES"><div class="pair-art"><div class="pair-plate">{plate_svg(d)}</div><div class="pair-glass">{g}</div></div>
 <{label_h}>{E(d["name"])} <span class="amp">+</span> {E(b["name"])}</{label_h}>
-<p class="chip-row">{chips("Proposed pairing", "Not sensory-tested", "Not brewed yet")}</p></article>'''
+<p class="chip-row">{chips("Proposed pairing — not sensory tested", "Not brewed yet")}</p></article>'''
 
 def two_pour():
     d = DISH["chicken-65-totopos"]
@@ -168,7 +178,7 @@ def pairs_section(h="h3"):
 # ---------- pages ----------
 def hero_head():
     m = RASTER_META["NV-HERO-01"]
-    d = [f for f in m["d"]["files"] if f["fmt"] == "avif" and f["w"] in (1600,)][0]
+    d = sorted([f for f in m["d"]["files"] if f["fmt"] == "avif" and f["w"] <= 1600], key=lambda f: f["w"])[-1]
     mm = [f for f in m["m"]["files"] if f["fmt"] == "avif" and f["w"] == 800][0]
     return (f'<link rel="preload" as="image" type="image/avif" media="(min-width: 701px)" href="images/{d["file"]}">\n'
             f'<link rel="preload" as="image" type="image/avif" media="(max-width: 700px)" href="images/{mm["file"]}">\n')
@@ -176,10 +186,11 @@ def hero_head():
 def page_index():
     hero = raster_fig("NV-HERO-01", "fig-hero", eager=True, sizes="100vw")
     sig = [DISH[i] for i in ("chicken-65-totopos", "paneer-tikka-taco", "butter-chicken-quesadilla")]
-    food = "".join(f'<article class="feature reveal"><div class="plate-big">{plate_svg(d)}</div><h3>{E(d["name"])}</h3><p>{E(d["line"])}</p><p>{chips("Proposed presentation", d["status"])}</p></article>' for d in sig)
-    beer = "".join(f'<article class="feature reveal"><div class="glass-big">{art.glass(uid("hb"), b, .86, "weizen" if BEER[b]["glass"] == "Collar Weizen" else "lager", animate=True, title=f"Concept glass of {BEER[b]["name"]}")}</div><h3>{E(BEER[b]["name"])}</h3><p>{E(BEER[b]["line"])}</p><p>{chips("Not brewed yet")}</p></article>' for b in GATE_BEERS)
+    food = "".join(f'<article class="feature reveal"><div class="plate-big">{plate_svg(d)}</div><h3>{E(d["name"])}</h3><p>{E(d["line"])}</p><p>{chips("Proposed presentation · not cooked or tested", d["status"])}</p></article>' for d in sig)
+    beer = "".join(f'<article class="feature reveal"><div class="glass-big">{art.glass(uid("hb"), b, .86, gkind(BEER[b]), animate=True, title=f"Concept glass of {BEER[b]["name"]}")}</div><h3>{E(BEER[b]["name"])}</h3><p>{E(BEER[b]["line"])}</p><p>{chips("Not brewed yet", "Style-based concept visualization")}</p></article>' for b in GATE_BEERS)
     motifs = "".join(f'<li class="reveal">{art.motif(m, uid("mo"))}<span>{E(l)}</span></li>' for m, l in [("smoke", "Fire"), ("acid", "Acid"), ("spice", "Spice"), ("fermentation", "Fermentation")])
     status_items = "".join(f'<li{" class=\"current\"" if it["state"] == "Designing" else ""}><span class="stage">{E(it["state"])}</span><h3>{E(it["name"])}</h3><p>{E(it["note"])}</p></li>' for it in status["items"])
+    journey = "".join(f'<li class="reveal"{" aria-current=\"step\"" if p["stage"] == "Now" else ""}><span class="j-dot" aria-hidden="true"></span><span class="stage">{E(p["stage"])}</span><h3>{E(p["title"])}</h3><p>{E(p["body"])}</p></li>' for p in labs["path"])
     body = f'''
 <section class="hero" aria-labelledby="h1">
 {hero}
@@ -187,7 +198,7 @@ def page_index():
 <p class="eyebrow">Austin, Texas · In development</p>
 <h1 id="h1">Food and beer, designed together.</h1>
 <p class="lede">NASHA is a future Indo-Mex brewery and kitchen. Fire in the kitchen, fermentation in the glass hall, one long table between them.</p>
-<p class="disclosure">{E(DISCLOSE)}</p>
+<p class="disclosure">{E(DISCLOSE)} Equipment shown in images is illustrative: brewery size, tank count and layout are not decided.</p>
 </div></section>
 
 <section aria-labelledby="b2"><div class="wrap grid cols-2 center">
@@ -235,13 +246,16 @@ def page_index():
 {svg_fig("NV-ILL-TABLE", art.table_scene(uid("tb")), "reveal fig-wide", "960/420")}</div></section>
 
 <section aria-labelledby="b9"><div class="wrap">
-<p class="eyebrow"><span class="beat-no">09</span> We are building it</p>
-<h2 id="b9">Honest status.</h2>
+<p class="eyebrow"><span class="beat-no">09</span> Building NASHA</p>
+<h2 id="b9" class="statement reveal">From vision back to reality.</h2>
+<p class="lede">Everything above is a concept. This is the real path, and we are on its first step.</p>
+<ol class="journey">{journey}</ol>
+<h3 class="sub">Honest status</h3>
 <ul class="path">{status_items}</ul>
 <p class="muted">Nothing is in Testing or Validated yet. We will say so when that changes. <a href="labs.html">See Labs</a>. About the word <em>nasha</em> and our commitments: <a href="about.html">About NASHA</a>.</p></div></section>
 
 <section class="alt" aria-labelledby="b10"><div class="wrap">
-<p class="eyebrow"><span class="beat-no">10</span> Follow NASHA</p>
+<p class="eyebrow"><span class="beat-no">10</span> Follow the journey</p>
 <h2 id="b10">Updates are not live yet.</h2>
 <p>We have not set up a mailing list, domain or contact address, so we will not pretend to collect your email. This page will change when that is real.</p>
 <button class="btn" type="button" disabled>Updates coming later</button></div></section>
@@ -255,7 +269,7 @@ def page_experience():
      ("The bar", "Refreshment", "A long bar, a wall of taps and a shelf of glasses, with the brewery in sight behind it.", svg_fig("NV-ILL-BAR", art.bar_scene(uid("ba")), "", "960/500")),
      ("The table", "Belonging", "Long tables for sharing. Plates go in the middle and glasses go round.", svg_fig("NV-ILL-TABLE", art.table_scene(uid("tb")), "", "960/420")),
      ("The food", "Hunger", "Fusion dishes and our own: Chicken 65 on masa chips, tacos, a braise, charred corn. All still being designed.", svg_fig("NV-ILL-PLATES", '<div class="plates3">' + "".join(f'<div>{plate_svg(DISH[i])}</div>' for i in ("chicken-65-totopos", "paneer-tikka-taco", "goat-birria")) + '</div>', "fig-plates", "3/1")),
-     ("The beer", "Refreshment", "Light and crisp, wheat, toasty. Each beer is a brief with named dishes it is meant to meet.", svg_fig("NV-ILL-GLASS", '<div class="glass-row">' + "".join(art.glass(uid("eg"), b, .86, "weizen" if BEER[b]["glass"] == "Collar Weizen" else "lager", True, f"Concept glass of {BEER[b]['name']}") for b in GATE_BEERS) + '</div>', "fig-glasses", "3/1")),
+     ("The beer", "Refreshment", "Light and crisp, wheat, toasty. Each beer is a brief with named dishes it is meant to meet.", svg_fig("NV-ILL-GLASS", '<div class="glass-row">' + "".join(art.glass(uid("eg"), b, .86, gkind(BEER[b]), True, f"Concept glass of {BEER[b]['name']}") for b in GATE_BEERS) + '</div>', "fig-glasses", "3/1")),
      ("The fire", "Warmth", "A tandoor and a comal in an open kitchen, so you can watch food meet fire.", svg_fig("NV-ILL-FIRE", art.fire_scene(uid("fi")), "", "8/5")),
      ("The brewery", "Wonder", "Tanks behind glass: the slow work of fermentation, in view. Size and count are not decided.", raster_fig("NV-BREWERY-GLASS", "", sizes="(max-width: 700px) 100vw, 50vw")),
      ("The patio", "Staying", "A covered court under an oak, shade and fans for the heat, lights for the evening.", raster_fig("NV-SPACE-PATIO", "", sizes="(max-width: 700px) 100vw, 50vw")),
@@ -301,13 +315,13 @@ def menu_card():
 
 def flight_card():
     items = [BEER[b] for b in ("mexican-lager", "hefeweizen", "vienna-amber", "dunkelweizen")]
-    li = "".join(f'<li>{art.glass(uid("fl"), b["id"], .8, "weizen" if b["glass"] == "Collar Weizen" else "lager", False, f"Concept glass of {b["name"]}")}<div><strong>{E(b["name"])}</strong><br><span class="muted">{E(b["style"])}</span></div></li>' for b in items)
+    li = "".join(f'<li>{art.glass(uid("fl"), b["id"], .8, gkind(b), False, f"Concept glass of {b["name"]}")}<div><strong>{E(b["name"])}</strong><br><span class="muted">{E(b["style"])}</span></div></li>' for b in items)
     return f'<div class="flight-card"><p class="tag-inline">Tasting flight · proposed · not brewed yet</p><ul>{li}</ul><p class="muted">Four small pours. Names are proposals. No prices, no availability.</p></div>'
 
 def page_food():
     sig = [DISH[i] for i in SIGNATURE]
     hero = sig[0]
-    cards = "".join(f'<article class="feature reveal"><div class="plate-big">{plate_svg(d)}</div><h3>{E(d["name"])}</h3><p>{E(d["line"])}</p><p>{chips(d["kind"], "Proposed presentation")}{"<span class=\"chip chip-veg\">Vegetarian as designed</span>" if d["vegetarian"] else ""}</p><p class="muted">Heat {heat(d["heat"])} · pairs with {E(pair_names(d))}</p></article>' for d in sig[1:])
+    cards = "".join(f'<article class="feature reveal"><div class="plate-big">{plate_svg(d)}</div><h3>{E(d["name"])}</h3><p>{E(d["line"])}</p><p>{chips(d["kind"], "Proposed presentation · not cooked or tested")}{"<span class=\"chip chip-veg\">Vegetarian as designed</span>" if d["vegetarian"] else ""}</p><p class="muted">Heat {heat(d["heat"])} · pairs with {E(pair_names(d))}</p></article>' for d in sig[1:])
     veg = [d for d in dishes if d["vegetarian"] and d["wave"] == "Test set"]
     vegli = "".join(f'<li>{E(d["name"])}<span class="muted"> — {E(d["line"])}</span></li>' for d in veg)
     cats = sorted({d["category"] for d in dishes})
@@ -316,7 +330,7 @@ def page_food():
 <div><p class="eyebrow">Food · Designs for testing</p><h1 id="h1">Hunger, designed.</h1>
 <p class="lede">A Chennai bar snack scooped with fresh masa chips. A braise that borrows from two kitchens. Twelve dishes are specified for a first round of kitchen tests. None are cooked for guests. None are for sale.</p>
 <p class="disclosure">{E(DISCLOSE)} The drawings are proposed presentation, not our finished dishes.</p></div>
-<div class="reveal"><div class="hero-plate">{plate_svg(hero)}</div><h2 class="h3">{E(hero["name"])}</h2><p>{E(hero["line"])}</p><p>{chips(hero["kind"], "Proposed presentation")}</p></div></div></section>
+<div class="reveal"><div class="hero-plate">{plate_svg(hero)}</div><h2 class="h3">{E(hero["name"])}</h2><p>{E(hero["line"])}</p><p>{chips(hero["kind"], "Proposed presentation · not cooked or tested")}</p></div></div></section>
 
 <section class="alt" aria-labelledby="sg"><div class="wrap"><p class="eyebrow">Signature dishes</p><h2 id="sg">The first plates we would test.</h2>
 <div class="grid cols-3">{cards}</div></div></section>
@@ -345,8 +359,9 @@ def page_food():
     return layout("food.html", "Food · NASHA", "Dishes NASHA is designing for kitchen tests. Proposed presentation only. None are for sale.", body)
 
 def page_beer():
+    binfo_json = html.escape(json.dumps({b: {"name": BEER[b]["name"], "style": BEER[b]["style"], "status": "Not brewed yet" + (" · working name" if BEER[b]["working"] else ""), "pair": "Designed to pair with " + ", ".join(BEER[b]["pairs"][:3])} for b in GATE_BEERS}), quote=True)
     macro = art.glass(uid("mg"), "hefeweizen", .9, "weizen", True, "Concept macro glass of a wheat beer", big=True)
-    gate = "".join(f'<article class="feature reveal"><div class="glass-big">{art.glass(uid("gb"), b, .86, "weizen" if BEER[b]["glass"] == "Collar Weizen" else "lager", True, f"Concept glass of {BEER[b]["name"]}")}</div><h3>{E(BEER[b]["name"])}</h3><p>{E(BEER[b]["line"])}</p><p>{chips(BEER[b]["style"], "Not brewed yet")}</p><p class="muted">Designed to pair with {E(", ".join(BEER[b]["pairs"][:3]))}</p></article>' for b in GATE_BEERS)
+    gate = "".join(f'<article class="feature reveal"><div class="glass-big">{art.glass(uid("gb"), b, .86, gkind(BEER[b]), True, f"Concept glass of {BEER[b]["name"]}")}</div><h3>{E(BEER[b]["name"])}</h3><p>{E(BEER[b]["line"])}</p><p>{chips(BEER[b]["style"], "Not brewed yet", "Style-based concept visualization")}</p><p class="muted">Designed to pair with {E(", ".join(BEER[b]["pairs"][:3]))}</p></article>' for b in GATE_BEERS)
     groups = sorted({b["group"] for b in beers})
     f = filter_inputs("group", [(g, g) for g in groups])
     sw = "".join(f'<button type="button" class="swatch" data-beer="{b}" aria-pressed="{"true" if b == "hefeweizen" else "false"}">{E(BEER[b]["name"])}</button>' for b in GATE_BEERS)
@@ -355,7 +370,8 @@ def page_beer():
 <p class="lede">Beer designed to meet the food: crisp enough to cool the heat, round enough to hold a char. Nothing has been brewed. Each beer is a brief for a head brewer to critique, change, or reject.</p>
 <div class="swatches js-only" role="group" aria-label="Preview a beer colour">{sw}</div>
 <p class="disclosure">{E(DISCLOSE)} Alcohol is for adults of legal drinking age. Any future beer sales depend on licences we have not yet obtained.</p></div>
-<div class="macro" data-macro data-beer="hefeweizen" data-vid="NV-ILL-GLASS">{macro}<p class="tag-inline">Concept illustration · colour follows the style reference, not a brewed beer</p></div></div></section>
+<div class="macro" data-macro data-beer="hefeweizen" data-vid="NV-ILL-GLASS">{macro}<p class="tag-inline">Concept illustration · colour follows the style reference, not a brewed beer</p>
+<div class="beer-info" data-beer-info role="status" data-beers='{binfo_json}'><p class="bi-name" data-bi="name">Hefeweizen</p><p data-bi="style">{E(BEER["hefeweizen"]["style"])}</p><p data-bi="status">Not brewed yet</p><p data-bi="pair">Designed to pair with {E(", ".join(BEER["hefeweizen"]["pairs"][:3]))}</p></div></div></div></section>
 
 <section class="alt" aria-labelledby="gt"><div class="wrap"><p class="eyebrow">Gate beers</p><h2 id="gt">The three we would brew first.</h2>
 <div class="grid cols-3">{gate}</div></div></section>
@@ -424,10 +440,11 @@ def page_about():
 <p>The founder chose the name NASHA. Legal clearance of the name has not been completed, and nothing here claims trademark ownership, registration, availability, or ownership of any domain or social handle. If a professional review finds a problem, the name returns to the founder for a decision.</p>
 <p><em>Nasha</em> means intoxication or addiction in Hindi and Urdu. We chose it for the feeling of being captivated by food and beer. We commit to never romanticising addiction, alcoholism or dangerous drinking, and to asking cultural advisors to review the name and our language before launch.</p>
 <h2 id="images">About these images</h2>
-<p>NASHA does not exist yet, so there are no photographs of it. This site uses two kinds of picture, and both are labelled on the page.</p>
-<ul><li><strong>Concept visualization</strong>: photographic-style images made with AI image tools by the founder and edited. They show a possible future place. They are not photographs of a real place, real guests, real food or real beer. A few small details, such as the sign, were added by script. People in them are synthetic and are not real individuals.</li>
+<p>NASHA is currently in development. Photographic-style images on this site are concept visualizations used to communicate the intended experience. They are not photographs of an operating NASHA location, finished dishes or brewed NASHA beer.</p>
+<ul><li><strong>Concept visualization</strong>: photographic-style images made with AI image tools by the founder and edited. People in them are synthetic and are not real individuals. A few details, such as the temporary NASHA lettering on a sign, were added by script. Equipment in them is illustrative.</li>
 <li><strong>Concept illustration</strong>: original drawings made for this project. The food and beer drawings show proposed presentation only and are not pictures of finished dishes or beers.</li></ul>
-<p>Rights status: these images are for this private, unindexed prototype. Commercial-use terms of the image tools have not been verified by the project, so the images are marked provisional in the rights register and must be re-checked, replaced or licensed before any public launch. As real dishes are cooked and real beers brewed, real photography will replace generated and drawn pictures.</p>
+<p>When real dishes are cooked and real beers are brewed, real photography will replace these pictures and each picture will say what stage it shows: concept visualization, prototype, tested product or final photography. None is above concept stage today.</p>
+<p>Rights status: the image tools' commercial-use terms have not been verified by the project, so these images are marked provisional in the rights register for this private, unindexed prototype and must be re-checked, replaced or licensed before any public launch.</p>
 <h2 id="rights">How we handle rights</h2>
 <p>Every file on this site is listed in a rights register: what it is, who made it, how, and under what licence. Fonts are Inter and Instrument Serif, both under the SIL Open Font License. We use no stock photos, no third-party scripts and no trackers.</p>
 <h2>Evidence and honesty</h2>
