@@ -152,3 +152,6 @@ Tooling expansion recorded in `docs/tools/NASHA-CAPABILITY-MATRIX.md`; agent tes
 
 ## Sprint 15 (external intelligence; no score change)
 See `research/EXTERNAL-INTELLIGENCE-S15.md`. Evidence 4/95 and design 43/95 unchanged. Next physical action: cook Chicken 65 Totopos (sheet 13). Open founder items: Figma originals before 2026-10-18; optional network allow-list; optional connectors (PubMed, USAFacts); OpenAI provider terms never researched.
+
+## Sprint 16 (Core 5 x Core 5; no score change)
+See `research/CORE5-PRODUCT-SYSTEM.md` section 12 for the physical R&D sequence (Sessions 1-5) and section 4 for the beer order disagreement. Evidence 4/95 and design 43/95 unchanged. Next physical action: cook Chicken 65 Totopos (sheet 13).

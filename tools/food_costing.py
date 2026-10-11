@@ -38,6 +38,6 @@ def selftest():
 if len(sys.argv) > 1 and sys.argv[1] == "selftest": selftest(); sys.exit(0)
 ings, recs = load(ING), load(REC); out, errs = analyse(ings, recs)
 if not ings: print("No ingredient prices recorded yet: nothing to cost (no price is ever invented).")
-for d, v in out.items(): print(f"{d}: cost/portion {v['cost']:.2f} (missing prices: {v['missing_price'] or 'none'}); allergens {sorted(v['allergens']) or 'none recorded'}; vegetarian as recorded: {v['veg']}")
+for d, v in out.items(): print(f"{d}: " + (f"cost/portion {v['cost']:.2f}" if not v['missing_price'] else f"NOT COSTABLE ({len(v['missing_price'])} ingredient prices/quantities missing; no partial cost is reported)") + f" (missing: {v['missing_price'] or 'none'}); allergens {sorted(v['allergens']) or 'none recorded'}; vegetarian as recorded: {v['veg']}")
 for e in errs: print("FAIL", e)
 sys.exit(1 if errs else 0)

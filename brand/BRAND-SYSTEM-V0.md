@@ -1,3 +1,5 @@
+> **SUPERSEDED NOTES (Sprint 16 brand review):** the parent name is now SELECTED_BY_FOUNDER, LEGAL CLEARANCE PENDING (D-62); the 'ring-in-square' mark and any marigold-ring collar-glass mark below are superseded by D-66 (no logo, monogram, icon or badge work; see `NASHA-LOGO-GOVERNANCE.md`); 'fusion' is internal vocabulary, not guest copy; read `research/CORE5-PRODUCT-SYSTEM.md` section 9 for the current product philosophy. Marigold, limestone, fire and candid photography remain colour and material direction only.
+
 # Brand System v0 (Phase 4 starter): personality, language, visual principles, cultural rules
 
 **Status:** `[CONCEPT]`. **The parent name is NOT selected.** The working project name stays **INDO MEX BREWERY** (a descriptor, not a brand decision; D-09/D-34 context in `docs/decisions/`). No logo exists; no trademark search has been run `[PRO]`. This document sets the rules any final name must live inside. It extends `brand/BRAND-WORLDS.md` (hybrid "Tank Court"), `NAMING-UNIVERSE-V2.md`, `PARENT-BRAND-CANDIDATES.md` and `visuals/VISUAL-DNA.md` (v2.1, canonical visuals).

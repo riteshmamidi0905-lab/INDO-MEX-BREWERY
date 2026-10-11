@@ -10,7 +10,7 @@ bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.wm.stl_import(filepath=a[0]); o = bpy.context.selected_objects[0]
 m = bpy.data.materials.new("m"); m.use_nodes=True; b=m.node_tree.nodes["Principled BSDF"]; b.inputs[0].default_value=(0.85,0.85,0.88,1); b.inputs[2].default_value=0.35; o.data.materials.append(m)
 bpy.ops.object.light_add(type="SUN", rotation=(0.9,0.2,0.6)); bpy.context.object.data.energy=3
-bpy.ops.object.camera_add(location=(0,-400,95), rotation=(1.5708,0,0)); c=bpy.context.object; c.data.type="ORTHO"; c.data.ortho_scale=210; bpy.context.scene.camera=c
+bpy.ops.object.camera_add(location=(0,-500,125), rotation=(1.5708,0,0)); c=bpy.context.object; c.data.type="ORTHO"; c.data.ortho_scale=275; bpy.context.scene.camera=c
 w=bpy.data.worlds.new("w"); w.use_nodes=True; w.node_tree.nodes["Background"].inputs[0].default_value=(0.93,0.93,0.92,1); bpy.context.scene.world=w
 s=bpy.context.scene; s.render.engine="BLENDER_EEVEE"; s.render.resolution_x=360; s.render.resolution_y=640; s.render.filepath=a[1]
 bpy.ops.render.render(write_still=True)

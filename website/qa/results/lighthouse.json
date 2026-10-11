@@ -1,5 +1,5 @@
 {
- "date": "2026-10-11T03:52:54.882Z",
+ "date": "2026-10-11T05:06:32.360Z",
  "tool": "lighthouse 13.5.0",
  "runs": {
   "index.html:mobile": {
@@ -7,7 +7,7 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 1885,
+   "lcpMs": 1898,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 201
@@ -27,7 +27,7 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 1957,
+   "lcpMs": 1959,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 206
@@ -37,7 +37,7 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 486,
+   "lcpMs": 487,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 206
@@ -47,7 +47,7 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 1954,
+   "lcpMs": 1953,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 191

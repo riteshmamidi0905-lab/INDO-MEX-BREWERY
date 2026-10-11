@@ -164,12 +164,12 @@ def two_pour():
     g1 = art.glass(uid("tp"), "mexican-lager", .88, "lager", animate=False, title="Concept glass, first beer")
     g2 = art.glass(uid("tp"), "hefeweizen", .88, "weizen", animate=False, title="Concept glass, second beer")
     steps = [("1", "Beer one", "A cold, clean Mexican-Style Lager arrives first, as designed.", g1),
-             ("2", "The dish", "Chicken 65 Totopos, a designed Chennai-style bar snack with masa chips.", f'<div class="tp-plate">{plate_svg(d)}</div>'),
+             ("2", "The dish", "Chicken 65 Totopos, our designed fusion of South Indian Chicken 65 (its origin is contested) with masa chips.", f'<div class="tp-plate">{plate_svg(d)}</div>'),
              ("3", "Beer two", "Then a Hefeweizen alongside the same dish, as designed.", g2)]
     li = "".join(f'<li class="tp-step" data-step="{n}"><span class="tp-n">{n}</span><div class="tp-art">{a}</div><h3>{t}</h3><p>{p}</p></li>' for n, t, p, a in steps)
     return f'''<div class="two-pour" data-two-pour data-active="1">
 <ol class="tp-steps">{li}</ol>
-<div class="tp-controls" aria-label="Walk through the Two-Pour ritual"><button type="button" class="btn btn-ghost" data-tp="prev">Back</button><button type="button" class="btn" data-tp="next">Next step</button><span class="visually-hidden" role="status" aria-live="polite" data-tp-status></span></div>
+<div class="tp-controls" role="group" aria-label="Walk through the Two-Pour idea"><button type="button" class="btn btn-ghost" data-tp="prev">Back</button><button type="button" class="btn" data-tp="next">Next step</button><span class="visually-hidden" role="status" aria-live="polite" data-tp-status></span></div>
 <p class="tp-learn"><strong>How the experience might change:</strong> the same bite, tasted after two different beers. That is a hypothesis for a tasting, not a result. No guest has tried it, and no beer has been brewed.</p>
 </div>'''
 
@@ -387,8 +387,8 @@ def page_beer():
 <section class="alt" aria-labelledby="pp"><div class="wrap"><p class="eyebrow">Pairings</p><h2 id="pp">Proposed pairings.</h2>
 <div class="grid cols-2 pairs">{pairs_section()}</div></div></section>
 
-<section aria-labelledby="tp"><div class="wrap"><p class="eyebrow">The Two-Pour ritual</p><h2 id="tp">One dish. Two beers.</h2>
-<p class="lede">A proposed way to eat: the same dish after two different pours. It is a design idea to test in tastings.</p>{two_pour()}</div></section>
+<section aria-labelledby="tp"><div class="wrap"><p class="eyebrow">The Two-Pour idea</p><h2 id="tp">One dish. Two beers.</h2>
+<p class="lede">A proposed way to eat: the same dish after two different small pours, the second always optional, with a non-alcoholic pour as an equal choice. It is a design idea to test in tastings, not an offer.</p>{two_pour()}</div></section>
 
 <section class="alt" aria-labelledby="bv"><div class="wrap grid cols-2 center"><div><p class="eyebrow">Brewery vision</p><h2 id="bv">The brewery in plain sight.</h2>
 <p class="lede">The imagined brewhouse sits behind glass so guests can see the work. The equipment in this picture is illustrative: the vessel size and count are an open decision and nothing here fixes them.</p></div>

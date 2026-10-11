@@ -10,9 +10,10 @@ Correction note: Sprint 14 reported '618.5 ml' for a first test shape. That was 
 import json, os, subprocess, sys, tempfile
 import numpy as np, trimesh
 GLASS_RHO, LIQ_RHO = 2.5, 1.01   # g/cm3, ASSUMED
-def body_profile(rim_d, max_d, base_d, height, max_at=0.62, n=14):
+def body_profile(rim_d, max_d, base_d, height, max_at=0.62, n=14, belly_exp=1.0):
+    """belly_exp=1.0 reproduces the Sprint 15 sine bulge; larger values (e.g. 1.8) give a slimmer lower body that widens late."""
     zs = np.linspace(0, height, n); rb, rm, rr = base_d / 2, max_d / 2, rim_d / 2; zm = max_at * height
-    r = np.where(zs <= zm, rb + (rm - rb) * np.sin(np.pi / 2 * zs / zm) ** 1.0, rm + (rr - rm) * np.clip((zs - zm) / (height - zm), 0, 1) ** 1.2)
+    r = np.where(zs <= zm, rb + (rm - rb) * np.sin(np.pi / 2 * zs / zm) ** belly_exp, rm + (rr - rm) * np.clip((zs - zm) / (height - zm), 0, 1) ** 1.2)
     return list(zip(map(float, r), map(float, zs)))
 def outer_with_ring(body, ring_z=None, ring_h=0, ring_proj=0):
     if not ring_h or not ring_proj: return body
@@ -23,9 +24,13 @@ def scad_of(prof): return f"rotate_extrude($fn=96) polygon({[list(p) for p in ([
 def inner_of(body, wall, base_t):
     zs = [q[1] for q in body]; rs = [q[0] for q in body]; zf = base_t
     return [(0.0, zf), (max(float(np.interp(zf, zs, rs)) - wall, 0.01), zf)] + [(max(r - wall, 0.01), z) for r, z in body if z > zf]
-def build(name, out, rim_d=80, max_d=84, base_d=60, height=170, wall=2.2, base_t=8, ring_h=0, ring_proj=0, ring_z=None, fill_ml=None, max_at=0.62, ring2=None):
+def analytic_capacity_ml(rim_d, max_d, base_d, height, wall, base_t, max_at=0.62, belly_exp=1.0, n=400):
+    """Independent check of brimful capacity by numeric integration of the inner profile (ml)."""
+    body = body_profile(rim_d, max_d, base_d, height, max_at, n=n, belly_exp=belly_exp); inner = inner_of(body, wall, base_t)
+    z = np.array([q[1] for q in inner[1:]]); r = np.array([q[0] for q in inner[1:]]); return float(np.trapezoid(np.pi * r ** 2, z) / 1000)
+def build(name, out, rim_d=80, max_d=84, base_d=60, height=170, wall=2.2, base_t=8, ring_h=0, ring_proj=0, ring_z=None, fill_ml=None, max_at=0.62, ring2=None, belly_exp=1.0):
     os.makedirs(out, exist_ok=True)
-    body = body_profile(rim_d, max_d, base_d, height, max_at); outer = outer_with_ring(body, ring_z, ring_h, ring_proj)
+    body = body_profile(rim_d, max_d, base_d, height, max_at, belly_exp=belly_exp); outer = outer_with_ring(body, ring_z, ring_h, ring_proj)
     if ring2: outer = outer_with_ring(outer, *ring2)
     inner = inner_of(body, wall, base_t)
     sf, stl = f"{out}/{name}.scad", f"{out}/{name}.stl"
@@ -34,7 +39,7 @@ def build(name, out, rim_d=80, max_d=84, base_d=60, height=170, wall=2.2, base_t
     if r.returncode: raise SystemExit(r.stderr)
     m = trimesh.load(stl); cav = trimesh.creation.revolve(np.array(inner + [(0, inner[-1][1])]), sections=96); cap = float(cav.volume) / 1000
     glass_cm3 = float(m.volume) / 1000; gm = glass_cm3 * GLASS_RHO; com_empty = float(m.center_mass[2])
-    res = dict(name=name, height_mm=height, rim_dia_mm=rim_d, max_body_dia_mm=max_d + 2 * ring_proj if ring_proj else max_d, base_dia_mm=base_d, wall_mm=wall, base_thickness_mm=base_t,
+    res = dict(name=name, height_mm=height, rim_dia_mm=rim_d, max_body_dia_mm=max_d, ring_outer_dia_mm=round(max_d * 0 + 2 * float(np.interp(ring_z, [q[1] for q in body], [q[0] for q in body])) + 2 * ring_proj, 1) if ring_proj and ring_z is not None else None, wall_at_ring_mm=round(wall + ring_proj, 2) if ring_proj else wall, fill_line_datum="height above the outside bottom (z=0), liquid only (serving volume excludes foam head)", base_dia_mm=base_d, wall_mm=wall, base_thickness_mm=base_t,
                ring_height_mm=ring_h, ring_projection_mm=ring_proj, brimful_ml=round(cap, 1), glass_volume_cm3=round(glass_cm3, 1), glass_mass_g_assumed=round(gm, 0),
                com_empty_height_mm=round(com_empty, 1), watertight=bool(m.is_watertight), status="CONCEPT GEOMETRY - MANUFACTURABILITY UNVERIFIED")
     if fill_ml:

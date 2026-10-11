@@ -1,0 +1,26 @@
+food_id,beer_id,heat_relief,richness_cut,carbonation_role,char_compat,malt_bridge,acid_interaction,spice_interaction,body_match,intensity_match,mean_score,role,unconstrained_top,status
+chicken-65-totopos,hefeweizen,2,2,3,2,2,2,3,2,2,2.22,SECONDARY hypothesis,yes,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+chicken-65-totopos,mexican-lager,2,2,3,2,1,2,1,2,1,1.78,"PRIMARY hypothesis (coverage assignment, not necessarily best)",,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+chicken-65-totopos,vienna-amber,1,2,3,2,3,2,1,2,2,2.0,not prioritised,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+chicken-65-totopos,pilsner,0,3,3,2,1,2,0,3,2,1.78,not prioritised,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+chicken-65-totopos,witbier,2,2,3,2,1,2,2,3,3,2.22,EXPERIMENTAL hypothesis,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+paneer-tikka-taco,hefeweizen,2,2,3,2,3,2,2,2,2,2.22,SECONDARY hypothesis,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+paneer-tikka-taco,mexican-lager,2,2,2,1,1,2,1,2,1,1.56,not prioritised,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+paneer-tikka-taco,vienna-amber,1,2,2,3,3,2,1,2,2,2.0,EXPERIMENTAL hypothesis,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+paneer-tikka-taco,pilsner,1,3,2,2,2,2,1,3,2,2.0,not prioritised,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+paneer-tikka-taco,witbier,2,2,2,3,1,3,2,3,3,2.33,"PRIMARY hypothesis (coverage assignment, not necessarily best)",yes,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+goat-birria,hefeweizen,2,3,3,1,3,2,2,2,2,2.22,"PRIMARY hypothesis (coverage assignment, not necessarily best)",yes,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+goat-birria,mexican-lager,2,3,3,1,1,2,1,0,1,1.56,not prioritised,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+goat-birria,vienna-amber,1,3,3,2,3,2,1,2,1,2.0,SECONDARY hypothesis,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+goat-birria,pilsner,1,3,3,1,2,2,1,1,2,1.78,not prioritised,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+goat-birria,witbier,2,3,3,1,1,3,2,1,2,2.0,EXPERIMENTAL hypothesis,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+gobi-taco,hefeweizen,2,2,3,2,2,2,2,2,2,2.11,EXPERIMENTAL hypothesis,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+gobi-taco,mexican-lager,2,2,2,1,1,2,1,2,1,1.56,not prioritised,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+gobi-taco,vienna-amber,1,2,2,3,3,1,1,2,2,1.89,not prioritised,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+gobi-taco,pilsner,1,2,2,2,2,2,1,3,2,1.89,"PRIMARY hypothesis (coverage assignment, not necessarily best)",,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+gobi-taco,witbier,2,2,2,2,1,3,2,3,3,2.22,SECONDARY hypothesis,yes,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+butter-chicken-quesadilla,hefeweizen,2,3,3,1,3,2,2,2,3,2.33,SECONDARY hypothesis,yes,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+butter-chicken-quesadilla,mexican-lager,2,3,2,1,1,2,1,0,1,1.44,not prioritised,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+butter-chicken-quesadilla,vienna-amber,2,3,2,2,3,2,1,2,2,2.11,"PRIMARY hypothesis (coverage assignment, not necessarily best)",,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+butter-chicken-quesadilla,pilsner,2,3,2,1,2,2,1,1,3,1.89,not prioritised,,PAIRING HYPOTHESIS - NOT SENSORY TESTED
+butter-chicken-quesadilla,witbier,2,3,2,1,1,2,2,1,3,1.89,EXPERIMENTAL hypothesis,,PAIRING HYPOTHESIS - NOT SENSORY TESTED

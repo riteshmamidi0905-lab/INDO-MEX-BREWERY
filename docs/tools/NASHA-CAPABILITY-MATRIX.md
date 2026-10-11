@@ -1,4 +1,4 @@
-# NASHA Capability Matrix (canonical; Sprint 15 update, 2026-10-11)
+# NASHA Capability Matrix (canonical; Sprint 16 update, 2026-10-11)
 
 Correction (Sprint 15): the '618.5 ml' quoted in the Sprint 14 report was the SOLID volume (cm3) of an uncut revolved test shape, not a drinking capacity; use `tools/glass_params.py` for capacity.
 
@@ -64,6 +64,14 @@ Tools are leverage, not evidence: nothing here moves evidence readiness (4/95) o
 | Search | tools/nasha_search.py filters | --decisions/--evidence/--food/--beer/--dir | built | none | selftest, real queries | free | project | agents | cache only | OPERATIONAL | A |
 | Skills | 4 project skills (.claude/skills: nasha-evidence-audit, nasha-food-rd, nasha-rights-audit, nasha-sprint-close) | repeatable audits | built | none | first three exercised by subagents; sprint-close UNTESTED | free | project | all sprints | model output, not professional review | TESTED (3 of 4) | A |
 | Research | /deep-research and /skill-creator (claude.ai skills) | multi-source research; skill authoring | exposed | none | deep-research REFUSED by harness (reserved for explicit user invocation) | free | n/a | founder may invoke | cannot be run by the agent | NOT AVAILABLE TO AGENT | C |
+
+| Pairing | tools/pairing_matrix.py (scipy assignment) | 25 food x beer PAIRING HYPOTHESES from attribute columns; coverage-constrained primaries | built | none | selftest + real matrices | free | project | food/CORE5-PAIRING-MATRIX.csv | crude heuristics; disagrees with expert picks (recorded); NOT SENSORY TESTED | TESTED | B |
+| Glass | tools/core5_glasses.py (+ analytic capacity in glass_params.py) | five-glass family, calibrated brimful, mesh vs analytic check (<0.3%), fill line, COM, tip angle | built | none | 5 STL built, watertight, volumes cross-checked | free | project | visuals/glass-studies/core5/ | MANUFACTURABILITY UNVERIFIED; crude barrel profile; tall slim glasses have low static tip angles (12 deg) | TESTED | B |
+| Validation | tools/validate_core5.py (called by validate_repo.py) | Core 5 structure and honesty checks | built | none | runs on every validate_repo | free | project | every sprint close | structural only | OPERATIONAL | A |
+| Rights | tools/provenance_report.py | AI asset provenance and public-use blockers from the manifest | built | none | real manifest (docs/ai/ASSET-PROVENANCE-REPORT.md) | free | project | rights audits | reports, never clears | OPERATIONAL | A |
+| Costing | tools/food_costing.py (NOT COSTABLE guard) | 45 Core 5 ingredient rows, all prices blank | upgraded | none | real structure, no partial costs | free | project | food/costing/ | no prices exist | OPERATIONAL (structure) | B |
+| Skills | nasha-core-product-review (5th project skill) | route a Core 5 product through heritage/craft/science/ops/pairing/evidence | built | none | one adversarial test (rejected an unrecorded score) | free | project | Core 5 reviews | model output | TESTED | A |
+| Design | Adobe MCP | image/PDF/Express tools | connected (briefly disconnected and reconnected this sprint) | OAuth (done) | not used for NASHA | account plan | Adobe terms | none needed now | no generative creation | CONNECTED (unused) | C |
 
 ## Candidates found in the connector/plugin catalog (not installed; need the founder to connect in claude.ai)
 | Candidate | Why | Cost/auth | Verdict |

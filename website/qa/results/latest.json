@@ -1,6 +1,6 @@
 {
- "distHash": "9ad0ac641588a861",
- "date": "2026-10-11T03:50:48.175Z",
+ "distHash": "21730766d4066770",
+ "date": "2026-10-11T04:59:48.080Z",
  "pages": {
   "about.html": {
    "overflow": {
@@ -60,7 +60,7 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 60
    },
    "noJs": {
     "h1": 1,
@@ -109,42 +109,38 @@
     "dark": {
      "violations": [],
      "passes": 47,
-     "incomplete": [
-      "aria-prohibited-attr"
-     ],
+     "incomplete": [],
      "incompleteDetail": []
     },
     "light": {
      "violations": [],
      "passes": 47,
-     "incomplete": [
-      "aria-prohibited-attr"
-     ],
+     "incomplete": [],
      "incompleteDetail": []
     }
    },
    "console": [],
-   "bytes": 194086,
+   "bytes": 194227,
    "requests": [
-    "/styles.css",
     "/beer.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/fonts/inter-latin-wght-normal.woff2",
+    "/styles.css",
     "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2",
     "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 120
+    "lcp_ms": 156
    },
    "noJs": {
     "h1": 1,
-    "textLen": 8023,
+    "textLen": 8153,
     "hiddenFilters": true,
     "items": 9,
     "visibleItems": 9
    },
-   "initialBytes": 194086,
+   "initialBytes": 194227,
    "reducedMotion": true
   },
   "crossing.html": {
@@ -261,13 +257,13 @@
    "requests": [
     "/crossing.html",
     "/styles.css",
-    "/app.js",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/app.js",
     "/fonts/inter-latin-wght-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 116
+    "lcp_ms": 92
    },
    "noJs": {
     "h1": 1,
@@ -343,16 +339,16 @@
    "console": [],
    "bytes": 169311,
    "requests": [
-    "/styles.css",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/experience.html",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
     "/images/NV-SPACE-ENTRANCE-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 100
+    "lcp_ms": 72
    },
    "noJs": {
     "h1": 1,
@@ -412,27 +408,27 @@
     }
    },
    "console": [],
-   "bytes": 210018,
+   "bytes": 210127,
    "requests": [
     "/food.html",
-    "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
     "/fonts/instrument-serif-latin-400-italic.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 116
+    "lcp_ms": 96
    },
    "noJs": {
     "h1": 1,
-    "textLen": 14457,
+    "textLen": 14567,
     "hiddenFilters": true,
     "items": 16,
     "visibleItems": 16
    },
-   "initialBytes": 210018,
+   "initialBytes": 210127,
    "reducedMotion": true
   },
   "index.html": {
@@ -531,16 +527,16 @@
    "console": [],
    "bytes": 250525,
    "requests": [
-    "/index.html",
     "/styles.css",
-    "/images/NV-HERO-01-d-1537.avif",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/images/NV-HERO-01-d-1537.avif",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/index.html",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 100
+    "lcp_ms": 96
    },
    "noJs": {
     "h1": 1,
@@ -617,9 +613,9 @@
    "bytes": 100861,
    "requests": [
     "/labs.html",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/app.js"
    ],
    "perf": {
@@ -764,18 +760,18 @@
    "console": [],
    "bytes": 196511,
    "requests": [
-    "/space.html",
-    "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/styles.css",
+    "/space.html",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
+    "/images/NV-SPACE-EXT-DAY-d-640.avif",
     "/images/NV-SPACE-ENTRANCE-d-640.avif",
-    "/images/NV-BREWERY-HALL-d-640.avif",
-    "/images/NV-SPACE-EXT-DAY-d-640.avif"
+    "/images/NV-BREWERY-HALL-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 104
+    "lcp_ms": 80
    },
    "noJs": {
     "h1": 1,
@@ -796,12 +792,12 @@
   "maxInitialBytes": 250525,
   "homeInitialBytes": 250525,
   "maxCls": 0,
-  "maxLcpMs": 120,
+  "maxLcpMs": 156,
   "consoleIssues": 0
  },
  "slow": {
   "profile": "1.6 Mbps, 150 ms RTT, 390px viewport",
-  "heroReadyMs": 1291,
+  "heroReadyMs": 1283,
   "heroSrc": "/images/NV-HERO-01-m-480.avif"
  },
  "imagesBlocked": {

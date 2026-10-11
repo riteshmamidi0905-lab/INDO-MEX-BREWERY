@@ -203,6 +203,9 @@ for x in glob.glob("**/*",recursive=True):
 for x in [y for y in glob.glob("website/src/*")+glob.glob("website/*.py")+glob.glob("website/dist/*.html") if os.path.isfile(y)]:
     if re.search("[\u2122\u00ae]",open(x,encoding="utf-8").read()): fail(f"{x}: trademark symbol used without basis")
 # 14 website (Sprint 6): static + real-browser QA result checks
+r=subprocess.run([sys.executable,"tools/validate_core5.py"],capture_output=True,text=True)
+if r.returncode: fail("Core 5 validator: "+r.stdout.strip()[:400])
+else: print(r.stdout.strip())
 r=subprocess.run([sys.executable,"tools/validate_site.py"],capture_output=True,text=True)
 print(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else "")
 if r.returncode!=0: fail("validate_site failed:\n"+r.stdout)

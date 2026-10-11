@@ -1,1 +1,44 @@
 ingredient_id,name,category,unit,price_per_unit,yield_pct,allergens,vegetarian,supplier,price_source,price_date,notes
+i-chicken-thigh,"Chicken thigh, boneless skinless",protein,kg,,,,no,,,,
+i-paneer,Paneer,dairy,kg,,,milk,yes,,,,in-house vs bought is an open test variable; record rennet source
+i-cauliflower,Cauliflower,produce,kg,,,,yes,,,,
+i-goat,"Goat, bone-in shoulder/leg",protein,kg,,,,no,,,,D-54: goat only; cut and age not yet decided
+i-yogurt,"Yogurt, plain thick",dairy,kg,,,milk,yes,,,,
+i-crema,Mexican crema,dairy,kg,,,milk,yes,,,,
+i-cheese-oaxaca,Oaxaca-style cheese,dairy,kg,,,milk,check,,,,record rennet source
+i-butter-ghee,Butter / ghee,dairy,kg,,,milk,yes,,,,
+i-cream,Cream,dairy,kg,,,milk,yes,,,,
+i-corn-tortilla,Corn tortilla (nixtamal),grain,kg,,,,yes,,,,D-54: label must show no lard
+i-flour-tortilla,Flour tortilla,grain,kg,,,wheat,check,,,,D-54: lard-free confirmation needed
+i-rice-flour,Rice flour,grain,kg,,,,yes,,,,
+i-cornflour,Cornflour,grain,kg,,,,yes,,,,
+i-besan,Besan (chickpea flour),grain,kg,,,,yes,,,,optional
+i-oil-neutral,Neutral frying oil,oil,L,,,,yes,,,,type to record; no lard
+i-mustard-oil,Mustard oil,oil,L,,,mustard,yes,,,,
+i-ginger-garlic,Ginger-garlic paste,aromatic,kg,,,,yes,,,,
+i-chile-red-powder,Red chilli powder,spice,kg,,,,yes,,,,
+i-turmeric,Turmeric,spice,kg,,,,yes,,,,
+i-coriander-powder,Coriander powder,spice,kg,,,,yes,,,,
+i-kasuri-methi,Kasuri methi,spice,kg,,,,yes,,,,
+i-chaat-masala,Chaat masala,spice,kg,,,,yes,,,,check blend label
+i-garam-masala,Garam masala / whole spices,spice,kg,,,,yes,,,,
+i-cumin-cinnamon-clove,"Cumin, cinnamon, clove, bay (whole)",spice,kg,,,,yes,,,,
+i-oregano-mx,Mexican oregano,spice,kg,,,,yes,,,,
+i-curry-leaf,Curry leaf,herb,kg,,,,yes,,,,chef decision for goat; identity cue for Chicken 65
+i-green-chile,Green chile (serrano or similar),produce,kg,,,,yes,,,,
+i-poblano,Poblano chile,produce,kg,,,,yes,,,,
+i-guajillo,"Guajillo chile, dried",spice,kg,,,,yes,,,,
+i-ancho,"Ancho chile, dried",spice,kg,,,,yes,,,,
+i-onion,Onion,produce,kg,,,,yes,,,,
+i-cilantro,Cilantro,herb,kg,,,,yes,,,,
+i-lime,Lime,produce,kg,,,,yes,,,,
+i-lemon,Lemon,produce,kg,,,,yes,,,,
+i-tomato,Tomato / tomato base,produce,kg,,,,yes,,,,
+i-tamarind,Tamarind,pantry,kg,,,,yes,,,,
+i-cabbage,Cabbage,produce,kg,,,,yes,,,,
+i-vinegar,Cider/white vinegar,pantry,L,,,,yes,,,,
+i-stock-goat-chicken,Goat/chicken/vegetable stock,stock,L,,,,no,,,,"D-54: goat, chicken or vegetable stock only; no beef or pork bones or bases"
+i-pineapple,"Pineapple (optional, never called al pastor)",produce,kg,,,,yes,,,,optional
+i-papaya-raw,Raw papaya (optional tenderiser test),produce,kg,,,,yes,,,,uncertain/advisor
+i-salsa-verde-base,Tomatillo / salsa verde base,produce,kg,,,,yes,,,,
+i-salt,Salt,pantry,kg,,,,yes,,,,
