@@ -5,7 +5,7 @@ import csv, glob, os, re, subprocess, sys
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))   # run from the repo root wherever invoked
 errs = []
 def fail(m): errs.append(m)
-for f in glob.glob("docs/company/data/*.csv") + ["docs/decisions/decision-register.csv", "ops/finance/scenario-fields.csv", "ops/finance/assumptions.csv", "ip/IP-ASSET-TRACKER.csv", "ops/rd/iteration-log.csv", "research/customer-discovery/purchase-conversion-tracker.csv", "research/customer-discovery/repeat-intent-tracker.csv", "research/customer-discovery/tasting-responses.csv", "research/customer-discovery/coded-quotes.csv"]:
+for f in glob.glob("docs/company/data/*.csv") + ["docs/decisions/decision-register.csv", "ops/finance/scenario-fields.csv", "ops/finance/assumptions.csv", "ip/IP-ASSET-TRACKER.csv", "ops/rd/iteration-log.csv", "research/customer-discovery/purchase-conversion-tracker.csv", "research/customer-discovery/repeat-intent-tracker.csv", "research/customer-discovery/tasting-responses.csv", "research/customer-discovery/coded-quotes.csv", "ops/templates/expenses-receipts.csv"]:
     try:
         rows = list(csv.reader(open(f, encoding="utf-8")))
         n = len(rows[0])
