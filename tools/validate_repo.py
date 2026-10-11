@@ -85,8 +85,33 @@ if _os.path.exists("docs/readiness/readiness.csv"):
         if ev>2 and not r["evidence_ref"].strip(): fail(f"readiness {r['area']}: evidence>2 needs a reference")
     td=sum(int(r["design_0_5"]) for r in rd); te=sum(int(r["evidence_0_5"]) for r in rd); n=5*len(rd)
     print(f"readiness: design completeness {td}/{n} = {100*td/n:.0f}% ; evidence-backed readiness {te}/{n} = {100*te/n:.0f}% across {len(rd)} areas")
+
+# 14 Sprint-5 structured data
+TL=list(csv.DictReader(open("validation/traction-event-log.csv")))
+bad=[r for r in TL if (r.get("data_source","").strip().lower() not in ("real","dry_run"))]
+if bad: fail(f"traction-event-log.csv has {len(bad)} rows without data_source real/dry_run (synthetic data must never be saved)")
+print(f"traction event log: {len(TL)} rows ({sum(1 for r in TL if r['data_source'].strip().lower()=='real')} real)")
+AS=list(csv.DictReader(open("ip/founder-asset-register.csv")))
+OKSTAT={"NOT_ESTABLISHED","NOT_CREATED","UNKNOWN","ESTABLISHED_FOR_ACCESS_ONLY","OWNED_DOCUMENTED"}
+for r in AS:
+    if r["ownership_status"] not in OKSTAT: fail(f"asset {r['asset_id']}: invalid ownership_status {r['ownership_status']}")
+    if r["ownership_status"]=="OWNED_DOCUMENTED" and not os.path.exists((r["evidence_ref"] or "").strip()): fail(f"asset {r['asset_id']}: OWNED_DOCUMENTED needs an existing evidence_ref file")
+print(f"founder asset register: {len(AS)} assets, owned-documented: {sum(1 for r in AS if r['ownership_status']=='OWNED_DOCUMENTED')}")
+WR=list(csv.DictReader(open("ip/website-asset-rights-register.csv")))
+for r in WR:
+    if not (r["licence"] or "").strip() or not (r["status"] or "").strip(): fail(f"website asset {r['asset_id']}: missing licence/status")
+print(f"website asset rights register: {len(WR)} rows (no website exists yet)")
+IV=list(csv.DictReader(open("investor/investor-universe-schema.csv")))
+for r in IV:
+    if not (r["evidence_source_url"] or "").strip() or not (r["source_type"] or "").strip() or not (r["access_date"] or "").strip(): fail(f"investor row {r['investor_id']}: needs public evidence_source_url, source_type, access_date")
+if IV: warn(f"investor universe has {len(IV)} rows: confirm public professional information only and no outreach claimed")
+print(f"investor universe: {len(IV)} rows")
+# no claims of investor contact / traction in strategy docs
+for f in ["investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","validation/MOBILE-MVP-STRATEGY.md","marketing/MARKETING-AND-BUILD-IN-PUBLIC-FOUNDATION.md"]:
+    t=open(f).read()
+    if not re.search(r"No investor has been identified|No marketing has been done|NOT validated|No permit, cost",t): fail(f"{f}: missing honesty disclaimer")
 # 12 Track A docs must carry a status/label near the top
-TRACKA=["concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md","brand/BRAND-ARCHITECTURE-V1.md","experience/GUEST-EXPERIENCE-ARCHITECTURE-V1.md","architecture/SPATIAL-VISION-V1.md","visuals/VISUAL-WORLD-AND-BRIEFS-V1.md","food/MENU-STORYTELLING-V1.md","beer/BEER-BRAND-EXPERIENCE-V1.md","business/BUSINESS-MODEL-MAP-V1.md","business/FINANCIAL-MODEL-ARCHITECTURE-V1.md","investor/INVESTOR-STORY-ARCHITECTURE-V1.md","investor/DATA-ROOM-MAP.md","website/WEBSITE-IA-AND-EXPERIENCE-V1.md","docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md"]
+TRACKA=["concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md","brand/BRAND-ARCHITECTURE-V1.md","experience/GUEST-EXPERIENCE-ARCHITECTURE-V1.md","architecture/SPATIAL-VISION-V1.md","visuals/VISUAL-WORLD-AND-BRIEFS-V1.md","food/MENU-STORYTELLING-V1.md","beer/BEER-BRAND-EXPERIENCE-V1.md","business/BUSINESS-MODEL-MAP-V1.md","business/FINANCIAL-MODEL-ARCHITECTURE-V1.md","investor/INVESTOR-STORY-ARCHITECTURE-V1.md","investor/DATA-ROOM-MAP.md","website/WEBSITE-IA-AND-EXPERIENCE-V1.md","docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md","validation/MOBILE-MVP-STRATEGY.md","validation/TRACTION-METRICS.md","investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md","ip/IP-OWNERSHIP-FRAMEWORK.md","marketing/MARKETING-AND-BUILD-IN-PUBLIC-FOUNDATION.md","docs/decisions/ATTORNEY-QUESTIONS.md"]
 LABELS=re.compile(r"\[(CONCEPT|PROPOSED|DESIGN|STRUCTURE|PLAN|ANALYSIS|FOUNDER VISION)\]|`\[(CONCEPT|PROPOSED|DESIGN|STRUCTURE|PLAN|ANALYSIS)\]`")
 for f in TRACKA:
     if not os.path.exists(f): fail(f"missing Track A document {f}"); continue

@@ -1,0 +1,19 @@
+asset_id,asset,category,current_state,owner_of_record,ownership_status,creation_method,evidence_ref,written_agreement_in_place,licence_or_terms,transferable,main_risk,next_action,notes
+FA-01,Business entity,entity,None documented in the repository,UNKNOWN,NOT_ESTABLISHED,n/a,,n/a,,unknown,Contracting and IP in an individual's name,Founder + attorney: decide entity timing; assign IP to it,Do not claim a company exists
+FA-02,Parent name / trademarks,trademark,No filing; preliminary web screen only,none,NOT_ESTABLISHED,n/a,brand/TRADEMARK-SCREENING.md,n/a,,n/a,Conflicts; unregistered rights are weak,IP attorney knockout and filing strategy,NASHA is a founder-proposed candidate only
+FA-03,Domain names,digital,Not documented,UNKNOWN,UNKNOWN,n/a,,n/a,,unknown,Registered to a person or agency,Register after name clears; company-owned,Do not buy before trademark review
+FA-04,Website,digital,Not built (IA only),none,NOT_CREATED,n/a,website/WEBSITE-IA-AND-EXPERIENCE-V1.md,no,,n/a,Rights gaps if built with contractors,Use website rights register from day one,
+FA-05,Source repository (this repo),code/docs,GitHub repo under riteshmamidi0905-lab/INDO-MEX-BREWERY,personal/lab GitHub account (observed from remote URL),ESTABLISHED_FOR_ACCESS_ONLY,AI-assisted,git remote,no,platform terms,unknown,Contains AI-assisted text and third-party extracts,Move to company org later; provenance log; attorney review,Access is not the same as IP ownership
+FA-06,"Brand files (logo, type, palette)",brand,No logo; palette partially specified in docs,none,NOT_CREATED,n/a,brand/BRAND-ARCHITECTURE-V1.md,no,,n/a,Future designer ownership,Contract before design,
+FA-07,Recipes and sauce formulas,trade secret/copyright,Concept-level dishes and sauce structures; no tested recipes,founder (concept authorship),NOT_ESTABLISHED,AI-assisted concept drafts,food/MENU-V1.1-TEST-MENU.md,no,,unknown,Public disclosure destroys secrecy; unclear what is protectable,Decide public vs secret; recipe cards stay private,
+FA-08,Concept images (ARC-01-D and others),visual,"AI-generated external renders, founder-supplied",unknown,UNKNOWN,AI-generated,visuals/generated/LOG.md,n/a,tool terms not reviewed,unknown,Copyright eligibility and commercial-use terms unclear,Attorney review before public/commercial use; keep labelled concept,Not a logo or trademark asset
+FA-09,Photography,media,None,none,NOT_CREATED,n/a,,no,,n/a,Photographer retains copyright without assignment,Written agreement + releases before shoot,
+FA-10,Video,media,None,none,NOT_CREATED,n/a,,no,,n/a,Music/footage licences,Agreement and music licensing,
+FA-11,Social media accounts/handles,digital,Not documented,UNKNOWN,UNKNOWN,n/a,,n/a,platform terms,unknown,Personal accounts; handle squatting,Reserve after name clears; company-owned logins,
+FA-12,Email list / CRM,data,None,none,NOT_CREATED,n/a,,n/a,,n/a,Consent/privacy compliance,Consent-based tool outside git,
+FA-13,Vendor and supplier contracts,contract,None,none,NOT_CREATED,n/a,,no,,n/a,,Collect supplier statements/quotes first,
+FA-14,Advisor agreements,contract,None; no advisors named,none,NOT_CREATED,n/a,docs/decisions/DECISION-GATES.md,no,,n/a,Advisors could claim contributions,Advisory agreement template via attorney,
+FA-15,Investor documents,documents,Structures and drafts only,founder,NOT_ESTABLISHED,AI-assisted,investor/,no,,unknown,Premature disclosure; securities law,Counsel before sharing; data room map only,
+FA-16,Financial models,documents,Architecture + blank assumptions register,founder,NOT_ESTABLISHED,AI-assisted,business/model/assumptions-template.csv,no,,unknown,,Accountant review later,
+FA-17,Operating manuals,documents,None,none,NOT_CREATED,n/a,,no,,n/a,,Create after tests,
+FA-18,"Research corpus (sources, ledger)",documents,Repository documents with third-party extracts,founder,NOT_ESTABLISHED,AI-assisted,research/,no,third-party sources cited,unknown,Quoting limits; accuracy,Keep citations; do not republish extracts,

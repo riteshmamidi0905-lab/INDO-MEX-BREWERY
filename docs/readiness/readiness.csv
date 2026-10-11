@@ -13,5 +13,8 @@ Operations,2,0,Flows and functional program; no operating plan,architecture/COMP
 Supply chain,1,0,Dietary spec; no supplier contact,food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md,no,Supplier statements and quotes
 Team,1,0,Founder only; roles listed,docs/decisions/DECISION-GATES.md,no,"Brewer, chef, GM, architect, attorney, advisors"
 Cultural integrity,3,0,Rules and audit written; no advisors,brand/CULTURAL-INTEGRITY-AND-ADVISORS.md,no,Advisors review
-IP/trademark,2,1,Workflow plus preliminary web screen only,brand/TRADEMARK-SCREENING.md,no,Attorney knockout search
+IP/trademark/ownership,3,1,"Framework, registers and preliminary web screen only; no attorney, no filing",ip/IP-OWNERSHIP-FRAMEWORK.md,no,Attorney knockout search
 Website/presentation,3,0,Information architecture designed; nothing built,website/WEBSITE-IA-AND-EXPERIENCE-V1.md,no,"Brand, hero visuals, build"
+Marketing,1,0,"Foundation plan only; no audience, no channels live",marketing/MARKETING-AND-BUILD-IN-PUBLIC-FOUNDATION.md,no,"Name, identity, real content, legal review of beer content"
+Capital strategy and investors,2,0,Capital ladder and investor stages designed; no investors identified or contacted,investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md,no,Evidence package; counsel on solicitation
+Mobile MVP and traction,2,0,MVP strategy and empty measurement schema; no event has occurred,validation/MOBILE-MVP-STRATEGY.md,no,"Permits/commissary check, T1 tests, first events"

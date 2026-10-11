@@ -10,6 +10,7 @@
 | **Paralelo 23** | None found | "Cerveceria 23" (Miami beer garden); a restaurant named "Paralelo" in Colombia | Spanish-language; "23" pattern | No obvious exact conflict; translation/language checks needed |
 | **Latitude 23** | None exact | **LATITUDE 23.5** federal mark (restaurant services featuring coffee and tea, registered 2006, renewed per a trademark-database page); multiple "Latitude NN" brewery marks (e.g. LATITUDE 33° BREWING CO., registered 2017; Latitude 42 Brewing) | Crowded "Latitude NN" family including a restaurant-services mark | **Highest obvious-conflict signal of the five**; attorney likely to flag |
 | **Marigold** (Brewing) | No brewery found in the search | Unrelated "Marigold" uses (a Minneapolis venue, a promoter, a homebrew recipe) | Common word; likely crowded in food/beverage; **not searched in USPTO** | Unknown; **common-word risk is high until a real search is run** |
+| **NASHA** *(founder-proposed, D-59)* | None found | Results surfaced only similar-looking marks (e.g. NASHBREW for coffee beans, NASHVILLE-type brewery marks), not Nasha | Hindi common word; meaning issue (intoxication/addiction, V-33) | No obvious exact conflict in the limited web results; **meaning/perception risk is the larger flag**; attorney + advisors needed |
 Domain and social-handle conflicts: **not checked** (no tool). Marigold is also our house colour; that is a design choice and does not create rights.
 
 ## 2. Workflow to a defensible decision (owner: attorney + founder)

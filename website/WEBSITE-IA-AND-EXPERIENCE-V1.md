@@ -65,3 +65,17 @@ What is it? Why should it exist? Why Austin? Why Indian × Mexican? What will th
 
 ## 7. Technical direction (later)
 Static-first site generator with a small interactive layer for the menu/beer explorer; content in repo-managed data files (menu and beer as structured data with evidence flags); investor area behind authentication; analytics minimal. **Do not start coding until the name/brand direction and hero visuals are chosen.**
+
+## 8. Staged-company update (Sprint 5, D-60): the site as a business asset that grows with the company
+The site should **change state as the company changes**, always telling the truth about where we are.
+| Company stage | Site state | Primary content | Not shown |
+|---|---|---|---|
+| A Digital brand | "In development" | Story, concept visuals (labelled), food and beer intent, Journal/Lab, signup | Sales, "open now", investor numbers |
+| B Market validation | "Testing" | Tastings/pop-up announcements, real photos, what we learned (honest), interview call | Unreal crowds |
+| C Mobile MVP | "Find us" (stall/trailer/residency schedule), ordering/pre-order if used, partner brewery pages | Real menu, locations, QR pairing cards, loyalty/email | Anything implying alcohol sales by the mobile unit |
+| D Proven brand | "Community" | Events, collaborations, merchandise, press | |
+| E-F Capital/flagship | "Coming" → "Open" | Site, opening countdown, reservations | |
+**Audiences and their layer:** customers, press (**press kit**), partners/breweries, advisors, potential employees ("Work with us" page later), landlords/developers (**site criteria and concept summary page**, public, no confidential numbers), investors (**gated layer only**). **The public homepage must not become a pitch deck**: it sells the experience and story; the investor layer sells evidence and economics (scoreboard, model, data room map).
+**Additions to the sitemap:** *Find us / Events* (from stage C), *Press kit*, *Work with us* (later), *Partners* (breweries, landlords) separate from *Investors* (gated). **Labs** is the public name of the Journal if the NASHA family is adopted (`brand/BRAND-ARCHITECTURE-V1.md` §4b): it shows **only real experiments**, including failures.
+**Rights discipline:** every asset enters `ip/website-asset-rights-register.csv` with the five answers (owner, licence, commercial use, modification, transfer) before it is published (`ip/IP-OWNERSHIP-FRAMEWORK.md` §6). **The site must demonstrate company ownership of code, domain, content and accounts for due diligence.**
+**Data:** analytics that feed `validation/TRACTION-METRICS.md` (visits, QR scans, signups) must be privacy-light and consent-based.

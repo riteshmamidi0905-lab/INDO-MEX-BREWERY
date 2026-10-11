@@ -7,10 +7,11 @@ Founder-owned gates are **F-1..F-5**. G-6..G-12 are project gates that feed them
 | ID | Question | Owner | Status | Reversibility | Next action |
 |---|---|---|---|---|---|
 | F-1 | Budget band and funding path | Founder | OPEN | R1 until money is committed | Choose a planning scenario to price (below) |
-| F-2 | First paid professionals and order | Founder | READY | R1 | Authorise scoped attorney + head-brewer engagements first |
+| F-2 | First paid professionals and order (Texas alcohol attorney, **IP/trademark attorney**, head brewer, broker, architect) | Founder | READY | R1 | Authorise scoped attorney + head-brewer engagements first; add IP attorney (D-61) |
 | F-3 | Pilot-brewing route (and any collaboration) | Founder + head brewer | WAITING on F-2 | R1-R2 | Recommend partner-brewery pilot, brewer-designed |
 | F-4 | Cultural advisors | Founder | OPEN | R1 | Approve criteria; start outreach by role |
-| F-5 | Trademark screening of top 5 parent names | Founder + attorney | READY | R1 (screen) / R3 (adopting a name) | Authorise attorney knockout search |
+| F-5 | Trademark screening of the parent-name shortlist (top 5 **plus founder-proposed NASHA**, D-59) | Founder + IP attorney | READY | R1 (screen) / R3 (adopting a name) | Authorise attorney knockout search; advisor review of NASHA's meaning |
+| G-13 | Staged path and MVP route (pop-up/commissary, brewery residency, trailer, truck) | Founder | OPEN | R1-R2 | Run interviews and T1 first; check permits and partners (`validation/MOBILE-MVP-STRATEGY.md`, D-60) |
 | G-6 | Real fermenter/brewhouse size | Head brewer | WAITING on F-2 | R3 | Brewer sizing proposal |
 | G-7 | Oven/pizza decision (Wave 2) | Founder + chef + architect | OPEN | R2 | Defer until kitchen layout exists |
 | G-8 | Halal positioning (not claimed) | Founder + advisors | OPEN | R2 | Review before any claim; keep not-claimed |
@@ -46,7 +47,8 @@ Founder-owned gates are **F-1..F-5**. G-6..G-12 are project gates that feed them
   3. **Insurance broker (indicative conversation, no binding).** Informs whether and how family features, arcade and alcohol can be offered, and rough cost class; feeds G-9.
   4. **Architect/cost consultant for a Compact-set ROM** after items 1-2 return their constraints, so the ROM is not drawn around a wrong vessel size or licence assumption.
   5. **Trademark attorney** may be the same firm as 1 (F-5) and can start early.
-  6. Later: CPSI/playground designer, acoustician, mechanical/environmental engineer, cultural advisors (F-4, may start early because they are low cost and gate public text).
+  6. **IP/trademark attorney** (separate specialist, may be the same firm as a trademark search provider): trademark searches, filing strategy, copyright/contractor assignments, AI-provenance, trade-secret policy (`ip/IP-OWNERSHIP-FRAMEWORK.md`, `ATTORNEY-QUESTIONS.md` §B). Needed **before** a name, logo, website build or paid creative work starts.
+  7. Later: CPSI/playground designer, acoustician, mechanical/environmental engineer, cultural advisors (F-4, may start early because they are low cost and gate public text).
 - **Reversibility:** R1 (scoped engagements). **Risk if delayed:** every downstream estimate stays speculative. **Risk if wrong order:** paying an architect to draw around unknown vessel/licence constraints.
 - **Next action:** authorise 1 and 2 (scoped), ask for written scopes and fee quotes. **Owner:** Founder. **Status:** READY.
 

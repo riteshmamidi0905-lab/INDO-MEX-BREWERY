@@ -19,27 +19,53 @@
 | **7** | Website / Public Concept Experience | **Not started, by instruction** | `website/` empty |
 Overlap is expected: Phase 3 evidence feeds Phase 5 sizing; Phase 4 waits on trademark knockout; Phase 6 needs Phases 3 and 5.
 
-## 1b. Future journey (stages with dependencies; **no dates**)
-| Stage | Name | Entry needs | Exit criteria | Status now |
+## 1b. Company journey (stages with dependencies; **no dates**; staged path is a hypothesis, D-60)
+The end goal remains the **physical brewery-restaurant**. The mobile/pop-up vehicle is a launch platform, lab, customer-acquisition engine, revenue experiment and investor-proof generator, **not a replacement**.
+| # | Stage | Entry needs | Exit criteria | Status now |
 |---|---|---|---|---|
-| 1 | Concept | Founder vision | Master concept, rules, canonical visuals | **Largely done** (`concept/`) |
-| 2 | Digital blueprint | Stage 1 | Brand, experience, space, menu/beer story, business-model map, financial architecture, investor story, website IA, scoreboard | **In progress (Sprint 4 drafted)** |
-| 3 | Validation | Stage 2 + budget for tests | Real interviews, T1 food tests, beer pilots, price survey, supplier statements, T0 verification | **Not started in reality** |
-| 4 | Professional feasibility | F-2 authorisations | Attorney memo, brewer sizing, architect ROM, insurance indication, advisor review | Not started |
-| 5 | Investor readiness | Stages 3-4 | Evidence level ≥ 3 in the core areas; costed model (M3); honest evidence/assumption/gap pages | Not started |
-| 6 | Capital formation | Stage 5 + counsel | Funding secured (structure per legal advice) | Not started |
-| 7 | Site selection | Stage 4-6 inputs | Site under control; zoning and flood cleared | Not started |
-| 8 | Design + permitting | Stage 7 | Permit-ready design; licences; trade-waste/health approvals | Not started |
-| 9 | Construction | Stage 8 | Certificate of occupancy path | Not started |
-| 10 | Pre-opening | Stage 9 | Hiring, training, supply chain, soft opening | Not started |
-| 11 | Opening | Stage 10 | Open | Not started |
-| 12 | Optimisation | Stage 11 | Stable operating metrics | Not started |
-| 13 | Expansion | Stage 12 | Proven single site; second-site case | Not started |
+| 1 | Concept | Founder vision | Master concept, rules, canonical visuals | **Largely done** |
+| 2 | Research | Stage 1 | Market, culture, law, benchmarks documented with tiers | **Done to T1-T3; primary verification pending** |
+| 3 | Digital blueprint | Stages 1-2 | Brand, experience, space, menu/beer story, models, investor/website architecture, scoreboard | **Drafted (Sprints 4-5)** |
+| 4 | Brand/IP foundation | Stage 3 + IP attorney | Name cleared (search + advisors), IP framework operating, asset register real, contractor agreements | **Framework only; nothing cleared** |
+| 5 | Physical R&D | Suppliers, kitchen access, head brewer | T1-T4 food results; Hefeweizen pilot | Not started |
+| 6 | Customer discovery | Instrument ready | 30 real interviews; price survey complete | Not started |
+| 7 | Pop-ups / tastings | Stages 4-6 inputs; permits; attorney on beer arrangements | First real sessions logged in `validation/` | Not started |
+| 8 | Mobile MVP | Pop-up/residency signals | Repeat demand criteria (set in advance) met; vehicle/kitchen decision | Not started |
+| 9 | Revenue + traction | Stage 8 | Multi-session sales, margins, repeat customers | Not started |
+| 10 | Investor readiness | Stage 9 + counsel | Evidence ≥ 3 in core areas; M3 model; proof package | Not started |
+| 11 | Fundraising | Stage 10 | Capital secured (structure per counsel) | Not started |
+| 12 | Site selection | Stages 4-11 inputs | Site under control; zoning/flood cleared | Not started |
+| 13 | Flagship development | Stage 12 | Permit-ready design; brewer/architect/costs | Not started |
+| 14 | Opening | Stage 13 | Open | Not started |
+| 15 | Optimisation | Stage 14 | Stable operating metrics | Not started |
+| 16 | Expansion | Stage 15 | Proven single site | Not started |
+Stages may overlap (e.g. 4-6). Mapping to the capital ladder and investor audience per stage: `investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md` §2, §4.
+
+## 1c. Long-term workstreams (strategic components; **not all executed now**)
+| # | Workstream | Where it lives | State |
+|---|---|---|---|
+| 1 | Concept and research foundation | `concept/`, `research/` | Done (to T1-T3) |
+| 2 | Brand and visual identity | `brand/`, `visuals/` | Architecture drafted; identity not designed |
+| 3 | Premium website | `website/` | IA designed; not built |
+| 4 | IP and ownership strategy | `ip/` | Framework + registers; attorney not engaged |
+| 5 | Marketing system | `marketing/` | Foundation plan |
+| 6 | Social/content launch | `marketing/` | Plan; nothing live |
+| 7 | Low-capital real-world validation | `validation/` | Strategy + schema; nothing run |
+| 8 | Food-truck / mobile concept | `validation/MOBILE-MVP-STRATEGY.md` | Strategy; permits/commissary unverified |
+| 9 | Pop-ups and events | `validation/` | Not started |
+| 10 | Customer traction | `validation/TRACTION-METRICS.md` | Schema only |
+| 11 | Investor materials | `investor/` | Structures only |
+| 12 | Investor identification and outreach | `investor/investor-universe-schema.csv` | Empty schema; **no outreach** |
+| 13 | Capital strategy | `investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md` | Ladder without amounts |
+| 14 | Site strategy | `business/AUSTIN-FEASIBILITY-V1.md` | Criteria only |
+| 15 | Flagship brewery | `architecture/`, `concept/` | Concept; scale decision open |
+| 16 | Long-term expansion | n/a | Not designed (after single-site proof) |
 
 ## 2. COMPLETED (documentation, research and tooling only; nothing physical)
 - Phases 1 and 1.5; Visual Lock (**ARC-01-D canonical day exterior, D-42**); destination-expansion study; historical audit; ARC-02 attempts (on hold, D-47); BRW-01 reference only (D-49).
 - Phase-2 Sprint 1: beer program v1, menu matrix v1, guest journey v1, master plan, Austin feasibility skeleton, brand system v0, GLS packages, research S-76..S-118.
 - Sprint 2: **D-54 (no beef, no pork; not halal-claimed)** with audit; Menu v1.1 (12-dish test set); T1 sheets (5); beer pilot briefs (3); GLS final package; market-survey and customer-discovery structures.
+- **Sprint 5 (staged path, MVP, IP):** staged-company hypothesis (D-60); mobile/low-capital MVP strategy with six models compared and a proposed 8-item untested MVP menu (`validation/MOBILE-MVP-STRATEGY.md`); traction measurement design with an empty event log and analyser (`validation/`); capital ladder, investor universe by stage, proof package and an empty investor-discovery schema (`investor/`); IP and ownership framework with a founder asset register and website rights register (`ip/`); marketing and build-in-public foundation (`marketing/`); attorney/permitting question lists (`docs/decisions/ATTORNEY-QUESTIONS.md`); NASHA recorded as a founder-proposed candidate (D-59); ledger V-23..V-34; readiness expanded to 19 areas (design 41%, evidence 4%); IP attorney added to the professional roadmap (D-61).
 - **Sprint 4 (Track A blueprint):** master concept; brand architecture; guest experience architecture; spatial vision; visual world and briefs; menu storytelling; beer brand experience; business-model map; financial-model architecture with a blank 70-variable assumptions register; investor story architecture; data-room map; website IA and experience; validation scoreboard and readiness score (**design 41%, evidence 5%**); brewery-scale decision analysis; validator extended; decision D-58. **No evidence was added by these documents.**
 - **Sprint 3:** evidence tiers and `research/VERIFICATION-LEDGER.md` (13 entries reached T1: 10 from T3, 1 from T2, 2 new; none T0); decision-gate system (`docs/decisions/DECISION-GATES.md`); 19 LOW-confidence price observations + 10 feature rows (`research/market-survey/`); T1 protocol and test-readiness upgrades, lamb-cut comparison design (`food/t1-test-sheets/`); brewer handoff (`beer/pilot-briefs/00-BREWER-HANDOFF.md`); Compact functional program (`architecture/COMPACT-FUNCTIONAL-PROGRAM.md`); cultural-integrity audit and advisor program (`brand/CULTURAL-INTEGRITY-AND-ADVISORS.md`); trademark screening workflow and preliminary web screen (`brand/TRADEMARK-SCREENING.md`); `tools/validate_repo.py`, expanded `tools/diet_audit.py`; decisions D-56, D-57.
 
@@ -53,6 +79,8 @@ Overlap is expected: Phase 3 evidence feeds Phase 5 sizing; Phase 4 waits on tra
 | Brewer engagement | Founder authorisation (F-2) | `beer/pilot-briefs/00-BREWER-HANDOFF.md` |
 | GLS-01 then GLS-02 generation | An image tool (founder runs it) | `visuals/generation-batch-01/GLS-GENERATION-PACKAGE.md` |
 | Primary-source re-verification | Network access to the blocked hosts, or a person | `research/VERIFICATION-LEDGER.md` |
+| Permit/commissary check for pop-ups and a mobile unit | A person to call/visit DSHS, Austin Public Health, Austin Fire, a shared kitchen | `validation/MOBILE-MVP-STRATEGY.md` §2, `ATTORNEY-QUESTIONS.md` §C |
+| Contractor/advisor agreements before any creative or advisory work | IP attorney templates | `ip/IP-OWNERSHIP-FRAMEWORK.md` §5 |
 
 ## 4. NEEDS FOUNDER DECISION (details, options and recommendations in `docs/decisions/DECISION-GATES.md`)
 | # | Decision | Recommendation (not a decision) |
@@ -61,11 +89,12 @@ Overlap is expected: Phase 3 evidence feeds Phase 5 sizing; Phase 4 waits on tra
 | F-2 | First paid professionals and order | Attorney + head brewer first (scoped), broker next, architect after their constraints |
 | F-3 | Pilot-brewing route / collaboration | Partner-brewery pilot designed by the head brewer; Celis is an idea only (no outreach) |
 | F-4 | Cultural advisors | Approve criteria and start outreach by role |
-| F-5 | Trademark knockout for top 5 names | Authorise attorney search; expect Latitude 23 and Marigold to need alternatives |
-Other gates (G-6..G-12) belong to professionals or have defaults (SP-1 family later; B-2 no IPA, reversible).
+| F-5 | Trademark knockout for the top 5 names **plus founder-proposed NASHA** | Authorise IP attorney search; get advisor view on NASHA's meaning (intoxication/addiction in Hindi-Urdu); expect Latitude 23 and Marigold to need alternatives |
+| G-13 | Staged path / MVP route | Run interviews and T1 first; verify permits and a brewery/commissary partner; trailer only after repeat evidence |
+Other gates (G-6..G-13) belong to professionals or have defaults (SP-1 family later; B-2 no IPA, reversible).
 
 ## 5. NEEDS PROFESSIONAL
-Texas alcohol attorney (licence path, guest beer, minors/arcade, canning, pilot serving, trademark) · licensed head brewer/consultant (vessel size, pilot, water, QC) · architect/cost consultant (Compact ROM, MEP, code) · insurance broker · cultural advisors and food historian · CPSI/acoustician/mechanical engineer (later) · suppliers (lard-free tortillas and beans, rennet, goat, lamb, stocks).
+Texas alcohol attorney (licence path, guest beer, minors/arcade, canning, pilot serving, beer arrangements for a food-only brand) · **IP/trademark attorney** (searches, filing, copyright/contractor assignment, AI provenance, trade secrets, website rights; D-61) · licensed head brewer/consultant (vessel size, pilot, water, QC) · architect/cost consultant (Compact ROM, MEP, code) · insurance broker · cultural advisors and food historian · CPSI/acoustician/mechanical engineer (later) · suppliers (lard-free tortillas and beans, rennet, goat, lamb, stocks).
 
 ## 6. NEEDS MONEY (all costs `TBD`; no quotes exist)
 Attorney consult(s); head-brewer engagement and pilot batches; architect/cost-consultant ROM; vendor quotes (brewhouse, kitchen); insurance broker (likely free to quote); trademark search; test-kitchen ingredients and cook time; customer-interview incentives; pop-up permits and costs; advisor honoraria; domain/handle purchases (only after a name clears).

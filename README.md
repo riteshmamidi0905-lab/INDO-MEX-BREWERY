@@ -54,6 +54,9 @@ Phase One baseline (kept; Phase 1.5 governs conflicts): `phase-one/00-FOUNDING-V
 ## Visual Lock (current)
 `visuals/VISUAL-DNA.md` (canonical rules) → `visuals/LOCKED-SCENE-DNA.md` (geometry) → `visuals/generation-batch-01/` (5 prompts to generate first; do not generate the other 52 until reviewed).
 
+## Status (2026-10-11, Sprint 5: staged path, MVP, IP; readiness now design 41% / evidence 4% of 95)
+Sprint 5 added `validation/MOBILE-MVP-STRATEGY.md` and `TRACTION-METRICS.md` (+ empty event log), `investor/CAPITAL-LADDER-AND-INVESTOR-STRATEGY.md`, `ip/IP-OWNERSHIP-FRAMEWORK.md` with asset registers, `marketing/…FOUNDATION.md`, `docs/decisions/ATTORNEY-QUESTIONS.md`, ledger entries V-23..V-34, and records NASHA as a founder-proposed candidate (D-59). The staged-company path is a hypothesis (D-60). Nothing was tested, brewed, sold or contacted.
+
 ## Status (2026-10-11, Sprint 4: digital blueprint, Track A)
 Start at `concept/INDO-MEX-BREWERY-MASTER-CONCEPT.md` and `docs/readiness/VALIDATION-SCOREBOARD.md`. Sprint 4 added the master concept, brand architecture, guest experience architecture, spatial vision, visual world and briefs, menu storytelling, beer brand experience, business-model map, financial-model architecture (blank 70-variable register), investor story and data-room map, website IA, readiness scoreboard (**design completeness 41%, evidence-backed readiness 5%**) and the brewery-scale decision analysis. **Track A documents add no evidence.** Two-track rule: D-58.
 

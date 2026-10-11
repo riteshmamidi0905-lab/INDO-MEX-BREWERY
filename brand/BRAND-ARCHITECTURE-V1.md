@@ -26,6 +26,17 @@ Contemporary hospitality design with intelligent cultural integration: pale lime
 **Leaning (provisional, reversible): A or C**, with B reserved for a later packaged-beer line. Not decided.
 Name candidates remain in `PARENT-BRAND-CANDIDATES.md` (50) and the screened five (`TRADEMARK-SCREENING.md`); none is promoted.
 
+## 4b. Founder-proposed candidate: NASHA (recorded D-59; **not selected**)
+Founder proposal: **NASHA**: *Indo-Mex food × craft beer × Austin*; **NASHA Kitchen** (food / mobile concept), **NASHA Brewing** (future house beer identity, if appropriate), **NASHA Food Truck** (early validation vehicle, if chosen), **NASHA Brewery & Kitchen** (flagship destination), **NASHA Labs** (public R&D/build journey). This is a **house + sub-brands architecture (Option B)** whose names track the staged path (D-60).
+| Aspect | Assessment (judgement; needs professionals) |
+|---|---|
+| **Strengths** | Short, memorable, easy to say (roughly NAH-sha); a clean family that scales with the stages; "Labs" fits the build-in-public journal and website; a descriptor line states the concept |
+| **Meaning risk** | *Nasha* (नशा / نشہ) is a Hindi-Urdu word for **intoxication, with a sense of addiction** (dictionary summary, tier T2: `research/VERIFICATION-LEDGER.md` V-33). For an alcohol-adjacent, **family-welcoming** brand this can read as playful (a pleasant buzz) or as normalising addiction; community perception, alcohol-advertising rules and the Adventure Court/family positioning must be weighed. **Advisor review (F-4) and an attorney view are needed before any adoption** |
+| **Concept fit** | The word is Indian; **nothing in the name signals Mexico**: the tagline must carry "Indo-Mex"; test whether guests read it as an Indian-only brand |
+| **Honesty rule** | "NASHA Brewing" and "NASHA Brewery & Kitchen" imply a brewery: use them **only when true**; early materials should use Kitchen / Food Truck / Labs. "Labs" must show real experiments only |
+| **Trademark** | Preliminary web search found **no obvious existing Nasha brewery, restaurant, food-truck business or mark in the results** (limited; **not** a USPTO search; no clearance); a Hindi common word may be used by unrelated businesses. Attorney knockout across beer, restaurant, mobile food and merchandise classes required (`brand/TRADEMARK-SCREENING.md`) |
+| **Status** | Candidate. **No domain purchase, logo, signage or public use until trademark work and advisor review complete.** Alternatives remain (Twenty-Three North, Tropic Line, Paralelo 23, Latitude 23, Marigold, others) |
+
 ## 5. Restaurant/venue naming system **[Proposed]**
 Space names are descriptive and stable: **Tank Cloister** (brewery hall), **Shade Court**, **Adventure Court** (later), **Game Hall** (later), **the Outlet** (shop). Menu sections named plainly (Small, Tacos, Birria, Quesadillas, Large, Dessert). The place name never contains a culture word as costume. Working names inside the repo (Tank Court etc.) are internal.
 
