@@ -6,3 +6,10 @@ website/qa/node_modules/
 .cache/
 # Regenerable Glass V2 meshes (~90 MB): rebuild with `python3 tools/glass_v2.py build`
 visuals/glass-studies/v2/*.stl
+
+# personal / generated state (never commit)
+.claude/linkedin/log.md
+.claude/linkedin/plan.md
+.claude/linkedin/_test/
+.claude/jobsearch/*.local.*
+.claude/jobsearch/private/
