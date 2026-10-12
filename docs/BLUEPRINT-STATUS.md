@@ -218,7 +218,7 @@ Only physical, customer, professional and primary-source evidence can count towa
 | version | PRE-CAPITAL DIGITAL BLUEPRINT v1.0 |
 | status | FROZEN (design baseline only) |
 | date | 2026-10-12 |
-| frozen_commit | PENDING: filled in by the commit that records the freeze |
+| frozen_commit | d234940 (content commit; the freeze record is the following commit) |
 | website_version | PRE-CAPITAL WEBSITE v1.0 (private, noindex, undeployed, concept stage) |
 | scope | The concept, Core 5 food and beer design, NA specifications, pairing hypotheses, operating, kitchen, bar, brewery, guest, service and space requirements, economic decision model and its tools, risk, assumption and decision registers, capital roadmap, investor package and the private website |
 | not_claimed | Business validated; product validated; investor ready for funding; legal ready; opening ready; any dish cooked or beer brewed; any professional review; the name cleared |
