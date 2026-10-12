@@ -51,7 +51,7 @@ def classify(r):
     if re.search(r"agent|proposal|project \(", ow, re.I) and not re.search(r"^founder", ow, re.I): return "PROJECT-RECORDED (founder confirmation not stated)"
     if re.search(r"founder", ow + " " + de, re.I): return "FOUNDER CONFIRMED"
     return "PROJECT-RECORDED (founder confirmation not stated)"
-KEY = {"D-54": "FOUNDER CONFIRMED", "D-66": "FOUNDER CONFIRMED", "D-74": "FOUNDER CONFIRMED", "D-76": "AGENT PROPOSED", "D-77": "AGENT PROPOSED", "D-78": "FINDING / NOT A DECISION", "D-79": "PROVISIONAL (founder)", "D-80": "PROVISIONAL (founder)", "D-81": "FOUNDER CONFIRMED", "D-82": "FOUNDER CONFIRMED"}
+KEY = {"D-54": "FOUNDER CONFIRMED", "D-66": "FOUNDER CONFIRMED", "D-74": "FOUNDER CONFIRMED", "D-76": "AGENT PROPOSED", "D-77": "AGENT PROPOSED", "D-78": "FINDING / NOT A DECISION", "D-79": "PROVISIONAL (founder)", "D-80": "PROVISIONAL (founder)", "D-81": "FOUNDER CONFIRMED", "D-82": "FOUNDER CONFIRMED", "D-83": "FOUNDER CONFIRMED"}
 def phrases(path=PHR): return list(csv.DictReader(open(path, encoding="utf-8")))
 SCOPE = ("docs/", "food/CORE5", "food/sessions/", "food/t1-test-sheets/1", "beer/CORE5", "beer/pilot-briefs/", "beer/BREWERY", "research/CORE5-PRODUCT-SYSTEM.md", "ip/", "brand/TRADEMARK", "website/data/", "visuals/CONCEPT")   # current canonical areas; older v1 documents are historical and not scanned
 SKIP = ("docs/decisions/DECISIONS.md", "docs/decisions/CORRECTIONS.md", "docs/decisions/REJECTED.md", "docs/decisions/superseded-phrases.csv", "docs/decisions/decision-register.csv")

@@ -46,4 +46,5 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 | `validate_core5.py` | VALIDATOR | Validate the Core 5 x Core 5 program files (Sprint 16, D-75). Exit 1 on failure. Checks structure and honesty, | 3 |
 | `validate_repo.py` | VALIDATOR | Sprint-3 repository validation. Run from repo root: python3 tools/validate_repo.py (exit 1 on failure; warning | 10 |
 | `validate_site.py` | VALIDATOR | Website validation for website/dist. Run from repo root: python3 tools/validate_site.py (exit 1 on failure). | 10 |
+| `vision_check.py` | HELPER / MODEL | Vision layer guard (Sprint 25). ASSUME FOR VISION. VERIFY BEFORE IMPLEMENTATION. | 2 |
 | `visual_qa.py` | HELPER / MODEL | Automated pre-checks for a generated or composited NASHA image (Sprint 9). They support, and never replace, th | 6 |

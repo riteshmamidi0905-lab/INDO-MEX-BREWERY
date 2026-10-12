@@ -1,6 +1,6 @@
 {
- "distHash": "cbcb8661d217f5b3",
- "date": "2026-10-12T18:50:42.552Z",
+ "distHash": "df09819fcca69532",
+ "date": "2026-10-12T19:14:00.997Z",
  "pages": {
   "about.html": {
    "overflow": {
@@ -39,37 +39,107 @@
     "dark": {
      "violations": [],
      "passes": 35,
-     "incomplete": [],
-     "incompleteDetail": []
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
     },
     "light": {
      "violations": [],
      "passes": 35,
-     "incomplete": [],
-     "incompleteDetail": []
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
     }
    },
    "console": [],
-   "bytes": 108697,
+   "bytes": 112758,
    "requests": [
     "/about.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
+    "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 52
+    "lcp_ms": 64
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4719,
+    "textLen": 3887,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 108697,
+   "initialBytes": 112758,
    "reducedMotion": true
   },
   "beer.html": {
@@ -109,37 +179,508 @@
     "dark": {
      "violations": [],
      "passes": 45,
-     "incomplete": [],
-     "incompleteDetail": []
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": ".stack > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
     },
     "light": {
      "violations": [],
      "passes": 45,
-     "incomplete": [],
-     "incompleteDetail": []
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": ".stack > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
     }
    },
    "console": [],
-   "bytes": 123145,
+   "bytes": 127181,
    "requests": [
+    "/styles.css",
     "/beer.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 68
+    "lcp_ms": 76
    },
    "noJs": {
     "h1": 1,
-    "textLen": 7716,
+    "textLen": 6879,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 123145,
+   "initialBytes": 127181,
+   "reducedMotion": true
+  },
+  "court.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 45,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "text[y=\"583\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[y=\"544\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"200\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"352\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"262\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"380\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"560\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack.wrap > p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 45,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "text[y=\"583\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[y=\"544\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"200\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"352\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"262\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"380\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"560\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack.wrap > p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 155284,
+   "requests": [
+    "/court.html",
+    "/styles.css",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/images/NV-SPACE-ENTRANCE-d-640.avif"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 72
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 5169,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 128061,
+   "reducedMotion": true
+  },
+  "craft.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 41,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "text[x=\"230\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"470\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[y=\"325\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"80\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"520\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"585\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"440\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"408\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack.wrap > p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 41,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "text[x=\"230\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"470\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[y=\"325\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"80\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"520\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"585\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"440\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "text[x=\"408\"]",
+       "reason": "shortTextContent"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack.wrap > p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 153101,
+   "requests": [
+    "/craft.html",
+    "/styles.css",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/app.js"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 64
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 5114,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 153101,
    "reducedMotion": true
   },
   "crossing.html": {
@@ -210,6 +751,38 @@
       {
        "target": ".disclosure",
        "reason": "imgNode"
+      },
+      {
+       "target": ".stack > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
       }
      ]
     },
@@ -247,31 +820,203 @@
       {
        "target": ".disclosure",
        "reason": "imgNode"
+      },
+      {
+       "target": ".stack > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
       }
      ]
     }
    },
    "console": [],
-   "bytes": 125091,
+   "bytes": 129132,
    "requests": [
     "/crossing.html",
     "/styles.css",
-    "/fonts/inter-latin-wght-normal.woff2",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 56
+    "lcp_ms": 60
    },
    "noJs": {
     "h1": 1,
-    "textLen": 5464,
+    "textLen": 4632,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 125091,
+   "initialBytes": 129132,
+   "reducedMotion": true
+  },
+  "evening.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 41,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack.wrap > p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 41,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack.wrap > p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 116456,
+   "requests": [
+    "/styles.css",
+    "/evening.html",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/app.js"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 60
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 2528,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 116456,
    "reducedMotion": true
   },
   "experience.html": {
@@ -318,6 +1063,38 @@
       {
        "target": "text",
        "reason": "bgOverlap"
+      },
+      {
+       "target": ".stack > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
       }
      ]
     },
@@ -331,32 +1108,64 @@
       {
        "target": "text",
        "reason": "bgOverlap"
+      },
+      {
+       "target": ".stack > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
       }
      ]
     }
    },
    "console": [],
-   "bytes": 181268,
+   "bytes": 185309,
    "requests": [
-    "/experience.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/app.js",
+    "/experience.html",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/app.js",
     "/images/NV-SPACE-ENTRANCE-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 68
+    "lcp_ms": 64
    },
    "noJs": {
     "h1": 1,
-    "textLen": 5621,
+    "textLen": 4789,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 181268,
+   "initialBytes": 185309,
    "reducedMotion": true
   },
   "food.html": {
@@ -396,37 +1205,107 @@
     "dark": {
      "violations": [],
      "passes": 41,
-     "incomplete": [],
-     "incompleteDetail": []
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
     },
     "light": {
      "violations": [],
      "passes": 41,
-     "incomplete": [],
-     "incompleteDetail": []
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
     }
    },
    "console": [],
-   "bytes": 135283,
+   "bytes": 139324,
    "requests": [
     "/styles.css",
+    "/food.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
-    "/food.html",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 60
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4523,
+    "textLen": 3691,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 135283,
+   "initialBytes": 139324,
    "reducedMotion": true
   },
   "index.html": {
@@ -471,24 +1350,36 @@
      ],
      "incompleteDetail": [
       {
-       "target": ".rel > div > .eyebrow",
-       "reason": "imgNode"
+       "target": ".stack > p:nth-child(1)",
+       "reason": "bgGradient"
       },
       {
-       "target": ".rel > div > .eyebrow > .beat-no",
-       "reason": "imgNode"
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
       },
       {
-       "target": "#b6",
-       "reason": "imgNode"
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
       },
       {
-       "target": ".rel > div > .lede",
-       "reason": "imgNode"
+       "target": ".stack > p:nth-child(3)",
+       "reason": "bgGradient"
       },
       {
-       "target": "p:nth-child(4) > a[href$=\"crossing.html\"]",
-       "reason": "imgNode"
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3) > a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
       }
      ]
     },
@@ -500,30 +1391,42 @@
      ],
      "incompleteDetail": [
       {
-       "target": ".rel > div > .eyebrow",
-       "reason": "imgNode"
+       "target": ".stack > p:nth-child(1)",
+       "reason": "bgGradient"
       },
       {
-       "target": ".rel > div > .eyebrow > .beat-no",
-       "reason": "imgNode"
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
       },
       {
-       "target": "#b6",
-       "reason": "imgNode"
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
       },
       {
-       "target": ".rel > div > .lede",
-       "reason": "imgNode"
+       "target": ".stack > p:nth-child(3)",
+       "reason": "bgGradient"
       },
       {
-       "target": "p:nth-child(4) > a[href$=\"crossing.html\"]",
-       "reason": "imgNode"
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3) > a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
       }
      ]
     }
    },
    "console": [],
-   "bytes": 258877,
+   "bytes": 250942,
    "requests": [
     "/index.html",
     "/styles.css",
@@ -534,16 +1437,16 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 76
+    "lcp_ms": 72
    },
    "noJs": {
     "h1": 1,
-    "textLen": 6388,
+    "textLen": 3766,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 258877,
+   "initialBytes": 250942,
    "reducedMotion": true
   },
   "investor.html": {
@@ -582,19 +1485,89 @@
    "axe": {
     "dark": {
      "violations": [],
-     "passes": 48,
-     "incomplete": [],
-     "incompleteDetail": []
+     "passes": 46,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
     },
     "light": {
      "violations": [],
-     "passes": 48,
-     "incomplete": [],
-     "incompleteDetail": []
+     "passes": 46,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
     }
    },
    "console": [],
-   "bytes": 147921,
+   "bytes": 162276,
    "requests": [
     "/investor.html",
     "/styles.css",
@@ -604,16 +1577,16 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 68
+    "lcp_ms": 60
    },
    "noJs": {
     "h1": 1,
-    "textLen": 13226,
+    "textLen": 5049,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 147921,
+   "initialBytes": 162276,
    "reducedMotion": true
   },
   "labs.html": {
@@ -660,6 +1633,38 @@
       {
        "target": "text",
        "reason": "bgOverlap"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
       }
      ]
     },
@@ -673,31 +1678,63 @@
       {
        "target": "text",
        "reason": "bgOverlap"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
       }
      ]
     }
    },
    "console": [],
-   "bytes": 115557,
+   "bytes": 119598,
    "requests": [
+    "/labs.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
-    "/labs.html",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 72
+    "lcp_ms": 68
    },
    "noJs": {
     "h1": 1,
-    "textLen": 5681,
+    "textLen": 4849,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 115557,
+   "initialBytes": 119598,
    "reducedMotion": true
   },
   "pairings.html": {
@@ -736,38 +1773,108 @@
    "axe": {
     "dark": {
      "violations": [],
-     "passes": 38,
-     "incomplete": [],
-     "incompleteDetail": []
+     "passes": 37,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
     },
     "light": {
      "violations": [],
-     "passes": 38,
-     "incomplete": [],
-     "incompleteDetail": []
+     "passes": 37,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".foot-more > summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
     }
    },
    "console": [],
-   "bytes": 115165,
+   "bytes": 119206,
    "requests": [
     "/pairings.html",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 68
+    "lcp_ms": 60
    },
    "noJs": {
     "h1": 1,
-    "textLen": 5392,
+    "textLen": 4560,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 115165,
+   "initialBytes": 119206,
    "reducedMotion": true
   },
   "space.html": {
@@ -846,6 +1953,38 @@
       {
        "target": "text[y=\"360\"]",
        "reason": "bgOverlap"
+      },
+      {
+       "target": ".stack > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
       }
      ]
     },
@@ -891,57 +2030,229 @@
       {
        "target": "text[y=\"360\"]",
        "reason": "bgOverlap"
+      },
+      {
+       "target": ".stack > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
       }
      ]
     }
    },
    "console": [],
-   "bytes": 210430,
+   "bytes": 214471,
    "requests": [
+    "/space.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/space.html",
-    "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
-    "/images/NV-SPACE-EXT-DAY-d-640.avif",
+    "/fonts/inter-latin-wght-normal.woff2",
     "/images/NV-SPACE-ENTRANCE-d-640.avif",
+    "/images/NV-SPACE-EXT-DAY-d-640.avif",
     "/images/NV-BREWERY-HALL-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 88
    },
    "noJs": {
     "h1": 1,
-    "textLen": 5696,
+    "textLen": 4864,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 187786,
+   "initialBytes": 191827,
+   "reducedMotion": true
+  },
+  "walkthrough.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 36,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack.wrap > p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack.wrap > p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 36,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "footer > .stack.wrap > p:nth-child(1)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "p:nth-child(1) > strong",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "summary",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "footer > .stack.wrap > p:nth-child(3)",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"about.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[href$=\"walkthrough.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack.wrap > p:nth-child(3) > a[href$=\"investor.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".stack.wrap > p:nth-child(3) > a[href$=\"labs.html\"]",
+       "reason": "bgGradient"
+      }
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 110882,
+   "requests": [
+    "/styles.css",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/walkthrough.html",
+    "/app.js"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 48
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 1317,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 110882,
    "reducedMotion": true
   }
  },
  "summary": {
-  "pages": 10,
+  "pages": 14,
   "axeViolations": 0,
   "overflowFailures": 0,
-  "maxBytes": 258877,
-  "maxInitialBytes": 258877,
-  "homeInitialBytes": 258877,
+  "maxBytes": 250942,
+  "maxInitialBytes": 250942,
+  "homeInitialBytes": 250942,
   "maxCls": 0,
-  "maxLcpMs": 80,
+  "maxLcpMs": 88,
   "consoleIssues": 0
  },
  "slow": {
   "profile": "1.6 Mbps, 150 ms RTT, 390px viewport",
-  "heroReadyMs": 1323,
+  "heroReadyMs": 1292,
   "heroSrc": "/images/NV-HERO-01-m-480.avif"
  },
  "imagesBlocked": {
   "index.html": {
-   "imgs": 3,
-   "withAlt": 3,
+   "imgs": 4,
+   "withAlt": 4,
    "overflow": false,
    "h1": true
   },
@@ -964,8 +2275,23 @@
     "withoutVisibleOutline": 0,
     "sample": []
    },
+   "court.html": {
+    "focusable": 20,
+    "withoutVisibleOutline": 0,
+    "sample": []
+   },
+   "craft.html": {
+    "focusable": 15,
+    "withoutVisibleOutline": 0,
+    "sample": []
+   },
    "crossing.html": {
     "focusable": 15,
+    "withoutVisibleOutline": 0,
+    "sample": []
+   },
+   "evening.html": {
+    "focusable": 17,
     "withoutVisibleOutline": 0,
     "sample": []
    },
@@ -985,7 +2311,7 @@
     "sample": []
    },
    "investor.html": {
-    "focusable": 26,
+    "focusable": 20,
     "withoutVisibleOutline": 0,
     "sample": []
    },
@@ -1003,6 +2329,11 @@
     "focusable": 18,
     "withoutVisibleOutline": 0,
     "sample": []
+   },
+   "walkthrough.html": {
+    "focusable": 22,
+    "withoutVisibleOutline": 0,
+    "sample": []
    }
   },
   "textSpacing": {
@@ -1012,7 +2343,16 @@
    "beer.html": {
     "overflowX": false
    },
+   "court.html": {
+    "overflowX": false
+   },
+   "craft.html": {
+    "overflowX": false
+   },
    "crossing.html": {
+    "overflowX": false
+   },
+   "evening.html": {
     "overflowX": false
    },
    "experience.html": {
@@ -1034,6 +2374,9 @@
     "overflowX": false
    },
    "space.html": {
+    "overflowX": false
+   },
+   "walkthrough.html": {
     "overflowX": false
    }
   },
@@ -1044,7 +2387,16 @@
    "beer.html": {
     "overflowX": false
    },
+   "court.html": {
+    "overflowX": false
+   },
+   "craft.html": {
+    "overflowX": false
+   },
    "crossing.html": {
+    "overflowX": false
+   },
+   "evening.html": {
     "overflowX": false
    },
    "experience.html": {
@@ -1066,6 +2418,9 @@
     "overflowX": false
    },
    "space.html": {
+    "overflowX": false
+   },
+   "walkthrough.html": {
     "overflowX": false
    }
   }

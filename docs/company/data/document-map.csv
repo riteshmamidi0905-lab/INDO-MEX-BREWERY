@@ -45,3 +45,10 @@ docs/OPERATIONAL-REQUIREMENTS-CORE5.md,SUPPORTING,Earlier dish-by-dish operating
 docs/company/data/digital-gap-audit.csv,HISTORICAL,"Sprint 23 gap audit, superseded by blueprint-gap-audit.csv",docs/company/data/blueprint-gap-audit.csv
 docs/company/data/completeness-map.csv,SUPPORTING,Internal orientation; not in the investor view,docs/BLUEPRINT-STATUS.md
 docs/company/data/bm-real-input-rank.csv,SUPPORTING,Internal; the first real inputs are summarised in the business model,docs/BUSINESS-MODEL-CONTROL.md
+vision/README.md,CANONICAL (vision layer),Sprint 25 two-layer rule; vision files index,
+vision/VISION-WORLD-BIBLE.md,VISION (not evidence),"World, Court Brewhouse, arrival, rooms, bar, brewery, kitchen",
+vision/VISION-PRODUCT-AND-TABLE.md,VISION (not evidence),"Dishes, beers, zero-proof, glass, table, menu",
+vision/VISION-BRAND-SYSTEM.md,VISION (not evidence),"Uniforms, signage, pattern, packaging, sound",
+vision/VISION-SCENARIO-AND-WALKTHROUGH.md,VISION (not evidence),One evening and the four-minute path,
+vision/IMAGE-PROMPT-PACK.md,VISION (not evidence),Image prompts; nothing generated,
+vision/SPRINT25-REVIEW.md,INTERNAL,Simulated creative red-team and tests,

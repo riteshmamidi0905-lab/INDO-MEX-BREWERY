@@ -3,6 +3,7 @@ CSV data (nothing is typed twice). Pages receive the build module as B so they r
 Truth rules: no booking, ordering, location, opening date, customer, review, press, metric or market size; concept media is always labelled; the founder-prototype slot stays
 empty until a real photograph is registered in visuals/FOUNDER-PROTOTYPE-MEDIA.csv."""
 import csv, hashlib, html, os, re
+import pages_s25 as P25
 
 E = html.escape
 STATUS_WORDS = [
@@ -30,7 +31,9 @@ def plain(s):
     s = re.sub(r"\s*\((?:[^()]*\b(?:repo|sheet \d+)\b[^()]*)\)", "", s or "")
     s = re.sub(r"\s*\(gate [\d.]+\)", "", s)
     s = s.replace("T+10", "ten minutes in").replace("T+5", "five minutes in").replace("T+0", "at the start")
-    s = re.sub(r"\bproposed (?:decision )?D-77\b|\bD-77\b", "the proposed gate rule", s)
+    s = re.sub(r"\bproposed (?:decision )?D-77\b|\bD-77\b", "the proposed test rule", s)
+    s = s.replace("(hypotheses, not tasted)", "(ideas, not yet tasted)").replace("(a hypothesis, not tasted)", "(an idea, not yet tasted)").replace("failure gate", "failure test").replace("proposed gate rule", "proposed test rule")
+    s = re.sub(r"(^|[.!?]\s+)the proposed", lambda m: m.group(1) + "The proposed", s)
     s = re.sub(r"\bD-54\b", "the no-beef, no-pork rule", s)
     s = re.sub(r"\(web sources, T1;[^)]*\)", "(from web sources; an advisor is to confirm)", s)
     s = re.sub(r"\s*\((?:see )?[\w\-/ ,]*\.csv\)", "", s)
@@ -226,7 +229,7 @@ def beer_core_section(B, S):
 def page_business(B, S):
     ex = {e["section"]: e for e in S["exec"]}
     def e(k): return f'<h3>{E(ex[k]["heading"])}</h3><p>{E(ex[k]["text"])}</p>'
-    nav = [("sum", "Summary"), ("stage", "Where it stands"), ("brewery", "Why a brewery"), ("austin", "Why Austin"), ("model", "How it makes money"), ("capital", "Capital"), ("risks", "Risks"), ("faq", "Questions"), ("team", "Team"), ("room", "Data room")]
+    nav = [("sum", "Real and assumed"), ("stage", "Where it stands"), ("capital", "Capital"), ("risks", "Risks"), ("faq", "Questions"), ("depth", "Go deeper")]
     toc = "<nav class=\"toc\" aria-label=\"On this page\"><ul>" + "".join(f'<li><a href="#{a}">{E(t)}</a></li>' for a, t in nav) + "</ul></nav>"
     done = "".join(f"<li>{E(x)}</li>" for x in [t.strip() for t in re.split(r"; ", ex["done"]["text"].rstrip("."))] if x)
     hh = "".join(f"<li>{E(x)}</li>" for x in ex["hasnt_happened"]["text"].split("|")); dx = "".join(f"<li>{E(x)}</li>" for x in ex["doesnt_exist"]["text"].split("|"))
@@ -240,13 +243,16 @@ def page_business(B, S):
     rest = [c for c in S["chain"] if c["chain"] == "RESTAURANT"]; brew = [c for c in S["chain"] if c["chain"] == "BREWERY"]
     flow = lambda items: '<ol class="flow">' + "".join(f'<li><strong>{E(nice(i["node"]))}</strong><span>{E(i["relationship"].split(";")[0])}</span></li>' for i in items) + "</ol>"
     path = '<ol class="flow flow-path">' + "".join(f"<li><strong>{E(a)}</strong><span>{E(b)}</span></li>" for a, b in [("Product validation", "Do the dishes work, and what do they cost?"), ("MVP", "Will people pay, and how fast can a kitchen run?"), ("Repeatability", "Do guests come back?"), ("Permanent site", "Does a fixed site make money?"), ("Brewery scale", "Does house beer justify its capital?")]) + "</ol>"
-    stages = "".join(f'<li class="stagecard"><span class="stage">Stage {k}</span><h3>{E(nice(c["name"]))}</h3><p><strong>True first.</strong> {E(plain(c["true_first"]))}</p><p><strong>Capital unlocks.</strong> {E(plain(c["unlocks"]))}</p><p><strong>Risk removed.</strong> {E(c["risk"])}</p></li>' for k, c in enumerate(S["stages"], 1))
+    stages = "".join(f'<li class="stagecard"><span class="stage">Stage {k}</span><h3>{E(nice(c["name"]))}</h3><p><strong>True first.</strong> {E(plain(c["true_first"]))}</p></li>' for k, c in enumerate(S["stages"], 1))
+    stages_more = "".join(f'<li><strong>Stage {k}, {E(nice(c["name"]))}.</strong> Unlocks: {E(plain(c["unlocks"]))} Risk removed: {E(c["risk"])}</li>' for k, c in enumerate(S["stages"], 1))
     gates = "".join(f'<tr><th scope="row">{E(g["commitment"])}</th><td><strong>{E(nice(g["stop"]))}</strong></td><td>{E(plain(g["pass"]))}</td></tr>' for g in S["gates_full"])
-    risks = "".join(f'<tr><th scope="row">{E(nice(r["risk"]))}</th><td>{E(plain(r["why"]))}</td><td>{E(plain(r["test"]))}</td><td>{E(plain(r["decision"]))}</td></tr>' for r in S["risks"])
+    _rk = [f'<tr><th scope="row">{E(nice(r["risk"]))}</th><td>{E(plain(r["why"]))}</td><td>{E(plain(r["test"]))}</td><td>{E(plain(r["decision"]))}</td></tr>' for r in S["risks"]]
+    risks, risks_more = "".join(_rk[:3]), "".join(_rk[3:])
     mind = "".join(f'<tr><th scope="row">{E(nice(c["thesis"]))}</th><td>{E(plain(c["believe"]))}</td><td>{E(plain(c["evidence"]))}</td></tr>' for c in S["change_mind"])
     first = ["What is the biggest risk?", "What has actually been tested?", "What exactly would investment fund?", "What happens if NASHA cannot use the name?"]
     order = sorted(S["faq"], key=lambda q: (first.index(q["q"]) if q["q"] in first else 99))
-    faq = "".join(f'<details{" open" if i == 0 else ""}><summary>{E(q["q"])}</summary><p>{E(plain(q["a"]))}</p></details>' for i, q in enumerate(order))
+    _fq = [f'<details{" open" if i == 0 else ""}><summary>{E(q["q"])}</summary><p>{E(plain(q["a"]))}</p></details>' for i, q in enumerate(order)]
+    faq_top, faq_more, nmore = "".join(_fq[:3]), "".join(_fq[3:]), len(_fq) - 3
     team = "".join(f'<li><strong>{E(t["role"])}</strong>: {E(plain(t["gap"]))}</li>' for t in S["team"] if t["founder"].upper().startswith(("NO", "NOT", "PARTIAL")))
     funds = "".join(f'<li><strong>{E(nice(u["category"]))}</strong>: {E(plain(u["unlocks"]))}</li>' for u in S["use_of_funds"])
     absent = "".join(f"<li><strong>{E(a['item'])}</strong>: {E(plain(a['why']))}.</li>" for a in S["absent"])
@@ -256,44 +262,49 @@ def page_business(B, S):
     room = "<dl class=\"room\">" + "".join(f'<div><dt>{E(c[3:])}</dt><dd>' + "; ".join(E(d["item"]) for d in S["dataroom"] if d["category"] == c) + "</dd></div>" for c in cats) + "</dl>"
     v = S["version"]
     body = f'''<section aria-labelledby="h1"><div class="wrap stack">
-<p class="eyebrow">Business and investor view · private</p><h1 id="h1">What exists, what does not, and what money would solve.</h1>
-<p class="lede">NASHA is a concept for an Indo-Mex brewery and kitchen in Austin. Nothing has been cooked, brewed or sold. The founder used the pre-capital period to remove as much uncertainty as possible, at no cost, before asking capital to solve the expensive problems.</p>
+<p class="eyebrow">Business and investor view · private</p><h1 id="h1">The dream, and the discipline behind it.</h1>
+<p class="lede">NASHA is a concept for an Indo-Mex brewery and kitchen in Austin. The vision is a brewhouse around a shaded court, with food and beer designed together. Nothing has been cooked, brewed or sold yet; the founder used the pre-capital period to remove as much uncertainty as possible, at no cost.</p>
+<p class="grid cols-2 dd"><span class="card"><strong>The dream</strong> <span>Walk in from the street, see the tanks through glass, sit in the court, and eat five dishes with the beer or zero-proof drink made for each. <a href="court.html">See the place</a>.</span></span><span class="card"><strong>The discipline</strong> <span>Cook and cost the food at home first. Taste it with real people. Prove demand and economics before any room is built. <a href="labs.html">See the proof path</a>.</span></span></p>
 <p><strong>Next gate: cook and cost Chicken 65 Totopos at home. No capital is needed until that has happened.</strong></p>
-<p class="facts"><span>Concept stage</span><span>Austin, Texas</span><span>Indo-Mex brewery and kitchen</span><span>No amount set</span></p>
-<p>This private view is not an offer and asks for no money; no investor has been approached. If someone sent you this page, reply to them directly: there is no public contact.</p>
+<p>This private view is not an offer and asks for no money; no investor has been approached. If someone sent you this page, reply to them directly: there is no public contact. Concept stage · Austin, Texas · No amount set.</p>
 <p>{st("IN DEVELOPMENT")} {st("EXTERNAL VALIDATION PENDING")}</p>
-{toc}
 <details class="legend"><summary>What the status words mean</summary>{legend()}</details>
 </div></section>
-<section class="alt" id="sum" aria-labelledby="s-sum"><div class="wrap"><h2 id="s-sum">The idea in one page.</h2><div class="grid cols-2"><div>{e("concept")}</div><div>{e("product")}{e("risks")}</div></div></div></section>
+<section id="diff" aria-labelledby="s-diff"><div class="wrap"><h2 id="s-diff">Why this could be different.</h2><p class="lede">Beer designed with the food and poured at the same table is something a guest cannot get by assembling food from one place and beer from another.</p><p>It is a thesis, not a result. The cheapest way to test it: serve the same dish with a house-designed beer and with a good ordinary beer, to real guests who do not know which is which, and see whether the pairing is noticed and preferred. Nobody has run this test.</p></div></section>
+<section class="alt" id="sum" aria-labelledby="s-sum"><div class="wrap"><h2 id="s-sum">What is real, what is assumed, what needs proof.</h2>
+<div class="grid cols-3"><div class="card"><h3>Real today</h3><p>A designed product system, a prepared first kitchen test, a private site and a set of honest documents. Nothing is built, cooked or sold.</p></div>
+<div class="card"><h3>Assumed, for the vision</h3><p>The court, the glassware, the service style and the look of every room. Imagined so one place can be seen. <a href="#assumed">See the assumptions</a>.</p></div>
+<div class="card"><h3>Needs proof</h3><p>That people want the food, that it can be made and costed, that the name can be used, and that a site and a brewery pay for themselves.</p></div></div>
+</div></section>
 <section id="stage" aria-labelledby="s-stage"><div class="wrap"><h2 id="s-stage">Where it stands.</h2><p class="lede">{E(ex["stage"]["text"])}</p>
-<div class="grid cols-2"><div class="card"><h3>Done</h3><ul class="plain">{done}</ul></div><div class="card"><h3>Has not happened</h3><ul class="plain">{hh}</ul><h3 class="sub">Does not exist</h3><ul class="plain">{dx}</ul></div></div>
+<details><summary>What is done, what has not happened, what does not exist</summary><div class="grid cols-2"><div class="card"><h3>Done</h3><ul class="plain">{done}</ul></div><div class="card"><h3>Has not happened</h3><ul class="plain">{hh}</ul><h3 class="sub">Does not exist</h3><ul class="plain">{dx}</ul></div></div></details>
 
 <p class="muted">Concept stage. The design baseline was frozen on {E(v["date"])}; that is a document milestone, not a validated business.</p></div></section>
-<section class="alt" id="brewery" aria-labelledby="s-brew"><div class="wrap"><h2 id="s-brew">Why a brewery at all.</h2>
-<p class="lede">The thesis, untested: beer designed with the food and poured at the same table is something guests cannot get by assembling food from one place and beer from another.</p>
-<p>The test that would disprove it: if a host brewery, a collaboration or a partner's beer sells and pairs as well as NASHA's own would, a house brewhouse is not justified and the brewery stays unbuilt. That is why it is the last capital gate. Nobody has run this test, and no brewer has reviewed the idea.</p></div></section>
-<section id="austin" aria-labelledby="s-austin"><div class="wrap"><h2 id="s-austin">Why Austin: facts, research and hypotheses, kept apart.</h2>
-<p>Austin is the founder's chosen first market, not a proven one. Indian food, Mexican food, fusion, breweries and experiential hospitality all exist there; NASHA's hypothesis is the combination and the execution.</p>{aus}
-<details><summary>What the market teaches</summary><div class="scroll-x" tabindex="0" role="region" aria-label="Market lessons"><table><caption class="visually-hidden">Market lessons</caption><thead><tr><th scope="col">Part of the market</th><th scope="col">What we can learn</th><th scope="col">NASHA's hypothesis</th><th scope="col">What we do not know</th></tr></thead><tbody>{comps}</tbody></table></div></details></div></section>
-<section class="alt" id="model" aria-labelledby="s-model"><div class="wrap"><h2 id="s-model">How it could make money.</h2>
-<p>A decision model, not a forecast. Every input is unknown today and labelled by how well it is known; there is no revenue, cost, margin or demand figure.</p>
-<h3 class="sub">The restaurant</h3>{flow(rest)}<h3 class="sub">The brewery</h3>{flow(brew)}<h3 class="sub">The order of proof</h3>{path}
-<p class="muted">The cheapest format that answers the next question comes first: a private tasting, an invited event, a commissary pop-up or a brewery residency, a trailer, and only then a fixed site.</p></div></section>
-<section id="capital" aria-labelledby="s-cap"><div class="wrap"><h2 id="s-cap">The capital path.</h2><p>Six stages. No amount is set; amounts will follow real quotes. Sources to consider much later (none approached): hospitality investors, strategic and brewery partners, angels and later debt.</p>
+<section id="capital" aria-labelledby="s-cap"><div class="wrap"><h2 id="s-cap">What capital would unlock, and in what order.</h2><p>Six stages. No amount is set; amounts will follow real quotes. Nobody has been approached.</p>
 <ol class="stagecards">{stages}</ol>
+<details><summary>What each stage unlocks, and the risk it removes</summary><ol class="plain">{stages_more}</ol></details>
 <details><summary>What money would unlock, in the order it is needed</summary><ol class="plain">{funds}</ol></details>
-<details><summary>Gates that stop spending (none has passed)</summary><div class="scroll-x" tabindex="0" role="region" aria-label="Capital gates"><table><caption class="visually-hidden">Capital gates</caption><thead><tr><th scope="col">Commitment</th><th scope="col">Until it is true, the answer is</th><th scope="col">What has to pass</th></tr></thead><tbody>{gates}</tbody></table></div></details></div></section>
-<section class="alt" id="risks" aria-labelledby="s-risk"><div class="wrap"><h2 id="s-risk">Risks, the cheapest test, and what would change the plan.</h2>
-<div class="scroll-x" tabindex="0" role="region" aria-label="Risks"><table><caption class="visually-hidden">Risks</caption><thead><tr><th scope="col">Risk</th><th scope="col">Why it matters</th><th scope="col">Cheapest test</th><th scope="col">What would change the plan</th></tr></thead><tbody>{risks}</tbody></table></div>
-<p class="muted">The name: NASHA is the founder's working name. A same-name restaurant has been reported in Austin, so the name needs an attorney's review before any name-dependent spend. Nothing here claims clearance, ownership or exclusivity.</p>
-<details><summary>What would change our mind</summary><div class="scroll-x" tabindex="0" role="region" aria-label="What would change our mind"><table><caption class="visually-hidden">What would change our mind</caption><thead><tr><th scope="col">Thesis</th><th scope="col">What we believe today</th><th scope="col">Evidence that would change direction</th></tr></thead><tbody>{mind}</tbody></table></div></details></div></section>
-<section id="faq" aria-labelledby="s-faq"><div class="wrap"><h2 id="s-faq">The hard questions.</h2>{faq}</div></section>
-<section class="alt" id="team" aria-labelledby="s-team"><div class="wrap"><h2 id="s-team">The team, and what the company needs.</h2><p class="lede">{E(ex["founder"]["text"])}</p>
-<p><strong>Next proofs the founder is working toward.</strong> {E(ex["milestones"]["text"])}</p>
-<h3 class="sub">Capabilities the company needs and the founder does not yet show</h3><ul class="plain">{team}</ul><p class="muted">These are needs, not people who have agreed to join; no advisor or partner is claimed.</p></div></section>
-<section id="room" aria-labelledby="s-room"><div class="wrap"><h2 id="s-room">The data room.</h2><p>Organised by topic. The founder shares documents if and when the founder decides to show this to someone; statuses are the project's own labels, not outside certification.</p>{room}
-<details><summary>What is deliberately not in it</summary><ul class="plain">{absent}</ul></details></div></section>'''
+<details><summary>Gates that stop spending (none has passed)</summary><div class="scroll-x" tabindex="0" role="region" aria-label="Capital gates, scrolls sideways on small screens"><table><caption class="visually-hidden">Capital gates</caption><thead><tr><th scope="col">Commitment</th><th scope="col">Until it is true, the answer is</th><th scope="col">What has to pass</th></tr></thead><tbody>{gates}</tbody></table></div></details></div></section>
+<section class="alt" id="risks" aria-labelledby="s-risk"><div class="wrap"><h2 id="s-risk">The main risks, and the cheapest test for each.</h2>
+<div class="scroll-x" tabindex="0" role="region" aria-label="Risks, scrolls sideways on small screens"><table><caption class="visually-hidden">Risks</caption><thead><tr><th scope="col">Risk</th><th scope="col">Why it matters</th><th scope="col">Cheapest test</th><th scope="col">What would change the plan</th></tr></thead><tbody>{risks}</tbody></table></div>
+<details><summary>More risks</summary><div class="scroll-x" tabindex="0" role="region" aria-label="More risks, scrolls sideways on small screens"><table><caption class="visually-hidden">More risks</caption><thead><tr><th scope="col">Risk</th><th scope="col">Why it matters</th><th scope="col">Cheapest test</th><th scope="col">What would change the plan</th></tr></thead><tbody>{risks_more}</tbody></table></div></details>
+<p class="muted">The name: NASHA is the founder's working name. A same-name restaurant has been reported in Austin, so the name needs an attorney's review before any name-dependent spend. Nothing here claims clearance, ownership or exclusivity.</p></div></section>
+<section id="faq" aria-labelledby="s-faq"><div class="wrap"><h2 id="s-faq">The hard questions.</h2>{faq_top}<details><summary>More questions ({nmore})</summary>{faq_more}</details></div></section>
+<section class="alt" id="depth" aria-labelledby="s-depth"><div class="wrap"><h2 id="s-depth">Go deeper.</h2>
+<p>The longer material, closed by default. The data room holds the documents themselves.</p>
+<details><summary>Why a brewery at all</summary><p>The thesis, untested: beer designed with the food and poured at the same table is something guests cannot get by assembling food from one place and beer from another. The test that would disprove it: if a host brewery, a collaboration or a partner's beer sells and pairs as well as NASHA's own would, a house brewhouse is not justified and the brewery stays unbuilt. That is why it is the last capital gate. Nobody has run this test, and no brewer has reviewed the idea.</p></details>
+<details><summary>Why Austin: facts, research and hypotheses, kept apart</summary><p>Austin is the founder's chosen first market, not a proven one. Indian food, Mexican food, fusion, breweries and experiential hospitality all exist there; NASHA's hypothesis is the combination and the execution.</p>{aus}
+<div class="scroll-x" tabindex="0" role="region" aria-label="Market lessons, scrolls sideways on small screens"><table><caption class="visually-hidden">Market lessons</caption><thead><tr><th scope="col">Part of the market</th><th scope="col">What we can learn</th><th scope="col">NASHA's hypothesis</th><th scope="col">What we do not know</th></tr></thead><tbody>{comps}</tbody></table></div></details>
+<details><summary>How it could make money</summary><p>A decision model, not a forecast. Every input is unknown today and labelled by how well it is known; there is no revenue, cost, margin or demand figure.</p>
+<h3 class="sub">The restaurant</h3>{flow(rest)}<h3 class="sub">The brewery</h3>{flow(brew)}<h3 class="sub">The order of proof</h3>{path}
+<p class="muted">The cheapest format that answers the next question comes first: a private tasting, an invited event, a commissary pop-up or a brewery residency, a trailer, and only then a fixed site.</p></details>
+<details><summary>What would change our mind</summary><div class="scroll-x" tabindex="0" role="region" aria-label="What would change our mind, scrolls sideways on small screens"><table><caption class="visually-hidden">What would change our mind</caption><thead><tr><th scope="col">Thesis</th><th scope="col">What we believe today</th><th scope="col">Evidence that would change direction</th></tr></thead><tbody>{mind}</tbody></table></div></details>
+{P25.assumed_section()}
+<details><summary>The team, and what the company needs</summary><p>{E(ex["founder"]["text"])}</p><p><strong>Next proofs the founder is working toward.</strong> {E(ex["milestones"]["text"])}</p>
+<h3 class="sub">Capabilities the company needs and the founder does not yet show</h3><ul class="plain">{team}</ul><p class="muted">These are needs, not people who have agreed to join; no advisor or partner is claimed.</p></details>
+<details id="room"><summary>The data room, by topic</summary><p>The founder shares documents if and when the founder decides to show this to someone; statuses are the project's own labels, not outside certification.</p>{room}
+<h3 class="sub">Deliberately not in it</h3><ul class="plain">{absent}</ul></details>
+<p><a href="walkthrough.html">The four-minute walkthrough</a></p></div></section>'''
     return B.layout("investor.html", "Business and investor view · NASHA", "A private, honest view of what NASHA is, what exists, the capital path and the risks.", fix_regions(body))
 
 

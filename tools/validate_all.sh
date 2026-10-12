@@ -9,6 +9,8 @@ run "diet audit D-54" python3 tools/diet_audit.py
 run "decision register + contradiction check" python3 tools/decision_register.py check
 for g in founder_center action_board control_center dashboard tool_map blueprint_views; do run "generated file is fresh: $g" python3 tools/$g.py --check; done
 for t in photo_ingest t1_record experiment_stats session_record glass_v2 kitchen_capacity pairing_matrix decision_register food_costing fin_model intake; do run "selftest $t" python3 tools/$t.py selftest; done
+run "vision layer guard" python3 tools/vision_check.py check
+run "selftest vision_check" python3 tools/vision_check.py selftest
 run "security check" bash tools/security_check.sh
 [ $fail -eq 0 ] && echo "ALL CHECKS PASSED" || echo "SOME CHECKS FAILED"
 exit $fail

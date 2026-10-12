@@ -9,6 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import art, images  # noqa: E402
 import pages_s23 as P  # noqa: E402
+import pages_s25 as P25  # noqa: E402
 
 SRC, DATA, DIST = (os.path.join(HERE, p) for p in ("src", "data", "dist"))
 REPO = os.path.dirname(HERE)
@@ -31,8 +32,9 @@ DISH = {d["id"]: d for d in dishes}
 VIS = {r["id"]: r for r in csv.DictReader(open(MANIFEST, encoding="utf-8"))}
 RASTER_META = {}
 
-PAGES = [("index.html", "Home"), ("crossing.html", "The Idea"), ("food.html", "Food"), ("beer.html", "Beer"), ("pairings.html", "Pairings"),
-         ("labs.html", "The Lab"), ("space.html", "The Place"), ("investor.html", "Business")]
+PAGES = [("index.html", "Home"), ("food.html", "Food"), ("beer.html", "Beer"), ("court.html", "The Court"), ("craft.html", "The Craft"),
+         ("evening.html", "Evening"), ("labs.html", "The Lab"), ("investor.html", "Business")]
+NAV_GROUP = {"space.html": "court.html", "experience.html": "evening.html", "pairings.html": "food.html", "crossing.html": "index.html", "walkthrough.html": "investor.html", "about.html": "index.html"}
 
 DISCLOSE = ("Concept stage: there is no brewery, no restaurant, no truck and no menu for sale. "
             "Images are concept visualizations and illustrations, not photographs of NASHA.")
@@ -72,7 +74,7 @@ def svg_fig(vid, svg, cls="", ar="16/10"):
 
 # ---------- layout ----------
 def layout(fn, title, desc, body, head_extra="", body_class=""):
-    nav = "".join(f'<li><a href="{f}"{" aria-current=\"page\"" if f == fn or (f == "space.html" and fn == "experience.html") else ""}>{E(n)}</a></li>' for f, n in PAGES)
+    nav = "".join(f'<li><a href="{f}"{" aria-current=\"page\"" if f == fn or (NAV_GROUP.get(fn) == f) else ""}>{E(n)}</a></li>' for f, n in PAGES)
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -99,10 +101,11 @@ def layout(fn, title, desc, body, head_extra="", body_class=""):
 {body}
 </main>
 <footer class="site-footer"><div class="wrap stack">
-<p><strong>NASHA</strong> is a future Indo-Mex brewery and kitchen in Austin, Texas, in development. There is no brewery, restaurant or truck open, nothing is for sale, and no site has been chosen.</p>
+<p><strong>NASHA</strong> is a future Indo-Mex brewery and kitchen in Austin, Texas, in development. Nothing is open or for sale, and no site has been chosen. Pictures are concept visualizations or drawings, not photographs of NASHA.</p>
+<details class="foot-more"><summary>Name, images and allergens</summary>
 <p>The name was chosen by the founder; legal clearance is pending and nothing here claims trademark ownership. The word NASHA in the header and in some pictures is a <strong>temporary typographic placeholder</strong>, not a logo. <em>Nasha</em> means intoxication or addiction in Hindi and Urdu: we chose it for the feeling of being drawn in by food, craft and company, we will never present excess as something to admire, and cultural advisors will review the name and our language before launch.</p>
-<p>Photographic-style pictures are <strong>concept visualizations</strong> made with AI tools and edited; drawings are illustrations. None is a photograph of NASHA, its food or its beer (<a href="about.html#images">about these images</a>). Dishes are designs for testing, not served food; heat and vegetarian labels are design intent, not a certified allergen or dietary statement. Ask before you eat if you have an allergy. If you drink, drink responsibly; alcohol is for adults of legal drinking age.</p>
-<p><a href="about.html">About NASHA</a> · <a href="investor.html">Business and investor view</a> · <a href="labs.html">The Lab</a> · Build of {BUILD_DATE}</p>
+<p>Photographic-style pictures are <strong>concept visualizations</strong> made with AI tools and edited; drawings are illustrations. None is a photograph of NASHA, its food or its beer (<a href="about.html#images">about these images</a>). Dishes are designs for testing, not served food; heat and vegetarian labels are design intent, not a certified allergen or dietary statement. Ask before you eat if you have an allergy. If you drink, drink responsibly; alcohol is for adults of legal drinking age.</p></details>
+<p><a href="about.html">About NASHA</a> · <a href="walkthrough.html">Four-minute walkthrough</a> · <a href="investor.html">Business and investor view</a> · <a href="labs.html">The Lab</a> · Build of {BUILD_DATE}</p>
 </div></footer>
 <script src="app.js" defer></script>
 </body>
@@ -421,7 +424,7 @@ def main():
         if row["kind"] == "raster" and row["source_file"] and os.path.exists(os.path.join(REPO, row["source_file"])):
             RASTER_META[vid] = images.build_raster(row, imgdir)
     PROTO.update(P.load_proto(M))
-    pages = (("index.html", page_index), ("experience.html", page_experience), ("space.html", page_space), ("food.html", page_food),
+    pages = (("index.html", lambda: P25.page_home(M, SITE)), ("court.html", lambda: P25.page_court(M, SITE)), ("craft.html", lambda: P25.page_craft(M, SITE)), ("evening.html", lambda: P25.page_evening(M, SITE)), ("walkthrough.html", lambda: P25.page_walkthrough(M, SITE)), ("experience.html", page_experience), ("space.html", page_space), ("food.html", page_food),
              ("beer.html", page_beer), ("crossing.html", page_crossing), ("pairings.html", lambda: P.page_pairings(M, SITE)), ("labs.html", lambda: P.page_lab(M, SITE)), ("investor.html", lambda: P.page_business(M, SITE)), ("about.html", page_about))
     for fn, fnc in pages:
         with open(os.path.join(DIST, fn), "w", encoding="utf-8") as f:
