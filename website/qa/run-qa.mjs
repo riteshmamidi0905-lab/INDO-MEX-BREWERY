@@ -74,15 +74,11 @@ for (const pg of pages) { const ctx = await browser.newContext({ viewport: { wid
   out.manual.textSpacing[pg] = await page.evaluate(() => ({ overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth })); await ctx.close();
   const c2 = await browser.newContext({ viewport: { width: 640, height: 400 } }); const p2 = await c2.newPage(); await p2.goto(`${base}/${pg}`, { waitUntil: "load" });
   out.manual.zoom200[pg] = await p2.evaluate(() => ({ overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth })); await c2.close(); }
-// Filter interaction + keyboard test on food page
+// Keyboard test on food page (filter removed in Sprint 24: Core 5 only)
 { const ctx = await browser.newContext({ viewport: { width: 390, height: 800 } }); const page = await ctx.newPage(); await page.goto(`${base}/food.html`);
-  const total = await page.locator("[data-item]").count();
-  await page.locator('input[name=diet]').check();
-  const veg = await page.locator("[data-item]:not([hidden])").count();
-  const status = await page.locator("#dish-status").innerText();
-  await page.locator("[data-reset]").click(); const after = await page.locator("[data-item]:not([hidden])").count();
-  await page.reload(); await page.keyboard.press("Tab"); const first = await page.evaluate(() => document.activeElement.className || document.activeElement.tagName);
-  out.interaction = { total, vegFiltered: veg, statusText: status, afterReset: after, firstTab: first, firstTabIsSkipLink: first === "skip" }; await ctx.close(); }
+  const total = await page.locator("article, .card").count();
+  await page.keyboard.press("Tab"); const first = await page.evaluate(() => document.activeElement.className || document.activeElement.tagName);
+  out.interaction = { total, firstTab: first, firstTabIsSkipLink: first === "skip" }; await ctx.close(); }
 await browser.close(); srv.close();
 const allAxe = Object.values(out.pages).flatMap(p => Object.values(p.axe).flatMap(a => a.violations));
 out.summary = { pages: pages.length, axeViolations: allAxe.length, overflowFailures: Object.values(out.pages).flatMap(p => Object.entries(p.overflow).filter(([, v]) => !v.ok)).length,

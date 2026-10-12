@@ -66,52 +66,6 @@ Agent analysis is never counted as professional review. Real-world level 1 means
 | **BREWERY** | brewery requirements listed | brewer reviews and sizes | pilot brewed and costed | **1**/3 | bp-brewery.csv; bm-brewery-scale.csv | brewer and pilots |
 | **CAPITAL PLAN** | stage and use-of-funds categories | amounts sized from real quotes | financing structured | **1**/3 | capital-stages.csv; use-of-funds.csv (no amounts) | quotes to size amounts |
 | **RISK DISCLOSURE** | risks listed | each risk with a planned test | tests executed and reported | **2**/3 | investor-risks.csv | executing the tests |
-## Remaining digital gap audit (Sprint 23: what is actually missing, and who or what can supply it)
-
-Completion means nothing materially useful can be added without real-world evidence, professional authority, capital or a founder decision. Classes: BUILD NOW 16, FOUNDER INPUT 1, REAL-WORLD INPUT 9, PROFESSIONAL REVIEW 7, FUTURE CAPITAL 2, NOT WORTH BUILDING 2.
-
-| Area | Missing item | Class | $0? | Decision value | Outcome |
-|---|---|---|---|---|---|
-| CONCEPT | Plain 60-second explanation on the site and in an executive summary | **BUILD NOW** | YES | HIGH | DONE: home summary and executive summary |
-| CONCEPT | Reader test: an outside person explains NASHA back | **REAL-WORLD INPUT** | YES | HIGH | OPEN: needs a person |
-| BRAND | Brand voice, status language and media-truth rules independent of the name | **BUILD NOW** | YES | MEDIUM | DONE: status vocabulary and media lifecycle |
-| BRAND | Final identity and name-dependent assets | **PROFESSIONAL REVIEW** | NO | HIGH | BLOCKED by name decision (D-66) |
-| FOOD | Product bible fields complete for every Core 5 dish (why, components, fusion logic, risks, next... | **BUILD NOW** | YES | HIGH | DONE |
-| FOOD | Real photographs, scores, yields, costs | **REAL-WORLD INPUT** | YES | VERY HIGH | OPEN: needs the founder |
-| BEER | Plain-language beer briefs, why each earns a tap, what is undecided | **BUILD NOW** | YES | HIGH | DONE |
-| BEER | Recipes and process | **PROFESSIONAL REVIEW** | NO | HIGH | BLOCKED: PROFESSIONAL REVIEW |
-| PAIRING | One coherent food x beer x NA mechanism view | **BUILD NOW** | YES | HIGH | DONE (hypotheses only) |
-| PAIRING | Tasting any pairing | **REAL-WORLD INPUT** | YES | VERY HIGH | OPEN |
-| NA | NA pairing hypotheses and safety notes per dish | **BUILD NOW** | YES | HIGH | IN PROGRESS: category-level hypotheses and safety notes written;... |
-| NA | Shelf life, dairy-based or fresh-juice drink safety | **PROFESSIONAL REVIEW** | NO | MEDIUM | BLOCKED: PROFESSIONAL REVIEW |
-| MENU | Core 5 results deciding the menu | **REAL-WORLD INPUT** | YES | HIGH | OPEN |
-| OPERATIONS | Field validation | **REAL-WORLD INPUT** | NO | HIGH | OPEN: Horizon B/C |
-| KITCHEN | Measured ticket times and station counts | **REAL-WORLD INPUT** | YES | HIGH | OPEN |
-| BREWERY | Sizing and process | **PROFESSIONAL REVIEW** | NO | HIGH | BLOCKED |
-| SUPPLY CHAIN | Real quotes and availability | **REAL-WORLD INPUT** | YES | MEDIUM | OPEN |
-| CUSTOMER EXPERIENCE | Site presentation of the guest journey and the space | **BUILD NOW** | YES | MEDIUM | DONE: journey and space pages carry the twin data |
-| ARCHITECTURE | Real drawings | **PROFESSIONAL REVIEW** | NO | HIGH | BLOCKED: FUTURE CAPITAL |
-| ARCHITECTURE | More conceptual renders | **NOT WORTH BUILDING** | YES | LOW | DECLINED: no new beautiful building (D-81) |
-| MARKET | Austin thesis separated into fact, research, hypothesis; competitor lessons | **BUILD NOW** | YES | HIGH | DONE |
-| MARKET | Competitor observation walks, prices, guest interviews | **FOUNDER INPUT** | YES | HIGH | OPEN |
-| MVP | Format decision | **REAL-WORLD INPUT** | YES | HIGH | OPEN |
-| FINANCE | Economic structure, provenance, QA | **BUILD NOW** | YES | HIGH | DONE in Sprint 22 |
-| FINANCE | TAM/SAM/SOM and projections | **NOT WORTH BUILDING** | YES | NEGATIVE | DECLINED: would be invented |
-| CAPITAL | Stage roadmap with what must be true, what capital unlocks and which risk is removed | **BUILD NOW** | YES | HIGH | DONE |
-| CAPITAL | Fundraising amount | **FUTURE CAPITAL** | NO | HIGH | NOT SET |
-| IP | Name decision and filing | **PROFESSIONAL REVIEW** | NO | HIGH | BLOCKED: LEGAL REVIEW REQUIRED |
-| LEGAL | Legal structure for beer with food | **PROFESSIONAL REVIEW** | NO | HIGH | BLOCKED |
-| REGULATORY | Authority answers | **REAL-WORLD INPUT** | NO | MEDIUM | OPEN: outside contact deferred |
-| TEAM | Future capability map without invented advisors | **BUILD NOW** | YES | MEDIUM | DONE |
-| WEBSITE | Investor experience, pairing, lab, food, beer, business pages from canonical data | **BUILD NOW** | YES | VERY HIGH | DONE (private, noindex) |
-| WEBSITE | Real prototype media slot and replacement path | **BUILD NOW** | YES | HIGH | DONE (empty until real photos) |
-| INVESTOR | Executive summary, founder story, risks with cheapest tests, use of funds | **BUILD NOW** | YES | HIGH | DONE as a draft; the reader test with a real person is open... |
-| INVESTOR | Real investor conversation | **FUTURE CAPITAL** | NO | n/a | NOT STARTED; no interest is claimed |
-| DATA ROOM | Navigable categories with plain titles, no internal junk | **BUILD NOW** | YES | HIGH | DONE as an index; items are PREPARED or PARTIAL, not independently... |
-| EVIDENCE | Ingestion path for real inputs and media | **BUILD NOW** | YES | HIGH | Tool built and self-tested; NOT yet run on a real photo or receipt |
-
-30-day zero-dollar test: if the founder had no additional dollars for 30 days, the meaningful digital work still open is the items marked BUILD NOW whose outcome is not DONE (2 in this audit); every other open item waits on the founder, a real-world result, a professional or capital. New BUILD NOW items will appear as real inputs arrive.
-
 
 ## Pre-capital blueprint completion
 
@@ -192,3 +146,93 @@ PRE-CAPITAL BLUEPRINT COMPLETE will mean: every criterion above is DONE, every a
 | V5 | Economics / operating model | bm-*.csv; bp-operations.csv | BUILT as investor page tables (no numbers) | every number tagged with provenance; none today |
 | V6 | Investor experience | investor-readiness.csv; investor-risks.csv; use-of-funds.csv; capital-stages.csv | BUILT (private page) | what is proven / not proven shown side by side |
 | V7 | Evidence-rich investor prototype | real evidence after Session 1 | NOT STARTED | only after evidence exists |
+
+
+## Sprint 24 adversarial gap audit (fresh eyes, 40 areas)
+
+An independent agent audited the blueprint as a sophisticated hospitality founder would, ignoring the project's percentages. Classes: A build now for $0; B founder physical input; C outside human input; D professional authority; E capital; F intentionally deferred; G not useful yet. Rows: A 50, B 15, C 6, D 12, E 3, F 2, G 2. Every class A row now has an outcome: COVERED 8, DECLINED 3, DEFERRED 2, DONE 35, OPEN 1, PARTIAL 1.
+
+| Area | Gap (class A) | Outcome |
+|---|---|---|
+| FOOD | Unclear whether method-level cards exist that a cook could follow; no scaling or hold-time notes | DECLINED: a recipe card without a real cook is fiction; the Session 1 cook card and frozen test sheets exist, and cards will be written from real... |
+| BEER | No lawful buy-and-taste log template tied to the pairing flight | DEFERRED: needs a lawful flight; each pairing's deciding test is written in food/CORE5-NA-PAIRING.csv |
+| PAIRINGS | Unclear what score makes a pairing be dropped | OPEN FOUNDER DECISION: drop thresholds must be set by the founder (and a brewer) before the first tasting and locked; no threshold is invented here... |
+| SERVICE | No scripted staff language or training outline | DECLINED: brand rule is no scripted lines; service principles are in bp-guest-journey.csv and bp-qc.csv |
+| OPERATIONS | No opening/closing checklists, no prep schedule, no par-level logic | DEFERRED: checklists depend on the real kitchen; the principles are in bp-operations.csv; templates will follow the first pilot |
+| IP | No contributor policy template | DECLINED: no contributors exist; IP-OWNERSHIP-FRAMEWORK.md covers the principle |
+| EVIDENCE | No routine scan that every number in website and docs carries a tier label | PARTIAL: dollar-amount lint and forbidden-claim scan exist; a per-number tier lint is not built (low value now) |
+
+Rows resolved as DONE or COVERED are listed in `docs/company/data/blueprint-gap-audit.csv`. Classes B to G are the dependencies on reality, outsiders, professionals and capital.
+
+## Decision register audit (D-series)
+
+Classification is derived by `tools/decision_register.py`, and the check fails if a key decision is misclassified. An agent-written decision cannot read as founder-confirmed.
+
+| Classification | Decisions |
+|---|---|
+| AGENT PROPOSED | 3 |
+| FINDING / NOT A DECISION | 1 |
+| FOUNDER CONFIRMED | 37 |
+| PROJECT-RECORDED (founder confirmation not stated) | 26 |
+| PROVISIONAL (founder) | 7 |
+| SUPERSEDED | 1 |
+
+| Decision | Classification | Status |
+|---|---|---|
+| D-54 | FOUNDER CONFIRMED | ACTIVE |
+| D-66 | FOUNDER CONFIRMED | ACTIVE |
+| D-74 | FOUNDER CONFIRMED | FROZEN |
+| D-76 | AGENT PROPOSED | FROZEN (thresholds agent-proposed; founder confirmation pending) |
+| D-77 | AGENT PROPOSED | PROPOSED (founder confirmation pending) |
+| D-78 | FINDING / NOT A DECISION | FINDING (founder decision pending) |
+| D-79 | PROVISIONAL (founder) | PROVISIONALLY CONFIRMED by founder (D-80) |
+| D-80 | PROVISIONAL (founder) | PROVISIONAL |
+| D-81 | FOUNDER CONFIRMED | ACTIVE |
+| D-82 | FOUNDER CONFIRMED | ACTIVE |
+
+PROJECT-RECORDED means the register text does not state a founder owner; it is not claimed as founder-confirmed.
+
+## Evidence governance
+
+Only physical, customer, professional and primary-source evidence can count toward the evidence score, and only through the scoring rules.
+
+| Class | Counts toward the score | Must not masquerade as | Guard |
+|---|---|---|---|
+| **PHYSICAL EVIDENCE** | YES (only through the scoring rules) | n/a | tools/intake.py preserves originals read-only with SHA-256; scoring rules in the readiness scoreboard |
+| **CUSTOMER EVIDENCE** | YES (none exists) | intent or friends-only enthusiasm presented as demand | research/customer-discovery templates stay header-only until real data; intent vs behavior kept separate in bm-inputs.csv |
+| **PROFESSIONAL EVIDENCE** | YES (none exists) | agent analysis, agent red-team or simulated readers presented as professional review | docs/professional-reviews/ and intake.py professional_response kind; every agent file carries an AGENT ANALYSIS banner |
+| **PRIMARY-SOURCE VERIFICATION** | YES (for the claim it verifies only) | a search summary presented as verified | tier T0/T2 rules in research/VERIFICATION-LEDGER.md; web-search summaries are T1 and never called verified |
+| **T1 SEARCH SUMMARY** | NO | verified fact | source and limit recorded per row; the site wording says reported, not confirmed |
+| **AI ANALYSIS / AGENT DRAFT** | NO | professional review, research or evidence | AGENT ANALYSIS banners; decision register cannot promote an agent decision to founder-confirmed |
+| **AGENT RED-TEAM / SIMULATED READER** | NO | investor interest, customer feedback or outside human review | labelled AGENT INVESTOR RED-TEAM or SIMULATED READER REVIEW - NOT HUMAN EVIDENCE |
+| **WEBSITE COPY** | NO | proof that anything is tested | status words; no PROVEN; site validator |
+| **RENDER / CONCEPT MEDIA** | NO | a photograph of a built place or a cooked dish | media stage tag on every image; register-media refuses concept folders |
+| **MODEL OUTPUT** | NO | a forecast or measured result | provenance grades; UNKNOWN never enters; input_grade reported on every output |
+| **TEST FIXTURE** | NO | project economics | TEST_FIXTURE is excluded from every real run |
+| **FOUNDER ASSUMPTION** | NO (scenario use only) | an actual or a quote | provenance class FOUNDER_ASSUMPTION is grade C and never investor grade |
+
+## PRE-CAPITAL DIGITAL BLUEPRINT v1.0 (freeze record)
+
+| Item | Value |
+|---|---|
+| version | PRE-CAPITAL DIGITAL BLUEPRINT v1.0 |
+| status | FROZEN (design baseline only) |
+| date | 2026-10-12 |
+| frozen_commit | PENDING: filled in by the commit that records the freeze |
+| website_version | PRE-CAPITAL WEBSITE v1.0 (private, noindex, undeployed, concept stage) |
+| scope | The concept, Core 5 food and beer design, NA specifications, pairing hypotheses, operating, kitchen, bar, brewery, guest, service and space requirements, economic decision model and its tools, risk, assumption and decision registers, capital roadmap, investor package and the private website |
+| not_claimed | Business validated; product validated; investor ready for funding; legal ready; opening ready; any dish cooked or beer brewed; any professional review; the name cleared |
+| evidence_score | 4 of 95 (unchanged by the freeze) |
+| design_score | 43 of 95 (unchanged by the freeze) |
+| change_control | Changes after the freeze follow docs/company/data/blueprint-change-control.csv: evidence-driven, experiment-result, founder-directed, professional-required, market-update or correction. Redesign for its own sake is not a change class. |
+
+### Change control after the freeze
+
+| Change class | Definition | Allowed when | Requires | Example |
+|---|---|---|---|---|
+| **EVIDENCE-DRIVEN** | A change caused by real physical, customer or vendor evidence | a real input is ingested | the preserved original and the rule that applies; scores change only by their rules | Session 1 result changes the Chicken 65 status |
+| **EXPERIMENT-RESULT** | The recorded outcome of a planned test | a test in the protocol was run | the result recorded as it happened, including failure | a dish is cut after failing its frozen gates |
+| **FOUNDER-DIRECTED** | A change the founder decides | the founder says so in their own words | a decision row (D-nn) classed FOUNDER CONFIRMED | the founder confirms or rejects D-76 or D-77 |
+| **PROFESSIONAL-REQUIRED** | A change that depends on a qualified professional | a professional has reviewed in writing | the raw written reply preserved; no agent paraphrase as authority | an attorney advises changing the name |
+| **MARKET-UPDATE** | New material public research that changes a stated fact | a primary or reputable source with date, tier and limit | the source row and the claim it replaces | a competitor closes or opens |
+| **CORRECTION** | A fix to an error, label drift or an overstated claim | the error is shown | what was wrong and the fix; no change of meaning disguised as a fix | a site sentence overstated its source tier |

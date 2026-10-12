@@ -6,7 +6,7 @@ that appear without a nearby marker such as 'older wording' or 'superseded'.
   python3 tools/decision_register.py selftest"""
 import csv, glob, os, re, sys
 DEC, REG, PHR = "docs/decisions/DECISIONS.md", "docs/decisions/decision-register.csv", "docs/decisions/superseded-phrases.csv"
-COLS = ["id", "date", "decision", "status", "owner_or_status_text", "supersedes", "superseded_by", "founder_required"]
+COLS = ["id", "date", "decision", "status", "owner_or_status_text", "supersedes", "superseded_by", "founder_required", "classification"]
 ROW = re.compile(r"^\|\s*(D-\d+)\s*\|\s*([\d-]+)\s*\|(.*)$")
 def parse(text):
     out = []
@@ -39,7 +39,19 @@ def parse(text):
         for t in re.findall(r"(?:provisionally )?confirms (D-\d+)", r["decision"], flags=re.I):
             if t in byid and byid[t]["status"].startswith("PROPOSED"):
                 byid[t]["status"] = f"PROVISIONALLY CONFIRMED by founder ({r['id']})"; byid[t]["founder_required"] = ""
+    for r in out: r["classification"] = classify(r)
     return out
+def classify(r):
+    """Sprint 24 classification. An agent-authored decision never reads as founder-confirmed; a decision with no stated owner is PROJECT-RECORDED, not FOUNDER CONFIRMED, unless its text says it is the founder's."""
+    st, ow, de = r["status"].upper(), r["owner_or_status_text"], r["decision"]
+    if st.startswith("SUPERSEDED"): return "SUPERSEDED"
+    if st.startswith("FINDING"): return "FINDING / NOT A DECISION"
+    if "PROVISION" in st: return "PROVISIONAL (founder)"
+    if st.startswith("PROPOSED") or "AGENT-PROPOSED" in st: return "AGENT PROPOSED"
+    if re.search(r"agent|proposal|project \(", ow, re.I) and not re.search(r"^founder", ow, re.I): return "PROJECT-RECORDED (founder confirmation not stated)"
+    if re.search(r"founder", ow + " " + de, re.I): return "FOUNDER CONFIRMED"
+    return "PROJECT-RECORDED (founder confirmation not stated)"
+KEY = {"D-54": "FOUNDER CONFIRMED", "D-66": "FOUNDER CONFIRMED", "D-74": "FOUNDER CONFIRMED", "D-76": "AGENT PROPOSED", "D-77": "AGENT PROPOSED", "D-78": "FINDING / NOT A DECISION", "D-79": "PROVISIONAL (founder)", "D-80": "PROVISIONAL (founder)", "D-81": "FOUNDER CONFIRMED", "D-82": "FOUNDER CONFIRMED"}
 def phrases(path=PHR): return list(csv.DictReader(open(path, encoding="utf-8")))
 SCOPE = ("docs/", "food/CORE5", "food/sessions/", "food/t1-test-sheets/1", "beer/CORE5", "beer/pilot-briefs/", "beer/BREWERY", "research/CORE5-PRODUCT-SYSTEM.md", "ip/", "brand/TRADEMARK", "website/data/", "visuals/CONCEPT")   # current canonical areas; older v1 documents are historical and not scanned
 SKIP = ("docs/decisions/DECISIONS.md", "docs/decisions/CORRECTIONS.md", "docs/decisions/REJECTED.md", "docs/decisions/superseded-phrases.csv", "docs/decisions/decision-register.csv")
@@ -66,7 +78,9 @@ def check():
             if ref and ref not in known: errs.append(f"{r['id']} references unknown {ref}")
     if os.path.exists(REG):
         cur = list(csv.DictReader(open(REG, encoding="utf-8")))
-        if [(c["id"], c["status"], c["founder_required"]) for c in cur] != [(r["id"], r["status"], r["founder_required"]) for r in rows]: errs.append("decision-register.csv is stale: run python3 tools/decision_register.py write")
+        for r in rows:
+            if r["id"] in KEY and r["classification"] != KEY[r["id"]]: errs.append(f"{r['id']} classification is {r['classification']}, expected {KEY[r['id']]} (an agent decision cannot read as founder-confirmed, and a founder decision cannot be downgraded silently)")
+        if [(c["id"], c["status"], c["founder_required"], c.get("classification")) for c in cur] != [(r["id"], r["status"], r["founder_required"], r["classification"]) for r in rows]: errs.append("decision-register.csv is stale: run python3 tools/decision_register.py write")
     else: errs.append("decision-register.csv missing")
     for f, n, by, txt in scan(): errs.append(f"superseded wording without a marker ({by}): {f}:{n}: {txt}")
     return errs
@@ -84,6 +98,7 @@ def selftest():
         open(p, "w").write("If it fails, nothing else launches (older wording)\n"); assert not scan(d, [p])
     t2 = "| D-1 | 2026-01-01 | X | Agent proposal; Founder confirmation pending | |\n| D-2 | 2026-01-02 | Agents say this confirms D-1 | Project agents (proposal) | |\n"
     r2 = parse(t2); assert r2[0]["status"].startswith("PROPOSED")   # an agent-written decision cannot confirm another
+    assert r[0]["classification"] == "FOUNDER CONFIRMED" and r[1]["classification"] == "AGENT PROPOSED" and r[2]["classification"] == "SUPERSEDED" and r2[1]["classification"] == "AGENT PROPOSED"   # classification cannot promote an agent
     print("selftest ok: parse, supersedes/superseded-by, status, and superseded-phrase marker logic")
 if __name__ == "__main__":
     a = sys.argv[1:2]

@@ -1,5 +1,5 @@
 {
- "date": "2026-10-11T21:49:55.011Z",
+ "date": "2026-10-12T18:53:11.036Z",
  "tool": "lighthouse 13.5.0",
  "runs": {
   "index.html:mobile": {
@@ -7,7 +7,7 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 1960,
+   "lcpMs": 1913,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 209
@@ -17,80 +17,80 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 424,
+   "lcpMs": 464,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 253
+   "transferKB": 254
   },
   "food.html:mobile": {
-   "performance": 99,
+   "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 2108,
+   "lcpMs": 1653,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 202
+   "transferKB": 133
   },
   "food.html:desktop": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 489,
+   "lcpMs": 407,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 202
+   "transferKB": 133
   },
   "beer.html:mobile": {
-   "performance": 98,
+   "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 2109,
+   "lcpMs": 1658,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 197
+   "transferKB": 121
   },
   "beer.html:desktop": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 483,
+   "lcpMs": 410,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 197
+   "transferKB": 121
   },
   "space.html:mobile": {
    "performance": 99,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 1878,
+   "lcpMs": 1882,
    "cls": 0,
-   "tbtMs": 9,
-   "transferKB": 216
+   "tbtMs": 0,
+   "transferKB": 219
   },
   "space.html:desktop": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 63,
-   "lcpMs": 444,
+   "lcpMs": 484,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 272
+   "transferKB": 276
   },
   "pairings.html:mobile": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 1502,
+   "lcpMs": 1504,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 111
+   "transferKB": 113
   },
   "pairings.html:desktop": {
    "performance": 100,
@@ -100,27 +100,27 @@
    "lcpMs": 364,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 111
+   "transferKB": 113
   },
   "labs.html:mobile": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 1502,
+   "lcpMs": 1503,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 110
+   "transferKB": 114
   },
   "labs.html:desktop": {
    "performance": 100,
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 361,
+   "lcpMs": 363,
    "cls": 0,
    "tbtMs": 0,
-   "transferKB": 110
+   "transferKB": 114
   },
   "investor.html:mobile": {
    "performance": 100,
@@ -129,7 +129,7 @@
    "seo": 60,
    "lcpMs": 1804,
    "cls": 0,
-   "tbtMs": 0,
+   "tbtMs": 9,
    "transferKB": 145
   },
   "investor.html:desktop": {
@@ -137,7 +137,7 @@
    "accessibility": 100,
    "bestPractices": 100,
    "seo": 60,
-   "lcpMs": 443,
+   "lcpMs": 405,
    "cls": 0,
    "tbtMs": 0,
    "transferKB": 145

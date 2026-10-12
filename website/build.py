@@ -13,7 +13,7 @@ import pages_s23 as P  # noqa: E402
 SRC, DATA, DIST = (os.path.join(HERE, p) for p in ("src", "data", "dist"))
 REPO = os.path.dirname(HERE)
 MANIFEST = os.path.join(REPO, "visuals/NASHA-VISUAL-MANIFEST.csv")
-BUILD_DATE = "2026-10-11"
+BUILD_DATE = "2026-10-12"
 E = html.escape
 
 def load(n):
@@ -34,7 +34,7 @@ RASTER_META = {}
 PAGES = [("index.html", "Home"), ("crossing.html", "The Idea"), ("food.html", "Food"), ("beer.html", "Beer"), ("pairings.html", "Pairings"),
          ("labs.html", "The Lab"), ("space.html", "The Place"), ("investor.html", "Business")]
 
-DISCLOSE = ("NASHA is in development. There is no brewery, no restaurant, no truck and no menu for sale yet. "
+DISCLOSE = ("Concept stage: there is no brewery, no restaurant, no truck and no menu for sale. "
             "Images are concept visualizations and illustrations, not photographs of NASHA.")
 CONCEPT_NOTE = "Concept visualization. Final architecture is subject to professional design and site conditions."
 
@@ -42,6 +42,7 @@ PLATE_KIND = {"chicken-65-totopos": "totopos", "chaat-elote": "elote", "gobi-tac
               "butter-chicken-quesadilla": "quesadilla", "goat-birria": "birria", "cardamom-churros": "churros", "seed-chile-bowl": "veg"}
 SIGNATURE = ["chicken-65-totopos", "paneer-tikka-taco", "gobi-taco", "butter-chicken-quesadilla", "goat-birria", "chaat-elote", "cardamom-churros"]
 GATE_BEERS = ["hefeweizen", "mexican-lager", "vienna-amber"]
+CORE_BEERS = ["hefeweizen", "mexican-lager", "vienna-amber", "pilsner", "witbier"]
 
 _uid = [0]
 def uid(p="u"):
@@ -98,14 +99,10 @@ def layout(fn, title, desc, body, head_extra="", body_class=""):
 {body}
 </main>
 <footer class="site-footer"><div class="wrap stack">
-<p><strong>NASHA</strong> is a future Indo-Mex brewery and kitchen in Austin, Texas, in development.</p>
-<p>The name was chosen by the founder. Legal clearance of the name is pending. Nothing here claims trademark ownership. There is no brewery, restaurant or truck open, and nothing is for sale. No site has been chosen.</p>
-<p>In Hindi and Urdu, <em>nasha</em> means intoxication or addiction. We chose it for the feeling of being drawn in by food, craft and company. We take that meaning seriously and will never present excess or addiction as something to admire. Cultural advisors will review the name and our language before launch.</p>
-<p>Images show a possible future. The photographic-style pictures are <strong>concept visualizations</strong> made with AI tools and edited, and the drawings are illustrations. They are not photographs of NASHA, of its food, or of its beer. <a href="about.html#images">About these images</a>.</p>
-<p>Menu items are designs for testing, not served food. Heat and vegetarian labels describe how a dish is designed, not a certified allergen or dietary statement. Ask before you eat if you have an allergy. If you drink, drink responsibly. Alcohol is for adults of legal drinking age.</p>
-<p>The word NASHA in the header and in some pictures is a <strong>temporary typographic placeholder</strong>, set in a standard font. It is not a logo, not an official brand mark, and no trademark is claimed. No logo has been approved or released.</p>
-<p><a href="about.html">About NASHA</a> · <a href="investor.html">Business and investor view</a> · <a href="labs.html">The Lab</a></p>
-<p>Build of {BUILD_DATE}.</p>
+<p><strong>NASHA</strong> is a future Indo-Mex brewery and kitchen in Austin, Texas, in development. There is no brewery, restaurant or truck open, nothing is for sale, and no site has been chosen.</p>
+<p>The name was chosen by the founder; legal clearance is pending and nothing here claims trademark ownership. The word NASHA in the header and in some pictures is a <strong>temporary typographic placeholder</strong>, not a logo. <em>Nasha</em> means intoxication or addiction in Hindi and Urdu: we chose it for the feeling of being drawn in by food, craft and company, we will never present excess as something to admire, and cultural advisors will review the name and our language before launch.</p>
+<p>Photographic-style pictures are <strong>concept visualizations</strong> made with AI tools and edited; drawings are illustrations. None is a photograph of NASHA, its food or its beer (<a href="about.html#images">about these images</a>). Dishes are designs for testing, not served food; heat and vegetarian labels are design intent, not a certified allergen or dietary statement. Ask before you eat if you have an allergy. If you drink, drink responsibly; alcohol is for adults of legal drinking age.</p>
+<p><a href="about.html">About NASHA</a> · <a href="investor.html">Business and investor view</a> · <a href="labs.html">The Lab</a> · Build of {BUILD_DATE}</p>
 </div></footer>
 <script src="app.js" defer></script>
 </body>
@@ -212,9 +209,6 @@ def page_index():
 <div class="grid cols-3 sixty">
 <div class="card"><h3>India × Mexico</h3><p>Two cuisines that already build flavour from chile, acid and fire, joined into five core dishes that should feel like one cuisine.</p></div>
 <div class="card"><h3>Food × Beer × Zero-proof</h3><p>Every dish has a beer and a non-alcoholic drink chosen for it, with equal standing. <a href="pairings.html">See the pairings</a>.</p></div>
-<div class="card"><h3>Austin</h3><p>The founder's chosen first market: a hypothesis to test, not a proven one. <a href="investor.html#austin">Why Austin</a>.</p></div>
-<div class="card"><h3>Craft, eventually</h3><p>House beer is the last thing to be built. A partner brewery can test the idea first. <a href="investor.html#capital">The staged path</a>.</p></div>
-<div class="card"><h3>Experiment first</h3><p>Dishes are developed by cooking, measuring, tasting and learning from failures. <a href="labs.html">Visit the Lab</a>.</p></div>
 <div class="card"><h3>What exists today</h3><p>A design system, a prepared first kitchen test and this private site. Nothing has been cooked, brewed or sold, and no restaurant, brewery or opening date exists. The name is a working name: a same-name Austin restaurant has been reported and legal clearance is pending.</p></div>
 </div></div></section>
 
@@ -236,13 +230,13 @@ def page_index():
 <section aria-labelledby="b4"><div class="wrap">
 <p class="eyebrow"><span class="beat-no">04</span> The food</p>
 <h2 id="b4">Dishes, as designed.</h2>
-<p>Drawn here as proposed presentation. No dish has been cooked for guests, and these are not photographs. <a href="food.html">See the five core dishes</a>.</p>
+<p>Drawn here as proposed presentation. No dish has been cooked for guests, and these are not photographs. <a href="food.html">See all five core dishes</a>. Three are shown here.</p>
 <div class="grid cols-3">{food}</div></div></section>
 
 <section class="alt" aria-labelledby="b5"><div class="wrap">
 <p class="eyebrow"><span class="beat-no">05</span> The beer</p>
 <h2 id="b5">Beer briefs, not beers yet.</h2>
-<p>Nothing has been brewed. These glasses are concept drawings of briefs for a head brewer to critique. <a href="beer.html">Meet the beers</a>.</p>
+<p>Nothing has been brewed. These glasses are concept drawings of briefs for a head brewer to critique. <a href="beer.html">Meet all five beers</a>. Three are shown here.</p>
 <div class="grid cols-3">{beer}</div></div></section>
 
 <section class="band-indigo crossing-band" aria-labelledby="b6">{art.jali(uid("jl"))}<div class="wrap grid cols-2 center rel">
@@ -267,15 +261,7 @@ def page_index():
 <h2 id="b9" class="statement reveal">From vision back to reality.</h2>
 <p class="lede">Everything above is a concept. This is the real path, and we are on its first step.</p>
 <ol class="journey">{journey}</ol>
-<h3 class="sub">Honest status</h3>
-<ul class="path">{status_items}</ul>
-<p class="muted">Nothing is in Testing or Validated yet. We will say so when that changes. <a href="labs.html">See The Lab</a>. About the word <em>nasha</em> and our commitments: <a href="about.html">About NASHA</a>.</p></div></section>
-
-<section class="alt" aria-labelledby="b10"><div class="wrap">
-<p class="eyebrow"><span class="beat-no">10</span> Follow the journey</p>
-<h2 id="b10">Updates are not live yet.</h2>
-<p>We have not set up a mailing list, domain or contact address, so we will not pretend to collect your email. This page will change when that is real.</p>
-<button class="btn" type="button" disabled>Updates coming later</button></div></section>
+<p class="muted">Nothing is in testing yet. <a href="labs.html">The Lab</a> shows where each dish stands, and <a href="investor.html">the business view</a> shows what exists and what does not. About the word <em>nasha</em> and our commitments: <a href="about.html">About NASHA</a>.</p></div></section>
 '''
     return layout("index.html", "NASHA: Indo-Mex brewery and kitchen, in development",
                   "NASHA is a future Indo-Mex brewery and kitchen in Austin, Texas. In development. Nothing is for sale yet.", body, hero_head(), "home")
@@ -285,7 +271,7 @@ def page_experience():
      ("Arrival", "Curiosity", "You would see the sign first, then warm light through glass, then the tanks.", raster_fig("NV-SPACE-ENTRANCE", "", sizes="(max-width: 700px) 100vw, 50vw")),
      ("The bar", "Refreshment", "A long bar, a wall of taps and a shelf of glasses, with the brewery in sight behind it.", svg_fig("NV-ILL-BAR", art.bar_scene(uid("ba")), "", "960/500")),
      ("The table", "Belonging", "Long tables for sharing. Plates go in the middle and glasses go round.", svg_fig("NV-ILL-TABLE", art.table_scene(uid("tb")), "", "960/420")),
-     ("The food", "Hunger", "Fusion dishes and our own: Chicken 65 on masa chips, tacos, a braise, charred corn. All still being designed.", svg_fig("NV-ILL-PLATES", '<div class="plates3">' + "".join(f'<div>{plate_svg(DISH[i])}</div>' for i in ("chicken-65-totopos", "paneer-tikka-taco", "goat-birria")) + '</div>', "fig-plates", "3/1")),
+     ("The food", "Hunger", "Fusion dishes and our own: Chicken 65 on masa chips, tacos, a braise and a quesadilla. All still being designed.", svg_fig("NV-ILL-PLATES", '<div class="plates3">' + "".join(f'<div>{plate_svg(DISH[i])}</div>' for i in ("chicken-65-totopos", "paneer-tikka-taco", "goat-birria")) + '</div>', "fig-plates", "3/1")),
      ("The beer", "Refreshment", "Light and crisp, wheat, toasty. Each beer is a brief with named dishes it is meant to meet.", svg_fig("NV-ILL-GLASS", '<div class="glass-row">' + "".join(art.glass(uid("eg"), b, .86, gkind(BEER[b]), True, f"Concept glass of {BEER[b]['name']}") for b in GATE_BEERS) + '</div>', "fig-glasses", "3/1")),
      ("The fire", "Warmth", "A tandoor and a comal in an open kitchen, so you can watch food meet fire.", svg_fig("NV-ILL-FIRE", art.fire_scene(uid("fi")), "", "8/5")),
      ("The brewery", "Wonder", "Tanks behind glass: the slow work of fermentation, in view. Size and count are not decided.", raster_fig("NV-BREWERY-GLASS", "", sizes="(max-width: 700px) 100vw, 50vw")),
@@ -338,49 +324,25 @@ def flight_card():
     return f'<div class="flight-card"><p class="tag-inline">Tasting flight · proposed · not brewed yet</p><ul>{li}</ul><p class="muted">Four small pours. Names are proposals. No prices, no availability.</p></div>'
 
 def page_food():
-    sig = [DISH[i] for i in SIGNATURE]
-    hero = sig[0]
-    cards = "".join(f'<article class="feature reveal"><div class="plate-big">{plate_svg(d)}</div><h3>{E(d["name"])}</h3><p>{E(d["line"])}</p><p>{chips(d["kind"], "Proposed presentation · not cooked or tested")}{"<span class=\"chip chip-veg\">Vegetarian as designed</span>" if d["vegetarian"] else ""}</p><p class="muted">Heat {heat(d["heat"])} · pairs with {E(pair_names(d))}</p></article>' for d in sig[1:])
-    veg = [d for d in dishes if d["vegetarian"] and d["wave"] == "Test set"]
-    vegli = "".join(f'<li>{E(d["name"])}<span class="muted"> — {E(d["line"])}</span></li>' for d in veg)
-    cats = sorted({d["category"] for d in dishes})
-    f = filter_inputs("category", [(c, c) for c in cats]) + filter_inputs("diet", [("veg", "Vegetarian as designed")]) + filter_inputs("heat", [(str(i), f"Heat {i}") for i in range(4)])
-    body = f'''<section class="food-hero" aria-labelledby="h1"><div class="wrap grid cols-2 center">
-<div><p class="eyebrow">Food · Designs for testing</p><h1 id="h1">Hunger, designed.</h1>
-<p class="lede">Chicken 65 from South India, rethought for masa totopos. A braise that borrows from two kitchens. A wider set of dishes is specified; five core dishes are the first to be tested in a home kitchen. None are cooked for guests. None are for sale.</p>
-<p class="disclosure">{E(DISCLOSE)} The drawings are proposed presentation, not our finished dishes.</p></div>
-<div class="reveal"><div class="hero-plate">{plate_svg(hero)}</div><h2 class="h3">{E(hero["name"])}</h2><p>{E(hero["line"])}</p><p>{chips(hero["kind"], "Proposed presentation · not cooked or tested")}</p></div></div></section>
+    body = f'''<section class="food-hero" aria-labelledby="h1"><div class="wrap stack">
+<p class="eyebrow">Food · Designs for testing</p><h1 id="h1">Five dishes, designed to be cooked at home first.</h1>
+<p class="lede">Chicken 65 from South India on thick masa totopos. Paneer tikka in a taco. A goat birria. A roasted gobi taco. A butter chicken quesadilla with roasted poblano. Nothing is cooked for guests and nothing is for sale.</p>
+<p class="disclosure">{E(DISCLOSE)} The drawings show proposed presentation, not finished dishes.</p></div></section>
 
 {P.food_core_section(M, SITE)}
 
-<section aria-labelledby="vg"><div class="wrap grid cols-2 center"><div><p class="eyebrow">Vegetarian story</p><h2 id="vg">Vegetarian is not a side.</h2>
-<p class="lede">Both India and Mexico have strong plant-based cooking traditions we want to learn from. NASHA designs vegetarian dishes as headliners, not substitutes.</p>
-<p class="muted">Labels say “vegetarian as designed”. They are not a certified dietary statement; cross-contact is not assessed yet.</p></div>
-<ul class="veglist">{vegli}</ul></div></section>
-
-<section class="fire-ferment" aria-labelledby="fr"><div class="wrap grid cols-2 center"><div><p class="eyebrow">Fire</p><h2 id="fr">Char, smoke, quick heat.</h2><p class="lede">Tandoor-style heat and a hot comal give the food its edges. Fire is how the kitchen is designed to work, and how the beer is meant to be met.</p><p><a href="crossing.html">The Crossing</a></p></div>
-<div class="reveal">{svg_fig("NV-ILL-FIRE", art.fire_scene(uid("fi")), "", "8/5")}</div></div></section>
-
-<section class="alt" aria-labelledby="pr"><div class="wrap"><p class="eyebrow">Pairing</p><h2 id="pr">Proposed pairings.</h2>
-<p>Each dish names the beers it is meant to meet (<a href="pairings.html">see the full pairing reasoning</a>). These are design intentions. Nothing has been tasted together, and no beer has been brewed.</p>
-<div class="grid cols-2 pairs">{pairs_section()}</div></div></section>
-
-<section class="alt" aria-labelledby="all"><div class="wrap">
-<p class="eyebrow">Wider exploration</p><h2 id="all">Other dishes we have drawn.</h2>
-<p>Only the five core dishes above are planned for the first tests. These are earlier ideas, kept as thinking, not as a menu.</p>
-<fieldset class="filters" data-filter-group="dish-list" data-status="dish-status"><legend>Filter dishes</legend>{f}<button type="button" class="btn btn-ghost" data-reset>Clear</button></fieldset>
-<p id="dish-status" class="muted" role="status" aria-live="polite"></p>
-<div id="dish-list" class="grid cols-3">{"".join(dish_card(d, "h3", False) for d in dishes)}</div>
-<p class="muted">“Fusion” means a dish we invented by combining two traditions. “Inspired by” means built from a tradition without claiming to be it. The lamb dish depends on an unresolved cut decision.</p></div></section>'''
-    return layout("food.html", "Food · NASHA", "Dishes NASHA is designing for kitchen tests. Proposed presentation only. None are for sale.", body)
+<section aria-labelledby="vg"><div class="wrap"><h2 id="vg">Vegetarian is not a side.</h2>
+<p class="lede">Two of the five are vegetarian as designed, built as headliners. Every dish is made without beef or pork, including stocks, fats and tortillas.</p>
+<p class="muted">Labels describe design intent, not a certified dietary or allergen statement. Ask before you eat if you have an allergy. See the <a href="pairings.html">pairings</a> for what each dish is meant to meet; the pairings are proposed and not sensory tested.</p></div></section>'''
+    return layout("food.html", "Food · NASHA", "The five dishes NASHA is designing for home-kitchen tests. Proposed presentation only. None are for sale.", body)
 
 def page_beer():
-    binfo_json = html.escape(json.dumps({b: {"name": BEER[b]["name"], "style": BEER[b]["style"], "status": "Not brewed yet" + (" · working name" if BEER[b]["working"] else ""), "pair": "Designed to pair with " + ", ".join(BEER[b]["pairs"][:3])} for b in GATE_BEERS}), quote=True)
+    binfo_json = html.escape(json.dumps({b: {"name": BEER[b]["name"], "style": BEER[b]["style"], "status": "Not brewed yet" + (" · working name" if BEER[b]["working"] else ""), "pair": "Designed to pair with " + ", ".join(BEER[b]["pairs"][:3])} for b in CORE_BEERS}), quote=True)
     macro = art.glass(uid("mg"), "hefeweizen", .9, "weizen", True, "Concept macro glass of a wheat beer", big=True)
     gate = "".join(f'<article class="feature reveal"><div class="glass-big">{art.glass(uid("gb"), b, .86, gkind(BEER[b]), True, f"Concept glass of {BEER[b]["name"]}")}</div><h3>{E(BEER[b]["name"])}</h3><p>{E(BEER[b]["line"])}</p><p>{chips(BEER[b]["style"], "Not brewed yet", "Style-based concept visualization")}</p><p class="muted">Designed to pair with {E(", ".join(BEER[b]["pairs"][:3]))}</p></article>' for b in GATE_BEERS)
     groups = sorted({b["group"] for b in beers})
     f = filter_inputs("group", [(g, g) for g in groups])
-    sw = "".join(f'<button type="button" class="swatch" data-beer="{b}" aria-pressed="{"true" if b == "hefeweizen" else "false"}">{E(BEER[b]["name"])}</button>' for b in GATE_BEERS)
+    sw = "".join(f'<button type="button" class="swatch" data-beer="{b}" aria-pressed="{"true" if b == "hefeweizen" else "false"}">{E(BEER[b]["name"])}</button>' for b in CORE_BEERS)
     body = f'''<section class="beer-hero" aria-labelledby="h1"><div class="wrap grid cols-2 center">
 <div><p class="eyebrow">Beer · Briefs for a brewer</p><h1 id="h1">Built for the table.</h1>
 <p class="lede">Beer designed to meet the food: designed to be crisp enough to cool the heat and round enough to hold a char. Nothing has been brewed. Each beer is a brief for a head brewer to critique, change, or reject.</p>
@@ -390,19 +352,6 @@ def page_beer():
 <div class="beer-info" data-beer-info role="status" data-beers='{binfo_json}'><p class="bi-name" data-bi="name">Hefeweizen</p><p data-bi="style">{E(BEER["hefeweizen"]["style"])}</p><p data-bi="status">Not brewed yet</p><p data-bi="pair">Designed to pair with {E(", ".join(BEER["hefeweizen"]["pairs"][:3]))}</p></div></div></div></section>
 
 {P.beer_core_section(M, SITE)}
-
-<section aria-labelledby="ex"><div class="wrap"><p class="eyebrow">Wider exploration</p><h2 id="ex">Other beer ideas we have drawn.</h2>
-<p>Only the five core beers above are planned first; these are earlier ideas.</p>
-<fieldset class="filters" data-filter-group="beer-list" data-status="beer-status"><legend>Filter beers</legend>{f}<button type="button" class="btn btn-ghost" data-reset>Clear</button></fieldset>
-<p id="beer-status" class="muted" role="status" aria-live="polite"></p>
-<div id="beer-list" class="grid cols-3">{"".join(beer_card(b, "h3") for b in beers)}</div>
-<p class="muted">No ABV, IBU, recipe, award or availability is stated because none exists. Names marked “working name” may change.</p></div></section>
-
-<section class="alt" aria-labelledby="pp"><div class="wrap"><p class="eyebrow">Pairings</p><h2 id="pp">Proposed pairings.</h2>
-<div class="grid cols-2 pairs">{pairs_section()}</div></div></section>
-
-<section aria-labelledby="tp"><div class="wrap"><p class="eyebrow">The Two-Pour idea</p><h2 id="tp">One dish. Two beers.</h2>
-<p class="lede">A proposed way to eat: the same dish after two different small pours, the second always optional, with a non-alcoholic pour as an equal choice. It is a design idea to test in tastings, not an offer.</p>{two_pour()}</div></section>
 
 <section class="alt" aria-labelledby="bv"><div class="wrap grid cols-2 center"><div><p class="eyebrow">Brewery vision</p><h2 id="bv">The brewery in plain sight.</h2>
 <p class="lede">The imagined brewhouse sits behind glass so guests can see the work. The equipment in this picture is illustrative: the vessel size and count are an open decision and nothing here fixes them.</p></div>
@@ -421,7 +370,7 @@ def page_crossing():
         secs += f'''<section class="cross-sec{" alt" if i % 2 else ""}" aria-labelledby="c{i}"><div class="wrap grid cols-2 center"><div class="reveal{" order-2" if i % 2 else ""}">{side}</div>
 <div class="reveal"><p class="eyebrow">{E(c["theme"])} · <span class="ev ev-{E(c["evidence"].lower())}">{E(c["evidence"])}</span></p><h2 id="c{i}">{E(c["nasha"].split(":")[0] if False else c["theme"])}</h2>
 <div class="cross-pair"><div><h3>India</h3><p>{E(c["india"])}</p></div><div><h3>Mexico</h3><p>{E(c["mexico"])}</p></div></div>
-<p class="lede nasha-line"><strong>NASHA:</strong> {E(c["nasha"])}</p><p class="muted">{E(c["note"])}</p></div></div></section>'''
+<p class="lede nasha-line"><strong>Our take:</strong> {E(c["nasha"])}</p><p class="muted">{E(c["note"])}</p></div></div></section>'''
     body = f'''<section class="band-indigo crossing-band" aria-labelledby="h1">{art.jali(uid("jc"))}<div class="wrap rel">
 <p class="eyebrow">The Crossing</p><h1 id="h1">India and Mexico at one table.</h1>
 <p class="lede">Eight places where the two kitchens already speak to each other, and how NASHA answers. We say how sure we are. <strong>Supported</strong>: the history is well established. <strong>Analogy</strong>: a good comparison, not a claim of shared origin. <strong>Unresolved</strong>: we do not know.</p>
@@ -476,7 +425,7 @@ def main():
              ("beer.html", page_beer), ("crossing.html", page_crossing), ("pairings.html", lambda: P.page_pairings(M, SITE)), ("labs.html", lambda: P.page_lab(M, SITE)), ("investor.html", lambda: P.page_business(M, SITE)), ("about.html", page_about))
     for fn, fnc in pages:
         with open(os.path.join(DIST, fn), "w", encoding="utf-8") as f:
-            f.write(fnc())
+            f.write(P.label_tables(fnc()))
     for n in ("styles.css", "app.js"):
         shutil.copy(os.path.join(SRC, n), os.path.join(DIST, n))
     for n in os.listdir(os.path.join(SRC, "fonts")):

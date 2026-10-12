@@ -41,7 +41,7 @@ if os.path.exists(D+"/brand") or os.path.exists(D+"/ip"): fail("dist contains br
 files=sorted(glob.glob(D+"/*.html"))
 _beer=open(D+"/beer.html",encoding="utf-8").read() if os.path.exists(D+"/beer.html") else ""
 _food=open(D+"/food.html",encoding="utf-8").read() if os.path.exists(D+"/food.html") else ""
-if _beer and ("no style visual yet" not in _beer or "Glass</dt><dd>not defined" not in _beer): fail("working-name beers must show 'no style visual yet' and 'Glass: not defined' (no invented appearance)")
+if _beer and "working name" in _beer.lower() and ("no style visual yet" not in _beer or "Glass</dt><dd>not defined" not in _beer): fail("working-name beers must show 'no style visual yet' and 'Glass: not defined' (no invented appearance)")
 if "Style-based concept visualization" not in _beer or "Not brewed yet" not in _beer: fail("beer page must label beers 'Not brewed yet' and 'Style-based concept visualization'")
 if "not cooked or tested" not in _food: fail("food page must label dishes 'Proposed presentation · not cooked or tested'")
 if "not sensory tested" not in _food.lower(): fail("pairings must say 'not sensory tested'")
@@ -71,7 +71,7 @@ for f in files:
     t=" ".join(p.text)
     for pat,why in [(r"\bhalal\b","halal wording (D-54)"),(r"™|®","trademark symbol (no clearance)"),(r"\b(now open|opening soon|order now|book a table|reserve a table|buy tickets|buy now|add to cart)\b","commerce or open claim"),
                     (r"\b(award[- ]winning|best in austin|sold out|as seen)\b","unearned claim"),(r"\b(our brewery is|we brew|we serve|we are open)\b","present-tense operating claim"),
-                    (r"\b(testimonial|\d+ (guests|customers|reviews))\b","fabricated social proof"),(r"\b(guarantee|proven|certified)\b","unsupported certainty")]:
+                    (r"\b(testimonial|\d+ (guests|customers|reviews))\b","fabricated social proof"),(r"\b(guarantee|proven|certified|verified)\b","unsupported certainty"),(r"\b(award.winning|best in austin|world.class|one.of.a.kind|game.changing|revolutionary)\b","unsupported superlative or generic hype")]:
         for m in re.finditer(pat,t,re.I):
             ctx=t[max(0,m.start()-40):m.end()+40]
             if re.search(r"\b(no|not|never|nothing|none|without|isn.?t|aren.?t)\b",ctx,re.I) and pat!=r"\bhalal\b": continue

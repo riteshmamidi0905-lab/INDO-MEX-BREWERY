@@ -91,6 +91,18 @@ L += ["", "Reading: Horizon A inputs (Session 1 receipts, yields, labor, sensory
       "## What real data answers each Sprint 22 question", ""]
 L += table(["Question", "Real inputs needed", "Unlocks", "Cheapest test before capital", "Stop / change signal"], [[cell(d["question"], 70), cell(d["real_inputs_needed"], 80), cell(d["model_outputs_it_unlocks"], 70), cell(d["cheapest_test_before_capital"], 80), cell(d["stop_or_change_signal"], 70)] for d in dn])
 L += ["", "Site economics, flagship architecture, labor roles, inventory, waste, customer metrics and NA economics are carried as registry inputs (areas SITE, FLAGSHIP, LABOR, INVENTORY, WASTE, CUSTOMER, NA, BREWERY) with the format that needs each and the real input that fills it; none is populated.", ""]
+
+bcust, bocc, bprice, brank, bsub, bcp, bcs = (dat(n) for n in ("bp-customers.csv", "bp-occasions.csv", "bp-pricing.csv", "bm-driver-rank.csv", "bp-substitutes.csv", "bp-critical-path.csv", "bp-concept-guardrails.csv"))
+L += ["", "## Customer hypotheses (not personas; no guest has been studied)", ""]
+L += table(["Segment", "Why they might care", "What could turn them off", "Test that shows whether they matter", "Evidence today"], [[f"**{x['segment']}**", cell(x["why_they_might_care"], 110), cell(x["what_could_turn_them_off"], 110), cell(x["test_that_shows_if_they_matter"], 100), x["evidence_today"]] for x in bcust])
+L += ["", "## Occasion hypotheses (which occasions best fit; none proven)", ""]
+L += table(["Occasion", "Fit with the concept", "What it requires", "Behavior that would prove it", "Priority"], [[f"**{x['occasion']}**", cell(x["fit_with_concept"], 100), cell(x["what_it_requires"], 90), cell(x["future_behavior_that_would_prove_it"], 100), x["priority_hypothesis"]] for x in bocc])
+L += ["", "## Substitutes (by the job the guest hires them for)", ""]
+L += table(["Substitute", "Job", "Why a guest might choose it", "What NASHA must offer instead", "Unknown"], [[f"**{x['substitute']}**", cell(x["job_the_guest_hires_it_for"], 70), cell(x["why_a_guest_might_choose_it_over_NASHA"], 80), cell(x["what_NASHA_must_offer_that_it_does_not"], 100), cell(x["what_we_do_not_know"], 80)] for x in bsub])
+L += ["", "## Price logic (rules only; no prices exist)", ""] + table(["Rule", "Why", "Evidence needed first", "Test"], [[cell(x["rule"], 100), cell(x["why"], 90), cell(x["evidence_needed_before_a_price_exists"], 90), cell(x["test"], 90)] for x in bprice])
+L += ["", "## Which unknowns swing the model most (structural, not dollars)", ""] + table(["Driver", "Why it swings the model", "Structure of the effect", "First real input"], [[f"**{x['driver']}**", cell(x["why_it_swings_the_model"], 90), cell(x["structure_of_the_effect"], 100), cell(x["first_real_input"], 80)] for x in brank])
+L += ["", "## Critical path (durations UNKNOWN)", ""] + table(["Step", "Depends on", "Who decides", "Duration", "Evidence that unlocks it"], [[f"**{x['step']}**", cell(x["depends_on"], 80), cell(x["who_decides"], 50), x["duration"], cell(x["what_evidence_unlocks_it"], 80)] for x in bcp])
+L += ["", "## Concept guardrails (what NASHA is not, what survives downsizing)", ""] + table(["Kind", "Item", "Note"], [[x["kind"], cell(x["item"], 90), cell(x["note"], 100)] for x in bcs if x["kind"] != "GLOSSARY"])
 OUT["docs/BUSINESS-MODEL-CONTROL.md"] = "\n".join(L)
 
 # ------------------------------------------------------------------ OPERATING BLUEPRINT
@@ -108,6 +120,48 @@ L += table(["Stage", "Guest goal", "Design principle", "Guest experiences", "Sta
 L += ["", "## 5. Architectural digital twin (CONCEPTUAL / ILLUSTRATIVE)", ""]
 L += table(["Space", "Intent", "Adjacency and flow", "Day vs night", "Family / accessibility intent", "Must not be claimed"], [[f"**{t['space']}**", cell(t["intent"], 110), cell(t["adjacency_and_flow"], 90), cell(t["day_vs_night"], 70), cell(t["family_and_accessibility_intent"], 80), cell(t["must_not_be_claimed"], 60)] for t in twin])
 L += ["", "Renders elsewhere in the repository are concept illustrations. They are not plans, not engineered and not evidence. Do not generate further Chicken 65 concept images before the physical prototype.", ""]
+
+food = rows("food/CORE5-FOOD-MATRIX.csv")
+def secs(L, title, banner, hdr, body, note=None):
+    L += ["", f"## {title}", ""]
+    if banner: L += [f"**{banner}**", ""]
+    L += table(hdr, body)
+    if note: L += ["", note]
+bar, qc, svc, dpt, tko, acc, sus, inc, con = (dat(n) for n in ("bp-bar.csv", "bp-qc.csv", "bp-service.csv", "bp-dayparts.csv", "bp-takeout.csv", "bp-accessibility.csv", "bp-sustainability.csv", "bp-incidents.csv", "bp-continuity.csv"))
+menu_, cx, sup_, col, tech, kpi, fsf, adj = (dat(n) for n in ("bp-menu.csv", "menu-complexity.csv", "bp-supply-consolidation.csv", "bp-collisions.csv", "bp-tech.csv", "bp-kpi.csv", "bp-foodsafety.csv", "bp-adjacency.csv"))
+secs(L, "6. Bar blueprint", "REQUIREMENTS FOR FUTURE PROFESSIONAL DESIGN - NOT A DESIGN (no equipment, staffing or code claims)", ["Element", "Requirement", "Depends on", "Interaction", "Hazard / control", "Open question", "Professional"], [[f"**{x['element']}**", cell(x["requirement_for_future_design"], 150), cell(x["depends_on"], 50), cell(x["interaction_with_kitchen_brewery_guests"], 100), cell(x["hazard_or_control"], 100), cell(x["open_question"], 90), cell(x["professional_review_required"], 50)] for x in bar])
+secs(L, "7. Food safety planning framework", "PLANNING FRAMEWORK - PROFESSIONAL/REGULATORY REVIEW REQUIRED. Not HACCP-approved, not health-department approved, not code compliant, not professionally reviewed. Sources are web-search summaries (T1); no page was opened in full and edition conflicts are noted.", ["Topic", "Planning point", "Control idea", "Source (T1)", "Limitation"], [[f"**{x['topic']}**", cell(x["planning_framework_point"], 130), cell(x["key_control_idea"], 130), cell(x["authoritative_source"] + (" " + x["source_url"] if x["source_url"] else ""), 120), cell(x["limitation"], 110)] for x in fsf], "Any numeric limit appears only where a source summary stated it, and must be confirmed with the authority. The agent-proposed 60 C hot-hold floor in the Session 1 sheet stays unconfirmed until reconciled with the authority's figure.")
+secs(L, "8. Quality system (what must stay consistent; R&D acceptance is separate from future production QC)", None, ["Domain", "What must be consistent to feel like NASHA", "R&D acceptance (decided by tests now)", "Future production QC (light)", "Owner", "Evidence trigger"], [[f"**{x['domain']}**", cell(x["what_must_be_consistent_to_feel_like_NASHA"], 120), cell(x["rd_acceptance_criteria"], 130), cell(x["future_production_qc"], 120), cell(x["owner_role"], 40), cell(x["evidence_trigger"], 80)] for x in qc])
+cx_dims = ["unique_skus", "prep_stages", "station_count", "cook_time", "holding_sensitivity", "special_equipment", "waste", "training_burden"]
+cxrows = []
+for x in cx:
+    vals = {k: int(x[k]) for k in cx_dims}; top = [k.replace("_", " ") for k, v in vals.items() if v == max(vals.values())]
+    cxrows.append([f"**{x['dish']}**"] + [str(vals[k]) for k in cx_dims] + [str(sum(vals.values())), ", ".join(top), cell(x["question_it_raises"], 120)])
+L += ["", "## 9. Menu architecture", "", "The Core 5 is the R&D priority, not the eventual whole menu. No opening menu is decided.", ""]
+L += table(["Layer", "What it is", "Members today", "Status", "Evidence that would expand or remove", "Must not happen"], [[f"**{x['layer']}**", cell(x["what_it_is"], 100), cell(x["current_members"], 120), cell(x["status"], 40), cell(x["evidence_that_would_expand_or_remove"], 110), cell(x["must_not_happen"], 90)] for x in menu_])
+L += ["", "### Menu complexity index (a question generator, not a profitability predictor)", "", "Ordinal 0-3 per dimension, AGENT JUDGEMENT from the matrix and supply spec; the total only ranks where to ask questions first.", ""]
+L += table(["Dish", "SKUs", "Prep stages", "Stations", "Cook time", "Holding", "Equipment", "Waste", "Training", "Total", "Highest", "Question it raises"], cxrows)
+EQ = ["fryer", "comal", "tandoor", "char", "oven", "braise", "hot hold", "cold storage"]
+eqrows = []
+for f in food:
+    t = (f["equipment"] or "").lower()
+    eqrows.append([f"**{f['name']}**"] + ["x" if (k in t or (k == "braise" and ("kettle" in t or "braise" in t))) else "" for k in EQ])
+single = [k for i, k in enumerate(EQ) if sum(1 for r_ in eqrows if r_[i + 1]) == 1]
+L += ["", "### Dish-by-equipment matrix (from the food matrix text; simplification questions)", ""] + table(["Dish"] + EQ, eqrows) + ["", "Equipment needed by only one dish (a simplification question: is it worth it?): " + (", ".join(single) if single else "none") + ". Shared by most dishes (a bottleneck question): " + (", ".join(k for i, k in enumerate(EQ) if sum(1 for r_ in eqrows if r_[i + 1]) >= 3) or "none") + "."]
+secs(L, "10. Service model (open, not decided)", "OPEN - NOT DECIDED", ["Model", "Hospitality", "Labor", "Throughput", "Pairing explanation", "Family", "Average check", "Guest control", "Complexity", "What testing decides"], [[f"**{x['model']}**"] + [cell(x[k], 70) for k in ("hospitality", "labor", "throughput", "pairing_explanation", "family_experience", "average_check_effect", "guest_control", "complexity", "what_future_testing_decides")] for x in svc])
+secs(L, "11. Dayparts (no assumption that NASHA serves all)", "OPEN - NO DECISION WITHOUT DEMAND AND ECONOMICS", ["Daypart", "Beer fit", "Food fit", "Complexity added", "Menu change", "Staffing change", "Guest identity", "Question to decide"], [[f"**{x['daypart']}**"] + [cell(x[k], 80) for k in ("fits_beer", "fits_food", "complexity_added", "menu_change", "staffing_change", "guest_identity_effect", "question_to_decide")] for x in dpt])
+secs(L, "12. Takeout and delivery (what travels)", "CONCEPT ONLY - NOT DESIGNED; delivery economics must not distort the dine-in concept; take-away alcohol is a question for a Texas alcohol attorney", ["Item", "Travels", "Does not travel", "Packaging must solve", "Tests that matter", "Dine-in protection"], [[f"**{x['item']}**"] + [cell(x[k], 90) for k in ("travels", "does_not_travel", "packaging_must_solve", "tests_that_matter", "dine_in_protection")] for x in tko])
+secs(L, "13. Accessibility design intent", "ACCESSIBILITY DESIGN INTENT - PROFESSIONAL REVIEW REQUIRED (no ADA or code compliance is claimed)", ["Area", "Design intent", "What could exclude guests", "Future test or review", "Professional"], [[f"**{x['area']}**", cell(x["design_intent"], 130), cell(x["what_could_exclude_guests"], 110), cell(x["future_test_or_review"], 100), cell(x["professional_review_required"], 50)] for x in acc])
+secs(L, "14. Sustainability and resource use (measure first, improve later; no promises)", None, ["Topic", "Material operational question", "Measure first", "Later improvement question"], [[f"**{x['topic']}**", cell(x["material_operational_question"], 130), cell(x["measure_first"], 110), cell(x["later_improvement_question"], 110)] for x in sus])
+secs(L, "15. Safety and incident planning (planning level; professional safety planning required)", None, ["Hazard", "Where it arises", "Planning control idea", "Professional requirement", "Owner"], [[f"**{x['hazard']}**", cell(x["where_it_arises"], 90), cell(x["planning_control_idea"], 130), cell(x["professional_requirement"], 90), x["owner_role"]] for x in inc])
+secs(L, "16. Continuity questions (lightweight)", None, ["Scenario", "Immediate conceptual response", "Resilience requirement", "Dependency", "Professional"], [[f"**{x['scenario']}**", cell(x["immediate_conceptual_response"], 130), cell(x["resilience_requirement"], 110), cell(x["dependency"], 70), cell(x["professional_review"], 50)] for x in con])
+secs(L, "17. Supply consolidation (Core 5 and NA together; identity tensions flagged)", None, ["Family", "Used in", "Cross-utilization", "Identity tension", "Spoilage / waste", "Backup idea", "Test question"], [[f"**{x['ingredient_family']}**", cell(x["where_used"], 80), cell(x["cross_utilization_opportunity"], 100), cell(x["identity_tension"], 100), cell(x["spoilage_or_waste_note"], 80), cell(x["backup_idea"], 80), cell(x["question_for_testing"], 80)] for x in sup_])
+secs(L, "18. Operating collision map (updated; none solved)", "COLLISION TO MEASURE - NOT SOLVED", ["Collision", "Where", "Why it matters", "What a future test measures"], [[f"**{x['collision']}**", cell(x["where_it_happens"], 90), cell(x["why_it_matters"], 120), cell(x["what_a_future_test_measures"], 120)] for x in col])
+secs(L, "19. Adjacency requirements (for a future architect)", None, ["Pair", "Relation", "Why", "Open question"], [[f"**{x['pair']}**", x["relation"], cell(x["why"], 100), cell(x["open_question"], 80)] for x in dat("bp-adjacency.csv")])
+sc_rows = rows("docs/company/data/site-scorecard.csv"); deal = [x["dimension"] for x in sc_rows if (x.get("dealbreaker_candidate") or "").strip().lower() == "yes"]
+L += ["", "### Site deal-breakers and the walk-away rule", "", "Deal-breaker candidates in the site scorecard: " + (", ".join(deal) if deal else "none flagged") + ". Rule (proposed): while any deal-breaker is unknown at decision time, the site decision is HOLD, never a guess. No site has been identified.", ""]
+secs(L, "20. Technology needs (no vendors, no prices)", None, ["Function", "Need class", "Why", "MVP alternative without a vendor", "Decision trigger"], [[f"**{x['function']}**", x["need_class"], cell(x["why"], 100), cell(x["mvp_alternative_without_vendor"], 100), cell(x["decision_trigger"], 90)] for x in tech])
+secs(L, "21. Minimum KPIs (defined, not populated; no vanity metrics)", "NOT POPULATED", ["Id", "Category", "KPI", "Question it answers", "Relevant from", "Capture (generic)"], [[x["kpi_id"], x["category"], f"**{x['kpi']}**", cell(x["question_it_answers"], 110), cell(x["relevant_from"], 40), cell(x["capture_system"], 50)] for x in kpi])
 OUT["docs/OPERATING-BLUEPRINT.md"] = "\n".join(L)
 
 # ------------------------------------------------------------------ PRODUCT BIBLE
@@ -167,6 +221,13 @@ for b in beer:
 L += ["## Ingredient specifications (from supply-spec.csv)", ""]
 L += table(["Ingredient", "Primary specification", "Unacceptable substitute", "D-54 risk", "Cultural identity risk", "Supplier status"], [[f"**{s['ingredient']}**", cell(s["primary_specification"], 90), cell(s["unacceptable_substitute"], 70), cell(s["d54_risk"], 60), cell(s["cultural_identity_risk"], 50), cell(s["potential_supplier_status"], 70)] for s in sp])
 L += ["", "## Where else the truth lives", "", "Frozen Session 1 protocol: `food/t1-test-sheets/`; failure contingencies: `docs/company/FOOD-FAILURE-CONTINGENCIES.md`; glassware concepts (unmanufactured): `beer/GLASSWARE-V2.md`; sauce system: `food/SAUCE-SYSTEM.md`; cultural integrity: `brand/CULTURAL-INTEGRITY-AND-ADVISORS.md`.", ""]
+
+nspec = rows("food/CORE5-NA-SPEC.csv"); nport = dat("bp-na-portfolio.csv"); alg = {r_["dish_id"]: r_ for r_ in rows("food/ALLERGEN-MATRIX.csv")}
+L += ["", "## Non-alcoholic flavour specifications (PROPOSED - NOT SENSORY TESTED; qualitative, no recipes, no strength or health claims)", ""]
+L += table(["Food", "Drink", "Kind", "Role", "Flavor / aroma", "Acid / sweet / bitter", "Body / fizz / temp", "Garnish / look", "Batching / holding (questions)", "Allergen / D-54 (questions)", "How it could fail", "Deciding test"], [[KEY.get(x["food_id"], x["food_id"]), f"**{x['drink_label']}**", x["kind"], cell(x["role"], 70), cell(x["flavor_direction"] + "; " + x["aroma"], 110), cell(x["acid"] + "; " + x["sweetness"] + "; " + x["bitterness"], 90), cell(x["body"] + "; " + x["carbonation"] + "; " + x["temperature"], 80), cell(x["garnish_intent"] + "; " + x["visual_intent"], 90), cell(x["batching_question"] + " " + x["holding_question"], 110), cell(x["allergen_question"] + " " + x["d54_question"], 100), cell(x["how_it_could_fail"], 90), cell(x["deciding_test"], 90)] for x in nspec])
+L += ["", "### Does the NA program read as one NASHA system?", ""] + table(["Dimension", "Observation", "Tension or risk", "Future test question"], [[f"**{x['dimension']}**", cell(x["observation"], 130), cell(x["tension_or_risk"], 110), cell(x["future_test_question"], 100)] for x in nport])
+L += ["", "## Diet coverage (D-54 and allergens per dish; planning view, not a certified statement)", "", "D-54: no beef, pork or hidden derivatives (lard, gelatin, rennet claims, isinglass). Beer and NA need the same screen for fining agents and stabilisers; no halal claim is made.", ""]
+L += table(["Dish", "D-54 risk (matrix)", "Allergens indicated 'yes' or 'possible' in the allergen matrix"], [[f"**{f['name']}**", cell(f["d54_risk"], 130), ", ".join(k.replace("_", " ") for k in ("milk", "egg", "peanut", "tree_nut", "wheat", "soy", "fish", "shellfish", "sesame") if re.match(r"(yes|possible)", (alg.get(f["id"], {}).get(k) or "").strip().lower()) or " yes " in " " + (alg.get(f["id"], {}).get(k) or "").lower()) or "none indicated"] for f in food]) + ["", "Cross-contact notes and the full cell text are in `food/ALLERGEN-MATRIX.csv`; no allergen-free claim is made for any dish."]
 OUT["docs/PRODUCT-BIBLE.md"] = "\n".join(L)
 
 # ------------------------------------------------------------------ BLUEPRINT STATUS
@@ -188,11 +249,7 @@ for ladder in ("digital", "real_world", "professional"):
 L += ["", "Agent analysis is never counted as professional review. Real-world level 1 means desk or public-source observation only.", "",
       "## Investor-readiness diagnostic (explicit criteria; a low level is acceptable; it shows what capital must solve)", ""]
 L += table(["Dimension", "Level 1", "Level 2", "Level 3", "Current", "Evidence", "What capital must solve"], [[f"**{r['dimension']}**", cell(r["level1"], 50), cell(r["level2"], 60), cell(r["level3"], 60), f"**{r['current_level']}**/3", cell(r["evidence_for_current"], 70), cell(r["what_capital_must_solve"], 60)] for r in ir])
-gap = dat("digital-gap-audit.csv")
-L += ["## Remaining digital gap audit (Sprint 23: what is actually missing, and who or what can supply it)", "",
-      "Completion means nothing materially useful can be added without real-world evidence, professional authority, capital or a founder decision. Classes: " + ", ".join(f"{k} {sum(g['class'] == k for g in gap)}" for k in ("BUILD NOW", "FOUNDER INPUT", "REAL-WORLD INPUT", "PROFESSIONAL REVIEW", "FUTURE CAPITAL", "NOT WORTH BUILDING")) + ".", ""]
-L += table(["Area", "Missing item", "Class", "$0?", "Decision value", "Outcome"], [[g["area"], cell(g["missing_item"], 100), f"**{g['class']}**", g["zero_dollar"], g["decision_value"], cell(g["outcome_sprint_23"], 70)] for g in gap])
-L += ["", "30-day zero-dollar test: if the founder had no additional dollars for 30 days, the meaningful digital work still open is the items marked BUILD NOW whose outcome is not DONE (" + str(sum(g["class"] == "BUILD NOW" and not g["outcome_sprint_23"].startswith("DONE") for g in gap)) + " in this audit); every other open item waits on the founder, a real-world result, a professional or capital. New BUILD NOW items will appear as real inputs arrive.", ""]
+gap = dat("digital-gap-audit.csv")   # Sprint 23 audit, superseded by the Sprint 24 audit below (kept as history)
 L += ["", "## Pre-capital blueprint completion", "", f"**Lead with this: {sum(c['status']=='DONE' for c in phys)} of {len(phys)} criteria that need the founder's real cooking, photographs and receipts are done.** Overall count for context only: {pct}% ({sum(c['status']=='DONE' for c in pc)} done, {sum(c['status']=='PARTIAL' for c in pc)} partial, {sum(c['status']=='NOT DONE' for c in pc)} not done of {total} criteria; DONE = 1, PARTIAL = 0.5). Method: criteria are listed below; the percentage counts criteria, it does not weight quality or importance, and it is NOT a readiness score and NOT declared complete. Split: digital and desk criteria {sc_(nonphys)} of {len(nonphys)} ({round(100*sc_(nonphys)/len(nonphys))}%); criteria that need the founder's physical work (cooking, photographs, receipts) {sc_(phys)} of {len(phys)} ({round(100*sc_(phys)/len(phys))}%). The headline number therefore overstates progress on real evidence: physical completion is the number that matters most.", ""]
 L += table(["Criterion", "How checked", "Status", "Zero dollars?", "Note"], [[cell(c["criterion"], 100), cell(c["how_checked"], 50), f"**{c['status']}**", c["zero_dollar"], cell(c["note"], 60)] for c in pc])
 L += ["", "PRE-CAPITAL BLUEPRINT COMPLETE will mean: every criterion above is DONE, every area is at digital level 3 or higher or marked as needing a professional, and an independent investor red-team finds no unsupported claim. It is not declared now.", "",
@@ -204,35 +261,71 @@ L += ["", *table(["Team stage", "Who", "Status"], [[t["stage"], cell(t["who"], 1
       "## Website roadmap (each stage consumes real project data)", ""]
 L += table(["Stage", "Name", "Consumes", "Status today", "Truth rule"], [[w["stage"], w["name"], cell(w["consumes_data"], 80), w["status_today"], cell(w["truth_rule"], 70)] for w in wr])
 L += [""]
+
+gap24 = dat("blueprint-gap-audit.csv"); frz = {x["item"]: x["value"] for x in dat("blueprint-freeze.csv")}; chg = dat("blueprint-change-control.csv"); evc = dat("evidence-classes.csv")
+dreg = rows("docs/decisions/decision-register.csv")
+for c_ in evc:
+    if c_["counts_toward_evidence_score"].startswith("YES") and c_["class"] not in ("PHYSICAL EVIDENCE", "CUSTOMER EVIDENCE", "PROFESSIONAL EVIDENCE", "PRIMARY-SOURCE VERIFICATION"): ERR.append("evidence class may not count toward the score: " + c_["class"])
+for x_ in gap24:
+    if x_["class"] == "A" and not x_["sprint24_outcome"].strip(): ERR.append("class A gap without an outcome: " + x_["area"])
+oc = {}
+for x_ in gap24:
+    if x_["class"] == "A": oc[x_["sprint24_outcome"].split(":")[0].split(" ")[0]] = oc.get(x_["sprint24_outcome"].split(":")[0].split(" ")[0], 0) + 1
+L += ["", "## Sprint 24 adversarial gap audit (fresh eyes, 40 areas)", "",
+      "An independent agent audited the blueprint as a sophisticated hospitality founder would, ignoring the project's percentages. Classes: A build now for $0; B founder physical input; C outside human input; D professional authority; E capital; F intentionally deferred; G not useful yet. Rows: " + ", ".join(f"{k} {sum(x_['class'] == k for x_ in gap24)}" for k in "ABCDEFG") + ". Every class A row now has an outcome: " + ", ".join(f"{k} {v}" for k, v in sorted(oc.items())) + ".", ""]
+L += table(["Area", "Gap (class A)", "Outcome"], [[x_["area"], cell(x_["gap"], 110), cell(x_["sprint24_outcome"], 150)] for x_ in gap24 if x_["class"] == "A" and not x_["sprint24_outcome"].startswith(("DONE", "COVERED"))])
+L += ["", "Rows resolved as DONE or COVERED are listed in `docs/company/data/blueprint-gap-audit.csv`. Classes B to G are the dependencies on reality, outsiders, professionals and capital.", "",
+      "## Decision register audit (D-series)", "", "Classification is derived by `tools/decision_register.py`, and the check fails if a key decision is misclassified. An agent-written decision cannot read as founder-confirmed.", ""]
+from collections import Counter as _C
+L += table(["Classification", "Decisions"], [[k, str(v)] for k, v in sorted(_C(x_["classification"] for x_ in dreg).items())])
+L += ["", *table(["Decision", "Classification", "Status"], [[x_["id"], x_["classification"], cell(x_["status"], 80)] for x_ in dreg if x_["id"] in ("D-54", "D-66", "D-74", "D-76", "D-77", "D-78", "D-79", "D-80", "D-81", "D-82")]), "", "PROJECT-RECORDED means the register text does not state a founder owner; it is not claimed as founder-confirmed.", "",
+      "## Evidence governance", "", "Only physical, customer, professional and primary-source evidence can count toward the evidence score, and only through the scoring rules.", ""]
+L += table(["Class", "Counts toward the score", "Must not masquerade as", "Guard"], [[f"**{c_['class']}**", c_["counts_toward_evidence_score"], cell(c_["must_not_masquerade_as"], 90), cell(c_["guard"], 130)] for c_ in evc])
+L += ["", "## PRE-CAPITAL DIGITAL BLUEPRINT v1.0 (freeze record)", "", *table(["Item", "Value"], [[k, cell(v, 400)] for k, v in frz.items()]), "", "### Change control after the freeze", ""]
+L += table(["Change class", "Definition", "Allowed when", "Requires", "Example"], [[f"**{c_['change_class']}**", cell(c_["definition"], 90), cell(c_["allowed_when"], 70), cell(c_["requires"], 100), cell(c_["example"], 70)] for c_ in chg])
 OUT["docs/BLUEPRINT-STATUS.md"] = "\n".join(L)
 
 # ------------------------------------------------------------------ INVESTOR DATA ROOM
 dr_, cs, uf, ir2 = (dat(n) for n in ("data-room.csv", "capital-stages.csv", "use-of-funds.csv", "investor-risks.csv"))
 for d in dr_:
     if not os.path.exists(p(d["path"])) and d["path"] not in OUT: ERR.append("data room path missing: " + d["path"])
-L = ["# NASHA investor data room index (generated by tools/blueprint_views.py; do not hand-edit)", "",
-     "**Private index of pointers, not duplicated files. No investor has been contacted; nothing is public; the website stays noindex.** " + LANE, "",
-     "## Executive summary (one page; source: `docs/company/data/exec-summary.csv`)", "", *[f"**{e['heading']}.** {e['text']}" + chr(10) for e in dat("exec-summary.csv")], "", "## The story, stated honestly", "",
-     "NASHA is a concept for a food-and-beer house joining Indian and Mexican traditions in Austin. The founder is using the pre-capital phase to remove as much uncertainty as possible before asking anyone to fund expensive uncertainty: what has been documented with time and research (concept, product system, operating and economic model structures with every number still unknown, risk map, data room); what has been tested personally (NOTHING YET: Session 1 is prepared, not performed); what requires capital (professional review, commercial pilots, brewing, site, build); and what each dollar would de-risk (see use of funds). The amounts are not set; no fundraising claim is made.", "",
-     "## Documented, and not proven", "",
-     *table(["DOCUMENTED (written down, not tested)", "NOT PROVEN"], [["A coherent concept, Core 5 food and beer design, operating, kitchen, brewery and guest blueprints, a provenance-aware economic model, risk register and data room", "That any dish works or any guest wants it; that any beer can be brewed to brief; unit economics; legal structure; the name; the site; the brewery case"], [f"Evidence {EVID}/95 and design {DESIGN}/95, reported unchanged by digital work", "Everything requiring a physical test, a professional, a customer or a quote"]]), "",
-     "## Data room index (READY / PARTIAL / FUTURE; PROFESSIONAL REVIEW REQUIRED where noted)", "", "READY = a generated or reference document that is complete as a document. PREPARED = written and current but built on hypotheses, unknown inputs or unsent packages (not tested, not reviewed). PARTIAL = incomplete. FUTURE = does not exist yet. Neither READY nor PREPARED says anything about whether the content is tested or correct.", ""]
+ar, cmm, faq, asr, pm_, absn, csrc = (dat(n) for n in ("austin-thesis.csv", "change-our-mind.csv", "investor-faq.csv", "assumption-register.csv", "bp-premortem.csv", "data-room-absences.csv", "capital-sources.csv"))
+PKG = [("Executive summary", "this document, section 1", "the concept, stage, what is done and not done, capital strategy"), ("Investor FAQ and what would change our mind", "this document, sections 2 and 3", "the hard questions and the evidence that would change direction"), ("Private website (PRE-CAPITAL WEBSITE v1.0)", "website/dist/ (built locally; private, noindex, undeployed)", "the experience of the concept with its status labelled"), ("Product bible", "docs/PRODUCT-BIBLE.md", "Core 5 food and beer, NA specifications, pairing hypotheses"), ("Business model", "docs/BUSINESS-MODEL-CONTROL.md", "decision model, formats, gates, hypotheses; every input unknown"), ("Risk and assumption register", "this document, section 4", "assumptions with cheapest tests; failure scenarios with early warnings"), ("Capital roadmap and use of funds", "this document, section 5", "stages, what each unlocks, no amounts")]
+L = ["# NASHA investor package and data room (v1.0; generated by tools/blueprint_views.py; do not hand-edit)", "",
+     "**Private. No investor has been contacted; nothing is public; the website stays noindex. Part 1 is the INVESTOR VIEW: the strongest materials only. Part 2 is the INTERNAL PROJECT VIEW: everything, for the founder.** " + LANE, "",
+     "## PART 1 - INVESTOR VIEW (package v1.0)", "", "### The seven materials", "", *table(["Material", "Where", "What it gives you"], [[f"**{a_}**", b_, c_] for a_, b_, c_ in PKG]),
+     "", "### 1. Executive summary (source: `docs/company/data/exec-summary.csv`)", "", *[f"**{e['heading']}.** {e['text']}" + chr(10) for e in dat("exec-summary.csv")],
+     "### Documented, and not proven", "", *table(["DOCUMENTED (written down, not tested)", "NOT PROVEN"], [["A coherent concept, Core 5 food and beer design, operating, kitchen, bar, brewery and guest blueprints, a provenance-aware economic model, registers of risks, assumptions and decisions", "That any dish works or any guest wants it; that any beer can be brewed to brief; unit economics; legal structure; the name; the site; the brewery case"], ["Nothing has been tested yet", "Everything requiring a physical test, a professional, a customer or a quote"]]), "",
+     "### 2. Investor FAQ (`investor-faq.csv`)", ""]
+for q in faq: L += [f"**{q['question']}** {q['answer']}", ""]
+L += ["### 3. What would change our mind (`change-our-mind.csv`)", ""]
+L += table(["Thesis", "What we believe today", "Evidence that would change direction", "Cheapest way to find out"], [[f"**{c['thesis']}**", cell(c["what_we_believe_today"], 110), cell(c["evidence_that_would_change_direction"], 150), cell(c["cheapest_way_to_find_out"], 100)] for c in cmm])
+L += ["", "### 4. Key assumptions and risks", "", "Every assumption is UNTESTED.", ""]
+KEYA = [x for x in asr if re.search(r"fusion|demand|food cost|labor|name|brewer|capital|team|permit|legal|margin|brewery", x["assumption"], re.I)][:8]
+L += table(["Assumption", "Confidence", "Cheapest test", "If false"], [[cell(a_["assumption"], 120), a_["confidence"], cell(a_["cheapest_test"], 90), cell(a_["what_happens_if_false"], 90)] for a_ in KEYA]) + ["", f"The full register ({len(asr)} assumptions, all UNTESTED) is in `docs/company/data/assumption-register.csv`; the pre-mortem (how NASHA could fail, with early warnings) is in the business model document."]
+L += ["", "**Risks and how each will be tested**", ""] + table(["Risk", "Evidence today", "Cheapest test", "Horizon", "What would change the plan"], [[f"**{r['risk']}**", cell(r["evidence_today"], 70), cell(r["cheapest_test"], 80), r["test_horizon"], cell(r["what_would_change_the_plan"], 80)] for r in ir2])
+L += ["", "### 5. Capital roadmap and use of funds (no amounts; venture capital is not assumed)", ""]
+L += table(["Stage", "Funds", "Unlocks", "Risk removed", "Must be true first", "Claim status"], [[f"**{c['stage']} {c['name']}**", cell(c["what_it_funds"], 70), cell(c["what_it_unlocks"], 60), cell(c["risk_removed"], 70), cell(c["what_must_be_true_first"], 60), c["claim_status"]] for c in cs])
+L += ["", *table(["Category", "Unlocks", "Gate / stage", "Unknown today", "Value"], [[f"**{u['category']}**", cell(u["what_it_unlocks"], 90), u["gate_or_stage"], cell(u["unknown_today"], 50), u["funding_value"]] for u in uf]), "", "**Capital sources to consider much later (none approached; general, confirm with an adviser)**", ""]
+L += table(["Source", "Usually wants", "Stage fit", "NASHA has today", "Caution"], [[f"**{c['source_type']}**", cell(c["what_it_usually_wants_as_evidence"], 90), cell(c["typical_stage_fit"], 40), cell(c["what_NASHA_has_today"], 70), cell(c["caution"], 90)] for c in csrc])
+L += ["", "### 6. Why Austin, and what the market teaches", ""]
+L += table(["Class", "Statement", "What must be true", "Cheapest test"], [[f"**{a['class']}**", cell(a["statement"], 130), cell(a["what_must_be_true"], 110), cell(a["cheapest_test"], 90)] for a in ar])
+L += ["", *table(["Segment", "What we can learn", "NASHA hypothesis", "What we do not know"], [[f"**{c['segment']}**", cell(c["what_we_can_learn"], 130), cell(c["nasha_hypothesis"], 110), cell(c["what_we_do_not_know"], 90)] for c in dat("competitor-lessons.csv")])]
+L += ["", "### 7. Deliberately absent (and why)", ""] + table(["Absent", "Why", "What would create it"], [[f"**{x['absent_item']}**", cell(x["why_it_is_deliberately_absent"], 110), cell(x["what_would_create_it"], 80)] for x in absn])
+L += ["", "### 8. Investor data room index (investor view; statuses are the project's own labels, not outside certification)", "", "READY = a generated or reference document complete as a document. PREPARED = written and current but built on hypotheses, unknown inputs or unsent packages. PARTIAL = incomplete. FUTURE = does not exist yet.", ""]
 cats = []
 for d in dr_:
-    if d["category"] not in cats: cats.append(d["category"])
+    if d["investor_view"] == "YES" and d["category"] not in cats: cats.append(d["category"])
 for c in cats:
-    L += [f"### {c}", ""] + table(["Item", "Path", "Status", "Note"], [[d["item"], f"`{d['path']}`", f"**{d['status']}**", cell(d["note"], 90)] for d in dr_ if d["category"] == c]) + [""]
-L += ["## Capital stages (no amounts; hospitality investors, strategic and brewery partners, angels, later debt and founder capital all considered; venture capital is not assumed)", ""]
-L += table(["Stage", "Funds", "Unlocks", "Sources to consider", "Must be true first", "Claim status"], [[f"**{c['stage']} {c['name']}**", cell(c["what_it_funds"], 70), cell(c["what_it_unlocks"], 60), cell(c["sources_to_consider"], 70), cell(c["what_must_be_true_first"], 60), c["claim_status"]] for c in cs])
-L += ["", "## Use of funds (categories and what each unlocks; funding value NOT SET)", ""]
-L += table(["Category", "Unlocks", "Gate / stage", "Unknown today", "Value"], [[f"**{u['category']}**", cell(u["what_it_unlocks"], 90), u["gate_or_stage"], cell(u["unknown_today"], 50), u["funding_value"]] for u in uf])
-L += ["", "## Why Austin: fact, research and hypothesis kept apart (`docs/company/data/austin-thesis.csv`)", ""]
-L += table(["Class", "Statement", "What must be true", "Cheapest test"], [[f"**{a['class']}**", cell(a["statement"], 130), cell(a["what_must_be_true"], 110), cell(a["cheapest_test"], 90)] for a in dat("austin-thesis.csv")])
-L += ["", "## What the market teaches us (`docs/company/data/competitor-lessons.csv`)", ""]
-L += table(["Segment", "What we can learn", "NASHA hypothesis", "What we do not know"], [[f"**{c['segment']}**", cell(c["what_we_can_learn"], 130), cell(c["nasha_hypothesis"], 110), cell(c["what_we_do_not_know"], 90)] for c in dat("competitor-lessons.csv")])
-L += ["", "## Risks and how each will be tested", ""]
-L += table(["Risk", "Evidence today", "Cheapest test", "Horizon", "What would change the plan"], [[f"**{r['risk']}**", cell(r["evidence_today"], 70), cell(r["cheapest_test"], 80), r["test_horizon"], cell(r["what_would_change_the_plan"], 80)] for r in ir2])
-L += ["", "No TAM/SAM/SOM, projections, customers, sales, quotes, margins, permits, clearance or investor interest exist or are implied.", ""]
+    L += [f"**{c}**", ""] + table(["Item", "Path", "Status", "Note"], [[d["item"], f"`{d['path']}`", f"**{d['status']}**", cell(d["note"], 90)] for d in dr_ if d["category"] == c and d["investor_view"] == "YES"]) + [""]
+L += ["", "## PART 2 - INTERNAL PROJECT VIEW (everything, for the founder; not for an investor)", "", "Items below are not part of the investor package. Nothing is deleted.", ""]
+cats2 = []
+for d in dr_:
+    if d["category"] not in cats2: cats2.append(d["category"])
+for c in cats2:
+    its = [d for d in dr_ if d["category"] == c and d["investor_view"] != "YES"]
+    if its: L += [f"**{c}**", ""] + table(["Item", "Path", "Status", "Note"], [[d["item"], f"`{d['path']}`", f"**{d['status']}**", cell(d["note"], 90)] for d in its]) + [""]
+L += ["No TAM/SAM/SOM, projections, customers, sales, quotes, margins, permits, clearance or investor interest exist or are implied.", ""]
 OUT["docs/INVESTOR-DATA-ROOM.md"] = "\n".join(L)
 
 # ------------------------------------------------------------------ website data
@@ -259,8 +352,12 @@ inv["space"] = [{"space": t["space"], "intent": t["intent"], "flow": t["adjacenc
 inv["journey"] = [{"stage": g["stage"], "goal": g["guest_goal"], "principle": g["design_principle"], "experience": g["what_the_guest_experiences"], "staff": g["staff_behavior"], "avoid": g["failure_to_avoid"], "recovery": g["recovery_if_it_goes_wrong"]} for g in gj_]
 inv["team"] = [{"role": t["role"], "founder": t["founder_can_do_today"], "gap": t["gap"], "from_stage": t["needed_from_stage"]} for t in tb]
 inv["chain"] = [{"chain": c["chain"], "step": int(c["step"]), "node": c["node"], "relationship": c["relationship"]} for c in chain]
-inv["dataroom"] = [{"category": d["category"], "item": d["item"], "status": d["status"], "note": d["note"]} for d in dr_]
-inv["gap"] = {k: sum(g["class"] == k for g in gap) for k in ("BUILD NOW", "FOUNDER INPUT", "REAL-WORLD INPUT", "PROFESSIONAL REVIEW", "FUTURE CAPITAL", "NOT WORTH BUILDING")}
+inv["dataroom"] = [{"category": d["category"], "item": d["item"], "status": d["status"], "note": d["note"]} for d in dr_ if d["investor_view"] == "YES"]
+inv["faq"] = [{"q": q["question"], "a": q["answer"]} for q in faq]
+inv["change_mind"] = [{"thesis": c["thesis"], "believe": c["what_we_believe_today"], "evidence": c["evidence_that_would_change_direction"], "test": c["cheapest_way_to_find_out"]} for c in cmm]
+inv["absent"] = [{"item": x["absent_item"], "why": x["why_it_is_deliberately_absent"]} for x in absn]
+inv["premortem"] = [{"fail": x["how_NASHA_could_fail"], "warn": x["early_warning_signal"]} for x in pm_]
+inv["version"] = {"blueprint": frz["version"], "website": frz["website_version"], "status": frz["status"], "date": frz["date"]}
 inv["completeness"] = [{"area": c["area"], "digital": int(c["digital_0to4"]), "real": int(c["real_world_0to4"]), "pro": int(c["professional_0to3"]), "capital": c["capital_dependency"], "next": c["next_unlock"]} for c in cm]
 inv["stages"] = [{"stage": c["stage"], "name": c["name"], "funds": c["what_it_funds"], "unlocks": c["what_it_unlocks"], "claim": c["claim_status"], "true_first": c["what_must_be_true_first"], "risk": c["risk_removed"], "sources": c["sources_to_consider"]} for c in cs]
 inv["lab_stages"] = ["Idea", "Research", "Prototype", "Cook", "Measure", "Taste", "Fail / learn", "Iterate", "Validate"]

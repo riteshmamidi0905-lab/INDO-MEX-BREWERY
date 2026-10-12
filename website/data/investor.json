@@ -640,7 +640,7 @@
   {
    "section": "stage",
    "heading": "Current stage",
-   "text": "Concept and design blueprint (stage S0). Physical evidence is 4 of 95 and design is 43 of 95 on the project's own scoreboard. These are self-assessed and are not investor-grade metrics."
+   "text": "Concept and design blueprint, before any physical test. Nothing has been cooked, brewed, tasted by anyone outside the project, priced from real receipts or reviewed by a professional."
   },
   {
    "section": "done",
@@ -671,6 +671,16 @@
    "section": "founder",
    "heading": "The founder",
    "text": "Ritesh Mamidi is building NASHA as a one-person project, using the pre-capital period to develop as much of the company as can be done without money: product system, economic model, operating blueprint, a private website and a data room, and personal home-kitchen testing. No hospitality, culinary or brewing credentials are claimed; the capability gaps are listed openly in the future-team view."
+  },
+  {
+   "section": "hasnt_happened",
+   "heading": "Has not happened",
+   "text": "cooked|brewed|tasted by anyone outside the project|photographed as a real prototype|priced from real receipts or quotes|reviewed by a lawyer, brewer, chef or advisor|sold"
+  },
+  {
+   "section": "doesnt_exist",
+   "heading": "Does not exist",
+   "text": "a site|a legal entity|a permit|a customer|an investor conversation|a named chef, brewer or advisor"
   }
  ],
  "austin": [
@@ -808,7 +818,7 @@
    "id": "T14",
    "statement": "Patios appear as a common feature in the sampled Austin taproom and beer-garden listings and press snippets.",
    "class": "PUBLIC RESEARCH",
-   "must_be_true": "Shade is baseline, so only verified cooling or comfort could be a hook.",
+   "must_be_true": "Shade is baseline, so only demonstrably better cooling or comfort could be a hook.",
    "evidence": "market-map.csv rows 31-32: Yelp listings (T2) and press snippets.",
    "limit": "Actual shade or cooling features at competitors unknown.",
    "test": "Visit several patios at different times and note shade and comfort.",
@@ -954,7 +964,7 @@
   {
    "segment": "Food-and-beer pairing concepts",
    "exists": "The Brewer's Table was reported in 2018-era coverage (T1) as a kitchen designed around its beers with pairing dinners; current status UNKNOWN.",
-   "learn": "Pairing dinners are an established format, so NASHA cannot call pairing new; the name also overlaps a term in NASHA's repo.",
+   "learn": "Pairing dinners are an established format, so NASHA cannot call pairing new.",
    "hypothesis": "A pairing system tied to an Indian-Mexican menu and non-alcoholic parity is a hypothesis only.",
    "unknown": "Whether pairing drives repeat visits or sales, and the current state of existing concepts, are UNKNOWN."
   }
@@ -975,7 +985,8 @@
     "portion_intent": "Shareable board or plate; exact amounts are still to be set in testing.",
     "plating_intent": "Board or plate, with crema on the side or worked in depending on the construction under test.",
     "identity_critical_ingredients": "Boneless chicken thigh, rice flour and cornflour coating, curry leaf, green chile, fried corn tortilla wedges, lime.",
-    "cultural_risk": "Medium. The Chicken 65 origin and the Hyderabad or Andhra lineage are unconfirmed, so no single origin story should be told, and an advisor should review."
+    "cultural_risk": "Medium. The Chicken 65 origin and the Hyderabad or Andhra lineage are unconfirmed, so no single origin story should be told, and an advisor should review.",
+    "next_test_public": "A first home-kitchen test with the rules written beforehand: three ways of building the plate, scored blind at the start, after five minutes and after ten."
    },
    "na": {
     "food_id": "chicken-65-totopos",
@@ -1019,7 +1030,8 @@
     "portion_intent": "Two small tacos per order.",
     "plating_intent": "Two tacos on a plate with salsa on the side.",
     "identity_critical_ingredients": "Paneer, hung-curd marinade with ginger, garlic, chile, kasuri methi and chaat masala, corn tortilla, salsa verde, onion, cilantro, lime.",
-    "cultural_risk": "Medium. Pineapple is flagged as uncertain and needs advisor input, and the taco form and tikka are both borrowed, so both cultures should be credited plainly."
+    "cultural_risk": "Medium. Pineapple is flagged as uncertain and needs advisor input, and the taco form and tikka are both borrowed, so both cultures should be credited plainly.",
+    "next_test_public": "A home test comparing heat sources for the char, with the marinade and the tortilla held the same."
    },
    "na": {
     "food_id": "paneer-tikka-taco",
@@ -1056,14 +1068,15 @@
    "narr": {
     "food_id": "goat-birria",
     "what_it_is": "A slow braise of bone-in goat in a guajillo and ancho chile adobo, served as tacos with a small cup of consomme. It has not been cooked and is a long-lead item.",
-    "why_it_exists": "Birria de chivo is commonly made with goat in Jalisco (web sources, T1; a Mexican advisor is to confirm), and and it lets NASHA make a rich, deep centrepiece that clearly reads as goat.",
+    "why_it_exists": "Birria de chivo is commonly made with goat in Jalisco (web sources, T1; a Mexican advisor is to confirm), and it lets NASHA make a rich, deep centrepiece that clearly reads as goat.",
     "indian_component": "Technique only: dum-style sealed-pot braising, whole-spice toasting and bhuna-style frying of the adobo paste. Yogurt-papaya and curry-leaf ideas are tested against a plain adobo, not assumed.",
     "mexican_component": "Goat, chile adobo, consomme, corn tortillas, onion, cilantro, lime and salsa. These are historically supported from web sources, with a Mexican advisor still to confirm.",
     "fusion_logic": "The Mexican dish stays whole, and the Indian layer is included only where tasting shows it adds depth. The dipped and griddled taco form is a modern adaptation.",
     "portion_intent": "Taco or tacos with consomme in a small cup; no cheese by default.",
     "plating_intent": "Tacos on a plate and consomme in a small clay or steel cup, with bones and fibre kept visible.",
     "identity_critical_ingredients": "Bone-in goat, guajillo and ancho adobo, goat, chicken or vegetable stock only, corn tortillas, onion, cilantro, lime.",
-    "cultural_risk": "Higher. Birria is a living Mexican regional dish, so Mexican advisor review is needed, and the sealed-pot link to India is a parallel rather than a shared origin."
+    "cultural_risk": "Higher. Birria is a living Mexican regional dish, so Mexican advisor review is needed, and the sealed-pot link to India is a parallel rather than a shared origin.",
+    "next_test_public": "One small home braise: weigh the meat, the bone and the loss, and see whether it reads clearly as goat and what it really costs."
    },
    "na": {
     "food_id": "goat-birria",
@@ -1107,7 +1120,8 @@
     "portion_intent": "Two tacos, three to four florets per taco.",
     "plating_intent": "Two tacos, with salsa on the side and slaw and glaze added at the last moment.",
     "identity_critical_ingredients": "Cauliflower florets, tamarind and guajillo glaze, lime slaw, corn tortilla, pickled onion, cilantro.",
-    "cultural_risk": "Lower to medium. The glaze is an original house idea with no claimed precedent, and the dish should be called modern fusion and not traditional."
+    "cultural_risk": "Lower to medium. The glaze is an original house idea with no claimed precedent, and the dish should be called modern fusion and not traditional.",
+    "next_test_public": "A home test of roasting against frying, scored for how long the crunch lasts."
    },
    "na": {
     "food_id": "gobi-taco",
@@ -1151,7 +1165,8 @@
     "portion_intent": "One large folded tortilla, cut into wedges.",
     "plating_intent": "Wedges cut to show the cross-section, with the dip in a cup.",
     "identity_critical_ingredients": "Chicken thigh, reduced makhani, roasted poblano rajas, Oaxaca-style cheese, tortilla, kasuri methi.",
-    "cultural_risk": "Medium. The dish's origin is disputed, so we should tell no single origin story, and the quesadilla con rajas is borrowed from Mexican home cooking and should be credited."
+    "cultural_risk": "Medium. The dish's origin is disputed, so we should tell no single origin story, and the quesadilla con rajas is borrowed from Mexican home cooking and should be credited.",
+    "next_test_public": "A home test of filling weight and griddle time, to see how it holds together and how fast it cooks."
    },
    "na": {
     "food_id": "butter-chicken-quesadilla",
@@ -1192,7 +1207,7 @@
    "why_it_earns_a_tap": "It is the beer most dependent on yeast character, so it is the clearest test of whether a brewing partner can deliver something distinctive. Its short, warm production cycle may also free tank time.",
    "what_remains_undecided": "The brewer decides the yeast strain, fermentation temperature and pitch, whether a rest step is worth it, open or closed fermentation, how much haze and sediment to keep, and the pass/fail thresholds for each proof. Any clarifying aid must be free of animal products (no isinglass; nothing from beef or pork).",
    "status_plain": "Design brief only. Not brewed, not tested, no recipe. A qualified brewer must develop it. The gate rule is PROPOSED decision D-77, which the founder has not yet confirmed.",
-   "non_brewer_note": "Under proposed D-77 this is the proof beer, judged on six things (credibility, difference from the others, repeat drinkability, food fit, fermentation reliability, taproom appeal) with four outcomes: continue, revise, de-prioritise or remove. A brewer sets the thresholds, and a Hefeweizen failure would not by itself stop the other pilots. D-77 is not yet confirmed, and the older wording ('if it fails nothing else launches') is still in some files. Contains wheat and gluten; no gluten-free claim."
+   "non_brewer_note": "Under proposed D-77 this is the proof beer, judged on six things (credibility, difference from the others, repeat drinkability, food fit, fermentation reliability, taproom appeal) with four outcomes: continue, revise, de-prioritise or remove. A brewer sets the thresholds, and a Hefeweizen failure would not by itself stop the other pilots. D-77 is not yet confirmed. Contains wheat and gluten; no gluten-free claim."
   },
   {
    "id": "mexican-lager",
@@ -1439,7 +1454,7 @@
    "stage": "FOOD DISCOVERY",
    "goal": "Find dishes they will enjoy, whether vegetarian or not.",
    "principle": "Curiosity without lectures; honest descriptions.",
-   "experience": "Dishes explained plainly, with the Indian and Mexican threads described with verified facts only.",
+   "experience": "Dishes explained plainly, with the Indian and Mexican threads described with facts a source supports.",
    "staff": "Describe food as cooks do, in simple words; offer suggestions, not pushes.",
    "avoid": "Performed culture, stories made up, pressure to order more.",
    "recovery": "Offer an alternative dish and note the preference for the kitchen."
@@ -1638,7 +1653,7 @@
    "chain": "RESTAURANT",
    "step": 3,
    "node": "MENU MIX",
-   "relationship": "share of each Core 5 dish and drink in orders (scenario weights are MODEL_ASSUMPTION until sold)"
+   "relationship": "share of each Core 5 dish and drink in orders (scenario weights are assumptions until sold)"
   },
   {
    "chain": "RESTAURANT",
@@ -1727,62 +1742,8 @@
  ],
  "dataroom": [
   {
-   "category": "00 Executive Overview",
-   "item": "Founder control center",
-   "status": "READY",
-   "note": "generated"
-  },
-  {
-   "category": "00 Executive Overview",
-   "item": "Blueprint status and completeness",
-   "status": "READY",
-   "note": "generated"
-  },
-  {
-   "category": "01 Brand",
-   "item": "Brand strategy",
-   "status": "PARTIAL",
-   "note": "name under D-78/D-79; no logo (D-66)"
-  },
-  {
-   "category": "01 Brand",
-   "item": "Trademark screening and conflict facts",
-   "status": "PARTIAL",
-   "note": "LEGAL REVIEW REQUIRED"
-  },
-  {
-   "category": "01 Brand",
-   "item": "Brand contingency",
-   "status": "READY",
-   "note": "name-independent work continues"
-  },
-  {
-   "category": "01 Brand",
-   "item": "Brand experience and responsible alcohol",
-   "status": "PREPARED",
-   "note": "proposed"
-  },
-  {
    "category": "02 Product",
    "item": "Product bible",
-   "status": "READY",
-   "note": "generated"
-  },
-  {
-   "category": "02 Product",
-   "item": "Core 5 food matrix",
-   "status": "PREPARED",
-   "note": "design hypotheses"
-  },
-  {
-   "category": "02 Product",
-   "item": "Core 5 beer matrix",
-   "status": "PREPARED",
-   "note": "design hypotheses"
-  },
-  {
-   "category": "02 Product",
-   "item": "Core 5 control center",
    "status": "READY",
    "note": "generated"
   },
@@ -1793,34 +1754,10 @@
    "note": "not performed"
   },
   {
-   "category": "03 Food R&D",
-   "item": "Pairing matrix (hypotheses)",
-   "status": "PARTIAL",
-   "note": "not sensory tested"
-  },
-  {
-   "category": "03 Food R&D",
-   "item": "Iteration log",
-   "status": "FUTURE",
-   "note": "empty until cooks happen"
-  },
-  {
-   "category": "04 Beer Program",
-   "item": "Opening beer program",
-   "status": "PARTIAL",
-   "note": "design only; PROFESSIONAL REVIEW REQUIRED"
-  },
-  {
    "category": "04 Beer Program",
    "item": "Brewery scale framework",
    "status": "PARTIAL",
    "note": "no size chosen"
-  },
-  {
-   "category": "04 Beer Program",
-   "item": "Beer and NA business system",
-   "status": "PARTIAL",
-   "note": "proposed"
   },
   {
    "category": "05 Market",
@@ -1829,22 +1766,10 @@
    "note": "public sources, low confidence"
   },
   {
-   "category": "05 Market",
-   "item": "Competitive differentiation",
-   "status": "PARTIAL",
-   "note": "agent analysis"
-  },
-  {
    "category": "06 Customer Validation",
    "item": "Validation path",
    "status": "PREPARED",
    "note": "no customers yet"
-  },
-  {
-   "category": "06 Customer Validation",
-   "item": "First 30 learning plan",
-   "status": "PREPARED",
-   "note": "templates empty"
   },
   {
    "category": "07 Operations",
@@ -1853,22 +1778,10 @@
    "note": "PROPOSED OPERATING MODEL - NOT FIELD VALIDATED"
   },
   {
-   "category": "07 Operations",
-   "item": "Operating day model",
-   "status": "PARTIAL",
-   "note": "assumptions"
-  },
-  {
    "category": "08 Financial Model",
    "item": "Business model control system",
    "status": "PREPARED",
    "note": "all inputs UNKNOWN"
-  },
-  {
-   "category": "08 Financial Model",
-   "item": "Assumptions store",
-   "status": "FUTURE",
-   "note": "empty until real inputs"
   },
   {
    "category": "09 Architecture",
@@ -1877,34 +1790,10 @@
    "note": "CONCEPTUAL / ILLUSTRATIVE; PROFESSIONAL REVIEW REQUIRED"
   },
   {
-   "category": "09 Architecture",
-   "item": "Spatial vision",
-   "status": "PARTIAL",
-   "note": "concept only"
-  },
-  {
    "category": "10 Regulatory",
    "item": "Regulatory question tree",
    "status": "PARTIAL",
    "note": "LEGAL REVIEW REQUIRED"
-  },
-  {
-   "category": "10 Regulatory",
-   "item": "Minimum lawful food test",
-   "status": "PARTIAL",
-   "note": "UNVERIFIED"
-  },
-  {
-   "category": "11 IP",
-   "item": "Attorney package",
-   "status": "PREPARED",
-   "note": "LEGAL REVIEW REQUIRED; not sent"
-  },
-  {
-   "category": "11 IP",
-   "item": "IP asset tracker",
-   "status": "READY",
-   "note": "tracker"
   },
   {
    "category": "12 Evidence",
@@ -1913,28 +1802,10 @@
    "note": "evidence 4/95"
   },
   {
-   "category": "12 Evidence",
-   "item": "Evidence intake",
-   "status": "READY",
-   "note": "ingests real inputs"
-  },
-  {
    "category": "13 Risks",
    "item": "Investor risks with tests",
    "status": "PREPARED",
    "note": "tests not yet executed"
-  },
-  {
-   "category": "14 Roadmap",
-   "item": "Roadmap and stages",
-   "status": "READY",
-   "note": "stage S0"
-  },
-  {
-   "category": "14 Roadmap",
-   "item": "Website roadmap",
-   "status": "READY",
-   "note": "V1-V7"
   },
   {
    "category": "15 Capital",
@@ -1959,15 +1830,223 @@
    "item": "Professional gates register",
    "status": "PREPARED",
    "note": "unfunded"
+  },
+  {
+   "category": "00 Executive Overview",
+   "item": "Executive summary and investor FAQ",
+   "status": "READY",
+   "note": "one page plus the questions an investor will ask"
+  },
+  {
+   "category": "02 Product",
+   "item": "Non-alcoholic pairing specifications (PROPOSED)",
+   "status": "PREPARED",
+   "note": "hypotheses, not tasted"
+  },
+  {
+   "category": "13 Risks",
+   "item": "Assumption register and what would change our mind",
+   "status": "PREPARED",
+   "note": "every major assumption with its cheapest test"
+  },
+  {
+   "category": "13 Risks",
+   "item": "What would change our mind",
+   "status": "PREPARED",
+   "note": "evidence that would change direction"
   }
  ],
- "gap": {
-  "BUILD NOW": 16,
-  "FOUNDER INPUT": 1,
-  "REAL-WORLD INPUT": 9,
-  "PROFESSIONAL REVIEW": 7,
-  "FUTURE CAPITAL": 2,
-  "NOT WORTH BUILDING": 2
+ "faq": [
+  {
+   "q": "Why Indian x Mexican?",
+   "a": "The founder believes the two cuisines share ideas such as flatbreads, chilies and braises. Whether guests find the fusion intentional rather than gimmicky is untested, and cultural advisors have not reviewed it."
+  },
+  {
+   "q": "Why beer?",
+   "a": "The concept is a brewery and kitchen with drinks chosen for each plate. Beer is the most capital-heavy part, so it is last in the capital order, and partner beer can test the idea first."
+  },
+  {
+   "q": "Why Austin?",
+   "a": "Austin is the founder's chosen city, and a small desk sample shows taprooms with kitchens and related concepts. That is a hypothesis; demand and room against competitors remain untested."
+  },
+  {
+   "q": "Why not start with a food truck?",
+   "a": "A truck is a heavy purchase before any dish has passed its gates. The path starts with home cooking, then tastings and a shared kitchen, and a truck is considered only after repeat demand exists."
+  },
+  {
+   "q": "Why not contract brew forever?",
+   "a": "Contract or partner beer may prove to be enough, and the plan says so. A house brewery is a goal to be justified by evidence, and the change-our-mind file names what would end it."
+  },
+  {
+   "q": "Why five dishes?",
+   "a": "Five is a focused development set chosen by the founder, not a final menu. A compact menu is a hypothesis for efficient execution, and any dish that fails its gates can be reworked or cut."
+  },
+  {
+   "q": "What has actually been tested?",
+   "a": "Nothing. No dish has been cooked, no beer brewed, and no guest has tasted anything. What exists is a documented concept, frozen test protocols and a decision model."
+  },
+  {
+   "q": "Why should anyone believe the economics?",
+   "a": "They should not yet. The economics are a decision model with every input unknown, not a forecast; real receipts, quotes and sales are needed before any figure is meaningful."
+  },
+  {
+   "q": "What stops a competitor copying this?",
+   "a": "Little, today. Indian-Mexican fusion businesses are already reported in Austin. Any edge would come from execution, pairing design and the process of learning in public, none of which has been tested."
+  },
+  {
+   "q": "What happens if NASHA cannot use the name?",
+   "a": "A same-name Austin restaurant has been publicly reported, which is a high conflict risk. Counsel has not reviewed it, so the name may be kept, modified or replaced, and brand-independent work continues in the meantime."
+  },
+  {
+   "q": "Why hasn't the founder opened already?",
+   "a": "The founder has almost no money, so the pre-capital phase is deliberate: build and test what can be done without funds first. Opening needs site, build and licensing capital, and the plan funds each stage only after evidence."
+  },
+  {
+   "q": "What exactly would investment fund?",
+   "a": "The stages have categories but no amounts: early validation, then legal, IP, pilots and insurance, then site work, build and opening. No raise target is set, and amounts would follow real quotes."
+  },
+  {
+   "q": "What is the biggest risk?",
+   "a": "That no one has evidence yet: no dish or beer has been tested and no guest has been asked. Name conflict, unknown margins and a capital-heavy brewery follow, each with a cheapest test listed."
+  }
+ ],
+ "change_mind": [
+  {
+   "thesis": "FOOD x BEER",
+   "believe": "Food and beer designed together is a stronger concept than either alone; untested.",
+   "evidence": "Blind or paired sessions show no lift, or guests value the food alone and treat beer as incidental.",
+   "test": "Pairing session with and without matched drinks (H3)."
+  },
+  {
+   "thesis": "AUSTIN",
+   "believe": "Austin is the right first city; supported by a small desk sample only.",
+   "evidence": "Interviews and sales show too small or saturated a niche, or a better-fit city shows clearer demand or access.",
+   "test": "Desk refresh then interviews (H6)."
+  },
+  {
+   "thesis": "CORE 5",
+   "believe": "Five dishes are a workable development core; not a final menu.",
+   "evidence": "A dish fails its frozen gates, is gimmicky to blind tasters, or cannot be sourced to D-54.",
+   "test": "Cook the sessions and apply the gates."
+  },
+  {
+   "thesis": "HEFEWEIZEN as proof beer",
+   "believe": "D-77 is an agent proposal awaiting founder confirmation: Hefeweizen as proof beer; unconfirmed.",
+   "evidence": "A brewer finds the style a poor proof, or guests prefer another style for reliability and repeat drinking.",
+   "test": "Brewer review of the six proofs."
+  },
+  {
+   "thesis": "HOUSE BREWERY",
+   "believe": "A house brewery is the long-run goal, last in the capital order.",
+   "evidence": "Guests value partner beer equally; collaboration teaches enough; brewery capex is out of proportion to sales.",
+   "test": "Residency or collaboration pilot comparison (H9)."
+  },
+  {
+   "thesis": "COURT BREWHOUSE",
+   "believe": "A concept form, not locked; brewhouse at the centre of a courtyard.",
+   "evidence": "An architect or brewer finds it impractical for the site, drainage, cost or operations.",
+   "test": "Architect and brewer review on a candidate site."
+  },
+  {
+   "thesis": "PAIRING MODEL",
+   "believe": "Each plate has a chosen drink; the logic is a design hypothesis.",
+   "evidence": "Guests ignore the pairing, find it preachy, or choose their own drink with no loss of satisfaction.",
+   "test": "Observe orders when pairings are offered or not."
+  },
+  {
+   "thesis": "NA EQUAL STANDING",
+   "believe": "Non-alcoholic pairings deserve equal standing with beer.",
+   "evidence": "NA drinks prove weaker in tasting, or guests do not order them even with equal billing.",
+   "test": "Blind-compare NA pairings with the dishes."
+  },
+  {
+   "thesis": "PREMIUM EXPERIENCE",
+   "believe": "The experience can justify a premium; no price is known.",
+   "evidence": "Accepted prices do not cover cost per portion, or guests judge the experience ordinary against nearby options.",
+   "test": "Small paid tasting with stated willingness to pay (H5)."
+  }
+ ],
+ "absent": [
+  {
+   "item": "Revenue forecast, valuation, returns, payback",
+   "why": "Every economic input is unknown; a forecast would be invented"
+  },
+  {
+   "item": "Market size (TAM, SAM, SOM)",
+   "why": "No sourced basis exists; it would be invented"
+  },
+  {
+   "item": "Customer evidence, reviews, testimonials",
+   "why": "No guest has tasted anything"
+  },
+  {
+   "item": "Photographs of NASHA food",
+   "why": "Nothing has been cooked; concept images are illustrations"
+  },
+  {
+   "item": "Professional reviews (attorney, brewer, chef, advisor)",
+   "why": "None has happened; agent analysis is not professional review"
+  },
+  {
+   "item": "Name clearance or trademark filings",
+   "why": "Not sought; a same-name Austin restaurant has been reported"
+  },
+  {
+   "item": "Final logo and brand identity",
+   "why": "D-66 and the name question"
+  },
+  {
+   "item": "Site, lease, permits, entity",
+   "why": "Not pursued under the zero-dollar direction"
+  },
+  {
+   "item": "Fundraising amount",
+   "why": "Amounts follow real quotes"
+  },
+  {
+   "item": "Named team or advisors",
+   "why": "None exists; none is claimed"
+  }
+ ],
+ "premortem": [
+  {
+   "fail": "The first dishes do not hold or taste like themselves",
+   "warn": "Failure codes on Session 1 plates; crispness below the frozen gate at T+10"
+  },
+  {
+   "fail": "The name cannot be used and the brand work was name-dependent",
+   "warn": "Counsel advises changing the name; any name-dependent purchase made early"
+  },
+  {
+   "fail": "Real food cost and labor leave no contribution at any plausible price",
+   "warn": "Food cost layer close to or above any price headroom; high labor minutes per portion"
+  },
+  {
+   "fail": "Demand is friends-only enthusiasm",
+   "warn": "Strong stated interest and weak behavior at the first paid or ticketed test"
+  },
+  {
+   "fail": "Throughput caps covers below break-even",
+   "warn": "Capacity warning in the model; ticket times well above target in a pilot"
+  },
+  {
+   "fail": "The brewery consumes capital before beer demand is shown",
+   "warn": "Brewhouse quotes requested before a host or collaboration pilot has run"
+  },
+  {
+   "fail": "The founder cannot cover culinary, brewing and operations alone",
+   "warn": "No partner or chef joins; the founder is the only cook and operator at every test"
+  },
+  {
+   "fail": "The legal structure for beer with food does not allow the intended format",
+   "warn": "An alcohol attorney rules out the residency or brewpub route"
+  }
+ ],
+ "version": {
+  "blueprint": "PRE-CAPITAL DIGITAL BLUEPRINT v1.0",
+  "website": "PRE-CAPITAL WEBSITE v1.0 (private, noindex, undeployed, concept stage)",
+  "status": "FROZEN (design baseline only)",
+  "date": "2026-10-12"
  },
  "lab_stages": [
   "Idea",

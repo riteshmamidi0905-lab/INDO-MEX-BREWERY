@@ -1,0 +1,7 @@
+"change_class","definition","allowed_when","requires","example"
+"EVIDENCE-DRIVEN","A change caused by real physical, customer or vendor evidence","a real input is ingested","the preserved original and the rule that applies; scores change only by their rules","Session 1 result changes the Chicken 65 status"
+"EXPERIMENT-RESULT","The recorded outcome of a planned test","a test in the protocol was run","the result recorded as it happened, including failure","a dish is cut after failing its frozen gates"
+"FOUNDER-DIRECTED","A change the founder decides","the founder says so in their own words","a decision row (D-nn) classed FOUNDER CONFIRMED","the founder confirms or rejects D-76 or D-77"
+"PROFESSIONAL-REQUIRED","A change that depends on a qualified professional","a professional has reviewed in writing","the raw written reply preserved; no agent paraphrase as authority","an attorney advises changing the name"
+"MARKET-UPDATE","New material public research that changes a stated fact","a primary or reputable source with date, tier and limit","the source row and the claim it replaces","a competitor closes or opens"
+"CORRECTION","A fix to an error, label drift or an overstated claim","the error is shown","what was wrong and the fix; no change of meaning disguised as a fix","a site sentence overstated its source tier"

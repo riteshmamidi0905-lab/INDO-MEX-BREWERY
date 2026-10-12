@@ -12,17 +12,17 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 | `control_center.py` | GENERATOR | Generate docs/CORE5-CONTROL-CENTER.md: one place for the ten Core 5 products. Reads the canonical matrices, se | 3 |
 | `core5_glasses.py` | HELPER / MODEL | Core 5 beer glass FAMILY (concept geometry) built with tools/glass_params.py (Sprint 16). CONCEPT GEOMETRY - M | 2 |
 | `dashboard.py` | GENERATOR | Generate docs/PROTOTYPE-READINESS.md from repository facts. Nothing is marked done unless a real result row ex | 6 |
-| `decision_register.py` | GENERATOR | Decision register and contradiction check (Sprint 19). Parses docs/decisions/DECISIONS.md (table rows / D-n /  | 6 |
-| `diet_audit.py` | VALIDATOR | D-54 consistency check: no beef/pork in CURRENT-PRODUCT files unless the line is marked as superseded/rejected | 6 |
+| `decision_register.py` | GENERATOR | Decision register and contradiction check (Sprint 19). Parses docs/decisions/DECISIONS.md (table rows / D-n /  | 8 |
+| `diet_audit.py` | VALIDATOR | D-54 consistency check: no beef/pork in CURRENT-PRODUCT files unless the line is marked as superseded/rejected | 7 |
 | `experiment_stats.py` | RECORDER / INGEST | Small-sample experiment analysis for T1-style tests (Sprint 14). Honest by design: with n<8 it reports descrip | 4 |
 | `fin_model.py` | HELPER / MODEL | Restaurant/brewery scenario model (Sprint 14, hardened Sprint 22). Reads ops/finance/assumptions.csv (every va | 13 |
-| `food_costing.py` | HELPER / MODEL | Food costing, allergen and D-54 checks for NASHA recipes (Sprint 9, hardened Sprint 22). Reads food/costing/in | 18 |
+| `food_costing.py` | HELPER / MODEL | Food costing, allergen and D-54 checks for NASHA recipes (Sprint 9, hardened Sprint 22). Reads food/costing/in | 19 |
 | `founder_center.py` | GENERATOR | Generate docs/FOUNDER-CONTROL-CENTER.md from canonical company data in docs/company/data/ (workstreams, stages | 4 |
 | `founder_download_candidates.sh` | HELPER / MODEL | FOUNDER: run this on YOUR computer (not in the cloud sandbox, whose proxy blocks figma.com) before 2026-10-18. | 8 |
 | `glass_model.py` | HELPER / MODEL | Parametric glass CONCEPT model (Sprint 14). Draws a revolved profile with OpenSCAD, measures volume with trime | 2 |
 | `glass_params.py` | HELPER / MODEL | Parametric glass CONCEPT geometry with optional collar ring (Sprint 15). CONCEPT GEOMETRY - MANUFACTURABILITY  | 3 |
 | `glass_v2.py` | HELPER / MODEL | Glass family V2 geometry system (Sprint 17). CONCEPT GEOMETRY - MANUFACTURABILITY UNVERIFIED; no logo/text/mar | 3 |
-| `intake.py` | RECORDER / INGEST | REAL INPUT INGESTION (Sprint 21). One tool for receipts, labels, packages, supplier quotes and raw professiona | 13 |
+| `intake.py` | RECORDER / INGEST | REAL INPUT INGESTION (Sprint 21). One tool for receipts, labels, packages, supplier quotes and raw professiona | 14 |
 | `kitchen_capacity.py` | HELPER / MODEL | Core 5 kitchen CAPACITY PLANNING EXERCISE (Sprint 17). Not a forecast. Reads ops/kitchen/capacity-assumptions. | 4 |
 | `lit_ledger.py` | RECORDER / INGEST | Literature ledger (Sprint 15): Question -> candidate paper -> DOI -> metadata -> abstract note -> evidence qua | 2 |
 | `make_session_cards.py` | GENERATOR | Generate the Core 5 SESSION CARDS (food/sessions/S2..S5-*.md) and the R&D book index (food/sessions/README.md) | 2 |
@@ -45,5 +45,5 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 | `validate_company.py` | VALIDATOR | Company-building system checks (Sprint 19): data files parse, generated founder control center is fresh, decis | 2 |
 | `validate_core5.py` | VALIDATOR | Validate the Core 5 x Core 5 program files (Sprint 16, D-75). Exit 1 on failure. Checks structure and honesty, | 3 |
 | `validate_repo.py` | VALIDATOR | Sprint-3 repository validation. Run from repo root: python3 tools/validate_repo.py (exit 1 on failure; warning | 10 |
-| `validate_site.py` | VALIDATOR | Website validation for website/dist. Run from repo root: python3 tools/validate_site.py (exit 1 on failure). | 9 |
+| `validate_site.py` | VALIDATOR | Website validation for website/dist. Run from repo root: python3 tools/validate_site.py (exit 1 on failure). | 10 |
 | `visual_qa.py` | HELPER / MODEL | Automated pre-checks for a generated or composited NASHA image (Sprint 9). They support, and never replace, th | 6 |

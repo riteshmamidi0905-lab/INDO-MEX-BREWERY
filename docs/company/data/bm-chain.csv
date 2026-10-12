@@ -1,7 +1,7 @@
 "chain","step","node","relationship","input_ids","real_source_that_fills_it","tool"
 "RESTAURANT","1","CUSTOMER","guests who choose to come (count, party size, repeat)","cust_guests_per_open_day|cust_party_size","customer tasting, paid event, real event economics","fin_model.py (covers)"
 "RESTAURANT","2","ORDER","items per guest and check; intent is NOT behavior","cust_items_per_guest|cust_avg_check","paid customer purchase","fin_model.py (avg_check)"
-"RESTAURANT","3","MENU MIX","share of each Core 5 dish and drink in orders (scenario weights are MODEL_ASSUMPTION until sold)","mix_share_chicken65|mix_share_paneer|mix_share_birria|mix_share_gobi|mix_share_quesadilla","paid customer purchase","kitchen_capacity.py (mixes)"
+"RESTAURANT","3","MENU MIX","share of each Core 5 dish and drink in orders (scenario weights are assumptions until sold)","mix_share_chicken65|mix_share_paneer|mix_share_birria|mix_share_gobi|mix_share_quesadilla","paid customer purchase","kitchen_capacity.py (mixes)"
 "RESTAURANT","4","FOOD COST","purchase cost / yield + waste + oil + sauce + garnish per portion","dish_*_food_cost","Session 1 receipts and yields; supplier quote","food_costing.py economics"
 "RESTAURANT","5","BEVERAGE COST","cost per pour (beer, NA, other) x attach rate","bev_cost_per_pour|cust_beer_attach|cust_na_attach","brewer review, partner-brewery pricing, tasting event","fin_model.py (bev_cogs_pct)"
 "RESTAURANT","6","VARIABLE LABOR","direct labor minutes per portion x loaded wage (founder labor is not zero)","dish_*_direct_labor_min|labor_loaded_wage","Session 1 timing, real event staffing","food_costing.py economics"

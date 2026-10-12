@@ -22,7 +22,7 @@ Every output reports the weakest grade of the inputs that produced it (`input_gr
 |---|---|---|---|---|
 | 1 | **CUSTOMER** | guests who choose to come (count, party size, repeat) | customer tasting, paid event, real event economics | fin_model.py (covers) |
 | 2 | **ORDER** | items per guest and check; intent is NOT behavior | paid customer purchase | fin_model.py (avg_check) |
-| 3 | **MENU MIX** | share of each Core 5 dish and drink in orders (scenario weights are MODEL_ASSUMPTION until sold) | paid customer purchase | kitchen_capacity.py (mixes) |
+| 3 | **MENU MIX** | share of each Core 5 dish and drink in orders (scenario weights are assumptions until sold) | paid customer purchase | kitchen_capacity.py (mixes) |
 | 4 | **FOOD COST** | purchase cost / yield + waste + oil + sauce + garnish per portion | Session 1 receipts and yields; supplier quote | food_costing.py economics |
 | 5 | **BEVERAGE COST** | cost per pour (beer, NA, other) x attach rate | brewer review, partner-brewery pricing, tasting event | fin_model.py (bev_cogs_pct) |
 | 6 | **VARIABLE LABOR** | direct labor minutes per portion x loaded wage (founder labor is not zero) | Session 1 timing, real event staffing | food_costing.py economics |
@@ -297,3 +297,100 @@ Reading: Horizon A inputs (Session 1 receipts, yields, labor, sensory result) ar
 | What would make us stop or change direction? | bm-gates.csv fail column; bm-downside.csv | the stop statements | n/a | see gates |
 
 Site economics, flagship architecture, labor roles, inventory, waste, customer metrics and NA economics are carried as registry inputs (areas SITE, FLAGSHIP, LABOR, INVENTORY, WASTE, CUSTOMER, NA, BREWERY) with the format that needs each and the real input that fills it; none is populated.
+
+
+## Customer hypotheses (not personas; no guest has been studied)
+
+| Segment | Why they might care | What could turn them off | Test that shows whether they matter | Evidence today |
+|---|---|---|---|---|
+| **local diners** | Might want a nearby, repeatable dinner option with an unfamiliar flavour pairing. | Menu may feel too niche, or price and wait may not suit a weekday meal. | Invited tasting; count who asks to return and who pays in a later small paid test. | NONE (hypothesis) |
+| **craft-beer drinkers** | Might value a lager and wheat-led list made to suit the food. | May expect a wide hop-forward list and find the style range narrow. | Blind side-by-side beer tasting with brewer present; record style preference and repeat orders. | NONE (hypothesis) |
+| **Indian-food-familiar guests** | Might enjoy familiar spice and technique in a new format. | May judge dishes against home or restaurant versions and find them inauthentic or gimmicky. | Blind tasting with a gimmick-versus-intentional question; code open comments. | NONE (hypothesis) |
+| **Mexican-food-familiar guests** | Might enjoy familiar taqueria-style formats with new flavours. | May judge goat birria and tortilla use against their own standard. | Same blind tasting; compare reactions to each dish by prior familiarity (self-reported). | NONE (hypothesis) |
+| **fusion-curious guests** | Might seek out new combinations and share what they tried. | May see fusion as a gimmick unless dishes are clearly intentional. | Ask about intent to return versus one-time curiosity; follow up later for actual return. | NONE (hypothesis) |
+| **groups** | Might like shareable plates and a place where varied tastes can all order. | Slow service, split-bill friction or limited choices could put a group off. | Run a table-of-several service; log ticket time and whether all members found something to order. | NONE (hypothesis) |
+| **dates** | Might like a distinctive shared experience and a pairing to talk about. | Noise, seating and pace may not suit a quiet meal. | Ask pairs after a tasting about setting and pace; watch for unprompted return as a pair. | NONE (hypothesis) |
+| **families** | Might want a place where children and adults can all eat. | Brewery setting, spice level or limited child-friendly dishes may be a barrier. | Offer a mild-option dish at a tasting; record who orders it and parent comments. | NONE (hypothesis) |
+| **non-drinkers** | Might want a real non-alcoholic choice, not an afterthought. | A thin or uninspiring NA list could make the venue feel like it is not for them. | Offer NA pairings in tasting; record NA ordering and satisfaction scores separately. | NONE (hypothesis) |
+| **beer explorers** | Might travel to try new brews and unusual pairings. | May want rare or experimental beers that a small lager-led list does not offer. | Compare tasting scores for pairings versus beer alone; ask what they would come back for. | NONE (hypothesis) |
+| **tourists** | Might look for a distinctly local-feeling meal while visiting Austin. | May not find the venue, or may choose better-known options. | Hard to test early; defer to pop-up or later and record how visitors heard of it. | NONE (hypothesis) |
+
+## Occasion hypotheses (which occasions best fit; none proven)
+
+| Occasion | Fit with the concept | What it requires | Behavior that would prove it | Priority |
+|---|---|---|---|---|
+| **casual dinner** | Core fit: compact menu and a beer or NA pairing for an ordinary evening. | Fast, consistent service and a price guests accept repeatedly. | Guests return unprompted for a regular meal without an event. | HIGH (agent judgement) |
+| **date night** | Possible fit if the setting and pace support talking. | Seating, noise control and a pace that is not rushed. | Pairs return as a pair and cite the setting. | MEDIUM (agent judgement) |
+| **group dinner** | Shareable plates may suit it, but throughput is the risk. | Shareable portions, group ordering and bill handling the kitchen can run. | Groups of several order shared items and a member later returns with another group. | MEDIUM (agent judgement) |
+| **weekend** | Likely busiest period; fit depends on format and location. | Capacity, staffing and a queue plan that works. | Weekend visits repeat without discounting. | MEDIUM (agent judgement) |
+| **happy hour** | Fit unclear; menu and beer must work at lower spend. | A small snack menu and a simple beer offer. | Early-evening guests order items and stay or return. | LOW (agent judgement) |
+| **beer exploration** | Fit depends on brewer-led beers that are distinct. | Real brewed beers, a brewer and flight formats; none exist today. | Guests order flights and a later visit is for the beer itself. | MEDIUM (agent judgement) |
+| **family meal** | Possible if mild dishes and a welcoming setting exist. | Mild options, child-appropriate seating and permit-allowed access. | Families return with children and order mild options. | LOW (agent judgement) |
+| **celebration** | Possible for larger gatherings, not core to early tests. | Reservation handling, group capacity and a set offer. | A group chooses the venue for an occasion and repeats it. | LOW (agent judgement) |
+
+## Substitutes (by the job the guest hires them for)
+
+| Substitute | Job | Why a guest might choose it | What NASHA must offer instead | Unknown |
+|---|---|---|---|---|
+| **A trusted Indian restaurant** | A familiar, well-loved Indian meal | Familiarity, a known menu, perhaps lower effort | A reason to try a new combination, with a clear pairing story | How often Indian-food loyalists would trade a familiar dinner for this |
+| **A taco shop or Mexican restaurant** | A quick, familiar taco meal | Speed, simplicity, habit | Dishes that taste like one cuisine and a drink chosen for them | Whether guests see fusion as added value or as a gimmick |
+| **A craft brewery taproom with food trucks** | Beer first, food as an accompaniment | Beer selection and a relaxed setting | Food and beer designed together rather than assembled | Guest preference for integrated versus assembled food and beer |
+| **A brewpub with a full menu** | Beer and a broad menu in one place | Menu breadth, known format | A compact core menu where every item has a reason | Whether a compact menu feels generous or limited |
+| **Delivery or takeout** | Convenience at home | Convenience, price comfort | An in-person experience that does not travel well by design | Which Core 5 dishes could travel at all (see takeout test ideas) |
+| **Cooking at home or staying in** | A cheaper, easier night | Cost and ease | A reason to go out: pairing, brewing in view, a table to share | What occasions justify the outing (see occasion hypotheses) |
+
+## Price logic (rules only; no prices exist)
+
+| Rule | Why | Evidence needed first | Test |
+|---|---|---|---|
+| No menu price is set until the dish has a real food cost and a measured labor time | A price chosen before cost is a guess presented as a decision | Session receipts and yields; timed prep and service | food_costing.py economics shows food cost and direct variable cost computable |
+| Prices are tested as a range with real guests, not announced | Stated willingness to pay is intent, not behavior | A lawful paid test (gate BG-2) or, before that, stated-price questions kept separate and... | Compare stated price with what people actually buy at a pop-up or residency |
+| Shareable dishes are priced as shared plates, tacos and quesadillas as singles | The product is designed to be shared; pricing should not fight the format | Observed ordering at a pilot | Order mix and check per guest from real sales |
+| One drink pairing offer, zero-proof priced on the same logic as beer | Equal standing is part of the concept; a lower-priced or afterthought NA offer would... | NA cost and prep time from trials; beer cost from a brewer | Attach rates for beer and zero-proof pairings from real sales |
+| A flight or pairing offer is judged by whether guests understand it in about a minute, not by... | Pairing clarity is the differentiator; a confusing offer loses it | Menu read-through with real guests | Observation: do guests order a pairing unprompted |
+| No price signals value the brewery before beer exists | House beer is untested; implying a premium for it would be unsupported | A brewer-led pilot and tasting | Draft velocity and repeat for the pilot beer |
+
+## Which unknowns swing the model most (structural, not dollars)
+
+| Driver | Why it swings the model | Structure of the effect | First real input |
+|---|---|---|---|
+| **Covers per open day relative to physical capacity** | Break-even covers and capacity are the first test of any format | Contribution per cover x covers must exceed fixed cost without exceeding capacity | Measured ticket times and a real order count |
+| **Contribution per cover (price minus food, drink, fees, direct labor)** | Sets how many covers are needed to pay fixed cost | Every layer of cost sits between price and contribution | Receipts, yields, timed labor, a lawful price test |
+| **Fixed monthly cost of the format** | Sets the break-even hurdle | Rent, base labor, insurance and licensing do not shrink when covers fall | Quotes for the chosen format |
+| **Labor minutes per portion and hours per open day** | The least-known large cost in small kitchens | Direct labor is variable; base labor is fixed; founder labor is not free | Timed Session cooks and pilot staffing logs |
+| **Waste and hold-time losses (kept apart from R&D waste)** | Can erase contribution on fresh, fragile dishes | Reduces usable yield and adds spoilage cost | Session waste weights, then operating logs |
+| **Beer attach rate and pairing attach rate** | Decides whether house beer adds value to the restaurant | Beer contribution only matters if guests buy it with food | Pilot sales with and without house beer |
+| **Brewery utilization** | Decides whether brewery capital is justified | Fixed capital over actual barrels | Brewer pilot and draft velocity |
+| **Repeat behavior** | Separates novelty from a business | Fixed-site economics need returning guests | Repeat rate from real sales |
+
+## Critical path (durations UNKNOWN)
+
+| Step | Depends on | Who decides | Duration | Evidence that unlocks it |
+|---|---|---|---|---|
+| **Session 1 and repeats** | Founder shopping, cooking, tasters | Founder (rules frozen in D-74) | UNKNOWN (founder-paced) | Preserved photos, weights, temperatures, scores |
+| **Name decision** | IP attorney review | Founder, after counsel | UNKNOWN | Counsel written view |
+| **Lawful path for a tasting or pop-up** | Authority and attorney answers on sale, alcohol and food handling | Authority and attorney | UNKNOWN | Written answers; no agent can supply them |
+| **Commissary or shared kitchen** | A passed dish set; availability and hood/comal answers | Founder with the operator | UNKNOWN | A quote or written terms |
+| **Entity, insurance, permits** | Name, lawful path, funds | Founder with attorney, broker, authorities | UNKNOWN | Filings and issued documents |
+| **First paid commercial pilot** | All of the above, gate BG-2 | Founder | UNKNOWN | Gate BG-2 passed in writing |
+| **Beer pilot** | Brewer review, legal route, funds | Founder with brewer and attorney | UNKNOWN | Brewer sizing and a lawful structure |
+| **Site diligence and design** | Pilot evidence, funds | Founder with architect, engineers, broker | UNKNOWN | Real site quotes and scorecard |
+| **Lease and build** | Gates BG-5 and BG-7 | Founder with lender and attorney | UNKNOWN | Financing and costed design |
+
+## Concept guardrails (what NASHA is not, what survives downsizing)
+
+| Kind | Item | Note |
+|---|---|---|
+| NOT THIS | A themed or costume Indian or Mexican restaurant | Show the work and the cooks, never perform a culture |
+| NOT THIS | A nightclub or a place built around drinking volume | Responsible-alcohol design; no effect or strength as a selling point |
+| NOT THIS | A large menu of every idea | A compact core; backlog stays backlog |
+| NOT THIS | A brewery built before demand and food are shown | The brewery is the last capital gate |
+| NOT THIS | A claim of tradition or clearance that is not earned | Origins stated as contested where they are; no trademark-safety claim |
+| NOT THIS | Non-alcoholic as an afterthought | Equal standing on the page, in size and in care |
+| NOT THIS | A pitch with invented market size or traction | Decision models with unknown inputs, labelled |
+| SURVIVES | Food and drink designed together | At every format from a private tasting to a flagship |
+| SURVIVES | No beef and no pork anywhere | D-54 at every format |
+| SURVIVES | Zero-proof pairings with equal standing | At every format |
+| SURVIVES | Visible work (cooking, and brewing when it exists) | Reduced to the kitchen at small formats; brewing joins later |
+| SURVIVES | A compact core menu | Core 5 first; expansion only on evidence |
+| DROPS FIRST WHEN DOWNSIZING | House brewery, then the court brewhouse form, then patio scale | These need the most capital and the most evidence |
