@@ -117,7 +117,8 @@ def page_court(B, S):
              ("A large table", "The long pecan table in the court, dishes in the middle, servers always near."),
              ("Solo at the bar", "A stool with a view into the tanks and a bartender who will talk if you want."),
              ("A beer explorer", "A small flight at the backbar window and a short conversation about each pour.")]
-    room_html = "".join(f'<li><h3>{E(n)}</h3><p>{E(t)}</p></li>' for n, t in rooms)
+    room_html = "".join(f'<li><h3>{E(n)}</h3><p>{E(t)}</p></li>' for n, t in rooms[:3])
+    room_more = "".join(f'<li><h3>{E(n)}</h3><p>{E(t)}</p></li>' for n, t in rooms[3:])
     body = f'''<section aria-labelledby="h1"><div class="wrap stack">
 <p class="eyebrow">The place · Vision</p><h1 id="h1">The Court Brewhouse.</h1>
 <p class="lede">A limestone-and-glass hall with the brewery inside it, a shaded court beside it, and a kitchen that opens onto both.</p>
@@ -138,20 +139,15 @@ def page_court(B, S):
 <section class="alt" aria-labelledby="dn"><div class="wrap">
 <p class="eyebrow">Dining</p><h2 id="dn">A room for every kind of evening.</h2>
 <p>We aim to design for everyone: step-free routes, comfortable chairs, a calmer side and a livelier side. An architect and accessibility reviewers will decide what is possible.</p>
-<ul class="roomgrid">{room_html}</ul></div></section>
+<ul class="roomgrid">{room_html}</ul><details class="more"><summary>Four more ways to spend an evening</summary><ul class="roomgrid">{room_more}</ul></details></div></section>
 <section aria-labelledby="bar"><div class="wrap">
-<div><p class="eyebrow">The bar</p><h2 id="bar">A bar that belongs to the food.</h2>
-<p>A long dark bar with a window into the tanks. About eight handles, not thirty: the five core beers, a rotating one, and two zero-proof taps. Water, bread and the day's dishes sit within reach. The bar is not a taproom with food attached; it is where the food-and-beer system is easiest to see.</p>
-</div></div></section>
-<section class="alt" aria-labelledby="bw"><div class="wrap grid cols-2 center">
-<div><p class="eyebrow">The brewery</p><h2 id="bw">Tanks as craft, not decoration.</h2>
-<p>Six stainless tanks in a horseshoe, a small brew deck, a catwalk, drains in the floor and tidy cleaning lines. Each tank carries one thin removable orange sleeve. Guests see it from the lobby, the bar window, the court and a gallery above, and never walk on the production floor.</p>
-<p class="muted">The vessels in the picture are shown in copper; we would rather use plain stainless. Size and count are for a brewer to decide.</p></div>
-<div>{B.raster_fig("NV-BREWERY-HALL", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div></div></section>
-<section aria-labelledby="kt"><div class="wrap grid cols-2 center">
-<div>{B.svg_fig("NV-ILL-FIRE", art.fire_scene(B.uid("fi")), "reveal", "8/5")}</div>
-<div><p class="eyebrow">The kitchen</p><h2 id="kt">Heat you can feel, not a stage.</h2>
-<p>You see the glow of the oven mouth in the north arcade and plates leaving a pass window to the court. Frying, charring, the comal, sauces, prep and the pass are stations, not a show. The line itself stays out of view.</p></div></div></section>
+<p class="eyebrow">Inside</p><h2 id="bar">A bar, a brewery and a kitchen that share one room.</h2>
+<div class="grid cols-3 inside">
+<div><h3>The bar</h3><p>A long dark bar with a window into the tanks. About eight handles, not thirty: the five core beers, a rotating one and two zero-proof taps. It is where food and beer are easiest to see together.</p></div>
+<div><h3>The brewery</h3><p>Six stainless tanks in a horseshoe behind glass, each with a thin orange band. Guests watch from the lobby, the bar window, the court and a gallery above, and never walk on the production floor. Size and count are for a brewer to decide.</p></div>
+<div><h3>The kitchen</h3><p>You see the glow of the oven mouth in the north arcade and plates leaving a pass window to the court. Frying, charring, the comal and the pass are stations, not a show.</p></div></div>
+{B.raster_fig("NV-BREWERY-HALL", "reveal fig-wide", sizes="100vw")}
+<p class="muted">The vessels in the picture are shown in copper; we would rather use plain stainless.</p></div></section>
 <section class="alt" aria-labelledby="pt"><div class="wrap">
 <p class="eyebrow">The patio</p><h2 id="pt">A court that works from lunch to late.</h2>
 {B.raster_fig("NV-SPACE-PATIO", "reveal fig-wide", sizes="100vw")}
@@ -199,20 +195,22 @@ def page_craft(B, S):
 <div><h3 class="sub">Say it plainly</h3>{pl}</div></div></section>
 <section class="alt" aria-labelledby="tb"><div class="wrap grid cols-2 center"><div>{table}</div><div><p class="eyebrow">The table</p><h2 id="tb">Uncrowded, so it photographs naturally.</h2>{tl}</div></div></section>
 <section aria-labelledby="mn"><div class="wrap"><p class="eyebrow">The menu</p><h2 id="mn">Understood in about a minute.</h2><p>Food first, beer beside it, an optional pairing under each dish, zero-proof as an equal. Discovery is a small flight, never a requirement.</p>{menu}</div></section>
-<section class="alt" aria-labelledby="pn"><div class="wrap"><p class="eyebrow">Pattern</p><h2 id="pn">One quiet grammar: perforation, weave, tile.</h2>
-<p>Three simple structures: a screen pierced with circles, strips woven over and under, a tile grid with a broken line. Designers can find parallels for each in many cultures; none is borrowed from a specific one. It works on a menu, a tile, a screen, a coaster, a cloth and a box. It does not copy any sacred or protected design, and cultural reviewers from both traditions must check it before it is used outside a drawing.</p>
-{vfig("VI-PATTERN", A.pattern_set(B.uid("pt")), "Vision illustration · pattern grammar", "fig-wide", "820/260")}</div></section>
-<section aria-labelledby="un"><div class="wrap grid cols-2 center"><div><p class="eyebrow">People</p><h2 id="un">Uniforms that work, not costumes.</h2>
-<p>Charcoal canvas aprons over bone shirts for the floor and bar. Black work shirts and boots for the brewers. Dark jackets for the kitchen. Nothing themed, nothing printed across the chest.</p></div>
-<div>{vfig("VI-UNIFORMS", A.uniforms(B.uid("un")), "Vision illustration · uniform concept", "", "860/240")}</div></div></section>
-<section class="alt" aria-labelledby="sg"><div class="wrap grid cols-2 center"><div>{vfig("VI-SIGNAGE", A.signage(B.uid("sg")), "Vision illustration · signage system · placeholder lettering", "", "900/320")}</div>
-<div><p class="eyebrow">Signage</p><h2 id="sg">Material first, name second.</h2>
-<p>A plain blackened-steel panel on a concrete plinth, a slim blade sign under the arcade, a small plaque on the door. The lettering here is a placeholder. The name is not legally cleared and there is no logo, so the building is designed to work if the name changes.</p></div></div></section>
-<section aria-labelledby="pk"><div class="wrap"><p class="eyebrow">Beyond the room</p><h2 id="pk">Takeout, coaster, bag, napkin.</h2>
+<section class="alt" aria-labelledby="mw"><div class="wrap"><p class="eyebrow">The rest of the world</p><h2 id="mw">Pattern, people, signage, packaging, sound.</h2>
+<p>The small things that make it one company. Each opens when you want it.</p>
+<details class="more"><summary>Pattern: perforation, weave, tile</summary>
+<p>Three simple structures: a screen pierced with circles, strips woven over and under, a tile grid with a broken line. Designers can find parallels for each in many cultures; none is borrowed from a specific one. It appears sparingly (the screen, a menu, a coaster) and cultural reviewers from both traditions must check it before it is used outside a drawing.</p>
+{vfig("VI-PATTERN", A.pattern_set(B.uid("pt")), "Vision illustration · pattern grammar", "fig-wide", "820/260")}</details>
+<details class="more"><summary>Uniforms that work, not costumes</summary>
+<p>Charcoal canvas aprons over bone shirts for the floor and bar. Dark work shirts and boots for the brewers. Dark jackets for the kitchen. Nothing themed, nothing printed across the chest.</p>
+{vfig("VI-UNIFORMS", A.uniforms(B.uid("un")), "Vision illustration · uniform concept", "", "860/240")}</details>
+<details class="more"><summary>Signage: material first, name second</summary>
+<p>A plain blackened-steel panel on a concrete plinth, a slim blade sign under the arcade, a small plaque on the door. The lettering is a placeholder. The name is not legally cleared and there is no logo, so the building is designed to work if the name changes.</p>
+{vfig("VI-SIGNAGE", A.signage(B.uid("sg")), "Vision illustration · signage system · placeholder lettering", "", "900/320")}</details>
+<details class="more"><summary>Takeout, coaster, bag, napkin</summary>
 {vfig("VI-PACKAGING", A.packaging(B.uid("pk")), "Vision illustration · packaging concept · placeholder", "fig-wide", "860/260")}
-<p class="muted">Concept drawings with no real labels. No alcohol label is shown or implied as compliant.</p></div></section>
-<section class="alt" aria-labelledby="sd"><div class="wrap"><p class="eyebrow">Sound</p><h2 id="sd">A room you can talk in.</h2>
-<p>Quiet and warm by day, building gently into the evening. No stock India-plus-Mexico playlist. Austin's love of live music is an open question; a small acoustic set might fit one corner. Licensing and permits are unresolved.</p></div></section>'''
+<p class="muted">Concept drawings with no real labels. No alcohol label is shown or implied as compliant.</p></details>
+<details class="more"><summary>Sound: a room you can talk in</summary>
+<p>Quiet and warm by day, building gently into the evening. No stock India-plus-Mexico playlist. A small acoustic set might fit one corner. Licensing and permits are unresolved.</p></details></div></section>'''
     return B.layout("craft.html", "The craft · NASHA", "A vision of NASHA's glass, table, menu, uniforms, pattern and packaging. Drawings of what could be, not products.", body)
 
 

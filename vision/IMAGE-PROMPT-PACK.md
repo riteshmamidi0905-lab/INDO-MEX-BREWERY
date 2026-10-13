@@ -1,4 +1,7 @@
-# NASHA VISION — IMAGE PROMPT PACK (production-ready, not generated)
+# NASHA VISION — IMAGE PROMPT PACK (SUPERSEDED by vision/production/ in Sprint 26)
+
+> **Superseded.** Use `production/CHATGPT-HANDOFF.md` (generated from `production/VP-AUDIT.csv`). This file is kept for history.
+
 
 **Status:** Sprint 25 generated no images. The only generator ever used in this project (Figma) has 10 of 12 calls used with 2 held, and the sandbox cannot retrieve its outputs, so spending them would not have produced usable files. The founder's rule was to respect held calls. This pack is ready to run when a generator is available and authorised.
 Asset classes: VISION PLACE, VISION FOOD — NOT COOKED PRODUCT, VISION BEER — NOT BREWED PRODUCT, VISION NA — NOT TESTED PRODUCT. Every output must be stored under `visuals/vision/` with its class, never in founder-prototype media.

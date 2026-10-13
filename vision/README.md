@@ -23,6 +23,8 @@ NASHA now has two layers. They never merge silently.
 - `VISION-PRODUCT-AND-TABLE.md` — five dishes, five beers, zero-proof, glassware, ritual, table, menu, pairing language.
 - `VISION-BRAND-SYSTEM.md` — uniforms, signage, pattern, packaging, sound, day to night, people, cultural flags.
 - `VISION-SCENARIO-AND-WALKTHROUGH.md` — one future evening and the 4-minute investor path.
-- `IMAGE-PROMPT-PACK.md` — production-ready prompts and asset slots (no image was generated in Sprint 25).
+- `production/` — Sprint 26 visual production system: `CONTINUITY-BIBLE.md`, `VP-AUDIT.csv` (source of truth for VP-01..VP-14), `CHATGPT-HANDOFF.md` (generated), `GLOBAL-LOCK-BLOCK.txt`, `GLOBAL-NEGATIVES.txt`, `IMAGE-PROVENANCE.csv`, `WEBSITE-IMAGE-SLOT-MAP.csv`.
+- `IMAGE-PROMPT-PACK.md` — superseded Sprint 25 prompts (history).
 - `data/VISION-ASSUMPTIONS.csv`, `data/VISION-ASSET-MANIFEST.csv`, `data/VISION-CULTURAL-FLAGS.csv`.
+- `production/SPRINT26-REVIEW.md` — simulated review of the production system.
 - `SPRINT25-REVIEW.md` — the creative red-team, the one-thing test and the coherence test.
