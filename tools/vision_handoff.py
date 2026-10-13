@@ -25,7 +25,7 @@ def render():
               f"**Website destination.** {r['website_location']}", "",
               f"**Aspect ratio.** {r['aspect_ratio']}", f"**Desktop crop.** {r['desktop_crop']}", f"**Mobile crop.** {r['mobile_crop']}", "",
               f"**Attach.** {r['continuity_refs']} ({r['dependencies']})", "",
-              "**PASTE THIS**", "```text", lock, "", "THIS IMAGE: " + r["final_prompt"], "",
+              "**PASTE THIS**", "```text", lock, ""] + ([r["reference_corrections"], ""] if not r["reference_corrections"].startswith("n/a") else []) + ["THIS IMAGE: " + r["final_prompt"], "",
               "NEGATIVE REQUIREMENTS: " + neg + "; " + r["specific_negatives"] + ".", "```", "",
               f"**Must not change.** {r['what_must_not_change']}", "", f"**Success criteria.** {r['success_criteria']}", ""]
     return "\n".join(o) + "\n"
