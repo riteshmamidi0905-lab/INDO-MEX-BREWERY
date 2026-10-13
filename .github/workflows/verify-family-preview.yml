@@ -1,0 +1,54 @@
+name: Verify live Founder Vision Preview
+# Manual check of the deployed private family preview: every page, every asset, noindex, HTTPS. Reads only; deploys nothing.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the live site
+        shell: bash
+        run: |
+          set -u
+          BASE="https://riteshmamidi0905-lab.github.io/INDO-MEX-BREWERY"
+          fail=0
+          ok()  { echo "PASS  $1"; }
+          bad() { echo "FAIL  $1"; fail=$((fail+1)); }
+          mkdir -p site
+          for p in "" index.html food.html beer.html court.html experience.html story.html; do
+            url="$BASE/$p"; name="${p:-/}"
+            code=$(curl -sS -L -o "site/page.tmp" -w "%{http_code}" "$url") || code=000
+            if [ "$code" = "200" ]; then ok "$name returns 200 over HTTPS"; else bad "$name returned $code"; continue; fi
+            grep -q 'name="robots" content="noindex, nofollow"' site/page.tmp && ok "$name noindex" || bad "$name missing noindex"
+            grep -qiE 'localhost|127\.0\.0\.1|file://|/home/|/tmp/' site/page.tmp && bad "$name contains a local path" || ok "$name has no local paths"
+            grep -qE '<h1' site/page.tmp && ok "$name has an h1" || bad "$name has no h1"
+            cp site/page.tmp "site/$(echo ${p:-index.html} | tr '/' '_')"
+          done
+          # nav items and internal pages must not be exposed
+          for f in site/index.html site/food.html site/beer.html site/court.html site/experience.html site/story.html; do
+            for l in labs investor craft evening space crossing pairings about; do
+              grep -q "href=\"$l.html" "$f" && bad "$f links to internal page $l.html"
+            done
+          done
+          ok "internal-page link scan complete"
+          # every referenced asset loads
+          cat site/index.html site/food.html site/beer.html site/court.html site/experience.html site/story.html \
+            | grep -oE '(images/[A-Za-z0-9_.-]+|fonts/[A-Za-z0-9_.-]+|family\.(css|js))' | sort -u > site/assets.txt
+          total=$(wc -l < site/assets.txt); echo "assets referenced: $total"
+          missing=0
+          while read -r a; do
+            c=$(curl -sS -o /dev/null -w "%{http_code}" "$BASE/$a") || c=000
+            [ "$c" = "200" ] || { echo "MISSING $a ($c)"; missing=$((missing+1)); }
+          done < site/assets.txt
+          [ "$missing" = "0" ] && ok "all $total referenced assets load" || bad "$missing assets failed"
+          # no external hosts referenced in markup
+          if cat site/*.html | grep -qE '(src|href)="https?://'; then bad "external URL in markup"; else ok "no external URLs in markup"; fi
+          # unknown path gives the friendly 404
+          c=$(curl -sS -o site/404.out -w "%{http_code}" "$BASE/does-not-exist.html") || c=000
+          [ "$c" = "404" ] && grep -q 'noindex' site/404.out && ok "unknown path returns the noindex 404 page" || bad "404 behaviour ($c)"
+          # robots and sitemap are not published
+          for f in sitemap.xml; do c=$(curl -sS -o /dev/null -w "%{http_code}" "$BASE/$f") || c=000; [ "$c" = "404" ] && ok "no $f" || bad "$f exists ($c)"; done
+          echo "TOTAL_FAILURES=$fail"
+          [ "$fail" = "0" ] && echo "VERIFY_OK" || { echo "VERIFY_FAILED"; exit 1; }
