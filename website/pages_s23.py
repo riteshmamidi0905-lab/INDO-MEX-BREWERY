@@ -189,7 +189,10 @@ def core5_cards(B, S, with_details=True):
     for c in S["core5"]:
         n = c["narr"]; d = B.DISH.get(c["id"])
         plate = f'<div class="plate-big">{B.plate_svg(d)}</div>' if d else ""
-        media = media_or_slot(B, c["id"], plate)
+        if c["id"] in B.VISION_FOOD and not B.PROTO.get(c["id"]):
+            media = B.raster_fig(B.VISION_FOOD[c["id"]], "", sizes="(max-width: 700px) 100vw, 50vw")
+        else:
+            media = media_or_slot(B, c["id"], plate)
         det = ""
         if with_details:
             det = (f'<details><summary>The full design</summary><dl class="pdl"><div><dt>Indian side</dt><dd>{E(plain(n["indian_component"]))}</dd></div><div><dt>Mexican side</dt><dd>{E(plain(n["mexican_component"]))}</dd></div>'
@@ -203,7 +206,7 @@ def core5_cards(B, S, with_details=True):
 
 def food_core_section(B, S):
     return f'''<section class="alt" aria-labelledby="c5"><div class="wrap"><p class="eyebrow">The Core 5</p><h2 id="c5">Five dishes, designed to be tested first.</h2>
-<p>Every card is a design. Nothing here has been cooked for guests, and the drawings are not photographs. Each card reserves a space for the founder's first real photograph.</p>
+<p>Every card is a design. The pictures are generated concept images of how each dish is meant to look. Nothing here has been cooked for guests, and the founder's first real photographs will replace them.</p>
 <div class="grid cols-2">{core5_cards(B, S)}</div></div></section>'''
 
 

@@ -76,7 +76,8 @@ def check():
     # Round 2 architecture freeze (founder-confirmed): VP-01..VP-04 files must not change
     fzp = os.path.join(V, "production/ROUND2-FREEZE.csv")
     if os.path.exists(fzp):
-        frozen = rows(fzp) + (rows(os.path.join(V, "production/FOOD-MASTER-FREEZE.csv")) if os.path.exists(os.path.join(V, "production/FOOD-MASTER-FREEZE.csv")) else [])
+        frozen = rows(fzp)
+        for extra in sorted(glob.glob(os.path.join(V, "production/*-MASTER-FREEZE.csv"))): frozen += rows(extra)
         for fr in frozen:
             fpath = os.path.join(ROOT, fr["file"])
             if not os.path.exists(fpath): errs.append(f"Round 2 freeze: {fr['id']} file missing")

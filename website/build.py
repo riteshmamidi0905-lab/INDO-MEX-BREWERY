@@ -45,6 +45,7 @@ PLATE_KIND = {"chicken-65-totopos": "totopos", "chaat-elote": "elote", "gobi-tac
               "butter-chicken-quesadilla": "quesadilla", "goat-birria": "birria", "cardamom-churros": "churros", "seed-chile-bowl": "veg"}
 SIGNATURE = ["chicken-65-totopos", "paneer-tikka-taco", "gobi-taco", "butter-chicken-quesadilla", "goat-birria", "chaat-elote", "cardamom-churros"]
 GATE_BEERS = ["hefeweizen", "mexican-lager", "vienna-amber"]
+VISION_FOOD = {"chicken-65-totopos": "NV-VISION-VP05", "paneer-tikka-taco": "NV-VISION-VP06", "goat-birria": "NV-VISION-VP07", "gobi-taco": "NV-VISION-VP08", "butter-chicken-quesadilla": "NV-VISION-VP09"}
 CORE_BEERS = ["hefeweizen", "mexican-lager", "vienna-amber", "pilsner", "witbier"]
 
 _uid = [0]
@@ -55,6 +56,8 @@ def uid(p="u"):
 # ---------- figures ----------
 STAGE_TAG = {"CONCEPT VISUALIZATION": ("Concept visualization", ". Not a photograph of NASHA. Final architecture is subject to professional design and site conditions."),
              "CONCEPT ILLUSTRATION": ("Concept illustration", ". A drawing, not a photograph."),
+             "CONCEPT DRINK VISUALIZATION": ("Concept drink image", ". A generated picture of how the drink is meant to look. It has not been brewed, mixed or tasted."),
+             "CONCEPT FOOD VISUALIZATION": ("Concept food image", ". A generated picture of how the dish is meant to look. The dish has not been cooked, tasted or photographed."),
              "PROTOTYPE": ("Prototype photograph", ". A photograph of a prototype dish or beer from a kitchen or pilot test, not a finished product."),
              "TESTED PRODUCT": ("Tested product photograph", ". A photograph of a product that passed a documented test."),
              "FINAL PHOTOGRAPHY": ("Photograph", ". Final photography of NASHA.")}
@@ -211,7 +214,7 @@ def page_food():
     body = f'''<section class="food-hero" aria-labelledby="h1"><div class="wrap stack">
 <p class="eyebrow">Food · Designs for testing</p><h1 id="h1">Five dishes, designed to be cooked at home first.</h1>
 <p class="lede">Chicken 65 from South India on thick masa totopos. Paneer tikka in a taco. A goat birria. A roasted gobi taco. A butter chicken quesadilla with roasted poblano. Nothing is cooked for guests and nothing is for sale.</p>
-<p class="disclosure">{E(DISCLOSE)} The drawings show proposed presentation, not finished dishes.</p></div></section>
+<p class="disclosure">{E(DISCLOSE)} The pictures show proposed presentation, not finished dishes.</p></div></section>
 
 {P.food_core_section(M, SITE)}
 
@@ -234,6 +237,11 @@ def page_beer():
 <p class="disclosure">{E(DISCLOSE)} Alcohol is for adults of legal drinking age. Any future beer sales depend on licences we have not yet obtained.</p></div>
 <div class="macro" data-macro data-beer="hefeweizen" data-vid="NV-ILL-GLASS">{macro}<p class="tag-inline">Concept illustration · colour follows the style reference, not a brewed beer</p>
 <div class="beer-info" data-beer-info role="status" data-beers='{binfo_json}'><p class="bi-name" data-bi="name">Hefeweizen</p><p data-bi="style">{E(BEER["hefeweizen"]["style"])}</p><p data-bi="status">Not brewed yet</p><p data-bi="pair">Designed to pair with {E(", ".join(BEER["hefeweizen"]["pairs"][:3]))}</p></div></div></div></section>
+
+<section aria-labelledby="gf"><div class="wrap grid cols-2 center"><div><p class="eyebrow">Three shapes of glass</p><h2 id="gf">One family of glasses for every beer.</h2>
+<p class="lede">A tall ringed glass for the wheat beer, a tapered glass for the lagers and a stemmed tulip for amber and aromatic beers. This picture shows three of the five beers; the written briefs below govern.</p>
+<p class="muted">Concept image. No beer has been brewed, and whether these glasses can be made, stacked and washed is not verified.</p></div>
+<div class="reveal">{raster_fig("NV-VISION-VP10", "", sizes="(max-width: 700px) 100vw, 50vw")}</div></div></section>
 
 {P.beer_core_section(M, SITE)}
 

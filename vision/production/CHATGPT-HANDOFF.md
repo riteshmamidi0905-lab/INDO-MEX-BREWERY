@@ -185,7 +185,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-05 · Chicken 65 Totopos
-**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: GENERATED AND FOUNDER-CONFIRMED as the food continuity master (see IMAGE-PROVENANCE.csv)**
+**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: GENERATED AND FOUNDER-CONFIRMED (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** Show the identity of the dish: real Chicken 65 on thick totopos.
 
@@ -223,7 +223,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-06 · Paneer Tikka Taco
-**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: PROMPT READY — NOT GENERATED**
+**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: GENERATED AND FOUNDER-CONFIRMED (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** Charred paneer cubes in a real corn tortilla.
 
@@ -269,7 +269,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-07 · Goat Birria
-**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: PROMPT READY — NOT GENERATED**
+**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: GENERATED AND FOUNDER-CONFIRMED (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** Restrained goat birria identity.
 
@@ -315,7 +315,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-08 · Gobi Taco
-**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: PROMPT READY — NOT GENERATED**
+**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: GENERATED AND FOUNDER-CONFIRMED (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** Roasted, browned cauliflower in a taco (Vision assumption V-20).
 
@@ -361,7 +361,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-09 · Butter Chicken & Roasted Poblano Quesadilla
-**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: PROMPT READY — NOT GENERATED**
+**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: GENERATED AND FOUNDER-CONFIRMED (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** A griddled quesadilla with structural integrity.
 
@@ -407,7 +407,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-12 · Table system
-**Round 3 · class: VISION PLACE · status: PROMPT READY — NOT GENERATED**
+**Round 3 · class: VISION PLACE · status: GENERATED (full resolution); FOUNDER-CONFIRMED VISION TABLE AND SERVICE REFERENCE (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** The whole table in one frame.
 
@@ -453,7 +453,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-10 · Beer family
-**Round 4 · class: VISION BEER — NOT BREWED PRODUCT · status: PROMPT READY — NOT GENERATED**
+**Round 4 · class: VISION BEER — NOT BREWED PRODUCT · status: GENERATED (full resolution); FOUNDER-CONFIRMED VISION BEER (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** One family portrait of the five beers in the three-glass family.
 
@@ -491,7 +491,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-11 · Zero-proof family
-**Round 4 · class: VISION NA — NOT TESTED PRODUCT · status: PROMPT READY — NOT GENERATED**
+**Round 4 · class: VISION NA — NOT TESTED PRODUCT · status: GENERATED (full resolution); FOUNDER-CONFIRMED VISION NA (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** Equal visual dignity for the five zero-proof drinks.
 
@@ -529,7 +529,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-13 · Guest moments
-**Round 5 · class: VISION PLACE · status: PROMPT READY — NOT GENERATED**
+**Round 5 · class: VISION PLACE · status: GENERATED (full resolution); FOUNDER-CONFIRMED VISION HOSPITALITY REFERENCE (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** Four candid human moments for the evening and home pages.
 
@@ -575,7 +575,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-14 · Brewer and cook
-**Round 5 · class: VISION PLACE · status: PROMPT READY — NOT GENERATED**
+**Round 5 · class: VISION PLACE · status: GENERATED (full resolution); RETAINED AS VISION PROVENANCE ONLY (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** The craft: a brewer at a tank and a cook at the comal.
 

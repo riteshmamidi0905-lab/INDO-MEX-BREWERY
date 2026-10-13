@@ -135,7 +135,7 @@ for r in MAN:
         if "concept" not in r["concept_or_real"].lower() and "real" not in r["concept_or_real"].lower(): fail(f"manifest {r['id']}: concept_or_real unclear")
     if r["kind"]=="raster-planned" and r["status"] not in ("NOT GENERATED (prompt ready)","CANDIDATE GENERATED (not integrated)"): fail(f"manifest {r['id']}: planned row status must be NOT GENERATED or CANDIDATE GENERATED (not integrated)")
     if r["status"].startswith("CANDIDATE") and ("Not accepted" not in r["qa_result"] or "UNVERIFIED" not in r["commercial_use_status"]): fail(f"manifest {r['id']}: candidate must say not accepted and keep commercial use UNVERIFIED")
-STAGES={"CONCEPT VISUALIZATION","CONCEPT ILLUSTRATION","PROTOTYPE","TESTED PRODUCT","FINAL PHOTOGRAPHY"}
+STAGES={"CONCEPT VISUALIZATION","CONCEPT ILLUSTRATION","CONCEPT FOOD VISUALIZATION","CONCEPT DRINK VISUALIZATION","PROTOTYPE","TESTED PRODUCT","FINAL PHOTOGRAPHY"}
 for r in MAN:
     st=r["visual_stage"]
     if r["kind"] in ("raster","vector","raster-planned") and st not in STAGES: fail(f"manifest {r['id']}: visual_stage must be one of {sorted(STAGES)}")

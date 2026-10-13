@@ -48,7 +48,7 @@ def beats_list():
 # ---------------------------------------------------------------- home
 def page_home(B, S):
     dishes = [B.DISH[i] for i in ("chicken-65-totopos", "paneer-tikka-taco", "goat-birria")]
-    food = "".join(f'<article class="feature reveal"><div class="plate-big">{B.plate_svg(d)}</div><h3>{E(d["name"])}</h3><p>{E(d["line"])}</p></article>' for d in dishes)
+    food = "".join(f'<article class="feature reveal">{B.raster_fig(B.VISION_FOOD[d["id"]], "", sizes="(max-width: 700px) 100vw, 33vw")}<h3>{E(d["name"])}</h3><p>{E(d["line"])}</p></article>' for d in dishes)
     gl = "".join(f'<div class="gcell">{svg}<span>{E(n)}</span></div>' for svg, n in [
         (art.glass(B.uid("hg"), "hefeweizen", .86, "weizen", True, "Concept Hefeweizen glass"), "Hefeweizen"),
         (art.glass(B.uid("hg"), "mexican-lager", .86, "lager", True, "Concept lager glass"), "Mexican-style lager"),
@@ -73,20 +73,20 @@ def page_home(B, S):
 
 <section class="alt" aria-labelledby="fd"><div class="wrap">
 <p class="eyebrow">Food</p><h2 id="fd">Chicken 65, corn tortillas, one kitchen.</h2>
-<p>Chicken 65 on thick fried totopos. Charred paneer in a corn tortilla. Goat birria with a cup of consomme. Each is drawn here as it is meant to look; none has been cooked yet. <a href="food.html">All five dishes</a>.</p>
+<p>Chicken 65 on thick fried totopos. Charred paneer in a corn tortilla. Goat birria with a cup of consomme. Each picture shows how it is meant to look; none has been cooked yet. <a href="food.html">All five dishes</a>.</p>
 <div class="grid cols-3">{food}</div></div></section>
 
 <section aria-labelledby="br"><div class="wrap">
 <p class="eyebrow">Beer</p><h2 id="br">Five beers, three shapes of glass.</h2>
 <p>A soft Hefeweizen, an easy Mexican-style lager, a toasty Vienna amber, a crisp Pilsner and an aromatic Witbier, each poured into a glass that suits it. The zero-proof drinks use the same glasses, with the same care. <a href="beer.html">Meet the beers</a>.</p>
-<div class="gfam">{gl}</div></div></section>
+{B.raster_fig("NV-VISION-VP10", "reveal fig-wide", sizes="100vw")}</div></section>
 
 <section class="alt" aria-labelledby="pr"><div class="wrap grid cols-2 center">
 <div><p class="eyebrow">Pairing</p><h2 id="pr">Bright bubbles should reset your mouth after each bite.</h2>
 <p>Every pairing is explained in a plain sentence, and always optional. Order what you like.</p>
 {pour("Goat birria", "with a soft, banana-and-clove Hefeweizen", "or a ruby hibiscus-and-tamarind tea. We expect both to cut the richness of the consomme.")}
 <p class="muted">These pairings are proposals. Nobody has tasted them yet. <a href="pairings.html">See all pairings</a>.</p></div>
-<div>{B.svg_fig("NV-ILL-PLATES", '<div class="duo"><div class="duo-plate">' + B.plate_svg(B.DISH["chicken-65-totopos"]) + '</div><div class="duo-glass">' + art.glass(B.uid("dg"), "mexican-lager", .88, "lager", True, "Concept lager glass") + '</div></div>', "fig-duo", "4/3")}</div></div></section>
+<div>{B.raster_fig("NV-VISION-VP07", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div></div></section>
 
 <section aria-labelledby="ct"><div class="wrap">
 <p class="eyebrow">The court</p><h2 id="ct" class="statement">A brewhouse you walk into, and a court you walk out to.</h2>
@@ -139,7 +139,7 @@ def page_court(B, S):
 <section class="alt" aria-labelledby="dn"><div class="wrap">
 <p class="eyebrow">Dining</p><h2 id="dn">A room for every kind of evening.</h2>
 <p>We aim to design for everyone: step-free routes, comfortable chairs, a calmer side and a livelier side. An architect and accessibility reviewers will decide what is possible.</p>
-<ul class="roomgrid">{room_html}</ul><details class="more"><summary>Four more ways to spend an evening</summary><ul class="roomgrid">{room_more}</ul></details></div></section>
+{B.raster_fig("NV-VISION-VP13", "reveal fig-wide", sizes="100vw")}<ul class="roomgrid">{room_html}</ul><details class="more"><summary>Four more ways to spend an evening</summary><ul class="roomgrid">{room_more}</ul></details></div></section>
 <section aria-labelledby="bar"><div class="wrap">
 <p class="eyebrow">Inside</p><h2 id="bar">A bar, a brewery and a kitchen that share one room.</h2>
 <div class="grid cols-3 inside">
@@ -187,12 +187,14 @@ def page_craft(B, S):
 <section class="alt" aria-labelledby="gl"><div class="wrap"><h2 id="gl">Three glasses tell the story better than five.</h2>
 <p>A tall Signature Hefe glass, a versatile Lager and Pils glass, an aromatic option for amber and Witbier, plus a small flight tulip. This is a vision choice; the earlier five-glass concept remains in the blueprint. Whether the shapes can be made, stacked and washed is not verified.</p>
 <div class="gfam">{gl}</div>
+{B.raster_fig("NV-VISION-VP10", "reveal fig-wide", sizes="100vw")}
 <h3>Zero-proof, equal in care</h3><p>Same clear glass, natural colour, one simple garnish. Not children's soda, not a mocktail cliché, not a garnish tower. Flavour plans only; none is tested.</p>
-<div class="gfam">{na}</div></div></section>
+<div class="gfam">{na}</div>
+{B.raster_fig("NV-VISION-VP11", "reveal fig-wide", sizes="100vw")}</div></section>
 <section aria-labelledby="rit"><div class="wrap grid cols-2 center"><div><p class="eyebrow">Ritual</p><h2 id="rit">A small moment of care.</h2>
 <p>A clean glass on a coaster of ceramic or wood. For the Hefeweizen, a two-step pour at the table, only if testing shows it is worth the time. Brass and woven fibre where they have a job to do. No smoke, no dry ice, no flames, no tricks.</p></div>
 <div><h3 class="sub">Say it plainly</h3>{pl}</div></div></section>
-<section class="alt" aria-labelledby="tb"><div class="wrap grid cols-2 center"><div>{table}</div><div><p class="eyebrow">The table</p><h2 id="tb">Uncrowded, so it photographs naturally.</h2>{tl}</div></div></section>
+<section class="alt" aria-labelledby="tb"><div class="wrap grid cols-2 center"><div>{table}{B.raster_fig("NV-VISION-VP12", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div><div><p class="eyebrow">The table</p><h2 id="tb">Uncrowded, so it photographs naturally.</h2>{tl}</div></div></section>
 <section aria-labelledby="mn"><div class="wrap"><p class="eyebrow">The menu</p><h2 id="mn">Understood in about a minute.</h2><p>Food first, beer beside it, an optional pairing under each dish, zero-proof as an equal. Discovery is a small flight, never a requirement.</p>{menu}</div></section>
 <section class="alt" aria-labelledby="mw"><div class="wrap"><p class="eyebrow">The rest of the world</p><h2 id="mw">Pattern, people, signage, packaging, sound.</h2>
 <p>The small things that make it one company. Each opens when you want it.</p>
@@ -230,7 +232,7 @@ def page_evening(B, S):
 <p class="lede">What it could feel like, from the first glass to the last plate.</p>
 <p class="hero-note">VISION SCENARIO. It tells you how the evening is designed to feel. It invents no sales, guest counts, staff numbers or revenue, and nothing here has happened.</p>
 {truth_key()}</div></section>
-<section class="alt" aria-labelledby="tl"><div class="wrap"><h2 id="tl" class="visually-hidden">The evening, hour by hour</h2>{tl}</div></section>
+<section class="alt" aria-labelledby="tl"><div class="wrap grid cols-2"><div><h2 id="tl" class="visually-hidden">The evening, hour by hour</h2>{tl}</div><div>{B.raster_fig("NV-VISION-VP13", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div></div></section>
 <section aria-labelledby="dn"><div class="wrap"><p class="eyebrow">Day to night</p><h2 id="dn">The same place, changing.</h2>
 <div class="grid cols-2">{sc}</div></div></section>
 <section class="alt" aria-labelledby="ss"><div class="wrap"><h2 id="ss">Through the seasons.</h2>
