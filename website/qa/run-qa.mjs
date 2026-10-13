@@ -61,7 +61,7 @@ for (const pg of pages) {
   const ms = Date.now() - t0; const used = await page.evaluate(() => document.querySelector(".fig-hero img").currentSrc);
   out.slow = { profile: "1.6 Mbps, 150 ms RTT, 390px viewport", heroReadyMs: ms, heroSrc: used.replace(base, "") }; await ctx.close(); }
 // Image failure: block all images, check layout holds and alt text is present
-for (const pg of ["index.html", "space.html"]) { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const page = await ctx.newPage();
+for (const pg of ["index.html", "court.html"]) { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const page = await ctx.newPage();
   await page.route(/\.(avif|webp|jpg)$/, r => r.abort()); await page.goto(`${base}/${pg}`, { waitUntil: "load" });
   out.imagesBlocked[pg] = await page.evaluate(() => ({ imgs: document.querySelectorAll("figure img").length, withAlt: [...document.querySelectorAll("figure img")].filter(i => i.alt && i.alt.length > 20).length, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth, h1: !!document.querySelector("h1") })); await ctx.close(); }
 // Manual-review aids run in a real browser: focus visibility of every focusable element, WCAG 1.4.12 text spacing, 200% zoom reflow

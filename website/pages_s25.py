@@ -56,7 +56,7 @@ def page_home(B, S):
         (A.na_glass(B.uid("hg"), "#D45A5A", "lime"), "Zero-proof cooler")])
     body = f'''
 <section class="hero" aria-labelledby="h1">
-{B.raster_fig("NV-HERO-01", "fig-hero", eager=True, sizes="100vw")}
+{B.raster_fig(B.HERO_ID, "fig-hero", eager=True, sizes="100vw")}
 <div class="wrap hero-copy">
 <p class="eyebrow">Austin, Texas · A future place</p>
 <h1 id="h1">Come in. Sit down. Taste what was made to go together.</h1>
@@ -91,10 +91,10 @@ def page_home(B, S):
 <section aria-labelledby="ct"><div class="wrap">
 <p class="eyebrow">The court</p><h2 id="ct" class="statement">A brewhouse you walk into, and a court you walk out to.</h2>
 <p class="lede">Stone, glass and shade. The tanks sit behind glass beside the court, so brewing is part of the evening. <a href="court.html">Walk in from the street</a>.</p>
-<div class="grid cols-2">{B.raster_fig("NV-SPACE-EXT-DAY", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}{B.raster_fig("NV-SPACE-PATIO", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div></div></section>
+<div class="grid cols-2">{B.raster_fig("NV-VISION-VP02", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}{B.raster_fig("NV-VISION-VP04", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div></div></section>
 
 <section class="alt" aria-labelledby="pe"><div class="wrap grid cols-2 center">
-<div>{B.raster_fig("NV-BREWERY-GLASS", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div>
+<div>{B.raster_fig("NV-VISION-VP03", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div>
 <div><p class="eyebrow">Craft</p><h2 id="pe">You can see the work.</h2>
 <p>The brewers, the cooks and the servers share one room. Steel you can see, fire you can feel, a table set simply. <a href="craft.html">The craft and the table</a>. <a href="evening.html">One evening, start to finish</a>.</p></div></div></section>
 
@@ -131,7 +131,7 @@ def page_court(B, S):
 {plan}
 {beats_list()}</div></section>
 <section aria-labelledby="arr"><div class="wrap grid cols-2 center">
-<div>{B.raster_fig("NV-SPACE-ENTRANCE", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div>
+<div>{B.raster_fig("NV-VISION-VP01-ENTRANCE", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div>
 <div><p class="eyebrow">Arrival</p><h2 id="arr">The first thirty seconds.</h2>
 <p><strong>By day.</strong> A calm frontage of pale stone and glass. A line of shade pulls you toward a plain steel sign and a bronze-framed door. You hear the court before you see it, and smell charred corn and fresh bread.</p>
 <p><strong>At night.</strong> The hall glows amber, and the tanks are the brightest large things on the street. The entrance is kept dim, so the court is a reveal. The brewery is the first thing you see; the room arrives a second later.</p>
@@ -146,14 +146,13 @@ def page_court(B, S):
 <div><h3>The bar</h3><p>A long dark bar with a window into the tanks. About eight handles, not thirty: the five core beers, a rotating one and two zero-proof taps. It is where food and beer are easiest to see together.</p></div>
 <div><h3>The brewery</h3><p>Six stainless tanks in a horseshoe behind glass, each with a thin orange band. Guests watch from the lobby, the bar window, the court and a gallery above, and never walk on the production floor. Size and count are for a brewer to decide.</p></div>
 <div><h3>The kitchen</h3><p>You see the glow of the oven mouth in the north arcade and plates leaving a pass window to the court. Frying, charring, the comal and the pass are stations, not a show.</p></div></div>
-{B.raster_fig("NV-BREWERY-HALL", "reveal fig-wide", sizes="100vw")}
-<p class="muted">The vessels in the picture are shown in copper; we would rather use plain stainless.</p></div></section>
+{B.raster_fig("NV-VISION-VP03", "reveal fig-wide", sizes="100vw")}</div></section>
 <section class="alt" aria-labelledby="pt"><div class="wrap">
 <p class="eyebrow">The patio</p><h2 id="pt">A court that works from lunch to late.</h2>
-{B.raster_fig("NV-SPACE-PATIO", "reveal fig-wide", sizes="100vw")}
+{B.raster_fig("NV-VISION-VP04", "reveal fig-wide", sizes="100vw")}
 <p>Gravel underfoot, a shallow stone channel of water, shade from three arcades, cedar elms and a live-oak edge. No string lights: the light comes from low brass-warm lamps and the tanks. <a href="evening.html">See the evening</a>.</p></div></section>
 <section aria-labelledby="more"><div class="wrap"><h2 id="more">More about the place.</h2>
-<p><a href="space.html">A walk through the hall, step by step</a> · <a href="experience.html">An evening at NASHA</a> · <a href="craft.html">The craft and the table</a> · <a href="investor.html#assumed">What is assumed here, and what must be proved</a>.</p></div></section>'''
+<p><a href="evening.html">An evening at NASHA</a> · <a href="craft.html">The craft and the table</a> · <a href="investor.html#assumed">What is assumed here, and what must be proved</a>.</p></div></section>'''
     return B.layout("court.html", "The Court Brewhouse · NASHA", "A vision of the NASHA flagship: a limestone-and-glass brewhouse, a kitchen and a shaded court. Concept, not construction.", body)
 
 
@@ -216,9 +215,9 @@ def page_craft(B, S):
 
 # ---------------------------------------------------------------- evening
 def page_evening(B, S):
-    scenes = [("day", "Day", "Limestone, natural light, greenery. The court is cool and quiet; the kitchen is prepping. By golden hour the low sun rakes across the court and the steel screens throw soft patterns."),
+    scenes = [("day", "Golden hour", "Limestone, natural light, greenery. The court is cool and quiet; the kitchen is prepping. By golden hour the low sun rakes across the court and the steel screens throw soft patterns."),
               ("night", "Night", "Brass-warm light and the brewery glowing through glass. Social energy, never nightclub lighting. In rain, the arcades become a dry ring around a dark, wet court.")]
-    sc = "".join(f'<figure class="scene-card">{vfig("VI-SCENE-" + m.upper(), A.scene(m, B.uid("sc")), "Vision illustration · " + n.lower(), "", "4/3")}<h3>{E(n)}</h3><p>{E(t)}</p></figure>' for m, n, t in scenes)
+    sc = "".join(f'<div class="scene-card">{B.raster_fig(vid, "", sizes="(max-width: 700px) 100vw, 50vw")}<h3>{E(n)}</h3><p>{E(t)}</p></div>' for vid, n, t in [(("NV-VISION-VP02"), scenes[0][1], scenes[0][2]), ("NV-VISION-VP04", scenes[1][1], scenes[1][2])])
     times = [("5:30", "Doors open", "Low sun across the court. A cook lights the oven. A brewer checks a tank. The first glasses come off the shelf."),
              ("6:00", "The early table", "Families arrive. A child has a cup of juice while the grown-ups share a tray of Chicken 65 Totopos. Children's drinks stay clearly apart from the beer."),
              ("7:00", "The court fills", "Friends at the long table. Gold light on the limestone. Someone asks about the birria and the server says the consomme comes in a small cup."),

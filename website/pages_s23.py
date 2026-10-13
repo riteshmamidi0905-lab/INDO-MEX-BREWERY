@@ -121,7 +121,7 @@ def fix_regions(body):
 
 
 def subnav(cur):
-    items = [("experience.html", "An evening"), ("space.html", "The hall")]
+    items = [("evening.html", "An evening"), ("court.html", "The Court")]
     return '<nav class="subnav" aria-label="The place">' + "".join(f'<a href="{f}"{" aria-current=\"page\"" if f == cur else ""}>{E(n)}</a>' for f, n in items) + "</nav>"
 
 

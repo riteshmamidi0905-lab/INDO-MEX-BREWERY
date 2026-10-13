@@ -28,3 +28,8 @@ NASHA now has two layers. They never merge silently.
 - `data/VISION-ASSUMPTIONS.csv`, `data/VISION-ASSET-MANIFEST.csv`, `data/VISION-CULTURAL-FLAGS.csv`.
 - `production/SPRINT26-REVIEW.md` — simulated review of the production system.
 - `SPRINT25-REVIEW.md` — the creative red-team, the one-thing test and the coherence test.
+
+## Status (2026-10-13)
+- **Round 2 architecture is frozen:** VP-01 (primary master), VP-02 (court, furniture, material), VP-03 (bar layout and hospitality; not the glassware master) and VP-04 (night court and dinner service). Hashes are in `production/ROUND2-FREEZE.csv`; `tools/vision_check.py` fails if any of the four files changes.
+- **VB-01** is the founder-approved Vision board: creative direction only, not used on the site; where a panel conflicts with a written specification, the specification wins.
+- **Round 3 (food)** starts with VP-05 Chicken 65 Totopos, which becomes the Core 5 food continuity master; VP-06 to VP-09 and VP-12 then attach VP-05 and VP-02. VP-10 sets the glassware master.

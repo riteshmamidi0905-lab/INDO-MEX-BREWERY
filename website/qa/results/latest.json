@@ -1,6 +1,6 @@
 {
- "distHash": "d820cb07b930caa0",
- "date": "2026-10-12T19:29:59.697Z",
+ "distHash": "49687315b60ba2e4",
+ "date": "2026-10-13T14:56:39.203Z",
  "pages": {
   "about.html": {
    "overflow": {
@@ -120,17 +120,17 @@
     }
    },
    "console": [],
-   "bytes": 113434,
+   "bytes": 113545,
    "requests": [
     "/about.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/app.js",
-    "/fonts/inter-latin-wght-normal.woff2"
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 60
+    "lcp_ms": 72
    },
    "noJs": {
     "h1": 1,
@@ -139,7 +139,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 113434,
+   "initialBytes": 113545,
    "reducedMotion": true
   },
   "beer.html": {
@@ -260,17 +260,17 @@
     }
    },
    "console": [],
-   "bytes": 127857,
+   "bytes": 127909,
    "requests": [
-    "/styles.css",
     "/beer.html",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 88
+    "lcp_ms": 84
    },
    "noJs": {
     "h1": 1,
@@ -279,7 +279,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 127857,
+   "initialBytes": 127909,
    "reducedMotion": true
   },
   "court.html": {
@@ -456,27 +456,27 @@
     }
    },
    "console": [],
-   "bytes": 153008,
+   "bytes": 164804,
    "requests": [
-    "/styles.css",
     "/court.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/fonts/inter-latin-wght-normal.woff2",
+    "/styles.css",
     "/app.js",
-    "/images/NV-SPACE-ENTRANCE-d-640.avif"
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/images/NV-VISION-VP01-ENTRANCE-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 108
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4499,
+    "textLen": 4373,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 125785,
+   "initialBytes": 126040,
    "reducedMotion": true
   },
   "craft.html": {
@@ -661,17 +661,17 @@
     }
    },
    "console": [],
-   "bytes": 153496,
+   "bytes": 153607,
    "requests": [
+    "/styles.css",
     "/craft.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/styles.css",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 64
+    "lcp_ms": 84
    },
    "noJs": {
     "h1": 1,
@@ -680,7 +680,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 153496,
+   "initialBytes": 153607,
    "reducedMotion": true
   },
   "crossing.html": {
@@ -857,17 +857,17 @@
     }
    },
    "console": [],
-   "bytes": 129808,
+   "bytes": 129919,
    "requests": [
-    "/crossing.html",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
-    "/app.js",
-    "/fonts/inter-latin-wght-normal.woff2"
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/crossing.html",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 116
    },
    "noJs": {
     "h1": 1,
@@ -876,7 +876,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 129808,
+   "initialBytes": 129919,
    "reducedMotion": true
   },
   "evening.html": {
@@ -915,7 +915,7 @@
    "axe": {
     "dark": {
      "violations": [],
-     "passes": 41,
+     "passes": 38,
      "incomplete": [
       "color-contrast"
      ],
@@ -956,7 +956,7 @@
     },
     "light": {
      "violations": [],
-     "passes": 41,
+     "passes": 38,
      "incomplete": [
       "color-contrast"
      ],
@@ -997,175 +997,28 @@
     }
    },
    "console": [],
-   "bytes": 117132,
+   "bytes": 186232,
    "requests": [
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
     "/evening.html",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
-   ],
-   "perf": {
-    "cls": 0,
-    "lcp_ms": 56
-   },
-   "noJs": {
-    "h1": 1,
-    "textLen": 2528,
-    "hiddenFilters": true,
-    "items": 0,
-    "visibleItems": 0
-   },
-   "initialBytes": 117132,
-   "reducedMotion": true
-  },
-  "experience.html": {
-   "overflow": {
-    "320": {
-     "scrollW": 320,
-     "clientW": 320,
-     "ok": true
-    },
-    "390": {
-     "scrollW": 390,
-     "clientW": 390,
-     "ok": true
-    },
-    "768": {
-     "scrollW": 768,
-     "clientW": 768,
-     "ok": true
-    },
-    "1280": {
-     "scrollW": 1280,
-     "clientW": 1280,
-     "ok": true
-    },
-    "1440": {
-     "scrollW": 1440,
-     "clientW": 1440,
-     "ok": true
-    },
-    "1920": {
-     "scrollW": 1920,
-     "clientW": 1920,
-     "ok": true
-    }
-   },
-   "axe": {
-    "dark": {
-     "violations": [],
-     "passes": 43,
-     "incomplete": [
-      "color-contrast"
-     ],
-     "incompleteDetail": [
-      {
-       "target": "text",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": ".stack > p:nth-child(1)",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "p:nth-child(1) > strong",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "summary",
-       "reason": "bgGradient"
-      },
-      {
-       "target": ".stack > p:nth-child(3)",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "a[href$=\"about.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "a[href$=\"walkthrough.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": ".stack > p:nth-child(3) > a[href$=\"labs.html\"]",
-       "reason": "bgGradient"
-      }
-     ]
-    },
-    "light": {
-     "violations": [],
-     "passes": 43,
-     "incomplete": [
-      "color-contrast"
-     ],
-     "incompleteDetail": [
-      {
-       "target": "text",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": ".stack > p:nth-child(1)",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "p:nth-child(1) > strong",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "summary",
-       "reason": "bgGradient"
-      },
-      {
-       "target": ".stack > p:nth-child(3)",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "a[href$=\"about.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "a[href$=\"walkthrough.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": ".stack > p:nth-child(3) > a[href$=\"labs.html\"]",
-       "reason": "bgGradient"
-      }
-     ]
-    }
-   },
-   "console": [],
-   "bytes": 185985,
-   "requests": [
-    "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/experience.html",
-    "/styles.css",
-    "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
-    "/images/NV-SPACE-ENTRANCE-d-640.avif"
+    "/images/NV-VISION-VP02-d-640.avif",
+    "/images/NV-VISION-VP04-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 64
+    "lcp_ms": 76
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4789,
+    "textLen": 2558,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 185985,
+   "initialBytes": 186232,
    "reducedMotion": true
   },
   "food.html": {
@@ -1286,17 +1139,17 @@
     }
    },
    "console": [],
-   "bytes": 140000,
+   "bytes": 140111,
    "requests": [
-    "/styles.css",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/food.html",
+    "/styles.css",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 76
+    "lcp_ms": 80
    },
    "noJs": {
     "h1": 1,
@@ -1305,7 +1158,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 140000,
+   "initialBytes": 140111,
    "reducedMotion": true
   },
   "index.html": {
@@ -1426,18 +1279,18 @@
     }
    },
    "console": [],
-   "bytes": 251618,
+   "bytes": 308821,
    "requests": [
-    "/styles.css",
-    "/images/NV-HERO-01-d-1537.avif",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/index.html",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/styles.css",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/images/NV-VISION-VP01-d-1536.avif",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 84
+    "lcp_ms": 112
    },
    "noJs": {
     "h1": 1,
@@ -1446,7 +1299,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 251618,
+   "initialBytes": 308821,
    "reducedMotion": true
   },
   "investor.html": {
@@ -1567,17 +1420,17 @@
     }
    },
    "console": [],
-   "bytes": 162952,
+   "bytes": 163063,
    "requests": [
     "/investor.html",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 64
+    "lcp_ms": 80
    },
    "noJs": {
     "h1": 1,
@@ -1586,7 +1439,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 162952,
+   "initialBytes": 163063,
    "reducedMotion": true
   },
   "labs.html": {
@@ -1715,17 +1568,17 @@
     }
    },
    "console": [],
-   "bytes": 120274,
+   "bytes": 120385,
    "requests": [
     "/labs.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
+    "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 52
+    "lcp_ms": 88
    },
    "noJs": {
     "h1": 1,
@@ -1734,7 +1587,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 120274,
+   "initialBytes": 120385,
    "reducedMotion": true
   },
   "pairings.html": {
@@ -1855,17 +1708,17 @@
     }
    },
    "console": [],
-   "bytes": 119882,
+   "bytes": 119993,
    "requests": [
-    "/styles.css",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/pairings.html",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
+    "/styles.css",
+    "/app.js",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 60
+    "lcp_ms": 80
    },
    "noJs": {
     "h1": 1,
@@ -1874,222 +1727,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 119882,
-   "reducedMotion": true
-  },
-  "space.html": {
-   "overflow": {
-    "320": {
-     "scrollW": 320,
-     "clientW": 320,
-     "ok": true
-    },
-    "390": {
-     "scrollW": 390,
-     "clientW": 390,
-     "ok": true
-    },
-    "768": {
-     "scrollW": 768,
-     "clientW": 768,
-     "ok": true
-    },
-    "1280": {
-     "scrollW": 1280,
-     "clientW": 1280,
-     "ok": true
-    },
-    "1440": {
-     "scrollW": 1440,
-     "clientW": 1440,
-     "ok": true
-    },
-    "1920": {
-     "scrollW": 1920,
-     "clientW": 1920,
-     "ok": true
-    }
-   },
-   "axe": {
-    "dark": {
-     "violations": [],
-     "passes": 49,
-     "incomplete": [
-      "color-contrast"
-     ],
-     "incompleteDetail": [
-      {
-       "target": "text[y=\"111\"][x=\"54\"][font-size=\"20\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[y=\"137\"][x=\"54\"][font-size=\"15\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[x=\"324\"][y=\"111\"][font-size=\"20\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[x=\"324\"][y=\"137\"][font-size=\"15\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[x=\"594\"][y=\"111\"][font-size=\"20\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[x=\"594\"][y=\"137\"][font-size=\"15\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[y=\"266\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[y=\"292\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[y=\"360\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": ".stack > p:nth-child(1)",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "p:nth-child(1) > strong",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "summary",
-       "reason": "bgGradient"
-      },
-      {
-       "target": ".stack > p:nth-child(3)",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "a[href$=\"about.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "a[href$=\"walkthrough.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
-       "reason": "bgGradient"
-      }
-     ]
-    },
-    "light": {
-     "violations": [],
-     "passes": 49,
-     "incomplete": [
-      "color-contrast"
-     ],
-     "incompleteDetail": [
-      {
-       "target": "text[y=\"111\"][x=\"54\"][font-size=\"20\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[y=\"137\"][x=\"54\"][font-size=\"15\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[x=\"324\"][y=\"111\"][font-size=\"20\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[x=\"324\"][y=\"137\"][font-size=\"15\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[x=\"594\"][y=\"111\"][font-size=\"20\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[x=\"594\"][y=\"137\"][font-size=\"15\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[y=\"266\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[y=\"292\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": "text[y=\"360\"]",
-       "reason": "bgOverlap"
-      },
-      {
-       "target": ".stack > p:nth-child(1)",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "p:nth-child(1) > strong",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "summary",
-       "reason": "bgGradient"
-      },
-      {
-       "target": ".stack > p:nth-child(3)",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "a[href$=\"about.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "a[href$=\"walkthrough.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "p:nth-child(3) > a[href$=\"investor.html\"]",
-       "reason": "bgGradient"
-      },
-      {
-       "target": "p:nth-child(3) > a[href$=\"labs.html\"]",
-       "reason": "bgGradient"
-      }
-     ]
-    }
-   },
-   "console": [],
-   "bytes": 215147,
-   "requests": [
-    "/space.html",
-    "/styles.css",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js",
-    "/images/NV-SPACE-EXT-DAY-d-640.avif",
-    "/images/NV-SPACE-ENTRANCE-d-640.avif",
-    "/images/NV-BREWERY-HALL-d-640.avif"
-   ],
-   "perf": {
-    "cls": 0,
-    "lcp_ms": 60
-   },
-   "noJs": {
-    "h1": 1,
-    "textLen": 4864,
-    "hiddenFilters": true,
-    "items": 0,
-    "visibleItems": 0
-   },
-   "initialBytes": 192503,
+   "initialBytes": 119993,
    "reducedMotion": true
   },
   "walkthrough.html": {
@@ -2210,17 +1848,17 @@
     }
    },
    "console": [],
-   "bytes": 111558,
+   "bytes": 111669,
    "requests": [
     "/walkthrough.html",
     "/styles.css",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js",
-    "/fonts/instrument-serif-latin-400-normal.woff2"
+    "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 56
+    "lcp_ms": 64
    },
    "noJs": {
     "h1": 1,
@@ -2229,25 +1867,25 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 111558,
+   "initialBytes": 111669,
    "reducedMotion": true
   }
  },
  "summary": {
-  "pages": 14,
+  "pages": 12,
   "axeViolations": 0,
   "overflowFailures": 0,
-  "maxBytes": 251618,
-  "maxInitialBytes": 251618,
-  "homeInitialBytes": 251618,
+  "maxBytes": 308821,
+  "maxInitialBytes": 308821,
+  "homeInitialBytes": 308821,
   "maxCls": 0,
-  "maxLcpMs": 88,
+  "maxLcpMs": 116,
   "consoleIssues": 0
  },
  "slow": {
   "profile": "1.6 Mbps, 150 ms RTT, 390px viewport",
-  "heroReadyMs": 1281,
-  "heroSrc": "/images/NV-HERO-01-m-480.avif"
+  "heroReadyMs": 1352,
+  "heroSrc": "/images/NV-VISION-VP01-m-480.avif"
  },
  "imagesBlocked": {
   "index.html": {
@@ -2256,9 +1894,9 @@
    "overflow": false,
    "h1": true
   },
-  "space.html": {
-   "imgs": 4,
-   "withAlt": 4,
+  "court.html": {
+   "imgs": 3,
+   "withAlt": 3,
    "overflow": false,
    "h1": true
   }
@@ -2276,7 +1914,7 @@
     "sample": []
    },
    "court.html": {
-    "focusable": 20,
+    "focusable": 19,
     "withoutVisibleOutline": 0,
     "sample": []
    },
@@ -2292,11 +1930,6 @@
    },
    "evening.html": {
     "focusable": 17,
-    "withoutVisibleOutline": 0,
-    "sample": []
-   },
-   "experience.html": {
-    "focusable": 18,
     "withoutVisibleOutline": 0,
     "sample": []
    },
@@ -2321,11 +1954,6 @@
     "sample": []
    },
    "pairings.html": {
-    "focusable": 18,
-    "withoutVisibleOutline": 0,
-    "sample": []
-   },
-   "space.html": {
     "focusable": 18,
     "withoutVisibleOutline": 0,
     "sample": []
@@ -2355,9 +1983,6 @@
    "evening.html": {
     "overflowX": false
    },
-   "experience.html": {
-    "overflowX": false
-   },
    "food.html": {
     "overflowX": false
    },
@@ -2371,9 +1996,6 @@
     "overflowX": false
    },
    "pairings.html": {
-    "overflowX": false
-   },
-   "space.html": {
     "overflowX": false
    },
    "walkthrough.html": {
@@ -2399,9 +2021,6 @@
    "evening.html": {
     "overflowX": false
    },
-   "experience.html": {
-    "overflowX": false
-   },
    "food.html": {
     "overflowX": false
    },
@@ -2415,9 +2034,6 @@
     "overflowX": false
    },
    "pairings.html": {
-    "overflowX": false
-   },
-   "space.html": {
     "overflowX": false
    },
    "walkthrough.html": {

@@ -14,7 +14,7 @@ import pages_s25 as P25  # noqa: E402
 SRC, DATA, DIST = (os.path.join(HERE, p) for p in ("src", "data", "dist"))
 REPO = os.path.dirname(HERE)
 MANIFEST = os.path.join(REPO, "visuals/NASHA-VISUAL-MANIFEST.csv")
-BUILD_DATE = "2026-10-12"
+BUILD_DATE = "2026-10-13"
 E = html.escape
 
 def load(n):
@@ -34,7 +34,8 @@ RASTER_META = {}
 
 PAGES = [("index.html", "Home"), ("food.html", "Food"), ("beer.html", "Beer"), ("court.html", "The Court"), ("craft.html", "The Craft"),
          ("evening.html", "Evening"), ("labs.html", "The Lab"), ("investor.html", "Business")]
-NAV_GROUP = {"space.html": "court.html", "experience.html": "evening.html", "pairings.html": "food.html", "crossing.html": "index.html", "walkthrough.html": "investor.html", "about.html": "index.html"}
+HERO_ID = "NV-VISION-VP01"
+NAV_GROUP = {"pairings.html": "food.html", "crossing.html": "index.html", "walkthrough.html": "investor.html", "about.html": "index.html"}
 
 DISCLOSE = ("Concept stage: there is no brewery, no restaurant, no truck and no menu for sale. "
             "Images are concept visualizations and illustrations, not photographs of NASHA.")
@@ -184,131 +185,11 @@ def pairs_section(h="h3"):
 
 # ---------- pages ----------
 def hero_head():
-    m = RASTER_META["NV-HERO-01"]
+    m = RASTER_META[HERO_ID]
     d = sorted([f for f in m["d"]["files"] if f["fmt"] == "avif" and f["w"] <= 1600], key=lambda f: f["w"])[-1]
     mm = [f for f in m["m"]["files"] if f["fmt"] == "avif" and f["w"] == 800][0]
     return (f'<link rel="preload" as="image" type="image/avif" media="(min-width: 701px)" href="images/{d["file"]}">\n'
             f'<link rel="preload" as="image" type="image/avif" media="(max-width: 700px)" href="images/{mm["file"]}">\n')
-
-def page_index():
-    hero = raster_fig("NV-HERO-01", "fig-hero", eager=True, sizes="100vw")
-    sig = [DISH[i] for i in ("chicken-65-totopos", "paneer-tikka-taco", "butter-chicken-quesadilla")]
-    food = "".join(f'<article class="feature reveal"><div class="plate-big">{plate_svg(d)}</div><h3>{E(d["name"])}</h3><p>{E(d["line"])}</p><p>{chips("Proposed presentation · not cooked or tested", d["status"])}</p></article>' for d in sig)
-    beer = "".join(f'<article class="feature reveal"><div class="glass-big">{art.glass(uid("hb"), b, .86, gkind(BEER[b]), animate=True, title=f"Concept glass of {BEER[b]["name"]}")}</div><h3>{E(BEER[b]["name"])}</h3><p>{E(BEER[b]["line"])}</p><p>{chips("Not brewed yet", "Style-based concept visualization")}</p></article>' for b in GATE_BEERS)
-    motifs = "".join(f'<li class="reveal">{art.motif(m, uid("mo"))}<span>{E(l)}</span></li>' for m, l in [("smoke", "Fire"), ("acid", "Acid"), ("spice", "Spice"), ("fermentation", "Fermentation")])
-    status_items = "".join(f'<li{" class=\"current\"" if it["state"] == "Designing" else ""}><span class="stage">{E(it["state"])}</span><h3>{E(it["name"])}</h3><p>{E(it["note"])}</p></li>' for it in status["items"])
-    journey = "".join(f'<li class="reveal"{" aria-current=\"step\"" if p["stage"] == "Now" else ""}><span class="j-dot" aria-hidden="true"></span><span class="stage">{E(p["stage"])}</span><h3>{E(p["title"])}</h3><p>{E(p["body"])}</p></li>' for p in labs["path"])
-    body = f'''
-<section class="hero" aria-labelledby="h1">
-{hero}
-<div class="wrap hero-copy">
-<p class="eyebrow">Austin, Texas · In development</p>
-<h1 id="h1">Food and beer, designed together.</h1>
-<p class="lede">An Indo-Mex brewery and kitchen planned for Austin. Nothing is built, cooked or brewed yet. The idea: fire in the kitchen, fermentation in the glass hall, one long table between them.</p>
-<p class="disclosure">{E(DISCLOSE)} Equipment shown in images is illustrative: brewery size, tank count and layout are not decided.</p>
-</div></section>
-
-<section aria-labelledby="sx"><div class="wrap"><p class="eyebrow">In sixty seconds</p><h2 id="sx" class="statement">An Indo-Mex brewery and kitchen, designed in the open before it exists.</h2>
-<div class="grid cols-3 sixty">
-<div class="card"><h3>India × Mexico</h3><p>Two cuisines that already build flavour from chile, acid and fire, joined into five core dishes that should feel like one cuisine.</p></div>
-<div class="card"><h3>Food × Beer × Zero-proof</h3><p>Every dish has a beer and a non-alcoholic drink chosen for it, with equal standing. <a href="pairings.html">See the pairings</a>.</p></div>
-<div class="card"><h3>What exists today</h3><p>A design system, a prepared first kitchen test and this private site. Nothing has been cooked, brewed or sold, and no restaurant, brewery or opening date exists. The name is a working name: a same-name Austin restaurant has been reported and legal clearance is pending.</p></div>
-</div></div></section>
-
-<section aria-labelledby="b2"><div class="wrap grid cols-2 center">
-<div class="reveal"><p class="eyebrow"><span class="beat-no">02</span> Food × Beer</p><h2 id="b2" class="statement">Each dish names the beers it is meant to meet.</h2>
-<p class="lede">India and Mexico both build flavour from chile, lime, toasted spice, flatbread and fermentation. NASHA starts from what they share and lets each stay itself.</p>
-<p>The food and the beer are specified together. That is a design goal we intend to test, not a result we have.</p></div>
-<div class="reveal">{svg_fig("NV-ILL-PLATES", '<div class="duo"><div class="duo-plate">' + plate_svg(DISH["chicken-65-totopos"]) + '</div><div class="duo-glass">' + art.glass(uid("dg"), "mexican-lager", .88, "lager", True, "Concept glass of Mexican-style lager") + '</div></div>', "fig-duo", "4/3")}</div>
-</div></section>
-
-<section class="fire-ferment" aria-labelledby="b3"><div class="wrap">
-<p class="eyebrow"><span class="beat-no">03</span> Fire × Fermentation</p>
-<h2 id="b3" class="statement reveal">Food transformed by fire. Beer transformed by fermentation.</h2>
-<div class="grid cols-2 ff">
-<div class="reveal">{svg_fig("NV-ILL-FIRE", art.fire_scene(uid("fire")), "", "8/5")}<h3>Fire</h3><p>A clay tandoor and a flat comal: char, smoke and quick heat. This is how the kitchen is designed to cook.</p></div>
-<div class="reveal">{svg_fig("NV-ILL-FERMENT", art.ferment_scene(uid("fm")), "", "8/5")}<h3>Fermentation</h3><p>Steel tanks behind glass, so the slow work is visible. Tank size and count are not decided.</p></div>
-</div></div></section>
-
-<section aria-labelledby="b4"><div class="wrap">
-<p class="eyebrow"><span class="beat-no">04</span> The food</p>
-<h2 id="b4">Dishes, as designed.</h2>
-<p>Drawn here as proposed presentation. No dish has been cooked for guests, and these are not photographs. <a href="food.html">See all five core dishes</a>. Three are shown here.</p>
-<div class="grid cols-3">{food}</div></div></section>
-
-<section class="alt" aria-labelledby="b5"><div class="wrap">
-<p class="eyebrow"><span class="beat-no">05</span> The beer</p>
-<h2 id="b5">Beer briefs, not beers yet.</h2>
-<p>Nothing has been brewed. These glasses are concept drawings of briefs for a head brewer to critique. <a href="beer.html">Meet all five beers</a>. Three are shown here.</p>
-<div class="grid cols-3">{beer}</div></div></section>
-
-<section class="band-indigo crossing-band" aria-labelledby="b6">{art.jali(uid("jl"))}<div class="wrap grid cols-2 center rel">
-<div><p class="eyebrow"><span class="beat-no">06</span> The Crossing</p><h2 id="b6" class="statement">Where India and Mexico already meet.</h2>
-<p class="lede">Chile, lime, toasted seeds, flatbread, fermentation. We separate what history supports from what is only a good comparison.</p><p><a href="crossing.html">Enter the Crossing</a></p></div>
-<ul class="motifs">{motifs}</ul></div></section>
-
-<section aria-labelledby="b7"><div class="wrap">
-<p class="eyebrow"><span class="beat-no">07</span> The place</p>
-<h2 id="b7">A hall we have only imagined.</h2>
-<p>Stone and glass, a timber arcade, a covered court under an oak. A concept: no site is chosen and nothing is engineered. <a href="space.html">Walk through it</a>.</p>
-<div class="grid cols-2">{raster_fig("NV-SPACE-EXT-DAY", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}{raster_fig("NV-SPACE-PATIO", "reveal", sizes="(max-width: 700px) 100vw, 50vw")}</div></div></section>
-
-<section class="alt" aria-labelledby="b8"><div class="wrap">
-<p class="eyebrow"><span class="beat-no">08</span> The table</p>
-<h2 id="b8" class="statement">Plates and pitchers for the middle of the table.</h2>
-<p>Designed for sharing: five dishes, five beers, one long table. <a href="experience.html">See an evening at NASHA</a>.</p>
-{svg_fig("NV-ILL-TABLE", art.table_scene(uid("tb")), "reveal fig-wide", "960/420")}</div></section>
-
-<section aria-labelledby="b9"><div class="wrap">
-<p class="eyebrow"><span class="beat-no">09</span> Building NASHA</p>
-<h2 id="b9" class="statement reveal">From vision back to reality.</h2>
-<p class="lede">Everything above is a concept. This is the real path, and we are on its first step.</p>
-<ol class="journey">{journey}</ol>
-<p class="muted">Nothing is in testing yet. <a href="labs.html">The Lab</a> shows where each dish stands, and <a href="investor.html">the business view</a> shows what exists and what does not. About the word <em>nasha</em> and our commitments: <a href="about.html">About NASHA</a>.</p></div></section>
-'''
-    return layout("index.html", "NASHA: Indo-Mex brewery and kitchen, in development",
-                  "NASHA is a future Indo-Mex brewery and kitchen in Austin, Texas. In development. Nothing is for sale yet.", body, hero_head(), "home")
-
-def page_experience():
-    sc = [
-     ("Arrival", "Curiosity", "You would see the sign first, then warm light through glass, then the tanks.", raster_fig("NV-SPACE-ENTRANCE", "", sizes="(max-width: 700px) 100vw, 50vw")),
-     ("The bar", "Refreshment", "A long bar, a wall of taps and a shelf of glasses, with the brewery in sight behind it.", svg_fig("NV-ILL-BAR", art.bar_scene(uid("ba")), "", "960/500")),
-     ("The table", "Belonging", "Long tables for sharing. Plates go in the middle and glasses go round.", svg_fig("NV-ILL-TABLE", art.table_scene(uid("tb")), "", "960/420")),
-     ("The food", "Hunger", "Fusion dishes and our own: Chicken 65 on masa chips, tacos, a braise and a quesadilla. All still being designed.", svg_fig("NV-ILL-PLATES", '<div class="plates3">' + "".join(f'<div>{plate_svg(DISH[i])}</div>' for i in ("chicken-65-totopos", "paneer-tikka-taco", "goat-birria")) + '</div>', "fig-plates", "3/1")),
-     ("The beer", "Refreshment", "Light and crisp, wheat, toasty. Each beer is a brief with named dishes it is meant to meet.", svg_fig("NV-ILL-GLASS", '<div class="glass-row">' + "".join(art.glass(uid("eg"), b, .86, gkind(BEER[b]), True, f"Concept glass of {BEER[b]['name']}") for b in GATE_BEERS) + '</div>', "fig-glasses", "3/1")),
-     ("The fire", "Warmth", "A tandoor and a comal in an open kitchen, so you can watch food meet fire.", svg_fig("NV-ILL-FIRE", art.fire_scene(uid("fi")), "", "8/5")),
-     ("The brewery", "Wonder", "Tanks behind glass: the slow work of fermentation, in view. Size and count are not decided.", raster_fig("NV-BREWERY-GLASS", "", sizes="(max-width: 700px) 100vw, 50vw")),
-     ("The patio", "Staying", "A covered court under an oak, shade and fans for the heat, lights for the evening.", raster_fig("NV-SPACE-PATIO", "", sizes="(max-width: 700px) 100vw, 50vw")),
-     ("Night", "Staying late", "By dusk the hall glows, the court fills, and nobody is in a hurry.", raster_fig("NV-HERO-01", "", sizes="(max-width: 700px) 100vw, 50vw"))]
-    rows = "".join(f'<section class="scene{" alt" if i % 2 else ""}" aria-labelledby="sc{i}"><div class="wrap grid cols-2 center"><div class="reveal{" order-2" if i % 2 else ""}"><p class="eyebrow"><span class="beat-no">{i+1:02d}</span> {E(feel)}</p><h2 id="sc{i}">{E(t)}</h2><p class="lede">{E(txt)}</p></div><div class="reveal">{fig}</div></div></section>' for i, (t, feel, txt, fig) in enumerate(sc))
-    body = f'''<section aria-labelledby="h1"><div class="wrap">
-{P.subnav("experience.html")}<p class="eyebrow">Experience</p><h1 id="h1">An evening at NASHA.</h1>
-<p class="lede">This is what the evening is designed to feel like, from the walk up to the last pour. It is a design, written in the conditional, because NASHA does not exist yet.</p>
-<p class="disclosure">{E(DISCLOSE)} Nobody has tested this evening.</p></div></section>
-{rows}
-<section class="band-indigo" aria-labelledby="exf"><div class="wrap grid cols-2 center"><div><h2 id="exf">Before the hall, the test.</h2><p class="lede">The path to this evening starts smaller: tastings, pop-ups, perhaps a brewery residency. Each step has to earn the next.</p><p><a href="labs.html">See the path</a></p></div>{svg_fig("NV-ILL-POPUP", art.popup_scene(uid("pu")), "", "960/500")}</div></section>'''
-    body += P.journey_section(M, SITE)
-    return layout("experience.html", "Experience · NASHA", "What an evening at NASHA is designed to feel like. A concept, not a built place.", body)
-
-def page_space():
-    def step(i, name, emo, txt, fig):
-        return f'<section class="scene{" alt" if i % 2 else ""}" id="{name.lower().replace(" ", "-")}" aria-labelledby="s{i}"><div class="wrap grid cols-2 center"><div class="reveal{" order-2" if i % 2 else ""}"><p class="eyebrow"><span class="beat-no">{i+1:02d}</span> {E(emo)}</p><h2 id="s{i}">{E(name)}</h2><p>{E(txt)}</p></div><div class="reveal">{fig}</div></div></section>'
-    s = [("Exterior", "Desire to visit", "A limestone-and-glass hall with timber arcade and perforated screens, set among native grasses and oaks.", raster_fig("NV-SPACE-EXT-DAY", "", sizes="(max-width: 700px) 100vw, 50vw")),
-         ("Entrance", "Curiosity", "The first view is the point: warm light, a door, and tanks you can see from outside.", raster_fig("NV-SPACE-ENTRANCE", "", sizes="(max-width: 700px) 100vw, 50vw")),
-         ("Bar", "Refreshment", "Taps, a tiled front and a back bar of glassware, with a sightline to the brewery.", svg_fig("NV-ILL-BAR", art.bar_scene(uid("ba")), "", "960/500")),
-         ("Brewery", "Wonder", "Equipment behind glass. Everything here is illustrative: tank size, count and layout are an open decision.", raster_fig("NV-BREWERY-HALL", "", sizes="(max-width: 700px) 100vw, 50vw")),
-         ("Kitchen", "Hunger", "An open kitchen with fire at its centre: a tandoor and a comal.", svg_fig("NV-ILL-FIRE", art.fire_scene(uid("fi")), "", "8/5")),
-         ("Dining", "Belonging", "Long communal tables and plates for the middle.", svg_fig("NV-ILL-TABLE", art.table_scene(uid("tb")), "", "960/420")),
-         ("Patio", "Staying", "A covered court with shade and fans for Texas heat, greenery, and light for the evening.", raster_fig("NV-SPACE-PATIO", "", sizes="(max-width: 700px) 100vw, 50vw"))]
-    steps = "".join(step(i, *x) for i, x in enumerate(s))
-    body = f'''<section aria-labelledby="h1"><div class="wrap">
-{P.subnav("space.html")}<p class="eyebrow">Space</p><h1 id="h1">A walk through the hall.</h1>
-<p class="lede">From the road to the patio, in seven steps.</p>
-<p class="disclosure">{E(CONCEPT_NOTE)} These are not construction plans. No site has been chosen and NASHA has no address. {E(DISCLOSE)}</p></div></section>
-{steps}
-<section class="band-indigo" aria-labelledby="zn"><div class="wrap grid cols-2 center"><div><h2 id="zn">How the zones relate.</h2><p>A concept diagram, not a floor plan.</p></div><div>{svg_fig("NV-ILL-ZONES", ZONE_SVG, "fig-zone", "870/370")}</div></div></section>'''
-    body += P.space_section(M, SITE)
-    return layout("space.html", "The Place · NASHA", "A conceptual walkthrough of a future NASHA hall. Concept visualization, not construction plans.", body)
 
 def menu_card():
     cats = ["Small", "Tacos", "Quesadillas", "Birria", "Large", "Dessert"]
@@ -358,7 +239,7 @@ def page_beer():
 
 <section class="alt" aria-labelledby="bv"><div class="wrap grid cols-2 center"><div><p class="eyebrow">Brewery vision</p><h2 id="bv">The brewery in plain sight.</h2>
 <p class="lede">The imagined brewhouse sits behind glass so guests can see the work. The equipment in this picture is illustrative: the vessel size and count are an open decision and nothing here fixes them.</p></div>
-<div class="reveal">{raster_fig("NV-BREWERY-GLASS", "", sizes="(max-width: 700px) 100vw, 50vw")}</div></div></section>
+<div class="reveal">{raster_fig("NV-VISION-VP03", "", sizes="(max-width: 700px) 100vw, 50vw")}</div></div></section>
 
 <section aria-labelledby="hs"><div class="wrap"><p class="eyebrow">Honest status</p><h2 id="hs">Not brewed yet.</h2>
 <p>No beer exists. There is no brewer on the team, no recipe and no licence. The first beers, if any, would likely be made with a partner brewery under rules we are still learning. <a href="labs.html">Follow the path in The Lab</a>.</p></div></section>'''
@@ -421,10 +302,10 @@ def main():
         shutil.rmtree(DIST)
     os.makedirs(os.path.join(DIST, "fonts")); imgdir = os.path.join(DIST, "images"); os.makedirs(imgdir)
     for vid, row in VIS.items():
-        if row["kind"] == "raster" and row["source_file"] and os.path.exists(os.path.join(REPO, row["source_file"])):
+        if row["kind"] == "raster" and row["source_file"] and not row["status"].startswith("SUPERSEDED") and os.path.exists(os.path.join(REPO, row["source_file"])):
             RASTER_META[vid] = images.build_raster(row, imgdir)
     PROTO.update(P.load_proto(M))
-    pages = (("index.html", lambda: P25.page_home(M, SITE)), ("court.html", lambda: P25.page_court(M, SITE)), ("craft.html", lambda: P25.page_craft(M, SITE)), ("evening.html", lambda: P25.page_evening(M, SITE)), ("walkthrough.html", lambda: P25.page_walkthrough(M, SITE)), ("experience.html", page_experience), ("space.html", page_space), ("food.html", page_food),
+    pages = (("index.html", lambda: P25.page_home(M, SITE)), ("court.html", lambda: P25.page_court(M, SITE)), ("craft.html", lambda: P25.page_craft(M, SITE)), ("evening.html", lambda: P25.page_evening(M, SITE)), ("walkthrough.html", lambda: P25.page_walkthrough(M, SITE)), ("food.html", page_food),
              ("beer.html", page_beer), ("crossing.html", page_crossing), ("pairings.html", lambda: P.page_pairings(M, SITE)), ("labs.html", lambda: P.page_lab(M, SITE)), ("investor.html", lambda: P.page_business(M, SITE)), ("about.html", page_about))
     for fn, fnc in pages:
         with open(os.path.join(DIST, fn), "w", encoding="utf-8") as f:

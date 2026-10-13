@@ -93,7 +93,7 @@ for fn,p in pages.items():
             if not re.search(r'alt="[^"]{25,}"',im): fail(f"{fn}: {vid} alt text missing or too short")
             if "Concept visualization" not in re.sub(r"\s+"," ",re.sub(r"<[^>]+>","",html_unescape(r["alt_text"]))) and "Concept visualization" not in r["alt_text"]: fail(f"{fn}: {vid} alt should say it is a concept visualization")
             lazy="loading=\"lazy\"" in im
-            if fn=="index.html" and vid=="NV-HERO-01":
+            if fn=="index.html" and "fig-hero" in m.group(0):
                 if lazy or "fetchpriority=\"high\"" not in im: fail("hero image must be eager with fetchpriority high")
             elif not lazy: fail(f"{fn}: {vid} below-the-fold image must be lazy")
             if "image/avif" not in inner or "image/webp" not in inner or "(max-width: 700px)" not in inner: fail(f"{fn}: {vid} needs avif+webp sources and a mobile composition")
