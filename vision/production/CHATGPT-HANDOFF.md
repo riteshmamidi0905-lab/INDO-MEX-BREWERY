@@ -14,7 +14,7 @@ Assets, in order: VP-01 (round 1), VP-02 (round 2), VP-03 (round 2), VP-04 (roun
 
 ---
 ## VP-01 · Hero: the Court Brewhouse at blue hour (dusk with a deep blue sky)
-**Round 1 · class: VISION PLACE · status: PROMPT READY — NOT GENERATED**
+**Round 1 · class: VISION PLACE · status: GENERATED AND FOUNDER-CONFIRMED (see IMAGE-PROVENANCE.csv); Round 2 architecture frozen**
 
 **What to generate.** The defining NASHA image: Austin, court, brewery, hospitality, food and beer, warmth, people, in one frame.
 
@@ -50,7 +50,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-02 · Court at golden hour
-**Round 2 · class: VISION PLACE · status: PROMPT READY — NOT GENERATED**
+**Round 2 · class: VISION PLACE · status: GENERATED AND FOUNDER-CONFIRMED (see IMAGE-PROVENANCE.csv); Round 2 architecture frozen**
 
 **What to generate.** Show the court as useful, shaded and alive, with the brewery visible.
 
@@ -94,7 +94,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-03 · The bar
-**Round 2 · class: VISION PLACE · status: PROMPT READY — NOT GENERATED**
+**Round 2 · class: VISION PLACE · status: GENERATED AND FOUNDER-CONFIRMED (see IMAGE-PROVENANCE.csv); Round 2 architecture frozen**
 
 **What to generate.** Prove this is not a generic taproom: food, beer, zero-proof, hospitality and brewery in one view.
 
@@ -139,7 +139,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-04 · Court at night
-**Round 2 · class: VISION PLACE · status: PROMPT READY — NOT GENERATED**
+**Round 2 · class: VISION PLACE · status: GENERATED AND FOUNDER-CONFIRMED (see IMAGE-PROVENANCE.csv); Round 2 architecture frozen**
 
 **What to generate.** The night version of the place: social energy, brewery glow, warmth.
 
@@ -195,7 +195,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 **Desktop crop.** 16:9 crop; plate left third
 **Mobile crop.** 4:5 crop centred on the plate
 
-**Attach.** VP-02 table and stoneware (Accepted VP-01 (table, light), VP-02 (stoneware))
+**Attach.** Attach VP-02 only (table, stoneware, glasses, light). Do not attach VP-01, VP-03, VP-04 or the Vision board. (Accepted and founder-confirmed VP-02)
 
 **PASTE THIS**
 ```text
@@ -210,14 +210,16 @@ FRAMING: eye-level, straight verticals, slightly wide for buildings; table heigh
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
 
-THIS IMAGE: Chicken 65 Totopos. Subject: Indian-style fried chicken pieces, dry and lightly coated, red-orange and craggy, with fried curry leaves, loosely stacked on a bed of three or four thick, sturdy fried corn totopos on a black stoneware plate; one controlled spoon of crema, a lime edge and a few herbs. Time of day: Evening at the court table. Framing: Three-quarter overhead, close but with the table visible; Natural close-up framing. Composition: Plate in the lower-left third, beer glass blurred at upper right, napkin and katori at the edge, pecan table grain visible; leave the top 15% quiet for crops. People: Optional: none. Product: Chicken 65: dry or lightly coated, red-orange, craggy, recognisable boneless pieces; fried curry leaves; thick structural totopos each about half a palm wide; one line of crema; no sauce pool; light steam. Light: Warm directional side light, readable shadows, no orange cast. Critical details: Pieces are chicken, not mince; totopos are thick and visibly fried corn; no sauce pool. Keep out: Generic nachos, thin chips, cheese blanket, ground chicken, saucy pile, sports-bar plating, micro garnish.
+REFERENCE ROLES: Image 1 is VP-02, the court, table, chair and material reference. Use it ONLY for the look of the pecan table, the matte black stoneware, the steel katori, the glassware, the napkin and the warm evening light. Ignore its people, its architecture and its composition: this is a close food photograph. Everything about the food comes from the written description below, not from any reference image.
 
-NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme park; no sombreros; no Taj Mahal; no elephant decor; no cactus overload; no Dia de Muertos imagery; no Bollywood decor; no mandalas or sacred motifs; no neon or nightclub lighting; no blue or purple club grading; no cannabis aesthetic; no generic sports bar; no luxury hotel lobby; no resort courtyard; no fake copper tanks or copper-clad brewery showpiece; no impossible pipes or tanks blocking circulation; no more than eight tap handles; no giant logo wall or large readable sign text; no trademark symbols; no excessive marigold or orange; no string lights; no food floating in a black studio void; no tweezer fine-dining garnish; no oversaturated or HDR processing; no extreme ultra-wide distortion; no drone-style aerial; no identifiable real people; no readable text on clothing; no children near beer; no melted cheese, no jalapeno rings, no shredded lettuce, no sour cream swirl, no ground meat.
+THIS IMAGE: Chicken 65 Totopos. Subject: Indian-style Chicken 65: separate, recognisable boneless fried chicken pieces with a dry or lightly coated crisp surface, red-orange and craggy, scattered with a few fried curry leaves, resting on three or four thick, sturdy, genuinely fried corn totopos made from nixtamal masa, on a black stoneware plate; one controlled spoon of crema and a small lime edge; no more than a few coriander leaves. Time of day: Evening at the court table. Framing: Three-quarter overhead, close but with the table visible; Natural close-up framing. Composition: Plate in the lower-left third, beer glass blurred at upper right, napkin and katori at the edge, pecan table grain visible; leave the top 15% quiet for crops. People: Optional: none. Product: Chicken 65 is the hero: dry or lightly coated, red-orange, craggy pieces you can pick up one at a time, not a saucy pile; fried curry leaves clearly visible; the totopos are thick, irregular, sturdy fried corn pieces about half a palm wide that could hold weight, sitting under and beside the chicken as a support, never a bed of thin chips; one controlled line or spoon of crema; a small lime edge; a few coriander leaves only; light steam. Light: Warm directional side light, readable shadows, no orange cast. Critical details: It must read as Chicken 65 FIRST and totopos second, never as loaded nachos: separate pieces, red-orange craggy coating that is dry or light, visible curry leaves, thick fried totopos, controlled crema and acid, deliberate plate composition with open black stoneware visible; the plate is small and unfussy; no sauce pool; no cheese of any kind. Keep out: Generic loaded nachos, thin triangular tortilla chips, a cheese blanket or any cheese, ground chicken, wings, a saucy chicken pile, jalapeno slices, a blanket of cilantro, drizzle patterns, sports-bar plating, fine-dining micro garnish.
+
+NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme park; no sombreros; no Taj Mahal; no elephant decor; no cactus overload; no Dia de Muertos imagery; no Bollywood decor; no mandalas or sacred motifs; no neon or nightclub lighting; no blue or purple club grading; no cannabis aesthetic; no generic sports bar; no luxury hotel lobby; no resort courtyard; no fake copper tanks or copper-clad brewery showpiece; no impossible pipes or tanks blocking circulation; no more than eight tap handles; no giant logo wall or large readable sign text; no trademark symbols; no excessive marigold or orange; no string lights; no food floating in a black studio void; no tweezer fine-dining garnish; no oversaturated or HDR processing; no extreme ultra-wide distortion; no drone-style aerial; no identifiable real people; no readable text on clothing; no children near beer; no cheese; no melted cheese; no jalapeno slices; no cilantro blanket; no thin triangular chips; no shredded lettuce; no sour cream swirl; no ground meat; no wings; no sauce pool; no sauce drizzle pattern; no tweezer garnish; no nachos.
 ```
 
-**Must not change.** Same table, plate family, napkin, katori and light as the other food images
+**Must not change.** This image becomes the Core 5 food continuity master: stoneware, katori, napkin, table, camera distance and light
 
-**Success criteria.** Someone who knows Chicken 65 recognises it; someone who does not sees a Chicken 65 plate, not nachos
+**Success criteria.** Someone who knows Chicken 65 recognises it at a glance; someone who does not sees fried spiced chicken with curry leaves on thick corn totopos, not nachos; the plate, table and light match VP-02; asset class VISION FOOD — NOT COOKED PRODUCT
 
 ---
 ## VP-06 · Paneer Tikka Taco
@@ -231,7 +233,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 **Desktop crop.** 16:9 crop
 **Mobile crop.** 4:5 crop on the tacos
 
-**Attach.** VP-05 (Accepted VP-05)
+**Attach.** Attach in this order: 1) accepted VP-05 (Core 5 food continuity master); 2) VP-02 (secondary table and material reference) (Accepted and founder-confirmed VP-05 and VP-02)
 
 **PASTE THIS**
 ```text
@@ -245,6 +247,8 @@ LIGHT: warm tungsten pools with natural colour and no orange cast. Dusk means a 
 FRAMING: eye-level, straight verticals, slightly wide for buildings; table height for drinks; three-quarter overhead for food; shallow focus only on food; natural film grain; no HDR.
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
+
+REFERENCE ROLES: Image 1 is VP-05, the Core 5 food continuity master: copy its table, stoneware, katori, napkin, camera distance and light, NOT its dish. Image 2 is VP-02, the secondary table and material reference. Everything about this dish comes from the written description below, not from either image.
 
 THIS IMAGE: Paneer Tikka Taco. Subject: Two tacos on a black steel tray with bone paper: real corn tortillas holding charred cubes of paneer, controlled green and red salsa, onion, cilantro, lime. Time of day: Evening. Framing: Three-quarter overhead; Natural close-up framing. Composition: Tray diagonal across the lower two thirds, lime and katori at the top left, a glass of pale zero-proof drink at the top right. People: None. Product: Six to eight paneer cubes per taco pair: still-square, white interior visible on the cut face, char marks, orange-brown marinade; small real corn tortillas about five inches; very little salsa. Light: Warm directional side light. Critical details: Cubes recognisable at a glance; tortilla is corn, small and real. Keep out: Crumbled cheese, paste, burrito-size tortilla, taco-bar toppings.
 
@@ -267,7 +271,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 **Desktop crop.** 16:9 crop
 **Mobile crop.** 4:5 crop on the tacos and cup
 
-**Attach.** VP-05 (Accepted VP-05)
+**Attach.** Attach in this order: 1) accepted VP-05 (Core 5 food continuity master); 2) VP-02 (secondary table and material reference) (Accepted and founder-confirmed VP-05 and VP-02)
 
 **PASTE THIS**
 ```text
@@ -281,6 +285,8 @@ LIGHT: warm tungsten pools with natural colour and no orange cast. Dusk means a 
 FRAMING: eye-level, straight verticals, slightly wide for buildings; table height for drinks; three-quarter overhead for food; shallow focus only on food; natural film grain; no HDR.
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
+
+REFERENCE ROLES: Image 1 is VP-05, the Core 5 food continuity master: copy its table, stoneware, katori, napkin, camera distance and light, NOT its dish. Image 2 is VP-02, the secondary table and material reference. Everything about this dish comes from the written description below, not from either image.
 
 THIS IMAGE: Goat Birria. Subject: Two small tacos of dark braised goat shreds with bone fragments and a visible fat sheen on lightly crisped corn tortillas, one taco resting beside a small cup of dark red consomme; finely chopped onion and cilantro; lime. Time of day: Evening. Framing: Three-quarter overhead; Natural close-up framing. Composition: Tacos at left, consomme cup at right, steam rising lightly, a Hefeweizen glass blurred behind. People: None. Product: Dark, stringy braised goat in a red guajillo-ancho adobo, small lightly crisped tortillas, consomme with a thin film of red fat, fine onion and cilantro. Light: Warm side light with a little steam catching it. Critical details: Reads as a Mexican goat braise; restrained garnish. Keep out: Melted cheese, cheese pull, curry look, extra garnish.
 
@@ -303,7 +309,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 **Desktop crop.** 16:9 crop
 **Mobile crop.** 4:5 crop
 
-**Attach.** VP-05 (Accepted VP-05)
+**Attach.** Attach in this order: 1) accepted VP-05 (Core 5 food continuity master); 2) VP-02 (secondary table and material reference) (Accepted and founder-confirmed VP-05 and VP-02)
 
 **PASTE THIS**
 ```text
@@ -317,6 +323,8 @@ LIGHT: warm tungsten pools with natural colour and no orange cast. Dusk means a 
 FRAMING: eye-level, straight verticals, slightly wide for buildings; table height for drinks; three-quarter overhead for food; shallow focus only on food; natural film grain; no HDR.
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
+
+REFERENCE ROLES: Image 1 is VP-05, the Core 5 food continuity master: copy its table, stoneware, katori, napkin, camera distance and light, NOT its dish. Image 2 is VP-02, the secondary table and material reference. Everything about this dish comes from the written description below, not from either image.
 
 THIS IMAGE: Gobi Taco. Subject: Whole small cauliflower florets, roasted with no coating and dry browned edges, in two corn tacos with a light slaw and a quick pickle, on a black stoneware plate. Time of day: Evening. Framing: Three-quarter overhead; Natural close-up framing. Composition: Plate in the lower half, lime wedge and napkin at the edge, a pale lime-and-herb zero-proof drink at the back. People: None. Product: Florets visibly browned and charred, no batter, no crumb; a light slaw. Light: Warm side light. Critical details: Roasted not battered; florets named at a glance. Keep out: Battered nuggets, hidden cauliflower, heavy sauce.
 
@@ -339,7 +347,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 **Desktop crop.** 16:9 crop
 **Mobile crop.** 4:5 crop
 
-**Attach.** VP-05 (Accepted VP-05)
+**Attach.** Attach in this order: 1) accepted VP-05 (Core 5 food continuity master); 2) VP-02 (secondary table and material reference) (Accepted and founder-confirmed VP-05 and VP-02)
 
 **PASTE THIS**
 ```text
@@ -353,6 +361,8 @@ LIGHT: warm tungsten pools with natural colour and no orange cast. Dusk means a 
 FRAMING: eye-level, straight verticals, slightly wide for buildings; table height for drinks; three-quarter overhead for food; shallow focus only on food; natural film grain; no HDR.
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
+
+REFERENCE ROLES: Image 1 is VP-05, the Core 5 food continuity master: copy its table, stoneware, katori, napkin, camera distance and light, NOT its dish. Image 2 is VP-02, the secondary table and material reference. Everything about this dish comes from the written description below, not from either image.
 
 THIS IMAGE: Butter Chicken & Roasted Poblano Quesadilla. Subject: Four crisp wedges of a griddled flour-tortilla quesadilla on a steel tray, one wedge opened to show the filling of reduced butter chicken, roasted poblano strips and melted cheese; a small dip alongside. Time of day: Evening. Framing: Three-quarter overhead; Natural close-up framing. Composition: Wedges fanned, one turned to show the filling cross-section; dip cup at the top right. People: None. Product: Tortilla crisp with comal marks; filling holds its shape; butter chicken a deep reddish-orange, not bright orange. Light: Warm side light. Critical details: Cross-section shows poblano, chicken and cheese in layers. Keep out: Wet curry spill, soggy tortilla, pizza look.
 
@@ -375,7 +385,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 **Desktop crop.** 16:9 crop
 **Mobile crop.** 4:5 crop on the plate and glasses
 
-**Attach.** VP-05, vector VI-TABLE-TOP (Accepted VP-05)
+**Attach.** Attach in this order: 1) accepted VP-05 (Core 5 food continuity master); 2) VP-02 (secondary table and material reference) (Accepted and founder-confirmed VP-05 and VP-02)
 
 **PASTE THIS**
 ```text
@@ -389,6 +399,8 @@ LIGHT: warm tungsten pools with natural colour and no orange cast. Dusk means a 
 FRAMING: eye-level, straight verticals, slightly wide for buildings; table height for drinks; three-quarter overhead for food; shallow focus only on food; natural film grain; no HDR.
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
+
+REFERENCE ROLES: Image 1 is VP-05, the Core 5 food continuity master: copy its table, stoneware, katori, napkin, camera distance and light, NOT its dish. Image 2 is VP-02, the secondary table and material reference. Everything about this dish comes from the written description below, not from either image.
 
 THIS IMAGE: Table system. Subject: A top-down place setting on the pecan table: black stoneware plate with a bone interior and a raw rim holding two tacos, a woven basket of tortillas, a steel katori of sauce, an indigo-and-bone linen napkin, a beer glass, a zero-proof glass, a water glass, one small cruet. Time of day: Evening. Framing: Straight down over the table; Natural framing, whole setting visible. Composition: Plate left of centre, basket top right, glasses lower right, napkin lower left; space around objects; not crowded. People: Optionally one hand at an edge. Product: Two tacos, tortillas, sauce. Light: Soft warm side light. Critical details: Eight objects, evenly spaced; napkin has no stripe or print. Keep out: Crowding, candles, flowers, menu with text.
 
@@ -411,7 +423,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 **Desktop crop.** 16:9 crop
 **Mobile crop.** 4:5 crop on the Hefe and Lager
 
-**Attach.** VP-02 (Accepted VP-01, VP-02)
+**Attach.** Attach VP-02 only (table and material). Do not attach VP-03 or the Vision board as glass references. (Accepted and founder-confirmed VP-02; VP-10 sets the glassware master)
 
 **PASTE THIS**
 ```text
@@ -425,6 +437,8 @@ LIGHT: warm tungsten pools with natural colour and no orange cast. Dusk means a 
 FRAMING: eye-level, straight verticals, slightly wide for buildings; table height for drinks; three-quarter overhead for food; shallow focus only on food; natural film grain; no HDR.
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
+
+REFERENCE ROLES: Image 1 is VP-02, the table and material reference (pecan table, light, background mood). Do NOT take glass shapes from any reference image, including the bar image and any beer images you may have seen; the glass shapes are defined in the written description below and this image sets the glass family.
 
 THIS IMAGE: Beer family. Subject: Five beers on a pecan table: Hefeweizen (hazy pale straw-gold, thick white head, tall Signature Hefe glass), Mexican-style Lager and Pilsner (clear gold, Lager and Pils glass, shorter and crisper heads), Vienna Amber (clear copper-amber, aromatic tulip), Witbier (pale hazy yellow, aromatic tulip). Time of day: Late afternoon at the court table. Framing: Table height, slightly angled; Natural close-up framing. Composition: Five glasses in a loose staggered line, Hefe tallest at the left; condensation; the court and arcade softly blurred behind. People: None. Product: Five distinct colours and heads, clear glasses, no branding. Light: Warm directional side light. Critical details: Distinct colour, head and clarity for each; unmistakably one program; no label or logo. Keep out: Branded glasses, labels, bottles, flights of 12.
 
@@ -447,7 +461,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 **Desktop crop.** 16:9 crop
 **Mobile crop.** 4:5 crop
 
-**Attach.** VP-10 (Accepted VP-10)
+**Attach.** Attach in this order: 1) accepted VP-10 (glassware master: copy its three glass shapes); 2) VP-02 (table and material) (Accepted VP-10 and founder-confirmed VP-02)
 
 **PASTE THIS**
 ```text
@@ -461,6 +475,8 @@ LIGHT: warm tungsten pools with natural colour and no orange cast. Dusk means a 
 FRAMING: eye-level, straight verticals, slightly wide for buildings; table height for drinks; three-quarter overhead for food; shallow focus only on food; natural film grain; no HDR.
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
+
+REFERENCE ROLES: Image 1 is VP-10, the glassware master: use its glass shapes for the zero-proof drinks (same clear glass family). Image 2 is VP-02, the table and material reference. Do not take glass shapes from any other image.
 
 THIS IMAGE: Zero-proof family. Subject: Five clear glasses from the same family: fruit-lime-salt cooler (red-gold, lime wheel), spiced-citrus sparkler (pale green-gold, citrus peel), hibiscus-tamarind tea (deep ruby, one spice), lime-herb cooler (clear pale, green leaf), cultured-dairy fruit drink (cream-apricot, no garnish). Time of day: Late afternoon. Framing: Table height, slightly angled; Natural close-up framing. Composition: Five glasses in a staggered line on the same pecan table; one beer glass at the far end for scale. People: None. Product: Natural colours, one simple garnish each, fine bubbles where it makes sense. Light: Same as VP-10. Critical details: Looks as intentional as the beers; no straws; not juvenile. Keep out: Rainbow drinks, umbrellas, giant garnishes, paper straws, kids-menu look.
 

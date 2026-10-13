@@ -8,7 +8,7 @@ import csv, glob, hashlib, os, re, shutil, subprocess, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 V = os.path.join(ROOT, "vision")
 CLASSES = {"REAL", "FOUNDER PROTOTYPE", "VISION", "CONCEPT", "RESEARCH REFERENCE"}
-SUBCLASSES = {"VISION PLACE", "VISION FOOD", "VISION BEER", "VISION NA", "CONCEPT ILLUSTRATION", "(none)", "(none registered)"}
+SUBCLASSES = {"VISION PLACE", "VISION FOOD", "VISION BEER", "VISION NA", "CONCEPT ILLUSTRATION", "VISION BOARD", "(none)", "(none registered)"}
 AS_COLS = ["id", "area", "assumption", "why_chosen", "blueprint_unknown_it_temporarily_resolves", "visual_experience_effect", "implementation_gate", "changeable"]
 FLAG_COLS = ["id", "area", "what_is_being_referenced", "caution", "reviewer_needed", "needed_before", "severity", "status"]
 BAD_TEXT = [(r"™|®", "trademark symbol (D-66)"), (r"\bhalal\b", "halal wording (D-54)"), (r"\$\s?\d", "a price or dollar amount"),
@@ -73,6 +73,15 @@ def check():
         if d == 1: errs.append("blueprint-freeze.csv changed since the freeze record 8e46d7b (vision work must not edit Blueprint v1.0)")
     except Exception:
         pass
+    # Round 2 architecture freeze (founder-confirmed): VP-01..VP-04 files must not change
+    fzp = os.path.join(V, "production/ROUND2-FREEZE.csv")
+    if os.path.exists(fzp):
+        for fr in rows(fzp):
+            fpath = os.path.join(ROOT, fr["file"])
+            if not os.path.exists(fpath): errs.append(f"Round 2 freeze: {fr['id']} file missing")
+            elif hashlib.sha256(open(fpath, "rb").read()).hexdigest() != fr["sha256"]: errs.append(f"Round 2 freeze: {fr['id']} changed after the freeze (accepted images are never altered)")
+    else:
+        errs.append("ROUND2-FREEZE.csv missing")
     # Sprint 26 production system
     PD = os.path.join(V, "production")
     audit = rows(os.path.join(PD, "VP-AUDIT.csv"))
