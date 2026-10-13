@@ -1,0 +1,1088 @@
+{
+ "distHash": "d27d0b60e9701608",
+ "date": "2026-10-13T15:50:38.335Z",
+ "pages": {
+  "beer.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 36,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(1) > a[href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(2) > a[href$=\"food.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(4) > a[href$=\"court.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(5) > a[href$=\"experience.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(6) > a[href$=\"story.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".lede",
+       "reason": "pseudoContent"
+      }
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 36,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(1) > a[href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(2) > a[href$=\"food.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(4) > a[href$=\"court.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(5) > a[href$=\"experience.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(6) > a[href$=\"story.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".lede",
+       "reason": "pseudoContent"
+      }
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 256478,
+   "requests": [
+    "/beer.html",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/family.css",
+    "/images/NV-VISION-VP10-d-1536.avif",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/family.js",
+    "/images/NV-VISION-VP11-d-1536.avif"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 104
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 2032,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 256478,
+   "reducedMotion": true
+  },
+  "court.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 35,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(1) > a[href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(2) > a[href$=\"food.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(3) > a[href$=\"beer.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(5) > a[href$=\"experience.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(6) > a[href$=\"story.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".lede",
+       "reason": "pseudoContent"
+      }
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 35,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(1) > a[href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(2) > a[href$=\"food.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(3) > a[href$=\"beer.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(5) > a[href$=\"experience.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(6) > a[href$=\"story.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".lede",
+       "reason": "pseudoContent"
+      }
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 495337,
+   "requests": [
+    "/court.html",
+    "/family.css",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/images/NV-VISION-VP01-d-1536.avif",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/family.js",
+    "/images/NV-VISION-VP01-ENTRANCE-d-1024.avif",
+    "/images/NV-VISION-VP02-d-1536.avif"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 80
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 1800,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 334923,
+   "reducedMotion": true
+  },
+  "experience.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 35,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(1) > a[href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(2) > a[href$=\"food.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(3) > a[href$=\"beer.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(4) > a[href$=\"court.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(6) > a[href$=\"story.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".lede",
+       "reason": "pseudoContent"
+      }
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 35,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(1) > a[href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(2) > a[href$=\"food.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(3) > a[href$=\"beer.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(4) > a[href$=\"court.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(6) > a[href$=\"story.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".lede",
+       "reason": "pseudoContent"
+      }
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 489564,
+   "requests": [
+    "/experience.html",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/family.css",
+    "/images/NV-VISION-VP02-d-1536.avif",
+    "/family.js",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/images/NV-VISION-VP01-ENTRANCE-d-1024.avif",
+    "/images/NV-VISION-VP03-d-1024.avif",
+    "/images/NV-VISION-VP12-d-1024.avif",
+    "/images/NV-VISION-VP10-d-1024.avif"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 88
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 1764,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 445167,
+   "reducedMotion": true
+  },
+  "food.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 35,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(1) > a[href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(3) > a[href$=\"beer.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(4) > a[href$=\"court.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(5) > a[href$=\"experience.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(6) > a[href$=\"story.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".lede",
+       "reason": "pseudoContent"
+      }
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 35,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(1) > a[href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(3) > a[href$=\"beer.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(4) > a[href$=\"court.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(5) > a[href$=\"experience.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(6) > a[href$=\"story.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".lede",
+       "reason": "pseudoContent"
+      }
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 378020,
+   "requests": [
+    "/food.html",
+    "/images/NV-VISION-VP12-d-1536.avif",
+    "/family.css",
+    "/family.js",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/images/NV-VISION-VP05-d-1024.avif",
+    "/images/NV-VISION-VP06-d-1024.avif",
+    "/images/NV-VISION-VP07-d-1024.avif",
+    "/images/NV-VISION-VP08-d-1024.avif"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 100
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 1774,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 326808,
+   "reducedMotion": true
+  },
+  "index.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 36,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(2) > a[href$=\"food.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(3) > a[href$=\"beer.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(4) > a[href$=\"court.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(5) > a[href$=\"experience.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(6) > a[href$=\"story.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".sub",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".tag",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "span",
+       "reason": "pseudoContent"
+      }
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 36,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(2) > a[href$=\"food.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(3) > a[href$=\"beer.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(4) > a[href$=\"court.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(5) > a[href$=\"experience.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(6) > a[href$=\"story.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".sub",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".tag",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "span",
+       "reason": "pseudoContent"
+      }
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 459189,
+   "requests": [
+    "/index.html",
+    "/family.css",
+    "/images/NV-VISION-VP01-d-1536.avif",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/family.js",
+    "/images/NV-VISION-VP02-d-1536.avif",
+    "/images/NV-VISION-VP05-d-640.avif",
+    "/images/NV-VISION-VP06-d-640.avif"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 108
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 1611,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 413593,
+   "reducedMotion": true
+  },
+  "story.html": {
+   "overflow": {
+    "320": {
+     "scrollW": 320,
+     "clientW": 320,
+     "ok": true
+    },
+    "390": {
+     "scrollW": 390,
+     "clientW": 390,
+     "ok": true
+    },
+    "768": {
+     "scrollW": 768,
+     "clientW": 768,
+     "ok": true
+    },
+    "1280": {
+     "scrollW": 1280,
+     "clientW": 1280,
+     "ok": true
+    },
+    "1440": {
+     "scrollW": 1440,
+     "clientW": 1440,
+     "ok": true
+    },
+    "1920": {
+     "scrollW": 1920,
+     "clientW": 1920,
+     "ok": true
+    }
+   },
+   "axe": {
+    "dark": {
+     "violations": [],
+     "passes": 36,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(1) > a[href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(2) > a[href$=\"food.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(3) > a[href$=\"beer.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(4) > a[href$=\"court.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(5) > a[href$=\"experience.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".lede",
+       "reason": "pseudoContent"
+      }
+     ]
+    },
+    "light": {
+     "violations": [],
+     "passes": 36,
+     "incomplete": [
+      "color-contrast"
+     ],
+     "incompleteDetail": [
+      {
+       "target": "header > .mark[aria-label=\"NASHA, home\"][href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(1) > a[href=\"index.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(2) > a[href$=\"food.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(3) > a[href$=\"beer.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(4) > a[href$=\"court.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "#nav > ul > li:nth-child(5) > a[href$=\"experience.html\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": "a[aria-current=\"page\"]",
+       "reason": "bgGradient"
+      },
+      {
+       "target": ".in > .eyebrow",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": "#h1",
+       "reason": "pseudoContent"
+      },
+      {
+       "target": ".lede",
+       "reason": "pseudoContent"
+      }
+     ]
+    }
+   },
+   "console": [],
+   "bytes": 397459,
+   "requests": [
+    "/family.css",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/story.html",
+    "/images/NV-VISION-VP02-d-1536.avif",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/family.js",
+    "/images/NV-VISION-VP04-d-1536.avif"
+   ],
+   "perf": {
+    "cls": 0,
+    "lcp_ms": 84
+   },
+   "noJs": {
+    "h1": 1,
+    "textLen": 2247,
+    "hiddenFilters": true,
+    "items": 0,
+    "visibleItems": 0
+   },
+   "initialBytes": 397459,
+   "reducedMotion": true
+  }
+ },
+ "summary": {
+  "pages": 6,
+  "axeViolations": 0,
+  "overflowFailures": 0,
+  "maxBytes": 495337,
+  "maxInitialBytes": 445167,
+  "homeInitialBytes": 413593,
+  "maxCls": 0,
+  "maxLcpMs": 108,
+  "consoleIssues": 0
+ },
+ "slow": {
+  "profile": "1.6 Mbps, 150 ms RTT, 390px viewport",
+  "heroReadyMs": 1393,
+  "heroSrc": "/images/NV-VISION-VP01-m-480.avif"
+ },
+ "imagesBlocked": {
+  "index.html": {
+   "imgs": 0,
+   "withAlt": 0,
+   "overflow": false,
+   "h1": true
+  },
+  "court.html": {
+   "imgs": 0,
+   "withAlt": 0,
+   "overflow": false,
+   "h1": true
+  }
+ },
+ "manual": {
+  "focus": {
+   "beer.html": {
+    "focusable": 15,
+    "withoutVisibleOutline": 0,
+    "sample": []
+   },
+   "court.html": {
+    "focusable": 16,
+    "withoutVisibleOutline": 0,
+    "sample": []
+   },
+   "experience.html": {
+    "focusable": 15,
+    "withoutVisibleOutline": 0,
+    "sample": []
+   },
+   "food.html": {
+    "focusable": 15,
+    "withoutVisibleOutline": 0,
+    "sample": []
+   },
+   "index.html": {
+    "focusable": 21,
+    "withoutVisibleOutline": 0,
+    "sample": []
+   },
+   "story.html": {
+    "focusable": 15,
+    "withoutVisibleOutline": 0,
+    "sample": []
+   }
+  },
+  "textSpacing": {
+   "beer.html": {
+    "overflowX": false
+   },
+   "court.html": {
+    "overflowX": false
+   },
+   "experience.html": {
+    "overflowX": false
+   },
+   "food.html": {
+    "overflowX": false
+   },
+   "index.html": {
+    "overflowX": false
+   },
+   "story.html": {
+    "overflowX": false
+   }
+  },
+  "zoom200": {
+   "beer.html": {
+    "overflowX": false
+   },
+   "court.html": {
+    "overflowX": false
+   },
+   "experience.html": {
+    "overflowX": false
+   },
+   "food.html": {
+    "overflowX": false
+   },
+   "index.html": {
+    "overflowX": false
+   },
+   "story.html": {
+    "overflowX": false
+   }
+  }
+ },
+ "interaction": {
+  "total": 0,
+  "firstTab": "skip",
+  "firstTabIsSkipLink": true
+ }
+}

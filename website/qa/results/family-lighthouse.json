@@ -1,0 +1,126 @@
+{
+ "date": "2026-10-13T15:52:10.944Z",
+ "tool": "lighthouse 13.5.0",
+ "runs": {
+  "index.html:mobile": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 1661,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 253
+  },
+  "index.html:desktop": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 367,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 405
+  },
+  "food.html:mobile": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 1883,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 225
+  },
+  "food.html:desktop": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 405,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 321
+  },
+  "beer.html:mobile": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 1603,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 133
+  },
+  "beer.html:desktop": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 368,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 252
+  },
+  "court.html:mobile": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 1659,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 224
+  },
+  "court.html:desktop": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 446,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 328
+  },
+  "experience.html:mobile": {
+   "performance": 99,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 2111,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 270
+  },
+  "experience.html:desktop": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 524,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 436
+  },
+  "story.html:mobile": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 1579,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 243
+  },
+  "story.html:desktop": {
+   "performance": 100,
+   "accessibility": 100,
+   "bestPractices": 100,
+   "seo": 63,
+   "lcpMs": 364,
+   "cls": 0,
+   "tbtMs": 0,
+   "transferKB": 389
+  }
+ }
+}

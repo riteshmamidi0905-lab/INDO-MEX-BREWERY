@@ -10,6 +10,8 @@ run "decision register + contradiction check" python3 tools/decision_register.py
 run "generated file is fresh: vision_handoff" python3 tools/vision_handoff.py --check
 for g in founder_center action_board control_center dashboard tool_map blueprint_views; do run "generated file is fresh: $g" python3 tools/$g.py --check; done
 for t in photo_ingest t1_record experiment_stats session_record glass_v2 kitchen_capacity pairing_matrix decision_register food_costing fin_model intake; do run "selftest $t" python3 tools/$t.py selftest; done
+run "family preview is fresh" python3 website/family.py --check
+run "family preview validator" python3 tools/validate_family.py
 run "vision layer guard" python3 tools/vision_check.py check
 run "selftest vision_check" python3 tools/vision_check.py selftest
 run "security check" bash tools/security_check.sh

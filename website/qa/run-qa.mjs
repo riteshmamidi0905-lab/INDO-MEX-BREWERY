@@ -3,7 +3,7 @@ import { chromium } from "playwright-core";
 import fs from "fs"; import path from "path"; import http from "http";
 import { fileURLToPath } from "url";
 const here = path.dirname(fileURLToPath(import.meta.url));
-const dist = path.join(here, "..", "dist");
+const dist = path.join(here, "..", process.env.NASHA_DIST || "dist");
 const axeSrc = fs.readFileSync(path.join(here, "node_modules/axe-core/axe.min.js"), "utf8");
 const types = { ".html":"text/html", ".css":"text/css", ".js":"text/javascript", ".woff2":"font/woff2", ".txt":"text/plain" };
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split("?")[0]); if (p === "/") p = "/index.html";
@@ -57,8 +57,8 @@ for (const pg of pages) {
 { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const page = await ctx.newPage(); const cdp = await ctx.newCDPSession(page);
   await cdp.send("Network.enable"); await cdp.send("Network.emulateNetworkConditions", { offline: false, latency: 150, downloadThroughput: (1.6 * 1024 * 1024) / 8, uploadThroughput: (750 * 1024) / 8 });
   const t0 = Date.now(); await page.goto(`${base}/index.html`, { waitUntil: "load" });
-  await page.waitForFunction(() => { const i = document.querySelector(".fig-hero img"); return i && i.complete && i.naturalWidth > 0; }, null, { timeout: 30000 });
-  const ms = Date.now() - t0; const used = await page.evaluate(() => document.querySelector(".fig-hero img").currentSrc);
+  await page.waitForFunction(() => { const i = document.querySelector(".fig-hero img, .hero img"); return i && i.complete && i.naturalWidth > 0; }, null, { timeout: 30000 });
+  const ms = Date.now() - t0; const used = await page.evaluate(() => document.querySelector(".fig-hero img, .hero img").currentSrc);
   out.slow = { profile: "1.6 Mbps, 150 ms RTT, 390px viewport", heroReadyMs: ms, heroSrc: used.replace(base, "") }; await ctx.close(); }
 // Image failure: block all images, check layout holds and alt text is present
 for (const pg of ["index.html", "court.html"]) { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const page = await ctx.newPage();
@@ -84,6 +84,6 @@ const allAxe = Object.values(out.pages).flatMap(p => Object.values(p.axe).flatMa
 out.summary = { pages: pages.length, axeViolations: allAxe.length, overflowFailures: Object.values(out.pages).flatMap(p => Object.entries(p.overflow).filter(([, v]) => !v.ok)).length,
   maxBytes: Math.max(...Object.values(out.pages).map(p => p.bytes)), maxInitialBytes: Math.max(...Object.values(out.pages).map(p => p.initialBytes)), homeInitialBytes: out.pages["index.html"].initialBytes, maxCls: Math.max(...Object.values(out.pages).map(p => p.perf.cls)), maxLcpMs: Math.max(...Object.values(out.pages).map(p => p.perf.lcp_ms)),
   consoleIssues: Object.values(out.pages).flatMap(p => p.console).length };
-fs.writeFileSync(path.join(here, "results/latest.json"), JSON.stringify(out, null, 1));
+fs.writeFileSync(path.join(here, `results/${process.env.NASHA_RESULTS || "latest"}.json`), JSON.stringify(out, null, 1));
 console.log(JSON.stringify(out.summary), JSON.stringify(out.interaction));
 for (const [pg, p] of Object.entries(out.pages)) for (const [s, a] of Object.entries(p.axe)) for (const v of a.violations) console.log(pg, s, v.id, v.impact, v.nodes, v.sample, "|", v.why);
