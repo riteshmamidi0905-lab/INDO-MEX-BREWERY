@@ -185,7 +185,7 @@ NEGATIVE REQUIREMENTS: no Indian palace or haveli styling; no hacienda theme par
 
 ---
 ## VP-05 · Chicken 65 Totopos
-**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: PROMPT READY — NOT GENERATED**
+**Round 3 · class: VISION FOOD — NOT COOKED PRODUCT · status: GENERATED AND FOUNDER-CONFIRMED as the food continuity master (see IMAGE-PROVENANCE.csv)**
 
 **What to generate.** Show the identity of the dish: real Chicken 65 on thick totopos.
 
@@ -248,6 +248,14 @@ FRAMING: eye-level, straight verticals, slightly wide for buildings; table heigh
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
 
+REFERENCE CORRECTIONS — VP-05 IS THE FOOD CONTINUITY MASTER FOR TABLE, STONEWARE, KATORI, LIGHT AND CAMERA DISTANCE, BUT DO NOT COPY THESE KNOWN INACCURACIES:
+
+1. The reference plate has a black interior. Render the plate with a pale bone interior and a raw unglazed rim, as described in the world lock.
+2. The reference napkin has white stripes. Render the napkin as plain indigo-and-bone linen with no stripe or print.
+3. The reference dish is NOT the authority for any dish identity. Do not copy its triangular chips, its heavy dark crust, its crema drizzle pattern or its extra green chutney cup. Everything about this dish comes from the written description below.
+
+These are explicit corrections to the reference, not changes to the accepted VP-05 image.
+
 REFERENCE ROLES: Image 1 is VP-05, the Core 5 food continuity master: copy its table, stoneware, katori, napkin, camera distance and light, NOT its dish. Image 2 is VP-02, the secondary table and material reference. Everything about this dish comes from the written description below, not from either image.
 
 THIS IMAGE: Paneer Tikka Taco. Subject: Two tacos on a black steel tray with bone paper: real corn tortillas holding charred cubes of paneer, controlled green and red salsa, onion, cilantro, lime. Time of day: Evening. Framing: Three-quarter overhead; Natural close-up framing. Composition: Tray diagonal across the lower two thirds, lime and katori at the top left, a glass of pale zero-proof drink at the top right. People: None. Product: Six to eight paneer cubes per taco pair: still-square, white interior visible on the cut face, char marks, orange-brown marinade; small real corn tortillas about five inches; very little salsa. Light: Warm directional side light. Critical details: Cubes recognisable at a glance; tortilla is corn, small and real. Keep out: Crumbled cheese, paste, burrito-size tortilla, taco-bar toppings.
@@ -285,6 +293,14 @@ LIGHT: warm tungsten pools with natural colour and no orange cast. Dusk means a 
 FRAMING: eye-level, straight verticals, slightly wide for buildings; table height for drinks; three-quarter overhead for food; shallow focus only on food; natural film grain; no HDR.
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
+
+REFERENCE CORRECTIONS — VP-05 IS THE FOOD CONTINUITY MASTER FOR TABLE, STONEWARE, KATORI, LIGHT AND CAMERA DISTANCE, BUT DO NOT COPY THESE KNOWN INACCURACIES:
+
+1. The reference plate has a black interior. Render the plate with a pale bone interior and a raw unglazed rim, as described in the world lock.
+2. The reference napkin has white stripes. Render the napkin as plain indigo-and-bone linen with no stripe or print.
+3. The reference dish is NOT the authority for any dish identity. Do not copy its triangular chips, its heavy dark crust, its crema drizzle pattern or its extra green chutney cup. Everything about this dish comes from the written description below.
+
+These are explicit corrections to the reference, not changes to the accepted VP-05 image.
 
 REFERENCE ROLES: Image 1 is VP-05, the Core 5 food continuity master: copy its table, stoneware, katori, napkin, camera distance and light, NOT its dish. Image 2 is VP-02, the secondary table and material reference. Everything about this dish comes from the written description below, not from either image.
 
@@ -324,6 +340,14 @@ FRAMING: eye-level, straight verticals, slightly wide for buildings; table heigh
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
 
+REFERENCE CORRECTIONS — VP-05 IS THE FOOD CONTINUITY MASTER FOR TABLE, STONEWARE, KATORI, LIGHT AND CAMERA DISTANCE, BUT DO NOT COPY THESE KNOWN INACCURACIES:
+
+1. The reference plate has a black interior. Render the plate with a pale bone interior and a raw unglazed rim, as described in the world lock.
+2. The reference napkin has white stripes. Render the napkin as plain indigo-and-bone linen with no stripe or print.
+3. The reference dish is NOT the authority for any dish identity. Do not copy its triangular chips, its heavy dark crust, its crema drizzle pattern or its extra green chutney cup. Everything about this dish comes from the written description below.
+
+These are explicit corrections to the reference, not changes to the accepted VP-05 image.
+
 REFERENCE ROLES: Image 1 is VP-05, the Core 5 food continuity master: copy its table, stoneware, katori, napkin, camera distance and light, NOT its dish. Image 2 is VP-02, the secondary table and material reference. Everything about this dish comes from the written description below, not from either image.
 
 THIS IMAGE: Gobi Taco. Subject: Whole small cauliflower florets, roasted with no coating and dry browned edges, in two corn tacos with a light slaw and a quick pickle, on a black stoneware plate. Time of day: Evening. Framing: Three-quarter overhead; Natural close-up framing. Composition: Plate in the lower half, lime wedge and napkin at the edge, a pale lime-and-herb zero-proof drink at the back. People: None. Product: Florets visibly browned and charred, no batter, no crumb; a light slaw. Light: Warm side light. Critical details: Roasted not battered; florets named at a glance. Keep out: Battered nuggets, hidden cauliflower, heavy sauce.
@@ -362,6 +386,14 @@ FRAMING: eye-level, straight verticals, slightly wide for buildings; table heigh
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
 
+REFERENCE CORRECTIONS — VP-05 IS THE FOOD CONTINUITY MASTER FOR TABLE, STONEWARE, KATORI, LIGHT AND CAMERA DISTANCE, BUT DO NOT COPY THESE KNOWN INACCURACIES:
+
+1. The reference plate has a black interior. Render the plate with a pale bone interior and a raw unglazed rim, as described in the world lock.
+2. The reference napkin has white stripes. Render the napkin as plain indigo-and-bone linen with no stripe or print.
+3. The reference dish is NOT the authority for any dish identity. Do not copy its triangular chips, its heavy dark crust, its crema drizzle pattern or its extra green chutney cup. Everything about this dish comes from the written description below.
+
+These are explicit corrections to the reference, not changes to the accepted VP-05 image.
+
 REFERENCE ROLES: Image 1 is VP-05, the Core 5 food continuity master: copy its table, stoneware, katori, napkin, camera distance and light, NOT its dish. Image 2 is VP-02, the secondary table and material reference. Everything about this dish comes from the written description below, not from either image.
 
 THIS IMAGE: Butter Chicken & Roasted Poblano Quesadilla. Subject: Four crisp wedges of a griddled flour-tortilla quesadilla on a steel tray, one wedge opened to show the filling of reduced butter chicken, roasted poblano strips and melted cheese; a small dip alongside. Time of day: Evening. Framing: Three-quarter overhead; Natural close-up framing. Composition: Wedges fanned, one turned to show the filling cross-section; dip cup at the top right. People: None. Product: Tortilla crisp with comal marks; filling holds its shape; butter chicken a deep reddish-orange, not bright orange. Light: Warm side light. Critical details: Cross-section shows poblano, chicken and cheese in layers. Keep out: Wet curry spill, soggy tortilla, pizza look.
@@ -399,6 +431,14 @@ LIGHT: warm tungsten pools with natural colour and no orange cast. Dusk means a 
 FRAMING: eye-level, straight verticals, slightly wide for buildings; table height for drinks; three-quarter overhead for food; shallow focus only on food; natural film grain; no HDR.
 PEOPLE: ordinary varied Austin adults and families, candid, mid-action, natural expressions, not posing, not looking at the camera, nobody identifiable, no text on clothing. Children never hold, touch or sit near beer or beer glasses; a child's drink is a short plain tumbler of water or juice.
 HARD NO: text, signs or logos; string lights; neon; copper tanks; beer near children.
+
+REFERENCE CORRECTIONS — VP-05 IS THE FOOD CONTINUITY MASTER FOR TABLE, STONEWARE, KATORI, LIGHT AND CAMERA DISTANCE, BUT DO NOT COPY THESE KNOWN INACCURACIES:
+
+1. The reference plate has a black interior. Render the plate with a pale bone interior and a raw unglazed rim, as described in the world lock.
+2. The reference napkin has white stripes. Render the napkin as plain indigo-and-bone linen with no stripe or print.
+3. The reference dish is NOT the authority for any dish identity. Do not copy its triangular chips, its heavy dark crust, its crema drizzle pattern or its extra green chutney cup. Everything about this dish comes from the written description below.
+
+These are explicit corrections to the reference, not changes to the accepted VP-05 image.
 
 REFERENCE ROLES: Image 1 is VP-05, the Core 5 food continuity master: copy its table, stoneware, katori, napkin, camera distance and light, NOT its dish. Image 2 is VP-02, the secondary table and material reference. Everything about this dish comes from the written description below, not from either image.
 

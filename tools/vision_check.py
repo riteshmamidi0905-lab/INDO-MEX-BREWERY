@@ -76,7 +76,8 @@ def check():
     # Round 2 architecture freeze (founder-confirmed): VP-01..VP-04 files must not change
     fzp = os.path.join(V, "production/ROUND2-FREEZE.csv")
     if os.path.exists(fzp):
-        for fr in rows(fzp):
+        frozen = rows(fzp) + (rows(os.path.join(V, "production/FOOD-MASTER-FREEZE.csv")) if os.path.exists(os.path.join(V, "production/FOOD-MASTER-FREEZE.csv")) else [])
+        for fr in frozen:
             fpath = os.path.join(ROOT, fr["file"])
             if not os.path.exists(fpath): errs.append(f"Round 2 freeze: {fr['id']} file missing")
             elif hashlib.sha256(open(fpath, "rb").read()).hexdigest() != fr["sha256"]: errs.append(f"Round 2 freeze: {fr['id']} changed after the freeze (accepted images are never altered)")
@@ -94,10 +95,11 @@ def check():
         if r["asset_class"] not in ALLOWED_VP: errs.append(f"{r['id']}: asset class {r['asset_class']}")
         if re.search(r"™|®|reading NASHA|text NASHA", r["final_prompt"]): errs.append(f"{r['id']}: prompt asks for a trademark symbol or readable name")
     RC = "REFERENCE CORRECTIONS — VP-01 IS THE STYLE/ARCHITECTURE MASTER, BUT DO NOT COPY THESE KNOWN INACCURACIES:"
+    RC5 = "REFERENCE CORRECTIONS — VP-05 IS THE FOOD CONTINUITY MASTER FOR TABLE, STONEWARE, KATORI, LIGHT AND CAMERA DISTANCE, BUT DO NOT COPY THESE KNOWN INACCURACIES:"
     for r in audit:
         rc = r.get("reference_corrections", "")
         if not rc: errs.append(f"{r['id']}: reference_corrections missing")
-        elif not rc.startswith("n/a") and not rc.startswith(RC): errs.append(f"{r['id']}: reference_corrections must start with the standard header")
+        elif not rc.startswith("n/a") and not (rc.startswith(RC) or rc.startswith(RC5)): errs.append(f"{r['id']}: reference_corrections must start with the standard header")
         if r["id"] == "VP-01" and not rc.startswith("n/a"): errs.append("VP-01 is the master and must not carry reference corrections")
         if r["id"] in ("VP-02", "VP-04") and "stone-edged channel" not in rc: errs.append(f"{r['id']}: court image lacks the water-channel correction")
         if r["id"] in ("VP-05", "VP-06", "VP-07", "VP-08", "VP-09", "VP-10", "VP-11", "VP-12") and "channel" in rc and not rc.startswith("n/a"): errs.append(f"{r['id']}: food or drink image must not carry the water-channel correction")
