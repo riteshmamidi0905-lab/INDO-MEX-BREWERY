@@ -1,7 +1,7 @@
 name: lab-ci
 on:
   push:
-    paths: ["lab/**", ".github/workflows/lab-ci.yml"]
+    paths: ["lab/**", ".github/workflows/lab-ci.yml", "docs/decisions/**", "docs/company/**"]
   pull_request:
     paths: ["lab/**"]
 permissions:
@@ -13,7 +13,30 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install pytest
-      - run: cd lab && python -m pytest -q -p no:cacheprovider tests
-      - name: Evaluation must reproduce the committed results
+      - run: pip install -r lab/requirements.txt
+      - name: Unit, data, retrieval, API, MCP, LangGraph, approval and failure-injection tests (no paid API, no key)
+        run: cd lab && python -m pytest -q -p no:cacheprovider tests
+      - name: Block-1 data-quality evaluation must reproduce byte for byte
         run: cd lab && python -m nasha_lab.evaluate v1 | diff - results/eval_v1.json
+      - name: Agent evaluation summary must reproduce (latency excluded)
+        run: |
+          cd lab && python -m nasha_lab.eval_agent /tmp/agent_eval.json > /dev/null
+          python - <<'PY'
+          import json
+          a = json.load(open("/tmp/agent_eval.json"))["summary"]; b = json.load(open("results/agent_eval.json"))["summary"]
+          bad = {k: (a[k], b[k]) for k in b if not k.startswith("latency") and a[k] != b[k]}
+          assert not bad, bad
+          PY
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the image and prove the API serves a ready, synthetic-labelled world
+        run: |
+          docker compose -f lab/docker-compose.yml up -d --build
+          for i in $(seq 1 60); do curl -fsS localhost:8000/ready && break || sleep 3; done
+          curl -fsS localhost:8000/ready | tee /tmp/ready.json
+          python3 -c "import json; r=json.load(open('/tmp/ready.json')); assert r['status']=='ready' and r['orders']>3000 and r['knowledge_chunks']>500, r"
+          curl -fsS -X POST localhost:8000/agent/runs -H 'content-type: application/json' -d '{"event_id":"EV-C2"}' | python3 -c "import json,sys; r=json.load(sys.stdin); assert r['awaiting_human'] and r['proposal']['abstain'], r"
+      - if: failure()
+        run: docker compose -f lab/docker-compose.yml logs --no-color | tail -50

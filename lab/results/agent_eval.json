@@ -1,0 +1,471 @@
+{
+ "summary": {
+  "required_tools_called": "18/18",
+  "action_correct": "18/18",
+  "abstention_correct": "18/18",
+  "policy_citations_present": "18/18",
+  "no_nonauthoritative_citation": "18/18",
+  "approval_boundary_ok": "18/18",
+  "trace_complete": "18/18",
+  "completed": "18/18",
+  "claims_total": 48,
+  "unsupported_claims": 0,
+  "invalid_argument_calls": 0,
+  "external_actions": 0,
+  "latency_ms_p50": 33.7,
+  "latency_ms_p95": 86.9,
+  "runs": 18
+ },
+ "runs": [
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 4,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-A1",
+   "decision": "approve",
+   "latency_ms": 102.7,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "drafts_after": [
+    {
+     "status": "APPROVED_FOR_HUMAN_PROCUREMENT_REVIEW",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 4,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-A1",
+   "decision": "reject",
+   "latency_ms": 83.6,
+   "outcome": "REJECTED_BY_HUMAN_NO_ACTION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 3,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-A2",
+   "decision": "approve",
+   "latency_ms": 62.1,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 3,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-A2",
+   "decision": "reject",
+   "latency_ms": 83.2,
+   "outcome": "REJECTED_BY_HUMAN_NO_ACTION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 2,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-A3",
+   "decision": "approve",
+   "latency_ms": 86.9,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 2,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-A3",
+   "decision": "reject",
+   "latency_ms": 57.9,
+   "outcome": "REJECTED_BY_HUMAN_NO_ACTION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 2,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-B1",
+   "decision": "approve",
+   "latency_ms": 27.7,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 2,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-B1",
+   "decision": "reject",
+   "latency_ms": 21.6,
+   "outcome": "REJECTED_BY_HUMAN_NO_ACTION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 2,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-B2",
+   "decision": "approve",
+   "latency_ms": 33.7,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 2,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-B2",
+   "decision": "reject",
+   "latency_ms": 23.9,
+   "outcome": "REJECTED_BY_HUMAN_NO_ACTION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 2,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-B3",
+   "decision": "approve",
+   "latency_ms": 24.6,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 2,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-B3",
+   "decision": "reject",
+   "latency_ms": 22.0,
+   "outcome": "REJECTED_BY_HUMAN_NO_ACTION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 3,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-C1",
+   "decision": "approve",
+   "latency_ms": 54.9,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 3,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-C1",
+   "decision": "reject",
+   "latency_ms": 26.8,
+   "outcome": "REJECTED_BY_HUMAN_NO_ACTION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 3,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-C2",
+   "decision": "approve",
+   "latency_ms": 27.6,
+   "outcome": "APPROVED_ABSTENTION_ACKNOWLEDGED",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 3,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-C2",
+   "decision": "reject",
+   "latency_ms": 27.2,
+   "outcome": "REJECTED_BY_HUMAN_NO_ACTION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 3,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-C3",
+   "decision": "approve",
+   "latency_ms": 26.8,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "required_tools_called": true,
+   "tool_selection_extra": [],
+   "invalid_argument_calls": 0,
+   "action_correct": true,
+   "abstention_correct": true,
+   "policy_citations_present": true,
+   "no_nonauthoritative_citation": true,
+   "claims": 3,
+   "unsupported_claims": 0,
+   "approval_boundary_ok": true,
+   "trace_complete": true,
+   "completed": true,
+   "external_actions": 0,
+   "event": "EV-C3",
+   "decision": "reject",
+   "latency_ms": 35.1,
+   "outcome": "REJECTED_BY_HUMAN_NO_ACTION",
+   "drafts_after": [
+    {
+     "status": "DRAFT_NOT_SUBMITTED",
+     "n": 1
+    }
+   ]
+  }
+ ]
+}

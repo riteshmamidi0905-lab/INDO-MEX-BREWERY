@@ -1,0 +1,11 @@
+.git
+website
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.webp
+**/*.avif
+**/*.stl
+**/*.zip
+**/__pycache__
+lab/lab_out

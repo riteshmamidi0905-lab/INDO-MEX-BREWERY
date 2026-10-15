@@ -97,7 +97,7 @@ def run(raw, db_path=":memory:", enabled_rules=None):
             keep_inv.append(r)
     blocked_items = {f.key for f in findings if f.severity == dq.BLOCKER and f.table == "menu_items"}
 
-    con = sqlite3.connect(db_path)
+    con = sqlite3.connect(db_path, check_same_thread=False)
     con.executescript("""
     DROP TABLE IF EXISTS dim_location; DROP TABLE IF EXISTS dim_menu_item; DROP TABLE IF EXISTS fact_order;
     DROP TABLE IF EXISTS fact_order_line; DROP TABLE IF EXISTS fact_inventory_count; DROP TABLE IF EXISTS dq_finding;

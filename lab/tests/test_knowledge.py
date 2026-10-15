@@ -106,7 +106,9 @@ def test_rag_eval_floors_and_status_invariants():
     assert o["ask"]["hybrid"]["ungrounded_answers"] == 0
     assert o["contamination_top5"]["hybrid"]["status_aware"] == 0.0 < o["contamination_top5"]["hybrid"]["status_blind"]
     committed = json.loads((ROOT / "results" / "rag_eval.json").read_text())
-    assert committed["retrieval"]["hybrid"]["all"] == h                  # committed numbers reproduce
+    assert committed["retrieval"]["bm25"]["all"] == o["retrieval"]["bm25"]["all"]                 # pure-python retriever: exact
+    for rt in ("lsa", "hybrid"):                                                                   # SVD depends on library versions: tolerance
+        for k, v in committed["retrieval"][rt]["all"].items(): assert abs(v - o["retrieval"][rt]["all"][k]) <= 0.03, (rt, k)
 
 
 @pytest.mark.xfail(strict=True, reason="KNOWN GAP (docs/RAG-EVALUATION.md): lexical abstention answers some unanswerable quantity questions from loosely related numeric prose")

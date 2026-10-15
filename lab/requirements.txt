@@ -1,0 +1,13 @@
+# NASHA Enterprise AI Lab: runtime + test dependencies. All free and open source; no paid API or key is needed.
+fastapi>=0.115
+uvicorn>=0.30
+pydantic>=2.7
+httpx>=0.27
+scikit-learn>=1.4
+numpy>=1.26
+langgraph>=1.0
+langgraph-checkpoint-sqlite>=3.0
+mcp>=2.2
+pytest>=8
+# reused from an existing project (baseline A0 retriever: TF-IDF index), pinned to a commit
+rag-doc-qa @ git+https://github.com/riteshmamidi0905-lab/rag-doc-qa@6e44f13

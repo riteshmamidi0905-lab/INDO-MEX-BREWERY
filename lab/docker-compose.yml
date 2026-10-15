@@ -1,0 +1,9 @@
+# One service: the API with SQLite files on a named volume. PostgreSQL/pgvector is deliberately NOT used in this block (see docs/ARCHITECTURE.md).
+services:
+  api:
+    build: { context: .., dockerfile: lab/Dockerfile }
+    ports: ["8000:8000"]
+    environment: { NASHA_LAB_SEED: "1", NASHA_LAB_DATA: /data }
+    volumes: ["nasha_lab_data:/data"]
+volumes:
+  nasha_lab_data: {}
