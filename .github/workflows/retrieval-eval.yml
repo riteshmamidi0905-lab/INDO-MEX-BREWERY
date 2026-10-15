@@ -22,9 +22,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: |
-          pip install -r lab/requirements.txt
-          pip install "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl"
+      - run: pip install -r lab/requirements-dev.txt
       - name: Install Ollama and pull the embedding model (all-minilm, 46 MB)
         run: |
           curl -fsSL https://ollama.com/install.sh | sh

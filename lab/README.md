@@ -2,6 +2,36 @@
 
 **SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED.** NASHA has no restaurant, customers, sales, staff or brewery batches. Nothing here is a business result. Menu prices are placeholder inputs. The "scenario sites" are not real or planned locations. Same-author caveat: one author wrote the generator, the rules and the scoring; no independent review.
 
+## Block 3: a measured experiment (does an LLM improve the agent? do neural embeddings / pgvector pay for themselves?)
+
+Two planners (deterministic control, LLM) behind one interface, one tool/permission/approval/trace stack and one scenario suite; plus a retrieval benchmark that compares lexical, hybrid, neural and pgvector retrieval, and abstention strategies. **Results decide the conclusion; the deterministic planner and lexical retrieval remain the baselines.** Start with [PLANNER-EXPERIMENT](docs/PLANNER-EXPERIMENT.md), [RETRIEVAL-EVALUATION](docs/RETRIEVAL-EVALUATION.md), [LLM-RUNTIME](docs/LLM-RUNTIME.md) and [results/EXPERIMENT-LOG](results/EXPERIMENT-LOG.md). The recruiter-readable pack is `evidence/index.html`.
+
+| Addition | Where |
+|---|---|
+| Planner interface, LLM planner (structured output, bounded retry, fail-safe), evidence-envelope guardrail | `planners.py`, `llm_planner.py`, `llm.py` |
+| 259 generated scenarios: dev 67, held-out 75, held-out B 75, adversarial 42 | `scenarios.py`, `eval_planners.py` |
+| Stand-in models (scripted, NOT LLMs): rule, worst-case, parrot, taint-copier | `scripted_models.py` |
+| 467 retrieval questions in 13 categories, 8 abstention strategies, learned answerability gate | `qgen.py`, `eval_rag2.py`, `answerability.py` |
+| Neural (static) embeddings, PostgreSQL + pgvector HNSW retriever | `embeddings.py` |
+| Untrusted MCP server + trust gateway + taint tracking | `untrusted_mcp.py`, `trust.py` |
+| Reviewer identity, roles, signed grants | `identity.py` |
+| Review console (accessible, XSS-tested) | `ui/review.html`, served at `/review` |
+| Property-based tests, mutation testing (22/22 after closing 3 gaps) | `tests/test_properties.py`, `mutation_check.py` |
+| Run records (planner, model, tokens, latency, retrieval scores, review time) | `experiments.py` |
+
+```bash
+cd lab && pip install -r requirements-dev.txt && python -m playwright install chromium
+python -m pytest -q tests                                        # 229 tests; integrations that need a model/DB skip loudly
+python -m nasha_lab.eval_planners deterministic out.json         # also: rule-model | worst-case | parrot | parrot+guardrail | taint-copier | ollama | ollama+guardrail
+python -m nasha_lab.compare_planners a.json b.json               # paired comparison, exact sign test
+python -m nasha_lab.eval_rag2 out.json                           # NASHA_PG_DSN=postgresql://... to include pgvector
+python -m nasha_lab.mutation_check results/mutation.json         # mutation testing of the safety code
+python -m nasha_lab.build_evidence                               # regenerates evidence/index.html
+```
+Dev reviewers for the console (local prototype identity, protect nothing real): `alice` (BUYER) `alice-dev-passcode`, `bob` (QUALITY_LEAD) `bob-dev-passcode`, `founder` (FOUNDER) `founder-dev-passcode`.
+
+---
+
 ## Block 2: the applied-AI vertical slice
 
 **A human-supervised operations agent that investigates synthetic business exceptions using structured operational data and status-aware enterprise knowledge, then stops for approval before consequential action.**
