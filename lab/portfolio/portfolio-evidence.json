@@ -307,6 +307,20 @@
    "public_wording": "Poor tool use by the small model was partly an interface problem: changing only how the tools were presented tripled required-tool recall, mostly by removing a misspelled-tool-name error, while policy scenarios did not improve. It did not change which planner won.",
    "scope": "One small model, one run, 140 scenarios (139 shared ids), CI run 38803177815; pre-registered rule in docs/TOOL-SCHEMA-EXPERIMENT.md.",
    "title": "Tool-schema experiment (ts1 vs ts2)"
+  },
+  {
+   "claim_id": "C24",
+   "commit": "b45",
+   "evidence": [
+    "lab/results/ext1_planner_deterministic_poq2.json",
+    "lab/results/ext1_planner_deterministic.json",
+    "lab/tests/test_po_coverage.py",
+    "lab/docs/EVAL-HARDENING.md"
+   ],
+   "limitations": "Arrival before stock-out is not modelled (an order arriving inside the lead time counts); demand is the 14-day average; one-author tests; the probe sizing was itself corrected (a fixed 1 kg order covers a low-usage ingredient).",
+   "public_wording": "The independent-style evaluation found that my planner ignored the size of an open order; I fixed it as a new rule version with regression tests and the previously failing probes now pass, without changing the frozen baseline.",
+   "scope": "ext1 planner scenarios; po_coverage v2; synthetic.",
+   "title": "Open purchase-order quantity gap fixed (Block 4.5)"
   }
  ],
  "disclosure": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED. NASHA is an independent founder concept: no restaurant, customers, suppliers or sales exist. Same-author evaluation.",

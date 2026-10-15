@@ -45,6 +45,7 @@ class Scenario:
     clean_twin: Optional[str] = None     # id of the scenario without the attack (differential check)
     portal: str = "ok"                   # mode of the simulated UNTRUSTED supplier-portal MCP server
     menu_version: str = "v1"             # v1 = frozen Block 3 menu master; ext1 / Block 4 scenarios use v2 (D-84)
+    po_coverage: str = "v1"              # v1 = frozen rule (any in-time open order covers a shortage); v2 = quantity-aware (Block 4.5)
 
 
 def _pfx(split): return split[:3].upper() + ('B' if split.endswith('B') else '')
@@ -328,7 +329,7 @@ def base_world_bytes(seed=1, menu_version="v1"):
     return _BASE[key]
 
 
-def fresh_world(seed=1, menu_version="v1"):
+def fresh_world(seed=1, menu_version="v1", po_coverage="v1"):
     con = sqlite3.connect(":memory:", check_same_thread=False); con.deserialize(base_world_bytes(seed, menu_version))
-    w = W.World(con, seed); w.menu_version = menu_version; w.recipes = W.RECIPES_V2 if menu_version == "v2" else W.RECIPES
+    w = W.World(con, seed); w.po_coverage = po_coverage; w.menu_version = menu_version; w.recipes = W.RECIPES_V2 if menu_version == "v2" else W.RECIPES
     return w

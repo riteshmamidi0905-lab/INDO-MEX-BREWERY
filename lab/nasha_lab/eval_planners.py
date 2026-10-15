@@ -60,7 +60,7 @@ def wilson(k, n, z=1.96):
 
 
 def run_scenario(sc, planner_factory):
-    w = S.fresh_world(1, getattr(sc, "menu_version", "v1")); payload = sc.setup(w)
+    w = S.fresh_world(1, getattr(sc, "menu_version", "v1"), getattr(sc, "po_coverage", "v1")); payload = sc.setup(w)
     etype = {"INVENTORY": "INVENTORY_EXCEPTION", "DATA_QUALITY": "DQ_INCIDENT", "POLICY": "POLICY_REVIEW"}[sc.event_family]
     eid = S.add_event(w, etype, payload); w.con.commit(); w.faults = dict(sc.faults)
     planner = planner_factory(); kb = kb_for(sc.extra_docs)

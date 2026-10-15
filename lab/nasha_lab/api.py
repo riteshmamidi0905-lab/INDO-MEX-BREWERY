@@ -43,7 +43,7 @@ def create_app(service: Optional[agent.AgentService] = None, world=None, kb=None
     app = FastAPI(title="NASHA Enterprise AI Lab", version="0.2.0",
                   description="SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED. A human-supervised operations agent over synthetic NASHA data.")
     if service is None:
-        world = world or W.build_world(1, menu_version=generator.CURRENT_MENU_VERSION)[0]; kb = kb or knowledge.default_kb(); service = agent.AgentService(world, kb)
+        world = world or W.build_world(1, menu_version=generator.CURRENT_MENU_VERSION, po_coverage=W.CURRENT_PO_COVERAGE)[0]; kb = kb or knowledge.default_kb(); service = agent.AgentService(world, kb)
     app.state.service, app.state.world, app.state.kb = service, service.rt.world, service.rt.kb
 
     def err(request, status, code, message):

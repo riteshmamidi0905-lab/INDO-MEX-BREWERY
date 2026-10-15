@@ -153,7 +153,8 @@ for b in json.load(open("website/data/beers.json")):
     if b["name"] not in LIB: fail(f"reference library lacks beer {b['name']}")
     if b["working"] and "WORKING NAME" not in LIB.split(b["name"],1)[1][:30]: fail(f"reference library must keep WORKING NAME for {b['name']}")
 for d in ("Chicken 65 Totopos","Paneer Tikka Taco","Gobi Taco","Butter Chicken & Roasted Poblano Quesadilla","Goat Birria, Sealed-Pot Braise","Chaat Elote","Cardamom Churros"):
-    if d not in LIB: fail(f"reference library lacks dish {d}")
+    if d not in LIB and not (d == "Gobi Taco" and "Mango Habanero Gobi" in LIB):  # D-84: the library is a historical visual reference and keeps the earlier name
+         fail(f"reference library lacks dish {d}")
 for k in ("INDIA reference","MEXICO reference","NASHA transformation","three-yes","HERO view","TRUTH view","Names stay out of the picture","NASHA glass family"):
     if k.lower() not in LIB.lower(): fail(f"reference library missing required section/term: {k}")
 PP=open("visuals/nasha-v3/PROMPT-PACK.md",encoding="utf-8").read()

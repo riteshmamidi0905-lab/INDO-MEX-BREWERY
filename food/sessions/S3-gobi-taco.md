@@ -1,3 +1,5 @@
+> **D-84 NOTE (2026-10-15):** this document is HISTORICAL. Where it says "Gobi Taco" it records the earlier direction. The current direction is MANGO HABANERO GOBI, an appetizer / shareable, not a taco, no tortilla (docs/decisions/item-amendments.csv). The text below is intentionally not rewritten.
+
 # SESSION 3 CARD: Gobi Taco
 
 **Status:** FROZEN PROTOCOL, NOT PERFORMED. NOTHING HAS BEEN COOKED. Generated from `food/sessions/sessions.json` (gates hash `564204de7f11`). Open this card, shop, cook, record. You do not need the rest of the repository.

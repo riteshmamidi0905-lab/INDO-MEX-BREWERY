@@ -10,7 +10,7 @@ See also: `docs/CORE5-CONTROL-CENTER.md` (one page per product), `docs/FOUNDER-A
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Chicken 65 Totopos | Session 1 | Web summaries only (T1) | Sheet 13 (frozen D-74) | Shopping list in sheet 13 | Sheet 13 | FROZEN (D-74) | NOT PERFORMED | 0 | none | NO DECISION | Cook Session 1 exactly as frozen (sheet 13) |
 | Paneer Tikka Taco | Session 2 | Web summaries only (T1) | Card + sessions.json | Procurement checklist (prices blank) | Listed | FROZEN (D-76 hash) | NOT PERFORMED | 0 | none | NO DECISION | Cook per food/sessions/S2-paneer-tikka-taco.md (after Session 1) |
-| Gobi Taco | Session 3 | Web summaries only (T1) | Card + sessions.json | Procurement checklist (prices blank) | Listed | FROZEN (D-76 hash) | NOT PERFORMED | 0 | none | NO DECISION | Cook per food/sessions/S3-gobi-taco.md (after Session 1) |
+| Mango Habanero Gobi | Session 3 | Web summaries only (T1) | Card + sessions.json | Procurement checklist (prices blank) | Listed | FROZEN (D-76 hash) | NOT PERFORMED | 0 | none | NO DECISION | Cook per food/sessions/S3-gobi-taco.md (after Session 1) |
 | Butter Chicken & Roasted Poblano Quesadilla | Session 4 | Web summaries only (T1) | Card + sessions.json | Procurement checklist (prices blank) | Listed | FROZEN (D-76 hash) | NOT PERFORMED | 0 | none | NO DECISION | Cook per food/sessions/S4-butter-chicken-quesadilla.md (after Session 1) |
 | Goat Birria, Sealed-Pot Braise | Session 5 | Web summaries only (T1) | Card + sessions.json | Procurement checklist (prices blank) | Listed | FROZEN (D-76 hash) | NOT PERFORMED | 0 | none | NO DECISION | Cook per food/sessions/S5-goat-birria.md (after Session 1) |
 
@@ -26,7 +26,7 @@ See also: `docs/CORE5-CONTROL-CENTER.md` (one page per product), `docs/FOUNDER-A
 
 ## Costing and operations
 
-- Ingredient rows: 43; priced rows: 0 (0 means every recipe is NOT COSTABLE).
+- Ingredient rows: 45; priced rows: 0 (0 means every recipe is NOT COSTABLE).
 - Kitchen capacity: planning exercise only (ops/kitchen); no ticket-time data.
 - Glass V2: concept geometry, manufacturability unverified.
 

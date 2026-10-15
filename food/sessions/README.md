@@ -1,3 +1,5 @@
+> **D-84 NOTE (2026-10-15):** this document is HISTORICAL. Where it says "Gobi Taco" it records the earlier direction. The current direction is MANGO HABANERO GOBI, an appetizer / shareable, not a taco, no tortilla (docs/decisions/item-amendments.csv). The text below is intentionally not rewritten.
+
 # Core 5 R&D book (index)
 
 **What this is:** the one navigable entry point for the five physical sessions. **Status:** NO SESSION HAS BEEN PERFORMED; Chicken 65 Totopos is NOT PERFORMED. Cards below are generated from `sessions.json` (gates frozen at D-76; hash recorded there). The founder can open a card and cook; a brewer, cultural advisor or architect can open their own pack (listed below).

@@ -1,3 +1,5 @@
+> **D-84 NOTE (2026-10-15):** this document is HISTORICAL. Where it says "Gobi Taco" it records the earlier direction. The current direction is MANGO HABANERO GOBI, an appetizer / shareable, not a taco, no tortilla (docs/decisions/item-amendments.csv). The text below is intentionally not rewritten.
+
 # Menu Storytelling System v1
 
 **Status:** `[PROPOSED]` guest-facing language for the **working test menu** (`MENU-V1.1-TEST-MENU.md`; the menu is not changed here). **No dish has been cooked or tasted; every description says what the dish is *designed* to be.** Policy: **no beef, no pork** (D-54); **not halal**. Cultural classification: `brand/CULTURAL-INTEGRITY-AND-ADVISORS.md`. Pairings: `beer/OPENING-BEER-PROGRAM-V1.md`. Visuals: IDs in `visuals/ASSET-MANIFEST.md` / `VISUAL-WORLD-AND-BRIEFS-V1.md`. Final wording needs T1/T2 results, advisor review and allergen verification.

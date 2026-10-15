@@ -23,7 +23,7 @@ Spice dose and timing; peel sourcing and freshness; haze stability and sediment;
 Wheat/gluten (not gluten-free); coriander is an allergen-labelling item to confirm; TTB formula status of spices/peel is an attorney/regulatory check. No health claims.
 
 ## 6. Service and pairing hypotheses (NOT SENSORY TESTED)
-4-6 C `[TEST]`; short wide Witbier-family glass (concept in `visuals/glass-studies/core5/`, MANUFACTURABILITY UNVERIFIED). Heuristic and expert reasoning point at paneer tikka taco, gobi taco and char; first tasting candidates are in `food/CORE5-PAIRING-MATRIX.csv`.
+4-6 C `[TEST]`; short wide Witbier-family glass (concept in `visuals/glass-studies/core5/`, MANUFACTURABILITY UNVERIFIED). Heuristic and expert reasoning point at paneer tikka taco, Mango Habanero Gobi and char; first tasting candidates are in `food/CORE5-PAIRING-MATRIX.csv`.
 
 ## 7. Pathway and rules
 Partner brewery, qualified pilot or permitted tasting pathway only; none verified (attorney/TABC). No result transfers between pathways. Responsible-alcohol rules apply.

@@ -790,6 +790,42 @@
      "value": 16
     }
    ]
+  },
+  {
+   "claim_id": "C24",
+   "title": "Open purchase-order quantity gap fixed (Block 4.5)",
+   "claim": "The deterministic planner treated any on-time open order as covering a shortage. A quantity-aware coverage rule (usable stock plus on-time order quantity against demand through the lead time) was added as a NEW rule version; on the 8 rule-gap probes the planner went from 0/8 to 8/8, with the 98 headline scenarios and 24 relations unchanged. The frozen v1 rule is the default and Block 3 results are unchanged.",
+   "scope": "ext1 planner scenarios; po_coverage v2; synthetic.",
+   "evidence": [
+    "lab/results/ext1_planner_deterministic_poq2.json",
+    "lab/results/ext1_planner_deterministic.json",
+    "lab/tests/test_po_coverage.py",
+    "lab/docs/EVAL-HARDENING.md"
+   ],
+   "commit": "b45",
+   "limitations": "Arrival before stock-out is not modelled (an order arriving inside the lead time counts); demand is the 14-day average; one-author tests; the probe sizing was itself corrected (a fixed 1 kg order covers a low-usage ingredient).",
+   "public_wording": "The independent-style evaluation found that my planner ignored the size of an open order; I fixed it as a new rule version with regression tests and the previously failing probes now pass, without changing the frozen baseline.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/ext1_planner_deterministic_poq2.json",
+     "path": "probes.pass_rate.k",
+     "op": "==",
+     "value": 8
+    },
+    {
+     "file": "lab/results/ext1_planner_deterministic.json",
+     "path": "probes.pass_rate.k",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "file": "lab/results/ext1_planner_deterministic_poq2.json",
+     "path": "headline.pass_rate.k",
+     "op": "==",
+     "value": 98
+    }
+   ]
   }
  ]
 }

@@ -54,7 +54,7 @@ Observed: roles, styles and pairing hypotheses are in the repo. Inferred: the pr
 | Chicken 65 Totopos | cleanse fried fat | low | a little | keep low | yes: cold, fizz | fizz scrubs chip | hop water, sparkling citrus | sweet drinks make fat feel heavier |
 | Paneer Tikka Taco | contrast to char | citrus-spice echo | yes | low | some | soft, light | spiced citrus, light tea | soapy coriander; over-sour clash with lime |
 | Goat Birria | cut consomme fat | warm-spice cue | yes | keep low | some | tannin or fizz vs fat | spiced tamarind/jamaica agua, tea | too sweet beside rich consomme |
-| Gobi Taco | reset between bites | low | yes | counter tamarind glaze | some | crisp | hop water, unsweetened tea | bitterness beside chile; sweetness stacking |
+| Mango Habanero Gobi | reset between bites | low | yes | counter mango-habanero glaze (D-84, UNVERIFIED) | some | crisp | hop water, unsweetened tea | bitterness beside chile; sweetness stacking |
 | Butter Chicken Quesadilla | cut cream richness | toast/tannin cue | yes | essential | low heat | round vs rich | tea, acidic agua, zero-proof amber-style | cloying fruit drinks |
 
 **Requirements so the NA guest is equally considered (design rules).**

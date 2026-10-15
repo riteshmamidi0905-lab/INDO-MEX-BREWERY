@@ -84,6 +84,12 @@ def plate(uid, kind):
                     f'<circle cx="-24" cy="-30" r="4" fill="{ink["herb"]}"/><circle cx="30" cy="-32" r="4" fill="{ink["herb"]}"/></g>')
         fl = "paneer" if kind == "taco2" else "gobi"
         food = tac(200, 165, -6, fl) + tac(200, 262, 5, fl) + f'<path d="M300 300 a26 26 0 0 1 36 -26 l-22 38 z" fill="{ink["herb"]}"/><path d="M304 298 a20 20 0 0 1 26 -20" fill="none" stroke="#D8E39A" stroke-width="3"/>'
+    elif kind == "florets":
+        food = f'<circle cx="200" cy="205" r="92" fill="#F3ECDD" stroke="#C9CCCB" stroke-width="5"/>'
+        for i, (x, y, r) in enumerate([(165, 180, 0), (215, 168, 40), (240, 215, 80), (190, 232, 20), (152, 228, 60), (205, 205, 100)]):
+            food += (f'<g transform="translate({x} {y}) rotate({r})"><circle r="19" fill="#F2E4C3" stroke="#D9A25A" stroke-width="3"/><circle cx="-9" cy="-6" r="11" fill="#F6EBCF"/><circle cx="9" cy="-5" r="11" fill="#F1DFB4"/>'
+                     f'<path d="M-14 -4 q8 -10 18 -2 M2 -12 q9 -4 14 6" stroke="#E8870E" stroke-width="5" fill="none" stroke-linecap="round"/></g>')
+        food += f'<circle cx="300" cy="300" r="22" fill="#E8870E"/><circle cx="300" cy="300" r="12" fill="#F3B63E"/><ellipse cx="190" cy="140" rx="9" ry="3.6" fill="{ink["herb"]}"/>'
     elif kind == "quesadilla":
         food = ""
         for i in range(4):

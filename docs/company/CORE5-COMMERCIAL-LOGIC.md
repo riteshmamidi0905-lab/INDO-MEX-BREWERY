@@ -5,7 +5,7 @@ AGENT ANALYSIS - NOT PROFESSIONAL REVIEW - NOT EVIDENCE
 **Status:** planning hypotheses only. Nothing has been cooked, tasted, costed, priced or sold. `ops/menu-engineering/core5-fields.csv` is blank (no units, price, cost, mix, waste, score), so **no Star/Plowhorse/Puzzle/Dog classification, no price, no margin, no food-cost % is given or implied.** `food/costing/recipes.csv` quantities are all "QUANTITY NOT SET"; `ingredients.csv` prices are blank. A chef, food-safety professional, accountant and (for any alcohol link) a Texas alcohol attorney own the real decisions. D-54 holds (no beef/pork; goat reads as goat; no halal claim). D-74 frozen. D-76/D-77 are agent-proposed, unconfirmed. Mustard oil excluded (V-72).
 
 Labels: **OBS** = read in a repo file; **INF** = agent inference; **UNK** = unknown.
-Abbreviations: C65 = Chicken 65 Totopos, PT = Paneer Tikka Taco, GB = Goat Birria, GT = Gobi Taco, BC = Butter Chicken Quesadilla. Matrix = `food/CORE5-FOOD-MATRIX.csv`; Cap = `ops/kitchen/capacity-assumptions.json` (invented ranges, not data); Ops = `docs/OPERATIONAL-REQUIREMENTS-CORE5.md`.
+Abbreviations: C65 = Chicken 65 Totopos, PT = Paneer Tikka Taco, GB = Goat Birria, GT = Mango Habanero Gobi, BC = Butter Chicken Quesadilla. Matrix = `food/CORE5-FOOD-MATRIX.csv`; Cap = `ops/kitchen/capacity-assumptions.json` (invented ranges, not data); Ops = `docs/OPERATIONAL-REQUIREMENTS-CORE5.md`.
 
 ## 1. The five dishes as a system (qualitative H/M/L; all INF unless marked)
 
@@ -88,5 +88,5 @@ Basis: validation/MOBILE-MVP-STRATEGY.md s2-s4 (T1/T3 sources, unverified).
 9. Professional input: chef (feasibility), food-safety (goat process), Mexican and Indian cultural advisors, alcohol attorney.
 
 ## 5. Recorded disagreement / reconciliation
-- **validation/MOBILE-MVP-STRATEGY.md s5 vs Core 5 (who: that doc's 12-dish set; what: lists a Tandoori Lamb Taco, Chaat Elote and Churros and assigns Gobi Taco to a fryer, flour tortilla for the quesadilla and "Raita-Crema" dip; why it differs: it predates the Core 5 decision).** Core 5 matrix has Gobi roast-first, no lamb, crema/dip still open. This document follows the Core 5 matrix; the MVP doc's menu should be reconciled by its owner. Not silently merged.
+- **validation/MOBILE-MVP-STRATEGY.md s5 vs Core 5 (who: that doc's 12-dish set; what: lists a Tandoori Lamb Taco, Chaat Elote and Churros and assigns Mango Habanero Gobi to a fryer, flour tortilla for the quesadilla and "Raita-Crema" dip; why it differs: it predates the Core 5 decision).** Core 5 matrix has Gobi roast-first, no lamb, crema/dip still open. This document follows the Core 5 matrix; the MVP doc's menu should be reconciled by its owner. Not silently merged.
 - Matrix itself flags unresolved conflicts (Gobi fry vs roast; BC "raita-crema" vs makhani dip; tortilla type), which affect every comparison above.

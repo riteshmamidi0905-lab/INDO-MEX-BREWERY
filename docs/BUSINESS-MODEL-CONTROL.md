@@ -81,9 +81,9 @@ A retail receipt keeps the result at grade C (R&D only). A missing price, packag
 | 2 | **Paneer Tikka Taco** | paneer; tortillas; hung curd and spice; salsa; onion/capsicum | paneer shrink on char; paneer dries; tortilla stales | char to order; tortilla warming | tandoor unresolved, or charbroiler + comal | MEDIUM-HIGH: paneer firms; tortilla steams / MEDIUM: cube count per taco | HIGH: paneer sourcing and quality UNKNOWN / dairy | Session 2 heat-source comparison plus a paneer price/spec check |
 | 3 | **Butter Chicken & Roasted Poblano Quesadilla** | chicken thigh; butter/cream/makhani; poblano; Oaxaca-style cheese;... | chicken trim; poblano peel loss; sauce leaks; unsold sauce batch; cheese rennet record | sauce reduction batch; poblano roasting; comal press | comal/flat-top (shared bottleneck) | MEDIUM: steams soft if covered / MEDIUM: filling weight | MEDIUM: cheese and tortilla choice open (flour lard risk D-54) / dairy,... | Session with filling weights and comal minutes |
 | 4 | **Chicken 65 Totopos** | chicken thigh; frying oil; nixtamal tortilla chips; crema; curry... | trim and cooking loss on thighs (0.75 cooked/raw is an ASSUMPTION in sheet 13); chips broken or soggy;... | coating and batch frying; chips fried last | fryer (shared with Gobi if fried) | HIGH: chip loses crispness (10-minute gate) / MEDIUM: chicken piece count per plate | MEDIUM: fresh curry leaf specialty; single-source tortilla / chicken, oil, dairy | Session 1: raw/trimmed/cooked weights, oil in/out, active minutes |
-| 5 | **Gobi Taco** | cauliflower; batter/oven; glaze; slaw; tortilla | trim loss on cauliflower; soggy product; discarded florets | blanch/steam-dry/roast or fry steps; glaze | oven or fryer; comal | MEDIUM-HIGH: keeps releasing water / LOW-MEDIUM | MEDIUM: cauliflower price/seasonality / produce | Session with weights and a roast vs fry comparison |
+| 5 | **Mango Habanero Gobi** | cauliflower; batter/oven; mango-habanero glaze; dip or garnish | trim loss on cauliflower; soggy product; discarded florets | blanch/steam-dry/roast or fry steps; glaze | oven or fryer | MEDIUM-HIGH: keeps releasing water / LOW-MEDIUM | MEDIUM: cauliflower price/seasonality / produce | Session with weights and a roast vs fry comparison |
 
-Rank reasons: Goat Birria: largest unknowns in yield, supply, process and safety. Paneer Tikka Taco: equipment unresolved and supply unknown. Butter Chicken & Roasted Poblano Quesadilla: comal load and open tortilla choice. Chicken 65 Totopos: Session 1 will measure most of it cheaply; hold failure is the main unknown. Gobi Taco: simplest ingredients and process (comparatively).
+Rank reasons: Goat Birria: largest unknowns in yield, supply, process and safety. Paneer Tikka Taco: equipment unresolved and supply unknown. Butter Chicken & Roasted Poblano Quesadilla: comal load and open tortilla choice. Chicken 65 Totopos: Session 1 will measure most of it cheaply; hold failure is the main unknown. Mango Habanero Gobi: simplest ingredients and process (comparatively).
 
 ## Menu mix and throughput (MODEL_ASSUMPTION scenarios; not predicted guest behavior)
 
@@ -91,13 +91,13 @@ Mix weights come from `ops/kitchen/capacity-assumptions.json`; every station num
 
 | Mix (20 simultaneous orders) | Base-case bottleneck | Min to clear (rounded ASSUMPTION lower bound) | Orders/15 min (rounded ASSUMPTION upper bound) | Minutes by station |
 |---|---|---|---|---|
-| equal | cooks | 9 | 33 | fryer 4, comal 9, char_tandoor 1, pass 7, cooks 9 |
+| equal | cooks | 9 | 33 | fryer 4, comal 8, char_tandoor 1, pass 7, cooks 9 |
 | comal_heavy | comal | 14 | 22 | fryer 2, comal 14, char_tandoor 1, pass 8, cooks 10 |
 | fry_heavy | cooks | 9 | 34 | fryer 8, comal 5, char_tandoor 1, pass 7, cooks 9 |
 | chicken_heavy | comal | 10 | 29 | fryer 6, comal 10, char_tandoor 0, pass 7, cooks 9 |
-| vegetarian_heavy | cooks | 9 | 34 | fryer 5, comal 6, char_tandoor 2, pass 7, cooks 9 |
+| vegetarian_heavy | cooks | 9 | 34 | fryer 5, comal 5, char_tandoor 2, pass 7, cooks 9 |
 | goat_heavy | cooks | 10 | 30 | fryer 2, comal 9, char_tandoor 1, pass 8, cooks 10 |
-| quesadilla_heavy | comal | 18 | 16 | fryer 2, comal 18, char_tandoor 1, pass 7, cooks 10 |
+| quesadilla_heavy | comal | 18 | 17 | fryer 2, comal 18, char_tandoor 1, pass 7, cooks 10 |
 
 The measurements that matter most: station minutes per plate (fryer, comal, char, pass, cooks), measured ticket time, and the real mix. Everything else is second-order until those exist.
 

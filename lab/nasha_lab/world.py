@@ -54,7 +54,7 @@ CREATE TABLE review_queue(item_id INTEGER PRIMARY KEY AUTOINCREMENT, run_id TEXT
 class World:
     def __init__(self, con, seed):
         self.con, self.seed, self.faults, self.today, self.lock = con, seed, {}, TODAY, threading.RLock()
-        self.menu_version = "v1"; self.recipes = RECIPES                      # v1 = frozen Block 3 menu; v2 = current (D-84)
+        self.menu_version = "v1"; self.recipes = RECIPES; self.po_coverage = "v1"                      # v1 = frozen Block 3 menu; v2 = current (D-84)
 
     def q(self, sql, *a):
         cur = self.con.execute(sql, a); cols = [c[0] for c in cur.description]
@@ -75,7 +75,10 @@ def open_world(path, seed=1):
     return World(sqlite3.connect(path, check_same_thread=False), seed)
 
 
-def build_world(seed=1, defects_per_type=8, db_path=":memory:", menu_version="v1"):
+CURRENT_PO_COVERAGE = "v2"          # Block 4.5: current-state worlds use the quantity-aware open-order coverage rule; the frozen Block 3 default stays "v1"
+
+
+def build_world(seed=1, defects_per_type=8, db_path=":memory:", menu_version="v1", po_coverage="v1"):
     raw, truth = generator.generate(seed, defects_per_type, menu_version=menu_version)
     con, report = pipeline.run(raw, db_path)
     con.executescript(SCHEMA)
@@ -104,7 +107,7 @@ def build_world(seed=1, defects_per_type=8, db_path=":memory:", menu_version="v1
                 if on_hand < par:
                     con.execute("INSERT INTO inventory_movements(location_id,ingredient,move_date,kind,qty) VALUES(?,?,?,?,?)", (loc, ing, (d + dt.timedelta(days=1)).isoformat(), "RECEIPT", round(par - on_hand, 2)))
                     on_hand = par
-    w = World(con, seed); w.menu_version = menu_version; w.recipes = RECIPES_V2 if menu_version == "v2" else RECIPES
+    w = World(con, seed); w.po_coverage = po_coverage; w.menu_version = menu_version; w.recipes = RECIPES_V2 if menu_version == "v2" else RECIPES
     _apply_scenarios(w, use)
     return w, report, truth
 

@@ -9,7 +9,7 @@
 | Chaat Elote | MF | Mexican street corn with chaat flavours | Analogy between elote and bhutta is ours, not history |
 | Dal-Frijol Dip | OC | Slow-simmered lentils and beans, tadka finish | Name is plain; avoid claiming a tradition |
 | Hefe-Brined Wings | OC | Wings brined in our own beer, three sauces | None |
-| Gobi Taco | MF | Fried cauliflower (gobi 65 style) in a taco | None |
+| Mango Habanero Gobi | MF | Cauliflower (gobi 65 style) as an appetizer / shareable with a mango-habanero glaze (D-84) | None |
 | Paneer Tikka Taco | MF | Tandoor-style paneer in a corn tortilla | None |
 | Malabar Fish Taco | CI + MF | Kerala-coast pepper-coconut flavours on a coastal taco | "Malabar" must be backed by recognisable elements; advisor check |
 | Tandoori Lamb Taco | OC | **Our own composition**: tandoori-style marination, Sonoran-style grilling and tortilla | **Not** a historical or traditional India-Mexico dish |

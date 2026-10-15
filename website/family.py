@@ -83,7 +83,7 @@ DISHES = [
      "Witbier", "Spiced citrus sparkler"),
     ("goat-birria", "NV-VISION-VP07", "Goat Birria", "Goat, slow-braised in a deep chile adobo and served as small tacos, with a cup of consomme for dipping.",
      "Hefeweizen", "Hibiscus and tamarind tea"),
-    ("gobi-taco", "NV-VISION-VP08", "Gobi Taco", "Roasted cauliflower with a spiced glaze, bright slaw and green chutney in a corn tortilla. A vegetarian headliner, never a side.",
+    ("gobi-taco", None, "Mango Habanero Gobi", "Cauliflower, still unmistakably cauliflower, with a mango and habanero glaze, shared at the table. An appetizer, not a taco. A design idea only: nothing has been cooked or tasted.",
      "Pilsner", "Lime and herb cooler"),
     ("butter-chicken-quesadilla", "NV-VISION-VP09", "Butter Chicken & Roasted Poblano Quesadilla", "A crisp griddled tortilla filled with rich butter chicken, roasted poblano and melted cheese, with a cool dip alongside.",
      "Vienna Amber", "Cultured dairy, fruit and spice drink"),
@@ -92,11 +92,11 @@ BEERS = [
     ("NASHA Hefeweizen", "Soft, hazy wheat beer with banana and clove. Made for rich, spiced food.", "Goat Birria"),
     ("Mexican-Style Lager", "Crisp, clean and cold. The easy one that cools the heat.", "Chicken 65 Totopos"),
     ("Vienna Amber", "Toasty and smooth. Built for char and slow cooking.", "Butter Chicken & Poblano Quesadilla"),
-    ("Pilsner", "Bright and precise, with a clean bitter finish.", "Gobi Taco"),
+    ("Pilsner", "Bright and precise, with a clean bitter finish.", "Mango Habanero Gobi"),
     ("Witbier", "Hazy and citrusy, with soft wheat and orange peel.", "Paneer Tikka Taco"),
 ]
 ZERO = [("Fruit, lime and salt cooler", "Chicken 65 Totopos"), ("Spiced citrus sparkler", "Paneer Tikka Taco"), ("Hibiscus and tamarind tea", "Goat Birria"),
-        ("Lime and herb cooler", "Gobi Taco"), ("Cultured dairy, fruit and spice drink", "Butter Chicken & Poblano Quesadilla")]
+        ("Lime and herb cooler", "Mango Habanero Gobi"), ("Cultured dairy, fruit and spice drink", "Butter Chicken & Poblano Quesadilla")]
 
 
 # --------------------------------------------------------------------------- pages
@@ -128,7 +128,9 @@ def page_food():
     for i, (did, vid, name, text, beer, zp) in enumerate(DISHES):
         rev = i % 2 == 1
         tone = "light" if not rev else "stone"
-        img = f'<div class="ph rv">{pic(vid, "(max-width:800px) 100vw, 55vw")}</div>'
+        img = (f'<div class="ph rv">{pic(vid, "(max-width:800px) 100vw, 55vw")}</div>' if vid else
+               '<div class="ph rv" role="img" aria-label="Image pending for the new Mango Habanero Gobi direction" style="display:flex;align-items:center;justify-content:center;min-height:16rem;background:#efe6d4;color:#4a3b25;text-align:center;padding:1.5rem">'
+               '<p>Image pending: the earlier concept picture showed a taco and has been withdrawn because the dish is no longer a taco.</p></div>')
         txt = (f'<div><p class="eyebrow">{i + 1:02d}</p><h2 class="dn rv" id="d{i}">{E(name)}</h2><p class="p rv">{E(text)}</p>'
                f'<p class="dmeet rv"><span>Pairing idea</span>{E(beer)} &middot; {E(zp)}</p></div>')
         secs += f'<section class="dish {tone}" aria-labelledby="d{i}"><div class="w"><div class="split{" rev" if rev else ""}">{img}{txt}</div></div></section>'

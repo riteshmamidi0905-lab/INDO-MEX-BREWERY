@@ -41,3 +41,10 @@ def test_retrieval_ext1_labels_are_metadata_or_validated_by_construction():
     for r in [x for x in rows if x["family"] == "R2_terse_keyword"]:
         words = set(r["question"].split()); holders = {c["document_id"] for c in kb.chunks.values() if words <= set(K.tokenize(c["text"]))}
         assert holders and (holders == set(r["gold_docs"]) or set(r["gold_docs"]) <= holders)
+
+
+def test_block45_quantity_aware_rule_closes_the_rule_gap_probes_and_keeps_the_rest():
+    scs = X.build_ext1()
+    for s in scs: s.po_coverage = "v2"
+    r = EXP.run(EP.FACTORIES["deterministic"], "deterministic", scs)
+    assert r["probes"]["pass_rate"]["k"] == 8 and r["headline"]["pass_rate"]["k"] == 98 and r["relations"]["hold"] == 24

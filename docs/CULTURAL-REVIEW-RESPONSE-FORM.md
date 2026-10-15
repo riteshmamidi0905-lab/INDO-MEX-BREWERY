@@ -8,7 +8,7 @@ For each dish mark **OK / FIX / REMOVE / UNSURE** and add one line:
 | Chicken 65 Totopos | | | | |
 | Paneer Tikka Taco | | | | |
 | Goat Birria | | | | |
-| Gobi Taco | | | | |
+| Mango Habanero Gobi | | | | |
 | Butter Chicken & Roasted Poblano Quesadilla | | | | |
 
 **Please do not answer a vague "is it authentic?"; these precise questions are what we need.** Please also answer (a line each):

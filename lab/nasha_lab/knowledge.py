@@ -129,11 +129,36 @@ def chunk_markdown(text, title, max_chars=900):
     return chunks
 
 
+SNAPSHOT_PATH = os.path.join(ROOT, "lab", "eval", "corpus_block3.json.gz")
+
+
+class _DiskFS:
+    def __init__(self, root): self.root = root
+    def read(self, p): return open(os.path.join(self.root, p), encoding="utf-8", errors="replace").read()
+    def isfile(self, p): return os.path.isfile(os.path.join(self.root, p))
+    def listdir(self, d): return sorted(os.listdir(os.path.join(self.root, d))) if os.path.isdir(os.path.join(self.root, d)) else []
+    def date(self, p): return _git_date(p)
+
+
+class _SnapFS:
+    """The Block 3 corpus exactly as committed at 647d47e (eval/corpus_block3.json.gz): current-state edits to project documents (decision D-84 and the Mango Habanero Gobi migration) must not change a frozen benchmark."""
+    _data = None
+    def __init__(self):
+        if _SnapFS._data is None:
+            import gzip, json
+            _SnapFS._data = json.load(gzip.open(SNAPSHOT_PATH, "rt", encoding="utf-8"))["files"]
+    def read(self, p): return self._data[p]
+    def isfile(self, p): return p in self._data
+    def listdir(self, d): return sorted({x[len(d) + 1:] for x in self._data if x.startswith(d + "/") and "/" not in x[len(d) + 1:]})
+    def date(self, p): return "block3"
+
+
 def build_corpus(root=ROOT, extra_docs=None, version=None):
     """Return (chunks, manifest). extra_docs: list of dicts for tests (inject adversarial documents)."""
     reg = _load_decision_register()
-    dec_text = open(os.path.join(root, "docs/decisions/DECISIONS.md"), encoding="utf-8").read()
     version = version or DEFAULT_CORPUS_VERSION
+    fs = _SnapFS() if (version == "block3" and root == ROOT) else _DiskFS(root)
+    dec_text = fs.read("docs/decisions/DECISIONS.md")
     reg_rows = {r["id"]: r for r in reg.parse(dec_text) if version != "block3" or int(r["id"][2:]) <= FROZEN_LAST_DECISION}
     chunks, manifest = [], {"included": [], "excluded": [], "corpus_version": version}
     for line in dec_text.splitlines():
@@ -153,7 +178,7 @@ def build_corpus(root=ROOT, extra_docs=None, version=None):
                 byid[old].update(effective_status=SUPERSEDED, authority_rank=AUTH_RANK[SUPERSEDED], superseded_by=c["document_id"], verification_status="SUPERSEDED (derived from " + c["document_id"] + ")")
 
     docs = {}
-    for r in csv.DictReader(open(os.path.join(root, "docs/company/data/document-map.csv"), encoding="utf-8")):
+    for r in csv.DictReader(fs.read("docs/company/data/document-map.csv").splitlines()):
         p = r["path"]
         if "(generated)" in r["class"].lower():
             manifest["excluded"].append((p, "generated from CSV sources; index the sources instead")); continue
@@ -161,17 +186,16 @@ def build_corpus(root=ROOT, extra_docs=None, version=None):
             manifest["excluded"].append((p, "not a single markdown file / indexed separately")); continue
         docs[p] = (r["class"], r["read_instead"])
     def add_glob(prefix_dir, cls):
-        d = os.path.join(root, prefix_dir)
-        for f in sorted(os.listdir(d)) if os.path.isdir(d) else []:
+        for f in fs.listdir(prefix_dir):
             p = f"{prefix_dir}/{f}"
             if f.endswith(".md") and p not in docs and p != "docs/decisions/DECISIONS.md": docs[p] = (cls, "")
     docs.setdefault("food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md", ("CANONICAL", ""))      # the binding D-54 specification
     add_glob("docs/company", "SUPPORTING"); add_glob("docs/decisions", "SUPPORTING"); add_glob("food", "SUPPORTING")
     for p in ("research/CORE5-PRODUCT-SYSTEM.md",): docs[p] = ("CANONICAL", "")
-    for f in sorted(os.listdir(os.path.join(root, "research"))):
+    for f in fs.listdir("research"):
         p = f"research/{f}"
         if f.endswith(".md") and p not in docs: docs[p] = ("UNVERIFIED RESEARCH", "")
-    for f in sorted(os.listdir(os.path.join(root, "vision"))):
+    for f in fs.listdir("vision"):
         p = f"vision/{f}"
         if f.endswith(".md") and p not in docs: docs[p] = ("VISION (not evidence)", "")
     rows = list(docs.items()) + [(d["source_path"], (d["class"], d.get("read_instead", ""))) for d in (extra_docs or [])]
@@ -179,13 +203,12 @@ def build_corpus(root=ROOT, extra_docs=None, version=None):
     for p, (cls, read_instead) in rows:
         if p in extra: text = extra[p]
         else:
-            fp = os.path.join(root, p)
-            if not os.path.isfile(fp): manifest["excluded"].append((p, "listed but file missing")); continue
-            text = open(fp, encoding="utf-8", errors="replace").read()
+            if not fs.isfile(p): manifest["excluded"].append((p, "listed but file missing")); continue
+            text = fs.read(p)
         if cls.upper().startswith("UNVERIFIED"): eff, ver = UNVERIFIED, "UNVERIFIED RESEARCH"
         else: eff, ver = doc_status(cls, p)
         t = re.search(r"^#\s+(.*)", text, re.M); title = t.group(1).strip() if t else os.path.basename(p)
-        upd = _git_date(p) if p not in extra else "test"
+        upd = fs.date(p) if p not in extra else "test"
         n = 0
         for i, (head, body) in enumerate(chunk_markdown(text, title)):
             if len(body) < 40: continue

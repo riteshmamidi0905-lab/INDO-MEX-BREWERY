@@ -41,11 +41,11 @@ DISCLOSE = ("Concept stage: there is no brewery, no restaurant, no truck and no 
             "Images are concept visualizations and illustrations, not photographs of NASHA.")
 CONCEPT_NOTE = "Concept visualization. Final architecture is subject to professional design and site conditions."
 
-PLATE_KIND = {"chicken-65-totopos": "totopos", "chaat-elote": "elote", "gobi-taco": "taco", "paneer-tikka-taco": "taco2",
+PLATE_KIND = {"chicken-65-totopos": "totopos", "chaat-elote": "elote", "gobi-taco": "florets", "paneer-tikka-taco": "taco2",
               "butter-chicken-quesadilla": "quesadilla", "goat-birria": "birria", "cardamom-churros": "churros", "seed-chile-bowl": "veg"}
 SIGNATURE = ["chicken-65-totopos", "paneer-tikka-taco", "gobi-taco", "butter-chicken-quesadilla", "goat-birria", "chaat-elote", "cardamom-churros"]
 GATE_BEERS = ["hefeweizen", "mexican-lager", "vienna-amber"]
-VISION_FOOD = {"chicken-65-totopos": "NV-VISION-VP05", "paneer-tikka-taco": "NV-VISION-VP06", "goat-birria": "NV-VISION-VP07", "gobi-taco": "NV-VISION-VP08", "butter-chicken-quesadilla": "NV-VISION-VP09"}
+VISION_FOOD = {"chicken-65-totopos": "NV-VISION-VP05", "paneer-tikka-taco": "NV-VISION-VP06", "goat-birria": "NV-VISION-VP07", "butter-chicken-quesadilla": "NV-VISION-VP09"}
 CORE_BEERS = ["hefeweizen", "mexican-lager", "vienna-amber", "pilsner", "witbier"]
 
 _uid = [0]
@@ -213,7 +213,7 @@ def flight_card():
 def page_food():
     body = f'''<section class="food-hero" aria-labelledby="h1"><div class="wrap stack">
 <p class="eyebrow">Food · Designs for testing</p><h1 id="h1">Five dishes, designed to be cooked at home first.</h1>
-<p class="lede">Chicken 65 from South India on thick masa totopos. Paneer tikka in a taco. A goat birria. A roasted gobi taco. A butter chicken quesadilla with roasted poblano. Nothing is cooked for guests and nothing is for sale.</p>
+<p class="lede">Chicken 65 from South India on thick masa totopos. Paneer tikka in a taco. A goat birria. A mango-habanero gobi to share. A butter chicken quesadilla with roasted poblano. Nothing is cooked for guests and nothing is for sale.</p>
 <p class="disclosure">{E(DISCLOSE)} The pictures show proposed presentation, not finished dishes.</p></div></section>
 
 {P.food_core_section(M, SITE)}

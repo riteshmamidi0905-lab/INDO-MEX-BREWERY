@@ -15,7 +15,7 @@
 "mix_share_chicken65","MENU MIX","share of orders: Chicken 65 Totopos (scenario weight until sold)","fraction","all","paid_purchase","input",""
 "mix_share_paneer","MENU MIX","share of orders: Paneer Tikka Taco","fraction","all","paid_purchase","input",""
 "mix_share_birria","MENU MIX","share of orders: Goat Birria","fraction","all","paid_purchase","input",""
-"mix_share_gobi","MENU MIX","share of orders: Gobi Taco","fraction","all","paid_purchase","input",""
+"mix_share_gobi","MENU MIX","share of orders: Mango Habanero Gobi","fraction","all","paid_purchase","input",""
 "mix_share_quesadilla","MENU MIX","share of orders: Butter Chicken & Roasted Poblano Quesadilla","fraction","all","paid_purchase","input",""
 "mix_food_cogs_fraction","MENU MIX","food cost as a fraction of food revenue (derived from dish food cost and price; fraction 0-1)","fraction","all","s1_receipts","input","food_cogs_pct"
 "mix_bev_cogs_fraction","MENU MIX","beverage cost as a fraction of beverage revenue (derived; fraction 0-1)","fraction","all","brewer_pilot","input","bev_cogs_pct"

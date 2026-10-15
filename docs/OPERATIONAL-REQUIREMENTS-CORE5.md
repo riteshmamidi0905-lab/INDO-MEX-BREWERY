@@ -5,20 +5,20 @@ SUPPORTING (Sprint 23): kitchen and operating requirements now live in `docs/OPE
 **Status: PLANNING INPUT. Not an architect-approved plan, not a HACCP plan, not a code review.** Nothing here has been cooked, timed or reviewed by a person. Capacity numbers are assumptions (`ops/kitchen/capacity-assumptions.json`, rebuilt by `python3 tools/kitchen_capacity.py`), labelled CAPACITY PLANNING EXERCISES. Food-safety figures are T4 (general knowledge of US FDA Food Code values, not read from the Code) used as planning defaults and are UNVERIFIED for Austin/Texas; the health authority decides.
 
 ## 1. What the five dishes ask of a kitchen
-| Station | Chicken 65 Totopos | Paneer Tikka Taco | Gobi Taco | Butter Chicken Quesadilla | Goat Birria |
+| Station | Chicken 65 Totopos | Paneer Tikka Taco | Mango Habanero Gobi | Butter Chicken Quesadilla | Goat Birria |
 |---|---|---|---|---|---|
 | Deep fryer | Chicken and chips (main load) | none | only if the batter-fried arm wins | none | none |
-| Comal / plancha | tortilla-free | tortilla warm, paneer finish (arm B) | tortillas, glaze set | **heaviest: griddling every quesadilla** | dip and griddle tacos, warm tortillas |
+| Comal / plancha | tortilla-free | tortilla warm, paneer finish (arm B) | none (no tortilla, D-84); oven roast or fry, then glaze | **heaviest: griddling every quesadilla** | dip and griddle tacos, warm tortillas |
 | Char (charbroiler, tandoor or substitute) | none | paneer char (arm A; tandoor only if real) | none (oven roast) | chicken char | none |
 | Oven / combi | none | none | roast cauliflower | none | sealed-pot braise (hours) |
-| Cold storage | marinated chicken, crema | hung curd, paneer | cauliflower, slaw | sauce, filling, cheese | braised goat, consomme, **cooling capacity** |
+| Cold storage | marinated chicken, crema | hung curd, paneer | cauliflower, glaze | sauce, filling, cheese | braised goat, consomme, **cooling capacity** |
 | Hot hold | chips (short window), consomme | none (order-fire) | none | sauce | consomme |
 
 Unknowns to put to the professionals: whether a tandoor or a charbroiler is wanted (and hood, clearances, fire-suppression, gas/solid-fuel constraints: regulatory matrix says NOT FOUND, not resolved); comal/plancha size and heat-recovery; fryer oil volume and a dedicated vegetarian oil path (cross-contact with chicken in one fryer is a real design question: allergen matrix lists contains vs may cross-contact); walk-in space for braise cooling; ventilation for charred chile smoke.
 
 ## 2. Capacity planning exercise: where the pressure is
 Method: slot-minutes per plate with low/base/high ranges, seeded random draws from the invented ranges (1-3 fryer baskets, 8-16 comal positions, 2-4 cooks, 1-2 pass positions). Orders arrive at once (10, 20, 30). Clear time is a lower bound (no queueing delay, no walking).
-- **Equal mix:** cooks (labour) is the bottleneck in about half of sampled ranges (clear time roughly 5 / 9 / 14 min at 10/20/30 orders, base case); comal and pass each roughly a quarter. The fryer is never the limit in these assumed ranges. Shares are the fraction of INVENTED ranges in which a station comes out highest, not a probability of anything real.
+- **Equal mix:** cooks (labour) is the bottleneck in about half of sampled ranges (clear time roughly 5 / 9 / 14 min at 10/20/30 orders, base case); pass roughly 30% and comal roughly 16-18% (comal was about 24% before D-84 removed the gobi tortilla load; both are ASSUMPTION-derived). The fryer is never the limit in these assumed ranges. Shares are the fraction of INVENTED ranges in which a station comes out highest, not a probability of anything real.
 - **Comal-heavy mix (goat + quesadilla popular):** the comal is the bottleneck in about 80% of samples; roughly 7 / 14 / 21 min at 10/20/30 base case. The quesadilla alone (assumed 18 slot-minutes per plate) drives this. **Measure first:** minutes one quesadilla occupies a comal position at service temperature, and how many positions are usable at once.
 - **Fry-heavy mix (Chicken 65 popular):** cooks again about 54%, fryer about 18%, pass about 28%.
 - Reading: this assumption set points to labour and comal rather than the fryer; no kitchen data exists. Real ticket times would change that; until then it is a hypothesis, not a forecast.

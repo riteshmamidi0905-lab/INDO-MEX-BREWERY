@@ -24,7 +24,7 @@
 
 **The solution.** A compact core menu cooked on a small set of stations (fryer, comal, char), a beer list built to match it, and a hall where the brewing is visible. The brewery is the last capital gate: food and demand come first, and host-brewery or collaboration paths can test beer with far less capital.
 
-**The product.** Core 5 food: Chicken 65 Totopos, Paneer Tikka Taco, Goat Birria, Gobi Taco, Butter Chicken and Roasted Poblano Quesadilla. Core 5 beer: Hefeweizen, Mexican-Style Lager, Vienna Amber, Pilsner, Witbier. All are design briefs; none has been cooked or brewed.
+**The product.** Core 5 food: Chicken 65 Totopos, Paneer Tikka Taco, Goat Birria, Mango Habanero Gobi (appetizer/shareable), Butter Chicken and Roasted Poblano Quesadilla. Core 5 beer: Hefeweizen, Mexican-Style Lager, Vienna Amber, Pilsner, Witbier. All are design briefs; none has been cooked or brewed.
 
 **What may make it different.** The combination and the execution, not any single ingredient: pairing designed in from the start, a no-beef and no-pork kitchen as a clear constraint, and a development process that publishes what failed. Indian, Mexican, fusion, brewery and destination-hospitality businesses all exist in Austin; the market lessons are in the market view.
 

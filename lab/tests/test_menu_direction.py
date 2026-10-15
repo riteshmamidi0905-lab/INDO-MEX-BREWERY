@@ -32,7 +32,7 @@ def test_menu_item_id_and_foreign_keys_are_stable_across_versions():
 
 def test_block3_corpus_is_pinned_and_excludes_the_new_decision():
     old = K.default_kb("block3"); new = K.default_kb("current")
-    assert "D-84" not in old.chunks and "D-84" in new.chunks and len(new.chunks) == len(old.chunks) + 1
+    assert "D-84" not in old.chunks and "D-84" in new.chunks and len(old.chunks) == 758 and len(new.chunks) > len(old.chunks)  # Block 4.5: the migrated current-state files add chunks; the frozen corpus stays at 758
     assert not any(c.get("amended_by") for c in old.chunks.values())
 
 
@@ -54,3 +54,21 @@ def test_historical_decisions_are_kept_but_labelled(cur):
 def test_d54_and_other_policies_unaffected(cur):
     a = cur.ask("Can NASHA use pork lard in tortillas?", use_gate=False)
     assert a["abstained"] or all(c["document_id"] != "D-84" for c in a["citations"])
+
+
+def test_block45_current_state_files_use_the_new_dish_and_keep_untested_labels():
+    """Block 4.5: current-state data names Mango Habanero Gobi (appetizer, no tortilla); legacy id kept; nothing claims a test."""
+    import csv, pathlib
+    root = pathlib.Path(__file__).resolve().parents[2]
+    rows = {r["id"]: r for r in csv.DictReader(open(root / "food/CORE5-FOOD-MATRIX.csv", encoding="utf-8"))}
+    g = rows["gobi-taco"]
+    assert g["name"] == "Mango Habanero Gobi" and g["physical_test_status"] == "NOT PERFORMED" and "NOT a taco" in g["status"]
+    assert "tortilla" not in (g["core_ingredients"] + g["proposed_construction"] + g["equipment"]).lower().replace("no tortilla", "")
+    rec = [r for r in csv.DictReader(open(root / "food/costing/recipes.csv", encoding="utf-8")) if r["dish_id"] == "gobi-taco"]
+    ids = {r["ingredient_id"] for r in rec}
+    assert "i-corn-tortilla" not in ids and {"i-mango", "i-habanero", "i-cauliflower"} <= ids and all(not r["qty_per_portion"] for r in rec)
+    assert [r["dish"] for r in csv.DictReader(open(root / "food/ALLERGEN-MATRIX.csv", encoding="utf-8")) if r["dish_id"] == "gobi-taco"][0].startswith("Mango Habanero Gobi")
+    import json
+    cap = json.loads((root / "ops/kitchen/capacity-assumptions.json").read_text())
+    assert cap["dishes"]["gobi-taco"]["comal"] == [0.0, 0.0, 0.0] and "ASSUMPTION" in cap["d84_amendment"]
+    assert "Gobi Taco" not in (root / "website/data/dishes.json").read_text()

@@ -30,11 +30,11 @@ False or invented origin stories; regional flattening (treating India or Mexico 
 - **What we are unsure about:** whether a yogurt-papaya marinade or curry leaf belongs at all (we treat them as experiments, curry leaf deferred); how to credit the Tijuana dipped taco; goat age and cut standards (not found).
 - **Questions:** Q4 and Q6.
 
-## 4. Gobi Taco
-- **Cultural anchors:** Indian cauliflower dishes (Gobi 65, a batter-fried echo of Chicken 65; tandoori gobi; Gobi Manchurian, which is Indo-Chinese with disputed origins) in a corn-tortilla taco with lime-cabbage slaw and salsa.
-- **NASHA idea:** roast-first cauliflower that visibly reads as cauliflower, a thin tamarind-guajillo glaze applied late; a batter-fried version is the comparison.
-- **What we believe:** blanch, dry, coat, then roast hot or fry (recipe sites); no traditional Mexican precedent exists for a cauliflower taco and we do not claim one.
-- **What we are unsure about:** which Indian dish to name (or to call it "our own"); whether tamarind plus guajillo is respectful or confusing.
+## 4. Mango Habanero Gobi
+- **Cultural anchors:** Indian cauliflower dishes (Gobi 65, a batter-fried echo of Chicken 65; tandoori gobi; Gobi Manchurian, which is Indo-Chinese with disputed origins) served as an appetizer / shareable (D-84: not a taco, no tortilla; the earlier taco direction is superseded).
+- **NASHA idea:** roast-first cauliflower that visibly reads as cauliflower, a mango-habanero glaze applied late (DESIGN ASSUMPTION, untasted); a batter-fried version is the comparison.
+- **What we believe:** blanch, dry, coat, then roast hot or fry (recipe sites); no traditional Mexican precedent exists for this dish and we do not claim one.
+- **What we are unsure about:** which Indian dish to name (or to call it "our own"); whether the mango-habanero direction is respectful or confusing.
 - **Questions:** Q2.
 
 ## 5. Butter Chicken & Roasted Poblano Quesadilla
@@ -46,7 +46,7 @@ False or invented origin stories; regional flattening (treating India or Mexico 
 
 ## The eight questions (please answer in your own words)
 1. **(Indian)** Is "Chicken 65" acceptable as a dish name when the chicken is paired with masa chips, and which lineage (Chennai, Hyderabad, Andhra) may we say we follow? Is "Chennai-style" fair?
-2. **(Indian)** Should the Gobi Taco name Gobi 65, Manchurian or tandoori gobi, and is a tamarind-guajillo glaze respectful or confusing?
+2. **(Indian)** Should the Mango Habanero Gobi name Gobi 65, Manchurian or tandoori gobi, and is a mango-habanero glaze respectful or confusing?
 3. **(Indian)** Is putting butter chicken or paneer tikka inside a tortilla fair fusion, or does it read as a caricature of North Indian food? What is the minimum marinade for paneer to still be called "tikka"?
 4. **(Indian)** Is borrowing "dum" for a goat braise appropriate when it is not a birria tradition, and does a yogurt-papaya marinade count as an Indian layer or as forced fusion?
 5. **(Mexican)** Is "totopos" acceptable for a thick, fried, blistered chip (Oaxacan totopos are thin and baked (T1 summary)), or should the name change?

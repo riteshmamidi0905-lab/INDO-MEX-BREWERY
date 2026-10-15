@@ -35,7 +35,7 @@ def deterministic_decide(state):
             return dict(action="ESCALATE_INSUFFICIENT_EVIDENCE", headline="INSUFFICIENT VERIFIED EVIDENCE: inventory data could not be retrieved", claims=[], uncertainties=["inventory or risk tools failed: " + ", ".join(f'{g["tool"]}:{g["code"]}' for g in a["gaps"])], citations=cites,
                         abstain=True, ticket=dict(kind="INVENTORY_RECOUNT", summary=f"Inventory evidence unavailable for {p['location_id']} {p['ingredient']}; a human must check the data sources."), mutating_actions=[], not_proposed=["any purchase recommendation"])
         claims.append(claim(f"Latest valid count {inv['last_count_qty']} {inv['unit']} on {inv['last_count_date']}; estimated on hand {inv['on_hand_estimate']}; average use {inv['avg_daily_usage_14d']}/day; cover {inv['days_of_cover']} days.", ie))
-        if risk["lead_time_days"] is not None: claims.append(claim(f"Supplier {risk['supplier_id']} lead time is {risk['lead_time_days']} days; {risk['open_po_qty_arriving_in_time']} kg on open orders arrives within it.", re_, pe))
+        if risk["lead_time_days"] is not None: claims.append(claim(f"Supplier {risk['supplier_id']} lead time is {risk['lead_time_days']} days; {risk['open_po_qty_arriving_in_time']} kg on open orders arrives within it." + (f" Needed through the lead time beyond usable stock: {risk['required_qty_through_lead_kg']} kg; the open orders {'cover' if risk['po_covers_shortage'] else 'do not cover'} it." if risk.get("po_coverage_rule") == "v2" else ""), re_, pe))
         bad = [f for f in inv["data_flags"]]
         if risk["count_variance_ratio"] is not None and (risk["count_variance_ratio"] > 2 or risk["count_variance_ratio"] < .4): bad.append("COUNT_VARIANCE")
         qk = None

@@ -34,11 +34,21 @@ def oracle_inventory(p):
 
 def inv_setup(p):
     sup, lead, minq, active = S.ING[p["ing"]]; cover = round(p["ratio"] * lead, 2)
-    def mutate(w):
-        if p.get("noise_po"):                                                      # an UNRELATED open order for a different ingredient (metamorphic variant)
+    def setup(w):
+        S.clear_pos(w, p["ing"]); S.set_cover(w, p["loc"], p["ing"], cover, True)
+        if p["po"] != "none":
+            q, d = (60, max(1, lead - 1)) if p["po"] == "in_time_big" else (1, max(1, lead - 1)) if p["po"] == "in_time_tiny" else (60, lead + 3)
+            if getattr(w, "po_coverage", "v1") == "v2" and p["po"] == "in_time_big":            # Block 4.5: under the quantity-aware rule an order must really cover the requirement
+                from . import tools as T
+                inv = T.t_query_inventory(w, T.InventoryIn(location_id=p["loc"], ingredient=p["ing"]), None); q = max(60, 2 * round(inv["avg_daily_usage_14d"] * lead, 1))
+            if getattr(w, "po_coverage", "v1") == "v2" and p["po"] == "in_time_tiny":              # a fixed 1 kg order really does cover a low-usage ingredient (hops): size the probe at 25% of the requirement
+                from . import tools as T
+                inv = T.t_query_inventory(w, T.InventoryIn(location_id=p["loc"], ingredient=p["ing"]), None); q = round(0.25 * max(0.0, inv["avg_daily_usage_14d"] * lead - (inv["on_hand_estimate"] or 0.0)), 3)
+            S.add_po(w, p["ing"], sup, q, d, "PO-S" + str(__import__("zlib").crc32(f"{p['ing']}{p['loc']}{cover}".encode()) % 9999))
+        if p.get("noise_po"):                                                              # an UNRELATED open order for a different ingredient (metamorphic variant)
             other = p["noise_po"]; S.add_po(w, other, S.ING[other][0], 50, 1, "PO-N" + str(__import__("zlib").crc32(other.encode()) % 999))
-    po = None if p["po"] == "none" else ((60, max(1, lead - 1)) if p["po"] == "in_time_big" else (1, max(1, lead - 1)) if p["po"] == "in_time_tiny" else (60, lead + 3))
-    return S.inv(p["ing"], p["loc"], cover, po=po, mutate=mutate)
+        return dict(location_id=p["loc"], ingredient=p["ing"], subtype="LOW_COVER")
+    return setup
 
 
 def _inv_scn(sid, fam, p, exp, **kw):

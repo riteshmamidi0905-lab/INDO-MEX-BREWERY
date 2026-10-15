@@ -1,3 +1,5 @@
+> **D-84 NOTE (2026-10-15):** this document is HISTORICAL. Where it says "Gobi Taco" it records the earlier direction. The current direction is MANGO HABANERO GOBI, an appetizer / shareable, not a taco, no tortilla (docs/decisions/item-amendments.csv). The text below is intentionally not rewritten.
+
 # Opening Menu v2 (16 core items) + Vegetarian Program + Reassessed Concepts
 
 > HISTORICAL: see research/CORE5-PRODUCT-SYSTEM.md (D-75). The 16-item pool is kept as R&D backlog.

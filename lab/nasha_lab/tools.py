@@ -17,7 +17,7 @@ import uuid
 from dataclasses import dataclass, field
 from typing import Any, Callable, Literal, Optional
 
-from pydantic import BaseModel, Field, ValidationError, field_validator
+from pydantic import ConfigDict, BaseModel, Field, ValidationError, field_validator
 
 from . import dq, knowledge as K
 from .world import RECIPES, STALE_DAYS, World
@@ -43,6 +43,7 @@ class RiskIn(BaseModel):
     location_id: str = Field(pattern=r"^L\d{2}$"); ingredient: str
 
 class RiskOut(BaseModel):
+    model_config = ConfigDict(extra="allow")          # po_coverage v2 adds fields; v1 output stays byte-identical (Block 3 baseline)
     lead_time_days: Optional[int]; supplier_id: Optional[str]; days_of_cover: Optional[float]; open_po_qty_arriving_in_time: float
     shortfall_before_lead_time: bool; count_variance_ratio: Optional[float]; recommended_qty_kg: Optional[float]; reasons: list[str]
 
@@ -214,12 +215,23 @@ def t_assess_inventory_risk(w, a: RiskIn, ctx):
     reasons, cover, shortfall, rec, var = [], inv["days_of_cover"], False, None, None
     if "NO_COUNT" in inv["data_flags"] or "STALE_COUNT" in inv["data_flags"]:
         reasons.append("count is missing or stale; cover cannot be trusted")
-    if cover is not None and lead is not None and cover < lead and arriving == 0:
-        shortfall = True; reasons.append(f"cover {cover} d is below supplier lead time {lead} d and no open PO arrives in time")
+    v2 = getattr(w, "po_coverage", "v1") == "v2"; v2x = {}
+    if v2 and lead is not None:
+        # Block 4.5 (NEW finding/fix; the frozen v1 rule above is unchanged): an open order resolves the shortage only if its quantity covers the demand through the lead time that usable stock does not.
+        # Usable stock is zero when the count is missing, stale or has a newer quarantined count (the planner then asks for a recount before any purchase decision). Orders arriving after the lead time are excluded.
+        unusable = bool(set(inv["data_flags"]) & {"NO_COUNT", "STALE_COUNT", "NEWER_COUNT_QUARANTINED", "NEGATIVE_ESTIMATE"})
+        usable = 0.0 if unusable else (inv["on_hand_estimate"] or 0.0)
+        required = round(max(0.0, inv["avg_daily_usage_14d"] * lead - usable), 3)
+        v2x = dict(po_coverage_rule="v2", required_qty_through_lead_kg=required, usable_on_hand_kg=round(usable, 3), po_covers_shortage=bool(arriving + 1e-9 >= required))
+    covers = arriving > 0 if not v2 else (arriving > 0 and v2x["po_covers_shortage"])
+    if cover is not None and lead is not None and cover < lead and not covers:
+        shortfall = True
+        reasons.append(f"cover {cover} d is below supplier lead time {lead} d and no open PO arrives in time" if arriving == 0 else
+                       f"cover {cover} d is below lead time {lead} d and the open PO arriving in time ({arriving} kg) is smaller than the {v2x['required_qty_through_lead_kg']} kg needed through the lead time")
         need = inv["avg_daily_usage_14d"] * (lead + 3) - (inv["on_hand_estimate"] or 0) - arriving
         rec = round(max(need, sup[0]["min_order_qty"]), 1)
-    elif cover is not None and lead is not None and cover < lead and arriving > 0:
-        reasons.append(f"cover {cover} d is below lead time {lead} d but an open PO ({arriving} kg) is expected within the lead time")
+    elif cover is not None and lead is not None and cover < lead and covers:
+        reasons.append(f"cover {cover} d is below lead time {lead} d but an open PO ({arriving} kg) is expected within the lead time" + (f" and covers the {v2x['required_qty_through_lead_kg']} kg needed" if v2 else ""))
     # variance of the latest count vs what the previous count, receipts and usage predict
     prev = w.q("SELECT count_date, qty FROM fact_inventory_count WHERE location_id=? AND ingredient=? ORDER BY count_date DESC LIMIT 2", a.location_id, a.ingredient)
     if len(prev) == 2:
@@ -232,7 +244,7 @@ def t_assess_inventory_risk(w, a: RiskIn, ctx):
         if var is not None and (var > 2.0 or var < 0.4): reasons.append(f"latest count is {var}x the expected quantity; recount before acting")
     if not isinstance(rec, (int, float)) or not shortfall: rec = rec if shortfall else None
     return dict(lead_time_days=lead, supplier_id=sup[0]["supplier_id"] if sup else None, days_of_cover=cover, open_po_qty_arriving_in_time=round(arriving, 2), shortfall_before_lead_time=shortfall,
-                count_variance_ratio=var, recommended_qty_kg=rec, reasons=reasons)
+                count_variance_ratio=var, recommended_qty_kg=rec, reasons=reasons, **v2x)
 
 
 def t_get_quality_finding(w, a: FindingIn, ctx):

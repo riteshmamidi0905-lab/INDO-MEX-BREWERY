@@ -27,7 +27,7 @@ A clean, crisp, light-bodied pale lager built for hot weather and chile-forward 
 | Serving temperature | 2-4 °C `[U; TEST]` |
 | Glass | Collar Lager (0.4 L) |
 | Pour / ritual | Standard pour; clean, brilliant glass; no fruit garnish by default (lime offered on request only) |
-| Food pairings (test set) | Chaat Elote, Gobi Taco, Dal-Frijol Dip, Butter Chicken Rajas Quesadilla |
+| Food pairings (test set) | Chaat Elote, Mango Habanero Gobi, Dal-Frijol Dip, Butter Chicken Rajas Quesadilla |
 
 ## 5. QC measurements to record on every pilot batch
 | Measurement | Method (head brewer to specify) | Record |

@@ -132,9 +132,9 @@
     1.6
    ],
    "comal": [
-    0.8,
-    1.4,
-    2.0
+    0.0,
+    0.0,
+    0.0
    ],
    "char_tandoor": [
     0,
@@ -237,5 +237,6 @@
   20,
   30
  ],
- "mix_note": "Mix weights are MODEL_ASSUMPTION scenario weights (relative order shares), not predicted guest behavior."
+ "mix_note": "Mix weights are MODEL_ASSUMPTION scenario weights (relative order shares), not predicted guest behavior.",
+ "d84_amendment": "D-84 (2026-10-15): the dish keyed 'gobi-taco' (legacy id) is now MANGO HABANERO GOBI, an appetizer / shareable with NO tortilla. Its comal range was set to 0 because there is no tortilla to warm; this is an ASSUMPTION, not a measurement, and the fryer/char ranges are carried over unchanged and NOT re-derived (UNVERIFIED). A plate of it is a shareable portion, not 2 tacos."
 }

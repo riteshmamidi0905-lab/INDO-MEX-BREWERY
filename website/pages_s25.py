@@ -166,13 +166,13 @@ def page_craft(B, S):
         ("#E5766B", "lime", "Fruit, lime and salt", "With Chicken 65"),
         ("#C7E0A0", "herb", "Spiced citrus sparkler", "With the paneer taco"),
         ("#8E1F3E", "peel", "Hibiscus and tamarind tea", "With goat birria"),
-        ("#E8F0D8", "herb", "Lime and herb cooler", "With the gobi taco"),
+        ("#E8F0D8", "herb", "Lime and herb cooler", "With the mango habanero gobi"),
         ("#F2D7B5", "none", "Fruit and cultured dairy", "With the quesadilla")])
     table = vfig("VI-TABLE-TOP", A.table_top(B.uid("tt")), "Vision illustration · concept table", "fig-table", "640/460")
     tlist = ["Black stoneware plate with a raw rim", "Woven basket for tortillas or totopos", "Steel katori for a sauce", "Indigo-and-bone napkin", "Beer glass", "Zero-proof glass", "Water", "One small cruet"]
     tl = '<ol class="tlist">' + "".join(f"<li>{E(t)}</li>" for t in tlist) + "</ol>"
     menu = '''<div class="menucard" role="group" aria-label="Concept menu layout, no prices">
-<div class="mc-col"><h3>Food</h3><ul><li>Chicken 65 Totopos</li><li>Paneer Tikka Taco</li><li>Goat Birria</li><li>Gobi Taco</li><li>Butter Chicken &amp; Poblano Quesadilla</li></ul></div>
+<div class="mc-col"><h3>Food</h3><ul><li>Chicken 65 Totopos</li><li>Paneer Tikka Taco</li><li>Goat Birria</li><li>Mango Habanero Gobi</li><li>Butter Chicken &amp; Poblano Quesadilla</li></ul></div>
 <div class="mc-col"><h3>Beer</h3><ul><li>Hefeweizen</li><li>Mexican-style Lager</li><li>Vienna Amber</li><li>Pilsner</li><li>Witbier</li></ul></div>
 <div class="mc-col"><h3>Zero-proof</h3><ul><li>Fruit, lime and salt</li><li>Spiced citrus sparkler</li><li>Hibiscus and tamarind tea</li></ul></div>
 <p class="mc-foot">Under each dish: <em>Try it with&hellip;</em> Optional. A small flight to taste before you choose. No prices on this concept.</p></div>'''

@@ -630,7 +630,7 @@
   {
    "section": "product",
    "heading": "The product",
-   "text": "Core 5 food: Chicken 65 Totopos, Paneer Tikka Taco, Goat Birria, Gobi Taco, Butter Chicken and Roasted Poblano Quesadilla. Core 5 beer: Hefeweizen, Mexican-Style Lager, Vienna Amber, Pilsner, Witbier. All are design briefs; none has been cooked or brewed."
+   "text": "Core 5 food: Chicken 65 Totopos, Paneer Tikka Taco, Goat Birria, Mango Habanero Gobi (appetizer/shareable), Butter Chicken and Roasted Poblano Quesadilla. Core 5 beer: Hefeweizen, Mexican-Style Lager, Vienna Amber, Pilsner, Witbier. All are design briefs; none has been cooked or brewed."
   },
   {
    "section": "difference",
@@ -1107,21 +1107,21 @@
   },
   {
    "id": "gobi-taco",
-   "name": "Gobi Taco",
+   "name": "Mango Habanero Gobi",
    "status": "IN DEVELOPMENT",
    "tested": "Not cooked",
    "narr": {
     "food_id": "gobi-taco",
-    "what_it_is": "A corn-tortilla taco with roasted cauliflower florets, a tamarind and guajillo glaze, lime slaw, salsa, pickled onion and cilantro. It has not been cooked.",
-    "why_it_exists": "It is a vegetarian taco meant to stand on its own, with the cauliflower recognisable and not hidden under batter.",
+    "what_it_is": "An appetizer / shareable of cauliflower florets with a mango-habanero glaze, cauliflower still visibly recognisable. Not a taco; no tortilla. It has not been cooked (D-84 design direction).",
+    "why_it_exists": "A vegetarian shareable meant to stand on its own, with the cauliflower recognisable and not hidden under batter or sauce.",
     "indian_component": "Inspired by Gobi 65 and tandoori gobi. Gobi Manchurian is Indo-Chinese and is only named if actually used.",
-    "mexican_component": "Corn tortilla, lime-cabbage slaw, salsa, pickled onion and cilantro. No traditional Mexican cauliflower taco is claimed.",
-    "fusion_logic": "Roast-first cauliflower with a late tamarind and guajillo glaze, so slaw and pickle add the acid and crunch. A batter-fried version is a comparison, and fry versus roast is still undecided.",
-    "portion_intent": "Two tacos, three to four florets per taco.",
-    "plating_intent": "Two tacos, with salsa on the side and slaw and glaze added at the last moment.",
-    "identity_critical_ingredients": "Cauliflower florets, tamarind and guajillo glaze, lime slaw, corn tortilla, pickled onion, cilantro.",
+    "mexican_component": "Mango plus habanero as a fruit-and-chile flavour direction. No traditional Mexican cauliflower dish is claimed.",
+    "fusion_logic": "Roasted or fried cauliflower with a mango-habanero glaze; the fusion is expressed through the dish and its flavour itself. Fry versus roast is still undecided and nothing has been tasted.",
+    "portion_intent": "A shareable portion of florets.",
+    "plating_intent": "A shareable plate or bowl with glaze applied at the last moment (details undecided).",
+    "identity_critical_ingredients": "Cauliflower florets, mango-habanero glaze, lime, cilantro (DESIGN ASSUMPTION).",
     "cultural_risk": "Lower to medium. The glaze is an original house idea with no claimed precedent, and the dish should be called modern fusion and not traditional.",
-    "next_test_public": "A home test of roasting against frying, scored for how long the crunch lasts."
+    "next_test_public": "A home test of roasting against frying and of mango-to-habanero balance, scored for how long the crunch lasts."
    },
    "na": {
     "food_id": "gobi-taco",
@@ -1138,14 +1138,14 @@
    },
    "primary_beer": "Pilsner",
    "alternate_beer": "Mexican-Style Lager",
-   "texture": "Visible florets with dark tips and cream stems; crunch retained 10 min",
-   "heat": "medium",
-   "acid": "tamarind, lime slaw, pickled onion",
-   "holding": "MEDIUM-HIGH: cauliflower keeps releasing water; glaze and slaw soften crust",
-   "equipment": "oven or fryer, comal for tortillas",
-   "next": "Write a Gobi Taco test sheet first; primary question fry vs roast; crunch at 0/5/10/15 min; glaze grams vs tortilla softening",
+   "texture": "Visible florets with dark tips and cream stems; crunch retained 10 min (DESIGN ASSUMPTION)",
+   "heat": "medium-high (habanero; level undecided)",
+   "acid": "mango-habanero glaze, lime",
+   "holding": "MEDIUM-HIGH: cauliflower keeps releasing water; glaze softens crust (UNTESTED)",
+   "equipment": "oven or fryer",
+   "next": "Write a Mango Habanero Gobi test sheet first; primary questions fry vs roast and mango-to-habanero balance; crunch at 0/5/10/15 min; glaze grams vs crust softening",
    "uncertainty_rank": 5,
-   "econ": "cauliflower; batter/oven; glaze; slaw; tortilla",
+   "econ": "cauliflower; batter/oven; mango-habanero glaze; dip or garnish",
    "econ_first": "Session with weights and a roast vs fry comparison",
    "iterations": 0,
    "media": []

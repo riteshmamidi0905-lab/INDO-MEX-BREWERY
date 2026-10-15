@@ -11,7 +11,7 @@
 | 2 | **Chaat Elote** | Corn | Shareable gateway, vegetarian, cheap, fast | Grill/comal | 2 | L | Mexican Lager | yes |
 | 3 | **Dal-Frijol Dip** | Lentil + bean | Vegetarian margin dish; "time as ingredient" | Braise kettle | 2 | L | Vienna Amber | |
 | 4 | **Hefe-Brined Wings** | Chicken | Ties kitchen to brewhouse; three sauces | Fryer, oven | 2 | M | Hefeweizen / Witbier | |
-| 5 | **Gobi Taco** | Cauliflower | Vegetarian anchor; crisp | Fryer, comal | 3 | L | Mexican Lager | |
+| 5 | **Mango Habanero Gobi** | Cauliflower | Vegetarian anchor; crisp | Fryer (comal not needed: appetizer, no tortilla; D-84 item amendment) | 3 | L | Mexican Lager | |
 | 6 | **Paneer Tikka Taco** | Paneer | Vegetarian signature; tandoor char | Tandoor or charbroiler | 3 | L-M | Hefeweizen / Witbier | yes |
 | 7 | **Malabar Fish Taco** | Fish | Coastal acid-forward bridge; non-meat, non-dairy option | Grill/fryer | 3 | M-H | Witbier / Pilsner | |
 | 8 | **Tandoori Lamb Taco** | Lamb | Replaces the superseded beef taco (D-54); charred, bright, fast | Charbroiler/tandoor, comal | 3 | H | Vienna Amber | |
