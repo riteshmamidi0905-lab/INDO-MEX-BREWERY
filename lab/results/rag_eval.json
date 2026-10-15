@@ -1,0 +1,1083 @@
+{
+ "synthetic_scope": "author-written golden set over the real NASHA corpus; same-author; n=55",
+ "corpus_chunks": 758,
+ "retrieval": {
+  "tfidf": {
+   "all": {
+    "n": 45,
+    "recall@1": 0.522,
+    "recall@3": 0.733,
+    "recall@5": 0.856,
+    "recall@10": 0.9,
+    "mrr": 0.742,
+    "ndcg@10": 0.752
+   },
+   "dev": {
+    "n": 31,
+    "recall@1": 0.435,
+    "recall@3": 0.645,
+    "recall@5": 0.806,
+    "recall@10": 0.871,
+    "mrr": 0.68,
+    "ndcg@10": 0.692
+   },
+   "test": {
+    "n": 14,
+    "recall@1": 0.714,
+    "recall@3": 0.929,
+    "recall@5": 0.964,
+    "recall@10": 0.964,
+    "mrr": 0.881,
+    "ndcg@10": 0.883
+   }
+  },
+  "bm25": {
+   "all": {
+    "n": 45,
+    "recall@1": 0.578,
+    "recall@3": 0.756,
+    "recall@5": 0.822,
+    "recall@10": 0.933,
+    "mrr": 0.764,
+    "ndcg@10": 0.789
+   },
+   "dev": {
+    "n": 31,
+    "recall@1": 0.581,
+    "recall@3": 0.742,
+    "recall@5": 0.79,
+    "recall@10": 0.919,
+    "mrr": 0.764,
+    "ndcg@10": 0.785
+   },
+   "test": {
+    "n": 14,
+    "recall@1": 0.571,
+    "recall@3": 0.786,
+    "recall@5": 0.893,
+    "recall@10": 0.964,
+    "mrr": 0.765,
+    "ndcg@10": 0.797
+   }
+  },
+  "hashing": {
+   "all": {
+    "n": 45,
+    "recall@1": 0.3,
+    "recall@3": 0.4,
+    "recall@5": 0.489,
+    "recall@10": 0.622,
+    "mrr": 0.434,
+    "ndcg@10": 0.46
+   },
+   "dev": {
+    "n": 31,
+    "recall@1": 0.29,
+    "recall@3": 0.371,
+    "recall@5": 0.419,
+    "recall@10": 0.565,
+    "mrr": 0.409,
+    "ndcg@10": 0.428
+   },
+   "test": {
+    "n": 14,
+    "recall@1": 0.321,
+    "recall@3": 0.464,
+    "recall@5": 0.643,
+    "recall@10": 0.75,
+    "mrr": 0.488,
+    "ndcg@10": 0.531
+   }
+  },
+  "lsa": {
+   "all": {
+    "n": 45,
+    "recall@1": 0.5,
+    "recall@3": 0.767,
+    "recall@5": 0.856,
+    "recall@10": 0.956,
+    "mrr": 0.739,
+    "ndcg@10": 0.773
+   },
+   "dev": {
+    "n": 31,
+    "recall@1": 0.452,
+    "recall@3": 0.677,
+    "recall@5": 0.806,
+    "recall@10": 0.952,
+    "mrr": 0.686,
+    "ndcg@10": 0.731
+   },
+   "test": {
+    "n": 14,
+    "recall@1": 0.607,
+    "recall@3": 0.964,
+    "recall@5": 0.964,
+    "recall@10": 0.964,
+    "mrr": 0.857,
+    "ndcg@10": 0.867
+   }
+  },
+  "hybrid": {
+   "all": {
+    "n": 45,
+    "recall@1": 0.6,
+    "recall@3": 0.811,
+    "recall@5": 0.878,
+    "recall@10": 0.933,
+    "mrr": 0.794,
+    "ndcg@10": 0.814
+   },
+   "dev": {
+    "n": 31,
+    "recall@1": 0.613,
+    "recall@3": 0.742,
+    "recall@5": 0.839,
+    "recall@10": 0.919,
+    "mrr": 0.782,
+    "ndcg@10": 0.8
+   },
+   "test": {
+    "n": 14,
+    "recall@1": 0.571,
+    "recall@3": 0.964,
+    "recall@5": 0.964,
+    "recall@10": 0.964,
+    "mrr": 0.821,
+    "ndcg@10": 0.845
+   }
+  },
+  "hybrid_hash": {
+   "all": {
+    "n": 45,
+    "recall@1": 0.378,
+    "recall@3": 0.556,
+    "recall@5": 0.744,
+    "recall@10": 0.856,
+    "mrr": 0.581,
+    "ndcg@10": 0.633
+   },
+   "dev": {
+    "n": 31,
+    "recall@1": 0.323,
+    "recall@3": 0.468,
+    "recall@5": 0.694,
+    "recall@10": 0.806,
+    "mrr": 0.535,
+    "ndcg@10": 0.579
+   },
+   "test": {
+    "n": 14,
+    "recall@1": 0.5,
+    "recall@3": 0.75,
+    "recall@5": 0.857,
+    "recall@10": 0.964,
+    "mrr": 0.683,
+    "ndcg@10": 0.751
+   }
+  }
+ },
+ "ask": {
+  "tfidf": {
+   "abstention_accuracy": 0.855,
+   "citation_hit_rate": 0.85,
+   "citation_precision": 0.421,
+   "status_violations": 0,
+   "must_not_cite_violations": 0,
+   "must_not_contain_violations": 0,
+   "unsupported_answer_rate_on_unanswerable": 0.3,
+   "ungrounded_answers": 0,
+   "p50_ms": 5.6,
+   "p95_ms": 8.3,
+   "n": 55
+  },
+  "bm25": {
+   "abstention_accuracy": 0.836,
+   "citation_hit_rate": 0.878,
+   "citation_precision": 0.396,
+   "status_violations": 0,
+   "must_not_cite_violations": 0,
+   "must_not_contain_violations": 0,
+   "unsupported_answer_rate_on_unanswerable": 0.5,
+   "ungrounded_answers": 0,
+   "p50_ms": 7.7,
+   "p95_ms": 11.5,
+   "n": 55
+  },
+  "hashing": {
+   "abstention_accuracy": 0.782,
+   "citation_hit_rate": 0.743,
+   "citation_precision": 0.36,
+   "status_violations": 0,
+   "must_not_cite_violations": 0,
+   "must_not_contain_violations": 0,
+   "unsupported_answer_rate_on_unanswerable": 0.2,
+   "ungrounded_answers": 0,
+   "p50_ms": 23.4,
+   "p95_ms": 33.7,
+   "n": 55
+  },
+  "lsa": {
+   "abstention_accuracy": 0.891,
+   "citation_hit_rate": 0.878,
+   "citation_precision": 0.433,
+   "status_violations": 0,
+   "must_not_cite_violations": 0,
+   "must_not_contain_violations": 0,
+   "unsupported_answer_rate_on_unanswerable": 0.2,
+   "ungrounded_answers": 0,
+   "p50_ms": 6.4,
+   "p95_ms": 10.0,
+   "n": 55
+  },
+  "hybrid": {
+   "abstention_accuracy": 0.836,
+   "citation_hit_rate": 0.854,
+   "citation_precision": 0.404,
+   "status_violations": 0,
+   "must_not_cite_violations": 0,
+   "must_not_contain_violations": 0,
+   "unsupported_answer_rate_on_unanswerable": 0.5,
+   "ungrounded_answers": 0,
+   "p50_ms": 7.8,
+   "p95_ms": 9.6,
+   "n": 55
+  },
+  "hybrid_hash": {
+   "abstention_accuracy": 0.836,
+   "citation_hit_rate": 0.854,
+   "citation_precision": 0.411,
+   "status_violations": 0,
+   "must_not_cite_violations": 0,
+   "must_not_contain_violations": 0,
+   "unsupported_answer_rate_on_unanswerable": 0.5,
+   "ungrounded_answers": 0,
+   "p50_ms": 25.2,
+   "p95_ms": 32.5,
+   "n": 55
+  }
+ },
+ "contamination_top5": {
+  "tfidf": {
+   "status_blind": 0.311,
+   "status_aware": 0.0
+  },
+  "bm25": {
+   "status_blind": 0.32,
+   "status_aware": 0.0
+  },
+  "hashing": {
+   "status_blind": 0.4,
+   "status_aware": 0.0
+  },
+  "lsa": {
+   "status_blind": 0.329,
+   "status_aware": 0.0
+  },
+  "hybrid": {
+   "status_blind": 0.324,
+   "status_aware": 0.0
+  },
+  "hybrid_hash": {
+   "status_blind": 0.347,
+   "status_aware": 0.0
+  }
+ },
+ "failures": {
+  "tfidf": [
+   [
+    "Q10",
+    "citation",
+    [
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "research/CORE5-PRODUCT-SYSTEM.md"
+    ],
+    [
+     "D-83"
+    ]
+   ],
+   [
+    "Q14",
+    "abstention",
+    "wanted abstain",
+    "INDO MEX BREWERY stays the working project name/descriptor Founder decision is a"
+   ],
+   [
+    "Q14",
+    "citation",
+    [
+     "D-12",
+     "D-11",
+     "docs/company/NASHA-CONFLICT-FACTS.md",
+     "docs/company/NASHA-CONFLICT-FACTS.md"
+    ],
+    [
+     "D-78"
+    ]
+   ],
+   [
+    "Q15",
+    "abstention",
+    "wanted abstain",
+    "Sprint 4 added the master concept, brand architecture, guest experience architec"
+   ],
+   [
+    "Q15",
+    "citation",
+    [
+     "D-58",
+     "docs/decisions/DECISION-GATES.md",
+     "README.md",
+     "README.md"
+    ],
+    [
+     "D-64"
+    ]
+   ],
+   [
+    "Q17",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q21",
+    "citation",
+    [
+     "docs/company/AUSTIN-MARKET-MAP.md",
+     "docs/company/AUSTIN-MARKET-MAP.md",
+     "docs/company/AUSTIN-MARKET-MAP.md",
+     "docs/company/COMPETITIVE-DIFFERENTIATION.md"
+    ],
+    [
+     "docs/company/NASHA-CONFLICT-FACTS.md",
+     "D-79"
+    ]
+   ],
+   [
+    "Q23",
+    "citation",
+    [
+     "docs/company/NASHA-CONFLICT-FACTS.md",
+     "docs/decisions/CORRECTIONS.md"
+    ],
+    [
+     "D-25",
+     "D-30"
+    ]
+   ],
+   [
+    "Q24",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q26",
+    "citation",
+    [
+     "D-58",
+     "docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md",
+     "docs/decisions/DECISION-GATES.md"
+    ],
+    [
+     "D-83",
+     "D-67"
+    ]
+   ],
+   [
+    "Q49",
+    "abstention",
+    "wanted abstain",
+    "| Tier | What it is | Likely needed (to confirm) | Confirm with | Can start now "
+   ],
+   [
+    "Q51",
+    "abstention",
+    "wanted abstain",
+    "**Conditional rule:** run Witbier before Pilsner only if (a) a pilot or partner "
+   ],
+   [
+    "Q54",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q55",
+    "abstention",
+    "wanted abstain",
+    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
+   ]
+  ],
+  "bm25": [
+   [
+    "Q14",
+    "abstention",
+    "wanted abstain",
+    "Founder selected NASHA as the brand name. Conflict recorded: Visual DNA v2 forbi"
+   ],
+   [
+    "Q14",
+    "citation",
+    [
+     "D-65",
+     "D-62",
+     "docs/company/NASHA-CONFLICT-FACTS.md",
+     "docs/company/NASHA-CONFLICT-FACTS.md"
+    ],
+    [
+     "D-78"
+    ]
+   ],
+   [
+    "Q15",
+    "abstention",
+    "wanted abstain",
+    "Track A (VISION) builds the strongest future version of the business (concept, b"
+   ],
+   [
+    "Q15",
+    "citation",
+    [
+     "D-58",
+     "D-57",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "docs/decisions/DECISION-GATES.md"
+    ],
+    [
+     "D-64"
+    ]
+   ],
+   [
+    "Q17",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q23",
+    "citation",
+    [
+     "D-55",
+     "docs/company/NASHA-CONFLICT-FACTS.md",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "docs/decisions/CORRECTIONS.md"
+    ],
+    [
+     "D-25",
+     "D-30"
+    ]
+   ],
+   [
+    "Q24",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q26",
+    "citation",
+    [
+     "D-58",
+     "docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md",
+     "docs/decisions/DECISION-GATES.md",
+     "docs/decisions/ATTORNEY-QUESTIONS.md"
+    ],
+    [
+     "D-83",
+     "D-67"
+    ]
+   ],
+   [
+    "Q44",
+    "abstention",
+    "wanted abstain",
+    "| # | Hypothesis | Why it might hold (observed) | Counter-signal | What would te"
+   ],
+   [
+    "Q45",
+    "abstention",
+    "wanted abstain",
+    "This is what we ask you to do, in order: (1) critique the five briefs and the pi"
+   ],
+   [
+    "Q49",
+    "abstention",
+    "wanted abstain",
+    "UPDATED POSITION: (1) work is organised in three horizons: A = $0 founder build "
+   ],
+   [
+    "Q51",
+    "abstention",
+    "wanted abstain",
+    "**Conditional rule:** run Witbier before Pilsner only if (a) a pilot or partner "
+   ],
+   [
+    "Q54",
+    "citation",
+    [
+     "docs/company/AUSTIN-MARKET-MAP.md",
+     "docs/decisions/ATTORNEY-QUESTIONS.md"
+    ],
+    [
+     "D-83",
+     "D-67"
+    ]
+   ],
+   [
+    "Q55",
+    "abstention",
+    "wanted abstain",
+    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
+   ]
+  ],
+  "hashing": [
+   [
+    "Q01",
+    "citation",
+    [
+     "beer/pilot-briefs/00-BREWER-HANDOFF.md"
+    ],
+    [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md"
+    ]
+   ],
+   [
+    "Q10",
+    "citation",
+    [
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "visuals/nasha-v3/CANDIDATE-REVIEW.md",
+     "research/CORE5-PRODUCT-SYSTEM.md"
+    ],
+    [
+     "D-83"
+    ]
+   ],
+   [
+    "Q11",
+    "citation",
+    [
+     "beer/pilot-briefs/00-BREWER-HANDOFF.md"
+    ],
+    [
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md"
+    ]
+   ],
+   [
+    "Q14",
+    "abstention",
+    "wanted abstain",
+    "Founder decision-gate system adopted (`docs/decisions/DECISION-GATES.md`): gates"
+   ],
+   [
+    "Q14",
+    "citation",
+    [
+     "D-57",
+     "D-12",
+     "D-11",
+     "docs/company/NASHA-CONFLICT-FACTS.md"
+    ],
+    [
+     "D-78"
+    ]
+   ],
+   [
+    "Q15",
+    "abstention",
+    "wanted abstain",
+    "Track A (VISION) builds the strongest future version of the business (concept, b"
+   ],
+   [
+    "Q15",
+    "citation",
+    [
+     "D-58",
+     "research/CORE5-PRODUCT-SYSTEM.md"
+    ],
+    [
+     "D-64"
+    ]
+   ],
+   [
+    "Q16",
+    "citation",
+    [
+     "beer/pilot-briefs/00-BREWER-HANDOFF.md",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "beer/pilot-briefs/00-BREWER-HANDOFF.md",
+     "docs/company/FOOD-FAILURE-CONTINGENCIES.md"
+    ],
+    [
+     "D-75"
+    ]
+   ],
+   [
+    "Q17",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q23",
+    "citation",
+    [
+     "docs/company/NASHA-CONFLICT-FACTS.md",
+     "docs/company/AUSTIN-MARKET-MAP.md"
+    ],
+    [
+     "D-25",
+     "D-30"
+    ]
+   ],
+   [
+    "Q24",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q25",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q26",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q32",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q33",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q34",
+    "citation",
+    [
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/CULTURAL-REVIEW-PACK.md",
+     "docs/company/CORE5-COMMERCIAL-LOGIC.md"
+    ],
+    [
+     "D-54"
+    ]
+   ],
+   [
+    "Q37",
+    "citation",
+    [
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "food/MENU-STORYTELLING-V1.md",
+     "food/MENU-STORYTELLING-V1.md",
+     "docs/company/CORE5-COMMERCIAL-LOGIC.md"
+    ],
+    [
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md"
+    ]
+   ],
+   [
+    "Q45",
+    "abstention",
+    "wanted abstain",
+    "This is what we ask you to do, in order: (1) critique the five briefs and the pi"
+   ],
+   [
+    "Q52",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q54",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q55",
+    "abstention",
+    "wanted abstain",
+    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
+   ]
+  ],
+  "lsa": [
+   [
+    "Q14",
+    "abstention",
+    "wanted abstain",
+    "Founder selected NASHA as the brand name. Founder decision-gate system adopted ("
+   ],
+   [
+    "Q14",
+    "citation",
+    [
+     "D-62",
+     "D-57",
+     "D-12",
+     "docs/company/NASHA-CONFLICT-FACTS.md"
+    ],
+    [
+     "D-78"
+    ]
+   ],
+   [
+    "Q15",
+    "abstention",
+    "wanted abstain",
+    "Sprint 4 added the master concept, brand architecture, guest experience architec"
+   ],
+   [
+    "Q15",
+    "citation",
+    [
+     "D-58",
+     "docs/decisions/DECISION-GATES.md",
+     "README.md",
+     "README.md"
+    ],
+    [
+     "D-64"
+    ]
+   ],
+   [
+    "Q17",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q23",
+    "citation",
+    [
+     "docs/decisions/CORRECTIONS.md"
+    ],
+    [
+     "D-25",
+     "D-30"
+    ]
+   ],
+   [
+    "Q24",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q26",
+    "citation",
+    [
+     "D-58"
+    ],
+    [
+     "D-83",
+     "D-67"
+    ]
+   ],
+   [
+    "Q44",
+    "abstention",
+    "wanted abstain",
+    "| # | Hypothesis | Why it might hold (observed) | Counter-signal | What would te"
+   ],
+   [
+    "Q54",
+    "citation",
+    [
+     "docs/company/AUSTIN-MARKET-MAP.md"
+    ],
+    [
+     "D-83",
+     "D-67"
+    ]
+   ],
+   [
+    "Q55",
+    "abstention",
+    "wanted abstain",
+    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
+   ]
+  ],
+  "hybrid": [
+   [
+    "Q10",
+    "citation",
+    [
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "research/CORE5-PRODUCT-SYSTEM.md"
+    ],
+    [
+     "D-83"
+    ]
+   ],
+   [
+    "Q14",
+    "abstention",
+    "wanted abstain",
+    "Founder selected NASHA as the brand name. Founder decision-gate system adopted ("
+   ],
+   [
+    "Q14",
+    "citation",
+    [
+     "D-62",
+     "D-57",
+     "docs/company/NASHA-CONFLICT-FACTS.md",
+     "docs/company/NASHA-CONFLICT-FACTS.md"
+    ],
+    [
+     "D-78"
+    ]
+   ],
+   [
+    "Q15",
+    "abstention",
+    "wanted abstain",
+    "Track A (VISION) builds the strongest future version of the business (concept, b"
+   ],
+   [
+    "Q15",
+    "citation",
+    [
+     "D-58",
+     "D-57",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "docs/decisions/DECISION-GATES.md"
+    ],
+    [
+     "D-64"
+    ]
+   ],
+   [
+    "Q17",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q23",
+    "citation",
+    [
+     "D-55",
+     "docs/company/NASHA-CONFLICT-FACTS.md",
+     "docs/decisions/CORRECTIONS.md",
+     "docs/company/AUSTIN-MARKET-MAP.md"
+    ],
+    [
+     "D-25",
+     "D-30"
+    ]
+   ],
+   [
+    "Q24",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q26",
+    "citation",
+    [
+     "D-58",
+     "docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md",
+     "docs/decisions/ATTORNEY-QUESTIONS.md"
+    ],
+    [
+     "D-83",
+     "D-67"
+    ]
+   ],
+   [
+    "Q44",
+    "abstention",
+    "wanted abstain",
+    "| # | Hypothesis | Why it might hold (observed) | Counter-signal | What would te"
+   ],
+   [
+    "Q45",
+    "abstention",
+    "wanted abstain",
+    "This is what we ask you to do, in order: (1) critique the five briefs and the pi"
+   ],
+   [
+    "Q49",
+    "abstention",
+    "wanted abstain",
+    "UPDATED POSITION: (1) work is organised in three horizons: A = $0 founder build "
+   ],
+   [
+    "Q51",
+    "abstention",
+    "wanted abstain",
+    "**Conditional rule:** run Witbier before Pilsner only if (a) a pilot or partner "
+   ],
+   [
+    "Q54",
+    "citation",
+    [
+     "docs/company/AUSTIN-MARKET-MAP.md",
+     "docs/decisions/ATTORNEY-QUESTIONS.md"
+    ],
+    [
+     "D-83",
+     "D-67"
+    ]
+   ],
+   [
+    "Q55",
+    "abstention",
+    "wanted abstain",
+    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
+   ]
+  ],
+  "hybrid_hash": [
+   [
+    "Q10",
+    "citation",
+    [
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "research/CORE5-PRODUCT-SYSTEM.md"
+    ],
+    [
+     "D-83"
+    ]
+   ],
+   [
+    "Q14",
+    "abstention",
+    "wanted abstain",
+    "Founder selected NASHA as the brand name. Founder decision-gate system adopted ("
+   ],
+   [
+    "Q14",
+    "citation",
+    [
+     "D-62",
+     "D-57",
+     "D-12",
+     "docs/company/NASHA-CONFLICT-FACTS.md"
+    ],
+    [
+     "D-78"
+    ]
+   ],
+   [
+    "Q15",
+    "abstention",
+    "wanted abstain",
+    "Track A (VISION) builds the strongest future version of the business (concept, b"
+   ],
+   [
+    "Q15",
+    "citation",
+    [
+     "D-58",
+     "D-57",
+     "research/CORE5-PRODUCT-SYSTEM.md",
+     "docs/decisions/DECISION-GATES.md"
+    ],
+    [
+     "D-64"
+    ]
+   ],
+   [
+    "Q17",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q23",
+    "citation",
+    [
+     "docs/company/NASHA-CONFLICT-FACTS.md",
+     "docs/decisions/CORRECTIONS.md",
+     "docs/company/AUSTIN-MARKET-MAP.md"
+    ],
+    [
+     "D-25",
+     "D-30"
+    ]
+   ],
+   [
+    "Q24",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q26",
+    "citation",
+    [
+     "D-58",
+     "docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md",
+     "docs/decisions/ATTORNEY-QUESTIONS.md"
+    ],
+    [
+     "D-83",
+     "D-67"
+    ]
+   ],
+   [
+    "Q44",
+    "abstention",
+    "wanted abstain",
+    "| # | Hypothesis | Why it might hold (observed) | Counter-signal | What would te"
+   ],
+   [
+    "Q45",
+    "abstention",
+    "wanted abstain",
+    "This is what we ask you to do, in order: (1) critique the five briefs and the pi"
+   ],
+   [
+    "Q49",
+    "abstention",
+    "wanted abstain",
+    "UPDATED POSITION: (1) work is organised in three horizons: A = $0 founder build "
+   ],
+   [
+    "Q51",
+    "abstention",
+    "wanted abstain",
+    "**Conditional rule:** run Witbier before Pilsner only if (a) a pilot or partner "
+   ],
+   [
+    "Q54",
+    "citation",
+    [
+     "docs/company/AUSTIN-MARKET-MAP.md"
+    ],
+    [
+     "D-83",
+     "D-67"
+    ]
+   ],
+   [
+    "Q55",
+    "abstention",
+    "wanted abstain",
+    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
+   ]
+  ]
+ }
+}
