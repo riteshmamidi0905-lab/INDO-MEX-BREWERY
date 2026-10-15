@@ -20,4 +20,29 @@ In Block 3 the Qwen2.5 planners called the required evidence tools in only ~15% 
 - **Not done:** no second prompt variant, no tuning on any split, no larger model, no few-shot examples.
 
 ## Results
-RESULTS_PLACEHOLDER
+**Run:** CI run 38803177815 (commit d69c89b), qwen2.5:1.5b-instruct Q4_K_M (Ollama model id `65ec06548149`, 986 MB), 140 scenarios, 4 splits, temperature 0, seed 7. Raw per-scenario traces: `results/traces/ts2_1.5b_140_raw.jsonl`. Summary: `results/tool_schema_result.json` (`python -m nasha_lab.tool_schema_report`). Paired on 139 shared ids (one scenario id is duplicated in the Block 3 set, see `results/ERRATA.md`).
+
+| | ts1 (original, Block 3 run 2) | ts2 (simplified) | ts2 + evidence guardrail |
+|---|---|---|---|
+| required tools called (primary) | 22 / 140 (16%) | **67 / 140 (48%)** | 67 / 140 |
+| passed in full | 5 / 140 | 16 / 140 (11%) | 22 / 140 (16%) |
+| correct action | 52 / 140 | 74 / 140 | 86 / 140 |
+| invalid tool arguments | 209 | 72 | 65 |
+| refused tool requests (unknown / forbidden names) | 119 | **0** | 0 |
+| wrong silent `NO_ACTION` | 30 | 0 | 0 |
+| schema failures (decision step) | 3 | **37** | 37 |
+| median latency | 28.0 s | 33.5 s | cached replies |
+
+Paired (ts1 vs ts2, 139 ids, exact sign test): required tools 8 vs 52 (p < 0.001); passed in full 4 vs 15 (p = 0.019); correct action 22 vs 44 (p = 0.009).
+
+By event family (required-tool recall, ts1 -> ts2): **data quality 0/33 -> 33/33**, **inventory 21/64 -> 33/64**, **policy 1/42 -> 0/42**; correct action: data quality 22 -> 30, inventory 8 -> 34, **policy 22 -> 10**.
+
+**Answer: yes, partly. By the pre-registered rule (>= 15 points and p < 0.05) the poor tool recall was partly an interface-design problem for this model.** But read it with its structure:
+1. **The gain is narrow and mostly mechanical.** The trace (not available in Block 3) shows the original run asked for a tool name that does not exist (`get_quality_findings`) in 19 of 35 sampled scenarios; call skeletons removed that error entirely (refused requests 119 -> 0), which is where data-quality recall went from 0 to 33 of 33. Part of inventory improved the same way.
+2. **Policy scenarios did not improve and got worse in correct action (22 -> 10).** With a flat event view showing only a proposal id, the model concluded "no details provided", requested no tool and abstained; identical prompts gave identical (cached) answers across policy scenarios. A scoped menu does not make a model take a first step it has decided not to take.
+3. **A new cost appeared:** schema failures in the decision step rose from 3 to 37, mostly where no evidence had been collected.
+4. **The scoped menu encodes knowledge** of which tools matter per event family (the same table the harness uses). That is a legitimate interface design, and it also means part of the "gain" is the system telling the model what to look at.
+5. Even the best arm (ts2 + guardrail) passes 22 of 140; the deterministic planner passes all of them. This does not change the Block 3 conclusion; it explains part of why the small model failed.
+
+Not done (by design): no second prompt variant, no tuning, no larger model, no change to scenario truth, permissions or scoring.
+

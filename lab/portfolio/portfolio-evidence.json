@@ -253,6 +253,60 @@
    "public_wording": "The flagship dish in the simulation is Mango Habanero Gobi, a cauliflower appetizer. Earlier 'Gobi Taco' records are kept as labelled history.",
    "scope": "Lab synthetic menu v2, knowledge corpus version 'current', decision register; project recipe/costing/capacity/website data NOT migrated.",
    "title": "Menu direction update handled without rewriting history"
+  },
+  {
+   "claim_id": "C20",
+   "commit": "b4-ext1",
+   "evidence": [
+    "lab/results/ext1_planner_deterministic.json",
+    "lab/results/ext1_planner_first_run_deterministic.json",
+    "lab/docs/EVAL-HARDENING.md",
+    "lab/tests/test_ext1.py"
+   ],
+   "limitations": "Structurally different, not independent. The oracle contained five of my own errors on the first run, corrected after review. The rule-gap finding (any in-time open order is treated as covering a shortage, whatever its quantity) is open and pinned by a test.",
+   "public_wording": "A second evaluation built with different methods (still by me) was passed 98 of 98, after I corrected five errors in my own answer key and disclosed the first-run results; it also found a real gap: the planner ignores the size of an open order.",
+   "scope": "EXTERNALIZED / INDEPENDENT-STYLE EVAL v1; same author; labels from decision tables and checklist rows, never from a model.",
+   "title": "Structurally different planner scenarios (ext1)"
+  },
+  {
+   "claim_id": "C21",
+   "commit": "b4-ext1",
+   "evidence": [
+    "lab/results/ext1_retrieval_ci.json",
+    "lab/docs/EVAL-HARDENING.md"
+   ],
+   "limitations": "Same author; small low-overlap bin (n=31) and R1 (n=6); one small encoder, no fine-tuning or re-ranker.",
+   "public_wording": "Lexical retrieval's lead held on questions I built a different way, but mostly where questions share the corpus's exact words; on paraphrased questions the gap closed and a hybrid was better.",
+   "scope": "ext1 retrieval questions (supersession-metadata, terse-keyword, mutated paraphrases); Block 3 corpus; CI run 38804116939.",
+   "title": "Does the retrieval ranking survive different questions? (ext1)"
+  },
+  {
+   "claim_id": "C22",
+   "commit": "b4-trace",
+   "evidence": [
+    "lab/results/trace_analysis_ts1_35.json",
+    "lab/nasha_lab/trace_analysis.py",
+    "lab/tests/test_trace_and_ts2.py",
+    "lab/results/ERRATA.md"
+   ],
+   "limitations": "35 scenarios, one run. Block 3 counts of 'forbidden attempts' for LLM rows are probably the same name errors, but per-request detail was not recorded then (inference, stated as such).",
+   "public_wording": "Adding per-scenario traces showed the small model asking for a tool that does not exist and rarely taking a second step; the 'forbidden attempts' I had counted were mostly misspelled tool names, not attempts at forbidden actions.",
+   "scope": "qwen2.5:1.5b, original tool presentation, 35 scenarios, CI run 38803177815.",
+   "title": "Per-scenario model trace and what it showed"
+  },
+  {
+   "claim_id": "C23",
+   "commit": "b4-ts2",
+   "evidence": [
+    "lab/results/tool_schema_result.json",
+    "lab/results/planner_qwen1.5b_ts2_raw.json",
+    "lab/docs/TOOL-SCHEMA-EXPERIMENT.md",
+    "lab/results/traces/ts2_1.5b_140_raw.jsonl"
+   ],
+   "limitations": "One model; the change bundle was tested together; the scoped menu encodes which tools matter; the deterministic planner still passes 259/259 vs 16/140 for the best raw arm. Not evidence about larger models.",
+   "public_wording": "Poor tool use by the small model was partly an interface problem: changing only how the tools were presented tripled required-tool recall, mostly by removing a misspelled-tool-name error, while policy scenarios did not improve. It did not change which planner won.",
+   "scope": "One small model, one run, 140 scenarios (139 shared ids), CI run 38803177815; pre-registered rule in docs/TOOL-SCHEMA-EXPERIMENT.md.",
+   "title": "Tool-schema experiment (ts1 vs ts2)"
   }
  ],
  "disclosure": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED. NASHA is an independent founder concept: no restaurant, customers, suppliers or sales exist. Same-author evaluation.",
@@ -1111,7 +1165,139 @@
    "Real-model planner runs and the MiniLM / pgvector-on-MiniLM retrieval run are separate, optional workflows (model-eval, retrieval-eval) triggered by a file change, never part of the fast CI."
   ]
  },
- "tool_schema": null,
+ "tool_schema": {
+  "by_event_family": {
+   "DATA_QUALITY": {
+    "action_ts1": 22,
+    "action_ts2": 30,
+    "n": 33,
+    "pass_ts1": 0,
+    "pass_ts2": 6,
+    "required_ts1": 0,
+    "required_ts2": 33
+   },
+   "INVENTORY": {
+    "action_ts1": 8,
+    "action_ts2": 34,
+    "n": 64,
+    "pass_ts1": 5,
+    "pass_ts2": 10,
+    "required_ts1": 21,
+    "required_ts2": 33
+   },
+   "POLICY": {
+    "action_ts1": 22,
+    "action_ts2": 10,
+    "n": 42,
+    "pass_ts1": 0,
+    "pass_ts2": 0,
+    "required_ts1": 1,
+    "required_ts2": 0
+   }
+  },
+  "control_note": "the ts1 row is Block 3 run 2 (code at commit 3a48adc); a 35-scenario ts1 re-run on the new code reproduced it (1 vs 1 passed, 7 vs 8 required-tool recall on shared ids).",
+  "decision_rule_met": true,
+  "limitation": "One small model, one change bundle (scoped menu, call skeletons, flat event view, one instruction) tested together, one run. The scoped menu uses the same family-to-tools table the harness uses to define unnecessary calls, so it encodes knowledge of which tools matter. Schema failures in the decision step rose from 3 to 37 of the calls, mostly in policy scenarios where no evidence had been collected. Still far below the deterministic planner.",
+  "model": "qwen2.5:1.5b-instruct",
+  "n": 140,
+  "name": "tool-schema experiment (ts1 vs ts2)",
+  "paired": {
+   "action_ok": {
+    "both": 30,
+    "n": 139,
+    "neither": 43,
+    "p": 0.0092,
+    "ts1_only": 22,
+    "ts2_only": 44
+   },
+   "pass": {
+    "both": 1,
+    "n": 139,
+    "neither": 119,
+    "p": 0.0192,
+    "ts1_only": 4,
+    "ts2_only": 15
+   },
+   "required_tools_ok": {
+    "both": 14,
+    "n": 139,
+    "neither": 65,
+    "p": 0.0,
+    "ts1_only": 8,
+    "ts2_only": 52
+   }
+  },
+  "paired_ids": 139,
+  "rows": [
+   {
+    "correct_action": {
+     "k": 52,
+     "n": 140
+    },
+    "forbidden_attempts": 119,
+    "invalid_arg_calls": 209,
+    "label": "Original presentation (ts1), Block 3 run 2",
+    "latency_ms_p50": 28031.7,
+    "llm_calls": 426,
+    "n": 140,
+    "pass_": {
+     "k": 5,
+     "n": 140
+    },
+    "required_tools": {
+     "k": 22,
+     "n": 140
+    },
+    "schema_failures": 3,
+    "wrong_silent_no_action": 30
+   },
+   {
+    "correct_action": {
+     "k": 74,
+     "n": 140
+    },
+    "forbidden_attempts": 0,
+    "invalid_arg_calls": 72,
+    "label": "Simplified presentation (ts2)",
+    "latency_ms_p50": 33494.2,
+    "llm_calls": 406,
+    "n": 140,
+    "pass_": {
+     "k": 16,
+     "n": 140
+    },
+    "required_tools": {
+     "k": 67,
+     "n": 140
+    },
+    "schema_failures": 37,
+    "wrong_silent_no_action": 2
+   },
+   {
+    "correct_action": {
+     "k": 86,
+     "n": 140
+    },
+    "forbidden_attempts": 0,
+    "invalid_arg_calls": 65,
+    "label": "Simplified (ts2) + evidence guardrail",
+    "latency_ms_p50": 54.9,
+    "llm_calls": 406,
+    "n": 140,
+    "pass_": {
+     "k": 22,
+     "n": 140
+    },
+    "required_tools": {
+     "k": 67,
+     "n": 140
+    },
+    "schema_failures": 37,
+    "wrong_silent_no_action": 0
+   }
+  ],
+  "verdict": "YES, partly: required-tool recall rose from 22/140 to 67/140 (+32 points, paired p < 0.001), which meets the pre-registered threshold. The gain came from data-quality and inventory scenarios; policy scenarios did not improve (required tools 1/42 before, 0/42 after) and their correct-action count fell from 22 to 10."
+ },
  "trace_sample": {
   "events": [
    {

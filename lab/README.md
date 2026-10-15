@@ -2,6 +2,22 @@
 
 **SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED.** NASHA has no restaurant, customers, sales, staff or brewery batches. Nothing here is a business result. Menu prices are placeholder inputs. The "scenario sites" are not real or planned locations. Same-author caveat: one author wrote the generator, the rules and the scoring; no independent review.
 
+## Block 4: defensible evaluation and the public portfolio
+
+Block 3 results are **frozen** (`baseline/BASELINE-BLOCK3.json`; `python -m nasha_lab.baseline verify`) and every public claim is machine-checked against evidence (`claims/claims.json`; `python -m nasha_lab.claims verify`). New in Block 4 (all NEW experiments, no Block 3 file changed):
+
+| Addition | Where |
+|---|---|
+| Frozen baseline + claims ledger (with prohibited claims) | `baseline/`, `claims/`, `nasha_lab/baseline.py`, `nasha_lab/claims.py` |
+| EXTERNALIZED / INDEPENDENT-STYLE EVAL v1: 106 scenarios + 176 retrieval questions built by different methods (still same author) | `nasha_lab/scenarios_ext.py`, `eval_ext1_planners.py`, `eval_ext1.py`, `docs/EVAL-HARDENING.md` |
+| Per-scenario model trace (`trace1`) and missing-tool analysis | `eval_planners --trace-out`, `nasha_lab/trace_analysis.py` |
+| One pre-registered tool-schema experiment (ts1 vs ts2) | `docs/TOOL-SCHEMA-EXPERIMENT.md`, `llm_planner.py` (`presentation="ts2"`) |
+| Founder decision D-84: Mango Habanero Gobi is an appetizer, not a taco; versioned menu (v2) and corpus (`current`), frozen baseline keeps v1 / `block3` | `docs/decisions/DECISIONS.md` (D-84), `docs/decisions/item-amendments.csv`, `tests/test_menu_direction.py` |
+| Portfolio evidence export (what the public portfolio vendors) | `nasha_lab/export_portfolio.py`, `portfolio/portfolio-evidence.json` |
+| LinkedIn draft (not published) and resume project entry (not inserted anywhere) | `docs/LINKEDIN-DRAFT.md`, `docs/RESUME-PROJECT-ENTRY.md` |
+
+---
+
 ## Block 3: a measured experiment (does an LLM improve the agent? do neural embeddings / pgvector pay for themselves?)
 
 Two planners (deterministic control, LLM) behind one interface, one tool/permission/approval/trace stack and one scenario suite; plus a retrieval benchmark that compares lexical, hybrid, neural and pgvector retrieval, and abstention strategies. **Results decide the conclusion; the deterministic planner and lexical retrieval remain the baselines.** Start with [PLANNER-EXPERIMENT](docs/PLANNER-EXPERIMENT.md), [RETRIEVAL-EVALUATION](docs/RETRIEVAL-EVALUATION.md), [LLM-RUNTIME](docs/LLM-RUNTIME.md) and [results/EXPERIMENT-LOG](results/EXPERIMENT-LOG.md). The recruiter-readable pack is `evidence/index.html`.

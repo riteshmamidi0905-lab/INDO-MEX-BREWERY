@@ -1,0 +1,133 @@
+{
+ "name": "tool-schema experiment (ts1 vs ts2)",
+ "model": "qwen2.5:1.5b-instruct",
+ "n": 140,
+ "paired_ids": 139,
+ "rows": [
+  {
+   "label": "Original presentation (ts1), Block 3 run 2",
+   "n": 140,
+   "required_tools": {
+    "k": 22,
+    "n": 140
+   },
+   "pass_": {
+    "k": 5,
+    "n": 140
+   },
+   "correct_action": {
+    "k": 52,
+    "n": 140
+   },
+   "invalid_arg_calls": 209,
+   "wrong_silent_no_action": 30,
+   "forbidden_attempts": 119,
+   "schema_failures": 3,
+   "llm_calls": 426,
+   "latency_ms_p50": 28031.7
+  },
+  {
+   "label": "Simplified presentation (ts2)",
+   "n": 140,
+   "required_tools": {
+    "k": 67,
+    "n": 140
+   },
+   "pass_": {
+    "k": 16,
+    "n": 140
+   },
+   "correct_action": {
+    "k": 74,
+    "n": 140
+   },
+   "invalid_arg_calls": 72,
+   "wrong_silent_no_action": 2,
+   "forbidden_attempts": 0,
+   "schema_failures": 37,
+   "llm_calls": 406,
+   "latency_ms_p50": 33494.2
+  },
+  {
+   "label": "Simplified (ts2) + evidence guardrail",
+   "n": 140,
+   "required_tools": {
+    "k": 67,
+    "n": 140
+   },
+   "pass_": {
+    "k": 22,
+    "n": 140
+   },
+   "correct_action": {
+    "k": 86,
+    "n": 140
+   },
+   "invalid_arg_calls": 65,
+   "wrong_silent_no_action": 0,
+   "forbidden_attempts": 0,
+   "schema_failures": 37,
+   "llm_calls": 406,
+   "latency_ms_p50": 54.9
+  }
+ ],
+ "paired": {
+  "required_tools_ok": {
+   "n": 139,
+   "ts1_only": 8,
+   "ts2_only": 52,
+   "both": 14,
+   "neither": 65,
+   "p": 0.0
+  },
+  "pass": {
+   "n": 139,
+   "ts1_only": 4,
+   "ts2_only": 15,
+   "both": 1,
+   "neither": 119,
+   "p": 0.0192
+  },
+  "action_ok": {
+   "n": 139,
+   "ts1_only": 22,
+   "ts2_only": 44,
+   "both": 30,
+   "neither": 43,
+   "p": 0.0092
+  }
+ },
+ "by_event_family": {
+  "INVENTORY": {
+   "n": 64,
+   "required_ts1": 21,
+   "required_ts2": 33,
+   "pass_ts1": 5,
+   "pass_ts2": 10,
+   "action_ts1": 8,
+   "action_ts2": 34
+  },
+  "DATA_QUALITY": {
+   "n": 33,
+   "required_ts1": 0,
+   "required_ts2": 33,
+   "pass_ts1": 0,
+   "pass_ts2": 6,
+   "action_ts1": 22,
+   "action_ts2": 30
+  },
+  "POLICY": {
+   "n": 42,
+   "required_ts1": 1,
+   "required_ts2": 0,
+   "pass_ts1": 0,
+   "pass_ts2": 0,
+   "action_ts1": 22,
+   "action_ts2": 10
+  }
+ },
+ "decision_rule_met": true,
+ "verdict": "YES, partly: required-tool recall rose from 22/140 to 67/140 (+32 points, paired p < 0.001), which meets the pre-registered threshold. The gain came from data-quality and inventory scenarios; policy scenarios did not improve (required tools 1/42 before, 0/42 after) and their correct-action count fell from 22 to 10.",
+ "control_note": "the ts1 row is Block 3 run 2 (code at commit 3a48adc); a 35-scenario ts1 re-run on the new code reproduced it (1 vs 1 passed, 7 vs 8 required-tool recall on shared ids).",
+ "limitation": "One small model, one change bundle (scoped menu, call skeletons, flat event view, one instruction) tested together, one run. The scoped menu uses the same family-to-tools table the harness uses to define unnecessary calls, so it encodes knowledge of which tools matter. Schema failures in the decision step rose from 3 to 37 of the calls, mostly in policy scenarios where no evidence had been collected. Still far below the deterministic planner."
+}

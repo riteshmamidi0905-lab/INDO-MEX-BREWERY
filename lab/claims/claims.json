@@ -736,6 +736,60 @@
      "value": 30
     }
    ]
+  },
+  {
+   "claim_id": "C23",
+   "title": "Tool-schema experiment (ts1 vs ts2)",
+   "claim": "With only the tool presentation changed (scoped menu, call skeletons, flat event view), Qwen2.5-1.5B's required-tool recall rose from 22/140 to 67/140 (paired p < 0.001), meeting the pre-registered 15-point threshold; the gain came from data-quality and inventory scenarios, policy scenarios did not improve, and schema failures rose from 3 to 37.",
+   "scope": "One small model, one run, 140 scenarios (139 shared ids), CI run 38803177815; pre-registered rule in docs/TOOL-SCHEMA-EXPERIMENT.md.",
+   "evidence": [
+    "lab/results/tool_schema_result.json",
+    "lab/results/planner_qwen1.5b_ts2_raw.json",
+    "lab/docs/TOOL-SCHEMA-EXPERIMENT.md",
+    "lab/results/traces/ts2_1.5b_140_raw.jsonl"
+   ],
+   "commit": "b4-ts2",
+   "limitations": "One model; the change bundle was tested together; the scoped menu encodes which tools matter; the deterministic planner still passes 259/259 vs 16/140 for the best raw arm. Not evidence about larger models.",
+   "public_wording": "Poor tool use by the small model was partly an interface problem: changing only how the tools were presented tripled required-tool recall, mostly by removing a misspelled-tool-name error, while policy scenarios did not improve. It did not change which planner won.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/tool_schema_result.json",
+     "path": "rows.0.required_tools.k",
+     "op": "==",
+     "value": 22
+    },
+    {
+     "file": "lab/results/tool_schema_result.json",
+     "path": "rows.1.required_tools.k",
+     "op": "==",
+     "value": 67
+    },
+    {
+     "file": "lab/results/tool_schema_result.json",
+     "path": "paired.required_tools_ok.ts2_only",
+     "op": "==",
+     "value": 52
+    },
+    {
+     "file": "lab/results/tool_schema_result.json",
+     "path": "by_event_family.POLICY.required_ts2",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "file": "lab/results/tool_schema_result.json",
+     "path": "decision_rule_met",
+     "op": "==",
+     "value": true
+    },
+    {
+     "file": "lab/results/planner_qwen1.5b_ts2_raw.json",
+     "path": "overall.pass_rate.k",
+     "op": "==",
+     "value": 16
+    }
+   ]
   }
  ]
 }
