@@ -49,3 +49,6 @@ LangGraph: now PROVEN (lab/nasha_lab/agent.py, 133 tests, CI green). MCP: PROVEN
 - **mcp-weir concepts applied** (source classification, schema validation, taint tracking) in `trust.py` against a second, untrusted MCP server; the `mcp-weir` package itself is not imported.
 - **Mutation testing: 22/22** after closing three weak-test findings ([FAILURE-STORY.md](FAILURE-STORY.md)).
 - Open: stronger models and prompt/tool-schema simplification are untested; an externally written golden set; per-row tool traces from real-model runs were not captured in run 1.
+
+## Status after Block 4
+Frozen baseline and claims ledger done; structurally different evaluation (ext1) done and honestly bounded (same author); per-scenario trace format proven; one pre-registered tool-schema experiment done (partly an interface problem); D-84 applied to current-state lab data and knowledge with the Block 3 baseline untouched. Open: rule-gap finding (open purchase-order quantity ignored); no third-party evaluation set; recipe/costing/capacity/website data for the dish still describe the taco in the project repository.
