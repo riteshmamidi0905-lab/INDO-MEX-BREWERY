@@ -1,0 +1,9 @@
+{
+ "lines": [
+  "lab-ci on GitHub Actions (commit 54d7da9 and 'recover retrieval CI numbers' commit): 229 passed, 1 skipped in about 2 minutes. The skip is the real-model integration test, which is marked INTEGRATION UNAVAILABLE in fast CI and runs in the model-eval workflow.",
+  "Local authoring sandbox: 228 passed, 2 skipped (no model runtime, no PostgreSQL/pgvector); pgvector retrieval and HNSW tests run in CI against a pgvector/pgvector:pg16 service container.",
+  "Suites: unit, data quality, retrieval, API (FastAPI), MCP and trust boundary, LangGraph agent with interrupt/resume, reviewer identity and signed grants, UI accessibility + XSS (Playwright), property-based (Hypothesis), failure injection (22), mutation testing (22 of 22 mutants killed).",
+  "CI also re-computes the data-quality evaluation (byte-for-byte), the deterministic planner experiment, and the retrieval evaluation (BM25 exact; SVD / neural / HNSW within tolerance), and builds and runs the Docker image.",
+  "Real-model planner runs and the MiniLM / pgvector-on-MiniLM retrieval run are separate, optional workflows (model-eval, retrieval-eval) triggered by a file change, never part of the fast CI."
+ ]
+}

@@ -82,14 +82,18 @@ def retrieval_section():
     if s:
         st = "<table><caption>Abstention strategies, held-out split (false answer = answered a question that should be refused)</caption><thead><tr><th scope='col'>Strategy</th><th scope='col'>Accuracy</th><th scope='col'>False answers</th><th scope='col'>False abstentions</th></tr></thead><tbody>" + "".join(
             f"<tr><th scope='row'>{E(n)}</th><td>{v['heldout']['accuracy']}</td><td>{v['heldout']['false_answer']}</td><td>{v['heldout']['false_abstain']}</td></tr>" for n, v in s.items()) + "</tbody></table>"
+    ci = load("rag2_retrieval_ci.json"); cit = ""
+    if ci:
+        cit = ("<table class='wide'><caption>Neural embeddings and pgvector (free GitHub runner: Ollama all-MiniLM-L6-v2, spaCy vectors, pgvector HNSW), all 467 questions. " + E(ci["source"]) + "</caption><thead><tr><th scope='col'>Retriever</th><th scope='col'>R@1</th><th scope='col'>R@5</th><th scope='col'>MRR</th><th scope='col'>nDCG@10</th><th scope='col'>Authority-correct</th></tr></thead><tbody>"
+               + "".join(f"<tr><th scope='row'>{E(r['retriever'])}</th><td>{r['recall@1']}</td><td>{r['recall@5']}</td><td>{r['mrr']}</td><td>{r['ndcg@10']}</td><td>{r['authority_correct']}</td></tr>" for r in ci["table"]) + "</tbody></table>")
     return (f"<p>{d['n']} questions in {len(cats)} categories (dev {d['splits']['dev']}, held-out {d['splits']['heldout']}); held-out MRR shown. Generated questions are lexically close to their sources and favour BM25; hand-written paraphrases do not.</p>"
-            + bars(items) + (f"<p class='note'>Not measured in this environment: {E('; '.join(un))}</p>" if un else "") + tab + st)
+            + bars(items) + cit + (f"<p class='note'>Not measured in this environment: {E('; '.join(un))}</p>" if un else "") + tab + st)
 
 
 def planner_section():
     out = []
     for lab, f in (("Deterministic planner (control)", "planner_deterministic.json"), ("Rule-based model stand-in", "planner_rule-model.json"), ("Worst-case stand-in", "planner_worst-case.json"), ("Parrot stand-in (obeys injected text)", "planner_parrot.json"), ("Parrot + guardrail", "planner_parrot+guardrail.json"),
-                   ("LLM qwen2.5-1.5b (raw)", "planner_llm_raw.json"), ("LLM qwen2.5-1.5b + guardrail", "planner_llm_guardrail.json")):
+                   ("LLM qwen2.5-1.5b (raw)", "planner_llm_raw.json"), ("LLM qwen2.5-1.5b + guardrail", "planner_llm_guardrail.json"), ("LLM qwen2.5-7b (raw; held-out B + adversarial, 1 per family)", "planner_qwen7b_raw.json"), ("LLM qwen2.5-7b + guardrail", "planner_qwen7b_guardrail.json")):
         d = load(f)
         if not d: out.append(f"<tr><th scope='row'>{E(lab)}</th><td colspan='6'>NOT MEASURED</td></tr>"); continue
         sp = d["by_split"]; cell = lambda k: f"{sp[k]['pass_rate']['k']}/{sp[k]['pass_rate']['n']}" if k in sp else "–"
