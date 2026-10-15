@@ -15,7 +15,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { model: "qwen2.5:1.5b-instruct", per_family: 2, label: "qwen2.5-1.5b" }
+          # Run 1/2 (done): { model: "qwen2.5:1.5b-instruct", per_family: 2, splits: all, label: "qwen2.5-1.5b" } -> runs 38777027649, 38784135017
+          # Run 3: a 4.7 GB model on 4 vCPU is slow, so it gets the two cleanest splits (held-out B + adversarial), one scenario per family.
+          - { model: "qwen2.5:7b-instruct", per_family: 1, splits: "heldoutB,adversarial", label: "qwen2.5-7b" }
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -33,9 +35,9 @@ jobs:
         env: { NASHA_LLM_MODEL: "${{ matrix.model }}" }
         run: |
           cd lab
-          python -m nasha_lab.eval_planners deterministic /tmp/det.json --per-family ${{ matrix.per_family }} --log-rows | grep -E "^(SUMMARY|BYFAMILY|\{)" | sed 's/^/DET /'
-          python -m nasha_lab.eval_planners ollama /tmp/llm.json --per-family ${{ matrix.per_family }} --log-rows --cache /tmp/cache.json | sed 's/^/LLM /'
-          python -m nasha_lab.eval_planners ollama+guardrail /tmp/llmg.json --per-family ${{ matrix.per_family }} --log-rows --cache /tmp/cache.json | sed 's/^/LLMG /'
+          python -m nasha_lab.eval_planners deterministic /tmp/det.json --per-family ${{ matrix.per_family }} --splits ${{ matrix.splits }} --log-rows | grep -E "^(SUMMARY|BYFAMILY|\{)" | sed 's/^/DET /'
+          python -m nasha_lab.eval_planners ollama /tmp/llm.json --per-family ${{ matrix.per_family }} --splits ${{ matrix.splits }} --log-rows --cache /tmp/cache.json | sed 's/^/LLM /'
+          python -m nasha_lab.eval_planners ollama+guardrail /tmp/llmg.json --per-family ${{ matrix.per_family }} --splits ${{ matrix.splits }} --log-rows --cache /tmp/cache.json | sed 's/^/LLMG /'
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: "planner-eval-${{ matrix.label }}", path: "/tmp/*.json\n/tmp/model-info.txt" }
