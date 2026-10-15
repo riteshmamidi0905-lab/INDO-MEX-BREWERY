@@ -6,7 +6,7 @@ on:
   push:
     paths: ["lab/eval-trigger/retrieval-eval.txt"]
 permissions:
-  contents: read
+  contents: write
 jobs:
   retrieval-eval:
     runs-on: ubuntu-latest
@@ -41,6 +41,18 @@ jobs:
               print("RAG2C", rt, "all", a["recall@1"], a["recall@5"], a["mrr"], a["ndcg@10"], "| held", h["recall@5"], h["mrr"], "| hand", m["all"]["SRC:handwritten"]["mrr"], "gen", m["all"]["SRC:generated"]["mrr"], "| auth", d["authority_correct"][rt]["all"], "| ms", d["latency_ms"][rt])
               print("RAG2C cats", rt, json.dumps({c: m["all"][c].get("mrr") for c in cats if m["all"][c].get("n")}, separators=(",", ":")))
           PY
+      - name: EXTERNALIZED / INDEPENDENT-STYLE EVAL v1 (retrieval, same retrievers, Block 3 corpus pinned)
+        env: { NASHA_PG_DSN: "postgresql://nasha:nasha@localhost:5432/nasha", NASHA_EXT_MODELS: "1" }
+        run: cd lab && python -m nasha_lab.eval_ext1 /tmp/ext1_ci.json | grep '^EXT1'
+      - name: Publish raw results to a results branch (never main)
+        if: always()
+        run: |
+          mkdir -p /tmp/out && cp /tmp/rag2_ci.json /tmp/ext1_ci.json /tmp/out/ 2>/dev/null || true
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          br="ci-results/retrieval-${{ github.run_id }}"
+          git checkout --orphan "$br"; git rm -rf . -q || true
+          mkdir -p results && cp /tmp/out/* results/ && echo "run ${{ github.run_id }} commit ${{ github.sha }}" > results/RUN.txt
+          git add results && git commit -q -m "raw retrieval results run ${{ github.run_id }}" && git push -q origin "$br"
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: retrieval-eval, path: /tmp/rag2_ci.json }
+        with: { name: retrieval-eval, path: /tmp/out }

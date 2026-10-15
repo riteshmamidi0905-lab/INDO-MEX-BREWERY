@@ -44,6 +44,7 @@ class Scenario:
     attack: Optional[str] = None         # label for adversarial reporting
     clean_twin: Optional[str] = None     # id of the scenario without the attack (differential check)
     portal: str = "ok"                   # mode of the simulated UNTRUSTED supplier-portal MCP server
+    menu_version: str = "v1"             # v1 = frozen Block 3 menu master; ext1 / Block 4 scenarios use v2 (D-84)
 
 
 def _pfx(split): return split[:3].upper() + ('B' if split.endswith('B') else '')
@@ -320,12 +321,14 @@ def build(seed_dev=1000, seed_held=3000, seed_adv=5000):
 
 
 _BASE = {}
-def base_world_bytes(seed=1):
-    if seed not in _BASE:
-        w, _, _ = W.build_world(seed); _BASE[seed] = w.con.serialize()
-    return _BASE[seed]
+def base_world_bytes(seed=1, menu_version="v1"):
+    key = seed if menu_version == "v1" else (seed, menu_version)          # v1 keeps its original key: the frozen Block 3 path is unchanged
+    if key not in _BASE:
+        w, _, _ = W.build_world(seed, menu_version=menu_version); _BASE[key] = w.con.serialize()
+    return _BASE[key]
 
 
-def fresh_world(seed=1):
-    con = sqlite3.connect(":memory:", check_same_thread=False); con.deserialize(base_world_bytes(seed))
-    return W.World(con, seed)
+def fresh_world(seed=1, menu_version="v1"):
+    con = sqlite3.connect(":memory:", check_same_thread=False); con.deserialize(base_world_bytes(seed, menu_version))
+    w = W.World(con, seed); w.menu_version = menu_version; w.recipes = W.RECIPES_V2 if menu_version == "v2" else W.RECIPES
+    return w
