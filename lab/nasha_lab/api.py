@@ -161,4 +161,17 @@ def create_app(service: Optional[agent.AgentService] = None, world=None, kb=None
         if app.state.service.store.run(run_id) is None: raise _Raise(404, "NOT_FOUND", f"no run {run_id}")
         return {"run_id": run_id, "events": app.state.service.store.events(run_id)}
 
+    @app.get("/traces/{run_id}/record", responses=error_responses)
+    def trace_record(run_id: str):
+        from . import experiments
+        if app.state.service.store.run(run_id) is None: raise _Raise(404, "NOT_FOUND", f"no run {run_id}")
+        return experiments.run_record(app.state.service.store.events(run_id))
+
+    @app.get("/review", include_in_schema=False)
+    def review_ui():
+        import os
+        from fastapi.responses import HTMLResponse
+        html = open(os.path.join(os.path.dirname(__file__), "ui", "review.html"), encoding="utf-8").read()
+        return HTMLResponse(html, headers={"Cache-Control": "no-store", "Content-Security-Policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; frame-ancestors 'none'", "X-Content-Type-Options": "nosniff"})
+
     return app

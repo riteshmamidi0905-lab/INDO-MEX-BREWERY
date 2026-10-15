@@ -28,6 +28,8 @@ def deterministic_decide(state):
     D81 = "D-81" if "D-81" in a["policy_citations"] else None
     cites = a["policy_citations"]
     if fam == "INVENTORY":
+        un, note = get(ev, "get_supplier_notes_untrusted")
+        if note is not None: unc.append(("UNTRUSTED supplier-portal note (unverified, not used as evidence): " + _safe(note["data"]["note"])) if note["ok"] else "UNTRUSTED supplier-portal note unusable: " + ", ".join(note["flags"]))
         ie, inv = get(ev, "query_inventory"); re_, risk = get(ev, "assess_inventory_risk"); pe, pos = get(ev, "get_open_purchase_orders"); se, sup = get(ev, "get_supplier_status")
         if not inv or not risk:
             return dict(action="ESCALATE_INSUFFICIENT_EVIDENCE", headline="INSUFFICIENT VERIFIED EVIDENCE: inventory data could not be retrieved", claims=[], uncertainties=["inventory or risk tools failed: " + ", ".join(f'{g["tool"]}:{g["code"]}' for g in a["gaps"])], citations=cites,
@@ -129,7 +131,8 @@ class DeterministicPlanner:
             call(ev, gaps, "query_inventory", dict(location_id=loc, ingredient=ing))
             call(ev, gaps, "assess_inventory_risk", dict(location_id=loc, ingredient=ing))
             call(ev, gaps, "get_open_purchase_orders", dict(ingredient=ing))
-            call(ev, gaps, "get_supplier_status", dict(ingredient=ing))
+            se, sd = call(ev, gaps, "get_supplier_status", dict(ingredient=ing))
+            if sd["ok"] and sd["data"]["suppliers"]: call(ev, gaps, "get_supplier_notes_untrusted", dict(supplier_id=sd["data"]["suppliers"][0]["supplier_id"]))
             eid, e = call(ev, gaps, "list_quality_findings", dict(rule="unit_mismatch", limit=100))
             if e["ok"]:
                 rel = [f for f in e["data"]["findings"] if f["key"].startswith(loc + ":") and f["key"].endswith(":" + ing)]

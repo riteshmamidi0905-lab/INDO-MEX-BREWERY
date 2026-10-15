@@ -354,7 +354,7 @@ class KnowledgeBase:
         for ov, _r, s, h in sents[:2]:
             if s not in used: used.add(s); chosen.append((s, h))
         answer = " ".join(s for s, _ in chosen) or auth[0]["text"][:300]
-        cites = [dict(document_id=h["document_id"], chunk_id=h["chunk_id"], source_path=h["source_path"], effective_status=h["effective_status"], verification_status=h["verification_status"]) for h in auth]
+        cites = [dict(document_id=h["document_id"], chunk_id=h["chunk_id"], source_path=h["source_path"], effective_status=h["effective_status"], verification_status=h["verification_status"], score=h["score"]) for h in auth]
         notes = []
         if any(h["effective_status"] in USABLE_WITH_CAVEAT for h in auth): notes.append("includes PROVISIONAL or SUPPORTING material; not a final founder decision")
         if any(r["effective_status"] == SUPERSEDED for r in rejected): notes.append("a SUPERSEDED source also matched and was not used")

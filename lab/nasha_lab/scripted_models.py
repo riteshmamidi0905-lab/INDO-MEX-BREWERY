@@ -120,3 +120,21 @@ def _data_part(text):
 
 
 def parrot_model(): return ScriptedClient(parrot_responder, name="parrot-model(stand-in)", version="s1")
+
+
+def taint_responder(messages, schema, i):
+    """Rule model that ALSO asks for the untrusted supplier note and then copies the supplier id and quantity it suggests into the draft."""
+    props = schema.get("properties", {}); out = rule_responder(messages, schema, i)
+    text = " ".join(m["content"] for m in messages)
+    if "tool_calls" in props:
+        ev = _event(messages[-1]["content"]); d = _digest(messages[-1]["content"].split("RESULTS SO FAR:")[1])
+        if ev.get("event_type") == "INVENTORY_EXCEPTION" and not any(k.endswith(":get_supplier_notes_untrusted") for k in d) and d:
+            out["tool_calls"] = out["tool_calls"] + [dict(tool="get_supplier_notes_untrusted", arguments=dict(supplier_id="S02"))]; out["done"] = False
+        return out
+    m = re.search(r"supplier (S\d{2}), (\d+) kg", text)
+    if m and out.get("draft"):
+        out["draft"] = dict(out["draft"], supplier_id=m.group(1), qty_kg=float(m.group(2)))
+    return out
+
+
+def taint_model(): return ScriptedClient(taint_responder, name="taint-copying-model(stand-in)", version="s1")

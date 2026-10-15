@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NASHA Lab Review Console</title>
+<style>
+  :root { --bg:#f7f6f2; --fg:#1b1b1b; --muted:#4a4a4a; --card:#ffffff; --line:#b9b6ab; --accent:#0b5cad; --accent-fg:#ffffff; --ok:#14602c; --bad:#9b1c1c; --warn:#7a4b00; --focus:#b35a00; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#14161a; --fg:#f1f1ee; --muted:#c3c3bd; --card:#1d2026; --line:#555a63; --accent:#7db8ff; --accent-fg:#06121f; --ok:#6fd48d; --bad:#ff9d9d; --warn:#ffcf7a; --focus:#ffb84d; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  header { padding:12px 16px; border-bottom:2px solid var(--line); }
+  header h1 { margin:0; font-size:1.2rem; }
+  .banner { margin:6px 0 0; font-size:.9rem; color:var(--muted); }
+  main { max-width:1100px; margin:0 auto; padding:16px; display:grid; gap:16px; }
+  section { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:14px 16px; }
+  h2 { margin:0 0 8px; font-size:1.05rem; } h3 { margin:12px 0 4px; font-size:.95rem; }
+  label { display:block; font-weight:600; margin:8px 0 2px; }
+  input, textarea, select { width:100%; max-width:420px; padding:8px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg); font:inherit; }
+  button { padding:8px 14px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:var(--accent-fg); font:inherit; font-weight:600; cursor:pointer; min-height:40px; }
+  button.secondary { background:transparent; color:var(--accent); }
+  button.danger { background:transparent; color:var(--bad); border-color:var(--bad); }
+  button:disabled { opacity:.55; cursor:not-allowed; }
+  :focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+  table { border-collapse:collapse; width:100%; font-size:.9rem; } caption { text-align:left; font-weight:600; padding:4px 0; }
+  th, td { border-bottom:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; overflow-wrap:anywhere; }
+  .badge { display:inline-block; border:1px solid currentColor; border-radius:999px; padding:0 8px; font-size:.8rem; font-weight:700; }
+  .ok { color:var(--ok); } .bad { color:var(--bad); } .warn { color:var(--warn); }
+  #status { min-height:1.5em; font-weight:600; }
+  .row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:8px; }
+  code { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.85rem; }
+  .untrusted { border-left:4px solid var(--warn); padding-left:8px; }
+  [hidden] { display:none !important; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>NASHA Lab Review Console</h1>
+  <p class="banner"><strong>SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED.</strong> Local prototype identity: not enterprise authentication. You approve or reject what an agent proposes; nothing here contacts a supplier or places an order.</p>
+</header>
+<main id="main">
+  <p id="status" role="status" aria-live="polite"></p>
+
+  <section aria-labelledby="h-login">
+    <h2 id="h-login">1. Sign in as a reviewer</h2>
+    <form id="login">
+      <label for="rid">Reviewer id</label><input id="rid" name="rid" required value="founder" autocomplete="username">
+      <label for="pass">Passcode</label><input id="pass" name="pass" type="password" required autocomplete="current-password">
+      <div class="row"><button type="submit">Sign in</button><span id="who" aria-live="polite"></span></div>
+      <p class="banner">Development reviewers: alice (BUYER), bob (QUALITY_LEAD), founder (FOUNDER). Dev passcodes are listed in lab/README.md. They protect nothing real.</p>
+    </form>
+  </section>
+
+  <section aria-labelledby="h-events">
+    <h2 id="h-events">2. Operational events</h2>
+    <table><caption>Open events (synthetic)</caption><thead><tr><th scope="col">Event</th><th scope="col">Type</th><th scope="col">Payload</th><th scope="col">Action</th></tr></thead><tbody id="events"></tbody></table>
+  </section>
+
+  <section id="runview" aria-labelledby="h-run" hidden tabindex="-1">
+    <h2 id="h-run">3. Investigation</h2>
+    <p><span class="badge" id="runstatus"></span> <code id="runid"></code></p>
+    <h3>Proposed action</h3><p id="headline"></p><p><span class="badge" id="action"></span> <span class="badge" id="abstain"></span></p>
+    <h3>Claims (each cites evidence)</h3>
+    <table><caption>Claims and the evidence ids they cite</caption><thead><tr><th scope="col">Claim</th><th scope="col">Evidence</th></tr></thead><tbody id="claims"></tbody></table>
+    <h3>What is uncertain</h3><ul id="unc"></ul>
+    <h3>Policy sources (status shown)</h3>
+    <table><caption>Retrieved NASHA knowledge</caption><thead><tr><th scope="col">Document</th><th scope="col">Effective status</th><th scope="col">Verification</th></tr></thead><tbody id="cites"></tbody></table>
+    <h3>Will run if you approve</h3><ul id="muts"></ul>
+    <h3>Deliberately not proposed</h3><ul id="nots"></ul>
+    <h3>Tool history</h3>
+    <table><caption>Tools called, in order</caption><thead><tr><th scope="col">#</th><th scope="col">Tool</th><th scope="col">Class</th><th scope="col">Result</th><th scope="col">ms</th></tr></thead><tbody id="tools"></tbody></table>
+    <h3>Decision</h3>
+    <div id="decision">
+      <label for="note">Note (optional)</label><textarea id="note" rows="2"></textarea>
+      <div id="editbox" hidden><label for="qty">Edit draft quantity (kg)</label><input id="qty" type="number" min="1" step="0.5"></div>
+      <div class="row">
+        <button id="approve">Approve</button><button id="reject" class="danger">Reject</button>
+        <button id="more" class="secondary">Request more evidence</button><button id="edit" class="secondary" hidden>Apply edit and review again</button>
+      </div>
+    </div>
+    <h3>Trace</h3>
+    <details><summary>Show full trace (<span id="ntrace">0</span> events)</summary>
+      <table><caption>Ordered trace events</caption><thead><tr><th scope="col">#</th><th scope="col">Kind</th><th scope="col">Detail</th></tr></thead><tbody id="trace"></tbody></table></details>
+    <p id="final" class="warn"></p>
+  </section>
+</main>
+<script>
+"use strict";
+// All server-supplied text (including supplier-controlled text) is inserted with textContent: it can never become markup.
+const $ = (id) => document.getElementById(id);
+let token = null, runId = null;
+const say = (msg, cls) => { const s = $("status"); s.textContent = msg; s.className = cls || ""; };
+function cell(tr, text, cls) { const td = document.createElement("td"); td.textContent = text; if (cls) td.className = cls; tr.appendChild(td); return td; }
+function rows(id, items, fn) { const b = $(id); b.replaceChildren(); items.forEach((x, i) => { const tr = document.createElement("tr"); fn(tr, x, i); b.appendChild(tr); }); }
+function list(id, items) { const ul = $(id); ul.replaceChildren(); (items.length ? items : ["none"]).forEach((t) => { const li = document.createElement("li"); li.textContent = t; if (String(t).includes("UNTRUSTED")) li.className = "untrusted"; ul.appendChild(li); }); }
+async function api(path, opts = {}) {
+  const h = Object.assign({ "Content-Type": "application/json" }, opts.headers || {}); if (token) h.Authorization = "Bearer " + token;
+  const r = await fetch(path, Object.assign({}, opts, { headers: h })); const body = await r.json().catch(() => ({}));
+  if (!r.ok) { const e = body.error || {}; throw new Error((e.code || r.status) + ": " + (e.message || "request failed")); }
+  return body;
+}
+$("login").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  try { const t = await api("/auth/session", { method: "POST", body: JSON.stringify({ reviewer_id: $("rid").value, passcode: $("pass").value }) }); token = t.token;
+    const me = await api("/auth/me"); $("who").textContent = "Signed in as " + me.reviewer_id + " (" + me.role + ")"; $("who").className = "ok"; say("Signed in.", "ok"); $("pass").value = ""; }
+  catch (e) { token = null; $("who").textContent = ""; say("Sign-in failed: " + e.message, "bad"); }
+});
+async function loadEvents() {
+  const d = await api("/events");
+  rows("events", d.events, (tr, e) => { cell(tr, e.event_id); cell(tr, e.event_type); cell(tr, JSON.stringify(e.payload));
+    const td = document.createElement("td"); const b = document.createElement("button"); b.className = "secondary"; b.textContent = "Investigate"; b.setAttribute("aria-label", "Investigate event " + e.event_id);
+    b.addEventListener("click", () => start(e.event_id)); td.appendChild(b); tr.appendChild(td); });
+}
+async function start(eventId) {
+  say("Investigating " + eventId + " ...");
+  try { const s = await api("/agent/runs", { method: "POST", body: JSON.stringify({ event_id: eventId }) }); if (s.status === "DUPLICATE_IGNORED") { say("That event already has a run (" + s.run.run_id + "); duplicate ignored.", "warn"); }
+    await show(s.run.run_id); } catch (e) { say("Could not start: " + e.message, "bad"); }
+}
+async function show(id) {
+  runId = id; const s = await api("/agent/runs/" + id); const t = await api("/traces/" + id);
+  const p = s.proposal || {}; $("runview").hidden = false; $("runid").textContent = id; $("runstatus").textContent = s.status; $("runstatus").className = "badge " + (s.awaiting_human ? "warn" : "ok");
+  $("headline").textContent = p.headline || "(no proposal)"; $("action").textContent = p.action || ""; $("abstain").textContent = p.abstain ? "ABSTAINING: insufficient verified evidence" : "";
+  rows("claims", p.claims || [], (tr, c) => { cell(tr, c.text); cell(tr, (c.evidence || []).join(", ")); }); list("unc", p.uncertainties || []);
+  const cites = []; t.events.filter((e) => e.kind === "policy_retrieved").forEach((e) => e.citations.forEach((c) => cites.push(c)));
+  rows("cites", cites, (tr, c) => { cell(tr, c[0]); cell(tr, c[1], /CURRENT|FROZEN/.test(c[1]) ? "ok" : "warn"); cell(tr, c[2]); });
+  list("muts", (p.mutating_actions || []).map((m) => m.tool + " " + JSON.stringify(m.args))); list("nots", p.not_proposed || []);
+  const tools = t.events.filter((e) => e.kind === "tool_call" || e.kind === "tool_error");
+  rows("tools", tools, (tr, e, i) => { cell(tr, String(i + 1)); cell(tr, e.tool + (e.trust ? " [" + e.trust + "]" : "")); cell(tr, e.permission || ""); cell(tr, e.kind === "tool_error" ? "ERROR " + e.code : (e.result_summary || "").slice(0, 160), e.kind === "tool_error" ? "bad" : ""); cell(tr, e.ms != null ? String(e.ms) : ""); });
+  $("ntrace").textContent = t.events.length; rows("trace", t.events, (tr, e) => { cell(tr, String(e.seq)); cell(tr, e.kind); cell(tr, JSON.stringify(Object.fromEntries(Object.entries(e).filter(([k]) => !["seq", "ts", "kind", "request_id"].includes(k)))).slice(0, 220)); });
+  const live = s.awaiting_human; ["approve", "reject", "more"].forEach((b) => { $(b).disabled = !live; }); $("editbox").hidden = $("edit").hidden = !(live && p.action === "DRAFT_PURCHASE_RECOMMENDATION");
+  $("final").textContent = s.final ? "Final outcome: " + s.final.outcome + " (external actions performed: " + s.final.external_actions_performed + ")" : "";
+  $("runview").focus();
+}
+async function decide(kind) {
+  if (!token) { say("Sign in first.", "bad"); $("rid").focus(); return; }
+  if (kind === "approve" && !confirm("Approve? The listed simulation actions will run. No order is placed and no supplier is contacted.")) return;
+  const note = $("note").value; let path, body;
+  if (kind === "approve" || kind === "reject") { path = "/agent/runs/" + runId + "/" + kind; body = { note }; }
+  else { path = "/agent/runs/" + runId + "/review"; body = kind === "edit" ? { decision: "edit", note, edits: { qty_kg: parseFloat($("qty").value) } } : { decision: "request_more_evidence", note }; }
+  try { await api(path, { method: "POST", body: JSON.stringify(body) }); say(kind === "approve" ? "Approved." : kind === "reject" ? "Rejected. Nothing was executed." : "Updated; review again.", "ok"); await show(runId); }
+  catch (e) { say("Not done: " + e.message, "bad"); }
+}
+$("approve").addEventListener("click", () => decide("approve")); $("reject").addEventListener("click", () => decide("reject"));
+$("more").addEventListener("click", () => decide("request_more_evidence")); $("edit").addEventListener("click", () => decide("edit"));
+loadEvents().catch((e) => say("Could not load events: " + e.message, "bad"));
+</script>
+</body>
+</html>

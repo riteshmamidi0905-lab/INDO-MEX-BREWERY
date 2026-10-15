@@ -33,12 +33,12 @@ MAX_EVIDENCE_ROUNDS = 2
 
 class S(TypedDict, total=False):
     run_id: str; request_id: str; event_id: str; event: dict; family: str; evidence: dict; gaps: list; policy: dict; assessment: dict
-    proposal: dict; human: dict; review_rounds: int; evidence_rounds: int; status: str; final: dict; duplicate_of: str; executed: list
+    tainted: list; proposal: dict; human: dict; review_rounds: int; evidence_rounds: int; status: str; final: dict; duplicate_of: str; executed: list
 
 
 @dataclass
 class Runtime:
-    world: Any; kb: Any; store: Store; timeout_s: float = 2.0; planner: Any = None; authority: Any = None
+    world: Any; kb: Any; store: Store; timeout_s: float = 2.0; planner: Any = None; authority: Any = None; gateway: Any = None
 
 
 def validate_claims(claims, known_ids):
@@ -58,7 +58,7 @@ def validate_mutations(pr, evidence, event, trace):
     """Defence in depth for ANY planner: a proposed mutation must use an allowed tool and target something that appears in trusted evidence
     or the event itself (no invented record keys); it still needs a signed human grant to run."""
     # ground ONLY in trusted results of calls that succeeded plus the event itself: the model's own tool arguments and error entries are not evidence
-    blob = json.dumps({k: v.get("data") for k, v in evidence.items() if v.get("ok") and not v.get("injection_suspected")}, default=str) + json.dumps(event, default=str)
+    blob = json.dumps({k: v.get("data") for k, v in evidence.items() if v.get("ok") and not v.get("injection_suspected") and v["tool"] != "get_supplier_notes_untrusted"}, default=str) + json.dumps(event, default=str)
     kept, rejected = [], []
     for a in pr.get("mutating_actions", []):
         tool, args = a.get("tool"), a.get("args", {})
@@ -76,11 +76,21 @@ def build_graph(rt: Runtime, checkpointer):
 
     def tr(state): return store.trace(state["run_id"], state.get("request_id", ""))
 
-    def ctx(state, approval=None):
-        return T.ToolContext(run_id=state["run_id"], request_id=state.get("request_id", ""), kb=kb, trace=tr(state), timeout_s=rt.timeout_s, approval=approval, authority=rt.authority)
+    def taint(evidence):
+        """Values that appear ONLY in untrusted tool results (minus anything also present in trusted evidence)."""
+        bad, good = set(), set()
+        for e in evidence.values():
+            if not e.get("ok") or e.get("data") is None: continue
+            if e["tool"] == "get_supplier_notes_untrusted": bad.update(e["data"].get("tainted", []))
+            else: T._flat(e["data"], good)
+        return sorted(bad - good)
+
+    def ctx(state, approval=None, evidence=None):
+        return T.ToolContext(run_id=state["run_id"], request_id=state.get("request_id", ""), kb=kb, trace=tr(state), timeout_s=rt.timeout_s, approval=approval, authority=rt.authority,
+                             gateway=rt.gateway, tainted=tuple(taint(evidence if evidence is not None else state.get("evidence", {}))))
 
     def call(state, evidence, gaps, tool, args, label=None):
-        res = T.execute(w, tool, args, ctx(state))
+        res = T.execute(w, tool, args, ctx(state, evidence=evidence))
         eid = f"E{len(evidence) + 1}:{label or tool}"
         entry = dict(tool=tool, ok=res["ok"], args=args)
         if res["ok"]:
@@ -139,7 +149,7 @@ def build_graph(rt: Runtime, checkpointer):
             d = res["data"]; pol.append(dict(question=q, **d))
             if d["injection_flagged"]:
                 gaps.append(dict(tool="get_current_policy", code="INJECTION_SUSPECTED_IN_DOCUMENT")); t.event("injection_flagged", source="knowledge", chunks=d["injection_flagged"], where="retrieved_document")
-            t.event("policy_retrieved", question=q, abstained=d["abstained"], citations=[(c["document_id"], c["effective_status"], c["verification_status"]) for c in d["citations"]], reason=d["reason"][:160])
+            t.event("policy_retrieved", question=q, abstained=d["abstained"], citations=[(c["document_id"], c["effective_status"], c["verification_status"]) for c in d["citations"]], scores=[c.get("score") for c in d["citations"]], retriever=kb.default, gate_p=d.get("gate_p"), reason=d["reason"][:160])
         return dict(policy=dict(items=pol), gaps=gaps)
 
     def assess(state):
@@ -247,10 +257,10 @@ def build_graph(rt: Runtime, checkpointer):
 
 class AgentService:
     """Start / inspect / resume runs. One thread id per run; state survives a process restart when a SQLite checkpoint file is used."""
-    def __init__(self, world, kb, store=None, checkpoint_path=None, timeout_s=2.0, planner=None, authority=None):
+    def __init__(self, world, kb, store=None, checkpoint_path=None, timeout_s=2.0, planner=None, authority=None, gateway=None):
         self.store = store or Store()
         self.cp = SqliteSaver(sqlite3.connect(checkpoint_path, check_same_thread=False)) if checkpoint_path else InMemorySaver()
-        self.rt = Runtime(world, kb, self.store, timeout_s, planner or PL.DeterministicPlanner(), authority or ID.Authority.dev())
+        self.rt = Runtime(world, kb, self.store, timeout_s, planner or PL.DeterministicPlanner(), authority or ID.Authority.dev(), gateway)
         self.graph = build_graph(self.rt, self.cp)
         self.lock = threading.RLock()
 

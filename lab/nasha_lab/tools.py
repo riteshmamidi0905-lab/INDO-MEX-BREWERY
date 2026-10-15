@@ -96,7 +96,7 @@ class PolicyIn(BaseModel):
     question: str = Field(min_length=3, max_length=300)
 
 class PolicyOut(BaseModel):
-    abstained: bool; answer: str; reason: str; citations: list[dict]; injection_flagged: list[str]; non_authoritative_matches: list[dict]
+    gate_p: Optional[float] = None; abstained: bool; answer: str; reason: str; citations: list[dict]; injection_flagged: list[str]; non_authoritative_matches: list[dict]
 
 class PolicyAssessIn(BaseModel):
     ingredient_text: str = Field(min_length=2, max_length=200); declared_source: str = Field(max_length=200); spec_sheet_status: Literal["ON_FILE", "MISSING"]
@@ -133,6 +133,13 @@ class ReleaseOut(BaseModel):
     draft_id: str; status: Literal["APPROVED_FOR_HUMAN_PROCUREMENT_REVIEW"]; notice: str
 
 
+class NotesIn(BaseModel):
+    supplier_id: str = Field(pattern=r"^S\d{2}$")
+
+class NotesOut(BaseModel):
+    ok: bool; trust: str; source: str; data: Optional[dict] = None; flags: list[str] = []; tainted: list[str] = []
+
+
 class ExternalIn(BaseModel):
     supplier_id: str = "S00"; message: str = ""; po_id: str = ""
 
@@ -148,7 +155,7 @@ class ToolSpec:
 
 @dataclass
 class ToolContext:
-    run_id: str = "adhoc"; request_id: str = ""; approval: Optional[dict] = None; kb: Any = None; trace: Any = None; timeout_s: float = 2.0; authority: Any = None
+    run_id: str = "adhoc"; request_id: str = ""; approval: Optional[dict] = None; kb: Any = None; trace: Any = None; timeout_s: float = 2.0; authority: Any = None; gateway: Any = None; tainted: Any = ()      # tainted: values that came only from UNTRUSTED sources
 
 
 def args_hash(tool, args): return hashlib.sha256(json.dumps({"tool": tool, "args": args}, sort_keys=True, default=str).encode()).hexdigest()[:16]
@@ -280,7 +287,7 @@ def t_search_nasha_knowledge(w, a: SearchIn, ctx):
 
 def t_get_current_policy(w, a: PolicyIn, ctx):
     r = ctx.kb.ask(a.question)
-    return {k: r.get(k, [] if k.endswith("s") else "") for k in ("abstained", "answer", "reason", "citations", "injection_flagged", "non_authoritative_matches")}
+    return {k: r.get(k, [] if k.endswith("s") else "") for k in ("abstained", "answer", "reason", "citations", "injection_flagged", "non_authoritative_matches", "gate_p") if k != "gate_p"} | {"gate_p": r.get("gate_p")}
 
 
 _TERMS = "|".join(re.escape(t) for t in dq.FORBIDDEN_TOKENS)
@@ -332,6 +339,12 @@ def t_flag_record_for_review(w, a: FlagIn, ctx):
     return dict(review_item_id=cur.lastrowid, applied=True)
 
 
+def t_get_supplier_notes_untrusted(w, a: NotesIn, ctx):
+    if ctx.gateway is None: raise NotFound("no supplier-portal MCP server configured")
+    r = ctx.gateway.call_supplier_notes("portal", a.supplier_id)
+    return dict(ok=r["ok"], trust=r["trust"], source=r["source"], data=r["data"], flags=r["flags"], tainted=r["tainted"])
+
+
 def t_release_draft(w, a: ReleaseIn, ctx):
     r = w.q("SELECT status FROM drafts WHERE draft_id=?", a.draft_id)
     if not r: raise NotFound(a.draft_id)
@@ -362,6 +375,7 @@ _reg("draft_review_ticket", DRAFT, "Create a DRAFT review ticket for a human. Se
 _reg("adjust_inventory_record", MUTATE, "Record an inventory adjustment in the simulation. Requires an approval bound to these exact arguments.", AdjustIn, AdjustOut, t_adjust_inventory_record)
 _reg("flag_record_for_review", MUTATE, "Place a record in the human review queue in the simulation. Requires an approval bound to these exact arguments.", FlagIn, FlagOut, t_flag_record_for_review)
 _reg("release_draft", MUTATE, "Mark an approved draft as released to human procurement review in the simulation. Still not a purchase order. Requires an approval bound to these exact arguments.", ReleaseIn, ReleaseOut, t_release_draft)
+_reg("get_supplier_notes_untrusted", READ, "Free-text supplier-portal notes from an UNTRUSTED MCP server. Output is validated, size-capped, freshness-checked and injection-scanned; its values are tainted and can never become arguments of draft or mutation tools.", NotesIn, NotesOut, t_get_supplier_notes_untrusted)
 _reg("contact_supplier", EXTERNAL, "FORBIDDEN in this prototype: contact a supplier.", ExternalIn, Anything, t_external, exposed=False)
 _reg("place_purchase_order", EXTERNAL, "FORBIDDEN in this prototype: place or submit a purchase order.", ExternalIn, Anything, t_external, exposed=False)
 
@@ -392,6 +406,10 @@ def execute(w: World, name: str, args: dict, ctx: Optional[ToolContext] = None) 
         if not ok:
             return _err(name, spec.permission, "APPROVAL_REQUIRED", f"approval grant rejected: {why}", t0, ctx, clean)
         if ctx.trace is not None: ctx.trace.event("approval_verified", tool=name, reviewer=who.id, role=who.role)
+    if spec.permission in (DRAFT, MUTATE) and ctx.tainted:
+        bad = _tainted_args(clean, set(ctx.tainted))
+        if bad:
+            return _err(name, spec.permission, "TAINTED_ARGUMENT", f"argument value(s) {sorted(bad)[:3]} come only from an UNTRUSTED source", t0, ctx, clean)
     fault = w.faults.get(name)
     def call():
         if fault == "timeout" or fault == "slow": time.sleep(0.3 if fault == "slow" else 5)
@@ -417,13 +435,32 @@ def execute(w: World, name: str, args: dict, ctx: Optional[ToolContext] = None) 
     except ValidationError:
         return _err(name, spec.permission, "MALFORMED_RESULT", "tool result did not match its output schema", t0, ctx, clean)
     res = dict(ok=True, tool=name, permission=spec.permission, error=None, data=data, ms=round((time.perf_counter() - t0) * 1000, 2))
-    if ctx.trace is not None: ctx.trace.event("tool_call", tool=name, permission=spec.permission, args=redact(clean), result_summary=_summ(data), ms=res["ms"])
+    if ctx.trace is not None: ctx.trace.event("tool_call", tool=name, permission=spec.permission, args=redact(clean), result_summary=_summ(data), ms=res["ms"], trust=data.get("trust") if isinstance(data, dict) else None)
     return res
 
 
 def _summ(d):
     s = json.dumps(d, default=str)
     return s if len(s) < 400 else s[:400] + "...[truncated]"
+
+
+def _flat(o, acc):
+    if isinstance(o, dict):
+        for v in o.values(): _flat(v, acc)
+    elif isinstance(o, (list, tuple)):
+        for v in o: _flat(v, acc)
+    elif isinstance(o, bool) or o is None: pass
+    elif isinstance(o, (int, float)): acc.add(str(int(o)) if float(o).is_integer() else str(o))
+    else: acc.add(str(o))
+    return acc
+
+
+def _tainted_args(args, tainted):
+    vals = set()
+    for k, v in args.items():
+        if k in ("rationale", "reason", "summary", "evidence_ids"): continue          # free-text justifications are not decision inputs
+        _flat(v, vals)
+    return {v for v in vals if v in tainted}
 
 
 def tool_catalog(exposed_only=True):
