@@ -68,3 +68,12 @@ def test_a_model_that_copies_a_persuasive_untrusted_note_into_a_draft_is_stopped
 def test_portal_outage_degrades_gracefully():
     svc, w = EA.fresh(); svc.rt.gateway = gw("timeout"); s = svc.start("EV-A1", "t")
     assert s["proposal"]["action"] == "DRAFT_PURCHASE_RECOMMENDATION" and any("unusable" in u and "TIMEOUT" in u for u in s["proposal"]["uncertainties"])
+
+
+def test_default_service_has_a_simulated_portal_so_the_untrusted_call_is_not_a_spurious_gap():
+    """Found by looking at the review console screenshot: the default app showed `get_supplier_notes_untrusted: NOT_FOUND`."""
+    from nasha_lab import agent, knowledge, world as W
+    svc = agent.AgentService(W.build_world(1)[0], knowledge.default_kb()); s = svc.start("EV-A1", "t")
+    ev = svc.store.events(s["run"]["run_id"])
+    assert not any(e["kind"] == "tool_error" and e["tool"] == "get_supplier_notes_untrusted" for e in ev)
+    assert any(e["kind"] == "tool_call" and e["tool"] == "get_supplier_notes_untrusted" and e["trust"] == "UNTRUSTED" for e in ev)

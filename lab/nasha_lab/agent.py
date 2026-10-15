@@ -255,12 +255,18 @@ def build_graph(rt: Runtime, checkpointer):
     return g.compile(checkpointer=checkpointer)
 
 
+def default_gateway():
+    """The simulated supplier-portal MCP server, classified UNTRUSTED (in-process; no external system)."""
+    from . import trust, untrusted_mcp
+    return trust.Gateway({"portal": (untrusted_mcp.build("ok"), trust.UNTRUSTED)})
+
+
 class AgentService:
     """Start / inspect / resume runs. One thread id per run; state survives a process restart when a SQLite checkpoint file is used."""
     def __init__(self, world, kb, store=None, checkpoint_path=None, timeout_s=2.0, planner=None, authority=None, gateway=None):
         self.store = store or Store()
         self.cp = SqliteSaver(sqlite3.connect(checkpoint_path, check_same_thread=False)) if checkpoint_path else InMemorySaver()
-        self.rt = Runtime(world, kb, self.store, timeout_s, planner or PL.DeterministicPlanner(), authority or ID.Authority.dev(), gateway)
+        self.rt = Runtime(world, kb, self.store, timeout_s, planner or PL.DeterministicPlanner(), authority or ID.Authority.dev(), gateway or default_gateway())
         self.graph = build_graph(self.rt, self.cp)
         self.lock = threading.RLock()
 

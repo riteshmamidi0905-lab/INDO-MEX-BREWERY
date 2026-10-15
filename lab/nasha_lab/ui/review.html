@@ -120,7 +120,7 @@ async function start(eventId) {
 async function show(id) {
   runId = id; const s = await api("/agent/runs/" + id); const t = await api("/traces/" + id);
   const p = s.proposal || {}; $("runview").hidden = false; $("runid").textContent = id; $("runstatus").textContent = s.status; $("runstatus").className = "badge " + (s.awaiting_human ? "warn" : "ok");
-  $("headline").textContent = p.headline || "(no proposal)"; $("action").textContent = p.action || ""; $("abstain").textContent = p.abstain ? "ABSTAINING: insufficient verified evidence" : "";
+  $("headline").textContent = p.headline || "(no proposal)"; $("action").textContent = p.action || ""; $("abstain").textContent = p.abstain ? "ABSTAINING: insufficient verified evidence" : ""; $("abstain").hidden = !p.abstain;
   rows("claims", p.claims || [], (tr, c) => { cell(tr, c.text); cell(tr, (c.evidence || []).join(", ")); }); list("unc", p.uncertainties || []);
   const cites = []; t.events.filter((e) => e.kind === "policy_retrieved").forEach((e) => e.citations.forEach((c) => cites.push(c)));
   rows("cites", cites, (tr, c) => { cell(tr, c[0]); cell(tr, c[1], /CURRENT|FROZEN/.test(c[1]) ? "ok" : "warn"); cell(tr, c[2]); });

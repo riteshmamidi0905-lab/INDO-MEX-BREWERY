@@ -7,6 +7,7 @@ import sys
 
 EXACT_RETRIEVERS = {"bm25"}
 TOL = 0.03
+APPROX_PREFIX, APPROX_TOL = "pgvector", 0.06      # HNSW is an approximate index: graph construction differs between builds, so only aggregate metrics are compared
 
 
 def planner(fresh, committed):
@@ -25,9 +26,10 @@ def rag2(fresh, committed):
     bad = []
     for rt, spl in committed["retrieval"].items():
         if rt not in fresh["retrieval"]: continue                      # a model that is unavailable in this environment is skipped, not failed
-        tol = 0.0 if rt in EXACT_RETRIEVERS else TOL
+        approx = rt.startswith(APPROX_PREFIX); tol = 0.0 if rt in EXACT_RETRIEVERS else APPROX_TOL if approx else TOL
         for sp, cats in spl.items():
             for cat, m in cats.items():
+                if approx and cat != "ALL": continue
                 f = fresh["retrieval"][rt][sp].get(cat, {})
                 for k in ("recall@1", "recall@5", "mrr", "ndcg@10"):
                     if k in m and abs(m[k] - f.get(k, -9)) > tol + 1e-9: bad.append(f"{rt}.{sp}.{cat}.{k}: committed {m[k]} fresh {f.get(k)}")
