@@ -23,6 +23,20 @@ from collections import Counter, defaultdict
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 ABSTAIN = "INSUFFICIENT VERIFIED EVIDENCE"
+# CORPUS VERSIONS. "current" includes decisions made after the Block 3 experiment baseline (D-84+) and the item-level amendment table (docs/decisions/item-amendments.csv).
+# "block3" reproduces the frozen Block 3 corpus exactly (decisions up to D-83, no amendments): every frozen benchmark pins it. Tests/eval entry points call use_version("block3").
+DEFAULT_CORPUS_VERSION = os.environ.get("NASHA_CORPUS_VERSION", "current")
+FROZEN_LAST_DECISION = 83
+
+
+def use_version(v):
+    global DEFAULT_CORPUS_VERSION
+    if v != DEFAULT_CORPUS_VERSION: DEFAULT_CORPUS_VERSION = v
+
+
+def load_amendments(root=ROOT):
+    p = os.path.join(root, "docs", "decisions", "item-amendments.csv")
+    return list(csv.DictReader(open(p, encoding="utf-8"))) if os.path.exists(p) else []
 
 # effective_status values and how they may be used
 CURRENT, FROZEN, PROVISIONAL = "CURRENT", "FROZEN", "PROVISIONAL"
@@ -115,12 +129,13 @@ def chunk_markdown(text, title, max_chars=900):
     return chunks
 
 
-def build_corpus(root=ROOT, extra_docs=None):
+def build_corpus(root=ROOT, extra_docs=None, version=None):
     """Return (chunks, manifest). extra_docs: list of dicts for tests (inject adversarial documents)."""
     reg = _load_decision_register()
     dec_text = open(os.path.join(root, "docs/decisions/DECISIONS.md"), encoding="utf-8").read()
-    reg_rows = {r["id"]: r for r in reg.parse(dec_text)}
-    chunks, manifest = [], {"included": [], "excluded": []}
+    version = version or DEFAULT_CORPUS_VERSION
+    reg_rows = {r["id"]: r for r in reg.parse(dec_text) if version != "block3" or int(r["id"][2:]) <= FROZEN_LAST_DECISION}
+    chunks, manifest = [], {"included": [], "excluded": [], "corpus_version": version}
     for line in dec_text.splitlines():
         m = reg.ROW.match(line)
         if not m or m.group(1) not in reg_rows: continue
@@ -178,6 +193,14 @@ def build_corpus(root=ROOT, extra_docs=None):
             chunks.append(dict(chunk_id=f"{p}#{i}", document_id=p, source_path=p, title=title, document_type="DOCUMENT", decision_status=cls, verification_status=ver, effective_status=eff,
                                authority_rank=AUTH_RANK[eff], updated_at=upd, supersedes="", superseded_by=read_instead, heading=head, text=body))
         manifest["included"].append((p, cls, n))
+    if version != "block3":
+        for am in load_amendments(root):
+            pat = re.compile(re.escape(am["item_old"]), re.I); by = am["decision_id"]
+            for c in chunks:
+                if c["document_id"] == by or not pat.search(c["text"]): continue
+                c["amended_items"] = c.get("amended_items", []) + [am["item_old"]]; c["amended_by"] = by
+                c["item_caveat"] = (f"contains the superseded item '{am['item_old']}'; the current direction is '{am['item_new']}' ({am['course']}), see {by}. "
+                                    "The record is kept as historical evidence of the earlier direction.")
     return chunks, manifest
 
 
@@ -299,6 +322,14 @@ class KnowledgeBase:
             out.sort(key=lambda h: (h["authority_rank"] > 3, -h["score"]))      # authoritative / caveated first, relevance second
         return out[:k]
 
+    def _amendment_hits(self, question):
+        out = []
+        for am in load_amendments():
+            if any(c.get("amended_by") == am["decision_id"] for c in self.chunks.values()) and (re.search(re.escape(am["item_old"]), question, re.I) or re.search(re.escape(am["item_new"]), question, re.I) or re.search(r"\bgobi\b", question, re.I)):
+                c = self.chunks.get(am["decision_id"])
+                if c: out.append(c)
+        return out
+
     gate = None            # optional learned answerability gate (answerability.GateModel); None = built-in rules only
 
     def ask(self, question, k=4, retriever=None, min_score=None, use_gate=True):
@@ -344,6 +375,12 @@ class KnowledgeBase:
             why = "no authoritative current source covers the question"
             if rejected: why += "; only non-authoritative material matched (" + ", ".join(sorted({r["effective_status"] for r in rejected})) + ")"
             return dict(answer=ABSTAIN, abstained=True, reason=why, citations=[], non_authoritative_matches=rejected[:5], injection_flagged=flagged)
+        am_hits = self._amendment_hits(question)
+        for ch in am_hits:                                          # a question about an amended item is answered from the amending decision first
+            if ch["effective_status"] in AUTHORITATIVE and ch["chunk_id"] not in {h["chunk_id"] for h in auth}:
+                auth.insert(0, dict(ch, score=1.0, injection_suspected=False))
+            elif ch["chunk_id"] in {h["chunk_id"] for h in auth}:
+                auth.sort(key=lambda h: h["chunk_id"] != ch["chunk_id"])
         sents = []
         for h in auth:
             for s in re.split(r"(?<=[.!?])\s+", h["text"].replace("\n", " ")):
@@ -358,15 +395,18 @@ class KnowledgeBase:
         notes = []
         if any(h["effective_status"] in USABLE_WITH_CAVEAT for h in auth): notes.append("includes PROVISIONAL or SUPPORTING material; not a final founder decision")
         if any(r["effective_status"] == SUPERSEDED for r in rejected): notes.append("a SUPERSEDED source also matched and was not used")
+        for h in auth:
+            if h.get("item_caveat"): notes.append(f"{h['document_id']}: {h['item_caveat']}")
         return dict(answer=answer, answer_sentences=[s for s, _ in chosen], abstained=False, reason="", citations=cites, status_notes=notes, non_authoritative_matches=rejected[:5], injection_flagged=flagged)
 
 
 _KB = {}
-def default_kb():
-    if "kb" not in _KB:
-        ch, man = build_corpus(); _KB["kb"] = KnowledgeBase(ch, man)
+def default_kb(version=None):
+    version = version or DEFAULT_CORPUS_VERSION
+    if ("kb", version) not in _KB:
+        ch, man = build_corpus(version=version); _KB[("kb", version)] = KnowledgeBase(ch, man)
         gp = os.path.join(ROOT, "lab", "eval", "answerability_gate.json")
         if os.environ.get("NASHA_GATE", "1") == "1" and os.path.exists(gp):
             from .answerability import GateModel
-            _KB["kb"].gate = GateModel.load(gp)
-    return _KB["kb"]
+            _KB[("kb", version)].gate = GateModel.load(gp)
+    return _KB[("kb", version)]

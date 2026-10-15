@@ -54,6 +54,6 @@ def build_server(world, kb, store=None):
 
 
 if __name__ == "__main__":      # python -m nasha_lab.mcp_server  (stdio)
-    from . import knowledge, world
-    w, _, _ = world.build_world(1)
+    from . import generator, knowledge, world
+    w, _, _ = world.build_world(1, menu_version=generator.CURRENT_MENU_VERSION)
     build_server(w, knowledge.default_kb()).run()

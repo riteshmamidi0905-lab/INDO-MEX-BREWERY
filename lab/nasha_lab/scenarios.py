@@ -52,7 +52,7 @@ def _pfx(split): return split[:3].upper() + ('B' if split.endswith('B') else '')
 # ------------------------------------------------------------------ world helpers (independent of the planner/tool decision code)
 def _usage_between(w, loc, ing, d0, d1):
     r = w.q("SELECT l.item_id, SUM(l.qty) q FROM fact_order_line l JOIN fact_order o USING(order_id) WHERE o.location_id=? AND o.order_date>? AND o.order_date<=? GROUP BY 1", loc, d0, d1)
-    return sum(x["q"] * W.RECIPES.get(x["item_id"], {}).get(ing, 0) for x in r)
+    return sum(x["q"] * getattr(w, "recipes", W.RECIPES).get(x["item_id"], {}).get(ing, 0) for x in r)
 
 
 def set_cover(w, loc, ing, cover_days, consistent=True):

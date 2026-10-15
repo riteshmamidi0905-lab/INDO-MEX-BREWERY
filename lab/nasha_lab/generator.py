@@ -28,6 +28,13 @@ MENU = [
     ("N01", "Lime zero-proof", "na", 500, "lime;water;sugar"),
     ("N02", "Tamarind zero-proof", "na", 550, "tamarind;water;sugar"),
 ]
+# MENU VERSIONS. v1 is the Block 3 (frozen, historical) menu master and stays the DEFAULT so every frozen benchmark reproduces byte for byte.
+# v2 is the CURRENT founder direction (decision D-84): item M04 is MANGO HABANERO GOBI, an appetizer / shareable, NOT a taco, no tortilla.
+# Prices are placeholder inputs in both versions. Recipes are placeholder planning inputs (world.RECIPES / world.RECIPES_V2).
+MENU_V2 = [(m[0], "Mango Habanero Gobi", "food", 1200, "cauliflower;mango;habanero") if m[0] == "M04" else m for m in MENU]
+MENU_COURSE_V2 = {"M04": "appetizer / shareable"}
+MENUS = {"v1": MENU, "v2": MENU_V2}
+CURRENT_MENU_VERSION = "v2"
 INGREDIENT_UNIT = {  # expected stock unit per ingredient
     "chicken thigh": "kg", "paneer": "kg", "goat": "kg", "cauliflower": "kg",
     "corn masa": "kg", "malt": "kg", "hops": "kg", "cheese": "kg",
@@ -45,11 +52,11 @@ def _ts(d, rng, weekend):
     return dt.datetime(d.year, d.month, d.day, hour, rng.randint(0, 59), rng.randint(0, 59))
 
 
-def generate(seed=1, defects_per_type=8, types=None):
+def generate(seed=1, defects_per_type=8, types=None, menu_version="v1"):
     """Return (raw, truth). raw: dict of table -> list of dict (all values strings, as a CSV would be).
     truth: set of (defect_type, table, key). defects_per_type=0 gives the clean dataset."""
     rng = random.Random(seed)
-    menu = {m[0]: m for m in MENU}
+    MENU_ = MENUS[menu_version]; menu = {m[0]: m for m in MENU_}
     orders, lines = [], []
     n = 0
     for k in range(DAYS):
@@ -77,7 +84,7 @@ def generate(seed=1, defects_per_type=8, types=None):
             d = START + dt.timedelta(days=7 * w)
             for ing, unit in INGREDIENT_UNIT.items():
                 inv.append({"location_id": loc, "count_date": d.isoformat(), "ingredient": ing, "qty": f"{rng.uniform(2, 40) * f:.1f}", "unit": unit})
-    menu_rows = [{"item_id": m[0], "name": m[1], "category": m[2], "price_cents": str(m[3]), "ingredients": m[4]} for m in MENU]
+    menu_rows = [{"item_id": m[0], "name": m[1], "category": m[2], "price_cents": str(m[3]), "ingredients": m[4]} for m in MENUS[menu_version]]
     raw = {"menu_items": menu_rows, "orders": orders, "order_lines": lines, "inventory_counts": inv}
     truth = set()
     if defects_per_type:

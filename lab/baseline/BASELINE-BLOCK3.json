@@ -1,0 +1,151 @@
+{
+ "branch": "claude/nasha-enterprise-ai-lab",
+ "ci": {
+  "lab_ci_run": "https://github.com/riteshmamidi0905-lab/INDO-MEX-BREWERY/actions/runs/38799590789",
+  "note": "229 passed, 1 skipped on 647d47e (the skip is the real-model integration test)"
+ },
+ "code_commit": "647d47e8610cc53320838733905c42d8f30d94f9",
+ "code_sha256": {
+  "lab/nasha_lab/agent.py": "a36c78d1e871c71e913534a8f849e1b1f8543a98c0171126f0d686deacd41923",
+  "lab/nasha_lab/answerability.py": "0de5d17c2397fc15f0e4bb167ad575c53c4b1b4c6bd047d4575b66d454c62bdf",
+  "lab/nasha_lab/ci_results.py": "87b5fa1c0dd6f4aaa9f459c6ecbe961ce4986be4593bc53ae3ca4cddcd9e1612",
+  "lab/nasha_lab/compare_planners.py": "e3ef41bf67689cbdab130d91ae983c3ce758cd965a07308c81d6d3efcb91a26c",
+  "lab/nasha_lab/embeddings.py": "7bf5a11f4693b9bfba18deefe98519edb79443a7308b9d98dc1cb325e01221b2",
+  "lab/nasha_lab/eval_planners.py": "e472301d4b45bf078a17be2eac86cdf6901047ae1ab6eac452c1a6881473f887",
+  "lab/nasha_lab/eval_rag2.py": "aae9450de0f7c9a88047a07ca2d23bd7f4f485ad31c0999fdc3c1d27058cedcc",
+  "lab/nasha_lab/identity.py": "fcdc67aaa43f1ed480c0ddb8826422fa5cf18401ab01f2162b6f06fbb2e2f171",
+  "lab/nasha_lab/knowledge.py": "de338cec66859bf211eb3443d95e48ba26638bab574d701e2293befd589096d5",
+  "lab/nasha_lab/llm.py": "70723eb4cafcefe2c4f849b47d886aafdf69709bca5c37a7c0aec021ad999d87",
+  "lab/nasha_lab/llm_planner.py": "6a9e72cc86eab074afb6cc02ba1bd6e8b5f51c628d18d78f3d5c7dee90658142",
+  "lab/nasha_lab/mutation_check.py": "2efddaa2b357e5b6f7cdb1a277403a73f9944f6f7fdf96aa960586f807a31fe2",
+  "lab/nasha_lab/planners.py": "121d08f9c6e1741f2061abb5024dc2e8f0e43322afb7236a03c643e0122fac42",
+  "lab/nasha_lab/qgen.py": "bebcd254202a68505256eb356d7835e5540a00e7c0bd0821af0b8f5f36d23d09",
+  "lab/nasha_lab/repro_check.py": "162b03a33ebcc28eb1893483d2459e41af9ef1e8035975703f44765f9879d46e",
+  "lab/nasha_lab/scenarios.py": "fce7a83510796c9a0d82fb1e2f42e88e51adea3969cf5a22d7ed03c0e3437069",
+  "lab/nasha_lab/scripted_models.py": "33fb456ac984d0ab47a605ed7e7fac58a493cc19f2771529616ec49f7091d54e",
+  "lab/nasha_lab/tools.py": "a3a746dbcd0b3cbaa84adb08fe385307425d9c55aa9a6c71a3b602140e3cd931",
+  "lab/nasha_lab/trust.py": "d049df04849e24bae436860d9b45fe346f7df6e29eb92612b8d36f06ab5be780"
+ },
+ "data_sha256": {
+  "lab/eval/answerability_gate.json": "ffcd562ed62616bba44d73a5054186b34a8ee5bcee7e007f648159be7d126b8f",
+  "lab/eval/rag_golden.jsonl": "3903926686139e64eb388ffab1fdaa0a2502d63275f17aa22dc5d5ba54a01870",
+  "lab/eval/rag_golden_v2.jsonl": "2181e904a329cbd593082c7210399397593a5a2d9729bb0a9d3ed17351859412"
+ },
+ "datasets": {
+  "corpus": "NASHA project documents + decision register (758 chunks at Block 3); pinned in code as knowledge corpus version 'block3' (decisions up to D-83, no item amendments)",
+  "corpus_version": "block3",
+  "question_set": {
+   "file": "lab/eval/rag_golden_v2.jsonl",
+   "generated": 412,
+   "handwritten": "rag_golden.jsonl",
+   "n": 467,
+   "name": "retrieval questions v2 (Block 3)",
+   "sha256": "2181e904a329cbd593082c7210399397593a5a2d9729bb0a9d3ed17351859412",
+   "v1_file": "lab/eval/rag_golden.jsonl",
+   "v1_sha256": "3903926686139e64eb388ffab1fdaa0a2502d63275f17aa22dc5d5ba54a01870"
+  },
+  "scenario_set": {
+   "by_split": {
+    "adversarial": 42,
+    "dev": 67,
+    "heldout": 75,
+    "heldoutB": 75
+   },
+   "generator": "nasha_lab/scenarios.py (seeded)",
+   "n": 259,
+   "name": "planner scenarios v1 (Block 3)",
+   "registry_sha256": "bac7c152b7377b21ed6ae733aacca5add053368ad35c5194e0a3a2629ac1f8df"
+  },
+  "synthetic_menu_version": "v1 (item M04 = 'Gobi Taco', historical; current menu v2 = 'Mango Habanero Gobi' per D-84 is a NEW state, not part of this baseline)"
+ },
+ "disclosure": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED. Same-author evaluation.",
+ "frozen_results": {
+  "abstention_end_to_end.json": "a85955d1acbd0211e0c74ef7a6dd8d3359a89ba755da9619e1b338b40211d45d",
+  "abstention_strategies.json": "0b34d3b5dc006f866cb1984ef9cf9699104c92b12be199ae1daef9cb244639b1",
+  "agent_eval.json": "f04f125a14dd9389e6e219ff6f9ffea1db29080871f3ccb9df59de2eaf72babf",
+  "eval_v1.json": "caa71f623ba5920f934a42f23e99d7cb452d8ceec941b30d3eb5ecde31426780",
+  "failure_injection.json": "972b9751d65b1fcd7eb56cda144f884a6b820e481b54029b80c772901dc2992d",
+  "mutation.json": "e3e0c6e380d7963c8f3c93052b8d44ff6d0c2946257401357c42b87715ddca64",
+  "mutation_first_run.json": "3a40c607d4f7f2592eff8f2e61ac54ca2d4c32d244d0e1e2e2a15cedc980f87e",
+  "planner_deterministic.json": "9dfc03261a0b85ff7620d6e35c1f940fe01950e5b0a8aa8bd386782838dee771",
+  "planner_llm_guardrail.json": "8c35ee7b8013fb2773fd4a10808eafcf4f81637b98d5c750aba7bd9cc1a5cb64",
+  "planner_llm_raw.json": "fd90543c9d6fcb926f918ecb09081df15a09329913f7055efdc02f92abf11324",
+  "planner_parrot+guardrail.json": "432aaf2500e4f170a2a83a3ba0ccdb486ce9bc329e23726e271b6654d2992e6f",
+  "planner_parrot.json": "0e0174d7a38870c3af723d5203f932eb8b576b23e4854b0c45a74630a7053d1e",
+  "planner_qwen1.5b_run1_guardrail.json": "adb299dcf7d6f8f8319a66e49d08482b84119f56c324bcf567600616053ebdb2",
+  "planner_qwen1.5b_run1_raw.json": "354e01b1e105f8e4039d905fd3876545fd1c04f782eb36cd87950417cab785ec",
+  "planner_qwen1.5b_run2_guardrail.json": "8c35ee7b8013fb2773fd4a10808eafcf4f81637b98d5c750aba7bd9cc1a5cb64",
+  "planner_qwen1.5b_run2_raw.json": "fd90543c9d6fcb926f918ecb09081df15a09329913f7055efdc02f92abf11324",
+  "planner_qwen7b_guardrail.json": "64540d409069a7fd52511d628324925a31a5ee0b647ed9dda0c02c1ca5c71f0e",
+  "planner_qwen7b_raw.json": "3d9144cb6428f7f28c0d2d38b2da48c98fa11578c564f6f02f290d1cfddca214",
+  "planner_rule-model.json": "faf0a220324112f7b65fcf0b18ea0dd6c1879f1a30cdaf6df36241082dae28f9",
+  "planner_taint-copier.json": "b51fc0f3223e9666746e5b211864d1251e7de9398e32572e22c866161c880eb0",
+  "planner_worst-case.json": "32f4b63b831007df49ba7ee84ba22a7b3beb997708d3234ce6839f68a631a8ee",
+  "rag2_retrieval.json": "001d978371172ca42674822f2f419bbd7f18c025e6c29f51a6b9b4013a0e96f3",
+  "rag2_retrieval_ci.json": "8c26ab409f120c84fa777228a8bee424741052ae5323ba7e70cca445d153d8a6"
+ },
+ "real_model_runs": {
+  "qwen1.5b_run1": {
+   "commit": "f0ebad3",
+   "run": "38777027649",
+   "scenarios": 138
+  },
+  "qwen1.5b_run2": {
+   "commit": "3a48adc",
+   "run": "38784135017",
+   "scenarios": 140
+  },
+  "qwen7b": {
+   "commit": "54d7da9",
+   "run": "38787190128",
+   "scenarios": 35,
+   "splits": "heldoutB,adversarial"
+  },
+  "retrieval_ci": {
+   "commit": "cd6078d",
+   "run": "38786430242"
+  }
+ },
+ "rules": [
+  "Files in frozen_results must stay byte-identical.",
+  "Changes to scenarios/questions create a NEW versioned set; the v1 registry hash must not change.",
+  "Any later improvement is reported as a NEW experiment with its own result files and commit.",
+  "Deterministic reproduction (CI) of planner results must continue to pass."
+ ],
+ "title": "NASHA Enterprise AI Lab - Block 3 experiment baseline (frozen)",
+ "versions": {
+  "deterministic_planner": "DeterministicPlanner (nasha_lab/planners.py) as of the Block 3 commit; control",
+  "evaluation_code": "see code_sha256 (read from git objects at the Block 3 commit)",
+  "llm_planner": "LLMPlanner (nasha_lab/llm_planner.py), max_retries=2, MAX_ROUNDS=3, MAX_CALLS=12, evidence-envelope guardrail optional",
+  "prompt_version": "p1",
+  "qwen_1_5b": {
+   "digest": "not captured in Block 3 logs; recorded from Block 4 onwards via `ollama show`",
+   "licence": "Apache-2.0",
+   "quantisation": "Q4_K_M (Ollama default)",
+   "runtime": "Ollama 0.40.x on GitHub-hosted ubuntu-latest, 4 vCPU, CPU only",
+   "sampling": "temperature 0, seed 7, num_ctx 6144, JSON-schema constrained decoding",
+   "size": "986 MB",
+   "tag": "qwen2.5:1.5b-instruct"
+  },
+  "qwen_7b": {
+   "digest": "not captured in Block 3 logs",
+   "licence": "Apache-2.0",
+   "quantisation": "Q4_K_M (Ollama default)",
+   "runtime": "same",
+   "sampling": "same",
+   "size": "4.7 GB",
+   "tag": "qwen2.5:7b-instruct"
+  },
+  "retrievers": {
+   "bm25": "pure Python BM25 (nasha_lab/knowledge.py)",
+   "chunking": "heading-split markdown <= 1800 chars, title + heading path prepended",
+   "hybrid": "RRF(BM25, LSA), k=60",
+   "lsa": "TF-IDF + truncated SVD (scikit-learn 1.9.x)",
+   "minilm": "all-minilm (sentence-transformers/all-MiniLM-L6-v2, Apache-2.0), 384-d via Ollama, L2, cosine, exact",
+   "pgvector": "PostgreSQL 16.15 + pgvector 0.8.7 (CI), HNSW m=16 ef_construction=64, cosine",
+   "static_neural": "spaCy en_core_web_md 3.8.0, 300-d mean-pooled, L2, cosine, exact"
+  },
+  "tool_schema_sha256": "c928e31702ab74503fa756d9d9d2823de9e7812adabfe7879eaba2383824522b",
+  "tool_schema_version": "ts1"
+ }
+}

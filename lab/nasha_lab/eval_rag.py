@@ -6,6 +6,7 @@ import sys
 import time
 
 from . import knowledge as K
+K.use_version("block3")                      # frozen Block 3 benchmark: pin the Block 3 corpus (no D-84+, no item amendments)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 GOLD = os.path.join(HERE, "..", "eval", "rag_golden.jsonl")

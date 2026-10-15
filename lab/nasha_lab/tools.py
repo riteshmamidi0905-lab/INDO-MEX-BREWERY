@@ -173,13 +173,13 @@ class NotFound(Exception): pass
 
 def _usage_since(w, loc, ing, since):
     r = w.q("""SELECT l.item_id, SUM(l.qty) q FROM fact_order_line l JOIN fact_order o USING(order_id) WHERE o.location_id=? AND o.order_date>? GROUP BY 1""", loc, since)
-    return sum(x["q"] * RECIPES.get(x["item_id"], {}).get(ing, 0) for x in r)
+    return sum(x["q"] * getattr(w, "recipes", RECIPES).get(x["item_id"], {}).get(ing, 0) for x in r)
 
 
 def _daily_avg(w, loc, ing, end, days=14):
     start = (end - dt.timedelta(days=days)).isoformat()
     r = w.q("""SELECT l.item_id, SUM(l.qty) q FROM fact_order_line l JOIN fact_order o USING(order_id) WHERE o.location_id=? AND o.order_date>? AND o.order_date<=? GROUP BY 1""", loc, start, end.isoformat())
-    return sum(x["q"] * RECIPES.get(x["item_id"], {}).get(ing, 0) for x in r) / days
+    return sum(x["q"] * getattr(w, "recipes", RECIPES).get(x["item_id"], {}).get(ing, 0) for x in r) / days
 
 
 def t_query_inventory(w: World, a: InventoryIn, ctx):

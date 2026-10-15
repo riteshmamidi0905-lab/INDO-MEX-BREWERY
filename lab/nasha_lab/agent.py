@@ -115,7 +115,7 @@ def build_graph(rt: Runtime, checkpointer):
             t.event("duplicate_event", duplicate_of=prior[0]); return dict(status="DUPLICATE_IGNORED", duplicate_of=prior[0])
         ev = dict(row[0]); ev["payload"] = json.loads(ev["payload"])
         pl = rt.planner
-        t.event("run_meta", planner_type=pl.name, planner_version=getattr(pl, "version", ""), model=getattr(pl, "model", None), prompt_version=PL.PROMPT_VERSION if pl.name == "llm" else None,
+        t.event("run_meta", planner_type=pl.name, planner_version=getattr(pl, "version", ""), model=getattr(pl, "model", None), prompt_version=getattr(pl, "prompt_version", None), tool_schema_version=getattr(pl, "tool_schema_version", None),
                 retriever_type=kb.default, embedding_model=getattr(kb, "embedding_model", None), knowledge_chunks=len(kb.chunks), tool_timeout_s=rt.timeout_s)
         return dict(event=ev, evidence={}, gaps=[], review_rounds=0, evidence_rounds=0, executed=[], status="RUNNING")
 

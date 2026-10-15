@@ -1,23 +1,24 @@
 name: model-eval
 # OPTIONAL experiment, never part of the fast CI. FREE local runtime (Ollama) on a GitHub-hosted runner: no API key, no paid service.
 # Trigger: workflow_dispatch, or push that changes lab/eval-trigger/model-eval.txt.
+# History (see lab/baseline/BASELINE-BLOCK3.json): Block 3 runs 38777027649 (qwen2.5:1.5b, per_family 2), 38784135017 (same, final code), 38787190128 (qwen2.5:7b, held-out B + adversarial, per_family 1).
+# Block 4: tool-schema experiment (ts1 vs ts2) on qwen2.5:1.5b + per-scenario trace proof. Raw results (JSON + JSONL traces) are pushed to a results branch because artifact downloads are blocked in the authoring sandbox.
 on:
   workflow_dispatch:
   push:
     paths: ["lab/eval-trigger/model-eval.txt"]
 permissions:
-  contents: read
+  contents: write
 jobs:
   planner-eval:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 330
     strategy:
       fail-fast: false
       matrix:
         include:
-          # Run 1/2 (done): { model: "qwen2.5:1.5b-instruct", per_family: 2, splits: all, label: "qwen2.5-1.5b" } -> runs 38777027649, 38784135017
-          # Run 3: a 4.7 GB model on 4 vCPU is slow, so it gets the two cleanest splits (held-out B + adversarial), one scenario per family.
-          - { model: "qwen2.5:7b-instruct", per_family: 1, splits: "heldoutB,adversarial", label: "qwen2.5-7b" }
+          - { model: "qwen2.5:1.5b-instruct", per_family: 2, splits: "dev,heldout,heldoutB,adversarial", label: "ts2-1.5b-140", arms: "ollama-ts2 ollama-ts2+guardrail" }
+          - { model: "qwen2.5:1.5b-instruct", per_family: 1, splits: "heldoutB,adversarial", label: "ts1-1.5b-trace35", arms: "ollama ollama+guardrail" }
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -30,14 +31,27 @@ jobs:
           for i in $(seq 1 30); do curl -fsS localhost:11434/api/version && break || sleep 2; done
           ollama pull ${{ matrix.model }}
           ollama show ${{ matrix.model }} | tee /tmp/model-info.txt
+          ollama list | tee -a /tmp/model-info.txt
           nproc; free -g | head -2
-      - name: Run the planner experiment (raw LLM, then LLM + guardrail on the SAME cached replies)
+      - name: Run the planner arms (raw LLM, then LLM + guardrail on the SAME cached replies), with per-scenario traces
         env: { NASHA_LLM_MODEL: "${{ matrix.model }}" }
         run: |
           cd lab
-          python -m nasha_lab.eval_planners deterministic /tmp/det.json --per-family ${{ matrix.per_family }} --splits ${{ matrix.splits }} --log-rows | grep -E "^(SUMMARY|BYFAMILY|\{)" | sed 's/^/DET /'
-          python -m nasha_lab.eval_planners ollama /tmp/llm.json --per-family ${{ matrix.per_family }} --splits ${{ matrix.splits }} --log-rows --cache /tmp/cache.json | sed 's/^/LLM /'
-          python -m nasha_lab.eval_planners ollama+guardrail /tmp/llmg.json --per-family ${{ matrix.per_family }} --splits ${{ matrix.splits }} --log-rows --cache /tmp/cache.json | sed 's/^/LLMG /'
+          python -m nasha_lab.eval_planners deterministic /tmp/det.json --per-family ${{ matrix.per_family }} --splits ${{ matrix.splits }} --log-rows | grep -E "^(SUMMARY)" | sed 's/^/DET /'
+          i=0
+          for arm in ${{ matrix.arms }}; do
+            i=$((i+1))
+            python -m nasha_lab.eval_planners $arm /tmp/arm$i.json --per-family ${{ matrix.per_family }} --splits ${{ matrix.splits }} --log-rows --cache /tmp/cache.json --trace-out /tmp/trace_arm$i.jsonl | grep -E "^(SUMMARY|\{|FAILURES)" | sed "s/^/ARM$i:$arm /"
+          done
+      - name: Publish raw results to a results branch (never main)
+        if: always()
+        run: |
+          mkdir -p /tmp/out && cp /tmp/*.json /tmp/*.jsonl /tmp/model-info.txt /tmp/out/ 2>/dev/null || true
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          br="ci-results/${{ matrix.label }}-${{ github.run_id }}"
+          git checkout --orphan "$br"; git rm -rf . -q || true
+          mkdir -p results && cp /tmp/out/* results/ && echo "run ${{ github.run_id }} commit ${{ github.sha }} model ${{ matrix.model }} label ${{ matrix.label }}" > results/RUN.txt
+          git add results && git commit -q -m "raw results ${{ matrix.label }} run ${{ github.run_id }}" && git push -q origin "$br"
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: "planner-eval-${{ matrix.label }}", path: "/tmp/*.json\n/tmp/model-info.txt" }
+        with: { name: "planner-eval-${{ matrix.label }}", path: "/tmp/out" }

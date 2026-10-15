@@ -5,6 +5,7 @@ import sys
 import time
 
 from . import agent, identity as ID, knowledge as K, tools as T, world as W
+K.use_version("block3")                      # frozen Block 3 benchmark: pin the Block 3 corpus (no D-84+, no item amendments)
 
 SECS = {"query_inventory", "assess_inventory_risk", "get_open_purchase_orders", "get_supplier_status", "list_quality_findings", "get_current_policy"}
 NEEDED = {  # event family -> tools that must be called

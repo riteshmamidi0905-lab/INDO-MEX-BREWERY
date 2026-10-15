@@ -8,6 +8,7 @@ import time
 from collections import defaultdict
 
 from . import knowledge as K
+K.use_version("block3")                      # frozen Block 3 benchmark: pin the Block 3 corpus (no D-84+, no item amendments)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CAT_MAP = {"direct": "DIRECT", "status": "DECISION_STATUS", "superseded": "SUPERSEDED", "unverified": "UNVERIFIED", "multi": "MULTI_DOCUMENT", "conflict": "CONFLICTING", "d54": "D54", "ops": "OPERATIONAL",

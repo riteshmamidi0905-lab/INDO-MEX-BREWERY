@@ -20,6 +20,7 @@ RECIPES = {  # item_id -> {ingredient: kg per unit sold}   PLACEHOLDER planning 
     "M04": {"cauliflower": .20, "corn masa": .05}, "M05": {"chicken thigh": .15, "cheese": .06, "corn masa": .05},
     "B01": {"malt": .03, "hops": .001}, "B02": {"malt": .03, "hops": .001}, "B03": {"malt": .03, "hops": .001},
 }
+RECIPES_V2 = {**RECIPES, "M04": {"cauliflower": .20}}      # Mango Habanero Gobi (D-84): cauliflower stays the main ingredient; NO tortilla, so no corn masa
 SUPPLIERS = [  # fictional; names are labelled synthetic
     ("S01", "Synthetic Poultry Supply (S01)", "ACTIVE"), ("S02", "Synthetic Goat and Lamb Supply (S02)", "ACTIVE"),
     ("S03", "Synthetic Produce Supply (S03)", "ON_HOLD"), ("S04", "Synthetic Dairy Supply (S04)", "ACTIVE"),
@@ -53,17 +54,19 @@ CREATE TABLE review_queue(item_id INTEGER PRIMARY KEY AUTOINCREMENT, run_id TEXT
 class World:
     def __init__(self, con, seed):
         self.con, self.seed, self.faults, self.today, self.lock = con, seed, {}, TODAY, threading.RLock()
+        self.menu_version = "v1"; self.recipes = RECIPES                      # v1 = frozen Block 3 menu; v2 = current (D-84)
 
     def q(self, sql, *a):
         cur = self.con.execute(sql, a); cols = [c[0] for c in cur.description]
         return [dict(zip(cols, r)) for r in cur.fetchall()]
 
 
-def _usage_by_day(con):
+def _usage_by_day(con, recipes=None):
+    recipes = recipes or RECIPES
     rows = con.execute("""SELECT o.location_id, o.order_date, l.item_id, SUM(l.qty) FROM fact_order_line l JOIN fact_order o USING(order_id) GROUP BY 1,2,3""").fetchall()
     use = {}
     for loc, d, item, qty in rows:
-        for ing, kg in RECIPES.get(item, {}).items():
+        for ing, kg in recipes.get(item, {}).items():
             use[(loc, ing, d)] = use.get((loc, ing, d), 0.0) + qty * kg
     return use
 
@@ -72,15 +75,15 @@ def open_world(path, seed=1):
     return World(sqlite3.connect(path, check_same_thread=False), seed)
 
 
-def build_world(seed=1, defects_per_type=8, db_path=":memory:"):
-    raw, truth = generator.generate(seed, defects_per_type)
+def build_world(seed=1, defects_per_type=8, db_path=":memory:", menu_version="v1"):
+    raw, truth = generator.generate(seed, defects_per_type, menu_version=menu_version)
     con, report = pipeline.run(raw, db_path)
     con.executescript(SCHEMA)
     con.executemany("INSERT INTO ingredients VALUES(?,?)", list(generator.INGREDIENT_UNIT.items()))
     con.executemany("INSERT INTO suppliers VALUES(?,?,?,1)", SUPPLIERS)
     con.executemany("INSERT INTO supplier_ingredients VALUES(?,?,?,?,?)", SUPPLIER_INGREDIENTS)
     con.executemany("INSERT INTO supplier_proposals VALUES(?,?,?,?,?)", PROPOSALS)
-    use = _usage_by_day(con)
+    use = _usage_by_day(con, RECIPES_V2 if menu_version == "v2" else RECIPES)
     rng = random.Random(seed * 7919)
     quarantined_counts = {k for (t, k) in con.execute("SELECT tbl, key FROM quarantine WHERE tbl='inventory_counts'").fetchall()}
     # re-simulate counts from real usage; replenish to par after each count
@@ -101,7 +104,7 @@ def build_world(seed=1, defects_per_type=8, db_path=":memory:"):
                 if on_hand < par:
                     con.execute("INSERT INTO inventory_movements(location_id,ingredient,move_date,kind,qty) VALUES(?,?,?,?,?)", (loc, ing, (d + dt.timedelta(days=1)).isoformat(), "RECEIPT", round(par - on_hand, 2)))
                     on_hand = par
-    w = World(con, seed)
+    w = World(con, seed); w.menu_version = menu_version; w.recipes = RECIPES_V2 if menu_version == "v2" else RECIPES
     _apply_scenarios(w, use)
     return w, report, truth
 

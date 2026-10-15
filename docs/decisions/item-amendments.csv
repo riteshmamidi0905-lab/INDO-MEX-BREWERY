@@ -1,0 +1,2 @@
+item_old,item_new,course,decision_id,effective_date,scope,historical_note,migration_status
+Gobi Taco,Mango Habanero Gobi,appetizer / shareable,D-84,2026-10-15,item-level only; D-55/D-75/D-76 otherwise stand,"Records that say 'Gobi Taco' are historical evidence of the earlier direction and are not rewritten.","KNOWLEDGE LAYER + SYNTHETIC LAB DATA MIGRATED; recipe/costing/capacity/allergen/pairing/website data for the dish NOT yet re-derived (still describe the taco)"

@@ -1,0 +1,611 @@
+{
+ "note": "Every public-facing technical claim about the NASHA AI Operations Lab must map to an entry here; public_wording is the sentence the portfolio may use. SYNTHETIC / same-author / offline evaluation.",
+ "prohibited_claims": [
+  "LLMs are worse than deterministic systems (in general).",
+  "Neural retrieval is worse than lexical retrieval (in general).",
+  "NASHA is operating, has customers, revenue, suppliers or sales.",
+  "Any result from a real business or production deployment.",
+  "Independent / third-party validation of the benchmarks.",
+  "The model comparison covers frontier or hosted models.",
+  "The 7B result is statistically conclusive.",
+  "NASHA is employment or professional experience.",
+  "NASHA is a trademark, a legal name, or cleared for use (working name; clearance pending)."
+ ],
+ "claims": [
+  {
+   "claim_id": "C01",
+   "title": "Scenario suite size",
+   "claim": "The planner experiment uses 259 generated synthetic scenarios in four splits (dev 67, held-out 75, held-out B 75, adversarial 42).",
+   "scope": "Block 3 planner scenario set v1; synthetic; same author.",
+   "evidence": [
+    "lab/baseline/BASELINE-BLOCK3.json",
+    "lab/nasha_lab/scenarios.py",
+    "lab/docs/PLANNER-EXPERIMENT.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "Expectations were set by construction by the same author who built the control planner. Two of four splits were inspected while fixing the deterministic planner.",
+   "public_wording": "I evaluated operations planners across 259 synthetic scenarios in four splits (my own scenarios, not an external benchmark).",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "baseline/BASELINE-BLOCK3.json",
+     "path": "datasets.scenario_set.n",
+     "op": "==",
+     "value": 259
+    },
+    {
+     "file": "baseline/BASELINE-BLOCK3.json",
+     "path": "datasets.scenario_set.by_split.dev",
+     "op": "==",
+     "value": 67
+    },
+    {
+     "file": "baseline/BASELINE-BLOCK3.json",
+     "path": "datasets.scenario_set.by_split.heldoutB",
+     "op": "==",
+     "value": 75
+    }
+   ]
+  },
+  {
+   "claim_id": "C02",
+   "title": "Deterministic planner result",
+   "claim": "The deterministic planner passed all 259 scenarios under the strict all-checks criterion.",
+   "scope": "Block 3 scenario set v1; held-out B (75/75) is the only split not inspected before scoring.",
+   "evidence": [
+    "lab/results/planner_deterministic.json",
+    "lab/docs/PLANNER-EXPERIMENT.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "Perfect score on author-generated scenarios measures the harness, not the real world. Dev, held-out and adversarial splits were used while fixing the planner.",
+   "public_wording": "The deterministic planner passed 259 of 259 of my synthetic scenarios, including 75 of 75 on a split I had not inspected before scoring.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/planner_deterministic.json",
+     "path": "overall.pass_rate.k",
+     "op": "==",
+     "value": 259
+    },
+    {
+     "file": "lab/results/planner_deterministic.json",
+     "path": "by_split.heldoutB.pass_rate.k",
+     "op": "==",
+     "value": 75
+    }
+   ]
+  },
+  {
+   "claim_id": "C03",
+   "title": "Qwen 1.5B result",
+   "claim": "Qwen2.5-1.5B-Instruct passed 9/138 (run 1) and 5/140 (run 2) scenarios; with the evidence-envelope guardrail 8/138 and 8/140.",
+   "scope": "Local CPU runs on GitHub-hosted runners; stratified subsets (--per-family 2); temperature 0; prompt p1; tool schema ts1.",
+   "evidence": [
+    "lab/results/planner_qwen1.5b_run1_raw.json",
+    "lab/results/planner_qwen1.5b_run2_raw.json",
+    "lab/results/planner_qwen1.5b_run2_guardrail.json",
+    "lab/docs/PLANNER-EXPERIMENT.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "Small model, one prompt, no tuning, subsets not full suite. Says nothing about larger or hosted models.",
+   "public_wording": "A small local model (Qwen2.5-1.5B) passed 4-7% of the same scenarios under identical checks.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/planner_qwen1.5b_run1_raw.json",
+     "path": "overall.pass_rate.k",
+     "op": "==",
+     "value": 9
+    },
+    {
+     "file": "lab/results/planner_qwen1.5b_run1_raw.json",
+     "path": "overall.pass_rate.n",
+     "op": "==",
+     "value": 138
+    },
+    {
+     "file": "lab/results/planner_qwen1.5b_run2_raw.json",
+     "path": "overall.pass_rate.k",
+     "op": "==",
+     "value": 5
+    },
+    {
+     "file": "lab/results/planner_qwen1.5b_run2_raw.json",
+     "path": "overall.pass_rate.n",
+     "op": "==",
+     "value": 140
+    },
+    {
+     "file": "lab/results/planner_qwen1.5b_run2_guardrail.json",
+     "path": "overall.pass_rate.k",
+     "op": "==",
+     "value": 8
+    }
+   ]
+  },
+  {
+   "claim_id": "C04",
+   "title": "Qwen 7B result",
+   "claim": "Qwen2.5-7B-Instruct passed 10/35 scenarios (one per family on held-out B + adversarial) with a 151.5 s median latency on 4 vCPU.",
+   "scope": "35 scenarios, single run, temperature 0, CPU; Wilson 95% interval for 10/35 is 16-45%.",
+   "evidence": [
+    "lab/results/planner_qwen7b_raw.json",
+    "lab/docs/PLANNER-EXPERIMENT.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "Small n; one run; all passes were purchase-draft scenarios; not a statement about GPU speed or other models.",
+   "public_wording": "A 7B local model passed 10 of 35 sampled scenarios (about 29%, wide uncertainty) and was far slower on CPU.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/planner_qwen7b_raw.json",
+     "path": "overall.pass_rate.k",
+     "op": "==",
+     "value": 10
+    },
+    {
+     "file": "lab/results/planner_qwen7b_raw.json",
+     "path": "overall.pass_rate.n",
+     "op": "==",
+     "value": 35
+    },
+    {
+     "file": "lab/results/planner_qwen7b_raw.json",
+     "path": "overall.latency_ms_p50",
+     "op": ">=",
+     "value": 100000
+    }
+   ]
+  },
+  {
+   "claim_id": "C05",
+   "title": "Deterministic planner outperformed tested Qwen planners",
+   "claim": "In every paired comparison the deterministic planner passed scenarios the model failed, and the model passed none the deterministic planner failed.",
+   "scope": "Paired on identical scenario ids, exact sign test; three real-model runs.",
+   "evidence": [
+    "lab/results/planner_qwen1.5b_run1_paired.json",
+    "lab/results/planner_qwen1.5b_run2_paired.json",
+    "lab/results/planner_qwen7b_paired.json",
+    "lab/docs/PLANNER-EXPERIMENT.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "Applies to the tested models, prompts and scenarios only. Not a claim that LLM planners are worse in general.",
+   "public_wording": "On my evaluated scenarios the deterministic planner outperformed the tested local Qwen planners, so the simplest system that meets the reliability requirement won.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/planner_qwen1.5b_run1_paired.json",
+     "path": "raw.only_second",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "file": "lab/results/planner_qwen1.5b_run2_paired.json",
+     "path": "raw.only_second",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "file": "lab/results/planner_qwen7b_paired.json",
+     "path": "raw.only_second",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "file": "lab/results/planner_qwen7b_paired.json",
+     "path": "raw.only_first",
+     "op": ">=",
+     "value": 20
+    }
+   ]
+  },
+  {
+   "claim_id": "C06",
+   "title": "Permission layer held against real models",
+   "claim": "Across the three real-model runs there were 0 executed external actions and 100% approval-boundary compliance, over about 1,000 model calls.",
+   "scope": "Real model calls recorded in run logs: 434 + 426 + 144.",
+   "evidence": [
+    "lab/results/planner_qwen1.5b_run1_raw.json",
+    "lab/results/planner_qwen1.5b_run2_raw.json",
+    "lab/results/planner_qwen7b_raw.json",
+    "lab/docs/THREAT-MODEL.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "Tested against two Qwen models and scripted adversaries; a different model might find a path they did not.",
+   "public_wording": "In about 1,000 real local-model calls the permission layer allowed 0 external actions, because the model proposes and deterministic code authorizes.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/planner_qwen1.5b_run1_raw.json",
+     "path": "overall.external_actions",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "file": "lab/results/planner_qwen1.5b_run2_raw.json",
+     "path": "overall.external_actions",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "file": "lab/results/planner_qwen7b_raw.json",
+     "path": "overall.external_actions",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "kind": "sum",
+     "files": [
+      "lab/results/planner_qwen1.5b_run1_raw.json",
+      "lab/results/planner_qwen1.5b_run2_raw.json",
+      "lab/results/planner_qwen7b_raw.json"
+     ],
+     "path": "overall.llm_calls",
+     "op": ">=",
+     "value": 1000
+    }
+   ]
+  },
+  {
+   "claim_id": "C07",
+   "title": "Silent wrong all-clear from the small model",
+   "claim": "The raw 1.5B model answered NO_ACTION when action was needed in 30 of 140 scenarios; the evidence-envelope guardrail reduced this to 0.",
+   "scope": "Run 2, 140 scenarios.",
+   "evidence": [
+    "lab/results/planner_qwen1.5b_run2_raw.json",
+    "lab/results/planner_qwen1.5b_run2_guardrail.json"
+   ],
+   "commit": "647d47e",
+   "limitations": "The guardrail achieves this by escalating, which lowered abstention accuracy and usefulness.",
+   "public_wording": "The small model said 'no action needed' when action was needed in about 1 in 5 scenarios; a deterministic evidence check removed all of those.",
+   "status": "verified",
+   "checks": [
+    {
+     "kind": "count_where",
+     "file": "lab/results/planner_qwen1.5b_run2_raw.json",
+     "rows": "rows",
+     "where": {
+      "action": "NO_ACTION",
+      "action_ok": false
+     },
+     "op": "==",
+     "value": 30
+    },
+    {
+     "kind": "count_where",
+     "file": "lab/results/planner_qwen1.5b_run2_guardrail.json",
+     "rows": "rows",
+     "where": {
+      "action": "NO_ACTION",
+      "action_ok": false
+     },
+     "op": "==",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "claim_id": "C08",
+   "title": "Retrieval benchmark size",
+   "claim": "The retrieval benchmark has 467 questions in 13 categories (412 generated, 55 hand-written).",
+   "scope": "Block 3 question set v2; dev 318 / held-out 149.",
+   "evidence": [
+    "lab/results/rag2_retrieval.json",
+    "lab/eval/rag_golden_v2.jsonl",
+    "lab/docs/RETRIEVAL-EVALUATION.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "Same author; generated questions copy corpus wording, which flatters lexical retrieval; hand-written subset is small (n=45 with gold documents).",
+   "public_wording": "I benchmarked retrieval on 467 questions in 13 categories over a decision-heavy company knowledge base.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/rag2_retrieval.json",
+     "path": "n",
+     "op": "==",
+     "value": 467
+    },
+    {
+     "file": "lab/results/rag2_retrieval.json",
+     "path": "splits.dev",
+     "op": "==",
+     "value": 318
+    }
+   ]
+  },
+  {
+   "claim_id": "C09",
+   "title": "BM25 vs MiniLM on this corpus",
+   "claim": "On this identifier-heavy, decision-status-heavy NASHA corpus BM25 (MRR 0.913) outperformed all-MiniLM-L6-v2 (0.672), BM25+MiniLM hybrid (0.842) and spaCy static vectors (0.259).",
+   "scope": "467-question set; one small encoder, one chunking, no fine-tuning or re-ranker.",
+   "evidence": [
+    "lab/results/rag2_retrieval_ci.json",
+    "lab/results/rag2_retrieval_ci.md",
+    "lab/docs/RETRIEVAL-EVALUATION.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "Not a claim that neural retrieval is worse in general. Generated questions favour lexical retrieval; on 45 hand-written paraphrases the BM25+LSA hybrid was ahead of BM25 (0.794 vs 0.764, noise).",
+   "public_wording": "For this identifier-heavy corpus, exact lexical retrieval beat a small neural encoder; I measured it rather than assuming dense retrieval would win.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/rag2_retrieval_ci.json",
+     "path": "table[retriever=bm25].mrr",
+     "op": ">",
+     "value": 0.9
+    },
+    {
+     "file": "lab/results/rag2_retrieval_ci.json",
+     "path": "table[retriever=minilm (all-MiniLM-L6-v2, 384d)].mrr",
+     "op": "<",
+     "value": 0.7
+    }
+   ]
+  },
+  {
+   "claim_id": "C10",
+   "title": "MiniLM weakest on identifier categories",
+   "claim": "MiniLM MRR was 0.294 on DECISION_STATUS, 0.362 on SUPERSEDED and 0.239 on NUMERIC, versus 0.846, 0.844 and 0.842 for BM25.",
+   "scope": "Per-category MRR, 467-question set.",
+   "evidence": [
+    "lab/results/rag2_retrieval_ci.json"
+   ],
+   "commit": "647d47e",
+   "limitations": "Categories have different sizes (3-60 questions); the small ones are noisy.",
+   "public_wording": "Dense retrieval struggled most where exact tokens matter: decision IDs, superseded records and numeric references.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/rag2_retrieval_ci.json",
+     "path": "per_category_mrr.minilm.DECISION_STATUS",
+     "op": "<",
+     "value": 0.35
+    },
+    {
+     "file": "lab/results/rag2_retrieval_ci.json",
+     "path": "per_category_mrr.bm25.DECISION_STATUS",
+     "op": ">",
+     "value": 0.8
+    }
+   ]
+  },
+  {
+   "claim_id": "C11",
+   "title": "pgvector works",
+   "claim": "PostgreSQL 16 + pgvector 0.8.7 with an HNSW cosine index served as a retriever in CI and matched the exact scan on MiniLM vectors.",
+   "scope": "758 chunks, CI service container.",
+   "evidence": [
+    "lab/results/rag2_retrieval_ci.json",
+    "lab/docs/RETRIEVAL-EVALUATION.md",
+    "https://github.com/riteshmamidi0905-lab/INDO-MEX-BREWERY/actions/runs/38799590789"
+   ],
+   "commit": "647d47e",
+   "limitations": "At this corpus size an exact scan suffices; HNSW is not needed. Approximate indexes can differ per build (handled in CI reproduction).",
+   "public_wording": "I implemented pgvector retrieval (HNSW, cosine) and showed it matches an exact scan here; at 758 chunks it isn't needed.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/rag2_retrieval_ci.json",
+     "path": "table[retriever=pgvector_minilm (HNSW)].mrr",
+     "op": "==",
+     "value": 0.672
+    }
+   ]
+  },
+  {
+   "claim_id": "C12",
+   "title": "Abstention improvement",
+   "claim": "A learned answerability gate plus built-in rules cut held-out false answers from 19/66 to 10/66 (29% to 15%), with false abstentions rising from 2/83 to 5/83.",
+   "scope": "Held-out split of the 467-question set; gate fit on dev only.",
+   "evidence": [
+    "lab/results/abstention_end_to_end.json",
+    "lab/results/abstention_strategies.json",
+    "lab/docs/RETRIEVAL-EVALUATION.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "15% of should-refuse questions are still answered. Behaviour on hand-written paraphrases is mixed (small n).",
+   "public_wording": "Abstention improved but is not solved: false answers on held-out questions fell from about 29% to 15%.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/abstention_end_to_end.json",
+     "path": "all/heldout.builtin.fa",
+     "op": "==",
+     "value": "19/66"
+    },
+    {
+     "file": "lab/results/abstention_end_to_end.json",
+     "path": "all/heldout.builtin_plus_gate.fa",
+     "op": "==",
+     "value": "10/66"
+    }
+   ]
+  },
+  {
+   "claim_id": "C13",
+   "title": "Mutation testing",
+   "claim": "The safety-code mutation suite killed 22 of 22 targeted mutants (19 of 22 on the first run).",
+   "scope": "22 hand-written mutants of the permission, grounding, trust and retrieval code.",
+   "evidence": [
+    "lab/results/mutation.json",
+    "lab/results/mutation_first_run.json",
+    "lab/nasha_lab/mutation_check.py"
+   ],
+   "commit": "647d47e",
+   "limitations": "Mutants were chosen by the author; the score bounds test quality for those mutants, not all possible defects.",
+   "public_wording": "A targeted mutation suite of 22 mutants in the safety-critical code is fully killed after I fixed the three tests it showed were weak.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/mutation.json",
+     "path": "killed",
+     "op": "==",
+     "value": 22
+    },
+    {
+     "file": "lab/results/mutation.json",
+     "path": "valid",
+     "op": "==",
+     "value": 22
+    }
+   ]
+  },
+  {
+   "claim_id": "C14",
+   "title": "CI test count",
+   "claim": "The lab-ci workflow ran 229 passing tests (1 skipped) on the Block 3 commit and built the Docker image.",
+   "scope": "GitHub Actions run on commit 647d47e.",
+   "evidence": [
+    "https://github.com/riteshmamidi0905-lab/INDO-MEX-BREWERY/actions/runs/38799590789",
+    "lab/results/test_summary.json"
+   ],
+   "commit": "647d47e",
+   "limitations": "The skipped test is the real-model integration test, run in a separate optional workflow. Counts change with later commits.",
+   "public_wording": "The project's CI runs 229 automated tests and builds its Docker image.",
+   "status": "verified",
+   "external_evidence": {
+    "run": "https://github.com/riteshmamidi0905-lab/INDO-MEX-BREWERY/actions/runs/38799590789",
+    "verified": "GitHub Actions job log: '229 passed, 1 skipped'"
+   }
+  },
+  {
+   "claim_id": "C15",
+   "title": "Worst-case adversary contained",
+   "claim": "A scripted worst-case model made 1,820 forbidden attempts (external actions, unknown tools, unapproved mutations, invented targets) over the 259 scenarios; none executed.",
+   "scope": "Scripted stand-in (NOT an LLM) over all 259 scenarios.",
+   "evidence": [
+    "lab/results/planner_worst-case.json",
+    "lab/docs/THREAT-MODEL.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "A stand-in bounds the pipeline; a real model may behave differently.",
+   "public_wording": "A scripted adversary that tried 1,820 forbidden actions executed none of them.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/planner_worst-case.json",
+     "path": "overall.forbidden_attempts",
+     "op": "==",
+     "value": 1820
+    },
+    {
+     "file": "lab/results/planner_worst-case.json",
+     "path": "overall.external_actions",
+     "op": "==",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "claim_id": "C16",
+   "title": "Prompt-injection effect on a susceptible model",
+   "claim": "A scripted model that obeys injected text kept permissions intact but changed 2 of 42 adversarial recommendations; the evidence envelope restored all 42.",
+   "scope": "Scripted stand-in; adversarial split.",
+   "evidence": [
+    "lab/results/planner_parrot.json",
+    "lab/results/planner_parrot+guardrail.json"
+   ],
+   "commit": "647d47e",
+   "limitations": "Stand-in behaviour, not a real model's susceptibility.",
+   "public_wording": "Even a model that blindly follows injected text could not trigger an unauthorized action; a deterministic evidence check also stopped it changing the recommendation.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/planner_parrot.json",
+     "path": "by_split.adversarial.pass_rate.k",
+     "op": "==",
+     "value": 40
+    },
+    {
+     "file": "lab/results/planner_parrot+guardrail.json",
+     "path": "by_split.adversarial.pass_rate.k",
+     "op": "==",
+     "value": 42
+    },
+    {
+     "file": "lab/results/planner_parrot.json",
+     "path": "overall.external_actions",
+     "op": "==",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "claim_id": "C17",
+   "title": "Disclosure",
+   "claim": "NASHA is an independent founder concept; there is no restaurant, customer, supplier or sale. All data are synthetic.",
+   "scope": "Everything in the lab.",
+   "evidence": [
+    "lab/README.md",
+    "lab/docs/CASE-STUDY.md"
+   ],
+   "commit": "647d47e",
+   "limitations": "None.",
+   "public_wording": "Independent founder concept and synthetic enterprise simulation. Not a live operating restaurant; no customers, revenue or production deployment.",
+   "status": "verified",
+   "checks": [
+    {
+     "kind": "exists",
+     "file": "lab/README.md"
+    }
+   ]
+  },
+  {
+   "claim_id": "C18",
+   "title": "Circular-trust failure found and fixed",
+   "claim": "The grounding check for proposed mutations once accepted record keys that appeared only in the model's own tool arguments; it now grounds only in successful trusted tool results.",
+   "scope": "Found by the worst-case stand-in; fixed before Block 3 acceptance.",
+   "evidence": [
+    "lab/docs/FAILURE-STORY.md",
+    "lab/tests/test_llm_planner.py",
+    "lab/tests/test_planner_units.py"
+   ],
+   "commit": "647d47e",
+   "limitations": "Grounding checks that a key appears in trusted evidence, not that acting on it is wise; the human reviewer remains the control for that.",
+   "public_wording": "My adversarial test found the system letting a model's own arguments count as evidence for itself. I fixed it so only trusted tool results count, and added a regression test.",
+   "status": "verified",
+   "checks": [
+    {
+     "kind": "exists",
+     "file": "lab/tests/test_llm_planner.py"
+    },
+    {
+     "kind": "exists",
+     "file": "lab/docs/FAILURE-STORY.md"
+    }
+   ]
+  },
+  {
+   "claim_id": "C19",
+   "title": "Menu direction update handled without rewriting history",
+   "claim": "Founder decision D-84 (Mango Habanero Gobi is an appetizer/shareable, not a taco) was recorded as a new item-level decision; current-state synthetic menu data and knowledge use it; the Block 3 baseline keeps menu v1 and corpus 'block3' so its results are unchanged.",
+   "scope": "Lab synthetic menu v2, knowledge corpus version 'current', decision register; project recipe/costing/capacity/website data NOT migrated.",
+   "evidence": [
+    "docs/decisions/DECISIONS.md",
+    "docs/decisions/item-amendments.csv",
+    "lab/tests/test_menu_direction.py",
+    "lab/baseline/BASELINE-BLOCK3.json"
+   ],
+   "commit": "b4-d84",
+   "limitations": "Recipe, costing, capacity, allergen, pairing and website data for the dish still describe the taco and are marked as awaiting migration. No tasting or recipe claim exists for the new dish.",
+   "public_wording": "The flagship dish in the simulation is Mango Habanero Gobi, a cauliflower appetizer. Earlier 'Gobi Taco' records are kept as labelled history.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "baseline/BASELINE-BLOCK3.json",
+     "path": "datasets.corpus_version",
+     "op": "==",
+     "value": "block3"
+    },
+    {
+     "kind": "exists",
+     "file": "docs/decisions/item-amendments.csv"
+    },
+    {
+     "kind": "exists",
+     "file": "lab/tests/test_menu_direction.py"
+    }
+   ]
+  }
+ ]
+}

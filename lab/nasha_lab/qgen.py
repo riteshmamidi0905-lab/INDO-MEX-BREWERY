@@ -8,6 +8,7 @@ import re
 import zlib
 
 from . import knowledge as K
+K.use_version("block3")                      # frozen Block 3 benchmark: pin the Block 3 corpus (no D-84+, no item amendments)
 
 DP = "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md"
 METRICS = ["monthly revenue", "gross profit", "customer count", "average ticket size", "net promoter score", "table turn time", "food cost percentage", "labor cost", "tips collected", "beer yield per batch",

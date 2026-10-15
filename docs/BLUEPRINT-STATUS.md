@@ -172,7 +172,7 @@ Classification is derived by `tools/decision_register.py`, and the check fails i
 |---|---|
 | AGENT PROPOSED | 3 |
 | FINDING / NOT A DECISION | 1 |
-| FOUNDER CONFIRMED | 38 |
+| FOUNDER CONFIRMED | 39 |
 | PROJECT-RECORDED (founder confirmation not stated) | 26 |
 | PROVISIONAL (founder) | 7 |
 | SUPERSEDED | 1 |
