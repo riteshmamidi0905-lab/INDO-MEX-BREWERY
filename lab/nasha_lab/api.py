@@ -11,7 +11,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
-from . import agent, knowledge, tools as T, world as W
+from . import agent, identity as ID, knowledge, tools as T, world as W
 
 log = logging.getLogger("nasha.api")
 
@@ -28,11 +28,14 @@ class AskIn(BaseModel):
 class RunIn(BaseModel):
     event_id: str = Field(pattern=r"^EV-[A-Z]\d+$")
 
+class LoginIn(BaseModel):
+    reviewer_id: str = Field(min_length=2, max_length=40); passcode: str = Field(min_length=4, max_length=80)
+
 class DecisionIn(BaseModel):
-    reviewer: str = Field(min_length=2, max_length=60); note: str = Field(default="", max_length=300)
+    note: str = Field(default="", max_length=300)
 
 class ReviewIn(BaseModel):
-    decision: Literal["approve", "reject", "edit", "request_more_evidence"]; reviewer: str = Field(min_length=2, max_length=60)
+    decision: Literal["approve", "reject", "edit", "request_more_evidence"]
     note: str = Field(default="", max_length=300); edits: Optional[dict[str, Any]] = None
 
 
@@ -123,19 +126,35 @@ def create_app(service: Optional[agent.AgentService] = None, world=None, kb=None
         if s is None: raise _Raise(404, "NOT_FOUND", f"no run {run_id}")
         return s
 
-    def decide(run_id, payload):
-        try: return app.state.service.resume(run_id, payload)
+    def bearer(request):
+        h = request.headers.get("Authorization", "")
+        return h[7:] if h.lower().startswith("bearer ") else None
+
+    def decide(request, run_id, payload):
+        try: return app.state.service.resume(run_id, payload, session=bearer(request))
         except KeyError: raise _Raise(404, "NOT_FOUND", f"no run {run_id}")
         except RuntimeError as e: raise _Raise(409, "NOT_AWAITING_REVIEW", str(e))
+        except ID.AuthError as e:
+            raise _Raise(403 if e.code in ("ROLE_NOT_PERMITTED",) else 401, e.code, e.message or e.code)
+
+    @app.post("/auth/session", responses=error_responses)
+    def login(body: LoginIn):
+        try: return {"token": app.state.service.rt.authority.login(body.reviewer_id, body.passcode), "token_type": "bearer"}
+        except ID.AuthError as e: raise _Raise(401, e.code, "invalid reviewer id or passcode")
+
+    @app.get("/auth/me", responses=error_responses)
+    def me(request: Request):
+        try: i = app.state.service.rt.authority.identify(bearer(request)); return {"reviewer_id": i.id, "role": i.role}
+        except ID.AuthError as e: raise _Raise(401, e.code, e.message or e.code)
 
     @app.post("/agent/runs/{run_id}/approve", responses=error_responses)
-    def approve(run_id: str, body: DecisionIn): return decide(run_id, dict(decision="approve", reviewer=body.reviewer, note=body.note))
+    def approve(request: Request, run_id: str, body: DecisionIn): return decide(request, run_id, dict(decision="approve", note=body.note))
 
     @app.post("/agent/runs/{run_id}/reject", responses=error_responses)
-    def reject(run_id: str, body: DecisionIn): return decide(run_id, dict(decision="reject", reviewer=body.reviewer, note=body.note))
+    def reject(request: Request, run_id: str, body: DecisionIn): return decide(request, run_id, dict(decision="reject", note=body.note))
 
     @app.post("/agent/runs/{run_id}/review", responses=error_responses)
-    def review(run_id: str, body: ReviewIn): return decide(run_id, body.model_dump())
+    def review(request: Request, run_id: str, body: ReviewIn): return decide(request, run_id, body.model_dump())
 
     @app.get("/traces/{run_id}", responses=error_responses)
     def trace(run_id: str):

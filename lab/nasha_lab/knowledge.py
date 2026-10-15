@@ -271,12 +271,13 @@ class Hybrid:
 class KnowledgeBase:
     def __init__(self, chunks, manifest=None, retriever="hybrid"):
         self.chunks = {c["chunk_id"]: c for c in chunks}; self.manifest = manifest or {}
-        self.bm25 = BM25(chunks); self.lsa = LSADense(chunks); self.hash = HashingDense(chunks)
-        self.retrievers = {"tfidf": None, "bm25": self.bm25, "hashing": self.hash, "lsa": self.lsa,
-                           "hybrid": Hybrid(self.bm25, self.lsa), "hybrid_hash": Hybrid(self.bm25, self.hash)}
+        self.bm25 = BM25(chunks); self.lsa = LSADense(chunks); self._hash = None
+        self.retrievers = {"tfidf": None, "hashing": None, "hybrid_hash": None, "bm25": self.bm25, "lsa": self.lsa, "hybrid": Hybrid(self.bm25, self.lsa)}
         self._chunks_list = chunks; self.default = retriever
     def retriever(self, name):
         if name == "tfidf" and self.retrievers["tfidf"] is None: self.retrievers["tfidf"] = TfidfBaseline(self._chunks_list)
+        if name in ("hashing", "hybrid_hash") and self._hash is None:
+            self._hash = HashingDense(self._chunks_list); self.retrievers["hashing"] = self._hash; self.retrievers["hybrid_hash"] = Hybrid(self.bm25, self._hash)
         return self.retrievers[name]
 
     def search(self, query, k=5, retriever=None, status_aware=True, include_nonauthoritative=False, candidates=40):

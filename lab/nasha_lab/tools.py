@@ -148,7 +148,7 @@ class ToolSpec:
 
 @dataclass
 class ToolContext:
-    run_id: str = "adhoc"; request_id: str = ""; approval: Optional[dict] = None; kb: Any = None; trace: Any = None; timeout_s: float = 2.0
+    run_id: str = "adhoc"; request_id: str = ""; approval: Optional[dict] = None; kb: Any = None; trace: Any = None; timeout_s: float = 2.0; authority: Any = None
 
 
 def args_hash(tool, args): return hashlib.sha256(json.dumps({"tool": tool, "args": args}, sort_keys=True, default=str).encode()).hexdigest()[:16]
@@ -221,7 +221,7 @@ def t_assess_inventory_risk(w, a: RiskIn, ctx):
         receipts = w.q("SELECT COALESCE(SUM(qty),0) s FROM inventory_movements WHERE location_id=? AND ingredient=? AND move_date>? AND move_date<=? AND kind IN ('RECEIPT','ADJUSTMENT')", a.location_id, a.ingredient, d0, d1)[0]["s"]
         use = _usage_since(w, a.location_id, a.ingredient, d0) - _usage_since(w, a.location_id, a.ingredient, d1)
         expected = max(prev[1]["qty"] + receipts - use, 0.0)
-        var = round(prev[0]["qty"] / expected, 2) if expected > 0.5 else None
+        var = round(prev[0]["qty"] / expected, 2) if expected > max(0.02, 0.25 * inv["avg_daily_usage_14d"]) else None      # floor scales with usage (hops are used in grams)
         if var is not None and (var > 2.0 or var < 0.4): reasons.append(f"latest count is {var}x the expected quantity; recount before acting")
     if not isinstance(rec, (int, float)) or not shortfall: rec = rec if shortfall else None
     return dict(lead_time_days=lead, supplier_id=sup[0]["supplier_id"] if sup else None, days_of_cover=cover, open_po_qty_arriving_in_time=round(arriving, 2), shortfall_before_lead_time=shortfall,
@@ -283,15 +283,24 @@ def t_get_current_policy(w, a: PolicyIn, ctx):
     return {k: r.get(k, [] if k.endswith("s") else "") for k in ("abstained", "answer", "reason", "citations", "injection_flagged", "non_authoritative_matches")}
 
 
+_TERMS = "|".join(re.escape(t) for t in dq.FORBIDDEN_TOKENS)
+NEG_RE = re.compile(rf"\b(?:no|non|without|free of|free from)[\s-]+(?:added[\s-]+)?(?:{_TERMS})\b|\b(?:{_TERMS})[\s-]+free\b", re.I)
+
+
 def t_assess_policy_ingredient(w, a: PolicyAssessIn, ctx):
     text = f"{a.ingredient_text} {a.declared_source}"
-    if dq.FORBIDDEN_RE.search(text):
-        return dict(verdict="PROHIBITED", basis=["D-54 term in ingredient or declared source: " + dq.FORBIDDEN_RE.search(text).group(0)])
+    # a NEGATED mention ("pork-free", "no beef stock") is a supplier CLAIM of absence, not an ingredient: it must not trigger a rejection,
+    # and it is not a verified statement either (found by the negation-trap scenarios; see results/EXPERIMENT-LOG.md)
+    negated = bool(NEG_RE.search(text))
+    m = dq.FORBIDDEN_RE.search(NEG_RE.sub(" ", text))
+    if m: return dict(verdict="PROHIBITED", basis=["D-54 term in ingredient or declared source: " + m.group(0)])
     hidden = [t for t in HIDDEN_TERMS if t in a.ingredient_text.lower()]
-    if hidden:
+    if hidden or negated:
+        why = [f"hidden-derivative term(s) {hidden}"] if hidden else []
+        if negated: why.append("supplier text claims the absence of a prohibited term; that is a claim, not a verified statement")
         if a.spec_sheet_status == "ON_FILE" and PLANT_OR_ALLOWED_SOURCE.search(a.declared_source) and "unspecified" not in a.declared_source.lower():
-            return dict(verdict="CLEARED_PENDING_HUMAN", basis=[f"hidden-derivative term(s) {hidden}", "supplier statement on file names a permitted source; a human must confirm the document"])
-        return dict(verdict="REQUIRES_REVIEW", basis=[f"hidden-derivative term(s) {hidden}", f"spec sheet {a.spec_sheet_status}; declared source {a.declared_source!r} does not establish a permitted source"])
+            return dict(verdict="CLEARED_PENDING_HUMAN", basis=why + ["supplier statement on file names a permitted source; a human must confirm the document"])
+        return dict(verdict="REQUIRES_REVIEW", basis=why + [f"spec sheet {a.spec_sheet_status}; declared source {a.declared_source!r} does not establish a permitted source"])
     return dict(verdict="NO_POLICY_SIGNAL", basis=["no D-54 term and no hidden-derivative term"])
 
 
@@ -376,9 +385,13 @@ def execute(w: World, name: str, args: dict, ctx: Optional[ToolContext] = None) 
         return _err(name, spec.permission, "INVALID_ARGUMENTS", "; ".join(f"{'.'.join(map(str, x['loc']))}: {x['msg']}" for x in e.errors())[:300], t0, ctx, args)
     clean = parsed.model_dump()
     if spec.permission == MUTATE:
-        ap = ctx.approval
-        if not ap or ap.get("run_id") != ctx.run_id or ap.get("tool") != name or ap.get("args_hash") != args_hash(name, clean):
-            return _err(name, spec.permission, "APPROVAL_REQUIRED", "a human approval bound to this run, tool and exact arguments is required", t0, ctx, clean)
+        ap = ctx.approval or {}
+        if ctx.authority is None or not ap.get("grant"):
+            return _err(name, spec.permission, "APPROVAL_REQUIRED", "a signed human approval grant bound to this run, tool and exact arguments is required", t0, ctx, clean)
+        ok, why, who = ctx.authority.verify_grant(ap["grant"], ctx.run_id, name, clean, args_hash(name, clean))
+        if not ok:
+            return _err(name, spec.permission, "APPROVAL_REQUIRED", f"approval grant rejected: {why}", t0, ctx, clean)
+        if ctx.trace is not None: ctx.trace.event("approval_verified", tool=name, reviewer=who.id, role=who.role)
     fault = w.faults.get(name)
     def call():
         if fault == "timeout" or fault == "slow": time.sleep(0.3 if fault == "slow" else 5)

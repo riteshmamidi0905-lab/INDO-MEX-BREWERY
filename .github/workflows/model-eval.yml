@@ -1,0 +1,41 @@
+name: model-eval
+# OPTIONAL experiment, never part of the fast CI. FREE local runtime (Ollama) on a GitHub-hosted runner: no API key, no paid service.
+# Trigger: workflow_dispatch, or push that changes lab/eval-trigger/model-eval.txt.
+on:
+  workflow_dispatch:
+  push:
+    paths: ["lab/eval-trigger/model-eval.txt"]
+permissions:
+  contents: read
+jobs:
+  planner-eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { model: "qwen2.5:1.5b-instruct", per_family: 2, label: "qwen2.5-1.5b" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r lab/requirements.txt
+      - name: Install Ollama and pull the model
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          (ollama serve > /tmp/ollama.log 2>&1 &)
+          for i in $(seq 1 30); do curl -fsS localhost:11434/api/version && break || sleep 2; done
+          ollama pull ${{ matrix.model }}
+          ollama show ${{ matrix.model }} | tee /tmp/model-info.txt
+          nproc; free -g | head -2
+      - name: Run the planner experiment (raw LLM, then LLM + guardrail on the SAME cached replies)
+        env: { NASHA_LLM_MODEL: "${{ matrix.model }}" }
+        run: |
+          cd lab
+          python -m nasha_lab.eval_planners deterministic /tmp/det.json --per-family ${{ matrix.per_family }} --log-rows | grep -E "^(SUMMARY|BYFAMILY|\{)" | sed 's/^/DET /'
+          python -m nasha_lab.eval_planners ollama /tmp/llm.json --per-family ${{ matrix.per_family }} --log-rows --cache /tmp/cache.json | sed 's/^/LLM /'
+          python -m nasha_lab.eval_planners ollama+guardrail /tmp/llmg.json --per-family ${{ matrix.per_family }} --log-rows --cache /tmp/cache.json | sed 's/^/LLMG /'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "planner-eval-${{ matrix.label }}", path: "/tmp/*.json\n/tmp/model-info.txt" }

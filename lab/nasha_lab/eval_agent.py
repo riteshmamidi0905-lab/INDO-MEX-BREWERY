@@ -4,7 +4,7 @@ import statistics
 import sys
 import time
 
-from . import agent, knowledge as K, tools as T, world as W
+from . import agent, identity as ID, knowledge as K, tools as T, world as W
 
 SECS = {"query_inventory", "assess_inventory_risk", "get_open_purchase_orders", "get_supplier_status", "list_quality_findings", "get_current_policy"}
 NEEDED = {  # event family -> tools that must be called
@@ -21,11 +21,11 @@ EXPECT = {  # event -> (expected action, must abstain, policy citations that mus
 STATE_ORDER = ["RECEIVE_EVENT", "CLASSIFY_EVENT", "COLLECT_OPERATIONAL_DATA", "RETRIEVE_POLICY", "ASSESS_EVIDENCE", "PROPOSE_ACTION", "HUMAN_REVIEW"]
 
 
-def fresh(seed=1, extra_docs=None, faults=None, timeout_s=2.0):
+def fresh(seed=1, extra_docs=None, faults=None, timeout_s=2.0, planner=None):
     w, _, _ = W.build_world(seed)
     kb = K.default_kb() if not extra_docs else K.KnowledgeBase(*K.build_corpus(extra_docs=extra_docs))
     w.faults = dict(faults or {})
-    return agent.AgentService(w, kb, timeout_s=timeout_s), w
+    return agent.AgentService(w, kb, timeout_s=timeout_s, planner=planner, authority=ID.Authority.dev(autologin="founder")), w
 
 
 NUM = __import__("re").compile(r"(?<![A-Za-z0-9-])\d+(?:\.\d+)?")

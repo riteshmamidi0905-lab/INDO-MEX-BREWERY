@@ -21,17 +21,21 @@ def test_mcp_surface_contains_only_read_analyze_draft():
 
 @pytest.mark.parametrize("name", ["place_purchase_order", "contact_supplier"])
 def test_external_actions_always_refused_even_with_approval(world, name):
-    r = T.execute(world, name, {}, T.ToolContext(run_id="r", approval={"run_id": "r", "tool": name, "args_hash": T.args_hash(name, {})}))
+    r = T.execute(world, name, {}, T.ToolContext(run_id="r", approval={"grant": "anything"}))
     assert not r["ok"] and r["error"]["code"] == "FORBIDDEN_EXTERNAL_ACTION"
 
 
-def test_mutation_requires_approval_bound_to_run_tool_and_arguments(world):
+def test_mutation_requires_a_signed_grant_bound_to_run_tool_and_arguments(world):
+    from nasha_lab import identity as ID
+    au = ID.Authority.dev(); who = ID.Identity("founder", "FOUNDER")
     a = dict(location_id="L01", ingredient="goat", qty_delta=1.0, reason="approved one kilogram adjustment")
-    ap = {"run_id": "r", "tool": "adjust_inventory_record", "args_hash": T.args_hash("adjust_inventory_record", a)}
-    assert T.execute(world, "adjust_inventory_record", a, T.ToolContext(run_id="r"))["error"]["code"] == "APPROVAL_REQUIRED"
-    assert T.execute(world, "adjust_inventory_record", dict(a, qty_delta=99.0), T.ToolContext(run_id="r", approval=ap))["error"]["code"] == "APPROVAL_REQUIRED"
-    assert T.execute(world, "adjust_inventory_record", a, T.ToolContext(run_id="other", approval=ap))["error"]["code"] == "APPROVAL_REQUIRED"
-    assert T.execute(world, "adjust_inventory_record", a, T.ToolContext(run_id="r", approval=ap))["ok"]
+    grant = au.issue_grant(who, "r", [dict(tool="adjust_inventory_record", args=a, args_hash=T.args_hash("adjust_inventory_record", a))])
+    mk = lambda run, g: T.ToolContext(run_id=run, approval={"grant": g} if g else None, authority=au)
+    assert T.execute(world, "adjust_inventory_record", a, mk("r", None))["error"]["code"] == "APPROVAL_REQUIRED"
+    assert T.execute(world, "adjust_inventory_record", dict(a, qty_delta=99.0), mk("r", grant))["error"]["code"] == "APPROVAL_REQUIRED"
+    assert T.execute(world, "adjust_inventory_record", a, mk("other", grant))["error"]["code"] == "APPROVAL_REQUIRED"
+    assert T.execute(world, "adjust_inventory_record", a, mk("r", grant))["ok"]
+    assert T.execute(world, "adjust_inventory_record", a, mk("r", grant))["error"]["code"] == "APPROVAL_REQUIRED"      # replay
     assert world.q("SELECT COUNT(*) n FROM inventory_movements WHERE kind='ADJUSTMENT'")[0]["n"] == 1
 
 
