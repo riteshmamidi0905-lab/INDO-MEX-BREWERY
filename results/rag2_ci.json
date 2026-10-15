@@ -1,0 +1,2983 @@
+{
+ "n": 467,
+ "categories": [
+  "ADVERSARIAL",
+  "CONFLICTING",
+  "D54",
+  "DECISION_STATUS",
+  "DIRECT",
+  "MULTI_DOCUMENT",
+  "NUMERIC",
+  "OPERATIONAL",
+  "OUT_OF_DOMAIN",
+  "SUPERSEDED",
+  "UNANSWERABLE",
+  "UNVERIFIED",
+  "VISION"
+ ],
+ "splits": {
+  "dev": 318,
+  "heldout": 149
+ },
+ "retriever_info": {
+  "static_neural": {
+   "model": "spacy en_core_web_md 3.8.0",
+   "dim": 300,
+   "normalization": "L2",
+   "metric": "cosine",
+   "index": "exact scan",
+   "chunking": "heading-split <=1800 chars",
+   "kind": "static pretrained word vectors, mean-pooled"
+  },
+  "pgvector_static": {
+   "model": "same vectors as static_neural",
+   "pgvector": "0.8.7",
+   "index": "HNSW m=16 ef_construction=64",
+   "metric": "cosine (<=>)"
+  },
+  "minilm": {
+   "model": "all-minilm (sentence-transformers/all-MiniLM-L6-v2, Apache-2.0) via Ollama",
+   "dim": 384,
+   "normalization": "L2",
+   "metric": "cosine",
+   "index": "exact scan",
+   "chunking": "heading-split <=1800 chars",
+   "kind": "sentence embedding"
+  },
+  "pgvector_minilm": {
+   "index": "HNSW m=16 ef_construction=64",
+   "metric": "cosine (<=>)"
+  }
+ },
+ "retrieval": {
+  "bm25": {
+   "all": {
+    "ALL": {
+     "n": 359,
+     "recall@1": 0.831,
+     "recall@5": 0.951,
+     "mrr": 0.913,
+     "ndcg@10": 0.925
+    },
+    "SRC:handwritten": {
+     "n": 45,
+     "recall@1": 0.578,
+     "recall@5": 0.822,
+     "mrr": 0.764,
+     "ndcg@10": 0.789
+    },
+    "SRC:generated": {
+     "n": 314,
+     "recall@1": 0.868,
+     "recall@5": 0.97,
+     "mrr": 0.935,
+     "ndcg@10": 0.945
+    },
+    "ADVERSARIAL": {
+     "n": 3,
+     "recall@1": 0.0,
+     "recall@5": 0.333,
+     "mrr": 0.173,
+     "ndcg@10": 0.319
+    },
+    "CONFLICTING": {
+     "n": 5,
+     "recall@1": 0.2,
+     "recall@5": 0.6,
+     "mrr": 0.667,
+     "ndcg@10": 0.642
+    },
+    "D54": {
+     "n": 19,
+     "recall@1": 0.632,
+     "recall@5": 0.947,
+     "mrr": 0.974,
+     "ndcg@10": 0.929
+    },
+    "DECISION_STATUS": {
+     "n": 67,
+     "recall@1": 0.739,
+     "recall@5": 0.985,
+     "mrr": 0.846,
+     "ndcg@10": 0.879
+    },
+    "DIRECT": {
+     "n": 67,
+     "recall@1": 0.888,
+     "recall@5": 0.985,
+     "mrr": 0.942,
+     "ndcg@10": 0.957
+    },
+    "MULTI_DOCUMENT": {
+     "n": 7,
+     "recall@1": 0.286,
+     "recall@5": 0.714,
+     "mrr": 0.706,
+     "ndcg@10": 0.717
+    },
+    "NUMERIC": {
+     "n": 36,
+     "recall@1": 0.806,
+     "recall@5": 0.833,
+     "mrr": 0.842,
+     "ndcg@10": 0.871
+    },
+    "OPERATIONAL": {
+     "n": 67,
+     "recall@1": 0.97,
+     "recall@5": 1.0,
+     "mrr": 0.985,
+     "ndcg@10": 0.989
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 8,
+     "recall@1": 0.438,
+     "recall@5": 0.938,
+     "mrr": 0.844,
+     "ndcg@10": 0.85
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 44,
+     "recall@1": 0.932,
+     "recall@5": 0.955,
+     "mrr": 0.948,
+     "ndcg@10": 0.953
+    },
+    "VISION": {
+     "n": 36,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   },
+   "dev": {
+    "ALL": {
+     "n": 250,
+     "recall@1": 0.832,
+     "recall@5": 0.95,
+     "mrr": 0.915,
+     "ndcg@10": 0.928
+    },
+    "SRC:handwritten": {
+     "n": 31,
+     "recall@1": 0.581,
+     "recall@5": 0.79,
+     "mrr": 0.764,
+     "ndcg@10": 0.785
+    },
+    "SRC:generated": {
+     "n": 219,
+     "recall@1": 0.868,
+     "recall@5": 0.973,
+     "mrr": 0.937,
+     "ndcg@10": 0.948
+    },
+    "ADVERSARIAL": {
+     "n": 2,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.134,
+     "ndcg@10": 0.263
+    },
+    "CONFLICTING": {
+     "n": 4,
+     "recall@1": 0.25,
+     "recall@5": 0.625,
+     "mrr": 0.75,
+     "ndcg@10": 0.726
+    },
+    "D54": {
+     "n": 12,
+     "recall@1": 0.625,
+     "recall@5": 0.958,
+     "mrr": 0.958,
+     "ndcg@10": 0.933
+    },
+    "DECISION_STATUS": {
+     "n": 46,
+     "recall@1": 0.728,
+     "recall@5": 1.0,
+     "mrr": 0.85,
+     "ndcg@10": 0.886
+    },
+    "DIRECT": {
+     "n": 47,
+     "recall@1": 0.883,
+     "recall@5": 0.979,
+     "mrr": 0.939,
+     "ndcg@10": 0.954
+    },
+    "MULTI_DOCUMENT": {
+     "n": 6,
+     "recall@1": 0.25,
+     "recall@5": 0.667,
+     "mrr": 0.657,
+     "ndcg@10": 0.669
+    },
+    "NUMERIC": {
+     "n": 25,
+     "recall@1": 0.8,
+     "recall@5": 0.84,
+     "mrr": 0.841,
+     "ndcg@10": 0.867
+    },
+    "OPERATIONAL": {
+     "n": 46,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 7,
+     "recall@1": 0.429,
+     "recall@5": 0.929,
+     "mrr": 0.821,
+     "ndcg@10": 0.85
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 30,
+     "recall@1": 0.967,
+     "recall@5": 0.967,
+     "mrr": 0.969,
+     "ndcg@10": 0.967
+    },
+    "VISION": {
+     "n": 25,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   },
+   "heldout": {
+    "ALL": {
+     "n": 109,
+     "recall@1": 0.83,
+     "recall@5": 0.954,
+     "mrr": 0.909,
+     "ndcg@10": 0.92
+    },
+    "SRC:handwritten": {
+     "n": 14,
+     "recall@1": 0.571,
+     "recall@5": 0.893,
+     "mrr": 0.765,
+     "ndcg@10": 0.797
+    },
+    "SRC:generated": {
+     "n": 95,
+     "recall@1": 0.868,
+     "recall@5": 0.963,
+     "mrr": 0.93,
+     "ndcg@10": 0.939
+    },
+    "ADVERSARIAL": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 1.0,
+     "mrr": 0.25,
+     "ndcg@10": 0.431
+    },
+    "CONFLICTING": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.333,
+     "ndcg@10": 0.307
+    },
+    "D54": {
+     "n": 7,
+     "recall@1": 0.643,
+     "recall@5": 0.929,
+     "mrr": 1.0,
+     "ndcg@10": 0.923
+    },
+    "DECISION_STATUS": {
+     "n": 21,
+     "recall@1": 0.762,
+     "recall@5": 0.952,
+     "mrr": 0.837,
+     "ndcg@10": 0.863
+    },
+    "DIRECT": {
+     "n": 20,
+     "recall@1": 0.9,
+     "recall@5": 1.0,
+     "mrr": 0.95,
+     "ndcg@10": 0.963
+    },
+    "MULTI_DOCUMENT": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    },
+    "NUMERIC": {
+     "n": 11,
+     "recall@1": 0.818,
+     "recall@5": 0.818,
+     "mrr": 0.845,
+     "ndcg@10": 0.879
+    },
+    "OPERATIONAL": {
+     "n": 21,
+     "recall@1": 0.905,
+     "recall@5": 1.0,
+     "mrr": 0.952,
+     "ndcg@10": 0.965
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 0.85
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 14,
+     "recall@1": 0.857,
+     "recall@5": 0.929,
+     "mrr": 0.902,
+     "ndcg@10": 0.925
+    },
+    "VISION": {
+     "n": 11,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   }
+  },
+  "lsa": {
+   "all": {
+    "ALL": {
+     "n": 359,
+     "recall@1": 0.696,
+     "recall@5": 0.912,
+     "mrr": 0.819,
+     "ndcg@10": 0.844
+    },
+    "SRC:handwritten": {
+     "n": 45,
+     "recall@1": 0.5,
+     "recall@5": 0.856,
+     "mrr": 0.739,
+     "ndcg@10": 0.773
+    },
+    "SRC:generated": {
+     "n": 314,
+     "recall@1": 0.725,
+     "recall@5": 0.92,
+     "mrr": 0.83,
+     "ndcg@10": 0.854
+    },
+    "ADVERSARIAL": {
+     "n": 3,
+     "recall@1": 0.0,
+     "recall@5": 0.667,
+     "mrr": 0.306,
+     "ndcg@10": 0.427
+    },
+    "CONFLICTING": {
+     "n": 5,
+     "recall@1": 0.2,
+     "recall@5": 0.7,
+     "mrr": 0.7,
+     "ndcg@10": 0.668
+    },
+    "D54": {
+     "n": 19,
+     "recall@1": 0.421,
+     "recall@5": 1.0,
+     "mrr": 0.851,
+     "ndcg@10": 0.881
+    },
+    "DECISION_STATUS": {
+     "n": 67,
+     "recall@1": 0.664,
+     "recall@5": 0.94,
+     "mrr": 0.784,
+     "ndcg@10": 0.831
+    },
+    "DIRECT": {
+     "n": 67,
+     "recall@1": 0.709,
+     "recall@5": 0.94,
+     "mrr": 0.826,
+     "ndcg@10": 0.869
+    },
+    "MULTI_DOCUMENT": {
+     "n": 7,
+     "recall@1": 0.357,
+     "recall@5": 0.714,
+     "mrr": 0.767,
+     "ndcg@10": 0.742
+    },
+    "NUMERIC": {
+     "n": 36,
+     "recall@1": 0.056,
+     "recall@5": 0.528,
+     "mrr": 0.27,
+     "ndcg@10": 0.331
+    },
+    "OPERATIONAL": {
+     "n": 67,
+     "recall@1": 0.985,
+     "recall@5": 1.0,
+     "mrr": 0.99,
+     "ndcg@10": 0.993
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 8,
+     "recall@1": 0.438,
+     "recall@5": 0.812,
+     "mrr": 0.875,
+     "ndcg@10": 0.806
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 44,
+     "recall@1": 0.909,
+     "recall@5": 0.989,
+     "mrr": 0.942,
+     "ndcg@10": 0.958
+    },
+    "VISION": {
+     "n": 36,
+     "recall@1": 0.972,
+     "recall@5": 1.0,
+     "mrr": 0.986,
+     "ndcg@10": 0.99
+    }
+   },
+   "dev": {
+    "ALL": {
+     "n": 250,
+     "recall@1": 0.684,
+     "recall@5": 0.896,
+     "mrr": 0.805,
+     "ndcg@10": 0.831
+    },
+    "SRC:handwritten": {
+     "n": 31,
+     "recall@1": 0.452,
+     "recall@5": 0.806,
+     "mrr": 0.686,
+     "ndcg@10": 0.731
+    },
+    "SRC:generated": {
+     "n": 219,
+     "recall@1": 0.717,
+     "recall@5": 0.909,
+     "mrr": 0.822,
+     "ndcg@10": 0.845
+    },
+    "ADVERSARIAL": {
+     "n": 2,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.208,
+     "ndcg@10": 0.325
+    },
+    "CONFLICTING": {
+     "n": 4,
+     "recall@1": 0.125,
+     "recall@5": 0.75,
+     "mrr": 0.625,
+     "ndcg@10": 0.681
+    },
+    "D54": {
+     "n": 12,
+     "recall@1": 0.375,
+     "recall@5": 1.0,
+     "mrr": 0.806,
+     "ndcg@10": 0.848
+    },
+    "DECISION_STATUS": {
+     "n": 46,
+     "recall@1": 0.62,
+     "recall@5": 0.913,
+     "mrr": 0.752,
+     "ndcg@10": 0.804
+    },
+    "DIRECT": {
+     "n": 47,
+     "recall@1": 0.713,
+     "recall@5": 0.936,
+     "mrr": 0.83,
+     "ndcg@10": 0.872
+    },
+    "MULTI_DOCUMENT": {
+     "n": 6,
+     "recall@1": 0.333,
+     "recall@5": 0.667,
+     "mrr": 0.728,
+     "ndcg@10": 0.699
+    },
+    "NUMERIC": {
+     "n": 25,
+     "recall@1": 0.08,
+     "recall@5": 0.48,
+     "mrr": 0.243,
+     "ndcg@10": 0.291
+    },
+    "OPERATIONAL": {
+     "n": 46,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 7,
+     "recall@1": 0.429,
+     "recall@5": 0.786,
+     "mrr": 0.857,
+     "ndcg@10": 0.779
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 30,
+     "recall@1": 0.9,
+     "recall@5": 0.983,
+     "mrr": 0.94,
+     "ndcg@10": 0.957
+    },
+    "VISION": {
+     "n": 25,
+     "recall@1": 0.96,
+     "recall@5": 1.0,
+     "mrr": 0.98,
+     "ndcg@10": 0.985
+    }
+   },
+   "heldout": {
+    "ALL": {
+     "n": 109,
+     "recall@1": 0.725,
+     "recall@5": 0.95,
+     "mrr": 0.849,
+     "ndcg@10": 0.874
+    },
+    "SRC:handwritten": {
+     "n": 14,
+     "recall@1": 0.607,
+     "recall@5": 0.964,
+     "mrr": 0.857,
+     "ndcg@10": 0.867
+    },
+    "SRC:generated": {
+     "n": 95,
+     "recall@1": 0.742,
+     "recall@5": 0.947,
+     "mrr": 0.848,
+     "ndcg@10": 0.876
+    },
+    "ADVERSARIAL": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 1.0,
+     "mrr": 0.5,
+     "ndcg@10": 0.631
+    },
+    "CONFLICTING": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 0.5,
+     "mrr": 1.0,
+     "ndcg@10": 0.613
+    },
+    "D54": {
+     "n": 7,
+     "recall@1": 0.5,
+     "recall@5": 1.0,
+     "mrr": 0.929,
+     "ndcg@10": 0.936
+    },
+    "DECISION_STATUS": {
+     "n": 21,
+     "recall@1": 0.762,
+     "recall@5": 1.0,
+     "mrr": 0.853,
+     "ndcg@10": 0.89
+    },
+    "DIRECT": {
+     "n": 20,
+     "recall@1": 0.7,
+     "recall@5": 0.95,
+     "mrr": 0.818,
+     "ndcg@10": 0.863
+    },
+    "MULTI_DOCUMENT": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    },
+    "NUMERIC": {
+     "n": 11,
+     "recall@1": 0.0,
+     "recall@5": 0.636,
+     "mrr": 0.333,
+     "ndcg@10": 0.422
+    },
+    "OPERATIONAL": {
+     "n": 21,
+     "recall@1": 0.952,
+     "recall@5": 1.0,
+     "mrr": 0.968,
+     "ndcg@10": 0.976
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 14,
+     "recall@1": 0.929,
+     "recall@5": 1.0,
+     "mrr": 0.946,
+     "ndcg@10": 0.959
+    },
+    "VISION": {
+     "n": 11,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   }
+  },
+  "hybrid": {
+   "all": {
+    "ALL": {
+     "n": 359,
+     "recall@1": 0.76,
+     "recall@5": 0.935,
+     "mrr": 0.86,
+     "ndcg@10": 0.882
+    },
+    "SRC:handwritten": {
+     "n": 45,
+     "recall@1": 0.6,
+     "recall@5": 0.878,
+     "mrr": 0.794,
+     "ndcg@10": 0.814
+    },
+    "SRC:generated": {
+     "n": 314,
+     "recall@1": 0.783,
+     "recall@5": 0.943,
+     "mrr": 0.87,
+     "ndcg@10": 0.891
+    },
+    "ADVERSARIAL": {
+     "n": 3,
+     "recall@1": 0.0,
+     "recall@5": 0.667,
+     "mrr": 0.281,
+     "ndcg@10": 0.469
+    },
+    "CONFLICTING": {
+     "n": 5,
+     "recall@1": 0.2,
+     "recall@5": 0.9,
+     "mrr": 0.667,
+     "ndcg@10": 0.684
+    },
+    "D54": {
+     "n": 19,
+     "recall@1": 0.632,
+     "recall@5": 1.0,
+     "mrr": 0.965,
+     "ndcg@10": 0.94
+    },
+    "DECISION_STATUS": {
+     "n": 67,
+     "recall@1": 0.694,
+     "recall@5": 0.97,
+     "mrr": 0.813,
+     "ndcg@10": 0.857
+    },
+    "DIRECT": {
+     "n": 67,
+     "recall@1": 0.843,
+     "recall@5": 0.97,
+     "mrr": 0.904,
+     "ndcg@10": 0.925
+    },
+    "MULTI_DOCUMENT": {
+     "n": 7,
+     "recall@1": 0.286,
+     "recall@5": 0.786,
+     "mrr": 0.707,
+     "ndcg@10": 0.713
+    },
+    "NUMERIC": {
+     "n": 36,
+     "recall@1": 0.306,
+     "recall@5": 0.583,
+     "mrr": 0.456,
+     "ndcg@10": 0.518
+    },
+    "OPERATIONAL": {
+     "n": 67,
+     "recall@1": 0.97,
+     "recall@5": 1.0,
+     "mrr": 0.985,
+     "ndcg@10": 0.989
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 8,
+     "recall@1": 0.375,
+     "recall@5": 0.938,
+     "mrr": 0.812,
+     "ndcg@10": 0.84
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 44,
+     "recall@1": 0.909,
+     "recall@5": 0.977,
+     "mrr": 0.94,
+     "ndcg@10": 0.952
+    },
+    "VISION": {
+     "n": 36,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   },
+   "dev": {
+    "ALL": {
+     "n": 250,
+     "recall@1": 0.746,
+     "recall@5": 0.928,
+     "mrr": 0.849,
+     "ndcg@10": 0.872
+    },
+    "SRC:handwritten": {
+     "n": 31,
+     "recall@1": 0.613,
+     "recall@5": 0.839,
+     "mrr": 0.782,
+     "ndcg@10": 0.8
+    },
+    "SRC:generated": {
+     "n": 219,
+     "recall@1": 0.765,
+     "recall@5": 0.941,
+     "mrr": 0.859,
+     "ndcg@10": 0.882
+    },
+    "ADVERSARIAL": {
+     "n": 2,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.171,
+     "ndcg@10": 0.388
+    },
+    "CONFLICTING": {
+     "n": 4,
+     "recall@1": 0.25,
+     "recall@5": 1.0,
+     "mrr": 0.708,
+     "ndcg@10": 0.759
+    },
+    "D54": {
+     "n": 12,
+     "recall@1": 0.625,
+     "recall@5": 1.0,
+     "mrr": 0.944,
+     "ndcg@10": 0.935
+    },
+    "DECISION_STATUS": {
+     "n": 46,
+     "recall@1": 0.663,
+     "recall@5": 0.978,
+     "mrr": 0.802,
+     "ndcg@10": 0.849
+    },
+    "DIRECT": {
+     "n": 47,
+     "recall@1": 0.84,
+     "recall@5": 0.979,
+     "mrr": 0.902,
+     "ndcg@10": 0.922
+    },
+    "MULTI_DOCUMENT": {
+     "n": 6,
+     "recall@1": 0.25,
+     "recall@5": 0.75,
+     "mrr": 0.658,
+     "ndcg@10": 0.665
+    },
+    "NUMERIC": {
+     "n": 25,
+     "recall@1": 0.2,
+     "recall@5": 0.52,
+     "mrr": 0.378,
+     "ndcg@10": 0.442
+    },
+    "OPERATIONAL": {
+     "n": 46,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 7,
+     "recall@1": 0.357,
+     "recall@5": 0.929,
+     "mrr": 0.786,
+     "ndcg@10": 0.829
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 30,
+     "recall@1": 0.933,
+     "recall@5": 0.967,
+     "mrr": 0.954,
+     "ndcg@10": 0.961
+    },
+    "VISION": {
+     "n": 25,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   },
+   "heldout": {
+    "ALL": {
+     "n": 109,
+     "recall@1": 0.794,
+     "recall@5": 0.95,
+     "mrr": 0.885,
+     "ndcg@10": 0.904
+    },
+    "SRC:handwritten": {
+     "n": 14,
+     "recall@1": 0.571,
+     "recall@5": 0.964,
+     "mrr": 0.821,
+     "ndcg@10": 0.845
+    },
+    "SRC:generated": {
+     "n": 95,
+     "recall@1": 0.826,
+     "recall@5": 0.947,
+     "mrr": 0.894,
+     "ndcg@10": 0.913
+    },
+    "ADVERSARIAL": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 1.0,
+     "mrr": 0.5,
+     "ndcg@10": 0.631
+    },
+    "CONFLICTING": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.5,
+     "ndcg@10": 0.387
+    },
+    "D54": {
+     "n": 7,
+     "recall@1": 0.643,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 0.948
+    },
+    "DECISION_STATUS": {
+     "n": 21,
+     "recall@1": 0.762,
+     "recall@5": 0.952,
+     "mrr": 0.837,
+     "ndcg@10": 0.877
+    },
+    "DIRECT": {
+     "n": 20,
+     "recall@1": 0.85,
+     "recall@5": 0.95,
+     "mrr": 0.908,
+     "ndcg@10": 0.931
+    },
+    "MULTI_DOCUMENT": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    },
+    "NUMERIC": {
+     "n": 11,
+     "recall@1": 0.545,
+     "recall@5": 0.727,
+     "mrr": 0.633,
+     "ndcg@10": 0.691
+    },
+    "OPERATIONAL": {
+     "n": 21,
+     "recall@1": 0.905,
+     "recall@5": 1.0,
+     "mrr": 0.952,
+     "ndcg@10": 0.965
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 0.92
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 14,
+     "recall@1": 0.857,
+     "recall@5": 1.0,
+     "mrr": 0.911,
+     "ndcg@10": 0.933
+    },
+    "VISION": {
+     "n": 11,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   }
+  },
+  "static_neural": {
+   "all": {
+    "ALL": {
+     "n": 359,
+     "recall@1": 0.202,
+     "recall@5": 0.301,
+     "mrr": 0.259,
+     "ndcg@10": 0.282
+    },
+    "SRC:handwritten": {
+     "n": 45,
+     "recall@1": 0.022,
+     "recall@5": 0.144,
+     "mrr": 0.106,
+     "ndcg@10": 0.108
+    },
+    "SRC:generated": {
+     "n": 314,
+     "recall@1": 0.228,
+     "recall@5": 0.323,
+     "mrr": 0.28,
+     "ndcg@10": 0.307
+    },
+    "ADVERSARIAL": {
+     "n": 3,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.022,
+     "ndcg@10": 0.0
+    },
+    "CONFLICTING": {
+     "n": 5,
+     "recall@1": 0.0,
+     "recall@5": 0.1,
+     "mrr": 0.067,
+     "ndcg@10": 0.061
+    },
+    "D54": {
+     "n": 19,
+     "recall@1": 0.026,
+     "recall@5": 0.079,
+     "mrr": 0.092,
+     "ndcg@10": 0.092
+    },
+    "DECISION_STATUS": {
+     "n": 67,
+     "recall@1": 0.0,
+     "recall@5": 0.03,
+     "mrr": 0.019,
+     "ndcg@10": 0.023
+    },
+    "DIRECT": {
+     "n": 67,
+     "recall@1": 0.179,
+     "recall@5": 0.254,
+     "mrr": 0.231,
+     "ndcg@10": 0.264
+    },
+    "MULTI_DOCUMENT": {
+     "n": 7,
+     "recall@1": 0.0,
+     "recall@5": 0.071,
+     "mrr": 0.079,
+     "ndcg@10": 0.055
+    },
+    "NUMERIC": {
+     "n": 36,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.004,
+     "ndcg@10": 0.0
+    },
+    "OPERATIONAL": {
+     "n": 67,
+     "recall@1": 0.522,
+     "recall@5": 0.687,
+     "mrr": 0.604,
+     "ndcg@10": 0.641
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 8,
+     "recall@1": 0.0,
+     "recall@5": 0.062,
+     "mrr": 0.052,
+     "ndcg@10": 0.03
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 44,
+     "recall@1": 0.409,
+     "recall@5": 0.591,
+     "mrr": 0.506,
+     "ndcg@10": 0.555
+    },
+    "VISION": {
+     "n": 36,
+     "recall@1": 0.194,
+     "recall@5": 0.389,
+     "mrr": 0.281,
+     "ndcg@10": 0.335
+    }
+   },
+   "dev": {
+    "ALL": {
+     "n": 250,
+     "recall@1": 0.21,
+     "recall@5": 0.29,
+     "mrr": 0.26,
+     "ndcg@10": 0.282
+    },
+    "SRC:handwritten": {
+     "n": 31,
+     "recall@1": 0.032,
+     "recall@5": 0.097,
+     "mrr": 0.112,
+     "ndcg@10": 0.102
+    },
+    "SRC:generated": {
+     "n": 219,
+     "recall@1": 0.235,
+     "recall@5": 0.317,
+     "mrr": 0.281,
+     "ndcg@10": 0.307
+    },
+    "ADVERSARIAL": {
+     "n": 2,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.033,
+     "ndcg@10": 0.0
+    },
+    "CONFLICTING": {
+     "n": 4,
+     "recall@1": 0.0,
+     "recall@5": 0.125,
+     "mrr": 0.083,
+     "ndcg@10": 0.077
+    },
+    "D54": {
+     "n": 12,
+     "recall@1": 0.042,
+     "recall@5": 0.042,
+     "mrr": 0.108,
+     "ndcg@10": 0.091
+    },
+    "DECISION_STATUS": {
+     "n": 46,
+     "recall@1": 0.0,
+     "recall@5": 0.022,
+     "mrr": 0.014,
+     "ndcg@10": 0.019
+    },
+    "DIRECT": {
+     "n": 47,
+     "recall@1": 0.149,
+     "recall@5": 0.213,
+     "mrr": 0.206,
+     "ndcg@10": 0.245
+    },
+    "MULTI_DOCUMENT": {
+     "n": 6,
+     "recall@1": 0.0,
+     "recall@5": 0.083,
+     "mrr": 0.093,
+     "ndcg@10": 0.064
+    },
+    "NUMERIC": {
+     "n": 25,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.005,
+     "ndcg@10": 0.0
+    },
+    "OPERATIONAL": {
+     "n": 46,
+     "recall@1": 0.522,
+     "recall@5": 0.652,
+     "mrr": 0.591,
+     "ndcg@10": 0.634
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 7,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.03,
+     "ndcg@10": 0.0
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 30,
+     "recall@1": 0.5,
+     "recall@5": 0.567,
+     "mrr": 0.545,
+     "ndcg@10": 0.569
+    },
+    "VISION": {
+     "n": 25,
+     "recall@1": 0.24,
+     "recall@5": 0.52,
+     "mrr": 0.341,
+     "ndcg@10": 0.404
+    }
+   },
+   "heldout": {
+    "ALL": {
+     "n": 109,
+     "recall@1": 0.183,
+     "recall@5": 0.326,
+     "mrr": 0.255,
+     "ndcg@10": 0.283
+    },
+    "SRC:handwritten": {
+     "n": 14,
+     "recall@1": 0.0,
+     "recall@5": 0.25,
+     "mrr": 0.093,
+     "ndcg@10": 0.12
+    },
+    "SRC:generated": {
+     "n": 95,
+     "recall@1": 0.211,
+     "recall@5": 0.337,
+     "mrr": 0.279,
+     "ndcg@10": 0.306
+    },
+    "ADVERSARIAL": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.0,
+     "ndcg@10": 0.0
+    },
+    "CONFLICTING": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.0,
+     "ndcg@10": 0.0
+    },
+    "D54": {
+     "n": 7,
+     "recall@1": 0.0,
+     "recall@5": 0.143,
+     "mrr": 0.066,
+     "ndcg@10": 0.093
+    },
+    "DECISION_STATUS": {
+     "n": 21,
+     "recall@1": 0.0,
+     "recall@5": 0.048,
+     "mrr": 0.029,
+     "ndcg@10": 0.03
+    },
+    "DIRECT": {
+     "n": 20,
+     "recall@1": 0.25,
+     "recall@5": 0.35,
+     "mrr": 0.288,
+     "ndcg@10": 0.309
+    },
+    "MULTI_DOCUMENT": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.0,
+     "ndcg@10": 0.0
+    },
+    "NUMERIC": {
+     "n": 11,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.0,
+     "ndcg@10": 0.0
+    },
+    "OPERATIONAL": {
+     "n": 21,
+     "recall@1": 0.524,
+     "recall@5": 0.762,
+     "mrr": 0.631,
+     "ndcg@10": 0.656
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.2,
+     "ndcg@10": 0.237
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 14,
+     "recall@1": 0.214,
+     "recall@5": 0.643,
+     "mrr": 0.423,
+     "ndcg@10": 0.524
+    },
+    "VISION": {
+     "n": 11,
+     "recall@1": 0.091,
+     "recall@5": 0.091,
+     "mrr": 0.143,
+     "ndcg@10": 0.18
+    }
+   }
+  },
+  "hybrid_static": {
+   "all": {
+    "ALL": {
+     "n": 359,
+     "recall@1": 0.412,
+     "recall@5": 0.883,
+     "mrr": 0.627,
+     "ndcg@10": 0.702
+    },
+    "SRC:handwritten": {
+     "n": 45,
+     "recall@1": 0.267,
+     "recall@5": 0.633,
+     "mrr": 0.493,
+     "ndcg@10": 0.549
+    },
+    "SRC:generated": {
+     "n": 314,
+     "recall@1": 0.433,
+     "recall@5": 0.919,
+     "mrr": 0.646,
+     "ndcg@10": 0.724
+    },
+    "ADVERSARIAL": {
+     "n": 3,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.079,
+     "ndcg@10": 0.096
+    },
+    "CONFLICTING": {
+     "n": 5,
+     "recall@1": 0.0,
+     "recall@5": 0.6,
+     "mrr": 0.28,
+     "ndcg@10": 0.331
+    },
+    "D54": {
+     "n": 19,
+     "recall@1": 0.237,
+     "recall@5": 0.711,
+     "mrr": 0.6,
+     "ndcg@10": 0.612
+    },
+    "DECISION_STATUS": {
+     "n": 67,
+     "recall@1": 0.082,
+     "recall@5": 0.858,
+     "mrr": 0.442,
+     "ndcg@10": 0.574
+    },
+    "DIRECT": {
+     "n": 67,
+     "recall@1": 0.403,
+     "recall@5": 0.896,
+     "mrr": 0.606,
+     "ndcg@10": 0.7
+    },
+    "MULTI_DOCUMENT": {
+     "n": 7,
+     "recall@1": 0.214,
+     "recall@5": 0.571,
+     "mrr": 0.561,
+     "ndcg@10": 0.563
+    },
+    "NUMERIC": {
+     "n": 36,
+     "recall@1": 0.0,
+     "recall@5": 0.861,
+     "mrr": 0.297,
+     "ndcg@10": 0.453
+    },
+    "OPERATIONAL": {
+     "n": 67,
+     "recall@1": 0.851,
+     "recall@5": 0.985,
+     "mrr": 0.905,
+     "ndcg@10": 0.929
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 8,
+     "recall@1": 0.188,
+     "recall@5": 0.625,
+     "mrr": 0.625,
+     "ndcg@10": 0.645
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 44,
+     "recall@1": 0.727,
+     "recall@5": 0.955,
+     "mrr": 0.819,
+     "ndcg@10": 0.852
+    },
+    "VISION": {
+     "n": 36,
+     "recall@1": 0.528,
+     "recall@5": 0.972,
+     "mrr": 0.708,
+     "ndcg@10": 0.781
+    }
+   },
+   "dev": {
+    "ALL": {
+     "n": 250,
+     "recall@1": 0.39,
+     "recall@5": 0.892,
+     "mrr": 0.617,
+     "ndcg@10": 0.696
+    },
+    "SRC:handwritten": {
+     "n": 31,
+     "recall@1": 0.242,
+     "recall@5": 0.629,
+     "mrr": 0.493,
+     "ndcg@10": 0.537
+    },
+    "SRC:generated": {
+     "n": 219,
+     "recall@1": 0.411,
+     "recall@5": 0.929,
+     "mrr": 0.635,
+     "ndcg@10": 0.718
+    },
+    "ADVERSARIAL": {
+     "n": 2,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.069,
+     "ndcg@10": 0.0
+    },
+    "CONFLICTING": {
+     "n": 4,
+     "recall@1": 0.0,
+     "recall@5": 0.625,
+     "mrr": 0.3,
+     "ndcg@10": 0.354
+    },
+    "D54": {
+     "n": 12,
+     "recall@1": 0.208,
+     "recall@5": 0.708,
+     "mrr": 0.561,
+     "ndcg@10": 0.603
+    },
+    "DECISION_STATUS": {
+     "n": 46,
+     "recall@1": 0.054,
+     "recall@5": 0.88,
+     "mrr": 0.422,
+     "ndcg@10": 0.561
+    },
+    "DIRECT": {
+     "n": 47,
+     "recall@1": 0.34,
+     "recall@5": 0.894,
+     "mrr": 0.577,
+     "ndcg@10": 0.677
+    },
+    "MULTI_DOCUMENT": {
+     "n": 6,
+     "recall@1": 0.25,
+     "recall@5": 0.583,
+     "mrr": 0.598,
+     "ndcg@10": 0.57
+    },
+    "NUMERIC": {
+     "n": 25,
+     "recall@1": 0.0,
+     "recall@5": 0.88,
+     "mrr": 0.301,
+     "ndcg@10": 0.461
+    },
+    "OPERATIONAL": {
+     "n": 46,
+     "recall@1": 0.848,
+     "recall@5": 1.0,
+     "mrr": 0.907,
+     "ndcg@10": 0.93
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 7,
+     "recall@1": 0.143,
+     "recall@5": 0.571,
+     "mrr": 0.571,
+     "ndcg@10": 0.606
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 30,
+     "recall@1": 0.667,
+     "recall@5": 0.967,
+     "mrr": 0.783,
+     "ndcg@10": 0.828
+    },
+    "VISION": {
+     "n": 25,
+     "recall@1": 0.6,
+     "recall@5": 1.0,
+     "mrr": 0.773,
+     "ndcg@10": 0.831
+    }
+   },
+   "heldout": {
+    "ALL": {
+     "n": 109,
+     "recall@1": 0.463,
+     "recall@5": 0.862,
+     "mrr": 0.65,
+     "ndcg@10": 0.718
+    },
+    "SRC:handwritten": {
+     "n": 14,
+     "recall@1": 0.321,
+     "recall@5": 0.643,
+     "mrr": 0.493,
+     "ndcg@10": 0.577
+    },
+    "SRC:generated": {
+     "n": 95,
+     "recall@1": 0.484,
+     "recall@5": 0.895,
+     "mrr": 0.673,
+     "ndcg@10": 0.738
+    },
+    "ADVERSARIAL": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.1,
+     "ndcg@10": 0.289
+    },
+    "CONFLICTING": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.2,
+     "ndcg@10": 0.237
+    },
+    "D54": {
+     "n": 7,
+     "recall@1": 0.286,
+     "recall@5": 0.714,
+     "mrr": 0.667,
+     "ndcg@10": 0.627
+    },
+    "DECISION_STATUS": {
+     "n": 21,
+     "recall@1": 0.143,
+     "recall@5": 0.81,
+     "mrr": 0.486,
+     "ndcg@10": 0.602
+    },
+    "DIRECT": {
+     "n": 20,
+     "recall@1": 0.55,
+     "recall@5": 0.9,
+     "mrr": 0.675,
+     "ndcg@10": 0.753
+    },
+    "MULTI_DOCUMENT": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.333,
+     "ndcg@10": 0.525
+    },
+    "NUMERIC": {
+     "n": 11,
+     "recall@1": 0.0,
+     "recall@5": 0.818,
+     "mrr": 0.287,
+     "ndcg@10": 0.435
+    },
+    "OPERATIONAL": {
+     "n": 21,
+     "recall@1": 0.857,
+     "recall@5": 0.952,
+     "mrr": 0.901,
+     "ndcg@10": 0.925
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 0.92
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 14,
+     "recall@1": 0.857,
+     "recall@5": 0.929,
+     "mrr": 0.898,
+     "ndcg@10": 0.902
+    },
+    "VISION": {
+     "n": 11,
+     "recall@1": 0.364,
+     "recall@5": 0.909,
+     "mrr": 0.561,
+     "ndcg@10": 0.667
+    }
+   }
+  },
+  "pgvector_static": {
+   "all": {
+    "ALL": {
+     "n": 359,
+     "recall@1": 0.202,
+     "recall@5": 0.301,
+     "mrr": 0.259,
+     "ndcg@10": 0.282
+    },
+    "SRC:handwritten": {
+     "n": 45,
+     "recall@1": 0.022,
+     "recall@5": 0.144,
+     "mrr": 0.106,
+     "ndcg@10": 0.108
+    },
+    "SRC:generated": {
+     "n": 314,
+     "recall@1": 0.228,
+     "recall@5": 0.323,
+     "mrr": 0.28,
+     "ndcg@10": 0.307
+    },
+    "ADVERSARIAL": {
+     "n": 3,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.022,
+     "ndcg@10": 0.0
+    },
+    "CONFLICTING": {
+     "n": 5,
+     "recall@1": 0.0,
+     "recall@5": 0.1,
+     "mrr": 0.067,
+     "ndcg@10": 0.061
+    },
+    "D54": {
+     "n": 19,
+     "recall@1": 0.026,
+     "recall@5": 0.079,
+     "mrr": 0.092,
+     "ndcg@10": 0.092
+    },
+    "DECISION_STATUS": {
+     "n": 67,
+     "recall@1": 0.0,
+     "recall@5": 0.03,
+     "mrr": 0.019,
+     "ndcg@10": 0.023
+    },
+    "DIRECT": {
+     "n": 67,
+     "recall@1": 0.179,
+     "recall@5": 0.254,
+     "mrr": 0.231,
+     "ndcg@10": 0.264
+    },
+    "MULTI_DOCUMENT": {
+     "n": 7,
+     "recall@1": 0.0,
+     "recall@5": 0.071,
+     "mrr": 0.079,
+     "ndcg@10": 0.055
+    },
+    "NUMERIC": {
+     "n": 36,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.004,
+     "ndcg@10": 0.0
+    },
+    "OPERATIONAL": {
+     "n": 67,
+     "recall@1": 0.522,
+     "recall@5": 0.687,
+     "mrr": 0.604,
+     "ndcg@10": 0.641
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 8,
+     "recall@1": 0.0,
+     "recall@5": 0.062,
+     "mrr": 0.052,
+     "ndcg@10": 0.03
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 44,
+     "recall@1": 0.409,
+     "recall@5": 0.591,
+     "mrr": 0.506,
+     "ndcg@10": 0.555
+    },
+    "VISION": {
+     "n": 36,
+     "recall@1": 0.194,
+     "recall@5": 0.389,
+     "mrr": 0.281,
+     "ndcg@10": 0.335
+    }
+   },
+   "dev": {
+    "ALL": {
+     "n": 250,
+     "recall@1": 0.21,
+     "recall@5": 0.29,
+     "mrr": 0.26,
+     "ndcg@10": 0.282
+    },
+    "SRC:handwritten": {
+     "n": 31,
+     "recall@1": 0.032,
+     "recall@5": 0.097,
+     "mrr": 0.112,
+     "ndcg@10": 0.102
+    },
+    "SRC:generated": {
+     "n": 219,
+     "recall@1": 0.235,
+     "recall@5": 0.317,
+     "mrr": 0.281,
+     "ndcg@10": 0.307
+    },
+    "ADVERSARIAL": {
+     "n": 2,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.033,
+     "ndcg@10": 0.0
+    },
+    "CONFLICTING": {
+     "n": 4,
+     "recall@1": 0.0,
+     "recall@5": 0.125,
+     "mrr": 0.083,
+     "ndcg@10": 0.077
+    },
+    "D54": {
+     "n": 12,
+     "recall@1": 0.042,
+     "recall@5": 0.042,
+     "mrr": 0.108,
+     "ndcg@10": 0.091
+    },
+    "DECISION_STATUS": {
+     "n": 46,
+     "recall@1": 0.0,
+     "recall@5": 0.022,
+     "mrr": 0.014,
+     "ndcg@10": 0.019
+    },
+    "DIRECT": {
+     "n": 47,
+     "recall@1": 0.149,
+     "recall@5": 0.213,
+     "mrr": 0.206,
+     "ndcg@10": 0.245
+    },
+    "MULTI_DOCUMENT": {
+     "n": 6,
+     "recall@1": 0.0,
+     "recall@5": 0.083,
+     "mrr": 0.093,
+     "ndcg@10": 0.064
+    },
+    "NUMERIC": {
+     "n": 25,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.005,
+     "ndcg@10": 0.0
+    },
+    "OPERATIONAL": {
+     "n": 46,
+     "recall@1": 0.522,
+     "recall@5": 0.652,
+     "mrr": 0.591,
+     "ndcg@10": 0.634
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 7,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.03,
+     "ndcg@10": 0.0
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 30,
+     "recall@1": 0.5,
+     "recall@5": 0.567,
+     "mrr": 0.545,
+     "ndcg@10": 0.569
+    },
+    "VISION": {
+     "n": 25,
+     "recall@1": 0.24,
+     "recall@5": 0.52,
+     "mrr": 0.341,
+     "ndcg@10": 0.404
+    }
+   },
+   "heldout": {
+    "ALL": {
+     "n": 109,
+     "recall@1": 0.183,
+     "recall@5": 0.326,
+     "mrr": 0.255,
+     "ndcg@10": 0.283
+    },
+    "SRC:handwritten": {
+     "n": 14,
+     "recall@1": 0.0,
+     "recall@5": 0.25,
+     "mrr": 0.093,
+     "ndcg@10": 0.12
+    },
+    "SRC:generated": {
+     "n": 95,
+     "recall@1": 0.211,
+     "recall@5": 0.337,
+     "mrr": 0.279,
+     "ndcg@10": 0.306
+    },
+    "ADVERSARIAL": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.0,
+     "ndcg@10": 0.0
+    },
+    "CONFLICTING": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.0,
+     "ndcg@10": 0.0
+    },
+    "D54": {
+     "n": 7,
+     "recall@1": 0.0,
+     "recall@5": 0.143,
+     "mrr": 0.066,
+     "ndcg@10": 0.093
+    },
+    "DECISION_STATUS": {
+     "n": 21,
+     "recall@1": 0.0,
+     "recall@5": 0.048,
+     "mrr": 0.029,
+     "ndcg@10": 0.03
+    },
+    "DIRECT": {
+     "n": 20,
+     "recall@1": 0.25,
+     "recall@5": 0.35,
+     "mrr": 0.288,
+     "ndcg@10": 0.309
+    },
+    "MULTI_DOCUMENT": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.0,
+     "ndcg@10": 0.0
+    },
+    "NUMERIC": {
+     "n": 11,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.0,
+     "ndcg@10": 0.0
+    },
+    "OPERATIONAL": {
+     "n": 21,
+     "recall@1": 0.524,
+     "recall@5": 0.762,
+     "mrr": 0.631,
+     "ndcg@10": 0.656
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.2,
+     "ndcg@10": 0.237
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 14,
+     "recall@1": 0.214,
+     "recall@5": 0.643,
+     "mrr": 0.423,
+     "ndcg@10": 0.524
+    },
+    "VISION": {
+     "n": 11,
+     "recall@1": 0.091,
+     "recall@5": 0.091,
+     "mrr": 0.143,
+     "ndcg@10": 0.18
+    }
+   }
+  },
+  "minilm": {
+   "all": {
+    "ALL": {
+     "n": 359,
+     "recall@1": 0.574,
+     "recall@5": 0.749,
+     "mrr": 0.672,
+     "ndcg@10": 0.69
+    },
+    "SRC:handwritten": {
+     "n": 45,
+     "recall@1": 0.322,
+     "recall@5": 0.733,
+     "mrr": 0.553,
+     "ndcg@10": 0.596
+    },
+    "SRC:generated": {
+     "n": 314,
+     "recall@1": 0.61,
+     "recall@5": 0.752,
+     "mrr": 0.689,
+     "ndcg@10": 0.704
+    },
+    "ADVERSARIAL": {
+     "n": 3,
+     "recall@1": 0.0,
+     "recall@5": 0.333,
+     "mrr": 0.12,
+     "ndcg@10": 0.244
+    },
+    "CONFLICTING": {
+     "n": 5,
+     "recall@1": 0.0,
+     "recall@5": 0.3,
+     "mrr": 0.206,
+     "ndcg@10": 0.223
+    },
+    "D54": {
+     "n": 19,
+     "recall@1": 0.421,
+     "recall@5": 0.816,
+     "mrr": 0.782,
+     "ndcg@10": 0.725
+    },
+    "DECISION_STATUS": {
+     "n": 67,
+     "recall@1": 0.209,
+     "recall@5": 0.373,
+     "mrr": 0.294,
+     "ndcg@10": 0.319
+    },
+    "DIRECT": {
+     "n": 67,
+     "recall@1": 0.687,
+     "recall@5": 0.918,
+     "mrr": 0.798,
+     "ndcg@10": 0.826
+    },
+    "MULTI_DOCUMENT": {
+     "n": 7,
+     "recall@1": 0.071,
+     "recall@5": 0.5,
+     "mrr": 0.425,
+     "ndcg@10": 0.418
+    },
+    "NUMERIC": {
+     "n": 36,
+     "recall@1": 0.139,
+     "recall@5": 0.333,
+     "mrr": 0.239,
+     "ndcg@10": 0.285
+    },
+    "OPERATIONAL": {
+     "n": 67,
+     "recall@1": 0.925,
+     "recall@5": 0.985,
+     "mrr": 0.952,
+     "ndcg@10": 0.959
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 8,
+     "recall@1": 0.062,
+     "recall@5": 0.5,
+     "mrr": 0.362,
+     "ndcg@10": 0.391
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 44,
+     "recall@1": 0.841,
+     "recall@5": 0.977,
+     "mrr": 0.903,
+     "ndcg@10": 0.921
+    },
+    "VISION": {
+     "n": 36,
+     "recall@1": 0.917,
+     "recall@5": 1.0,
+     "mrr": 0.941,
+     "ndcg@10": 0.955
+    }
+   },
+   "dev": {
+    "ALL": {
+     "n": 250,
+     "recall@1": 0.576,
+     "recall@5": 0.726,
+     "mrr": 0.664,
+     "ndcg@10": 0.679
+    },
+    "SRC:handwritten": {
+     "n": 31,
+     "recall@1": 0.355,
+     "recall@5": 0.677,
+     "mrr": 0.555,
+     "ndcg@10": 0.589
+    },
+    "SRC:generated": {
+     "n": 219,
+     "recall@1": 0.607,
+     "recall@5": 0.733,
+     "mrr": 0.679,
+     "ndcg@10": 0.692
+    },
+    "ADVERSARIAL": {
+     "n": 2,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.056,
+     "ndcg@10": 0.151
+    },
+    "CONFLICTING": {
+     "n": 4,
+     "recall@1": 0.0,
+     "recall@5": 0.25,
+     "mrr": 0.174,
+     "ndcg@10": 0.202
+    },
+    "D54": {
+     "n": 12,
+     "recall@1": 0.458,
+     "recall@5": 0.917,
+     "mrr": 0.833,
+     "ndcg@10": 0.797
+    },
+    "DECISION_STATUS": {
+     "n": 46,
+     "recall@1": 0.152,
+     "recall@5": 0.348,
+     "mrr": 0.254,
+     "ndcg@10": 0.285
+    },
+    "DIRECT": {
+     "n": 47,
+     "recall@1": 0.681,
+     "recall@5": 0.883,
+     "mrr": 0.783,
+     "ndcg@10": 0.804
+    },
+    "MULTI_DOCUMENT": {
+     "n": 6,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.329,
+     "ndcg@10": 0.352
+    },
+    "NUMERIC": {
+     "n": 25,
+     "recall@1": 0.08,
+     "recall@5": 0.24,
+     "mrr": 0.159,
+     "ndcg@10": 0.195
+    },
+    "OPERATIONAL": {
+     "n": 46,
+     "recall@1": 0.957,
+     "recall@5": 1.0,
+     "mrr": 0.972,
+     "ndcg@10": 0.979
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 7,
+     "recall@1": 0.071,
+     "recall@5": 0.429,
+     "mrr": 0.343,
+     "ndcg@10": 0.358
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 30,
+     "recall@1": 0.933,
+     "recall@5": 0.967,
+     "mrr": 0.952,
+     "ndcg@10": 0.954
+    },
+    "VISION": {
+     "n": 25,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   },
+   "heldout": {
+    "ALL": {
+     "n": 109,
+     "recall@1": 0.569,
+     "recall@5": 0.803,
+     "mrr": 0.691,
+     "ndcg@10": 0.717
+    },
+    "SRC:handwritten": {
+     "n": 14,
+     "recall@1": 0.25,
+     "recall@5": 0.857,
+     "mrr": 0.549,
+     "ndcg@10": 0.614
+    },
+    "SRC:generated": {
+     "n": 95,
+     "recall@1": 0.616,
+     "recall@5": 0.795,
+     "mrr": 0.712,
+     "ndcg@10": 0.732
+    },
+    "ADVERSARIAL": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 1.0,
+     "mrr": 0.25,
+     "ndcg@10": 0.431
+    },
+    "CONFLICTING": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.333,
+     "ndcg@10": 0.307
+    },
+    "D54": {
+     "n": 7,
+     "recall@1": 0.357,
+     "recall@5": 0.643,
+     "mrr": 0.695,
+     "ndcg@10": 0.603
+    },
+    "DECISION_STATUS": {
+     "n": 21,
+     "recall@1": 0.333,
+     "recall@5": 0.429,
+     "mrr": 0.381,
+     "ndcg@10": 0.394
+    },
+    "DIRECT": {
+     "n": 20,
+     "recall@1": 0.7,
+     "recall@5": 1.0,
+     "mrr": 0.835,
+     "ndcg@10": 0.877
+    },
+    "MULTI_DOCUMENT": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 0.5,
+     "mrr": 1.0,
+     "ndcg@10": 0.818
+    },
+    "NUMERIC": {
+     "n": 11,
+     "recall@1": 0.273,
+     "recall@5": 0.545,
+     "mrr": 0.42,
+     "ndcg@10": 0.489
+    },
+    "OPERATIONAL": {
+     "n": 21,
+     "recall@1": 0.857,
+     "recall@5": 0.952,
+     "mrr": 0.908,
+     "ndcg@10": 0.917
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 1.0,
+     "mrr": 0.5,
+     "ndcg@10": 0.624
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 14,
+     "recall@1": 0.643,
+     "recall@5": 1.0,
+     "mrr": 0.798,
+     "ndcg@10": 0.849
+    },
+    "VISION": {
+     "n": 11,
+     "recall@1": 0.727,
+     "recall@5": 1.0,
+     "mrr": 0.806,
+     "ndcg@10": 0.853
+    }
+   }
+  },
+  "hybrid_minilm": {
+   "all": {
+    "ALL": {
+     "n": 359,
+     "recall@1": 0.733,
+     "recall@5": 0.933,
+     "mrr": 0.842,
+     "ndcg@10": 0.866
+    },
+    "SRC:handwritten": {
+     "n": 45,
+     "recall@1": 0.489,
+     "recall@5": 0.844,
+     "mrr": 0.713,
+     "ndcg@10": 0.742
+    },
+    "SRC:generated": {
+     "n": 314,
+     "recall@1": 0.768,
+     "recall@5": 0.946,
+     "mrr": 0.861,
+     "ndcg@10": 0.884
+    },
+    "ADVERSARIAL": {
+     "n": 3,
+     "recall@1": 0.0,
+     "recall@5": 0.333,
+     "mrr": 0.196,
+     "ndcg@10": 0.339
+    },
+    "CONFLICTING": {
+     "n": 5,
+     "recall@1": 0.2,
+     "recall@5": 0.8,
+     "mrr": 0.667,
+     "ndcg@10": 0.623
+    },
+    "D54": {
+     "n": 19,
+     "recall@1": 0.553,
+     "recall@5": 0.921,
+     "mrr": 0.921,
+     "ndcg@10": 0.886
+    },
+    "DECISION_STATUS": {
+     "n": 67,
+     "recall@1": 0.425,
+     "recall@5": 0.881,
+     "mrr": 0.605,
+     "ndcg@10": 0.696
+    },
+    "DIRECT": {
+     "n": 67,
+     "recall@1": 0.843,
+     "recall@5": 0.955,
+     "mrr": 0.896,
+     "ndcg@10": 0.911
+    },
+    "MULTI_DOCUMENT": {
+     "n": 7,
+     "recall@1": 0.286,
+     "recall@5": 0.714,
+     "mrr": 0.726,
+     "ndcg@10": 0.719
+    },
+    "NUMERIC": {
+     "n": 36,
+     "recall@1": 0.583,
+     "recall@5": 0.917,
+     "mrr": 0.731,
+     "ndcg@10": 0.774
+    },
+    "OPERATIONAL": {
+     "n": 67,
+     "recall@1": 0.955,
+     "recall@5": 1.0,
+     "mrr": 0.974,
+     "ndcg@10": 0.98
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 8,
+     "recall@1": 0.188,
+     "recall@5": 0.688,
+     "mrr": 0.667,
+     "ndcg@10": 0.643
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 44,
+     "recall@1": 0.955,
+     "recall@5": 0.977,
+     "mrr": 0.962,
+     "ndcg@10": 0.964
+    },
+    "VISION": {
+     "n": 36,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   },
+   "dev": {
+    "ALL": {
+     "n": 250,
+     "recall@1": 0.726,
+     "recall@5": 0.922,
+     "mrr": 0.837,
+     "ndcg@10": 0.859
+    },
+    "SRC:handwritten": {
+     "n": 31,
+     "recall@1": 0.532,
+     "recall@5": 0.79,
+     "mrr": 0.733,
+     "ndcg@10": 0.746
+    },
+    "SRC:generated": {
+     "n": 219,
+     "recall@1": 0.753,
+     "recall@5": 0.941,
+     "mrr": 0.851,
+     "ndcg@10": 0.875
+    },
+    "ADVERSARIAL": {
+     "n": 2,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.127,
+     "ndcg@10": 0.259
+    },
+    "CONFLICTING": {
+     "n": 4,
+     "recall@1": 0.25,
+     "recall@5": 0.875,
+     "mrr": 0.708,
+     "ndcg@10": 0.682
+    },
+    "D54": {
+     "n": 12,
+     "recall@1": 0.625,
+     "recall@5": 0.958,
+     "mrr": 0.958,
+     "ndcg@10": 0.927
+    },
+    "DECISION_STATUS": {
+     "n": 46,
+     "recall@1": 0.446,
+     "recall@5": 0.891,
+     "mrr": 0.614,
+     "ndcg@10": 0.705
+    },
+    "DIRECT": {
+     "n": 47,
+     "recall@1": 0.819,
+     "recall@5": 0.936,
+     "mrr": 0.876,
+     "ndcg@10": 0.892
+    },
+    "MULTI_DOCUMENT": {
+     "n": 6,
+     "recall@1": 0.25,
+     "recall@5": 0.667,
+     "mrr": 0.681,
+     "ndcg@10": 0.685
+    },
+    "NUMERIC": {
+     "n": 25,
+     "recall@1": 0.52,
+     "recall@5": 0.88,
+     "mrr": 0.689,
+     "ndcg@10": 0.732
+    },
+    "OPERATIONAL": {
+     "n": 46,
+     "recall@1": 0.957,
+     "recall@5": 1.0,
+     "mrr": 0.978,
+     "ndcg@10": 0.984
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 7,
+     "recall@1": 0.214,
+     "recall@5": 0.643,
+     "mrr": 0.69,
+     "ndcg@10": 0.636
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 30,
+     "recall@1": 0.967,
+     "recall@5": 0.967,
+     "mrr": 0.969,
+     "ndcg@10": 0.967
+    },
+    "VISION": {
+     "n": 25,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   },
+   "heldout": {
+    "ALL": {
+     "n": 109,
+     "recall@1": 0.748,
+     "recall@5": 0.959,
+     "mrr": 0.854,
+     "ndcg@10": 0.88
+    },
+    "SRC:handwritten": {
+     "n": 14,
+     "recall@1": 0.393,
+     "recall@5": 0.964,
+     "mrr": 0.667,
+     "ndcg@10": 0.732
+    },
+    "SRC:generated": {
+     "n": 95,
+     "recall@1": 0.8,
+     "recall@5": 0.958,
+     "mrr": 0.882,
+     "ndcg@10": 0.902
+    },
+    "ADVERSARIAL": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 1.0,
+     "mrr": 0.333,
+     "ndcg@10": 0.5
+    },
+    "CONFLICTING": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.5,
+     "ndcg@10": 0.387
+    },
+    "D54": {
+     "n": 7,
+     "recall@1": 0.429,
+     "recall@5": 0.857,
+     "mrr": 0.857,
+     "ndcg@10": 0.816
+    },
+    "DECISION_STATUS": {
+     "n": 21,
+     "recall@1": 0.381,
+     "recall@5": 0.857,
+     "mrr": 0.588,
+     "ndcg@10": 0.676
+    },
+    "DIRECT": {
+     "n": 20,
+     "recall@1": 0.9,
+     "recall@5": 1.0,
+     "mrr": 0.942,
+     "ndcg@10": 0.957
+    },
+    "MULTI_DOCUMENT": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 0.92
+    },
+    "NUMERIC": {
+     "n": 11,
+     "recall@1": 0.727,
+     "recall@5": 1.0,
+     "mrr": 0.826,
+     "ndcg@10": 0.869
+    },
+    "OPERATIONAL": {
+     "n": 21,
+     "recall@1": 0.952,
+     "recall@5": 1.0,
+     "mrr": 0.964,
+     "ndcg@10": 0.973
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 1.0,
+     "mrr": 0.5,
+     "ndcg@10": 0.693
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 14,
+     "recall@1": 0.929,
+     "recall@5": 1.0,
+     "mrr": 0.946,
+     "ndcg@10": 0.959
+    },
+    "VISION": {
+     "n": 11,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   }
+  },
+  "pgvector_minilm": {
+   "all": {
+    "ALL": {
+     "n": 359,
+     "recall@1": 0.574,
+     "recall@5": 0.749,
+     "mrr": 0.672,
+     "ndcg@10": 0.69
+    },
+    "SRC:handwritten": {
+     "n": 45,
+     "recall@1": 0.322,
+     "recall@5": 0.733,
+     "mrr": 0.553,
+     "ndcg@10": 0.596
+    },
+    "SRC:generated": {
+     "n": 314,
+     "recall@1": 0.61,
+     "recall@5": 0.752,
+     "mrr": 0.689,
+     "ndcg@10": 0.704
+    },
+    "ADVERSARIAL": {
+     "n": 3,
+     "recall@1": 0.0,
+     "recall@5": 0.333,
+     "mrr": 0.12,
+     "ndcg@10": 0.244
+    },
+    "CONFLICTING": {
+     "n": 5,
+     "recall@1": 0.0,
+     "recall@5": 0.3,
+     "mrr": 0.206,
+     "ndcg@10": 0.223
+    },
+    "D54": {
+     "n": 19,
+     "recall@1": 0.421,
+     "recall@5": 0.816,
+     "mrr": 0.782,
+     "ndcg@10": 0.725
+    },
+    "DECISION_STATUS": {
+     "n": 67,
+     "recall@1": 0.209,
+     "recall@5": 0.373,
+     "mrr": 0.294,
+     "ndcg@10": 0.319
+    },
+    "DIRECT": {
+     "n": 67,
+     "recall@1": 0.687,
+     "recall@5": 0.918,
+     "mrr": 0.798,
+     "ndcg@10": 0.826
+    },
+    "MULTI_DOCUMENT": {
+     "n": 7,
+     "recall@1": 0.071,
+     "recall@5": 0.5,
+     "mrr": 0.425,
+     "ndcg@10": 0.418
+    },
+    "NUMERIC": {
+     "n": 36,
+     "recall@1": 0.139,
+     "recall@5": 0.333,
+     "mrr": 0.239,
+     "ndcg@10": 0.285
+    },
+    "OPERATIONAL": {
+     "n": 67,
+     "recall@1": 0.925,
+     "recall@5": 0.985,
+     "mrr": 0.952,
+     "ndcg@10": 0.959
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 8,
+     "recall@1": 0.062,
+     "recall@5": 0.5,
+     "mrr": 0.362,
+     "ndcg@10": 0.391
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 44,
+     "recall@1": 0.841,
+     "recall@5": 0.977,
+     "mrr": 0.903,
+     "ndcg@10": 0.921
+    },
+    "VISION": {
+     "n": 36,
+     "recall@1": 0.917,
+     "recall@5": 1.0,
+     "mrr": 0.941,
+     "ndcg@10": 0.955
+    }
+   },
+   "dev": {
+    "ALL": {
+     "n": 250,
+     "recall@1": 0.576,
+     "recall@5": 0.726,
+     "mrr": 0.664,
+     "ndcg@10": 0.679
+    },
+    "SRC:handwritten": {
+     "n": 31,
+     "recall@1": 0.355,
+     "recall@5": 0.677,
+     "mrr": 0.555,
+     "ndcg@10": 0.589
+    },
+    "SRC:generated": {
+     "n": 219,
+     "recall@1": 0.607,
+     "recall@5": 0.733,
+     "mrr": 0.679,
+     "ndcg@10": 0.692
+    },
+    "ADVERSARIAL": {
+     "n": 2,
+     "recall@1": 0.0,
+     "recall@5": 0.0,
+     "mrr": 0.056,
+     "ndcg@10": 0.151
+    },
+    "CONFLICTING": {
+     "n": 4,
+     "recall@1": 0.0,
+     "recall@5": 0.25,
+     "mrr": 0.174,
+     "ndcg@10": 0.202
+    },
+    "D54": {
+     "n": 12,
+     "recall@1": 0.458,
+     "recall@5": 0.917,
+     "mrr": 0.833,
+     "ndcg@10": 0.797
+    },
+    "DECISION_STATUS": {
+     "n": 46,
+     "recall@1": 0.152,
+     "recall@5": 0.348,
+     "mrr": 0.254,
+     "ndcg@10": 0.285
+    },
+    "DIRECT": {
+     "n": 47,
+     "recall@1": 0.681,
+     "recall@5": 0.883,
+     "mrr": 0.783,
+     "ndcg@10": 0.804
+    },
+    "MULTI_DOCUMENT": {
+     "n": 6,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.329,
+     "ndcg@10": 0.352
+    },
+    "NUMERIC": {
+     "n": 25,
+     "recall@1": 0.08,
+     "recall@5": 0.24,
+     "mrr": 0.159,
+     "ndcg@10": 0.195
+    },
+    "OPERATIONAL": {
+     "n": 46,
+     "recall@1": 0.957,
+     "recall@5": 1.0,
+     "mrr": 0.972,
+     "ndcg@10": 0.979
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 7,
+     "recall@1": 0.071,
+     "recall@5": 0.429,
+     "mrr": 0.343,
+     "ndcg@10": 0.358
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 30,
+     "recall@1": 0.933,
+     "recall@5": 0.967,
+     "mrr": 0.952,
+     "ndcg@10": 0.954
+    },
+    "VISION": {
+     "n": 25,
+     "recall@1": 1.0,
+     "recall@5": 1.0,
+     "mrr": 1.0,
+     "ndcg@10": 1.0
+    }
+   },
+   "heldout": {
+    "ALL": {
+     "n": 109,
+     "recall@1": 0.569,
+     "recall@5": 0.803,
+     "mrr": 0.691,
+     "ndcg@10": 0.717
+    },
+    "SRC:handwritten": {
+     "n": 14,
+     "recall@1": 0.25,
+     "recall@5": 0.857,
+     "mrr": 0.549,
+     "ndcg@10": 0.614
+    },
+    "SRC:generated": {
+     "n": 95,
+     "recall@1": 0.616,
+     "recall@5": 0.795,
+     "mrr": 0.712,
+     "ndcg@10": 0.732
+    },
+    "ADVERSARIAL": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 1.0,
+     "mrr": 0.25,
+     "ndcg@10": 0.431
+    },
+    "CONFLICTING": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 0.5,
+     "mrr": 0.333,
+     "ndcg@10": 0.307
+    },
+    "D54": {
+     "n": 7,
+     "recall@1": 0.357,
+     "recall@5": 0.643,
+     "mrr": 0.695,
+     "ndcg@10": 0.603
+    },
+    "DECISION_STATUS": {
+     "n": 21,
+     "recall@1": 0.333,
+     "recall@5": 0.429,
+     "mrr": 0.381,
+     "ndcg@10": 0.394
+    },
+    "DIRECT": {
+     "n": 20,
+     "recall@1": 0.7,
+     "recall@5": 1.0,
+     "mrr": 0.835,
+     "ndcg@10": 0.877
+    },
+    "MULTI_DOCUMENT": {
+     "n": 1,
+     "recall@1": 0.5,
+     "recall@5": 0.5,
+     "mrr": 1.0,
+     "ndcg@10": 0.818
+    },
+    "NUMERIC": {
+     "n": 11,
+     "recall@1": 0.273,
+     "recall@5": 0.545,
+     "mrr": 0.42,
+     "ndcg@10": 0.489
+    },
+    "OPERATIONAL": {
+     "n": 21,
+     "recall@1": 0.857,
+     "recall@5": 0.952,
+     "mrr": 0.908,
+     "ndcg@10": 0.917
+    },
+    "OUT_OF_DOMAIN": {
+     "n": 0
+    },
+    "SUPERSEDED": {
+     "n": 1,
+     "recall@1": 0.0,
+     "recall@5": 1.0,
+     "mrr": 0.5,
+     "ndcg@10": 0.624
+    },
+    "UNANSWERABLE": {
+     "n": 0
+    },
+    "UNVERIFIED": {
+     "n": 14,
+     "recall@1": 0.643,
+     "recall@5": 1.0,
+     "mrr": 0.798,
+     "ndcg@10": 0.849
+    },
+    "VISION": {
+     "n": 11,
+     "recall@1": 0.727,
+     "recall@5": 1.0,
+     "mrr": 0.806,
+     "ndcg@10": 0.853
+    }
+   }
+  }
+ },
+ "authority_correct": {
+  "bm25": {
+   "all": 0.87,
+   "heldout": 0.862
+  },
+  "lsa": {
+   "all": 0.731,
+   "heldout": 0.761
+  },
+  "hybrid": {
+   "all": 0.796,
+   "heldout": 0.826
+  },
+  "static_neural": {
+   "all": 0.207,
+   "heldout": 0.183
+  },
+  "hybrid_static": {
+   "all": 0.431,
+   "heldout": 0.477
+  },
+  "pgvector_static": {
+   "all": 0.207,
+   "heldout": 0.183
+  },
+  "minilm": {
+   "all": 0.601,
+   "heldout": 0.587
+  },
+  "hybrid_minilm": {
+   "all": 0.762,
+   "heldout": 0.771
+  },
+  "pgvector_minilm": {
+   "all": 0.601,
+   "heldout": 0.587
+  }
+ },
+ "latency_ms": {
+  "bm25": 5.82,
+  "lsa": 5.53,
+  "hybrid": 4.32,
+  "static_neural": 6.6,
+  "hybrid_static": 6.28,
+  "pgvector_static": 7.22,
+  "minilm": 270.8,
+  "hybrid_minilm": 3.66,
+  "pgvector_minilm": 4.94
+ }
+}
