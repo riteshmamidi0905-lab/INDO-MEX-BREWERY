@@ -111,7 +111,7 @@ def test_rag_eval_floors_and_status_invariants():
         for k, v in committed["retrieval"][rt]["all"].items(): assert abs(v - o["retrieval"][rt]["all"][k]) <= 0.03, (rt, k)
 
 
-@pytest.mark.xfail(strict=True, reason="KNOWN GAP (docs/RAG-EVALUATION.md): lexical abstention answers some unanswerable quantity questions from loosely related numeric prose")
 @pytest.mark.parametrize("q", ["How many customers visited NASHA last week?", "How many beer batches did the brewery produce in March?"])
-def test_known_gap_quantity_questions_without_data(kb, q):
-    assert kb.ask(q)["abstained"]
+def test_quantity_questions_without_data_now_abstain_thanks_to_the_learned_gate(kb, q):
+    """Closed a Block-2 KNOWN GAP (xfail): the learned answerability gate (trained on the dev split) refuses these."""
+    assert kb.gate is not None and kb.ask(q)["abstained"]

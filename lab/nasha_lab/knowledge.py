@@ -274,6 +274,12 @@ class KnowledgeBase:
         self.bm25 = BM25(chunks); self.lsa = LSADense(chunks); self._hash = None
         self.retrievers = {"tfidf": None, "hashing": None, "hybrid_hash": None, "bm25": self.bm25, "lsa": self.lsa, "hybrid": Hybrid(self.bm25, self.lsa)}
         self._chunks_list = chunks; self.default = retriever
+    def add_retriever(self, name, obj, embedding_model=None):
+        self.retrievers[name] = obj
+        if embedding_model: self.embedding_model = embedding_model
+
+    embedding_model = None
+
     def retriever(self, name):
         if name == "tfidf" and self.retrievers["tfidf"] is None: self.retrievers["tfidf"] = TfidfBaseline(self._chunks_list)
         if name in ("hashing", "hybrid_hash") and self._hash is None:
@@ -293,9 +299,14 @@ class KnowledgeBase:
             out.sort(key=lambda h: (h["authority_rank"] > 3, -h["score"]))      # authoritative / caveated first, relevance second
         return out[:k]
 
-    def ask(self, question, k=4, retriever=None, min_score=None):
+    gate = None            # optional learned answerability gate (answerability.GateModel); None = built-in rules only
+
+    def ask(self, question, k=4, retriever=None, min_score=None, use_gate=True):
         """Extractive, status-aware answer. Abstains when no authoritative chunk supports the question."""
         qt = set(tokenize(question))
+        if self.gate is not None and use_gate:
+            ok, p = self.gate.predict(self, question)
+            if not ok: return dict(answer=ABSTAIN, abstained=True, reason=f"answerability gate: estimated answerability {p:.2f} is below the threshold {self.gate.tau:.2f}", citations=[], non_authoritative_matches=[], injection_flagged=[], gate_p=round(p, 3))
         raw = self.search(question, k=12, retriever=retriever, include_nonauthoritative=True)
         auth = [h for h in raw if h["effective_status"] in AUTHORITATIVE | USABLE_WITH_CAVEAT and not h["injection_suspected"]]
         flagged = [h["chunk_id"] for h in raw if h["injection_suspected"]]
@@ -354,4 +365,8 @@ _KB = {}
 def default_kb():
     if "kb" not in _KB:
         ch, man = build_corpus(); _KB["kb"] = KnowledgeBase(ch, man)
+        gp = os.path.join(ROOT, "lab", "eval", "answerability_gate.json")
+        if os.environ.get("NASHA_GATE", "1") == "1" and os.path.exists(gp):
+            from .answerability import GateModel
+            _KB["kb"].gate = GateModel.load(gp)
     return _KB["kb"]

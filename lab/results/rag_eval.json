@@ -179,81 +179,81 @@
  },
  "ask": {
   "tfidf": {
-   "abstention_accuracy": 0.855,
-   "citation_hit_rate": 0.85,
-   "citation_precision": 0.421,
+   "abstention_accuracy": 0.818,
+   "citation_hit_rate": 0.917,
+   "citation_precision": 0.461,
    "status_violations": 0,
    "must_not_cite_violations": 0,
    "must_not_contain_violations": 0,
-   "unsupported_answer_rate_on_unanswerable": 0.3,
+   "unsupported_answer_rate_on_unanswerable": 0.1,
    "ungrounded_answers": 0,
-   "p50_ms": 5.6,
-   "p95_ms": 8.3,
+   "p50_ms": 11.5,
+   "p95_ms": 16.3,
    "n": 55
   },
   "bm25": {
    "abstention_accuracy": 0.836,
-   "citation_hit_rate": 0.878,
-   "citation_precision": 0.396,
+   "citation_hit_rate": 0.919,
+   "citation_precision": 0.426,
    "status_violations": 0,
    "must_not_cite_violations": 0,
    "must_not_contain_violations": 0,
-   "unsupported_answer_rate_on_unanswerable": 0.5,
+   "unsupported_answer_rate_on_unanswerable": 0.1,
    "ungrounded_answers": 0,
-   "p50_ms": 7.7,
-   "p95_ms": 11.5,
+   "p50_ms": 12.8,
+   "p95_ms": 18.1,
    "n": 55
   },
   "hashing": {
-   "abstention_accuracy": 0.782,
-   "citation_hit_rate": 0.743,
-   "citation_precision": 0.36,
+   "abstention_accuracy": 0.764,
+   "citation_hit_rate": 0.781,
+   "citation_precision": 0.383,
    "status_violations": 0,
    "must_not_cite_violations": 0,
    "must_not_contain_violations": 0,
-   "unsupported_answer_rate_on_unanswerable": 0.2,
+   "unsupported_answer_rate_on_unanswerable": 0.0,
    "ungrounded_answers": 0,
-   "p50_ms": 23.4,
-   "p95_ms": 33.7,
+   "p50_ms": 27.7,
+   "p95_ms": 41.2,
    "n": 55
   },
   "lsa": {
-   "abstention_accuracy": 0.891,
-   "citation_hit_rate": 0.878,
-   "citation_precision": 0.433,
+   "abstention_accuracy": 0.855,
+   "citation_hit_rate": 0.919,
+   "citation_precision": 0.459,
    "status_violations": 0,
    "must_not_cite_violations": 0,
    "must_not_contain_violations": 0,
-   "unsupported_answer_rate_on_unanswerable": 0.2,
+   "unsupported_answer_rate_on_unanswerable": 0.0,
    "ungrounded_answers": 0,
-   "p50_ms": 6.4,
-   "p95_ms": 10.0,
+   "p50_ms": 11.0,
+   "p95_ms": 15.6,
    "n": 55
   },
   "hybrid": {
    "abstention_accuracy": 0.836,
-   "citation_hit_rate": 0.854,
-   "citation_precision": 0.404,
+   "citation_hit_rate": 0.919,
+   "citation_precision": 0.441,
    "status_violations": 0,
    "must_not_cite_violations": 0,
    "must_not_contain_violations": 0,
-   "unsupported_answer_rate_on_unanswerable": 0.5,
+   "unsupported_answer_rate_on_unanswerable": 0.1,
    "ungrounded_answers": 0,
-   "p50_ms": 7.8,
-   "p95_ms": 9.6,
+   "p50_ms": 12.0,
+   "p95_ms": 19.2,
    "n": 55
   },
   "hybrid_hash": {
    "abstention_accuracy": 0.836,
-   "citation_hit_rate": 0.854,
-   "citation_precision": 0.411,
+   "citation_hit_rate": 0.919,
+   "citation_precision": 0.448,
    "status_violations": 0,
    "must_not_cite_violations": 0,
    "must_not_contain_violations": 0,
-   "unsupported_answer_rate_on_unanswerable": 0.5,
+   "unsupported_answer_rate_on_unanswerable": 0.1,
    "ungrounded_answers": 0,
-   "p50_ms": 25.2,
-   "p95_ms": 32.5,
+   "p50_ms": 27.7,
+   "p95_ms": 31.8,
    "n": 55
   }
  },
@@ -287,16 +287,9 @@
   "tfidf": [
    [
     "Q10",
-    "citation",
-    [
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "research/CORE5-PRODUCT-SYSTEM.md"
-    ],
-    [
-     "D-83"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q14",
@@ -358,15 +351,9 @@
    ],
    [
     "Q23",
-    "citation",
-    [
-     "docs/company/NASHA-CONFLICT-FACTS.md",
-     "docs/decisions/CORRECTIONS.md"
-    ],
-    [
-     "D-25",
-     "D-30"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q24",
@@ -376,16 +363,15 @@
    ],
    [
     "Q26",
-    "citation",
-    [
-     "D-58",
-     "docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md",
-     "docs/decisions/DECISION-GATES.md"
-    ],
-    [
-     "D-83",
-     "D-67"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
+   [
+    "Q40",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q49",
@@ -394,25 +380,19 @@
     "| Tier | What it is | Likely needed (to confirm) | Confirm with | Can start now "
    ],
    [
-    "Q51",
-    "abstention",
-    "wanted abstain",
-    "**Conditional rule:** run Witbier before Pilsner only if (a) a pilot or partner "
-   ],
-   [
     "Q54",
     "abstention",
     "wanted answer",
     "INSUFFICIENT VERIFIED EVIDENCE"
-   ],
-   [
-    "Q55",
-    "abstention",
-    "wanted abstain",
-    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
    ]
   ],
   "bm25": [
+   [
+    "Q10",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
    [
     "Q14",
     "abstention",
@@ -459,17 +439,9 @@
    ],
    [
     "Q23",
-    "citation",
-    [
-     "D-55",
-     "docs/company/NASHA-CONFLICT-FACTS.md",
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "docs/decisions/CORRECTIONS.md"
-    ],
-    [
-     "D-25",
-     "D-30"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q24",
@@ -479,41 +451,21 @@
    ],
    [
     "Q26",
-    "citation",
-    [
-     "D-58",
-     "docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md",
-     "docs/decisions/DECISION-GATES.md",
-     "docs/decisions/ATTORNEY-QUESTIONS.md"
-    ],
-    [
-     "D-83",
-     "D-67"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
-    "Q44",
+    "Q40",
     "abstention",
-    "wanted abstain",
-    "| # | Hypothesis | Why it might hold (observed) | Counter-signal | What would te"
-   ],
-   [
-    "Q45",
-    "abstention",
-    "wanted abstain",
-    "This is what we ask you to do, in order: (1) critique the five briefs and the pi"
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q49",
     "abstention",
     "wanted abstain",
     "UPDATED POSITION: (1) work is organised in three horizons: A = $0 founder build "
-   ],
-   [
-    "Q51",
-    "abstention",
-    "wanted abstain",
-    "**Conditional rule:** run Witbier before Pilsner only if (a) a pilot or partner "
    ],
    [
     "Q54",
@@ -526,12 +478,6 @@
      "D-83",
      "D-67"
     ]
-   ],
-   [
-    "Q55",
-    "abstention",
-    "wanted abstain",
-    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
    ]
   ],
   "hashing": [
@@ -548,16 +494,9 @@
    ],
    [
     "Q10",
-    "citation",
-    [
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "visuals/nasha-v3/CANDIDATE-REVIEW.md",
-     "research/CORE5-PRODUCT-SYSTEM.md"
-    ],
-    [
-     "D-83"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q11",
@@ -626,15 +565,9 @@
    ],
    [
     "Q23",
-    "citation",
-    [
-     "docs/company/NASHA-CONFLICT-FACTS.md",
-     "docs/company/AUSTIN-MARKET-MAP.md"
-    ],
-    [
-     "D-25",
-     "D-30"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q24",
@@ -693,10 +626,10 @@
     ]
    ],
    [
-    "Q45",
+    "Q40",
     "abstention",
-    "wanted abstain",
-    "This is what we ask you to do, in order: (1) critique the five briefs and the pi"
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q52",
@@ -709,15 +642,15 @@
     "abstention",
     "wanted answer",
     "INSUFFICIENT VERIFIED EVIDENCE"
-   ],
-   [
-    "Q55",
-    "abstention",
-    "wanted abstain",
-    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
    ]
   ],
   "lsa": [
+   [
+    "Q10",
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
+   ],
    [
     "Q14",
     "abstention",
@@ -764,14 +697,9 @@
    ],
    [
     "Q23",
-    "citation",
-    [
-     "docs/decisions/CORRECTIONS.md"
-    ],
-    [
-     "D-25",
-     "D-30"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q24",
@@ -781,20 +709,15 @@
    ],
    [
     "Q26",
-    "citation",
-    [
-     "D-58"
-    ],
-    [
-     "D-83",
-     "D-67"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
-    "Q44",
+    "Q40",
     "abstention",
-    "wanted abstain",
-    "| # | Hypothesis | Why it might hold (observed) | Counter-signal | What would te"
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q54",
@@ -806,26 +729,14 @@
      "D-83",
      "D-67"
     ]
-   ],
-   [
-    "Q55",
-    "abstention",
-    "wanted abstain",
-    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
    ]
   ],
   "hybrid": [
    [
     "Q10",
-    "citation",
-    [
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "research/CORE5-PRODUCT-SYSTEM.md"
-    ],
-    [
-     "D-83"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q14",
@@ -873,17 +784,9 @@
    ],
    [
     "Q23",
-    "citation",
-    [
-     "D-55",
-     "docs/company/NASHA-CONFLICT-FACTS.md",
-     "docs/decisions/CORRECTIONS.md",
-     "docs/company/AUSTIN-MARKET-MAP.md"
-    ],
-    [
-     "D-25",
-     "D-30"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q24",
@@ -893,40 +796,21 @@
    ],
    [
     "Q26",
-    "citation",
-    [
-     "D-58",
-     "docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md",
-     "docs/decisions/ATTORNEY-QUESTIONS.md"
-    ],
-    [
-     "D-83",
-     "D-67"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
-    "Q44",
+    "Q40",
     "abstention",
-    "wanted abstain",
-    "| # | Hypothesis | Why it might hold (observed) | Counter-signal | What would te"
-   ],
-   [
-    "Q45",
-    "abstention",
-    "wanted abstain",
-    "This is what we ask you to do, in order: (1) critique the five briefs and the pi"
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q49",
     "abstention",
     "wanted abstain",
     "UPDATED POSITION: (1) work is organised in three horizons: A = $0 founder build "
-   ],
-   [
-    "Q51",
-    "abstention",
-    "wanted abstain",
-    "**Conditional rule:** run Witbier before Pilsner only if (a) a pilot or partner "
    ],
    [
     "Q54",
@@ -939,27 +823,14 @@
      "D-83",
      "D-67"
     ]
-   ],
-   [
-    "Q55",
-    "abstention",
-    "wanted abstain",
-    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
    ]
   ],
   "hybrid_hash": [
    [
     "Q10",
-    "citation",
-    [
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "research/CORE5-PRODUCT-SYSTEM.md",
-     "research/CORE5-PRODUCT-SYSTEM.md"
-    ],
-    [
-     "D-83"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q14",
@@ -1007,16 +878,9 @@
    ],
    [
     "Q23",
-    "citation",
-    [
-     "docs/company/NASHA-CONFLICT-FACTS.md",
-     "docs/decisions/CORRECTIONS.md",
-     "docs/company/AUSTIN-MARKET-MAP.md"
-    ],
-    [
-     "D-25",
-     "D-30"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q24",
@@ -1026,40 +890,21 @@
    ],
    [
     "Q26",
-    "citation",
-    [
-     "D-58",
-     "docs/decisions/BREWERY-SCALE-DECISION-ANALYSIS.md",
-     "docs/decisions/ATTORNEY-QUESTIONS.md"
-    ],
-    [
-     "D-83",
-     "D-67"
-    ]
+    "abstention",
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
-    "Q44",
+    "Q40",
     "abstention",
-    "wanted abstain",
-    "| # | Hypothesis | Why it might hold (observed) | Counter-signal | What would te"
-   ],
-   [
-    "Q45",
-    "abstention",
-    "wanted abstain",
-    "This is what we ask you to do, in order: (1) critique the five briefs and the pi"
+    "wanted answer",
+    "INSUFFICIENT VERIFIED EVIDENCE"
    ],
    [
     "Q49",
     "abstention",
     "wanted abstain",
     "UPDATED POSITION: (1) work is organised in three horizons: A = $0 founder build "
-   ],
-   [
-    "Q51",
-    "abstention",
-    "wanted abstain",
-    "**Conditional rule:** run Witbier before Pilsner only if (a) a pilot or partner "
    ],
    [
     "Q54",
@@ -1071,12 +916,6 @@
      "D-83",
      "D-67"
     ]
-   ],
-   [
-    "Q55",
-    "abstention",
-    "wanted abstain",
-    "- **Texas Secretary of State:** entity names, assumed-name certificates, formati"
    ]
   ]
  }

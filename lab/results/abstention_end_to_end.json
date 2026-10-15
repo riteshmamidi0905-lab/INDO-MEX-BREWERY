@@ -1,0 +1,104 @@
+{
+ "handwritten/dev": {
+  "n": 38,
+  "builtin": {
+   "fa": "4/9",
+   "fa_rate": 0.444,
+   "miss": "2/29",
+   "miss_rate": 0.069,
+   "acc": 0.842
+  },
+  "builtin_plus_gate": {
+   "fa": "2/9",
+   "fa_rate": 0.222,
+   "miss": "6/29",
+   "miss_rate": 0.207,
+   "acc": 0.789
+  }
+ },
+ "handwritten/heldout": {
+  "n": 17,
+  "builtin": {
+   "fa": "3/5",
+   "fa_rate": 0.6,
+   "miss": "0/12",
+   "miss_rate": 0.0,
+   "acc": 0.824
+  },
+  "builtin_plus_gate": {
+   "fa": "1/5",
+   "fa_rate": 0.2,
+   "miss": "0/12",
+   "miss_rate": 0.0,
+   "acc": 0.941
+  }
+ },
+ "generated/dev": {
+  "n": 280,
+  "builtin": {
+   "fa": "43/126",
+   "fa_rate": 0.341,
+   "miss": "16/154",
+   "miss_rate": 0.104,
+   "acc": 0.789
+  },
+  "builtin_plus_gate": {
+   "fa": "12/126",
+   "fa_rate": 0.095,
+   "miss": "20/154",
+   "miss_rate": 0.13,
+   "acc": 0.886
+  }
+ },
+ "generated/heldout": {
+  "n": 132,
+  "builtin": {
+   "fa": "16/61",
+   "fa_rate": 0.262,
+   "miss": "2/71",
+   "miss_rate": 0.028,
+   "acc": 0.864
+  },
+  "builtin_plus_gate": {
+   "fa": "9/61",
+   "fa_rate": 0.148,
+   "miss": "5/71",
+   "miss_rate": 0.07,
+   "acc": 0.894
+  }
+ },
+ "all/dev": {
+  "n": 318,
+  "builtin": {
+   "fa": "47/135",
+   "fa_rate": 0.348,
+   "miss": "18/183",
+   "miss_rate": 0.098,
+   "acc": 0.796
+  },
+  "builtin_plus_gate": {
+   "fa": "14/135",
+   "fa_rate": 0.104,
+   "miss": "26/183",
+   "miss_rate": 0.142,
+   "acc": 0.874
+  }
+ },
+ "all/heldout": {
+  "n": 149,
+  "builtin": {
+   "fa": "19/66",
+   "fa_rate": 0.288,
+   "miss": "2/83",
+   "miss_rate": 0.024,
+   "acc": 0.859
+  },
+  "builtin_plus_gate": {
+   "fa": "10/66",
+   "fa_rate": 0.152,
+   "miss": "5/83",
+   "miss_rate": 0.06,
+   "acc": 0.899
+  }
+ }
+}
