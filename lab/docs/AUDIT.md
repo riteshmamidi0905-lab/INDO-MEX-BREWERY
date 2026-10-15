@@ -32,3 +32,12 @@ Every dataset is labelled SYNTHETIC; injected defects have ground-truth labels; 
 1. LangGraph human-in-the-loop operations agent over this platform's quarantine/findings (the missing competency), reusing mcp-weir's gateway ideas.
 2. Status-aware RAG with abstention over the NASHA decision register, evaluated by Recall@K/MRR/groundedness (reuse production-ai-agent-platform retrieval).
 3. FastAPI + MCP surface; demand forecast with backtests.
+
+## Status after Block 2
+LangGraph: now PROVEN (lab/nasha_lab/agent.py, 133 tests, CI green). MCP: PROVEN for a small server (9 tools, tested in-process through the official client). FastAPI, Docker, CI: PROVEN here (CI builds the image and serves the API). Vector search: still PARTIAL (no neural embeddings, no pgvector in this lab; both exist in `production-ai-agent-platform`).
+
+## Recommended Block 3
+1. Put a real model behind the planner interface (free local model or an approved key) and re-run the 22 failure-injection cases and the injection tests: the current perfect scores belong to a deterministic planner.
+2. Neural embeddings plus pgvector, measured against the six retrievers on a larger, partly externally written golden set.
+3. Authentication and reviewer identity on the API; a small review UI.
+4. Integrate `mcp-weir` between the agent and a second, untrusted MCP server to give its information-flow rules a real use.

@@ -12,8 +12,8 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 | `control_center.py` | GENERATOR | Generate docs/CORE5-CONTROL-CENTER.md: one place for the ten Core 5 products. Reads the canonical matrices, se | 3 |
 | `core5_glasses.py` | HELPER / MODEL | Core 5 beer glass FAMILY (concept geometry) built with tools/glass_params.py (Sprint 16). CONCEPT GEOMETRY - M | 2 |
 | `dashboard.py` | GENERATOR | Generate docs/PROTOTYPE-READINESS.md from repository facts. Nothing is marked done unless a real result row ex | 6 |
-| `decision_register.py` | GENERATOR | Decision register and contradiction check (Sprint 19). Parses docs/decisions/DECISIONS.md (table rows / D-n /  | 9 |
-| `diet_audit.py` | VALIDATOR | D-54 consistency check: no beef/pork in CURRENT-PRODUCT files unless the line is marked as superseded/rejected | 10 |
+| `decision_register.py` | GENERATOR | Decision register and contradiction check (Sprint 19). Parses docs/decisions/DECISIONS.md (table rows / D-n /  | 11 |
+| `diet_audit.py` | VALIDATOR | D-54 consistency check: no beef/pork in CURRENT-PRODUCT files unless the line is marked as superseded/rejected | 11 |
 | `experiment_stats.py` | RECORDER / INGEST | Small-sample experiment analysis for T1-style tests (Sprint 14). Honest by design: with n<8 it reports descrip | 4 |
 | `fin_model.py` | HELPER / MODEL | Restaurant/brewery scenario model (Sprint 14, hardened Sprint 22). Reads ops/finance/assumptions.csv (every va | 13 |
 | `food_costing.py` | HELPER / MODEL | Food costing, allergen and D-54 checks for NASHA recipes (Sprint 9, hardened Sprint 22). Reads food/costing/in | 19 |
