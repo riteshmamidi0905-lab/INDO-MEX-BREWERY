@@ -30,6 +30,15 @@ def retrieval_table(ci):
     return rows
 
 
+def ext1_retrieval_summary(d):
+    if not d: return None
+    rows = []
+    for rid, name in [x for x in RET_IDS if x[0] in ("bm25", "lsa", "hybrid", "static_neural", "minilm", "hybrid_minilm")]:
+        m = d["results"][rid]; lo = m["by_overlap"]["overlap<0.5"]; hi = m["by_overlap"]["overlap>=0.5"]; mr = d["mutation_robustness"][rid]
+        rows.append(dict(id=rid, name=name, mrr=m["ALL"]["mrr"], recall1=m["ALL"]["recall@1"], recall5=m["ALL"]["recall@5"], low_overlap_mrr=lo["mrr"], low_overlap_n=lo["n"], high_overlap_mrr=hi["mrr"], high_overlap_n=hi["n"], mutation_before=mr["original"]["mrr"], mutation_after=mr["mutated"]["mrr"]))
+    return dict(n=d["n"], by_family=d["by_family"], rows=rows, independence=d["independence"], file="lab/results/ext1_retrieval_ci.json")
+
+
 def planner_entry(pid, label, kind, model, file, paired=None, note=""):
     d = load(file)
     if not d: return None
@@ -76,7 +85,7 @@ def build():
          planner_entry("worst", "Worst-case scripted adversary (not an LLM)", "stand-in", None, "planner_worst-case.json"),
          planner_entry("parrot", "Injection-following scripted model (not an LLM)", "stand-in", None, "planner_parrot.json")]
     P = [x for x in P if x]
-    ci = load("rag2_retrieval_ci.json"); ext = load("ext1_retrieval_ci.json"); ts = load("tool_schema_result.json"); ext_pl = load("ext1_planner_deterministic.json"); ext_first = load("ext1_planner_first_run_deterministic.json")
+    ci = load("rag2_retrieval_ci.json"); ext = ext1_retrieval_summary(load("ext1_retrieval_ci.json")); ts = load("tool_schema_result.json"); ext_pl = load("ext1_planner_deterministic.json"); ext_first = load("ext1_planner_first_run_deterministic.json")
     mut = load("mutation.json"); tests = load("test_summary.json")
     ev = dict(
         schema="nasha-portfolio-evidence/1", disclosure="SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED. NASHA is an independent founder concept: no restaurant, customers, suppliers or sales exist. Same-author evaluation.",

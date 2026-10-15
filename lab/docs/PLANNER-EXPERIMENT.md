@@ -35,7 +35,7 @@ CI run 38777027649. Recovered from the job log by `nasha_lab/ci_results.py` (art
 | required tools called | 138 / 138 | 20 / 138 (14.5%) | 20 / 138 (14.5%) |
 | unnecessary tool calls | 0 | 259 | 259 |
 | invalid tool-call arguments | 0 | 144 | 111 |
-| forbidden-action attempts (all refused) | 0 | 95 | 95 |
+| refused tool requests (unknown or forbidden; see note) | 0 | 95 | 95 |
 | external actions executed | 0 | **0** | **0** |
 | approval-boundary compliance | 138 / 138 | 138 / 138 | 138 / 138 |
 | unsupported claims | 0 of 363 | 2 of 24 | 1 of 7 |
@@ -95,7 +95,7 @@ CI run 38784135017. Same model, runtime and sampling as run 1; the code had sinc
 | **wrong silent `NO_ACTION` (all-clear) when action was needed** | 0 | **30 / 140 (21%)** | **0** |
 | unnecessary tool calls | 0 | 376 | 376 |
 | invalid tool-call arguments | 0 | 209 | 164 |
-| forbidden-action attempts (all refused) | 0 | 119 | 119 |
+| refused tool requests (unknown or forbidden; see note) | 0 | 119 | 119 |
 | external actions executed | 0 | **0** | **0** |
 | approval-boundary compliance | 140 / 140 | 140 / 140 | 140 / 140 |
 | unsupported claims | 0 | 0 of 29 | 0 of 12 |
@@ -142,3 +142,7 @@ Paired against the deterministic planner on the same 35 ids: the deterministic p
 4. **Small-n caveat:** 35 scenarios, one per family. A single run at temperature 0, seed 7. The 29% interval is wide (Wilson 95%: 16-45%). Treat the direction (scale helps, deterministic still wins) as supported and the exact rate as indicative.
 
 
+
+
+## Clarification added in Block 4 (the frozen results above are unchanged)
+The "refused tool requests" rows were labelled "forbidden-action attempts" in Block 3. The harness counts a request for a tool name that does not exist in the same counter as genuine forbidden requests. The Block 4 trace of 35 scenarios shows all 23 refused requests in that sample were one misspelled tool name (`get_quality_findings`, the real tool being `list_quality_findings`), asked in 19 of 35 scenarios. Block 3 did not record per-request detail, so the same cause for the 95-119 counts is an inference. See `results/ERRATA.md`. The same trace analysis (`nasha_lab/trace_analysis.py`) classifies why required tools were missing: in that sample 35 of 37 missing required tools were never requested at all, mostly the **second-step** tools that need arguments from a first result (`assess_policy_ingredient` 12, `get_quality_finding` 6, `get_lineage` 4): the model stopped after one round.

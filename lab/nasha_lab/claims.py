@@ -26,7 +26,8 @@ def _num(x):
 
 
 def get(obj, path):
-    for seg in path.split("."):
+    for q, seg in re.findall(r'"([^"]+)"|([^.]+)', path):          # a key containing dots can be written in double quotes
+        seg = q or seg
         m = re.fullmatch(r"(\w[\w\-+.]*)\[(\w+)=([^\]]+)\]", seg) if "[" in seg else None
         if m:
             obj = next(x for x in obj[m.group(1)] if str(x[m.group(2)]) == m.group(3))

@@ -269,7 +269,96 @@
    "relations_hold": 24,
    "relations_n": 24
   },
-  "retrieval": null
+  "retrieval": {
+   "by_family": {
+    "R1_supersession_metadata": 6,
+    "R2_terse_keyword": 68,
+    "R3_mutated_paraphrase": 102
+   },
+   "file": "lab/results/ext1_retrieval_ci.json",
+   "independence": "structurally different generation, same author; not third-party",
+   "n": 176,
+   "rows": [
+    {
+     "high_overlap_mrr": 0.937,
+     "high_overlap_n": 145,
+     "id": "bm25",
+     "low_overlap_mrr": 0.445,
+     "low_overlap_n": 31,
+     "mrr": 0.85,
+     "mutation_after": 0.758,
+     "mutation_before": 0.774,
+     "name": "BM25",
+     "recall1": 0.722,
+     "recall5": 0.886
+    },
+    {
+     "high_overlap_mrr": 0.784,
+     "high_overlap_n": 145,
+     "id": "lsa",
+     "low_overlap_mrr": 0.534,
+     "low_overlap_n": 31,
+     "mrr": 0.74,
+     "mutation_after": 0.714,
+     "mutation_before": 0.733,
+     "name": "TF-IDF + SVD (not neural)",
+     "recall1": 0.548,
+     "recall5": 0.83
+    },
+    {
+     "high_overlap_mrr": 0.883,
+     "high_overlap_n": 145,
+     "id": "hybrid",
+     "low_overlap_mrr": 0.548,
+     "low_overlap_n": 31,
+     "mrr": 0.824,
+     "mutation_after": 0.808,
+     "mutation_before": 0.803,
+     "name": "Hybrid: BM25 + SVD (RRF)",
+     "recall1": 0.668,
+     "recall5": 0.898
+    },
+    {
+     "high_overlap_mrr": 0.118,
+     "high_overlap_n": 145,
+     "id": "static_neural",
+     "low_overlap_mrr": 0.032,
+     "low_overlap_n": 31,
+     "mrr": 0.103,
+     "mutation_after": 0.134,
+     "mutation_before": 0.113,
+     "name": "spaCy static vectors",
+     "recall1": 0.014,
+     "recall5": 0.156
+    },
+    {
+     "high_overlap_mrr": 0.44,
+     "high_overlap_n": 145,
+     "id": "minilm",
+     "low_overlap_mrr": 0.403,
+     "low_overlap_n": 31,
+     "mrr": 0.434,
+     "mutation_after": 0.546,
+     "mutation_before": 0.546,
+     "name": "MiniLM (all-MiniLM-L6-v2)",
+     "recall1": 0.278,
+     "recall5": 0.506
+    },
+    {
+     "high_overlap_mrr": 0.69,
+     "high_overlap_n": 145,
+     "id": "hybrid_minilm",
+     "low_overlap_mrr": 0.554,
+     "low_overlap_n": 31,
+     "mrr": 0.666,
+     "mutation_after": 0.714,
+     "mutation_before": 0.728,
+     "name": "BM25 + MiniLM (RRF)",
+     "recall1": 0.466,
+     "recall5": 0.844
+    }
+   ]
+  }
  },
  "mutation": {
   "first_run_killed": 19,

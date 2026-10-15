@@ -606,6 +606,136 @@
      "file": "lab/tests/test_menu_direction.py"
     }
    ]
+  },
+  {
+   "claim_id": "C20",
+   "title": "Structurally different planner scenarios (ext1)",
+   "claim": "On 106 structurally different scenarios (property-based matrix, metamorphic variants, policy proposals generated from the dietary checklist, rule-gap probes) the deterministic planner passed 98/98 headline scenarios and 24/24 metamorphic relations after oracle corrections that are disclosed (first run 92/103 and 20/24); it failed 8/8 rule-gap probes.",
+   "scope": "EXTERNALIZED / INDEPENDENT-STYLE EVAL v1; same author; labels from decision tables and checklist rows, never from a model.",
+   "evidence": [
+    "lab/results/ext1_planner_deterministic.json",
+    "lab/results/ext1_planner_first_run_deterministic.json",
+    "lab/docs/EVAL-HARDENING.md",
+    "lab/tests/test_ext1.py"
+   ],
+   "commit": "b4-ext1",
+   "limitations": "Structurally different, not independent. The oracle contained five of my own errors on the first run, corrected after review. The rule-gap finding (any in-time open order is treated as covering a shortage, whatever its quantity) is open and pinned by a test.",
+   "public_wording": "A second evaluation built with different methods (still by me) was passed 98 of 98, after I corrected five errors in my own answer key and disclosed the first-run results; it also found a real gap: the planner ignores the size of an open order.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/ext1_planner_deterministic.json",
+     "path": "headline.pass_rate.k",
+     "op": "==",
+     "value": 98
+    },
+    {
+     "file": "lab/results/ext1_planner_deterministic.json",
+     "path": "probes.pass_rate.k",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "file": "lab/results/ext1_planner_deterministic.json",
+     "path": "probes.pass_rate.n",
+     "op": "==",
+     "value": 8
+    },
+    {
+     "file": "lab/results/ext1_planner_deterministic.json",
+     "path": "relations.hold",
+     "op": "==",
+     "value": 24
+    },
+    {
+     "file": "lab/results/ext1_planner_first_run_deterministic.json",
+     "path": "headline.pass_rate.k",
+     "op": "==",
+     "value": 92
+    }
+   ]
+  },
+  {
+   "claim_id": "C21",
+   "title": "Does the retrieval ranking survive different questions? (ext1)",
+   "claim": "On 176 structurally different questions BM25 still led overall (MRR 0.850 vs MiniLM 0.434 and BM25+MiniLM 0.666), but on the 31 questions with the least word overlap the gap closed (BM25 0.445, MiniLM 0.403) and the hybrids led (about 0.55).",
+   "scope": "ext1 retrieval questions (supersession-metadata, terse-keyword, mutated paraphrases); Block 3 corpus; CI run 38804116939.",
+   "evidence": [
+    "lab/results/ext1_retrieval_ci.json",
+    "lab/docs/EVAL-HARDENING.md"
+   ],
+   "commit": "b4-ext1",
+   "limitations": "Same author; small low-overlap bin (n=31) and R1 (n=6); one small encoder, no fine-tuning or re-ranker.",
+   "public_wording": "Lexical retrieval's lead held on questions I built a different way, but mostly where questions share the corpus's exact words; on paraphrased questions the gap closed and a hybrid was better.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/ext1_retrieval_ci.json",
+     "path": "results.bm25.ALL.mrr",
+     "op": ">",
+     "value": 0.8
+    },
+    {
+     "file": "lab/results/ext1_retrieval_ci.json",
+     "path": "results.minilm.ALL.mrr",
+     "op": "<",
+     "value": 0.5
+    },
+    {
+     "file": "lab/results/ext1_retrieval_ci.json",
+     "path": "results.hybrid_minilm.by_overlap.\"overlap<0.5\".mrr",
+     "op": ">",
+     "value": 0.5
+    },
+    {
+     "file": "lab/results/ext1_retrieval_ci.json",
+     "path": "results.bm25.by_overlap.\"overlap<0.5\".mrr",
+     "op": "<",
+     "value": 0.5
+    },
+    {
+     "file": "lab/results/ext1_retrieval_ci.json",
+     "path": "n",
+     "op": "==",
+     "value": 176
+    }
+   ]
+  },
+  {
+   "claim_id": "C22",
+   "title": "Per-scenario model trace and what it showed",
+   "claim": "A per-scenario trace (requested tools, arguments, results, schema failures, retries, tokens, guardrail intervention, outcome) was added and proven on 35 scenarios; it showed 23 requests for a non-existent tool name in 19 of 35 scenarios and that most missing required tools were never requested.",
+   "scope": "qwen2.5:1.5b, original tool presentation, 35 scenarios, CI run 38803177815.",
+   "evidence": [
+    "lab/results/trace_analysis_ts1_35.json",
+    "lab/nasha_lab/trace_analysis.py",
+    "lab/tests/test_trace_and_ts2.py",
+    "lab/results/ERRATA.md"
+   ],
+   "commit": "b4-trace",
+   "limitations": "35 scenarios, one run. Block 3 counts of 'forbidden attempts' for LLM rows are probably the same name errors, but per-request detail was not recorded then (inference, stated as such).",
+   "public_wording": "Adding per-scenario traces showed the small model asking for a tool that does not exist and rarely taking a second step; the 'forbidden attempts' I had counted were mostly misspelled tool names, not attempts at forbidden actions.",
+   "status": "verified",
+   "checks": [
+    {
+     "file": "lab/results/trace_analysis_ts1_35.json",
+     "path": "n",
+     "op": "==",
+     "value": 35
+    },
+    {
+     "file": "lab/results/trace_analysis_ts1_35.json",
+     "path": "scenarios_that_asked_an_unknown_tool",
+     "op": "==",
+     "value": 19
+    },
+    {
+     "file": "lab/results/trace_analysis_ts1_35.json",
+     "path": "by_cause.NEVER_REQUESTED",
+     "op": ">=",
+     "value": 30
+    }
+   ]
   }
  ]
 }
