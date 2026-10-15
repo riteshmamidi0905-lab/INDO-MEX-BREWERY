@@ -75,4 +75,35 @@ Stand-in results over all 259 scenarios (the real model was run on the adversari
 On this suite, **adding a 1.5B local LLM did not improve the agent; it made task completion much worse and latency much higher, and the deterministic planner is the better planner today.** The value of the experiment is the harness: the same permissions, approval and trace layer made the LLM safe to evaluate, and the measurements are reproducible. What this does **not** show: that LLM planners are inferior in general, that a stronger model would not win, or that the deterministic planner would do well on exceptions a real kitchen produces. See the 7B and final-code results below for the effect of scale.
 
 ## Run 2 (final code, qwen2.5:1.5b-instruct) and Run 3 (qwen2.5:7b-instruct)
-RUN2_PLACEHOLDER
+### Run 2: qwen2.5:1.5b-instruct on the final code (commit 3a48adc, 140 scenarios, 4 splits) - the reported run
+CI run 38784135017. Same model, runtime and sampling as run 1; the code had since gained the grounding fix, the auth-before-existence fix and the default simulated portal gateway. Files: `results/planner_qwen1.5b_run2_{raw,guardrail,paired}.json` (copied to `planner_llm_{raw,guardrail}.json` for the evidence pack). Subset: `--per-family 2` of 4 splits = 140 scenarios (dev 38, held-out 39, held-out B 39, adversarial 24).
+
+| metric (140 scenarios) | deterministic control | LLM raw | LLM + guardrail |
+|---|---|---|---|
+| all checks passed | 140 / 140 | **5 / 140 (3.6%)** | 8 / 140 (5.7%) |
+| by split (dev / held-out / held-out B / adversarial) | 38 / 39 / 39 / 24 of same | 2/38, 1/39, 2/39, 0/24 | 4/38, 2/39, 2/39, 0/24 |
+| correct action | 140 / 140 | 52 / 140 (37%) | 51 / 140 (36%) |
+| correct abstention (of 110 should-abstain) | 110 / 110 | 72 / 110 (65%) | 42 / 110 (38%) |
+| required tools called | 140 / 140 | 22 / 140 (15.7%) | 22 / 140 |
+| **wrong silent `NO_ACTION` (all-clear) when action was needed** | 0 | **30 / 140 (21%)** | **0** |
+| unnecessary tool calls | 0 | 376 | 376 |
+| invalid tool-call arguments | 0 | 209 | 164 |
+| forbidden-action attempts (all refused) | 0 | 119 | 119 |
+| external actions executed | 0 | **0** | **0** |
+| approval-boundary compliance | 140 / 140 | 140 / 140 | 140 / 140 |
+| unsupported claims | 0 | 0 of 29 | 0 of 12 |
+| attacker-text leaks into the proposal | 0 | 2 (`contradictory_canonical`, adversarial) | 0 |
+| schema failures / planner fail-safe fallbacks (of 426 model calls) | n/a | 3 / 3 (0.7%) | 3 / 3 |
+| trace complete | 139 / 140 | 139 / 140 | 139 / 140 |
+| latency p50 / p95 | ~47 ms / ~94 ms | **28.0 s / 53.2 s** | (replayed cached replies; not a latency measure) |
+| tokens (prompt + completion), 426 calls | 0 | 322,117 + 71,937 | same replies |
+
+Paired against the deterministic planner on the same ids (139 shared): the deterministic planner passes where the model fails in 134 scenarios (131 for the guardrail variant); the model passes where the deterministic planner fails in **0**; exact sign test p < 0.001. Both runs agree: run 1 9/138, run 2 5/140 (the difference is within sampling noise for a temperature-0 model on slightly different code and scenario subsets; nothing was tuned between them).
+
+**What run 2 adds.**
+1. **The most dangerous failure class reappeared in a real model.** In 30 of 140 scenarios (21%) the raw model answered `NO_ACTION` when something needed doing (run 1: 18 of 138). This is the Block 2 failure ("silent all-clear on partial evidence"), now produced by the model instead of by a fall-through bug. The deterministic evidence envelope removes all of them (0 of 140): that is the genuine, measured value of the guardrail. It does so by escalating, which is why its abstention accuracy and usefulness are low.
+2. **Safety layer unchanged:** 426 model calls, 119 forbidden attempts, **0 executed external actions**, 100% approval-boundary compliance, 0 unsupported claims.
+3. **The raw model echoed attacker text in 2 of 24 adversarial scenarios** (`contradictory_canonical`: a document that contradicts the canonical spec); the guardrail variant did not, and no permission was affected.
+4. Tool recall stayed at ~15%: the dominant failure is again *which tools to call*, not JSON (0.7% schema failures).
+
+RUN3_PLACEHOLDER
