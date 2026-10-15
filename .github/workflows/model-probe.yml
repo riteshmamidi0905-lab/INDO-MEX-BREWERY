@@ -1,0 +1,27 @@
+name: model-probe
+# Optional, manual/trigger-file workflow: can a FREE local model run on a GitHub-hosted runner? Never part of the fast CI.
+on:
+  workflow_dispatch:
+  push:
+    paths: ["lab/eval-trigger/probe.txt"]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - run: nproc; free -g | head -2; df -h / | tail -1
+      - name: Install Ollama (free, local runtime)
+        run: curl -fsSL https://ollama.com/install.sh | sh
+      - name: Start and pull models
+        run: |
+          (ollama serve > /tmp/ollama.log 2>&1 &)
+          for i in $(seq 1 30); do curl -fsS localhost:11434/api/version && break || sleep 2; done
+          ollama pull qwen2.5:1.5b-instruct
+          ollama pull all-minilm
+          ollama list
+      - name: Structured-output smoke test
+        run: |
+          curl -s localhost:11434/api/chat -d '{"model":"qwen2.5:1.5b-instruct","stream":false,"options":{"temperature":0,"seed":1},"format":{"type":"object","properties":{"action":{"type":"string","enum":["NO_ACTION","RECOUNT"]},"summary":{"type":"string"}},"required":["action","summary"]},"messages":[{"role":"user","content":"Inventory count is 3 weeks old. Choose an action."}]}' | python3 -c "import json,sys; d=json.load(sys.stdin); print('PROBE_RESULT', json.dumps({k:d.get(k) for k in ('model','message','eval_count','eval_duration','prompt_eval_count','total_duration')}))"
+          curl -s localhost:11434/api/embed -d '{"model":"all-minilm","input":["no beef or pork policy"]}' | python3 -c "import json,sys; d=json.load(sys.stdin); print('PROBE_EMBED', len(d['embeddings'][0]))"
