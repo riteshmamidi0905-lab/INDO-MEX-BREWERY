@@ -85,7 +85,7 @@ def build():
         tool_schema=ts, ext1=dict(planner=dict(headline_k=ext_pl["headline"]["pass_rate"]["k"], headline_n=ext_pl["headline"]["pass_rate"]["n"], probes_k=ext_pl["probes"]["pass_rate"]["k"], probes_n=ext_pl["probes"]["pass_rate"]["n"], relations_hold=ext_pl["relations"]["hold"], relations_n=ext_pl["relations"]["n"],
                                     first_run_headline_k=ext_first["headline"]["pass_rate"]["k"], first_run_headline_n=ext_first["headline"]["pass_rate"]["n"], first_run_relations_hold=ext_first["relations"]["hold"], first_run_relations_n=ext_first["relations"]["n"]) if ext_pl and ext_first else None,
                                   retrieval=ext),
-        mutation=dict(killed=mut["killed"], valid=mut["valid"]), tests=dict(ci_passed=229, ci_skipped=1, lines=tests["lines"] if tests else []),
+        mutation=dict(killed=mut["killed"], valid=mut["valid"], first_run_killed=load("mutation_first_run.json")["killed"]), tests=dict(ci_passed=229, ci_skipped=1, lines=tests["lines"] if tests else []),
         trace_sample=trace_sample(), claims=[{k: c[k] for k in ("claim_id", "title", "public_wording", "scope", "limitations", "evidence", "commit") if k in c} for c in led["claims"]], prohibited_claims=led["prohibited_claims"])
     return ev
 

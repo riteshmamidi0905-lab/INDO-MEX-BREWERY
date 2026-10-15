@@ -272,6 +272,7 @@
   "retrieval": null
  },
  "mutation": {
+  "first_run_killed": 19,
   "killed": 22,
   "valid": 22
  },
