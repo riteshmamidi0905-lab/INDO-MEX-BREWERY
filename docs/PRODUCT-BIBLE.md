@@ -82,7 +82,7 @@
 - **Operating risk:** MEDIUM-HIGH: cauliflower keeps releasing water; glaze softens crust (UNTESTED); medium; equipment: oven or fryer
 - **Economic risk (uncertainty rank 5 of 5, AGENT JUDGEMENT):** cauliflower; batter/oven; mango-habanero glaze; dip or garnish; supply: MEDIUM: cauliflower price/seasonality; D-54: low (vegetarian; check glaze and any stock or fat for beef/pork derivatives)
 - **Cultural risk:** Lower to medium. The glaze is an original house idea with no claimed precedent, and the dish should be called modern fusion and not traditional. (advisor review NOT done)
-- **Current status:** DESIGNING (D-84: appetizer / shareable, NOT a taco); legacy Session 3 card (food/sessions/S3-gobi-taco.md) is for the superseded taco direction; not cooked; physical test: NOT PERFORMED; confidence: low-medium
+- **Current status:** DESIGNING (D-84: appetizer / shareable, NOT a taco); legacy Session 3 card (food/sessions/S3-gobi-taco.md) is for the superseded taco direction; not cooked. FINAL-STATE LABELS: flavour direction mango + habanero is founder-approved (D-84); the EXACT RECIPE is an UNTESTED DESIGN HYPOTHESIS (the glaze formulation and what it replaces are not locked); COST = NOT COSTED / UNVERIFIED; ALLERGEN VALIDATION = NOT COMPLETED; SENSORY = NOT TESTED; physical test: NOT PERFORMED; confidence: low-medium
 - **Prototype history:** NO ITERATIONS RECORDED (nothing cooked); **failures:** NONE RECORDED
 - **Cost data:** NONE REAL YET: no receipt has been recorded; `python3 tools/food_costing.py economics` shows every layer NOT COMPUTABLE
 - **Real photography:** NONE (concept illustrations only; the slot is reserved for the founder's first real photograph)
