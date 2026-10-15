@@ -41,3 +41,11 @@ LangGraph: now PROVEN (lab/nasha_lab/agent.py, 133 tests, CI green). MCP: PROVEN
 2. Neural embeddings plus pgvector, measured against the six retrievers on a larger, partly externally written golden set.
 3. Authentication and reviewer identity on the API; a small review UI.
 4. Integrate `mcp-weir` between the agent and a second, untrusted MCP server to give its information-flow rules a real use.
+
+## Status after Block 3
+- **Real local model behind the planner interface: DONE and measured** (Qwen2.5-1.5B-Instruct, and a 7B run on the cleanest splits; free CPU runners). The deterministic planner won; see [PLANNER-EXPERIMENT.md](PLANNER-EXPERIMENT.md). Permissions held against the real model (0 external actions).
+- **Neural embeddings + pgvector: DONE and measured** (spaCy static vectors, all-MiniLM-L6-v2, PostgreSQL 16 + pgvector HNSW; 467 questions, 13 categories). Neither beat BM25 on this corpus; see [RETRIEVAL-EVALUATION.md](RETRIEVAL-EVALUATION.md). The golden set is still same-author (generated + hand-written); no externally written questions.
+- **Reviewer identity + review UI: DONE** (local demo identity, signed grants bound to exact arguments, accessible console). **Not** a production identity provider.
+- **mcp-weir concepts applied** (source classification, schema validation, taint tracking) in `trust.py` against a second, untrusted MCP server; the `mcp-weir` package itself is not imported.
+- **Mutation testing: 22/22** after closing three weak-test findings ([FAILURE-STORY.md](FAILURE-STORY.md)).
+- Open: stronger models and prompt/tool-schema simplification are untested; an externally written golden set; per-row tool traces from real-model runs were not captured in run 1.
