@@ -55,8 +55,21 @@ Single thresholds collapse into “always refuse” (S1, S3, S5): the score dist
 
 **Not settled.** (a) 15% of questions that should be refused are still answered. (b) A gate trained on generated questions over-refused hand-written paraphrases (hand-written dev accuracy .842 -> .632); it was re-selected by 5-fold CV on dev with paraphrases weighted 3x, giving hand-written dev .842 -> .789 but hand-written held-out (n=17) .824 -> .941. Small samples; the sign of the effect on paraphrases is unresolved. (c) The gate is a classifier over lexical features; neural features could change this.
 
-## MiniLM and pgvector on MiniLM (CI)
-See `results/rag2_retrieval_ci.md` once the `retrieval-eval` job has run (model-eval workflow).
+## MiniLM, hybrids and pgvector on MiniLM (GitHub Actions, run 38786430242, commit cd6078d)
+Full table and per-category numbers: `results/rag2_retrieval_ci.md`. Free runner, Ollama `all-minilm` (all-MiniLM-L6-v2, 384-d, L2-normalised, cosine, exact scan or pgvector 0.8.7 HNSW m=16/ef_construction=64).
+
+| retriever | MRR (held-out) | Recall@1 | Recall@5 | hand-written MRR | generated MRR | authority-correct | ms/query |
+|---|---|---|---|---|---|---|---|
+| bm25 | **0.913** (0.909) | 0.831 | 0.951 | 0.764 | 0.935 | 0.870 | 7.3 |
+| hybrid (BM25+LSA) | 0.860 (0.885) | 0.760 | 0.935 | 0.794 | 0.870 | 0.796 | 5.4 |
+| minilm | 0.672 (0.691) | 0.574 | 0.749 | 0.553 | 0.689 | 0.601 | 333 (Ollama HTTP, CPU) |
+| hybrid_minilm (BM25+MiniLM, RRF) | 0.842 (0.854) | 0.733 | 0.933 | 0.713 | 0.861 | 0.762 | 4.5 |
+| pgvector_minilm (HNSW) | 0.672 (0.691) | 0.574 | 0.749 | 0.553 | 0.689 | 0.601 | 6.4 |
+| pgvector_static (HNSW) | 0.259 (0.255) | 0.202 | 0.301 | 0.106 | 0.280 | 0.207 | 9.1 |
+
+**Answer to “do neural embeddings improve retrieval enough to justify the complexity?” on this corpus: no.** A real sentence encoder is far better than static word vectors (MRR 0.67 vs 0.26), but it is still below plain BM25 (0.91), and fusing it with BM25 does not beat BM25 either (0.84 vs 0.91) on the same questions. MiniLM is weak exactly where this corpus is hardest and most identifier-driven: DECISION_STATUS .29 (BM25 .85), SUPERSEDED .36 (.84), NUMERIC .24 (.84), CONFLICTING .21 (.67), MULTI_DOCUMENT .43 (.71). It is competitive only on OPERATIONAL (.95 vs .99), UNVERIFIED (.90 vs .95) and VISION (.94 vs 1.00), and on no category does it win outright. Hybrid MiniLM does beat BM25 on one category: ADVERSARIAL (.196 vs .173, n=3, noise).
+**Caveats:** same-author questions (generated ones copy corpus wording, which flatters lexical retrieval); hand-written n=45 only; one small encoder, one chunking, no fine-tuning, no re-ranker. A bigger encoder, query-side instructions, or a cross-encoder re-ranker were not tried.
+**pgvector:** in CI (pgvector 0.8.7) the HNSW result is identical to the exact scan to three decimals for both embedding sets, so at 758 chunks the index costs no recall; locally with 0.6 the static-vector HNSW was 0.012 MRR lower (above). The infrastructure is proven; it is not needed for this corpus size.
 
 ## Reproducibility note (found in CI)
 The first CI run reproduced everything except the **pgvector HNSW retriever**: per-category numbers differed by up to 0.5 on categories with 3–8 questions, because an approximate index builds a different graph on each build. `repro_check` now compares HNSW only at the aggregate level (tolerance 0.06); exact retrievers must match exactly (BM25) or within 0.03 (SVD / neural, library-version sensitive).
