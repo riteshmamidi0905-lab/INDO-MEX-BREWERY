@@ -326,6 +326,16 @@
  "disclosure": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED. NASHA is an independent founder concept: no restaurant, customers, suppliers or sales exist. Same-author evaluation.",
  "ext1": {
   "planner": {
+   "block45_fix": {
+    "file": "lab/results/ext1_planner_deterministic_poq2.json",
+    "headline_k": 98,
+    "headline_n": 98,
+    "probes_k": 8,
+    "probes_n": 8,
+    "relations_hold": 24,
+    "relations_n": 24,
+    "rule": "po_coverage v2 (quantity-aware)"
+   },
    "first_run_headline_k": 92,
    "first_run_headline_n": 103,
    "first_run_relations_hold": 20,

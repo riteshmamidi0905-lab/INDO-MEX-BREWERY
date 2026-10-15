@@ -85,13 +85,14 @@ def build():
          planner_entry("worst", "Worst-case scripted adversary (not an LLM)", "stand-in", None, "planner_worst-case.json"),
          planner_entry("parrot", "Injection-following scripted model (not an LLM)", "stand-in", None, "planner_parrot.json")]
     P = [x for x in P if x]
-    ci = load("rag2_retrieval_ci.json"); ext = ext1_retrieval_summary(load("ext1_retrieval_ci.json")); ts = load("tool_schema_result.json"); ext_pl = load("ext1_planner_deterministic.json"); ext_first = load("ext1_planner_first_run_deterministic.json")
+    ci = load("rag2_retrieval_ci.json"); ext = ext1_retrieval_summary(load("ext1_retrieval_ci.json")); ts = load("tool_schema_result.json"); ext_pl = load("ext1_planner_deterministic.json"); ext_first = load("ext1_planner_first_run_deterministic.json"); poq2 = load("ext1_planner_deterministic_poq2.json")
     mut = load("mutation.json"); tests = load("test_summary.json")
     ev = dict(
         schema="nasha-portfolio-evidence/1", disclosure="SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED. NASHA is an independent founder concept: no restaurant, customers, suppliers or sales exist. Same-author evaluation.",
         baseline=dict(commit=base["code_commit"], scenario_registry_sha256=base["datasets"]["scenario_set"]["registry_sha256"], scenarios=base["datasets"]["scenario_set"]["n"], by_split=base["datasets"]["scenario_set"]["by_split"], questions=base["datasets"]["question_set"]["n"]),
         planners=P, retrieval=dict(table=retrieval_table(ci), per_category_mrr={k: {c: float(v) for c, v in d.items()} for k, d in ci["per_category_mrr"].items()}, source=ci["source"], n_questions=467, n_categories=13) if ci else None,
         tool_schema=ts, ext1=dict(planner=dict(headline_k=ext_pl["headline"]["pass_rate"]["k"], headline_n=ext_pl["headline"]["pass_rate"]["n"], probes_k=ext_pl["probes"]["pass_rate"]["k"], probes_n=ext_pl["probes"]["pass_rate"]["n"], relations_hold=ext_pl["relations"]["hold"], relations_n=ext_pl["relations"]["n"],
+                                    block45_fix=dict(probes_k=poq2["probes"]["pass_rate"]["k"], probes_n=poq2["probes"]["pass_rate"]["n"], headline_k=poq2["headline"]["pass_rate"]["k"], headline_n=poq2["headline"]["pass_rate"]["n"], relations_hold=poq2["relations"]["hold"], relations_n=poq2["relations"]["n"], file="lab/results/ext1_planner_deterministic_poq2.json", rule="po_coverage v2 (quantity-aware)") if poq2 else None,
                                     first_run_headline_k=ext_first["headline"]["pass_rate"]["k"], first_run_headline_n=ext_first["headline"]["pass_rate"]["n"], first_run_relations_hold=ext_first["relations"]["hold"], first_run_relations_n=ext_first["relations"]["n"]) if ext_pl and ext_first else None,
                                   retrieval=ext),
         mutation=dict(killed=mut["killed"], valid=mut["valid"], first_run_killed=load("mutation_first_run.json")["killed"]), tests=dict(ci_passed=229, ci_skipped=1, lines=tests["lines"] if tests else []),
