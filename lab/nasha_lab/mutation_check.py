@@ -50,6 +50,8 @@ def run(path=None, only=None):
             open(fp, "w", encoding="utf-8").write(src)
         results.append(dict(id=mid, file=fn, desc=desc, status="KILLED" if killed else "SURVIVED", killed_by=first[:140], seconds=round(time.time() - t0)))
         print(mid, results[-1]["status"], first[:100], flush=True)
+    if only and path and os.path.exists(path):                   # re-run of selected mutants: merge into the existing file
+        old = {r["id"]: r for r in json.load(open(path))["mutants"]}; old.update({r["id"]: r for r in results}); results = [old[k] for k in sorted(old)]
     k = sum(1 for r in results if r["status"] == "KILLED"); n = sum(1 for r in results if r["status"] in ("KILLED", "SURVIVED"))
     out = dict(mutants=results, killed=k, valid=n, score=round(k / n, 3) if n else None)
     if path: open(path, "w").write(json.dumps(out, indent=1))
@@ -58,4 +60,4 @@ def run(path=None, only=None):
 
 
 if __name__ == "__main__":
-    run(sys.argv[1] if len(sys.argv) > 1 else None)
+    run(sys.argv[1] if len(sys.argv) > 1 else None, set(sys.argv[2].split(",")) if len(sys.argv) > 2 else None)

@@ -1,0 +1,489 @@
+{
+ "S0 built-in rules (coverage + OOV + numeric)": {
+  "dev": {
+   "n": 318,
+   "accuracy": 0.796,
+   "false_answer_rate": 0.348,
+   "false_answer": "47/135",
+   "false_abstain_rate": 0.098,
+   "false_abstain": "18/183",
+   "error_by_category": {
+    "ADVERSARIAL": "5/9",
+    "CONFLICTING": "3/4",
+    "DECISION_STATUS": "7/46",
+    "MULTI_DOCUMENT": "4/6",
+    "OPERATIONAL": "6/46",
+    "OUT_OF_DOMAIN": "2/14",
+    "SUPERSEDED": "4/7",
+    "UNANSWERABLE": "23/47",
+    "UNVERIFIED": "10/30",
+    "VISION": "1/25"
+   }
+  },
+  "heldout": {
+   "n": 149,
+   "accuracy": 0.859,
+   "false_answer_rate": 0.288,
+   "false_answer": "19/66",
+   "false_abstain_rate": 0.024,
+   "false_abstain": "2/83",
+   "error_by_category": {
+    "ADVERSARIAL": "2/5",
+    "DECISION_STATUS": "2/21",
+    "OPERATIONAL": "1/21",
+    "OUT_OF_DOMAIN": "1/7",
+    "UNANSWERABLE": "15/29"
+   }
+  },
+  "all": {
+   "n": 467,
+   "accuracy": 0.816,
+   "false_answer_rate": 0.328,
+   "false_answer": "66/201",
+   "false_abstain_rate": 0.075,
+   "false_abstain": "20/266",
+   "error_by_category": {
+    "ADVERSARIAL": "7/14",
+    "CONFLICTING": "3/5",
+    "DECISION_STATUS": "9/67",
+    "MULTI_DOCUMENT": "4/7",
+    "OPERATIONAL": "7/67",
+    "OUT_OF_DOMAIN": "3/21",
+    "SUPERSEDED": "4/8",
+    "UNANSWERABLE": "38/76",
+    "UNVERIFIED": "10/44",
+    "VISION": "1/36"
+   }
+  }
+ },
+ "S1 BM25 score threshold (normalised)": {
+  "dev": {
+   "n": 318,
+   "accuracy": 0.425,
+   "false_answer_rate": 0.0,
+   "false_answer": "0/135",
+   "false_abstain_rate": 1.0,
+   "false_abstain": "183/183",
+   "error_by_category": {
+    "ADVERSARIAL": "1/9",
+    "CONFLICTING": "4/4",
+    "D54": "12/12",
+    "DECISION_STATUS": "34/46",
+    "DIRECT": "47/47",
+    "MULTI_DOCUMENT": "6/6",
+    "NUMERIC": "25/25",
+    "OPERATIONAL": "46/46",
+    "SUPERSEDED": "7/7",
+    "UNVERIFIED": "1/30"
+   }
+  },
+  "heldout": {
+   "n": 149,
+   "accuracy": 0.443,
+   "false_answer_rate": 0.0,
+   "false_answer": "0/66",
+   "false_abstain_rate": 1.0,
+   "false_abstain": "83/83",
+   "error_by_category": {
+    "ADVERSARIAL": "1/5",
+    "CONFLICTING": "1/1",
+    "D54": "7/7",
+    "DECISION_STATUS": "19/21",
+    "DIRECT": "20/20",
+    "MULTI_DOCUMENT": "1/1",
+    "NUMERIC": "11/11",
+    "OPERATIONAL": "21/21",
+    "SUPERSEDED": "1/1",
+    "UNVERIFIED": "1/14"
+   }
+  },
+  "all": {
+   "n": 467,
+   "accuracy": 0.43,
+   "false_answer_rate": 0.0,
+   "false_answer": "0/201",
+   "false_abstain_rate": 1.0,
+   "false_abstain": "266/266",
+   "error_by_category": {
+    "ADVERSARIAL": "2/14",
+    "CONFLICTING": "5/5",
+    "D54": "19/19",
+    "DECISION_STATUS": "53/67",
+    "DIRECT": "67/67",
+    "MULTI_DOCUMENT": "7/7",
+    "NUMERIC": "36/36",
+    "OPERATIONAL": "67/67",
+    "SUPERSEDED": "8/8",
+    "UNVERIFIED": "2/44"
+   }
+  }
+ },
+ "S2 evidence coverage threshold": {
+  "dev": {
+   "n": 318,
+   "accuracy": 0.717,
+   "false_answer_rate": 0.089,
+   "false_answer": "12/135",
+   "false_abstain_rate": 0.426,
+   "false_abstain": "78/183",
+   "error_by_category": {
+    "ADVERSARIAL": "1/9",
+    "CONFLICTING": "4/4",
+    "D54": "5/12",
+    "DECISION_STATUS": "11/46",
+    "DIRECT": "1/47",
+    "MULTI_DOCUMENT": "6/6",
+    "NUMERIC": "20/25",
+    "OPERATIONAL": "32/46",
+    "SUPERSEDED": "4/7",
+    "UNANSWERABLE": "1/47",
+    "UNVERIFIED": "4/30",
+    "VISION": "1/25"
+   }
+  },
+  "heldout": {
+   "n": 149,
+   "accuracy": 0.671,
+   "false_answer_rate": 0.152,
+   "false_answer": "10/66",
+   "false_abstain_rate": 0.47,
+   "false_abstain": "39/83",
+   "error_by_category": {
+    "ADVERSARIAL": "1/5",
+    "D54": "4/7",
+    "DECISION_STATUS": "4/21",
+    "DIRECT": "3/20",
+    "MULTI_DOCUMENT": "1/1",
+    "NUMERIC": "11/11",
+    "OPERATIONAL": "17/21",
+    "UNANSWERABLE": "7/29",
+    "VISION": "1/11"
+   }
+  },
+  "all": {
+   "n": 467,
+   "accuracy": 0.702,
+   "false_answer_rate": 0.109,
+   "false_answer": "22/201",
+   "false_abstain_rate": 0.44,
+   "false_abstain": "117/266",
+   "error_by_category": {
+    "ADVERSARIAL": "2/14",
+    "CONFLICTING": "4/5",
+    "D54": "9/19",
+    "DECISION_STATUS": "15/67",
+    "DIRECT": "4/67",
+    "MULTI_DOCUMENT": "7/7",
+    "NUMERIC": "31/36",
+    "OPERATIONAL": "49/67",
+    "SUPERSEDED": "4/8",
+    "UNANSWERABLE": "8/76",
+    "UNVERIFIED": "4/44",
+    "VISION": "2/36"
+   }
+  }
+ },
+ "S3 rare-term coverage threshold": {
+  "dev": {
+   "n": 318,
+   "accuracy": 0.557,
+   "false_answer_rate": 0.015,
+   "false_answer": "2/135",
+   "false_abstain_rate": 0.76,
+   "false_abstain": "139/183",
+   "error_by_category": {
+    "ADVERSARIAL": "2/9",
+    "CONFLICTING": "2/4",
+    "D54": "12/12",
+    "DECISION_STATUS": "14/46",
+    "DIRECT": "41/47",
+    "MULTI_DOCUMENT": "6/6",
+    "NUMERIC": "9/25",
+    "OPERATIONAL": "46/46",
+    "SUPERSEDED": "7/7",
+    "UNANSWERABLE": "1/47",
+    "UNVERIFIED": "1/30"
+   }
+  },
+  "heldout": {
+   "n": 149,
+   "accuracy": 0.57,
+   "false_answer_rate": 0.03,
+   "false_answer": "2/66",
+   "false_abstain_rate": 0.747,
+   "false_abstain": "62/83",
+   "error_by_category": {
+    "ADVERSARIAL": "1/5",
+    "CONFLICTING": "1/1",
+    "D54": "6/7",
+    "DECISION_STATUS": "10/21",
+    "DIRECT": "18/20",
+    "MULTI_DOCUMENT": "1/1",
+    "NUMERIC": "3/11",
+    "OPERATIONAL": "21/21",
+    "SUPERSEDED": "1/1",
+    "UNANSWERABLE": "1/29",
+    "UNVERIFIED": "1/14"
+   }
+  },
+  "all": {
+   "n": 467,
+   "accuracy": 0.561,
+   "false_answer_rate": 0.02,
+   "false_answer": "4/201",
+   "false_abstain_rate": 0.756,
+   "false_abstain": "201/266",
+   "error_by_category": {
+    "ADVERSARIAL": "3/14",
+    "CONFLICTING": "3/5",
+    "D54": "18/19",
+    "DECISION_STATUS": "24/67",
+    "DIRECT": "59/67",
+    "MULTI_DOCUMENT": "7/7",
+    "NUMERIC": "12/36",
+    "OPERATIONAL": "67/67",
+    "SUPERSEDED": "8/8",
+    "UNANSWERABLE": "2/76",
+    "UNVERIFIED": "2/44"
+   }
+  }
+ },
+ "S4 authority rule (authoritative evidence present, no dominating non-authoritative match)": {
+  "dev": {
+   "n": 318,
+   "accuracy": 0.884,
+   "false_answer_rate": 0.133,
+   "false_answer": "18/135",
+   "false_abstain_rate": 0.104,
+   "false_abstain": "19/183",
+   "error_by_category": {
+    "ADVERSARIAL": "4/9",
+    "CONFLICTING": "2/4",
+    "D54": "1/12",
+    "DECISION_STATUS": "11/46",
+    "DIRECT": "1/47",
+    "MULTI_DOCUMENT": "2/6",
+    "NUMERIC": "5/25",
+    "OPERATIONAL": "2/46",
+    "SUPERSEDED": "1/7",
+    "UNANSWERABLE": "7/47",
+    "UNVERIFIED": "1/30"
+   }
+  },
+  "heldout": {
+   "n": 149,
+   "accuracy": 0.852,
+   "false_answer_rate": 0.182,
+   "false_answer": "12/66",
+   "false_abstain_rate": 0.12,
+   "false_abstain": "10/83",
+   "error_by_category": {
+    "ADVERSARIAL": "1/5",
+    "DECISION_STATUS": "4/21",
+    "NUMERIC": "2/11",
+    "OPERATIONAL": "4/21",
+    "OUT_OF_DOMAIN": "1/7",
+    "UNANSWERABLE": "10/29"
+   }
+  },
+  "all": {
+   "n": 467,
+   "accuracy": 0.874,
+   "false_answer_rate": 0.149,
+   "false_answer": "30/201",
+   "false_abstain_rate": 0.109,
+   "false_abstain": "29/266",
+   "error_by_category": {
+    "ADVERSARIAL": "5/14",
+    "CONFLICTING": "2/5",
+    "D54": "1/19",
+    "DECISION_STATUS": "15/67",
+    "DIRECT": "1/67",
+    "MULTI_DOCUMENT": "2/7",
+    "NUMERIC": "7/36",
+    "OPERATIONAL": "6/67",
+    "OUT_OF_DOMAIN": "1/21",
+    "SUPERSEDED": "1/8",
+    "UNANSWERABLE": "17/76",
+    "UNVERIFIED": "1/44"
+   }
+  }
+ },
+ "S5 combined rule (OOV, rare-term coverage, authority; thresholds grid-searched on dev)": {
+  "dev": {
+   "n": 318,
+   "accuracy": 0.56,
+   "false_answer_rate": 0.007,
+   "false_answer": "1/135",
+   "false_abstain_rate": 0.76,
+   "false_abstain": "139/183",
+   "error_by_category": {
+    "ADVERSARIAL": "1/9",
+    "CONFLICTING": "2/4",
+    "D54": "12/12",
+    "DECISION_STATUS": "14/46",
+    "DIRECT": "41/47",
+    "MULTI_DOCUMENT": "6/6",
+    "NUMERIC": "9/25",
+    "OPERATIONAL": "46/46",
+    "SUPERSEDED": "7/7",
+    "UNANSWERABLE": "1/47",
+    "UNVERIFIED": "1/30"
+   }
+  },
+  "heldout": {
+   "n": 149,
+   "accuracy": 0.57,
+   "false_answer_rate": 0.03,
+   "false_answer": "2/66",
+   "false_abstain_rate": 0.747,
+   "false_abstain": "62/83",
+   "error_by_category": {
+    "ADVERSARIAL": "1/5",
+    "CONFLICTING": "1/1",
+    "D54": "6/7",
+    "DECISION_STATUS": "10/21",
+    "DIRECT": "18/20",
+    "MULTI_DOCUMENT": "1/1",
+    "NUMERIC": "3/11",
+    "OPERATIONAL": "21/21",
+    "SUPERSEDED": "1/1",
+    "UNANSWERABLE": "1/29",
+    "UNVERIFIED": "1/14"
+   }
+  },
+  "all": {
+   "n": 467,
+   "accuracy": 0.563,
+   "false_answer_rate": 0.015,
+   "false_answer": "3/201",
+   "false_abstain_rate": 0.756,
+   "false_abstain": "201/266",
+   "error_by_category": {
+    "ADVERSARIAL": "2/14",
+    "CONFLICTING": "3/5",
+    "D54": "18/19",
+    "DECISION_STATUS": "24/67",
+    "DIRECT": "59/67",
+    "MULTI_DOCUMENT": "7/7",
+    "NUMERIC": "12/36",
+    "OPERATIONAL": "67/67",
+    "SUPERSEDED": "8/8",
+    "UNANSWERABLE": "2/76",
+    "UNVERIFIED": "2/44"
+   }
+  }
+ },
+ "S6 logistic regression on retrieval features (fit on dev)": {
+  "dev": {
+   "n": 318,
+   "accuracy": 0.89,
+   "false_answer_rate": 0.156,
+   "false_answer": "21/135",
+   "false_abstain_rate": 0.077,
+   "false_abstain": "14/183",
+   "error_by_category": {
+    "ADVERSARIAL": "4/9",
+    "CONFLICTING": "1/4",
+    "DECISION_STATUS": "10/46",
+    "DIRECT": "1/47",
+    "MULTI_DOCUMENT": "4/6",
+    "NUMERIC": "2/25",
+    "OPERATIONAL": "5/46",
+    "OUT_OF_DOMAIN": "1/14",
+    "UNANSWERABLE": "4/47",
+    "UNVERIFIED": "3/30"
+   }
+  },
+  "heldout": {
+   "n": 149,
+   "accuracy": 0.906,
+   "false_answer_rate": 0.167,
+   "false_answer": "11/66",
+   "false_abstain_rate": 0.036,
+   "false_abstain": "3/83",
+   "error_by_category": {
+    "DECISION_STATUS": "2/21",
+    "OPERATIONAL": "3/21",
+    "UNANSWERABLE": "9/29"
+   }
+  },
+  "all": {
+   "n": 467,
+   "accuracy": 0.895,
+   "false_answer_rate": 0.159,
+   "false_answer": "32/201",
+   "false_abstain_rate": 0.064,
+   "false_abstain": "17/266",
+   "error_by_category": {
+    "ADVERSARIAL": "4/14",
+    "CONFLICTING": "1/5",
+    "DECISION_STATUS": "12/67",
+    "DIRECT": "1/67",
+    "MULTI_DOCUMENT": "4/7",
+    "NUMERIC": "2/36",
+    "OPERATIONAL": "8/67",
+    "OUT_OF_DOMAIN": "1/21",
+    "UNANSWERABLE": "13/76",
+    "UNVERIFIED": "3/44"
+   }
+  }
+ },
+ "S7 ensemble: S0 AND S6 (answer only if both agree)": {
+  "dev": {
+   "n": 318,
+   "accuracy": 0.874,
+   "false_answer_rate": 0.104,
+   "false_answer": "14/135",
+   "false_abstain_rate": 0.142,
+   "false_abstain": "26/183",
+   "error_by_category": {
+    "ADVERSARIAL": "4/9",
+    "CONFLICTING": "3/4",
+    "DECISION_STATUS": "5/46",
+    "DIRECT": "1/47",
+    "MULTI_DOCUMENT": "5/6",
+    "NUMERIC": "2/25",
+    "OPERATIONAL": "9/46",
+    "OUT_OF_DOMAIN": "1/14",
+    "SUPERSEDED": "4/7",
+    "UNANSWERABLE": "4/47",
+    "UNVERIFIED": "2/30"
+   }
+  },
+  "heldout": {
+   "n": 149,
+   "accuracy": 0.899,
+   "false_answer_rate": 0.152,
+   "false_answer": "10/66",
+   "false_abstain_rate": 0.06,
+   "false_abstain": "5/83",
+   "error_by_category": {
+    "DECISION_STATUS": "2/21",
+    "OPERATIONAL": "4/21",
+    "UNANSWERABLE": "9/29"
+   }
+  },
+  "all": {
+   "n": 467,
+   "accuracy": 0.882,
+   "false_answer_rate": 0.119,
+   "false_answer": "24/201",
+   "false_abstain_rate": 0.117,
+   "false_abstain": "31/266",
+   "error_by_category": {
+    "ADVERSARIAL": "4/14",
+    "CONFLICTING": "3/5",
+    "DECISION_STATUS": "7/67",
+    "DIRECT": "1/67",
+    "MULTI_DOCUMENT": "5/7",
+    "NUMERIC": "2/36",
+    "OPERATIONAL": "13/67",
+    "OUT_OF_DOMAIN": "1/21",
+    "SUPERSEDED": "4/8",
+    "UNANSWERABLE": "13/76",
+    "UNVERIFIED": "2/44"
+   }
+  }
+ }
+}

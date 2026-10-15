@@ -289,10 +289,10 @@ class AgentService:
         """Resume a run at the human-review interrupt. The reviewer is identified from the session token (never from free text);
         an approval mints a signed grant bound to this run and to the exact tool + arguments of the proposal being approved."""
         with self.lock:
+            who = self.rt.authority.identify(session)                     # authenticate FIRST: an unauthenticated caller learns nothing about which runs exist
             s = self.summary(run_id)
             if s is None: raise KeyError(run_id)
             if not s["awaiting_human"]: raise RuntimeError(f"run {run_id} is not awaiting a human decision (status {s['status']})")
-            who = self.rt.authority.identify(session)                     # AuthError propagates; the run stays awaiting
             decision = dict(decision, reviewer=who.id, role=who.role)
             if decision.get("decision") == "approve":
                 acts = []

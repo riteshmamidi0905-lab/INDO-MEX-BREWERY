@@ -124,3 +124,9 @@ def test_http_auth_flow(http):
     assert client.get(f"/agent/runs/{rid}").json()["awaiting_human"]
     ok = client.post(f"/agent/runs/{rid}/approve", json={"note": "ok"}, headers=bearer(http, "founder")); assert ok.status_code == 200 and ok.json()["final"]["executed"][0]["ok"]
     assert client.post(f"/agent/runs/{rid}/approve", json={}, headers=bearer(http, "founder")).status_code == 409
+
+
+def test_unauthenticated_callers_cannot_probe_which_runs_exist(http):
+    client, au = http
+    a = client.post("/agent/runs/run-doesnotexist/approve", json={}); rid = client.post("/agent/runs", json={"event_id": "EV-C1"}).json()["run"]["run_id"]; b = client.post(f"/agent/runs/{rid}/approve", json={})
+    assert a.status_code == b.status_code == 401 and a.json()["error"]["code"] == b.json()["error"]["code"] == "AUTH_REQUIRED"

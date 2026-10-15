@@ -9,34 +9,46 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env: { POSTGRES_USER: nasha, POSTGRES_PASSWORD: nasha, POSTGRES_DB: nasha }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U nasha" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      NASHA_PG_DSN: postgresql://nasha:nasha@localhost:5432/nasha
+      NASHA_UI_PLAYWRIGHT_MANAGED: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install -r lab/requirements.txt
-      - name: Unit, data, retrieval, API, MCP, LangGraph, approval and failure-injection tests (no paid API, no key)
+      - run: pip install -r lab/requirements-dev.txt
+      - run: python -m playwright install --with-deps chromium
+      - name: All tests (unit, data, retrieval, pgvector, API, MCP, trust boundary, LangGraph, identity, UI + accessibility, property-based, failure injection). No paid API, no key.
         run: cd lab && python -m pytest -q -p no:cacheprovider tests
-      - name: Block-1 data-quality evaluation must reproduce byte for byte
+      - name: Block-1 data-quality evaluation reproduces byte for byte
         run: cd lab && python -m nasha_lab.evaluate v1 | diff - results/eval_v1.json
-      - name: Agent evaluation summary must reproduce (latency excluded)
+      - name: Planner experiment (deterministic control + stand-in models) reproduces
         run: |
-          cd lab && python -m nasha_lab.eval_agent /tmp/agent_eval.json > /dev/null
-          python - <<'PY'
-          import json
-          a = json.load(open("/tmp/agent_eval.json"))["summary"]; b = json.load(open("results/agent_eval.json"))["summary"]
-          bad = {k: (a[k], b[k]) for k in b if not k.startswith("latency") and a[k] != b[k]}
-          assert not bad, bad
-          PY
+          cd lab && python -m nasha_lab.eval_planners deterministic /tmp/planner.json > /dev/null
+          python -m nasha_lab.repro_check planner /tmp/planner.json results/planner_deterministic.json
+      - name: Retrieval evaluation v2 reproduces (BM25 exact; SVD / neural / HNSW within 0.03)
+        run: |
+          cd lab && python -m nasha_lab.eval_rag2 /tmp/rag2.json > /dev/null
+          python -m nasha_lab.repro_check rag2 /tmp/rag2.json results/rag2_retrieval.json
   docker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build the image and prove the API serves a ready, synthetic-labelled world
+      - name: Build the image and prove the API serves a ready world, the review console and an agent run to the approval gate
         run: |
           docker compose -f lab/docker-compose.yml up -d --build
-          for i in $(seq 1 60); do curl -fsS localhost:8000/ready && break || sleep 3; done
+          for i in $(seq 1 90); do curl -fsS localhost:8000/ready && break || sleep 3; done
           curl -fsS localhost:8000/ready | tee /tmp/ready.json
           python3 -c "import json; r=json.load(open('/tmp/ready.json')); assert r['status']=='ready' and r['orders']>3000 and r['knowledge_chunks']>500, r"
-          curl -fsS -X POST localhost:8000/agent/runs -H 'content-type: application/json' -d '{"event_id":"EV-C2"}' | python3 -c "import json,sys; r=json.load(sys.stdin); assert r['awaiting_human'] and r['proposal']['abstain'], r"
+          curl -fsS localhost:8000/review | grep -q "NASHA Lab Review Console"
+          RID=$(curl -fsS -X POST localhost:8000/agent/runs -H 'content-type: application/json' -d '{"event_id":"EV-C2"}' | python3 -c "import json,sys; r=json.load(sys.stdin); assert r['awaiting_human'] and r['proposal']['abstain'], r; print(r['run']['run_id'])")
+          test "$(curl -s -o /dev/null -w '%{http_code}' -X POST localhost:8000/agent/runs/$RID/approve -H 'content-type: application/json' -d '{}')" = "401"
       - if: failure()
         run: docker compose -f lab/docker-compose.yml logs --no-color | tail -50

@@ -1,15 +1,16 @@
-# Threat model (prototype; SYNTHETIC; STRIDE-lite)
+# Threat model (prototype; SYNTHETIC; STRIDE-lite) — updated in Block 3
 
-| Threat | Where | Control | Evidence |
-|---|---|---|---|
-| Prompt injection inside a retrieved document | knowledge -> agent | instruction-pattern detector withholds the chunk and flags the run; planner is deterministic and takes no instructions from data | `prompt_injection_in_retrieved_document`; limitation: regex misses paraphrase (`test_injection_heuristic_misses_paraphrase...`) |
-| Prompt injection inside a tool result | tools -> agent | same detector on tool output; text withheld from claims | `prompt_injection_in_tool_result` |
-| Unverified or superseded source overrides a founder decision | knowledge | status-aware filtering; decisions outrank documents; derived supersession | RAG eval: 0 status violations; 0 must-not-cite |
-| Forbidden external action | tools | EXTERNAL_ACTION refused unconditionally, not exposed over MCP/HTTP | `forbidden_action_refused_even_if_requested` |
-| Approval replay or argument swap after approval | tools | approval hash binds run id, tool and argument SHA-256 | `approval_bound_to_exact_arguments` |
-| Unbounded tool surface (SQL, filesystem, shell) | MCP | allowlist of 9 typed tools; no SQL/filesystem/shell exists in the registry | `test_mcp_lists_exactly_the_allowlisted_tools...` |
-| Secrets in logs/traces | trace | key-pattern redaction before persistence | `test_trace_redacts_secrets` (no secrets exist in this prototype) |
-| Duplicate event causes duplicate side effects | agent | idempotent per event id | `duplicate_event_*` |
-| Silent success on partial evidence | agent | NO_ACTION impossible when any non-injection gap exists | regression test (real defect fixed) |
-| Impersonated reviewer | API | **NOT mitigated**: no authentication; reviewer is a free-text field | listed limitation |
-| Denial of service, rate limiting, TLS, authn/z | API | **not implemented** (prototype, local only) | listed limitation |
+| Threat | Where | Control | Evidence | Residual risk |
+|---|---|---|---|---|
+| Prompt injection inside a retrieved document | knowledge -> planner | instruction-pattern detector withholds the chunk; planner output is validated; permissions are code; **evidence envelope** (deterministic) limits the action a planner may propose | adversarial split: 12 poisoned/fake-authority/unverified/superseded/contradictory documents x 3 planner families; worst-case and parrot stand-ins | the regex misses paraphrase; a susceptible model flips the *recommendation* (not the permissions) unless the envelope is on |
+| Prompt injection inside a tool result | tools -> planner | same detector; untrusted text is quoted as `UNTRUSTED` spans, capped and stripped of markup; never a claim | `poisoned_tool_result` scenarios, UI XSS test | free text still reaches a model that reads it |
+| **Untrusted MCP server** (malformed, extra fields, injection, stale, wrong metadata, timeout, oversize, error, persuasive) | trust gateway | source classification, strict schema (extra fields refused), 0.5 s timeout, size cap, freshness, metadata match, injection scan, **taint tracking**: values only from untrusted results cannot become draft/mutation arguments | `tests/test_trust.py` (26 tests), 9 adversarial scenarios | taint is value-based and exact-match; paraphrased copying of a value is not tracked |
+| Forged, tampered, expired, replayed or retargeted approval | identity + tools | HMAC-signed session and grant; grant binds run id, tool, SHA-256 of exact arguments, role, nonce, expiry | `tests/test_identity.py`, property test on token tampering | single local secret, no revocation list, dev passcodes, no rate limiting |
+| Wrong role approves a sensitive action | identity | role policy per tool and target table (policy decisions: FOUNDER only) | wrong-role tests incl. HTTP 403 and UI | roles are a local table, not an identity provider |
+| Model proposes forbidden / unknown / mutating tools or invented record keys | tools, agent | EXTERNAL_ACTION refused always; unknown tools refused; mutation targets must be grounded in *trusted successful results* (not the model's own arguments); claims without resolvable evidence dropped | worst-case stand-in: ~1,500 refused attempts over 250 scenarios, 0 executed | a real model may find a path the stand-ins do not |
+| Unbounded tool surface (SQL, filesystem, shell) | MCP | allowlist of 9 typed tools | tests | n/a |
+| XSS through supplier-controlled text in the review UI | UI | all server text inserted with `textContent`; CSP; `nosniff`; no-store | Playwright test with `<img onerror>` and `<script>` payloads | CSP allows inline script (single-file console) |
+| Duplicate / replayed event causes duplicate side effects | agent | idempotent per event id | duplicate and replay scenarios | n/a |
+| Silent success on partial evidence | agent | NO_ACTION impossible when any non-injection check failed | regression test + mutant M14 | n/a |
+| Information leak: unauthenticated probing of run ids (404 vs 401) | API | **open**: existence is checked before authentication | noted in EXPERIMENT-LOG | fix: authenticate first |
+| Denial of service, rate limiting, TLS | API | not implemented (local prototype) | listed | out of scope |

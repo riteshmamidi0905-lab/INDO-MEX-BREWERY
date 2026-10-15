@@ -60,7 +60,7 @@ class Strategy:
 
 class Builtin(Strategy):
     name = "S0 built-in rules (coverage + OOV + numeric)"
-    def predict(self, f, kb=None, q=None): return not kb.ask(q)["abstained"]
+    def predict(self, f, kb=None, q=None): return not kb.ask(q, use_gate=False)["abstained"]
 
 
 class Threshold(Strategy):

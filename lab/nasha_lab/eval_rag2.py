@@ -96,13 +96,15 @@ def run(kb=None, retrievers=None, with_models=True, pg_dsn=None):
     for rt in names:
         t0 = time.perf_counter(); ranks = {r["id"]: rank_docs(kb, r["question"], rt) for r in rows if r["gold_docs"]}; dt = (time.perf_counter() - t0) / max(1, len(ranks)) * 1000
         out["latency_ms"][rt] = round(dt, 2)
-        out["retrieval"][rt] = {sp: {"ALL": retrieval_metrics([r for r in rows if sp == "all" or r["split"] == sp], ranks), **{c: retrieval_metrics([r for r in rows if (sp == "all" or r["split"] == sp) and r["category"] == c], ranks) for c in out["categories"]}} for sp in ("all", "dev", "heldout")}
+        out["retrieval"][rt] = {sp: {"ALL": retrieval_metrics([r for r in rows if sp == "all" or r["split"] == sp], ranks),
+                                     **{"SRC:" + src: retrieval_metrics([r for r in rows if (sp == "all" or r["split"] == sp) and (r.get("source") == "handwritten") == (src == "handwritten")], ranks) for src in ("handwritten", "generated")},
+                                     **{c: retrieval_metrics([r for r in rows if (sp == "all" or r["split"] == sp) and r["category"] == c], ranks) for c in out["categories"]}} for sp in ("all", "dev", "heldout")}
         out["authority_correct"][rt] = {sp: authority_correct(kb, [r for r in rows if sp == "all" or r["split"] == sp], rt) for sp in ("all", "heldout")}
     return out
 
 
 if __name__ == "__main__":
-    pg = "postgresql://nasha:nasha@127.0.0.1/nasha" if os.environ.get("NASHA_PG") else None
+    pg = os.environ.get("NASHA_PG_DSN") or ("postgresql://nasha:nasha@127.0.0.1/nasha" if os.environ.get("NASHA_PG") else None)
     o = run(pg_dsn=pg); path = sys.argv[1] if len(sys.argv) > 1 else None
     if path: open(path, "w").write(json.dumps(o, indent=1))
     print(o["n"], o["splits"], {k: (v.get("unavailable") or "ok") for k, v in o["retriever_info"].items()})

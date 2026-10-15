@@ -1,0 +1,183 @@
+{
+ "mutants": [
+  {
+   "id": "M01",
+   "file": "tools.py",
+   "desc": "mutating tools run without any approval grant",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_llm_planner.py::test_worst_case_model_cannot_cross_the_permission_boundary",
+   "seconds": 40
+  },
+  {
+   "id": "M02",
+   "file": "tools.py",
+   "desc": "external actions are no longer refused",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_agent.py::test_failure_injection_case[forbidden_action_refused_even_if_requested]",
+   "seconds": 19
+  },
+  {
+   "id": "M03",
+   "file": "tools.py",
+   "desc": "taint check disabled",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_trust.py::test_taint_blocks_untrusted_values_in_draft_and_mutation_arguments",
+   "seconds": 67
+  },
+  {
+   "id": "M04",
+   "file": "tools.py",
+   "desc": "grant verification result ignored",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_agent.py::test_failure_injection_case[approval_bound_to_exact_arguments]",
+   "seconds": 19
+  },
+  {
+   "id": "M05",
+   "file": "identity.py",
+   "desc": "grant usable in another run",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_agent.py::test_failure_injection_case[approval_bound_to_exact_arguments]",
+   "seconds": 19
+  },
+  {
+   "id": "M06",
+   "file": "identity.py",
+   "desc": "grant usable for different arguments",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_agent.py::test_failure_injection_case[approval_bound_to_exact_arguments]",
+   "seconds": 17
+  },
+  {
+   "id": "M07",
+   "file": "identity.py",
+   "desc": "grant replay allowed",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_agent.py::test_failure_injection_case[approval_bound_to_exact_arguments]",
+   "seconds": 17
+  },
+  {
+   "id": "M08",
+   "file": "identity.py",
+   "desc": "any role may approve policy decisions",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_identity.py::test_wrong_role_cannot_approve_and_nothing_executes",
+   "seconds": 29
+  },
+  {
+   "id": "M09",
+   "file": "identity.py",
+   "desc": "tokens never expire",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_identity.py::test_expired_session_and_expired_grant - Faile...",
+   "seconds": 30
+  },
+  {
+   "id": "M10",
+   "file": "agent.py",
+   "desc": "mutation targets are not checked against evidence",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_llm_planner.py::test_invented_mutation_targets_are_rejected_before_review",
+   "seconds": 39
+  },
+  {
+   "id": "M11",
+   "file": "agent.py",
+   "desc": "claims without evidence are kept",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_agent.py::test_claim_validator_drops_claims_without_resolvable_evidence",
+   "seconds": 19
+  },
+  {
+   "id": "M12",
+   "file": "agent.py",
+   "desc": "any mutating tool name is accepted from a planner",
+   "status": "SURVIVED",
+   "killed_by": "",
+   "seconds": 68
+  },
+  {
+   "id": "M13",
+   "file": "planners.py",
+   "desc": "supplier-lookup failure degrades to NO_ACTION again (Block 2 regression)",
+   "status": "SURVIVED",
+   "killed_by": "",
+   "seconds": 66
+  },
+  {
+   "id": "M14",
+   "file": "planners.py",
+   "desc": "NO_ACTION allowed on partial evidence",
+   "status": "SURVIVED",
+   "killed_by": "",
+   "seconds": 66
+  },
+  {
+   "id": "M15",
+   "file": "llm_planner.py",
+   "desc": "evidence-envelope guardrail disabled",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_llm_planner.py::test_parrot_that_obeys_injected_text_flips_the_recommendation_but_not_the_permissions",
+   "seconds": 40
+  },
+  {
+   "id": "M16",
+   "file": "llm_planner.py",
+   "desc": "model action outside the allowed set accepted",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_llm_planner.py::test_action_outside_the_allowed_set_is_refused",
+   "seconds": 38
+  },
+  {
+   "id": "M17",
+   "file": "knowledge.py",
+   "desc": "supersession is not derived (D-59 stays current)",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_knowledge.py::test_decision_statuses[D-59-SUPERSEDED] - Ass...",
+   "seconds": 31
+  },
+  {
+   "id": "M18",
+   "file": "knowledge.py",
+   "desc": "non-authoritative chunks leak into status-aware search",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_knowledge.py::test_rag_eval_floors_and_status_invariants - ...",
+   "seconds": 37
+  },
+  {
+   "id": "M19",
+   "file": "tools.py",
+   "desc": "negated claims (pork-free) trigger rejection again",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_properties.py::test_metamorphic_adding_a_negated_claim_never_causes_a_rejection",
+   "seconds": 57
+  },
+  {
+   "id": "M20",
+   "file": "trust.py",
+   "desc": "instruction-like untrusted notes are accepted",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_trust.py::test_gateway_classifies_every_failure_mode[injection]",
+   "seconds": 63
+  },
+  {
+   "id": "M21",
+   "file": "trust.py",
+   "desc": "unexpected fields from an untrusted server are silently dropped",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_trust.py::test_gateway_classifies_every_failure_mode[extra_fields]",
+   "seconds": 63
+  },
+  {
+   "id": "M22",
+   "file": "pipeline.py",
+   "desc": "dedup removes both copies of a duplicated order (Block 2 regression)",
+   "status": "KILLED",
+   "killed_by": "FAILED tests/test_platform.py::test_regression_dedup_keeps_the_original_order",
+   "seconds": 50
+  }
+ ],
+ "killed": 19,
+ "valid": 22,
+ "score": 0.864
+}
