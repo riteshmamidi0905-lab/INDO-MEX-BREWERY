@@ -1,0 +1,48 @@
+name: retrieval-eval
+# OPTIONAL, never part of the fast CI. Neural embeddings (all-minilm via Ollama) + PostgreSQL/pgvector service container, all free on a hosted runner.
+# Trigger: workflow_dispatch, or a change to lab/eval-trigger/retrieval-eval.txt.
+on:
+  workflow_dispatch:
+  push:
+    paths: ["lab/eval-trigger/retrieval-eval.txt"]
+permissions:
+  contents: read
+jobs:
+  retrieval-eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env: { POSTGRES_USER: nasha, POSTGRES_PASSWORD: nasha, POSTGRES_DB: nasha }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U nasha" --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: |
+          pip install -r lab/requirements.txt
+          pip install "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl"
+      - name: Install Ollama and pull the embedding model (all-minilm, 46 MB)
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          (ollama serve > /tmp/ollama.log 2>&1 &)
+          for i in $(seq 1 30); do curl -fsS localhost:11434/api/version && break || sleep 2; done
+          ollama pull all-minilm
+      - name: Retrieval evaluation v2 (BM25, hybrid, static neural, MiniLM, hybrid, pgvector HNSW)
+        env: { NASHA_PG_DSN: "postgresql://nasha:nasha@localhost:5432/nasha" }
+        run: |
+          cd lab && python -m nasha_lab.eval_rag2 /tmp/rag2_ci.json > /tmp/rag2_stdout.txt
+          python - <<'PY'
+          import json; d = json.load(open("/tmp/rag2_ci.json")); cats = d["categories"]
+          print("RAG2C info " + json.dumps(d["retriever_info"], separators=(",", ":")))
+          for rt, m in d["retrieval"].items():
+              a, h = m["all"]["ALL"], m["heldout"]["ALL"]
+              print("RAG2C", rt, "all", a["recall@1"], a["recall@5"], a["mrr"], a["ndcg@10"], "| held", h["recall@5"], h["mrr"], "| hand", m["all"]["SRC:handwritten"]["mrr"], "gen", m["all"]["SRC:generated"]["mrr"], "| auth", d["authority_correct"][rt]["all"], "| ms", d["latency_ms"][rt])
+              print("RAG2C cats", rt, json.dumps({c: m["all"][c].get("mrr") for c in cats if m["all"][c].get("n")}, separators=(",", ":")))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: retrieval-eval, path: /tmp/rag2_ci.json }
