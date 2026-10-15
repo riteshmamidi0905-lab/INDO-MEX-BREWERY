@@ -9,5 +9,5 @@ langgraph>=1.0
 langgraph-checkpoint-sqlite>=3.0
 mcp>=2.2
 pytest>=8
-# reused from an existing project (baseline A0 retriever: TF-IDF index), pinned to a commit
-rag-doc-qa @ git+https://github.com/riteshmamidi0905-lab/rag-doc-qa@6e44f13
+# reused from an existing project (baseline A0 retriever: TF-IDF index), package `ragqa`, pinned to a commit
+ragqa @ git+https://github.com/riteshmamidi0905-lab/rag-doc-qa@6e44f136a280e4af08d46e85f20b643736a07488
