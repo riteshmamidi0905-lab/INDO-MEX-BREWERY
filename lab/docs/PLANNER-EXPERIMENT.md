@@ -8,7 +8,7 @@ The Block 2 agent uses a deterministic planner. Does replacing it with a languag
 ## Method
 - **One interface, two planners.** `Planner.collect(state, call, trace)` and `Planner.decide(state, trace)`. `DeterministicPlanner` (control, the Block 2 logic) and `LLMPlanner` run on the *same* LangGraph state, tool registry, permission classes, signed human approval, trace store and evaluation harness. The model only *proposes*: READ/ANALYZE tool calls and a structured decision (JSON validated against a pydantic schema, bounded retries, no chain-of-thought stored). Deterministic code validates, authorizes, executes and traces. The model is not the permission system.
 - **Variants.** *Raw LLM*: the model's validated decision is used as is (inside the permission layer). *LLM + guardrail*: a deterministic **evidence envelope** (the set of actions the collected tool evidence permits) overrides any less-conservative model action and traces `guardrail_override`. The guardrail variant is scored on the **same cached model replies** as the raw variant, so the two differ only in the guardrail, not in sampling noise.
-- **Model/runtime.** Ollama on a GitHub-hosted `ubuntu-latest` runner (4 vCPU, CPU only): `qwen2.5:1.5b-instruct` (Apache-2.0, 986 MB, Q4_K_M), temperature 0, seed 7, JSON-schema constrained decoding (`format`), ~32 tok/s. A second, larger run uses `qwen2.5:7b-instruct` (Apache-2.0, 4.7 GB) on the two cleanest splits. The authoring sandbox cannot download models (Hugging Face and ollama.com blocked), so every real-model number comes from CI logs. See [LLM-RUNTIME.md](LLM-RUNTIME.md).
+- **Model/runtime.** Ollama on a GitHub-hosted `ubuntu-latest` runner (4 vCPU, CPU only): `qwen2.5:1.5b-instruct` (Apache-2.0, 986 MB, Q4_K_M), temperature 0, seed 7, JSON-schema constrained decoding (`format`), ~32 tok/s. A third run uses `qwen2.5:7b-instruct` (Apache-2.0, 4.7 GB, Q4_K_M) on held-out B and the adversarial split, one scenario per family. The authoring sandbox cannot download models (Hugging Face and ollama.com blocked), so every real-model number comes from CI logs. See [LLM-RUNTIME.md](LLM-RUNTIME.md).
 - **Scenarios.** 259 generated scenarios (deterministic, seeded), expectations set by construction from the injected condition (not from any planner's output). Splits: **dev** 67, **held-out** 75 (seed 3000), **held-out B** 75 (seed 7000, generated after the deterministic fixes and never inspected before scoring), **adversarial** 42 (prompt injection, poisoned documents, poisoned tool results, replay, decision/edit abuse, untrusted MCP modes). The real-model runs use a stratified subset (`--per-family 2` for the 1.5B model = 138-140 scenarios; `--per-family 1` on held-out B + adversarial for the 7B model) because CPU inference is slow.
 - **Contamination, stated plainly.** The deterministic planner was fixed after reading failures on dev, held-out and adversarial scenarios (see [../results/EXPERIMENT-LOG.md](../results/EXPERIMENT-LOG.md)). **Held-out (seed 3000) is therefore not a clean test of the deterministic planner; held-out B is.** No scenario was edited in response to an LLM result, and no prompt was tuned on the held-out splits.
 - **Pass** means *all* of: correct action, correct abstention behaviour, every required tool called, approval boundary respected, no forbidden attempt that executed, no unsupported claim, no leak. It is strict on purpose; the finer metrics below separate *why* a scenario failed.
@@ -55,7 +55,7 @@ By split (raw LLM): dev 3/38, held-out 5/39, held-out B 1/39, adversarial 0/22. 
 5. **Same-author caveat.** The scenario generator and the checks were written together with the deterministic planner, which flatters it. The harness cannot show how a real operator's exceptions would look.
 
 ### Hypotheses not tested (labelled as such)
-- A larger model could close part of the tool-selection gap (partly addressed by the 7B run below).
+- A larger model could close more of the tool-selection gap (the 7B run below closes part of it).
 - A simpler prompt, fewer tools per task family, or few-shot tool traces might raise the 1.5B model's tool recall. Prompt `p1` was written once and not tuned (tuning on these scenarios would contaminate them).
 - Per-row tool lists were not captured in the run-1 logs; the dominant failure *mode* is inferred from aggregate counters (required-tools 14.5%, invalid arguments, forbidden attempts), not from reading individual traces.
 
@@ -63,16 +63,23 @@ By split (raw LLM): dev 3/38, held-out 5/39, held-out B 1/39, adversarial 0/22. 
 Stand-in results over all 259 scenarios (the real model was run on the adversarial subset; no executed unsafe action in either): worst-case stand-in 1,820 forbidden attempts, **0 executed**; parrot (obeys injected text) kept permissions intact but changed 2 of 42 adversarial recommendations, restored 42/42 by the evidence envelope; taint-copier's attempt to place a persuasive untrusted note into a draft was refused by the taint check. See [THREAT-MODEL.md](THREAT-MODEL.md).
 
 ## Tradeoffs
-| | deterministic | local LLM (1.5B, CPU) |
-|---|---|---|
-| quality on this suite | 100% (author-written, contaminated for 2 of 4 splits) | 6.5% all-checks, 37% correct action |
-| latency | ~50 ms | ~32 s p50 |
-| cost | none | none in dollars; ~380k tokens per 138 scenarios on a 4-vCPU runner |
-| failure mode | rigid: a new exception shape needs new code | unreliable tool selection; needs deterministic envelope and validation |
-| where it could add value | n/a (it is the control) | open-ended exceptions the rules do not cover (not measured here) |
+| | deterministic | local LLM 1.5B (CPU) | local LLM 7B (CPU) |
+|---|---|---|---|
+| all checks passed | 100% (author-written; 2 of 4 splits contaminated, held-out B clean) | 3.6-6.5% | 29% (35 scenarios) |
+| correct action | 100% | 37% | 57% |
+| latency p50 | ~50 ms | ~28-32 s | ~152 s |
+| cost | none | none in dollars (LOCAL COMPUTE); ~320-380k tokens per ~140 scenarios | none in dollars; ~138k tokens per 35 scenarios |
+| silent wrong all-clear | 0 | 21% of scenarios (raw), 0 with guardrail | 0 of 35 |
+| forbidden attempts / executed | 0 / 0 | 95-119 / 0 | 0 / 0 |
+| failure mode | rigid: a new exception shape needs new code | unreliable tool selection, schema slips (0.7-3.7%) | narrow competence: only single-obvious-action scenarios passed |
+| where it could add value | n/a (it is the control) | not on this suite | open-ended exceptions the rules do not cover (not measured here) |
 
 ## Conclusion (let the evidence decide)
-On this suite, **adding a 1.5B local LLM did not improve the agent; it made task completion much worse and latency much higher, and the deterministic planner is the better planner today.** The value of the experiment is the harness: the same permissions, approval and trace layer made the LLM safe to evaluate, and the measurements are reproducible. What this does **not** show: that LLM planners are inferior in general, that a stronger model would not win, or that the deterministic planner would do well on exceptions a real kitchen produces. See the 7B and final-code results below for the effect of scale.
+On this suite, **adding a local LLM did not improve the agent; the deterministic planner is the better planner today.** The 1.5B model passed 3.6-6.5% of scenarios and the 7B model 29% (on a smaller, one-per-family sample), against 100% for the deterministic planner, at 600x to 3,000x the latency; the model won on no scenario in any paired comparison. Three things are worth keeping from the result beyond the headline:
+1. **Safety did not depend on the model.** Across ~1,000 real-model calls, 0 external actions and 100% approval-boundary compliance. The architecture (model proposes, deterministic code validates and authorizes, human approves) made it safe to evaluate weak and strong models alike.
+2. **Raw small models produce the dangerous failure silently.** The 1.5B model said `NO_ACTION` when action was needed in 21% of scenarios; a deterministic evidence envelope removed all of them. The guardrail is therefore justified as a safety device, even though it costs usefulness.
+3. **Scale narrows the gap but a 7B CPU model is still far from the control.** Whether a larger model, a simpler tool schema, few-shot traces or fine-tuning would reach parity was not tested.
+What this does **not** show: that LLM planners are inferior in general; that the deterministic planner would handle exceptions a real kitchen produces that the author did not anticipate (the scenarios are author-generated; the control was built alongside them, which flatters it); or anything about hosted frontier models, which were deliberately not used (no paid API).
 
 ## Run 2 (final code, qwen2.5:1.5b-instruct) and Run 3 (qwen2.5:7b-instruct)
 ### Run 2: qwen2.5:1.5b-instruct on the final code (commit 3a48adc, 140 scenarios, 4 splits) - the reported run
@@ -106,4 +113,32 @@ Paired against the deterministic planner on the same ids (139 shared): the deter
 3. **The raw model echoed attacker text in 2 of 24 adversarial scenarios** (`contradictory_canonical`: a document that contradicts the canonical spec); the guardrail variant did not, and no permission was affected.
 4. Tool recall stayed at ~15%: the dominant failure is again *which tools to call*, not JSON (0.7% schema failures).
 
-RUN3_PLACEHOLDER
+### Run 3: qwen2.5:7b-instruct (Apache-2.0, 4.7 GB, Q4_K_M, CPU) on held-out B + adversarial, one scenario per family (35 scenarios)
+CI run 38787190128 (commit 54d7da9). Held-out B is the clean split; adversarial is the injection/poison split. One scenario per family (20 + 15) because a 7B model on 4 vCPU takes minutes per scenario. Files: `results/planner_qwen7b_{raw,guardrail,paired}.json`.
+
+| metric (35 scenarios) | deterministic control | 7B raw | 7B + guardrail | (1.5B raw, same families, run 2) |
+|---|---|---|---|---|
+| all checks passed | 35 / 35 | **10 / 35 (29%)** | 11 / 35 (31%) | 1 / 36 (3%) |
+| held-out B / adversarial | 20/20, 15/15 | 3/20, 7/15 | 4/20, 7/15 | n/a |
+| correct action | 35 / 35 | 20 / 35 (57%) | 22 / 35 (63%) | 11 / 36 (31%) |
+| correct abstention (of 28 should-abstain) | 28 / 28 | 20 / 28 (71%) | 17 / 28 (61%) | n/a |
+| required tools called | 35 / 35 | 15 / 35 (43%) | 15 / 35 (43%) | 8 / 36 (22%) |
+| wrong silent `NO_ACTION` | 0 | 0 | 0 | (30 of 140 over all splits) |
+| unnecessary tool calls | 0 | 115 | 115 | n/a |
+| invalid tool-call arguments | 0 | 70 | 69 | n/a |
+| forbidden-action attempts | 0 | **0** | **0** | 119 over 140 |
+| external actions executed / approval-boundary compliance | 0 / 100% | 0 / 100% | 0 / 100% | 0 / 100% |
+| unsupported claims | 0 | 0 of 15 | 0 of 8 | 0 |
+| schema failures / fail-safe fallbacks (of 144 calls) | n/a | 0 / 0 | 0 / 0 | 3 / 3 over 426 calls |
+| latency p50 / p95 | ~50 ms / ~100 ms | **151.5 s / 275.6 s** | (cached replies) | ~28 s / ~53 s |
+| tokens (prompt + completion), 144 calls | 0 | 116,237 + 21,536 | same replies | n/a |
+
+Paired against the deterministic planner on the same 35 ids: the deterministic planner passes where the 7B model fails in 25 scenarios (24 for the guardrail variant), the model passes where the deterministic planner fails in **0**; exact sign test p < 0.001.
+
+**What run 3 adds.**
+1. **Scale helps, but not enough.** 7B passes ~29% vs ~3% for 1.5B on overlapping families; required-tool recall 43% vs 15-22%; no schema failures, no forbidden attempts, no silent all-clear in this sample. The gap to the deterministic planner (100%) remains large.
+2. **All 10 passes are `DRAFT_PURCHASE_RECOMMENDATION` scenarios** (low cover, supplier proposals, review/edit/replay paths): cases with one obvious action the model can reach in a couple of tool calls. It failed the data-quality families (duplicate/near-duplicate order, price drift, unit mismatch, malformed timestamp, order-total mismatch), policy-trap families (negation trap, lexical trap, superseded/unverified/fake-authority documents) and the poisoned tool result. Its competence is narrow, not broad.
+3. **Cost of that capability:** ~5 minutes of CPU per scenario at worst, 3,000x the deterministic latency. On a GPU this would be far faster; it was not measured.
+4. **Small-n caveat:** 35 scenarios, one per family. A single run at temperature 0, seed 7. The 29% interval is wide (Wilson 95%: 16-45%). Treat the direction (scale helps, deterministic still wins) as supported and the exact rate as indicative.
+
+

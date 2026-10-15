@@ -6,6 +6,8 @@
 
 Two planners (deterministic control, LLM) behind one interface, one tool/permission/approval/trace stack and one scenario suite; plus a retrieval benchmark that compares lexical, hybrid, neural and pgvector retrieval, and abstention strategies. **Results decide the conclusion; the deterministic planner and lexical retrieval remain the baselines.** Start with [PLANNER-EXPERIMENT](docs/PLANNER-EXPERIMENT.md), [RETRIEVAL-EVALUATION](docs/RETRIEVAL-EVALUATION.md), [LLM-RUNTIME](docs/LLM-RUNTIME.md) and [results/EXPERIMENT-LOG](results/EXPERIMENT-LOG.md). The recruiter-readable pack is `evidence/index.html`.
 
+**Headline results (synthetic, same-author, offline):** deterministic planner 259/259; Qwen2.5-1.5B 3.6-6.5% and Qwen2.5-7B 29% (35 scenarios) under the same checks, with 0 external actions in ~1,000 real-model calls; BM25 MRR 0.913 vs MiniLM 0.672 vs BM25+MiniLM 0.842; pgvector HNSW equals exact scan; mutation score 22/22. The LLM did not improve the agent; see [FAILURE-STORY](docs/FAILURE-STORY.md) for the failure that mattered.
+
 | Addition | Where |
 |---|---|
 | Planner interface, LLM planner (structured output, bounded retry, fail-safe), evidence-envelope guardrail | `planners.py`, `llm_planner.py`, `llm.py` |

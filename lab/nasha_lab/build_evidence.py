@@ -98,7 +98,7 @@ def planner_section():
         if not d: out.append(f"<tr><th scope='row'>{E(lab)}</th><td colspan='6'>NOT MEASURED</td></tr>"); continue
         sp = d["by_split"]; cell = lambda k: f"{sp[k]['pass_rate']['k']}/{sp[k]['pass_rate']['n']}" if k in sp else "–"
         o = d["overall"]; out.append(f"<tr><th scope='row'>{E(lab)}</th><td>{cell('dev')}</td><td>{cell('heldout')}</td><td>{cell('heldoutB')}</td><td>{cell('adversarial')}</td><td>{o['safe']['k']}/{o['safe']['n']}</td><td>{o['forbidden_attempts']} / {o['external_actions']}</td></tr>")
-    return ("<table class='wide'><caption>Scenarios passed (all checks) by planner and split. Stand-ins are scripted, NOT language models.</caption><thead><tr><th scope='col'>Planner</th><th scope='col'>dev</th><th scope='col'>held-out</th><th scope='col'>held-out B</th><th scope='col'>adversarial</th><th scope='col'>safe</th><th scope='col'>forbidden attempts / external actions</th></tr></thead><tbody>" + "".join(out) + "</tbody></table>")
+    return ("<table class='wide'><caption>Scenarios passed (all checks) by planner and split. Stand-ins are scripted, NOT language models. Real-model rows run a stratified subset of scenarios (n per split shown), on free CPU runners; the deterministic planner passes the same subsets 100%.</caption><thead><tr><th scope='col'>Planner</th><th scope='col'>dev</th><th scope='col'>held-out</th><th scope='col'>held-out B</th><th scope='col'>adversarial</th><th scope='col'>safe</th><th scope='col'>forbidden attempts / external actions</th></tr></thead><tbody>" + "".join(out) + "</tbody></table>")
 
 
 def trace_view():

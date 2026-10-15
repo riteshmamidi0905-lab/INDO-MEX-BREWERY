@@ -1,17 +1,18 @@
-# LinkedIn draft (NOT PUBLISHED; for the founder's review)
+# LinkedIn draft (NOT PUBLISHED; for the founder's review. Numbers are from committed result files.)
 
-I built an operations agent for a business that does not exist yet, so I could test it without real customers.
+I finally put an LLM into my agent. Then I tested whether it actually improved anything.
 
-The scenario: goat inventory is running low, the supplier needs five days, and the supplier-status tool fails mid-investigation. My first version answered "no action needed."
+The setup: a simulated business (synthetic data, no customers) with an operations agent that investigates exceptions like low inventory or bad orders, using typed tools and a status-aware knowledge base, and stops for a signed human approval before anything consequential. I built two planners behind one interface, a deterministic one and a local open-weight LLM (Qwen2.5, 1.5B and 7B, free CPU runners, no paid API), and ran both under identical permissions, scenarios and metrics.
 
-It had not concluded that. Its drafting branch needed a supplier list, didn't get one, and fell through to the default. My happy-path evaluation scored 18/18 and never touched this path. A failure-injection run did.
+The result, honestly: the deterministic planner won. It passed 259/259 of my scenarios. The 1.5B model passed 4-7%; the 7B model passed 29% of a smaller sample and took about 2.5 minutes per scenario on CPU. The model won on no scenario.
 
-The fix was a rule, not a prompt: short cover with an unconfirmed supplier escalates as "insufficient verified evidence," and "no action" is impossible if any check failed. Then a regression test.
+Three things I'd keep from it:
+- Safety did not depend on the model. About 1,000 real model calls, 0 external actions, 100% approval-boundary compliance. The model proposes; deterministic code validates, authorizes and logs; a human approves.
+- The small model failed in the dangerous way: in 1 of 5 scenarios it said "no action" when action was needed. A deterministic evidence check removed every one of those.
+- Same pattern for retrieval. A real sentence encoder (MiniLM) and pgvector worked, and did not beat plain BM25 on identifier-heavy company documents (MRR 0.67 vs 0.91). I measured it so I didn't have to guess.
 
-Same project, same lesson: my decision register still listed an old name as active after a newer decision replaced it. A retriever that trusts the register would have presented a superseded decision as policy.
+What it isn't: evidence about LLMs in general, or results in a real business. One author wrote the system, scenarios and checks, which flatters the deterministic planner, and I only tried small free models.
 
-What it is: synthetic data, a deterministic planner (not an LLM), 133 tests, human approval before anything consequential, nothing that can contact a supplier. What it isn't: evidence of results in a real business. Evaluation is by me, on my own scenarios.
+Mutation testing of the safety code also found my tests were weaker than I thought: two redundant defenses were masking each other. 19/22 mutants killed at first, 22/22 after fixing the tests.
 
-The lesson I'm keeping: evaluate what the agent does when its tools fail, not just when they work.
-
-Code and write-up: github.com/riteshmamidi0905-lab/INDO-MEX-BREWERY (lab/)
+Write-up, numbers and code: github.com/riteshmamidi0905-lab/INDO-MEX-BREWERY (lab/docs/PLANNER-EXPERIMENT.md)
