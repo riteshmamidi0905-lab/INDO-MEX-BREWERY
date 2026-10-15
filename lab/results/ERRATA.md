@@ -1,0 +1,4 @@
+# Errata (frozen Block 3 files are never edited; corrections are recorded here)
+
+1. `results/rag2_retrieval_ci.json` and `.md` (recovered from CI run 38786430242): the row label "hybrid (bm25+tfidf+hash RRF)" is WRONG. The retriever named `hybrid` is **RRF(BM25, LSA/SVD)**, as stated in `docs/RETRIEVAL-EVALUATION.md` and recorded in the baseline. The numbers on that row are correct and come from the CI log line `RAG2C hybrid`. Consumers must identify rows by position / the `per_category_mrr` keys (`bm25, lsa, hybrid, static_neural, hybrid_static, minilm, hybrid_minilm`), not by that label. The portfolio export (`nasha_lab/export_portfolio.py`) maps ids explicitly.
+2. Block 3 summary text said "pgvector 0.6" in one place; the sandbox ran 0.6 and CI ran 0.8.7. CI numbers (0.8.7) are the reported ones.

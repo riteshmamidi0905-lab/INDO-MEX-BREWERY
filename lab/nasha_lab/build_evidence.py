@@ -85,7 +85,7 @@ def retrieval_section():
     ci = load("rag2_retrieval_ci.json"); cit = ""
     if ci:
         cit = ("<table class='wide'><caption>Neural embeddings and pgvector (free GitHub runner: Ollama all-MiniLM-L6-v2, spaCy vectors, pgvector HNSW), all 467 questions. " + E(ci["source"]) + "</caption><thead><tr><th scope='col'>Retriever</th><th scope='col'>R@1</th><th scope='col'>R@5</th><th scope='col'>MRR</th><th scope='col'>nDCG@10</th><th scope='col'>Authority-correct</th></tr></thead><tbody>"
-               + "".join(f"<tr><th scope='row'>{E(r['retriever'])}</th><td>{r['recall@1']}</td><td>{r['recall@5']}</td><td>{r['mrr']}</td><td>{r['ndcg@10']}</td><td>{r['authority_correct']}</td></tr>" for r in ci["table"]) + "</tbody></table>")
+               + "".join(f"<tr><th scope='row'>{E(__import__('nasha_lab.export_portfolio', fromlist=['x']).RET_IDS[i][1])}</th><td>{r['recall@1']}</td><td>{r['recall@5']}</td><td>{r['mrr']}</td><td>{r['ndcg@10']}</td><td>{r['authority_correct']}</td></tr>" for i, r in enumerate(ci["table"])) + "</tbody></table>")
     return (f"<p>{d['n']} questions in {len(cats)} categories (dev {d['splits']['dev']}, held-out {d['splits']['heldout']}); held-out MRR shown. Generated questions are lexically close to their sources and favour BM25; hand-written paraphrases do not.</p>"
             + bars(items) + cit + (f"<p class='note'>Not measured in this environment: {E('; '.join(un))}</p>" if un else "") + tab + st)
 
