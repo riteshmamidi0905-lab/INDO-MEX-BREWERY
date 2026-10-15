@@ -1,6 +1,6 @@
 {
- "distHash": "c19df1b2dcf4ec7a",
- "date": "2026-10-13T15:32:57.885Z",
+ "distHash": "97432a7c214ec1d0",
+ "date": "2026-10-15T22:42:55.959Z",
  "pages": {
   "about.html": {
    "overflow": {
@@ -125,12 +125,12 @@
     "/about.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
+    "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 72
    },
    "noJs": {
     "h1": 1,
@@ -260,18 +260,18 @@
     }
    },
    "console": [],
-   "bytes": 151627,
+   "bytes": 151637,
    "requests": [
     "/beer.html",
     "/styles.css",
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/app.js",
     "/images/NV-VISION-VP10-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 88
+    "lcp_ms": 68
    },
    "noJs": {
     "h1": 1,
@@ -280,7 +280,7 @@
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 151627,
+   "initialBytes": 151637,
    "reducedMotion": true
   },
   "court.html": {
@@ -462,13 +462,13 @@
     "/court.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
-    "/app.js",
     "/fonts/inter-latin-wght-normal.woff2",
+    "/app.js",
     "/images/NV-VISION-VP01-ENTRANCE-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 84
+    "lcp_ms": 52
    },
    "noJs": {
     "h1": 1,
@@ -662,28 +662,28 @@
     }
    },
    "console": [],
-   "bytes": 324905,
+   "bytes": 324925,
    "requests": [
+    "/craft.html",
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
-    "/craft.html",
     "/app.js",
     "/images/NV-VISION-VP10-d-1536.avif",
     "/images/NV-VISION-VP11-d-1536.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 104
+    "lcp_ms": 56
    },
    "noJs": {
     "h1": 1,
-    "textLen": 3829,
+    "textLen": 3849,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 240879,
+   "initialBytes": 240899,
    "reducedMotion": true
   },
   "crossing.html": {
@@ -870,7 +870,7 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 88
+    "lcp_ms": 48
    },
    "noJs": {
     "h1": 1,
@@ -1003,8 +1003,8 @@
    "bytes": 209285,
    "requests": [
     "/evening.html",
-    "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/styles.css",
     "/app.js",
     "/fonts/inter-latin-wght-normal.woff2",
     "/images/NV-VISION-VP13-d-640.avif",
@@ -1013,7 +1013,7 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 80
+    "lcp_ms": 72
    },
    "noJs": {
     "h1": 1,
@@ -1061,7 +1061,7 @@
    "axe": {
     "dark": {
      "violations": [],
-     "passes": 39,
+     "passes": 44,
      "incomplete": [
       "color-contrast"
      ],
@@ -1102,7 +1102,7 @@
     },
     "light": {
      "violations": [],
-     "passes": 39,
+     "passes": 44,
      "incomplete": [
       "color-contrast"
      ],
@@ -1143,31 +1143,30 @@
     }
    },
    "console": [],
-   "bytes": 251540,
+   "bytes": 228183,
    "requests": [
-    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/food.html",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
-    "/fonts/inter-latin-wght-normal.woff2",
     "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2",
     "/images/NV-VISION-VP05-d-640.avif",
     "/images/NV-VISION-VP06-d-640.avif",
     "/images/NV-VISION-VP07-d-640.avif",
-    "/images/NV-VISION-VP08-d-640.avif",
     "/images/NV-VISION-VP09-d-640.avif"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 104
+    "lcp_ms": 84
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4213,
+    "textLen": 4178,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 251540,
+   "initialBytes": 228183,
    "reducedMotion": true
   },
   "index.html": {
@@ -1302,7 +1301,7 @@
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 108
+    "lcp_ms": 52
    },
    "noJs": {
     "h1": 1,
@@ -1434,15 +1433,15 @@
    "console": [],
    "bytes": 163063,
    "requests": [
-    "/investor.html",
     "/styles.css",
-    "/app.js",
+    "/fonts/instrument-serif-latin-400-normal.woff2",
     "/fonts/inter-latin-wght-normal.woff2",
-    "/fonts/instrument-serif-latin-400-normal.woff2"
+    "/investor.html",
+    "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 72
+    "lcp_ms": 64
    },
    "noJs": {
     "h1": 1,
@@ -1580,26 +1579,26 @@
     }
    },
    "console": [],
-   "bytes": 120385,
+   "bytes": 120428,
    "requests": [
     "/styles.css",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/labs.html",
-    "/fonts/inter-latin-wght-normal.woff2",
-    "/app.js"
+    "/app.js",
+    "/fonts/inter-latin-wght-normal.woff2"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 88
+    "lcp_ms": 60
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4849,
+    "textLen": 4892,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 120385,
+   "initialBytes": 120428,
    "reducedMotion": true
   },
   "pairings.html": {
@@ -1720,26 +1719,26 @@
     }
    },
    "console": [],
-   "bytes": 119993,
+   "bytes": 120003,
    "requests": [
+    "/pairings.html",
     "/fonts/instrument-serif-latin-400-normal.woff2",
     "/styles.css",
-    "/pairings.html",
     "/fonts/inter-latin-wght-normal.woff2",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 88
+    "lcp_ms": 60
    },
    "noJs": {
     "h1": 1,
-    "textLen": 4560,
+    "textLen": 4570,
     "hiddenFilters": true,
     "items": 0,
     "visibleItems": 0
    },
-   "initialBytes": 119993,
+   "initialBytes": 120003,
    "reducedMotion": true
   },
   "walkthrough.html": {
@@ -1863,14 +1862,14 @@
    "bytes": 111669,
    "requests": [
     "/styles.css",
-    "/walkthrough.html",
-    "/fonts/inter-latin-wght-normal.woff2",
     "/fonts/instrument-serif-latin-400-normal.woff2",
+    "/fonts/inter-latin-wght-normal.woff2",
+    "/walkthrough.html",
     "/app.js"
    ],
    "perf": {
     "cls": 0,
-    "lcp_ms": 60
+    "lcp_ms": 48
    },
    "noJs": {
     "h1": 1,
@@ -1891,12 +1890,12 @@
   "maxInitialBytes": 288184,
   "homeInitialBytes": 288184,
   "maxCls": 0,
-  "maxLcpMs": 108,
+  "maxLcpMs": 84,
   "consoleIssues": 0
  },
  "slow": {
   "profile": "1.6 Mbps, 150 ms RTT, 390px viewport",
-  "heroReadyMs": 1298,
+  "heroReadyMs": 1290,
   "heroSrc": "/images/NV-VISION-VP01-m-480.avif"
  },
  "imagesBlocked": {
