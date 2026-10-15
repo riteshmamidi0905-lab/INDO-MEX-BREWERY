@@ -1,0 +1,102 @@
+{
+ "label": "v0",
+ "synthetic": true,
+ "scope": "offline evaluation on SYNTHETIC data with injected defects; author-written generator and rules (same-author)",
+ "clean_dataset_findings": 0,
+ "injected": {
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "per_rule": {
+   "duplicate_order": {
+    "tp": 40,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "forbidden_protein": {
+    "tp": 15,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "future_timestamp": {
+    "tp": 40,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "malformed_timestamp": {
+    "tp": 40,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "missing_location": {
+    "tp": 40,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "near_duplicate_order": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 40,
+    "precision": null,
+    "recall": 0.0
+   },
+   "near_duplicate_shifted": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 40,
+    "precision": null,
+    "recall": 0.0
+   },
+   "nonpositive_qty": {
+    "tp": 40,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "order_total_mismatch": {
+    "tp": 40,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "orphan_item": {
+    "tp": 40,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "price_drift": {
+    "tp": 40,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "unit_mismatch": {
+    "tp": 40,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   }
+  },
+  "fp_examples": []
+ }
+}

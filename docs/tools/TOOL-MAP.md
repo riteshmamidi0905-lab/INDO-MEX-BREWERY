@@ -13,7 +13,7 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 | `core5_glasses.py` | HELPER / MODEL | Core 5 beer glass FAMILY (concept geometry) built with tools/glass_params.py (Sprint 16). CONCEPT GEOMETRY - M | 2 |
 | `dashboard.py` | GENERATOR | Generate docs/PROTOTYPE-READINESS.md from repository facts. Nothing is marked done unless a real result row ex | 6 |
 | `decision_register.py` | GENERATOR | Decision register and contradiction check (Sprint 19). Parses docs/decisions/DECISIONS.md (table rows / D-n /  | 8 |
-| `diet_audit.py` | VALIDATOR | D-54 consistency check: no beef/pork in CURRENT-PRODUCT files unless the line is marked as superseded/rejected | 7 |
+| `diet_audit.py` | VALIDATOR | D-54 consistency check: no beef/pork in CURRENT-PRODUCT files unless the line is marked as superseded/rejected | 10 |
 | `experiment_stats.py` | RECORDER / INGEST | Small-sample experiment analysis for T1-style tests (Sprint 14). Honest by design: with n<8 it reports descrip | 4 |
 | `fin_model.py` | HELPER / MODEL | Restaurant/brewery scenario model (Sprint 14, hardened Sprint 22). Reads ops/finance/assumptions.csv (every va | 13 |
 | `food_costing.py` | HELPER / MODEL | Food costing, allergen and D-54 checks for NASHA recipes (Sprint 9, hardened Sprint 22). Reads food/costing/in | 19 |
@@ -41,7 +41,7 @@ One command validates everything: `bash tools/validate_all.sh`. One tool ingests
 | `t1_record.py` | RECORDER / INGEST | Summarise real T1 kitchen results (food/t1-results/t1-results.csv). Never invents data: with no rows it report | 13 |
 | `tool_map.py` | GENERATOR | Generate docs/tools/TOOL-MAP.md: every tool, its one-line purpose (first docstring line or comment), what refe | 0 (UNREFERENCED) |
 | `trade_area.py` | HELPER / MODEL | Trade-area screening on FOUNDER-SUPPLIED public points (Sprint 15). Straight-line (geodesic-projected) radius  | 2 |
-| `validate_all.sh` | VALIDATOR | FULL NASHA VALIDATION: one command. Runs the repository validators, generated-file freshness checks, every too | 3 |
+| `validate_all.sh` | VALIDATOR | FULL NASHA VALIDATION: one command. Runs the repository validators, generated-file freshness checks, every too | 4 |
 | `validate_company.py` | VALIDATOR | Company-building system checks (Sprint 19): data files parse, generated founder control center is fresh, decis | 2 |
 | `validate_core5.py` | VALIDATOR | Validate the Core 5 x Core 5 program files (Sprint 16, D-75). Exit 1 on failure. Checks structure and honesty, | 3 |
 | `validate_family.py` | VALIDATOR | Validate the Founder Vision Preview (website/family-dist): private, noindex, self-contained, family-safe copy, | 1 |

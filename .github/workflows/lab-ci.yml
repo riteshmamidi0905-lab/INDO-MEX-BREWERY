@@ -1,0 +1,19 @@
+name: lab-ci
+on:
+  push:
+    paths: ["lab/**", ".github/workflows/lab-ci.yml"]
+  pull_request:
+    paths: ["lab/**"]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install pytest
+      - run: cd lab && python -m pytest -q -p no:cacheprovider tests
+      - name: Evaluation must reproduce the committed results
+        run: cd lab && python -m nasha_lab.evaluate v1 | diff - results/eval_v1.json

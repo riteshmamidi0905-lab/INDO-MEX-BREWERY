@@ -14,6 +14,7 @@ run "family preview is fresh" python3 website/family.py --check
 run "family preview validator" python3 tools/validate_family.py
 run "vision layer guard" python3 tools/vision_check.py check
 run "selftest vision_check" python3 tools/vision_check.py selftest
+run "enterprise AI lab tests" bash -c "cd lab && python3 -m pytest -q -p no:cacheprovider tests"
 run "security check" bash tools/security_check.sh
 [ $fail -eq 0 ] && echo "ALL CHECKS PASSED" || echo "SOME CHECKS FAILED"
 exit $fail
