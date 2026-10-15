@@ -5,7 +5,7 @@
 ## What it is
 A deterministic synthetic NASHA operations dataset **with labelled, injected defects**, and a layered pipeline that must find them:
 
-`raw CSV -> staging (typing, rejects) -> validated (12 data-quality rules, quarantine, severities) -> modeled (SQLite star schema) -> analytics views`, with a lineage table, a row-conservation invariant, and a publish gate that fails on a D-54 violation (beef/pork/derivatives in a menu record).
+`raw CSV -> staging (typing, rejects) -> validated (11 data-quality rules, quarantine, severities) -> modeled (SQLite star schema) -> analytics views`, with a lineage table, a row-conservation invariant, and a publish gate that fails on a D-54 violation (beef/pork/derivatives in a menu record).
 
 ```bash
 cd lab && python -m pip install pytest && python -m pytest -q tests      # 30 tests
