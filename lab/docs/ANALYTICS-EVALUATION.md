@@ -154,7 +154,8 @@ The 5-hour timezone slip is structurally valid and **no rule can see it**. Dupli
 
 - **Unlogged shrink (L03 goat, 6% of usage, no waste entry):** observed net count variance -6.3% of usage. Rank among all 24 site x ingredient pairs by most negative variance: **2** (the top pair is L03 hops at -11.4% on only 1.1 kg of usage: small-quantity noise, a false lead). Among pairs with at least 20 kg usage: rank **1** of 21; across seeds 1 to 5 the rank is 1, 1, 1, 1, 1. A volume floor is needed to find it; without one the top hit is noise.
 - **Unreliable suppliers (injected late probability S03 0.40, S05 0.25, others at most 0.10):** observed on-time order worst first: S03 0.64 (n=22), S05 0.71 (n=24), S02 0.91 (n=21), S01 0.96 (n=23), S04 1.00 (n=39). The two worst match the injected two: True. Sample sizes are 21 to 39 lines per supplier, so the middle of the ranking is not reliable.
-- **Recipe change through SCD2:** corn masa theoretical usage 6.633 kg/day (all sites) before the change date and 5.35 kg/day after, because the v2 dish drops the tortilla. The SCD2 as-of join is what makes this appear.
+- **About the menu-change date.** 2026-04-13 is a **SYNTHETIC SCENARIO DATE / DESIGN ASSUMPTION** chosen so orders exist on both sides of the SCD2 change inside the 56-day window. It is not a real menu-change date. No existing NASHA source proves one: a search of `lab/` and the repository docs found only D-84 (2026-10-15), which records the design direction (Mango Habanero Gobi, an appetizer, replacing the Gobi Taco concept) and no effective date; nothing has been cooked or sold.
+- **Recipe change through SCD2:** corn masa theoretical usage 6.633 kg/day (all sites) before the SYNTHETIC SCENARIO DATE 2026-04-13 (design assumption, not a real date) and 5.35 kg/day after, because the v2 dish drops the tortilla. The SCD2 as-of join is what makes this appear.
 
 ## 6. Contribution margin (ASSUMPTION costs) and its sensitivity
 

@@ -84,9 +84,9 @@ def main():
     tables = [t for t, in q("SELECT name FROM sqlite_master WHERE type='table' AND (name LIKE 'dim_%' OR name LIKE 'fact_%' OR name LIKE 'bridge_%') ORDER BY 1")]
     write("mart_summary.json", {"seed": C.SEED, "row_counts": {t: q(f"SELECT COUNT(*) FROM {t}")[0][0] for t in tables},
         "reconciliation": {k: {"left": a, "right": b, "equal": a == b} for k, (a, b) in MC.reconciliation(con).items()},
-        "orphan_foreign_keys": {k: v for k, v in MC.orphan_counts(con).items()}, "grain_duplicates": MC.grain_duplicates(con), "scd2_problems": MC.scd2_problems(con),
+        "orphan_foreign_keys": {k: v for k, v in sorted(MC.orphan_counts(con).items())}, "grain_duplicates": MC.grain_duplicates(con), "scd2_problems": MC.scd2_problems(con),
         "order_lines_outside_scd2_window": MC.order_lines_outside_scd2_window(con), "injected_defect_count": len(info["injected_defects"]),
-        "simulation_truth": info["simulation_truth"], "menu_change_date_assumption": C.MENU_CHANGE_DATE, "assumptions_file": "lab/analytics/config.py"})
+        "simulation_truth": info["simulation_truth"], "menu_change_date_assumption": C.MENU_CHANGE_DATE, "menu_change_date_label": C._MENU_CHANGE_DATE_LABEL, "assumptions_file": "lab/analytics/config.py"})
     rec = M.reconcile(con)
     write("metrics_reconciliation.json", {"metrics_file": "lab/analytics/metrics.json", "all_ok": all(r["ok"] for r in rec),
         "rows": [{k: r[k] for k in ("metric", "groups", "max_abs_diff", "ok", "mart", "source")} for r in rec]})

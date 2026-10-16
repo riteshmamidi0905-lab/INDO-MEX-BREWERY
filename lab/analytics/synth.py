@@ -21,7 +21,7 @@ MOQ = {ing: moq for (_s, ing, _lt, _spec, moq) in world.SUPPLIER_INGREDIENTS}
 
 
 def recipe_at(item_id, date_iso):
-    """Recipe in force for an item on a date (SCD2-consistent): M04 changes from v1 to v2 on MENU_CHANGE_DATE."""
+    """Recipe in force for an item on a date (SCD2-consistent): M04 changes from v1 to v2 on MENU_CHANGE_DATE (a SYNTHETIC SCENARIO DATE / DESIGN ASSUMPTION, not a real date)."""
     if item_id == "M04" and date_iso >= C.MENU_CHANGE_DATE:
         return world.RECIPES_V2["M04"]
     return world.RECIPES.get(item_id, {})

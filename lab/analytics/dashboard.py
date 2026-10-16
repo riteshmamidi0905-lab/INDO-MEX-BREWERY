@@ -90,6 +90,7 @@ p.note{{color:var(--mut);font-size:.88rem;margin:.3rem 0}}
 <p class="note">One simulated run, 95% CI per estimator, against the injected truth. Power at this effect size is about {100 * mcm['unadjusted']['reject_rate']:.0f}%; over {ex['monte_carlo_with_effect']['reps']} repeated randomisations the estimators are unbiased (bias {mcm['unadjusted']['bias']:+.3f}) with {100 * mcm['unadjusted']['ci_coverage']:.0f}% coverage. Underpowered by design.</p>
 {interval_chart(ir, ex['truth']['m04_units_per_treated_guest'], "Estimates and 95 percent intervals versus injected truth")}
 <details><summary>Data table</summary>{tbl(["Estimator", "Estimate", "CI low", "CI high"], [(a, f"{b:.3f}", f"{c:.3f}", f"{d:.3f}") for a, b, c, d in ir], "Primary metric estimates")}</details></section>
+<p class="note">The 2026-04-13 menu-change date used in the simulation is a SYNTHETIC SCENARIO DATE / DESIGN ASSUMPTION, not a real NASHA date.</p>
 <p class="note">Rendered from lab/results/analytics/*.json by analytics/dashboard.py. Static page; no scripts, no external requests.</p>
 </main></body></html>
 """

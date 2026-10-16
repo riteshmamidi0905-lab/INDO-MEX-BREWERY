@@ -147,10 +147,10 @@ def run(seeds=(1, 2, 3, 4, 5)):
         out["by_ingredient_wape"][m] = {ing: round(metrics([r for r in rows if r[2] == ing])["WAPE"], 4) for ing in sorted({r[2] for r in rows})}
         if m != "naive": out["paired_vs_naive"][m] = paired_bootstrap(recs, m, "naive")
         if m != "seasonal_naive": out["paired_vs_seasonal_naive"][m] = paired_bootstrap(recs, m, "seasonal_naive")
-    # structural break: corn masa series contains the dated recipe change (M04 loses its tortilla on the SCD2 change date)
+    # structural break: corn masa series contains the simulated recipe change (SYNTHETIC SCENARIO DATE; M04 loses its tortilla on the SCD2 change date)
     pre = [r for r in recs if r[2] == "corn masa" and r[3] == 49]
     out["recipe_change_note"] = {"origin_49_corn_masa_wape": {m: round(metrics([r for r in pre if r[4] == m])["WAPE"], 4) for m in MODELS},
-                                 "comment": "origin 49 (forecast days 49-55) is entirely after the 2026-04-13 recipe change (day 42); origin 35/42 windows straddle or precede it"}
+                                 "comment": "origin 49 (forecast days 49-55) is entirely after the SYNTHETIC SCENARIO DATE 2026-04-13 (design assumption, not a real date) recipe change (day 42); origin 35/42 windows straddle or precede it"}
     best = min(MODELS, key=lambda m: out["overall"][m]["WAPE"])
     out["best_by_wape"] = best
     return out

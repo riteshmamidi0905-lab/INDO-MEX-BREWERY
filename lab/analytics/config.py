@@ -11,9 +11,13 @@ SEED = 1                      # default build seed (the lab generator seed)
 MENU_VERSION_SOURCE = "v2"    # lab menu version used as the order source (orders are identical across v1/v2; only M04 differs)
 DEFECTS_PER_TYPE = 8          # lab generator default: injected defects per type (labelled in the generator's truth set)
 
-# --- SCD2 menu change (ASSUMPTION): the v1 -> v2 switch of M04 is given a synthetic effective date INSIDE the 56-day window so that
-# orders exist on both sides. The lab itself models menu versions as whole-world alternatives, not as a dated change.
-MENU_CHANGE_DATE = "2026-04-13"       # first date on which M04 is 'Mango Habanero Gobi' (v2). v1 'Gobi Taco' is valid before it.
+# --- SCD2 menu change: SYNTHETIC SCENARIO DATE / DESIGN ASSUMPTION. The v1 -> v2 switch of M04 is given a synthetic effective date INSIDE the
+# 56-day window so that orders exist on both sides. It is NOT a real menu-change date: no NASHA source (searched lab/ and the repo docs, incl. D-84,
+# which is dated 2026-10-15 and records a design DIRECTION, not an effective date) establishes any real date. The lab itself models menu versions
+# as whole-world alternatives, not as a dated change. Do not quote this date as a fact about NASHA.
+MENU_CHANGE_DATE = "2026-04-13"       # SYNTHETIC SCENARIO DATE: first simulated date on which M04 is 'Mango Habanero Gobi' (v2); v1 'Gobi Taco' is valid before it.
+_MENU_CHANGE_DATE_LABEL = ("SYNTHETIC SCENARIO DATE / DESIGN ASSUMPTION: not a real menu-change date; no NASHA source (including D-84, which records a design "
+                           "direction dated 2026-10-15) proves any real date")
 HIGH_DATE = "9999-12-31"
 
 # --- ASSUMED food cost per kg (USD). NOT real. Used only for contribution-margin illustrations.
