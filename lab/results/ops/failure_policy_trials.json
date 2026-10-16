@@ -1,0 +1,156 @@
+{
+ "breaker_and_budget": {
+  "breaker_state": "OPEN",
+  "budget": {
+   "requests": 54,
+   "retries": 2
+  },
+  "calls": [
+   {
+    "attempts": 3,
+    "circuit_open": false,
+    "code": "UPSTREAM_FAILURE",
+    "run": 0
+   },
+   {
+    "attempts": 0,
+    "circuit_open": true,
+    "code": "CIRCUIT_OPEN",
+    "run": 1
+   },
+   {
+    "attempts": 0,
+    "circuit_open": true,
+    "code": "CIRCUIT_OPEN",
+    "run": 2
+   },
+   {
+    "attempts": 0,
+    "circuit_open": true,
+    "code": "CIRCUIT_OPEN",
+    "run": 3
+   },
+   {
+    "attempts": 0,
+    "circuit_open": true,
+    "code": "CIRCUIT_OPEN",
+    "run": 4
+   },
+   {
+    "attempts": 0,
+    "circuit_open": true,
+    "code": "CIRCUIT_OPEN",
+    "run": 5
+   }
+  ]
+ },
+ "draft_ambiguous_timeout": {
+  "failure_policy": {
+   "open_dead_letters": 0,
+   "runs": 10,
+   "runs_reaching_the_draft_proposal": 10,
+   "runs_with_duplicate_drafts": 0
+  },
+  "naive_retry": {
+   "runs": 10,
+   "runs_reaching_the_draft_proposal": 10,
+   "runs_with_duplicate_drafts": 10
+  },
+  "no_retry": {
+   "runs": 10,
+   "runs_reaching_the_draft_proposal": 0,
+   "runs_with_duplicate_drafts": 0
+  },
+  "reconcile_then_retry_execstack": {
+   "runs": 10,
+   "runs_reaching_the_draft_proposal": 10,
+   "runs_with_duplicate_drafts": 0
+  }
+ },
+ "experiment": "failure-policy trials (sequential, seeded; policy limits from ops/failure-policy.json, not tuned after results)",
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+ "mutation_ambiguous_timeout": {
+  "failure_policy": {
+   "open_dead_letters": 10,
+   "retries_refused_by_single_use_grant": 0,
+   "runs": 10,
+   "runs_with_duplicate_review_items": 0,
+   "total_attempts_on_the_mutation": 10
+  },
+  "no_retry": {
+   "retries_refused_by_single_use_grant": 0,
+   "runs": 10,
+   "runs_with_duplicate_review_items": 0,
+   "total_attempts_on_the_mutation": 10
+  },
+  "retry_everything": {
+   "retries_refused_by_single_use_grant": 10,
+   "runs": 10,
+   "runs_with_duplicate_review_items": 0,
+   "total_attempts_on_the_mutation": 20
+  }
+ },
+ "transient_timeout_first_attempt": {
+  "failure_policy": {
+   "action_equals_clean": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "runs": 20,
+   "total_tool_attempts": 200
+  },
+  "no_retry": {
+   "action_equals_clean": {
+    "ci95": [
+     0.028,
+     0.301
+    ],
+    "k": 2,
+    "n": 20,
+    "rate": 0.1
+   },
+   "runs": 20,
+   "total_tool_attempts": 176
+  },
+  "retry_everything": {
+   "action_equals_clean": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "runs": 20,
+   "total_tool_attempts": 200
+  }
+ },
+ "unfixable_failures": {
+  "malformed_result/failure_policy": {
+   "attempts": 20,
+   "runs": 20,
+   "runs_ending_conservative": 16
+  },
+  "malformed_result/retry_everything": {
+   "attempts": 60,
+   "runs": 20,
+   "runs_ending_conservative": 16
+  },
+  "persistent_timeout/failure_policy": {
+   "attempts": 60,
+   "runs": 20,
+   "runs_ending_conservative": 20
+  },
+  "persistent_timeout/retry_everything": {
+   "attempts": 60,
+   "runs": 20,
+   "runs_ending_conservative": 20
+  }
+ }
+}

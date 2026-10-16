@@ -1,0 +1,302 @@
+{
+ "policy_version": "failure-policy-v1",
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED.",
+ "owner_decision": "Retry and fallback are NOT a universal default. Every operation has exactly one explicit class; the default for an unclassified operation is DO_NOT_RETRY and HUMAN_REVIEW (fail closed).",
+ "operation_classes": {
+  "SAFE_TO_RETRY": "No side effects. Repeating the call cannot change state. Retry with exponential backoff, jitter and a retry limit.",
+  "SAFE_WITH_IDEMPOTENCY_KEY": "Has side effects, but the target deduplicates on a caller-supplied key. Retry only with the same key; without a key, dead-letter.",
+  "RECONCILE_BEFORE_RETRY": "Has side effects and no key. After an ambiguous failure, first READ whether the effect happened; retry only if it did not, and treat 'found' as success.",
+  "DO_NOT_RETRY": "Has side effects, cannot be reconciled from state alone (or must never run). Never retried; ambiguous failures are dead-lettered for a person.",
+  "HUMAN_REVIEW_REQUIRED": "A person decides every failure. Nothing is retried or replayed automatically."
+ },
+ "failure_classes": {
+  "TRANSIENT": "Temporary upstream or infrastructure error (UPSTREAM_FAILURE, RETRIEVER_ERROR). May succeed on repeat.",
+  "TIMEOUT_AMBIGUOUS": "Timeout of an operation that may have committed a side effect before the response was lost. State unknown.",
+  "RATE_LIMIT": "Explicit throttling (429, RATE_LIMITED). The call was refused; wait at least Retry-After.",
+  "DEPENDENCY_DOWN": "The dependency is known down or its circuit breaker is open (CIRCUIT_OPEN, MODEL_UNAVAILABLE). Do not hammer it.",
+  "VALIDATION": "The input or a business rule was rejected (INVALID_ARGUMENTS, REJECTED). Permanent for these inputs.",
+  "AUTH": "Authentication, approval, taint or permission refusal (APPROVAL_REQUIRED, TAINTED_ARGUMENT, FORBIDDEN_EXTERNAL_ACTION, UNKNOWN_TOOL, AUTH_*). A control working as designed; never retried.",
+  "PERMANENT": "Will not succeed on repeat (NOT_FOUND, anything not recognised and free of side effects).",
+  "MALFORMED_RESULT": "The call returned something that violates its schema (MALFORMED_RESULT, SCHEMA_VIOLATION). For a write the effect may have happened."
+ },
+ "actions": {
+  "RETRY": "Retry after exponential backoff with jitter, up to max_attempts and within the retry budget.",
+  "RECONCILE_THEN_RETRY": "Read whether the side effect happened. Found: return it as the result. Absent: retry (as RETRY). Unknown: dead-letter.",
+  "FAIL_FAST": "Stop at once and surface the failure (the agent turns it into a gap and an escalation).",
+  "DEAD_LETTER": "Stop, persist a dead-letter record with replay instructions and put it in the human queue."
+ },
+ "error_code_map": {
+  "TIMEOUT": "TIMEOUT_AMBIGUOUS_IF_SIDE_EFFECTS_ELSE_TRANSIENT",
+  "UPSTREAM_FAILURE": "TRANSIENT",
+  "RETRIEVER_ERROR": "TRANSIENT",
+  "RATE_LIMITED": "RATE_LIMIT",
+  "CIRCUIT_OPEN": "DEPENDENCY_DOWN",
+  "MODEL_UNAVAILABLE": "DEPENDENCY_DOWN",
+  "INVALID_ARGUMENTS": "VALIDATION",
+  "REJECTED": "VALIDATION",
+  "NOT_FOUND": "PERMANENT",
+  "APPROVAL_REQUIRED": "AUTH",
+  "TAINTED_ARGUMENT": "AUTH",
+  "FORBIDDEN_EXTERNAL_ACTION": "AUTH",
+  "UNKNOWN_TOOL": "AUTH",
+  "MALFORMED_RESULT": "MALFORMED_RESULT",
+  "SCHEMA_VIOLATION": "MALFORMED_RESULT"
+ },
+ "unknown_code_rule": "an unrecognised error code is TIMEOUT_AMBIGUOUS when the operation has side effects (state unknown) and PERMANENT otherwise; it is never classified as retryable-by-default",
+ "decision_table": {
+  "SAFE_TO_RETRY": {
+   "TRANSIENT": "RETRY",
+   "TIMEOUT_AMBIGUOUS": "RETRY",
+   "RATE_LIMIT": "RETRY",
+   "DEPENDENCY_DOWN": "FAIL_FAST",
+   "VALIDATION": "FAIL_FAST",
+   "AUTH": "FAIL_FAST",
+   "PERMANENT": "FAIL_FAST",
+   "MALFORMED_RESULT": "FAIL_FAST"
+  },
+  "SAFE_WITH_IDEMPOTENCY_KEY": {
+   "TRANSIENT": "RETRY",
+   "TIMEOUT_AMBIGUOUS": "RETRY",
+   "RATE_LIMIT": "RETRY",
+   "DEPENDENCY_DOWN": "FAIL_FAST",
+   "VALIDATION": "FAIL_FAST",
+   "AUTH": "FAIL_FAST",
+   "PERMANENT": "FAIL_FAST",
+   "MALFORMED_RESULT": "RETRY"
+  },
+  "RECONCILE_BEFORE_RETRY": {
+   "TRANSIENT": "RECONCILE_THEN_RETRY",
+   "TIMEOUT_AMBIGUOUS": "RECONCILE_THEN_RETRY",
+   "RATE_LIMIT": "RECONCILE_THEN_RETRY",
+   "DEPENDENCY_DOWN": "FAIL_FAST",
+   "VALIDATION": "FAIL_FAST",
+   "AUTH": "FAIL_FAST",
+   "PERMANENT": "FAIL_FAST",
+   "MALFORMED_RESULT": "RECONCILE_THEN_RETRY"
+  },
+  "DO_NOT_RETRY": {
+   "TRANSIENT": "DEAD_LETTER",
+   "TIMEOUT_AMBIGUOUS": "DEAD_LETTER",
+   "RATE_LIMIT": "FAIL_FAST",
+   "DEPENDENCY_DOWN": "FAIL_FAST",
+   "VALIDATION": "FAIL_FAST",
+   "AUTH": "FAIL_FAST",
+   "PERMANENT": "FAIL_FAST",
+   "MALFORMED_RESULT": "DEAD_LETTER"
+  },
+  "HUMAN_REVIEW_REQUIRED": {
+   "TRANSIENT": "DEAD_LETTER",
+   "TIMEOUT_AMBIGUOUS": "DEAD_LETTER",
+   "RATE_LIMIT": "DEAD_LETTER",
+   "DEPENDENCY_DOWN": "DEAD_LETTER",
+   "VALIDATION": "DEAD_LETTER",
+   "AUTH": "DEAD_LETTER",
+   "PERMANENT": "DEAD_LETTER",
+   "MALFORMED_RESULT": "DEAD_LETTER"
+  }
+ },
+ "decision_guards": [
+  "SAFE_WITH_IDEMPOTENCY_KEY: RETRY needs an idempotency key; without one the decision becomes DEAD_LETTER",
+  "RECONCILE_THEN_RETRY needs a reconciler; without one the decision becomes DEAD_LETTER (the effect cannot be verified)",
+  "RETRY / RECONCILE_THEN_RETRY past max_attempts: operations with side effects -> DEAD_LETTER when the last failure left the state unknown, otherwise FAIL_FAST",
+  "an exhausted retry budget turns RETRY into FAIL_FAST (no side effects) or DEAD_LETTER (side effects)",
+  "a malformed result is retried for an operation only if the operation sets retry_malformed (the LLM planner)"
+ ],
+ "retry_defaults": {
+  "base_ms": 20.0,
+  "factor": 2.0,
+  "max_ms": 200.0,
+  "jitter": 0.25,
+  "rate_limit_floor_ms": 100.0
+ },
+ "retry_budget": {
+  "ratio": 0.2,
+  "min_retries": 3,
+  "note": "retries may add at most 20 percent on top of first attempts, plus a floor of 3, per budget window; this stops a degraded dependency from being amplified into a retry storm"
+ },
+ "operations": {
+  "llm_planner_call": {
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "retry_malformed": true,
+   "max_attempts": 3,
+   "breaker": true,
+   "rationale": "generation is a pure function of the prompt; a repeat costs tokens and latency but changes no state. Malformed (schema-violating) model output is stochastic and is retried; bounded because every retry costs money and a persistently invalid model must escalate. MODEL_UNAVAILABLE is a down dependency: fail fast, escalate"
+  },
+  "knowledge_retrieval": {
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "max_attempts": 2,
+   "breaker": true,
+   "rationale": "read-only retrieval; after the bounded retry the lexical fallback answers through the same status-aware code"
+  },
+  "http_upstream_get": {
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "max_attempts": 3,
+   "breaker": true,
+   "rationale": "idempotent read (HTTP GET semantics); honours Retry-After on rate limits"
+  },
+  "http_upstream_post_with_idempotency_key": {
+   "class": "SAFE_WITH_IDEMPOTENCY_KEY",
+   "side_effects": true,
+   "max_attempts": 3,
+   "breaker": true,
+   "rationale": "a write is retried only with the SAME caller-generated key and only against an upstream that deduplicates on it. Without a key it is dead-lettered, not retried"
+  },
+  "http_upstream_post_unkeyed": {
+   "class": "DO_NOT_RETRY",
+   "side_effects": true,
+   "max_attempts": 1,
+   "breaker": true,
+   "rationale": "a non-idempotent write to an upstream that cannot deduplicate: a lost response is ambiguous, so a second POST can double-apply"
+  },
+  "agent_run_start": {
+   "class": "SAFE_WITH_IDEMPOTENCY_KEY",
+   "side_effects": true,
+   "max_attempts": 3,
+   "breaker": false,
+   "rationale": "AgentService.start is deduplicated by event_id (a re-delivered event is ignored as DUPLICATE_IGNORED); the event id is the idempotency key. A crashed run left RUNNING must first be marked FAILED (OpsService does) or the retry is ignored (FC-15)"
+  },
+  "ops_store_write": {
+   "class": "SAFE_WITH_IDEMPOTENCY_KEY",
+   "side_effects": true,
+   "max_attempts": 3,
+   "breaker": false,
+   "rationale": "the ops store keys rows by run_id / dead-letter id with INSERT OR REPLACE-style writes, so replaying the same write converges to one row"
+  },
+  "db_write_unkeyed": {
+   "class": "DO_NOT_RETRY",
+   "side_effects": true,
+   "max_attempts": 1,
+   "breaker": false,
+   "rationale": "INSERT into the simulation database with a generated primary key: a retry after an ambiguous failure can create a second row"
+  },
+  "human_approval_execute_step": {
+   "class": "HUMAN_REVIEW_REQUIRED",
+   "side_effects": true,
+   "max_attempts": 1,
+   "breaker": false,
+   "rationale": "the approval -> execute step applies an approved mutation. Any failure here leaves state a person must inspect (what executed, what did not); nothing is automatically replayed, and an expired or forged approval is re-opened by a person, never worked around"
+  }
+ },
+ "tools": {
+  "query_inventory": {
+   "permission": "READ",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "pure SELECTs over the simulation database"
+  },
+  "assess_inventory_risk": {
+   "permission": "ANALYZE",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "pure calculation over SELECTs"
+  },
+  "get_quality_finding": {
+   "permission": "READ",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "single-row SELECT"
+  },
+  "list_quality_findings": {
+   "permission": "READ",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "SELECT"
+  },
+  "get_lineage": {
+   "permission": "READ",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "SELECTs"
+  },
+  "get_open_purchase_orders": {
+   "permission": "READ",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "SELECT"
+  },
+  "get_supplier_status": {
+   "permission": "READ",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "SELECT"
+  },
+  "get_supplier_proposal": {
+   "permission": "READ",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "SELECT"
+  },
+  "search_nasha_knowledge": {
+   "permission": "READ",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "read-only retrieval; a retriever outage is also covered by the lexical fallback (resilience.ResilientKB)"
+  },
+  "get_current_policy": {
+   "permission": "READ",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "read-only retrieval and answer; an abstention is a valid result, not a failure, and is never retried"
+  },
+  "assess_policy_ingredient": {
+   "permission": "ANALYZE",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "pure rule evaluation"
+  },
+  "get_supplier_notes_untrusted": {
+   "permission": "READ",
+   "class": "SAFE_TO_RETRY",
+   "side_effects": false,
+   "rationale": "read-only call through the trust gateway to an UNTRUSTED upstream; retrying never changes state, and the result is re-validated every time"
+  },
+  "draft_purchase_recommendation": {
+   "permission": "DRAFT",
+   "class": "RECONCILE_BEFORE_RETRY",
+   "side_effects": true,
+   "rationale": "INSERT with a random draft id and no idempotency key: a timeout after the commit is indistinguishable from a failure before it. Reconcile by (run, kind, exact payload) first. A blind retry duplicated the draft in 10 of 10 trials (GAP-01)",
+   "reconciler": "draft"
+  },
+  "draft_review_ticket": {
+   "permission": "DRAFT",
+   "class": "RECONCILE_BEFORE_RETRY",
+   "side_effects": true,
+   "rationale": "same mechanism as the purchase draft (random id, no key); reconcile by (run, kind, exact payload)",
+   "reconciler": "draft"
+  },
+  "adjust_inventory_record": {
+   "permission": "MUTATE_SIMULATION",
+   "class": "DO_NOT_RETRY",
+   "side_effects": true,
+   "rationale": "append-only INSERT of a stock delta bound to a single-use approval; two identical adjustments are legitimate, so state alone cannot prove whether a lost response committed. A human checks the movements table"
+  },
+  "flag_record_for_review": {
+   "permission": "MUTATE_SIMULATION",
+   "class": "DO_NOT_RETRY",
+   "side_effects": true,
+   "rationale": "INSERT into the human review queue under an approval bound to these exact arguments; ambiguity after a timeout goes to a person, not to a second attempt"
+  },
+  "release_draft": {
+   "permission": "MUTATE_SIMULATION",
+   "class": "RECONCILE_BEFORE_RETRY",
+   "side_effects": true,
+   "rationale": "state transition DRAFT_NOT_SUBMITTED -> APPROVED_FOR_HUMAN_PROCUREMENT_REVIEW; the target status is directly observable, so reconcile by reading the draft status. Only ever runs under an approval; the executor never retries without reading the status first",
+   "reconciler": "release_draft"
+  },
+  "contact_supplier": {
+   "permission": "EXTERNAL_ACTION",
+   "class": "DO_NOT_RETRY",
+   "side_effects": true,
+   "rationale": "FORBIDDEN in this prototype: never executed, never retried; every attempt is refused and logged"
+  },
+  "place_purchase_order": {
+   "permission": "EXTERNAL_ACTION",
+   "class": "DO_NOT_RETRY",
+   "side_effects": true,
+   "rationale": "FORBIDDEN in this prototype: never executed, never retried; every attempt is refused and logged"
+  }
+ }
+}
