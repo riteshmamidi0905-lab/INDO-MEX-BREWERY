@@ -1,0 +1,144 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "seed": 1,
+ "row_counts": {
+  "bridge_item_ingredient": 18,
+  "dim_channel": 4,
+  "dim_date": 70,
+  "dim_dq_rule": 12,
+  "dim_guest": 342,
+  "dim_ingredient": 9,
+  "dim_menu_item": 12,
+  "dim_site": 4,
+  "dim_supplier": 6,
+  "dim_waste_reason": 6,
+  "fact_exception_event": 19,
+  "fact_inventory_snapshot": 216,
+  "fact_order": 3983,
+  "fact_order_line": 10010,
+  "fact_po_line": 144,
+  "fact_quality_finding": 83,
+  "fact_usage_daily": 1341,
+  "fact_waste_adjustment": 249
+ },
+ "reconciliation": {
+  "orders: src = mart": {
+   "left": 3983,
+   "right": 3983,
+   "equal": true
+  },
+  "order lines: src = mart": {
+   "left": 10010,
+   "right": 10010,
+   "equal": true
+  },
+  "raw orders = mart + quarantined": {
+   "left": 4047,
+   "right": 4047,
+   "equal": true
+  },
+  "raw order lines = mart + quarantined": {
+   "left": 10143,
+   "right": 10143,
+   "equal": true
+  },
+  "gross sales: src = mart (cents)": {
+   "left": 15468100,
+   "right": 15468100,
+   "equal": true
+  },
+  "order totals: src = mart (cents)": {
+   "left": 15468100,
+   "right": 15468100,
+   "equal": true
+  },
+  "findings: src = mart": {
+   "left": 83,
+   "right": 83,
+   "equal": true
+  },
+  "PO qty received = receipts in snapshots (<= last snapshot)": {
+   "left": 1780.6,
+   "right": 1780.6,
+   "equal": true
+  }
+ },
+ "orphan_foreign_keys": {
+  "fact_order.date_key->dim_date.date_key": 0,
+  "fact_order.site_key->dim_site.site_key": 0,
+  "fact_order.channel_key->dim_channel.channel_key": 0,
+  "fact_order.guest_key->dim_guest.guest_key": 0,
+  "fact_order_line.order_key->fact_order.order_key": 0,
+  "fact_order_line.date_key->dim_date.date_key": 0,
+  "fact_order_line.site_key->dim_site.site_key": 0,
+  "fact_order_line.item_key->dim_menu_item.item_key": 0,
+  "fact_order_line.channel_key->dim_channel.channel_key": 0,
+  "fact_order_line.guest_key->dim_guest.guest_key": 0,
+  "fact_usage_daily.date_key->dim_date.date_key": 0,
+  "fact_usage_daily.site_key->dim_site.site_key": 0,
+  "fact_usage_daily.ingredient_key->dim_ingredient.ingredient_key": 0,
+  "fact_inventory_snapshot.date_key->dim_date.date_key": 0,
+  "fact_inventory_snapshot.site_key->dim_site.site_key": 0,
+  "fact_inventory_snapshot.ingredient_key->dim_ingredient.ingredient_key": 0,
+  "fact_po_line.supplier_key->dim_supplier.supplier_key": 0,
+  "fact_po_line.site_key->dim_site.site_key": 0,
+  "fact_po_line.ingredient_key->dim_ingredient.ingredient_key": 0,
+  "fact_po_line.order_date_key->dim_date.date_key": 0,
+  "fact_po_line.expected_date_key->dim_date.date_key": 0,
+  "fact_waste_adjustment.date_key->dim_date.date_key": 0,
+  "fact_waste_adjustment.site_key->dim_site.site_key": 0,
+  "fact_waste_adjustment.ingredient_key->dim_ingredient.ingredient_key": 0,
+  "fact_waste_adjustment.reason_key->dim_waste_reason.reason_key": 0,
+  "fact_quality_finding.rule_key->dim_dq_rule.rule_key": 0,
+  "fact_quality_finding.site_key->dim_site.site_key": 0,
+  "fact_exception_event.site_key->dim_site.site_key": 0,
+  "fact_exception_event.ingredient_key->dim_ingredient.ingredient_key": 0,
+  "fact_exception_event.detected_date_key->dim_date.date_key": 0,
+  "bridge_item_ingredient.item_key->dim_menu_item.item_key": 0,
+  "bridge_item_ingredient.ingredient_key->dim_ingredient.ingredient_key": 0,
+  "fact_po_line.received_date_key->dim_date(0 allowed)": 0,
+  "fact_inventory_snapshot.prev_date_key->dim_date(0 allowed)": 0
+ },
+ "grain_duplicates": {
+  "fact_order": 0,
+  "fact_order_line": 0,
+  "fact_usage_daily": 0,
+  "fact_inventory_snapshot": 0,
+  "fact_po_line": 0,
+  "fact_waste_adjustment": 0,
+  "fact_quality_finding": 0,
+  "fact_exception_event": 0,
+  "dim_date": 0,
+  "dim_site": 0,
+  "dim_channel": 0,
+  "dim_menu_item": 0,
+  "dim_supplier": 0,
+  "dim_ingredient": 0,
+  "dim_guest": 0,
+  "dim_dq_rule": 0,
+  "dim_waste_reason": 0
+ },
+ "scd2_problems": [],
+ "order_lines_outside_scd2_window": 0,
+ "injected_defect_count": 91,
+ "simulation_truth": {
+  "late_prob": {
+   "S01": 0.05,
+   "S02": 0.1,
+   "S03": 0.4,
+   "S04": 0.05,
+   "S05": 0.25
+  },
+  "unlogged_shrink": [
+   [
+    "L03",
+    "goat",
+    0.06
+   ]
+  ],
+  "short_ship_prob": 0.05
+ },
+ "menu_change_date_assumption": "2026-04-13",
+ "assumptions_file": "lab/analytics/config.py"
+}

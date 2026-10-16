@@ -1,0 +1,159 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "cases": [
+  {
+   "case": "01_fan_out_double_count",
+   "public_files": [
+    "fixture.sql",
+    "prompt.md",
+    "trap.sql"
+   ],
+   "trap_query_executes": true,
+   "trap_rows_returned": 2,
+   "removed_private_key_files": [
+    "expected.json",
+    "explanation.md",
+    "solution.sql"
+   ]
+  },
+  {
+   "case": "02_not_in_null",
+   "public_files": [
+    "fixture.sql",
+    "prompt.md",
+    "trap.sql"
+   ],
+   "trap_query_executes": true,
+   "trap_rows_returned": 0,
+   "removed_private_key_files": [
+    "expected.json",
+    "explanation.md",
+    "solution.sql"
+   ]
+  },
+  {
+   "case": "03_scd2_boundary",
+   "public_files": [
+    "fixture.sql",
+    "prompt.md",
+    "trap.sql"
+   ],
+   "trap_query_executes": true,
+   "trap_rows_returned": 2,
+   "removed_private_key_files": [
+    "expected.json",
+    "explanation.md",
+    "solution.sql"
+   ]
+  },
+  {
+   "case": "04_timezone_day_boundary",
+   "public_files": [
+    "fixture.sql",
+    "prompt.md",
+    "trap.sql"
+   ],
+   "trap_query_executes": true,
+   "trap_rows_returned": 3,
+   "removed_private_key_files": [
+    "expected.json",
+    "explanation.md",
+    "solution.sql"
+   ]
+  },
+  {
+   "case": "05_duplicate_events",
+   "public_files": [
+    "fixture.sql",
+    "prompt.md",
+    "trap.sql"
+   ],
+   "trap_query_executes": true,
+   "trap_rows_returned": 1,
+   "removed_private_key_files": [
+    "expected.json",
+    "explanation.md",
+    "solution.sql"
+   ]
+  },
+  {
+   "case": "06_orphan_keys",
+   "public_files": [
+    "fixture.sql",
+    "prompt.md",
+    "trap.sql"
+   ],
+   "trap_query_executes": true,
+   "trap_rows_returned": 2,
+   "removed_private_key_files": [
+    "expected.json",
+    "explanation.md",
+    "solution.sql"
+   ]
+  },
+  {
+   "case": "07_returns_netting",
+   "public_files": [
+    "fixture.sql",
+    "prompt.md",
+    "trap.sql"
+   ],
+   "trap_query_executes": true,
+   "trap_rows_returned": 2,
+   "removed_private_key_files": [
+    "expected.json",
+    "explanation.md",
+    "solution.sql"
+   ]
+  },
+  {
+   "case": "08_partial_month",
+   "public_files": [
+    "fixture.sql",
+    "prompt.md",
+    "trap.sql"
+   ],
+   "trap_query_executes": true,
+   "trap_rows_returned": 3,
+   "removed_private_key_files": [
+    "expected.json",
+    "explanation.md",
+    "solution.sql"
+   ]
+  },
+  {
+   "case": "09_islands_with_duplicates",
+   "public_files": [
+    "fixture.sql",
+    "prompt.md",
+    "trap.sql"
+   ],
+   "trap_query_executes": true,
+   "trap_rows_returned": 2,
+   "removed_private_key_files": [
+    "expected.json",
+    "explanation.md",
+    "solution.sql"
+   ]
+  },
+  {
+   "case": "10_ratio_of_sums",
+   "public_files": [
+    "fixture.sql",
+    "prompt.md",
+    "trap.sql"
+   ],
+   "trap_query_executes": true,
+   "trap_rows_returned": 1,
+   "removed_private_key_files": [
+    "expected.json",
+    "explanation.md",
+    "solution.sql"
+   ]
+  }
+ ],
+ "count": 10,
+ "manifest_entries": 30,
+ "note": "Answer keys (solution.sql, expected.json, explanation.md) are private and not in this repository; see analytics/difficult_cases/README.md."
+}

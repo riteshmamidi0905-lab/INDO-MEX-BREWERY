@@ -1,0 +1,370 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "framework": "lab/analytics/dqf.py (SQL rules over the raw landing zone)",
+ "score": {
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "defects_per_type": 8,
+  "per_rule": {
+   "COMP-01 order site missing/unknown": {
+    "dimension": "completeness",
+    "targets": "missing_location",
+    "tp": 80,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "COMP-02 order timestamp missing": {
+    "dimension": "completeness",
+    "targets": null,
+    "tp": 0,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": null,
+    "precision_vs_clean_rows_only": null,
+    "recall": null
+   },
+   "VALID-01 timestamp not parseable": {
+    "dimension": "validity",
+    "targets": "malformed_timestamp",
+    "tp": 80,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "TIME-01 timestamp after as-of": {
+    "dimension": "timeliness",
+    "targets": "future_timestamp",
+    "tp": 80,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "UNIQ-01 order_id appears more than once": {
+    "dimension": "uniqueness",
+    "targets": "duplicate_order",
+    "tp": 80,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "UNIQ-02 same site, timestamp and basket under another id": {
+    "dimension": "uniqueness",
+    "targets": "near_duplicate_order",
+    "tp": 80,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "UNIQ-03 same site and basket within 2 seconds under another id": {
+    "dimension": "uniqueness",
+    "targets": "near_duplicate_shifted",
+    "tp": 80,
+    "fp_other_injected_defect": 80,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 0.5,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "CONS-01 header total differs from sum of lines": {
+    "dimension": "consistency",
+    "targets": "order_total_mismatch",
+    "tp": 80,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "RI-01 line item not in menu": {
+    "dimension": "referential_integrity",
+    "targets": "orphan_item",
+    "tp": 80,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "RI-02 line without a parent order": {
+    "dimension": "referential_integrity",
+    "targets": null,
+    "tp": 0,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": null,
+    "precision_vs_clean_rows_only": null,
+    "recall": null
+   },
+   "RANGE-01 quantity not positive": {
+    "dimension": "range",
+    "targets": "nonpositive_qty",
+    "tp": 80,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "RANGE-02 price outside 0.8-1.2 x item median (n >= 5)": {
+    "dimension": "range",
+    "targets": "price_drift",
+    "tp": 80,
+    "fp_other_injected_defect": 3,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 0.9639,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "UNIT-01 count unit differs from ingredient's expected unit": {
+    "dimension": "range",
+    "targets": "unit_mismatch",
+    "tp": 80,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   },
+   "RANGE-03 inventory quantity not positive or implausibly large": {
+    "dimension": "range",
+    "targets": null,
+    "tp": 0,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": null,
+    "precision_vs_clean_rows_only": null,
+    "recall": null
+   },
+   "POLICY-01 forbidden ingredient token on a menu item": {
+    "dimension": "policy",
+    "targets": "forbidden_protein",
+    "tp": 30,
+    "fp_other_injected_defect": 0,
+    "fp_clean_row": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "precision_vs_clean_rows_only": 1.0,
+    "recall": 1.0
+   }
+  },
+  "per_defect_type_any_rule_recall": {
+   "duplicate_order": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   },
+   "forbidden_protein": {
+    "found": 30,
+    "total": 30,
+    "recall": 1.0
+   },
+   "future_timestamp": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   },
+   "malformed_timestamp": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   },
+   "missing_location": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   },
+   "near_duplicate_order": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   },
+   "near_duplicate_shifted": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   },
+   "nonpositive_qty": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   },
+   "order_total_mismatch": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   },
+   "orphan_item": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   },
+   "price_drift": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   },
+   "unit_mismatch": {
+    "found": 80,
+    "total": 80,
+    "recall": 1.0
+   }
+  },
+  "misses_sample": [],
+  "false_positive_examples": []
+ },
+ "clean_data_false_alarms": {
+  "orders_scanned": 20462,
+  "flags_by_rule": {},
+  "total_flags": 0
+ },
+ "lab_rules_for_comparison": {
+  "duplicate_order": {
+   "found": 80,
+   "total": 80,
+   "recall": 1.0
+  },
+  "forbidden_protein": {
+   "found": 30,
+   "total": 30,
+   "recall": 1.0
+  },
+  "future_timestamp": {
+   "found": 80,
+   "total": 80,
+   "recall": 1.0
+  },
+  "malformed_timestamp": {
+   "found": 80,
+   "total": 80,
+   "recall": 1.0
+  },
+  "missing_location": {
+   "found": 80,
+   "total": 80,
+   "recall": 1.0
+  },
+  "near_duplicate_order": {
+   "found": 80,
+   "total": 80,
+   "recall": 1.0
+  },
+  "near_duplicate_shifted": {
+   "found": 0,
+   "total": 80,
+   "recall": 0.0
+  },
+  "nonpositive_qty": {
+   "found": 80,
+   "total": 80,
+   "recall": 1.0
+  },
+  "order_total_mismatch": {
+   "found": 80,
+   "total": 80,
+   "recall": 1.0
+  },
+  "orphan_item": {
+   "found": 80,
+   "total": 80,
+   "recall": 1.0
+  },
+  "price_drift": {
+   "found": 80,
+   "total": 80,
+   "recall": 1.0
+  },
+  "unit_mismatch": {
+   "found": 80,
+   "total": 80,
+   "recall": 1.0
+  }
+ },
+ "novel_defect_probe": {
+  "duplicate_order_line": {
+   "planted": 10,
+   "detected": 10
+  },
+  "absurd_quantity": {
+   "planted": 10,
+   "detected": 10
+  },
+  "negative_inventory_qty": {
+   "planted": 10,
+   "detected": 10
+  },
+  "timezone_slip_5h": {
+   "planted": 10,
+   "detected": 0
+  }
+ },
+ "freshness": {
+  "newest_valid_order_date": "2026-04-26",
+  "as_of": "2026-05-01",
+  "age_days": 5,
+  "max_age_days": 7,
+  "ok": true
+ },
+ "row_conservation": {
+  "orders": {
+   "raw": 4047,
+   "modeled": 3983,
+   "quarantined": 64,
+   "ok": true
+  },
+  "order_lines": {
+   "raw": 10143,
+   "modeled": 10010,
+   "quarantined": 133,
+   "ok": true
+  },
+  "inventory_counts": {
+   "raw": 216,
+   "modeled": 208,
+   "quarantined": 8,
+   "ok": true
+  },
+  "menu_items": {
+   "raw": 10,
+   "modeled": 10,
+   "quarantined": 0,
+   "ok": true
+  }
+ },
+ "caveat": "Injected defects are simple by construction and the same author wrote generator, defects and rules; recall of 1.0 shows the rules do what they were written to do, not that they would find defects in real data."
+}

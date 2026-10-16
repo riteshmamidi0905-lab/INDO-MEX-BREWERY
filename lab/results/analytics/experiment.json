@@ -1,0 +1,402 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "synthetic": true,
+ "disclaimer": "SIMULATED experiment on synthetic guests with an injected effect. No real guests, no real placement test.",
+ "design": {
+  "unit": "synthetic guest (dim_guest), assigned 50/50 by seeded hash at first contact",
+  "pre_weeks": [
+   0,
+   3
+  ],
+  "experiment_weeks": [
+   4,
+   7
+  ],
+  "guests": 341,
+  "treated": 176,
+  "control": 165,
+  "primary_metric": "m04_units per guest in the experiment window",
+  "guardrails_negative_controls": [
+   "orders",
+   "other_food_units",
+   "spend_usd"
+  ],
+  "multiplicity": "primary tested alone at 0.05; the 3 guardrail metrics are a Holm-corrected family at 0.05",
+  "injected_effect": "each order of a treated guest gains one M04 unit with probability 0.1; all else unchanged"
+ },
+ "srm_chi2_p": 0.551387,
+ "power_plan": {
+  "pre_period_sd_m04_units": 1.761103,
+  "guests": 341,
+  "per_arm": 170.5,
+  "mde_unadjusted_units": 0.534369
+ },
+ "truth": {
+  "m04_units_per_treated_guest": 0.225806,
+  "mean_window_orders_per_guest": 2.258065,
+  "spend_usd_per_treated_guest": 2.709677
+ },
+ "single_run": {
+  "m04_units": {
+   "unadjusted": {
+    "est": 0.28181818181818186,
+    "se": 0.13778828535055734,
+    "p": 0.040825,
+    "ci95": [
+     0.011753142531089444,
+     0.5518832211052742
+    ]
+   },
+   "cuped": {
+    "est": 0.30138529679501824,
+    "se": 0.13494342665349768,
+    "theta": 0.14759195296813601,
+    "var_reduction": 0.04086690489772349,
+    "p": 0.025521,
+    "ci95": [
+     0.03689618055416277,
+     0.5658744130358737
+    ]
+   },
+   "stratified": {
+    "est": 0.2998606666403277,
+    "se": 0.13896626330671782,
+    "p": 0.030944,
+    "ci95": [
+     0.027486790559160756,
+     0.5722345427214945
+    ]
+   },
+   "pre_post_corr": 0.20204
+  },
+  "orders": {
+   "unadjusted": {
+    "est": 0.07727272727272716,
+    "se": 0.2164730560223231,
+    "p": 0.72112,
+    "ci95": [
+     -0.34701446253102614,
+     0.5015599170764804
+    ]
+   },
+   "cuped": {
+    "est": 0.07675096027826855,
+    "se": 0.2073962808879594,
+    "theta": 0.17218310817142782,
+    "var_reduction": 0.08210240527154711,
+    "p": 0.711331,
+    "ci95": [
+     -0.3297457502621318,
+     0.48324767081866893
+    ]
+   },
+   "stratified": {
+    "est": 0.10953233357118325,
+    "se": 0.21743329624832525,
+    "p": 0.614436,
+    "ci95": [
+     -0.3166369270755342,
+     0.5357015942179006
+    ]
+   },
+   "pre_post_corr": 0.290277,
+   "holm_adjusted_p_cuped": 0.866437
+  },
+  "other_food_units": {
+   "unadjusted": {
+    "est": 0.4299242424242422,
+    "se": 0.40081218295372945,
+    "p": 0.283436,
+    "ci95": [
+     -0.35566763616506747,
+     1.2155161210135519
+    ]
+   },
+   "cuped": {
+    "est": 0.41929722262862734,
+    "se": 0.3952908972970669,
+    "theta": 0.11089064134554542,
+    "var_reduction": 0.027360730841230918,
+    "p": 0.288812,
+    "ci95": [
+     -0.35547293607362374,
+     1.1940673813308784
+    ]
+   },
+   "stratified": {
+    "est": 0.42688407115540805,
+    "se": 0.3989858796824868,
+    "p": 0.284654,
+    "ci95": [
+     -0.355128253022266,
+     1.208896395333082
+    ]
+   },
+   "pre_post_corr": 0.167638,
+   "holm_adjusted_p_cuped": 0.866437
+  },
+  "spend_usd": {
+   "unadjusted": {
+    "est": 8.82193181818181,
+    "se": 9.112951631084442,
+    "p": 0.333012,
+    "ci95": [
+     -9.039453378743698,
+     26.683317015107317
+    ]
+   },
+   "cuped": {
+    "est": 8.80425771838756,
+    "se": 8.812379061302053,
+    "theta": 0.15965653877438535,
+    "var_reduction": 0.06487813999121606,
+    "p": 0.317757,
+    "ci95": [
+     -8.468005241764462,
+     26.076520678539584
+    ]
+   },
+   "stratified": {
+    "est": 10.235386108520778,
+    "se": 8.96559962414955,
+    "p": 0.253608,
+    "ci95": [
+     -7.337189154812339,
+     27.807961371853896
+    ]
+   },
+   "pre_post_corr": 0.259502,
+   "holm_adjusted_p_cuped": 0.866437
+  }
+ },
+ "primary_ci_contains_truth": {
+  "unadjusted": true,
+  "cuped": true,
+  "stratified": true
+ },
+ "monte_carlo_with_effect": {
+  "reps": 1000,
+  "p_add": 0.1,
+  "truth": {
+   "m04_units": 0.22580645161290325,
+   "orders": 0.0,
+   "other_food_units": 0.0,
+   "spend_usd": 2.709677419354839
+  },
+  "metrics": {
+   "m04_units": {
+    "unadjusted": {
+     "mean_est": 0.229914,
+     "bias": 0.004107,
+     "sd_est": 0.139903,
+     "ci_coverage": 0.951,
+     "reject_rate": 0.377
+    },
+    "cuped": {
+     "mean_est": 0.229831,
+     "bias": 0.004025,
+     "sd_est": 0.135399,
+     "ci_coverage": 0.953,
+     "reject_rate": 0.388
+    },
+    "stratified": {
+     "mean_est": 0.230548,
+     "bias": 0.004742,
+     "sd_est": 0.139002,
+     "ci_coverage": 0.953,
+     "reject_rate": 0.381
+    }
+   },
+   "orders": {
+    "unadjusted": {
+     "mean_est": -0.003003,
+     "bias": -0.003003,
+     "sd_est": 0.207922,
+     "ci_coverage": 0.965,
+     "reject_rate": 0.035
+    },
+    "cuped": {
+     "mean_est": 0.001106,
+     "bias": 0.001106,
+     "sd_est": 0.196813,
+     "ci_coverage": 0.959,
+     "reject_rate": 0.041
+    },
+    "stratified": {
+     "mean_est": -0.00177,
+     "bias": -0.00177,
+     "sd_est": 0.207423,
+     "ci_coverage": 0.967,
+     "reject_rate": 0.033
+    }
+   },
+   "other_food_units": {
+    "unadjusted": {
+     "mean_est": -0.008528,
+     "bias": -0.008528,
+     "sd_est": 0.38892,
+     "ci_coverage": 0.961,
+     "reject_rate": 0.039
+    },
+    "cuped": {
+     "mean_est": -0.004424,
+     "bias": -0.004424,
+     "sd_est": 0.381827,
+     "ci_coverage": 0.958,
+     "reject_rate": 0.042
+    },
+    "stratified": {
+     "mean_est": -0.00608,
+     "bias": -0.00608,
+     "sd_est": 0.38931,
+     "ci_coverage": 0.957,
+     "reject_rate": 0.043
+    }
+   },
+   "spend_usd": {
+    "unadjusted": {
+     "mean_est": 2.53676,
+     "bias": -0.172918,
+     "sd_est": 8.82578,
+     "ci_coverage": 0.965,
+     "reject_rate": 0.059
+    },
+    "cuped": {
+     "mean_est": 2.669669,
+     "bias": -0.040008,
+     "sd_est": 8.474789,
+     "ci_coverage": 0.965,
+     "reject_rate": 0.06
+    },
+    "stratified": {
+     "mean_est": 2.613589,
+     "bias": -0.096089,
+     "sd_est": 8.726154,
+     "ci_coverage": 0.965,
+     "reject_rate": 0.057
+    }
+   }
+  },
+  "guardrail_family_any_false_positive": {
+   "raw_alpha_0.05": 0.094,
+   "holm_0.05": 0.022
+  }
+ },
+ "monte_carlo_null_AA": {
+  "reps": 1000,
+  "p_add": 0.0,
+  "truth": {
+   "m04_units": 0.0,
+   "orders": 0.0,
+   "other_food_units": 0.0,
+   "spend_usd": 0.0
+  },
+  "metrics": {
+   "m04_units": {
+    "unadjusted": {
+     "mean_est": 0.00328,
+     "bias": 0.00328,
+     "sd_est": 0.126593,
+     "ci_coverage": 0.951,
+     "reject_rate": 0.049
+    },
+    "cuped": {
+     "mean_est": 0.002613,
+     "bias": 0.002613,
+     "sd_est": 0.123881,
+     "ci_coverage": 0.954,
+     "reject_rate": 0.046
+    },
+    "stratified": {
+     "mean_est": 0.003201,
+     "bias": 0.003201,
+     "sd_est": 0.126656,
+     "ci_coverage": 0.954,
+     "reject_rate": 0.046
+    }
+   },
+   "orders": {
+    "unadjusted": {
+     "mean_est": 0.004304,
+     "bias": 0.004304,
+     "sd_est": 0.214452,
+     "ci_coverage": 0.956,
+     "reject_rate": 0.044
+    },
+    "cuped": {
+     "mean_est": 0.005384,
+     "bias": 0.005384,
+     "sd_est": 0.203299,
+     "ci_coverage": 0.956,
+     "reject_rate": 0.044
+    },
+    "stratified": {
+     "mean_est": 0.003695,
+     "bias": 0.003695,
+     "sd_est": 0.213906,
+     "ci_coverage": 0.952,
+     "reject_rate": 0.048
+    }
+   },
+   "other_food_units": {
+    "unadjusted": {
+     "mean_est": 0.006293,
+     "bias": 0.006293,
+     "sd_est": 0.385845,
+     "ci_coverage": 0.955,
+     "reject_rate": 0.045
+    },
+    "cuped": {
+     "mean_est": 0.007943,
+     "bias": 0.007943,
+     "sd_est": 0.378527,
+     "ci_coverage": 0.959,
+     "reject_rate": 0.041
+    },
+    "stratified": {
+     "mean_est": 0.005555,
+     "bias": 0.005555,
+     "sd_est": 0.384064,
+     "ci_coverage": 0.959,
+     "reject_rate": 0.041
+    }
+   },
+   "spend_usd": {
+    "unadjusted": {
+     "mean_est": 0.068852,
+     "bias": 0.068852,
+     "sd_est": 8.744787,
+     "ci_coverage": 0.955,
+     "reject_rate": 0.045
+    },
+    "cuped": {
+     "mean_est": 0.091073,
+     "bias": 0.091073,
+     "sd_est": 8.370531,
+     "ci_coverage": 0.957,
+     "reject_rate": 0.043
+    },
+    "stratified": {
+     "mean_est": 0.02009,
+     "bias": 0.02009,
+     "sd_est": 8.563901,
+     "ci_coverage": 0.956,
+     "reject_rate": 0.044
+    }
+   }
+  },
+  "guardrail_family_any_false_positive": {
+   "raw_alpha_0.05": 0.07,
+   "holm_0.05": 0.028
+  }
+ },
+ "causal_limitations": [
+  "Randomisation is simulated; the 'effect' is whatever the injection code says. Recovering it proves the ANALYSIS is unbiased on this data-generating process, not that any real menu change works.",
+  "No guests exist: guest ids come from a seeded assignment process (config.GUEST_*). Real repeat-visit dynamics, interference between guests at one table, novelty effects and seasonality are absent.",
+  "The effect is on a single appetizer count; cannibalisation, margin and long-run retention are not modelled, so the experiment cannot say whether the change is good for the business.",
+  "Only 4 weeks and a few hundred guests: heavy tails, repeated visits per guest and new guests arriving after assignment are handled crudely (new guests have a pre-period covariate of zero).",
+  "Monte Carlo coverage is relative to the finite-population truth of this guest panel (fixed baseline behaviour, random assignment and injection), i.e. randomisation inference, not a superpopulation claim.",
+  "Same author wrote the injection and the analysis (no independent review)."
+ ]
+}

@@ -1,0 +1,289 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "synthetic": true,
+ "disclaimer": "SYNTHETIC usage series from the lab generator; forecast accuracy says nothing about real demand.",
+ "design": {
+  "horizon_days": 7,
+  "origins": [
+   28,
+   35,
+   42,
+   49
+  ],
+  "min_train_days": 28,
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "series_per_seed": 24,
+  "models": [
+   "naive",
+   "seasonal_naive",
+   "moving_average_7",
+   "seasonal_mean",
+   "ses",
+   "holt_winters_add"
+  ],
+  "note": "expanding-window rolling origin; 4 origins per series; units are NOT independent across origins of one series"
+ },
+ "overall": {
+  "naive": {
+   "n_forecasts": 480,
+   "MAE": 0.6565,
+   "WAPE": 0.4619,
+   "MAPE_pct_nonzero_days": 68.423,
+   "bias_pct_of_actual": 19.1344,
+   "zero_actual_days": 13
+  },
+  "seasonal_naive": {
+   "n_forecasts": 480,
+   "MAE": 0.5889,
+   "WAPE": 0.4144,
+   "MAPE_pct_nonzero_days": 56.2873,
+   "bias_pct_of_actual": 1.8638,
+   "zero_actual_days": 13
+  },
+  "moving_average_7": {
+   "n_forecasts": 480,
+   "MAE": 0.4798,
+   "WAPE": 0.3376,
+   "MAPE_pct_nonzero_days": 48.7013,
+   "bias_pct_of_actual": 1.8638,
+   "zero_actual_days": 13
+  },
+  "seasonal_mean": {
+   "n_forecasts": 480,
+   "MAE": 0.4699,
+   "WAPE": 0.3307,
+   "MAPE_pct_nonzero_days": 46.4101,
+   "bias_pct_of_actual": 2.3026,
+   "zero_actual_days": 13
+  },
+  "ses": {
+   "n_forecasts": 480,
+   "MAE": 0.4868,
+   "WAPE": 0.3425,
+   "MAPE_pct_nonzero_days": 51.4626,
+   "bias_pct_of_actual": 6.5896,
+   "zero_actual_days": 13
+  },
+  "holt_winters_add": {
+   "n_forecasts": 480,
+   "MAE": 0.4866,
+   "WAPE": 0.3424,
+   "MAPE_pct_nonzero_days": 48.2124,
+   "bias_pct_of_actual": 2.0497,
+   "zero_actual_days": 13
+  }
+ },
+ "by_ingredient_wape": {
+  "naive": {
+   "cauliflower": 0.5355,
+   "cheese": 0.5437,
+   "chicken thigh": 0.4131,
+   "corn masa": 0.4094,
+   "goat": 0.514,
+   "hops": 0.353,
+   "malt": 0.353,
+   "paneer": 0.5156
+  },
+  "seasonal_naive": {
+   "cauliflower": 0.4661,
+   "cheese": 0.5011,
+   "chicken thigh": 0.3778,
+   "corn masa": 0.3183,
+   "goat": 0.4935,
+   "hops": 0.3121,
+   "malt": 0.3121,
+   "paneer": 0.4942
+  },
+  "moving_average_7": {
+   "cauliflower": 0.3687,
+   "cheese": 0.3866,
+   "chicken thigh": 0.305,
+   "corn masa": 0.2807,
+   "goat": 0.4011,
+   "hops": 0.2615,
+   "malt": 0.2615,
+   "paneer": 0.3963
+  },
+  "seasonal_mean": {
+   "cauliflower": 0.3743,
+   "cheese": 0.3779,
+   "chicken thigh": 0.2921,
+   "corn masa": 0.2675,
+   "goat": 0.4037,
+   "hops": 0.2407,
+   "malt": 0.2407,
+   "paneer": 0.392
+  },
+  "ses": {
+   "cauliflower": 0.3728,
+   "cheese": 0.3718,
+   "chicken thigh": 0.3046,
+   "corn masa": 0.2989,
+   "goat": 0.4035,
+   "hops": 0.2616,
+   "malt": 0.2616,
+   "paneer": 0.4085
+  },
+  "holt_winters_add": {
+   "cauliflower": 0.3799,
+   "cheese": 0.4051,
+   "chicken thigh": 0.3094,
+   "corn masa": 0.2693,
+   "goat": 0.4207,
+   "hops": 0.2473,
+   "malt": 0.2473,
+   "paneer": 0.4052
+  }
+ },
+ "paired_vs_naive": {
+  "seasonal_naive": {
+   "wape_diff_vs_naive": -0.0475,
+   "ci95": [
+    -0.0692,
+    -0.0258
+   ],
+   "units": 480,
+   "win_rate_units": 0.5271
+  },
+  "moving_average_7": {
+   "wape_diff_vs_naive": -0.1243,
+   "ci95": [
+    -0.1455,
+    -0.1031
+   ],
+   "units": 480,
+   "win_rate_units": 0.725
+  },
+  "seasonal_mean": {
+   "wape_diff_vs_naive": -0.1312,
+   "ci95": [
+    -0.1535,
+    -0.1088
+   ],
+   "units": 480,
+   "win_rate_units": 0.7229
+  },
+  "ses": {
+   "wape_diff_vs_naive": -0.1193,
+   "ci95": [
+    -0.1392,
+    -0.0997
+   ],
+   "units": 480,
+   "win_rate_units": 0.7354
+  },
+  "holt_winters_add": {
+   "wape_diff_vs_naive": -0.1195,
+   "ci95": [
+    -0.1408,
+    -0.0981
+   ],
+   "units": 480,
+   "win_rate_units": 0.7063
+  }
+ },
+ "paired_vs_seasonal_naive": {
+  "naive": {
+   "wape_diff_vs_seasonal_naive": 0.0475,
+   "ci95": [
+    0.0258,
+    0.0692
+   ],
+   "units": 480,
+   "win_rate_units": 0.4604
+  },
+  "moving_average_7": {
+   "wape_diff_vs_seasonal_naive": -0.0768,
+   "ci95": [
+    -0.0879,
+    -0.0652
+   ],
+   "units": 480,
+   "win_rate_units": 0.7458
+  },
+  "seasonal_mean": {
+   "wape_diff_vs_seasonal_naive": -0.0837,
+   "ci95": [
+    -0.094,
+    -0.072
+   ],
+   "units": 480,
+   "win_rate_units": 0.8146
+  },
+  "ses": {
+   "wape_diff_vs_seasonal_naive": -0.0718,
+   "ci95": [
+    -0.0838,
+    -0.0596
+   ],
+   "units": 480,
+   "win_rate_units": 0.7479
+  },
+  "holt_winters_add": {
+   "wape_diff_vs_seasonal_naive": -0.072,
+   "ci95": [
+    -0.0814,
+    -0.0623
+   ],
+   "units": 480,
+   "win_rate_units": 0.8271
+  }
+ },
+ "interval_80": {
+  "naive": {
+   "nominal": 0.8,
+   "empirical": 0.756,
+   "mean_width": 2.002,
+   "points": 3360
+  },
+  "seasonal_naive": {
+   "nominal": 0.8,
+   "empirical": 0.7949,
+   "mean_width": 1.8557,
+   "points": 3360
+  },
+  "moving_average_7": {
+   "nominal": 0.8,
+   "empirical": 0.7899,
+   "mean_width": 1.5268,
+   "points": 3360
+  },
+  "seasonal_mean": {
+   "nominal": 0.8,
+   "empirical": 0.7949,
+   "mean_width": 1.4913,
+   "points": 3360
+  },
+  "ses": {
+   "nominal": 0.8,
+   "empirical": 0.7932,
+   "mean_width": 1.5554,
+   "points": 3360
+  },
+  "holt_winters_add": {
+   "nominal": 0.8,
+   "empirical": 0.8202,
+   "mean_width": 1.6154,
+   "points": 3360
+  }
+ },
+ "recipe_change_note": {
+  "origin_49_corn_masa_wape": {
+   "naive": 0.354,
+   "seasonal_naive": 0.3223,
+   "moving_average_7": 0.296,
+   "seasonal_mean": 0.3255,
+   "ses": 0.341,
+   "holt_winters_add": 0.2945
+  },
+  "comment": "origin 49 (forecast days 49-55) is entirely after the 2026-04-13 recipe change (day 42); origin 35/42 windows straddle or precede it"
+ },
+ "best_by_wape": "seasonal_mean"
+}
