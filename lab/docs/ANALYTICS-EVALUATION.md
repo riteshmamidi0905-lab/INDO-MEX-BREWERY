@@ -169,7 +169,7 @@ The 5-hour timezone slip is structurally valid and **no rule can see it**. Dupli
 | N01 Lime zero-proof | 1484 | 7,434 | 6,098 | 4.11 |
 | M04 Mango Habanero Gobi | 370 | 4,440 | 3,811 | 10.30 |
 
-Uniform +/-25% change in all assumed costs: ranking identical across multipliers = **False**; top three identical = **False**. The ordering by *total* margin is also driven by exposure (the pre-change `Gobi Taco` version has six weeks of sales, `Mango Habanero Gobi` two), so compare per-unit margin. Margins of 70 to 80% for food reflect that labour, rent, overhead and waste cost are **excluded**; this is an illustration of the calculation, not a margin NASHA would earn.
+Uniform +/-25% change in all assumed costs: ranking identical across multipliers = **False**; top three identical = **False**. Why this can or cannot be invariant: with uniform multiplier m each item has margin_i(m) = S_i - m*C_i (sales S_i, assumed cost C_i), a straight line in m, so two items swap rank exactly when m = (S_i - S_j)/(C_i - C_j) lies inside the tested range. A uniform scaling does NOT structurally preserve the ranking (it would only if the cost-to-sales ratio were identical across items); the flags above are measured results, not guarantees. The ordering by *total* margin is also driven by exposure (the pre-change `Gobi Taco` version has six weeks of sales, `Mango Habanero Gobi` two), so compare per-unit margin. Margins of 70 to 80% for food reflect that labour, rent, overhead and waste cost are **excluded**; this is an illustration of the calculation, not a margin NASHA would earn.
 
 ## 7. Forecast backtest (rolling origin)
 
