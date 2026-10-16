@@ -1,0 +1,19 @@
+{
+ "slo_version": "slo-design-targets-v1",
+ "label": "DESIGN TARGETS (ASSUMPTIONS). These objectives were chosen by the author for a hypothetical deployment of the synthetic lab. They are NOT contractual SLAs, NOT derived from real traffic, and NOT measured production reliability. Windows are counted in RUNS (the synthetic telemetry has no real clock traffic); mapping them to wall-clock windows would require real arrival rates.",
+ "window_unit": "runs",
+ "burn_rate_definition": "burn = (bad fraction in window) / (1 - objective). A burn of 1.0 consumes the error budget exactly at the rate the objective allows. A multi-window alert fires only when BOTH the long and the short window exceed the threshold (long window = significance, short window = still happening), following the multiwindow multi-burn-rate pattern of the Google SRE Workbook.",
+ "slos": [
+  {"id": "SLO-1", "name": "Run completes operationally", "objective": 0.99, "sli": "runs that do not end CRASHED or FAILED / runs", "owner_class": ["RUN_CRASH", "DATABASE_UNAVAILABLE"]},
+  {"id": "SLO-2", "name": "Tool call availability", "objective": 0.99, "sli": "tool calls that did not fail with TIMEOUT, UPSTREAM_FAILURE, MALFORMED_RESULT or CIRCUIT_OPEN / tool calls (semantic rejections such as NOT_FOUND or INVALID_ARGUMENTS are not availability failures)", "owner_class": ["TOOL_TIMEOUT", "TOOL_UPSTREAM_FAILURE", "TOOL_MALFORMED_RESULT"]},
+  {"id": "SLO-3", "name": "Run latency", "objective": 0.95, "sli": "runs whose compute time (excluding human wait) is at most 600 ms / runs", "latency_threshold_ms": 600, "owner_class": ["LATENCY_DEGRADATION"]},
+  {"id": "SLO-4", "name": "Retrieval availability", "objective": 0.995, "sli": "policy retrievals that did not fail / policy retrievals (an abstention is a correct answer, not a failure)", "owner_class": ["RETRIEVAL_UNAVAILABLE"]},
+  {"id": "SLO-5", "name": "Safety invariants", "objective": 1.0, "sli": "runs with no mutation before approval and no external action / runs. Error budget is ZERO: any violation breaches the objective and pages.", "owner_class": ["SAFETY_INVARIANT_VIOLATION"]},
+  {"id": "SLO-6", "name": "Model availability (LLM-planner runs only)", "objective": 0.99, "sli": "LLM-planner runs with no model-call error and no planner failure / LLM-planner runs", "owner_class": ["MODEL_UNAVAILABLE", "PLANNER_FAILURE"]}
+ ],
+ "burn_alerts": [
+  {"id": "BR-1", "severity": "SEV2", "action": "page", "long_window": 60, "short_window": 10, "burn_rate": 6.0},
+  {"id": "BR-2", "severity": "SEV3", "action": "ticket", "long_window": 120, "short_window": 20, "burn_rate": 3.0}
+ ],
+ "regression_status_target": "The most recent regression-gate verdict must be PASS before a version is promoted."
+}

@@ -1,0 +1,33 @@
+{
+ "taxonomy": "nasha-ops-failure-taxonomy-v1",
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED. Classes describe failures of the synthetic lab; none is a production incident.",
+ "severity_scale": {
+  "SEV1": "A safety invariant was violated (an unapproved mutation, an external action, an ungrounded executed claim). Design target: page immediately.",
+  "SEV2": "A dependency or the evaluation signal is lost or unsafe behaviour was attempted; the system is degraded or must stop promoting changes.",
+  "SEV3": "A fault occurred and the system contained it (escalated or abstained); a human should look at the next review cycle.",
+  "SEV4": "Informational: something unusual was observed and handled."
+ },
+ "classes": [
+  {"id": "MODEL_UNAVAILABLE", "layer": "model", "severity": "SEV2", "runbook": "RB-MODEL-UNAVAILABLE", "fc_refs": ["FC-12", "FC-18"], "expected_containment": "planner returns ESCALATE_INSUFFICIENT_EVIDENCE with planner_failure=true; no mutating action is proposed"},
+  {"id": "MODEL_SCHEMA_VIOLATION", "layer": "model", "severity": "SEV3", "runbook": "RB-SCHEMA-VIOLATION", "fc_refs": ["FC-11", "FC-18"], "expected_containment": "bounded retry (2) then escalate; invalid output never becomes an action"},
+  {"id": "TOOL_TIMEOUT", "layer": "tool", "severity": "SEV3", "runbook": "RB-TOOL-TIMEOUT", "fc_refs": ["FC-13", "GAP-01"], "expected_containment": "the failed check becomes a gap; the planner escalates instead of concluding no-action"},
+  {"id": "TOOL_UPSTREAM_FAILURE", "layer": "tool", "severity": "SEV3", "runbook": "RB-TOOL-UPSTREAM", "fc_refs": ["FC-03", "GAP-02"], "expected_containment": "the failed check becomes a gap; short cover with unconfirmed supplier escalates"},
+  {"id": "TOOL_MALFORMED_RESULT", "layer": "tool", "severity": "SEV3", "runbook": "RB-MALFORMED-RESULT", "fc_refs": ["FC-13"], "expected_containment": "output schema validation rejects the result (MALFORMED_RESULT); it never reaches a claim"},
+  {"id": "SCHEMA_VIOLATION_TOOL_ARGS", "layer": "tool", "severity": "SEV3", "runbook": "RB-SCHEMA-VIOLATION", "fc_refs": ["FC-11"], "expected_containment": "input validation rejects the call (INVALID_ARGUMENTS); nothing executes"},
+  {"id": "RETRIEVAL_UNAVAILABLE", "layer": "retrieval", "severity": "SEV2", "runbook": "RB-RETRIEVAL", "fc_refs": ["GAP-04"], "expected_containment": "policy lookups fail closed (abstain) or fall back to the lexical retriever; no policy claim without a citation"},
+  {"id": "RETRIEVAL_ABSTAIN_ANOMALY", "layer": "retrieval", "severity": "SEV3", "runbook": "RB-RETRIEVAL", "fc_refs": ["FC-05", "GAP-03"], "expected_containment": "abstain with INSUFFICIENT VERIFIED EVIDENCE; unconfirmed policy is listed as an uncertainty"},
+  {"id": "STALE_SOURCE", "layer": "retrieval", "severity": "SEV4", "runbook": "RB-STALE-SOURCE", "fc_refs": ["FC-05", "FC-13", "GAP-03"], "expected_containment": "stale, superseded or unverified sources are excluded or flagged and never cited as authority"},
+  {"id": "PERMISSION_DENIED", "layer": "approval", "severity": "SEV3", "runbook": "RB-PERMISSION-DENIED", "fc_refs": ["FC-14"], "expected_containment": "no grant is minted; the run stays awaiting a permitted reviewer; nothing executes"},
+  {"id": "APPROVAL_EXPIRED", "layer": "approval", "severity": "SEV3", "runbook": "RB-APPROVAL-EXPIRED", "fc_refs": ["FC-14"], "expected_containment": "an expired session or stale pending review cannot approve; nothing executes; the review can be re-opened"},
+  {"id": "UNSAFE_ACTION_ATTEMPT", "layer": "approval", "severity": "SEV2", "runbook": "RB-UNSAFE-ACTION", "fc_refs": ["FC-01", "FC-12", "FC-13"], "expected_containment": "forbidden, unknown, tainted or unapproved tool requests are refused and counted; external actions never execute"},
+  {"id": "DATABASE_UNAVAILABLE", "layer": "platform", "severity": "SEV2", "runbook": "RB-DATABASE", "fc_refs": ["GAP-02"], "expected_containment": "tool reads fail as UPSTREAM_FAILURE and the run escalates; a crash marks the run FAILED so the event can be re-processed"},
+  {"id": "RUN_CRASH", "layer": "platform", "severity": "SEV2", "runbook": "RB-RUN-CRASH", "fc_refs": ["GAP-02"], "expected_containment": "the run is marked FAILED (not left RUNNING); no mutation has executed"},
+  {"id": "PLANNER_FAILURE", "layer": "model", "severity": "SEV3", "runbook": "RB-MODEL-UNAVAILABLE", "fc_refs": ["FC-12"], "expected_containment": "planner output unusable => escalate; guardrail overrides are counted"},
+  {"id": "LATENCY_DEGRADATION", "layer": "platform", "severity": "SEV3", "runbook": "RB-LATENCY", "fc_refs": ["GAP-05"], "expected_containment": "timeouts bound every call; slow-but-successful calls are visible in latency metrics"},
+  {"id": "EVAL_REGRESSION", "layer": "evaluation", "severity": "SEV2", "runbook": "RB-EVAL-REGRESSION", "fc_refs": ["FC-12", "GAP-07"], "expected_containment": "the regression gate fails; the candidate version is not promoted; rollback is the recovery"},
+  {"id": "SAFETY_INVARIANT_VIOLATION", "layer": "approval", "severity": "SEV1", "runbook": "RB-SAFETY-INVARIANT", "fc_refs": ["FC-01", "FC-14"], "expected_containment": "should never fire: a mutation without a prior approval, or an external action performed"},
+  {"id": "SLO_BURN", "layer": "slo", "severity": "SEV2", "runbook": "RB-SLO-BURN", "fc_refs": ["GAP-05"], "expected_containment": "burn-rate alert pages before the error budget is exhausted (design-target SLOs)"}
+ ],
+ "correlation": {"DATABASE_UNAVAILABLE": ["RUN_CRASH", "TOOL_UPSTREAM_FAILURE"], "MODEL_UNAVAILABLE": ["PLANNER_FAILURE"], "MODEL_SCHEMA_VIOLATION": ["PLANNER_FAILURE"], "RETRIEVAL_UNAVAILABLE": ["TOOL_UPSTREAM_FAILURE", "TOOL_TIMEOUT"]},
+ "correlation_note": "When a run raises a parent-class alert, alerts of the child classes on the SAME run are attached to the parent incident instead of opening their own."
+}

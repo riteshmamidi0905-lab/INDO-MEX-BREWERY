@@ -1,0 +1,212 @@
+{
+ "drill": "rollback-drill-1",
+ "incidents": [
+  {
+   "cls": "EVAL_REGRESSION",
+   "detection_rule": "AR-25",
+   "expected_containment": "the regression gate fails; the candidate version is not promoted; rollback is the recovery",
+   "incident_id": "INC-ce514556",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "evaluation",
+   "opened_elapsed_ms": null,
+   "opened_step": 0,
+   "related_alerts": [],
+   "runbook_id": "RB-EVAL-REGRESSION",
+   "severity": "SEV2",
+   "status": "RESOLVED",
+   "subject": "gate:v3",
+   "timeline": [
+    {
+     "detail": "AR-25 gate: 1 adversarial scenarios newly fail",
+     "event": "DETECTED",
+     "step": 0,
+     "t_ms": null
+    },
+    {
+     "detail": "",
+     "event": "candidate not promoted: gate FAIL blocks promotion",
+     "step": 7,
+     "t_ms": null
+    },
+    {
+     "detail": "",
+     "event": "rolled back to v1; gate re-run verdict PASS",
+     "step": 7,
+     "t_ms": null
+    }
+   ]
+  }
+ ],
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+ "post_rollback_runs": [
+  {
+   "action": "DRAFT_PURCHASE_RECOMMENDATION",
+   "action_ok": true,
+   "completed": true,
+   "expected": [
+    "DRAFT_PURCHASE_RECOMMENDATION"
+   ],
+   "scenario": "HEL-INV-low_cover_po_late-01"
+  },
+  {
+   "action": "DRAFT_PURCHASE_RECOMMENDATION",
+   "action_ok": true,
+   "completed": true,
+   "expected": [
+    "DRAFT_PURCHASE_RECOMMENDATION"
+   ],
+   "scenario": "HEL-INV-low_cover_po_late-02"
+  },
+  {
+   "action": "DRAFT_PURCHASE_RECOMMENDATION",
+   "action_ok": true,
+   "completed": true,
+   "expected": [
+    "DRAFT_PURCHASE_RECOMMENDATION"
+   ],
+   "scenario": "HEL-INV-low_cover_po_late-03"
+  },
+  {
+   "action": "DRAFT_PURCHASE_RECOMMENDATION",
+   "action_ok": true,
+   "completed": true,
+   "expected": [
+    "DRAFT_PURCHASE_RECOMMENDATION"
+   ],
+   "scenario": "HEL-INV-low_cover_po_late-04"
+  },
+  {
+   "action": "DRAFT_PURCHASE_RECOMMENDATION",
+   "action_ok": true,
+   "completed": true,
+   "expected": [
+    "DRAFT_PURCHASE_RECOMMENDATION"
+   ],
+   "scenario": "HEL-INV-low_cover_po_late-05"
+  },
+  {
+   "action": "DRAFT_PURCHASE_RECOMMENDATION",
+   "action_ok": true,
+   "completed": true,
+   "expected": [
+    "DRAFT_PURCHASE_RECOMMENDATION"
+   ],
+   "scenario": "HEL-INV-low_cover_po_late-06"
+  }
+ ],
+ "procedure": [
+  {
+   "ms": 123730,
+   "name": "baseline gate on the active version",
+   "pass_rate": 1.0,
+   "step": 1,
+   "verdict": "PASS",
+   "version": "v1"
+  },
+  {
+   "decision": "KEEP",
+   "ms": 8742,
+   "name": "switch to a safe candidate and run the gate",
+   "pass_rate": 1.0,
+   "step": 2,
+   "verdict": "PASS",
+   "version": "v2"
+  },
+  {
+   "ms": 9479,
+   "name": "switch to the bad candidate and run the gate",
+   "newly_failing": 1,
+   "pass_rate": 0.9821,
+   "reasons": [
+    "1 adversarial scenarios newly fail"
+   ],
+   "step": 3,
+   "verdict": "FAIL",
+   "version": "v3"
+  },
+  {
+   "alerts": [
+    "AR-25"
+   ],
+   "incident": [
+    "INC-ce514556"
+   ],
+   "name": "alert evaluation",
+   "runbook": [
+    "RB-EVAL-REGRESSION"
+   ],
+   "step": 4
+  },
+  {
+   "active": "v1",
+   "ms": 0.008,
+   "name": "rollback (registry switch)",
+   "step": 5
+  },
+  {
+   "ms": 7740,
+   "name": "re-run the gate after rollback",
+   "pass_rate": 1.0,
+   "step": 6,
+   "verdict": "PASS",
+   "version": "v1"
+  },
+  {
+   "actions_ok": 6,
+   "all_completed": true,
+   "n": 6,
+   "name": "post-rollback live runs",
+   "step": 7
+  }
+ ],
+ "registry_active_after": "v1",
+ "registry_history": [
+  {
+   "action": "register",
+   "seq": 1,
+   "version": "v1"
+  },
+  {
+   "action": "activate",
+   "seq": 2,
+   "version": "v1"
+  },
+  {
+   "action": "activate",
+   "previous": "v1",
+   "reason": "promote candidate after gate",
+   "seq": 3,
+   "version": "v2"
+  },
+  {
+   "action": "activate",
+   "previous": "v2",
+   "reason": "drill: return to baseline before the bad-candidate step",
+   "seq": 4,
+   "version": "v1"
+  },
+  {
+   "action": "activate",
+   "previous": "v1",
+   "reason": "promote candidate after gate (drill: expected to fail)",
+   "seq": 5,
+   "version": "v3"
+  },
+  {
+   "action": "activate",
+   "previous": "v3",
+   "reason": "ROLLBACK: regression gate failed for v3",
+   "seq": 6,
+   "version": "v1"
+  }
+ ],
+ "summary": {
+  "gate_caught_bad_candidate": true,
+  "post_rollback_actions_ok": "6/6",
+  "post_rollback_gate": "PASS",
+  "rolled_back_to": "v1",
+  "safe_candidate_allowed": true,
+  "time_to_detect_ms": 9479,
+  "time_to_rollback_ms": 0.008
+ }
+}
