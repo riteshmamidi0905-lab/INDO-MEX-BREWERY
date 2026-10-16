@@ -200,7 +200,7 @@ def render_eval():
     a(f"{ex['disclaimer']} Unit: synthetic guest; {dn['guests']} guests ({dn['treated']} treated, {dn['control']} control; SRM chi-square p = {ex['srm_chi2_p']:.2f}). Effect injected: {dn['injected_effect']}. Primary metric: {dn['primary_metric']}. Guardrails / negative controls (true effect zero): {', '.join(dn['guardrails_negative_controls'])}. Multiplicity: {dn['multiplicity']}.\n")
     pw = ex["power_plan"]; tr = ex["truth"]
     need = 2 * (1.96 + 0.8416) ** 2 * pw["pre_period_sd_m04_units"] ** 2 / tr["m04_units_per_treated_guest"] ** 2
-    a(f"**A-priori power.** Pre-period sd of M04 units per guest = {pw['pre_period_sd_m04_units']:.2f}; with {pw['per_arm']:.0f} guests per arm the minimum detectable effect (80% power, alpha 0.05, unadjusted) is **{pw['mde_unadjusted_units']:.2f} units per guest**. The injected truth is **{tr['m04_units_per_treated_guest']:.3f}** units per treated guest, well below the MDE. About {need:,.0f} guests per arm would be needed for 80% power at that effect. The design is **underpowered by construction**; I left it that way to report the consequence.\n")
+    a(f"**A-priori power.** Pre-period sd of M04 units per guest = {pw['pre_period_sd_m04_units']:.2f}; with {pw['per_arm']:.0f} guests per arm the minimum detectable effect (80% power, alpha 0.05, unadjusted) is **{pw['mde_unadjusted_units']:.2f} units per guest**. The injected truth is **{tr['m04_units_per_treated_guest']:.3f}** units per treated guest, well below the MDE. About {need:,.0f} guests per arm would be needed for 80% power at that effect. The design is **underpowered by construction**; I left it that way to report the consequence. It is kept unchanged as historical evidence and is **not retroactively resized**. A separate prospective sample-size design (80% and 90% power, unadjusted and CUPED, with a Monte Carlo confirmation and a sensitivity table) is in [`ANALYTICS-PROSPECTIVE-DESIGN.md`](ANALYTICS-PROSPECTIVE-DESIGN.md).\n")
     a(table(["Estimator (primary metric)", "Estimate", "95% CI", "p", "CI contains truth"], [(k, f"{sr[k]['est']:.3f}", f"[{sr[k]['ci95'][0]:.3f}, {sr[k]['ci95'][1]:.3f}]", f"{sr[k]['p']:.3f}", ex["primary_ci_contains_truth"][k]) for k in ("unadjusted", "cuped", "stratified")]))
     a(f"\nSingle run (truth {tr['m04_units_per_treated_guest']:.3f}): the estimates overshoot the truth and are nominally significant at 0.05 in an experiment with about {pct(mc['metrics']['m04_units']['unadjusted']['reject_rate'], 0)} power: the classic winner's-curse situation. CUPED variance reduction on the primary metric is only {pct(sr['cuped']['var_reduction'])} (pre/post correlation {sr['pre_post_corr']:.2f}): **CUPED is not justified here**; guests' short pre-periods carry little information.\n")
     a(f"**Repeated randomisation + injection ({mc['reps']} reps) on this guest panel:**\n")
@@ -227,6 +227,48 @@ def render_eval():
 
 
 # ---------------------------------------------------------------------------------------------------------------- ANALYTICS-EXEC-MEMO.md
+def render_prospective():
+    pd = R("prospective_design"); i = pd["inputs"]; h = pd["historical_experiment"]
+    plan = pd["plan"]
+    get = lambda p, e: next(x for x in plan if x["target_power"] == p and x["estimator"] == e)
+    sens_rows = [(x["effect_multiplier"], f"{x['effect_units_per_guest']:.3f}", x["sd_multiplier"], f"{x['sd']:.2f}", f"{x['n_per_arm_unadjusted_80']:,}", f"{x['n_per_arm_cuped_80']:,}", f"{x['n_per_arm_unadjusted_90']:,}", f"{x['n_per_arm_cuped_90']:,}") for x in pd["sensitivity"]]
+    return f"""# NASHA analytics: prospective sample-size design (synthetic experiment)
+
+{BANNER}
+
+This is a **forward-looking design exercise** for the simulated M04 placement test in [`ANALYTICS-EVALUATION.md`](ANALYTICS-EVALUATION.md). The original experiment there was **deliberately underpowered** ({h['per_arm']:.0f} synthetic guests per arm, analytic power about {pct(h['analytic_power_unadjusted'], 0)} at the injected effect). It is kept **unchanged as historical evidence and is NOT retroactively resized**. Nothing below is a real-business outcome: NASHA has no guests, no placement test and no sales.
+
+## Inputs (from the simulated experiment)
+
+- Injected effect: **{i['injected_effect_units_per_treated_guest']:.4f}** M04 units per treated guest. Pre-period SD of M04 units per guest: **{i['pre_period_sd_m04_units']:.4f}**. Observed pre/post correlation (for CUPED): **{i['observed_pre_post_corr']:.4f}**.
+- Two-sided test, alpha {i['alpha_two_sided']}; two equal arms. Source: `results/analytics/experiment.json`; module `analytics/prospective_design.py`; results `results/analytics/prospective_design.json`.
+
+## Required guests per arm
+
+Closed form: n = 2 (z(1-alpha/2) + z(power))^2 sd^2 / delta^2; CUPED replaces sd^2 by sd^2 (1 - rho^2).
+
+{table(["Target power", "Estimator", "n per arm", "Total", "Analytic power at n", "Monte Carlo power at n", "MC standard error", "Reaches target within MC error"], [(pct(x['target_power'], 0), x['estimator'], f"{x['n_per_arm']:,}", f"{x['n_total']:,}", pct(x['analytic_power_at_n'], 2), pct(x['monte_carlo_power_at_n'], 2), pct(x['monte_carlo_se'], 2), x['reaches_target_within_mc_error']) for x in plan])}
+
+Headline: about **{get(0.8, 'unadjusted')['n_per_arm']:,} per arm for 80% power** and **{get(0.9, 'unadjusted')['n_per_arm']:,} per arm for 90% power** unadjusted; with CUPED at the observed correlation **{get(0.8, 'cuped')['n_per_arm']:,}** and **{get(0.9, 'cuped')['n_per_arm']:,}**. That is roughly {get(0.8, 'unadjusted')['n_per_arm'] / h['per_arm']:.1f} times the {h['per_arm']:.0f} per arm of the original run. CUPED saves only about {pct(1 - get(0.8, 'cuped')['n_per_arm'] / get(0.8, 'unadjusted')['n_per_arm'], 0)} because the correlation is low.
+
+Type I error check at the 80% sample sizes with zero true effect: unadjusted {pct(pd['type_I_error_at_planned_n_80']['unadjusted'], 2)}, CUPED {pct(pd['type_I_error_at_planned_n_80']['cuped'], 2)} (nominal 5%).
+
+## Sensitivity to effect size and SD (per arm)
+
+{table(["Effect x", "Effect (units/guest)", "SD x", "SD", "80% unadj.", "80% CUPED", "90% unadj.", "90% CUPED"], sens_rows)}
+
+CUPED correlation sensitivity at the injected effect and SD:
+
+{table(["rho", "n per arm, 80%", "n per arm, 90%"], [(x['rho'], f"{x['n_per_arm_80']:,}", f"{x['n_per_arm_90']:,}") for x in pd['cuped_rho_sensitivity']])}
+
+## Assumptions and limits
+
+{chr(10).join('- ' + a_ for a_ in pd['assumptions'])}
+
+Evidence: `lab/results/analytics/prospective_design.json`, reproducible with `cd lab && python3 -m analytics.run_all && python3 -m analytics.render_docs`.
+"""
+
+
 def render_memo():
     ex, fc, rc, ms2, dq, mr = R("experiment"), R("forecast_backtest"), R("recovery_checks"), R("margin_sensitivity"), R("dq_evaluation"), R("metrics_reconciliation")
     sh, lt = rc["unlogged_shrink_recovery"], rc["late_supplier_recovery"]
@@ -279,7 +321,7 @@ Evidence: `lab/docs/ANALYTICS-EVALUATION.md`, results in `lab/results/analytics/
 
 def main():
     os.makedirs(DOCS, exist_ok=True)
-    for name, fn in (("ANALYTICS-MART.md", render_mart), ("ANALYTICS-EVALUATION.md", render_eval), ("ANALYTICS-EXEC-MEMO.md", render_memo)):
+    for name, fn in (("ANALYTICS-MART.md", render_mart), ("ANALYTICS-EVALUATION.md", render_eval), ("ANALYTICS-EXEC-MEMO.md", render_memo), ("ANALYTICS-PROSPECTIVE-DESIGN.md", render_prospective)):
         with open(os.path.join(DOCS, name), "w", encoding="utf-8") as f:
             f.write(fn())
     try:

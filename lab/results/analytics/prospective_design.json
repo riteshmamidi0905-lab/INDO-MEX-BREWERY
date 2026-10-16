@@ -1,0 +1,254 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "synthetic": true,
+ "disclaimer": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED. Sample sizes for a SIMULATED test on synthetic guests; no real-business outcome is claimed.",
+ "inputs": {
+  "alpha_two_sided": 0.05,
+  "injected_effect_units_per_treated_guest": 0.225806,
+  "pre_period_sd_m04_units": 1.761103,
+  "observed_pre_post_corr": 0.20204,
+  "source": "results/analytics/experiment.json (power_plan, truth, single_run.m04_units.pre_post_corr)"
+ },
+ "historical_experiment": {
+  "per_arm": 170.5,
+  "analytic_power_unadjusted": 0.219676,
+  "status": "deliberately underpowered; kept unchanged as historical evidence; NOT retroactively resized"
+ },
+ "plan": [
+  {
+   "target_power": 0.8,
+   "estimator": "unadjusted",
+   "rho_used": 0.0,
+   "n_per_arm": 955,
+   "n_total": 1910,
+   "analytic_power_at_n": 0.800063,
+   "monte_carlo_power_at_n": 0.815,
+   "monte_carlo_reps": 4000,
+   "monte_carlo_se": 0.00614,
+   "reaches_target_within_mc_error": true
+  },
+  {
+   "target_power": 0.8,
+   "estimator": "cuped",
+   "rho_used": 0.20204,
+   "n_per_arm": 916,
+   "n_total": 1832,
+   "analytic_power_at_n": 0.800056,
+   "monte_carlo_power_at_n": 0.8065,
+   "monte_carlo_reps": 4000,
+   "monte_carlo_se": 0.006246,
+   "reaches_target_within_mc_error": true
+  },
+  {
+   "target_power": 0.9,
+   "estimator": "unadjusted",
+   "rho_used": 0.0,
+   "n_per_arm": 1279,
+   "n_total": 2558,
+   "analytic_power_at_n": 0.900162,
+   "monte_carlo_power_at_n": 0.89875,
+   "monte_carlo_reps": 4000,
+   "monte_carlo_se": 0.00477,
+   "reaches_target_within_mc_error": true
+  },
+  {
+   "target_power": 0.9,
+   "estimator": "cuped",
+   "rho_used": 0.20204,
+   "n_per_arm": 1227,
+   "n_total": 2454,
+   "analytic_power_at_n": 0.900211,
+   "monte_carlo_power_at_n": 0.904,
+   "monte_carlo_reps": 4000,
+   "monte_carlo_se": 0.004658,
+   "reaches_target_within_mc_error": true
+  }
+ ],
+ "type_I_error_at_planned_n_80": {
+  "unadjusted": 0.0475,
+  "cuped": 0.05175
+ },
+ "sensitivity": [
+  {
+   "effect_multiplier": 0.5,
+   "effect_units_per_guest": 0.112903,
+   "sd_multiplier": 0.75,
+   "sd": 1.320827,
+   "n_per_arm_unadjusted_80": 2149,
+   "n_per_arm_cuped_80": 2061,
+   "n_per_arm_unadjusted_90": 2877,
+   "n_per_arm_cuped_90": 2759
+  },
+  {
+   "effect_multiplier": 0.5,
+   "effect_units_per_guest": 0.112903,
+   "sd_multiplier": 1.0,
+   "sd": 1.761103,
+   "n_per_arm_unadjusted_80": 3820,
+   "n_per_arm_cuped_80": 3664,
+   "n_per_arm_unadjusted_90": 5114,
+   "n_per_arm_cuped_90": 4905
+  },
+  {
+   "effect_multiplier": 0.5,
+   "effect_units_per_guest": 0.112903,
+   "sd_multiplier": 1.25,
+   "sd": 2.201379,
+   "n_per_arm_unadjusted_80": 5968,
+   "n_per_arm_cuped_80": 5725,
+   "n_per_arm_unadjusted_90": 7990,
+   "n_per_arm_cuped_90": 7664
+  },
+  {
+   "effect_multiplier": 1.0,
+   "effect_units_per_guest": 0.225806,
+   "sd_multiplier": 0.75,
+   "sd": 1.320827,
+   "n_per_arm_unadjusted_80": 538,
+   "n_per_arm_cuped_80": 516,
+   "n_per_arm_unadjusted_90": 720,
+   "n_per_arm_cuped_90": 690
+  },
+  {
+   "effect_multiplier": 1.0,
+   "effect_units_per_guest": 0.225806,
+   "sd_multiplier": 1.0,
+   "sd": 1.761103,
+   "n_per_arm_unadjusted_80": 955,
+   "n_per_arm_cuped_80": 916,
+   "n_per_arm_unadjusted_90": 1279,
+   "n_per_arm_cuped_90": 1227
+  },
+  {
+   "effect_multiplier": 1.0,
+   "effect_units_per_guest": 0.225806,
+   "sd_multiplier": 1.25,
+   "sd": 2.201379,
+   "n_per_arm_unadjusted_80": 1492,
+   "n_per_arm_cuped_80": 1432,
+   "n_per_arm_unadjusted_90": 1998,
+   "n_per_arm_cuped_90": 1916
+  },
+  {
+   "effect_multiplier": 1.5,
+   "effect_units_per_guest": 0.33871,
+   "sd_multiplier": 0.75,
+   "sd": 1.320827,
+   "n_per_arm_unadjusted_80": 239,
+   "n_per_arm_cuped_80": 229,
+   "n_per_arm_unadjusted_90": 320,
+   "n_per_arm_cuped_90": 307
+  },
+  {
+   "effect_multiplier": 1.5,
+   "effect_units_per_guest": 0.33871,
+   "sd_multiplier": 1.0,
+   "sd": 1.761103,
+   "n_per_arm_unadjusted_80": 425,
+   "n_per_arm_cuped_80": 408,
+   "n_per_arm_unadjusted_90": 569,
+   "n_per_arm_cuped_90": 545
+  },
+  {
+   "effect_multiplier": 1.5,
+   "effect_units_per_guest": 0.33871,
+   "sd_multiplier": 1.25,
+   "sd": 2.201379,
+   "n_per_arm_unadjusted_80": 664,
+   "n_per_arm_cuped_80": 637,
+   "n_per_arm_unadjusted_90": 888,
+   "n_per_arm_cuped_90": 852
+  },
+  {
+   "effect_multiplier": 2.0,
+   "effect_units_per_guest": 0.451613,
+   "sd_multiplier": 0.75,
+   "sd": 1.320827,
+   "n_per_arm_unadjusted_80": 135,
+   "n_per_arm_cuped_80": 129,
+   "n_per_arm_unadjusted_90": 180,
+   "n_per_arm_cuped_90": 173
+  },
+  {
+   "effect_multiplier": 2.0,
+   "effect_units_per_guest": 0.451613,
+   "sd_multiplier": 1.0,
+   "sd": 1.761103,
+   "n_per_arm_unadjusted_80": 239,
+   "n_per_arm_cuped_80": 229,
+   "n_per_arm_unadjusted_90": 320,
+   "n_per_arm_cuped_90": 307
+  },
+  {
+   "effect_multiplier": 2.0,
+   "effect_units_per_guest": 0.451613,
+   "sd_multiplier": 1.25,
+   "sd": 2.201379,
+   "n_per_arm_unadjusted_80": 373,
+   "n_per_arm_cuped_80": 358,
+   "n_per_arm_unadjusted_90": 500,
+   "n_per_arm_cuped_90": 479
+  },
+  {
+   "effect_multiplier": 3.0,
+   "effect_units_per_guest": 0.677419,
+   "sd_multiplier": 0.75,
+   "sd": 1.320827,
+   "n_per_arm_unadjusted_80": 60,
+   "n_per_arm_cuped_80": 58,
+   "n_per_arm_unadjusted_90": 80,
+   "n_per_arm_cuped_90": 77
+  },
+  {
+   "effect_multiplier": 3.0,
+   "effect_units_per_guest": 0.677419,
+   "sd_multiplier": 1.0,
+   "sd": 1.761103,
+   "n_per_arm_unadjusted_80": 107,
+   "n_per_arm_cuped_80": 102,
+   "n_per_arm_unadjusted_90": 143,
+   "n_per_arm_cuped_90": 137
+  },
+  {
+   "effect_multiplier": 3.0,
+   "effect_units_per_guest": 0.677419,
+   "sd_multiplier": 1.25,
+   "sd": 2.201379,
+   "n_per_arm_unadjusted_80": 166,
+   "n_per_arm_cuped_80": 160,
+   "n_per_arm_unadjusted_90": 222,
+   "n_per_arm_cuped_90": 213
+  }
+ ],
+ "cuped_rho_sensitivity": [
+  {
+   "rho": 0.0,
+   "n_per_arm_80": 955,
+   "n_per_arm_90": 1279
+  },
+  {
+   "rho": 0.2,
+   "n_per_arm_80": 917,
+   "n_per_arm_90": 1228
+  },
+  {
+   "rho": 0.4,
+   "n_per_arm_80": 803,
+   "n_per_arm_90": 1074
+  },
+  {
+   "rho": 0.6,
+   "n_per_arm_80": 612,
+   "n_per_arm_90": 819
+  }
+ ],
+ "assumptions": [
+  "Two-sided z test at alpha 0.05, two equal arms, individual guests as the unit of randomisation.",
+  "The effect is the injected truth of the simulation (about 0.23 M04 units per treated guest); the SD is the pre-period SD of M04 units per guest, used as the variance proxy for the experiment window.",
+  "CUPED reduces the variance by the factor (1 - rho^2), with rho the pre/post correlation observed in the one simulated run; with rho about 0.2 the saving is small.",
+  "The Monte Carlo uses stylised bivariate-normal data with the same SD, rho and effect, not the skewed count data of the mart: it confirms the arithmetic and the estimator, not the shape of real data. Heavy tails, repeated visits and clustering would need more guests.",
+  "Seeded and deterministic (seed 20260101, 4000 repetitions). Monte Carlo standard error of a power estimate is about 0.6 points at 80%.",
+  "Not covered: multiple metrics (the Holm family of guardrails), sequential looks, attrition, interference between guests, novelty effects, a real baseline. NASHA has no guests; this is a method exercise."
+ ]
+}

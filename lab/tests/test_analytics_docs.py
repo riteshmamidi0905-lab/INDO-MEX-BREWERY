@@ -16,11 +16,12 @@ def test_docs_match_render_of_committed_results():
     assert read("docs/ANALYTICS-MART.md") == RD.render_mart()
     assert read("docs/ANALYTICS-EVALUATION.md") == RD.render_eval()
     assert read("docs/ANALYTICS-EXEC-MEMO.md") == RD.render_memo()
+    assert read("docs/ANALYTICS-PROSPECTIVE-DESIGN.md") == RD.render_prospective()
     assert read("results/analytics/dashboard.html") == dashboard.render()
 
 
 def test_every_doc_carries_the_synthetic_banner_and_memo_has_not_claimed():
-    for f in ("ANALYTICS-MART.md", "ANALYTICS-EVALUATION.md", "ANALYTICS-EXEC-MEMO.md"):
+    for f in ("ANALYTICS-MART.md", "ANALYTICS-EVALUATION.md", "ANALYTICS-EXEC-MEMO.md", "ANALYTICS-PROSPECTIVE-DESIGN.md"):
         assert "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED" in read("docs/" + f)
     memo = read("docs/ANALYTICS-EXEC-MEMO.md")
     assert "## NOT CLAIMED" in memo and "Invalidated" in memo and len(memo.split()) < 1100

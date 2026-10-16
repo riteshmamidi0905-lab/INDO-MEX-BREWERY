@@ -8,7 +8,7 @@ import os
 
 import numpy as np
 
-from . import config as C, difficult, dqf, experiment, forecast, library, mart, mart_checks as MC, metrics as M
+from . import config as C, difficult, prospective_design, dqf, experiment, forecast, library, mart, mart_checks as MC, metrics as M
 from nasha_lab import generator
 
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "analytics")
@@ -112,7 +112,10 @@ def main():
         "row_conservation": dqf.reconciliation(raw),
         "caveat": "Injected defects are simple by construction and the same author wrote generator, defects and rules; recall of 1.0 shows the rules do what they were written to do, not that they would find defects in real data."})
     write("forecast_backtest.json", forecast.run())
-    write("experiment.json", experiment.run(seed=1, reps=1000))
+    exp = experiment.run(seed=1, reps=1000)
+    write("experiment.json", exp)
+    write("prospective_design.json", prospective_design.run(exp["truth"]["m04_units_per_treated_guest"], exp["power_plan"]["pre_period_sd_m04_units"],
+                                                           exp["single_run"]["m04_units"]["pre_post_corr"], exp["power_plan"]["per_arm"]))
     write("margin_sensitivity.json", margin_sensitivity(con))
     write("recovery_checks.json", recovery_checks(con))
     print("wrote", sorted(os.listdir(OUT)))
