@@ -32,7 +32,7 @@ DEFS = '<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth=
 
 def architecture():
     b = [svg_box(20, 20, 200, 56, "Synthetic operations", "raw > staged > validated > modeled", "box"), svg_box(20, 110, 200, 56, "NASHA knowledge", "status-aware, 758 chunks", "box"),
-         svg_box(270, 20, 210, 56, "Tool registry", "18 typed tools, 5 permission classes", "box key"), svg_box(270, 110, 210, 56, "Trust gateway", "schema, timeout, taint, injection scan", "box key"),
+         svg_box(270, 20, 210, 56, "Tool registry", "19 registered tools, 5 permission classes", "box key"), svg_box(270, 110, 210, 56, "Trust gateway", "schema, timeout, taint, injection scan", "box key"),
          svg_box(530, 20, 220, 56, "LangGraph agent", "state machine, checkpoints", "box key"), svg_box(530, 110, 220, 56, "Planner (swappable)", "deterministic | LLM | LLM + guardrail", "box key"),
          svg_box(270, 200, 210, 56, "Human review", "signed reviewer identity + grants", "box warn"), svg_box(530, 200, 220, 56, "Trace store", "request id, model, tokens, status", "box"),
          svg_box(20, 200, 200, 56, "Evaluation harness", "250+ scenarios, 3 splits, stand-ins", "box"), svg_box(800, 20, 170, 56, "Trusted MCP", "9 read/analyze/draft tools", "box"), svg_box(800, 110, 170, 56, "Untrusted MCP", "simulated, hostile modes", "box bad")]
