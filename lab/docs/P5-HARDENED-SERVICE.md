@@ -2,7 +2,7 @@
 
 **SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED.** NASHA has no restaurant, customers, sales or staff. This is an engineering exercise on a synthetic lab: nothing here is a measured production result, nothing is deployed, and no real credential exists anywhere in this work.
 
-**Docker status, stated plainly: Docker was NOT runnable in the authoring sandbox.** The Dockerfile and compose file were never built or started locally. They are checked statically (`tests/p5/test_p5_deploy_static.py` parses their text) and the only evidence that they build, start, become healthy and answer requests is the GitHub Actions workflow `.github/workflows/p5-service-ci.yml`; the result of that run is recorded in section 14.
+**Docker status, stated plainly: Docker was NOT runnable in the authoring sandbox.** A Docker CLI and Compose v5.6.0 client are installed there but there is no daemon, so the Dockerfile and compose file were never built or started locally. The only local Docker check is the client-side `docker compose config -q`, which passed (and fails loudly when `POSTGRES_USER` is unset). They are checked statically (`tests/p5/test_p5_deploy_static.py` parses their text) and the only evidence that they build, start, become healthy and answer requests is the GitHub Actions workflow `.github/workflows/p5-service-ci.yml`; the result of that run is recorded in section 14.
 
 ## 1. What this is
 
