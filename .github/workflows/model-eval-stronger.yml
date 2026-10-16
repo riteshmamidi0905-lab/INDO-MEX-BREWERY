@@ -1,0 +1,58 @@
+name: model-eval-stronger
+# ONE preregistered stronger-model comparison. See lab/docs/STRONGER-MODEL-PREREGISTRATION.md (frozen before this workflow existed).
+# FREE: public repo, GitHub-hosted standard runner, local Ollama runtime, Apache-2.0 models, no API key, no paid service. Manual trigger only.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  stronger-eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { model: "qwen2.5:14b-instruct", label: "stronger-14b" }
+          - { model: "qwen2.5:7b-instruct", label: "stronger-7b-control" }
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Verify frozen inputs (code identical to 9cb7ca4, manifest hashes, scenario ids)
+        run: |
+          git diff --exit-code 9cb7ca4 HEAD -- lab/nasha_lab lab/requirements.txt lab/results/planner_qwen7b_raw.json lab/results/planner_deterministic.json
+          python3 lab/prereg/verify_manifest.py
+          echo "workflow commit ${{ github.sha }}"; sha256sum .github/workflows/model-eval-stronger.yml
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r lab/requirements.txt
+      - name: Install Ollama and pull the model
+        run: |
+          df -h / | tail -1
+          curl -fsSL https://ollama.com/install.sh | sh
+          (ollama serve > /tmp/ollama.log 2>&1 &)
+          for i in $(seq 1 30); do curl -fsS localhost:11434/api/version && break || sleep 2; done
+          ollama pull ${{ matrix.model }}
+          ollama show ${{ matrix.model }} | tee /tmp/model-info.txt
+          ollama list | tee -a /tmp/model-info.txt
+          curl -fsS localhost:11434/api/version | tee -a /tmp/model-info.txt
+          nproc; free -g | head -2; df -h / | tail -1
+      - name: Run the preregistered arms (deterministic, raw LLM, LLM + guardrail on the SAME cached replies)
+        env: { NASHA_LLM_MODEL: "${{ matrix.model }}" }
+        run: |
+          cd lab
+          python -m nasha_lab.eval_planners deterministic /tmp/det.json --per-family 1 --splits heldoutB,adversarial --log-rows | grep -E "^(SUMMARY)" | sed 's/^/DET /'
+          python -m nasha_lab.eval_planners ollama /tmp/arm1.json --per-family 1 --splits heldoutB,adversarial --log-rows --cache /tmp/cache.json --trace-out /tmp/trace_arm1.jsonl | grep -E "^(ROW|SUMMARY|BYFAMILY|\{|FAILURES)" | sed "s/^/ARM1:ollama /"
+          python -m nasha_lab.eval_planners ollama+guardrail /tmp/arm2.json --per-family 1 --splits heldoutB,adversarial --log-rows --cache /tmp/cache.json --trace-out /tmp/trace_arm2.jsonl | grep -E "^(ROW|SUMMARY|BYFAMILY|\{|FAILURES)" | sed "s/^/ARM2:ollama+guardrail /"
+      - name: Publish raw results to a results branch (never main)
+        if: always()
+        run: |
+          mkdir -p /tmp/out && cp /tmp/*.json /tmp/*.jsonl /tmp/model-info.txt /tmp/ollama.log /tmp/out/ 2>/dev/null || true
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          br="ci-results/${{ matrix.label }}-${{ github.run_id }}-a${{ github.run_attempt }}"
+          git checkout --orphan "$br"; git rm -rf . -q || true
+          mkdir -p results && cp /tmp/out/* results/ && echo "run ${{ github.run_id }} attempt ${{ github.run_attempt }} commit ${{ github.sha }} model ${{ matrix.model }} label ${{ matrix.label }}" > results/RUN.txt
+          git add results && git commit -q -m "raw results ${{ matrix.label }} run ${{ github.run_id }}" && git push -q origin "$br"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "stronger-eval-${{ matrix.label }}", path: "/tmp/out" }
