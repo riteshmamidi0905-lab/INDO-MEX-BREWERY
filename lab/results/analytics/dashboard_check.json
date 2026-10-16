@@ -1,0 +1,40 @@
+{
+ "views": [
+  {
+   "name": "desktop-light",
+   "scrollW": 1280,
+   "innerW": 1280,
+   "h1": 1,
+   "svgs": 4,
+   "svgLabelled": true,
+   "tables": 4,
+   "lang": "en",
+   "horizontalScroll": false,
+   "externalRequests": []
+  },
+  {
+   "name": "phone-light",
+   "scrollW": 375,
+   "innerW": 375,
+   "h1": 1,
+   "svgs": 4,
+   "svgLabelled": true,
+   "tables": 4,
+   "lang": "en",
+   "horizontalScroll": false,
+   "externalRequests": []
+  },
+  {
+   "name": "desktop-dark",
+   "scrollW": 1280,
+   "innerW": 1280,
+   "h1": 1,
+   "svgs": 4,
+   "svgLabelled": true,
+   "tables": 4,
+   "lang": "en",
+   "horizontalScroll": false,
+   "externalRequests": []
+  }
+ ]
+}

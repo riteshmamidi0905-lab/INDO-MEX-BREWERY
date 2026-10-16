@@ -56,5 +56,5 @@ FRESHNESS_MAX_AGE_DAYS = 7
 
 
 def config_hash():
-    blob = {k: v for k, v in sorted(globals().items()) if k.isupper() and not k.startswith("_")}
+    blob = {k: (sorted(v) if isinstance(v, (set, frozenset)) else v) for k, v in sorted(globals().items()) if k.isupper() and not k.startswith("_")}
     return hashlib.sha256(json.dumps(blob, sort_keys=True, default=str).encode()).hexdigest()[:12]

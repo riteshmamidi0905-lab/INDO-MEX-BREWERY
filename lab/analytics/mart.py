@@ -49,7 +49,7 @@ def build(seed=C.SEED, defects=C.DEFECTS_PER_TYPE, db_path=":memory:"):
     lab_con.backup(con)                           # copy the lab's modeled tables into the mart database, then re-label them src_*
     lab_con.close()
     con.executescript("DROP VIEW IF EXISTS v_daily_sales; DROP VIEW IF EXISTS v_item_mix;")
-    for t in ("fact_order", "fact_order_line", "dim_menu_item", "dim_location", "quarantine", "dq_finding", "lineage"):
+    for t in ("fact_order", "fact_order_line", "fact_inventory_count", "dim_menu_item", "dim_location", "quarantine", "dq_finding", "lineage"):
         con.execute(f"ALTER TABLE {t} RENAME TO src_{t}")
     con.execute("CREATE TABLE src_suppliers(supplier_id TEXT, name TEXT, status TEXT)")
     con.executemany("INSERT INTO src_suppliers VALUES(?,?,?)", world.SUPPLIERS)

@@ -1,0 +1,270 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "cases": [
+  {
+   "case": "01_fan_out_double_count",
+   "solution_matches_expected": true,
+   "trap_matches_expected": false,
+   "expected_rows": [
+    [
+     "A",
+     3,
+     230.0
+    ],
+    [
+     "B",
+     1,
+     40.0
+    ]
+   ],
+   "trap_rows": [
+    [
+     "A",
+     6,
+     510.0
+    ],
+    [
+     "B",
+     2,
+     80.0
+    ]
+   ]
+  },
+  {
+   "case": "02_not_in_null",
+   "solution_matches_expected": true,
+   "trap_matches_expected": false,
+   "expected_rows": [
+    [
+     "M3"
+    ],
+    [
+     "M4"
+    ]
+   ],
+   "trap_rows": []
+  },
+  {
+   "case": "03_scd2_boundary",
+   "solution_matches_expected": true,
+   "trap_matches_expected": false,
+   "expected_rows": [
+    [
+     "Gobi Taco",
+     5
+    ],
+    [
+     "Mango Habanero Gobi",
+     10
+    ]
+   ],
+   "trap_rows": [
+    [
+     "Gobi Taco",
+     10
+    ],
+    [
+     "Mango Habanero Gobi",
+     10
+    ]
+   ]
+  },
+  {
+   "case": "04_timezone_day_boundary",
+   "solution_matches_expected": true,
+   "trap_matches_expected": false,
+   "expected_rows": [
+    [
+     "2026-10-31",
+     2
+    ],
+    [
+     "2026-11-01",
+     4
+    ]
+   ],
+   "trap_rows": [
+    [
+     "2026-10-31",
+     1
+    ],
+    [
+     "2026-11-01",
+     4
+    ],
+    [
+     "2026-11-02",
+     1
+    ]
+   ]
+  },
+  {
+   "case": "05_duplicate_events",
+   "solution_matches_expected": true,
+   "trap_matches_expected": false,
+   "expected_rows": [
+    [
+     3,
+     77.0
+    ]
+   ],
+   "trap_rows": [
+    [
+     7,
+     162.0
+    ]
+   ]
+  },
+  {
+   "case": "06_orphan_keys",
+   "solution_matches_expected": true,
+   "trap_matches_expected": false,
+   "expected_rows": [
+    [
+     "UNKNOWN",
+     14.0
+    ],
+    [
+     "beer",
+     5.0
+    ],
+    [
+     "food",
+     30.0
+    ]
+   ],
+   "trap_rows": [
+    [
+     "beer",
+     5.0
+    ],
+    [
+     "food",
+     30.0
+    ]
+   ]
+  },
+  {
+   "case": "07_returns_netting",
+   "solution_matches_expected": true,
+   "trap_matches_expected": false,
+   "expected_rows": [
+    [
+     "2026-01",
+     450.0
+    ],
+    [
+     "2026-02",
+     70.0
+    ],
+    [
+     "2026-03",
+     -300.0
+    ]
+   ],
+   "trap_rows": [
+    [
+     "2026-01",
+     320.0
+    ],
+    [
+     "2026-02",
+     100.0
+    ]
+   ]
+  },
+  {
+   "case": "08_partial_month",
+   "solution_matches_expected": true,
+   "trap_matches_expected": false,
+   "expected_rows": [
+    [
+     "2026-01",
+     3100.0,
+     31,
+     100.0
+    ],
+    [
+     "2026-02",
+     3080.0,
+     28,
+     110.0
+    ],
+    [
+     "2026-03",
+     1300.0,
+     10,
+     130.0
+    ]
+   ],
+   "trap_rows": [
+    [
+     "2026-01",
+     3100.0,
+     31,
+     100.0
+    ],
+    [
+     "2026-02",
+     3080.0,
+     31,
+     99.354839
+    ],
+    [
+     "2026-03",
+     1300.0,
+     31,
+     41.935484
+    ]
+   ]
+  },
+  {
+   "case": "09_islands_with_duplicates",
+   "solution_matches_expected": true,
+   "trap_matches_expected": false,
+   "expected_rows": [
+    [
+     "A",
+     3,
+     "2026-03-01"
+    ],
+    [
+     "B",
+     2,
+     "2026-03-01"
+    ]
+   ],
+   "trap_rows": [
+    [
+     "A",
+     5,
+     "2026-03-01"
+    ],
+    [
+     "B",
+     2,
+     "2026-03-01"
+    ]
+   ]
+  },
+  {
+   "case": "10_ratio_of_sums",
+   "solution_matches_expected": true,
+   "trap_matches_expected": false,
+   "expected_rows": [
+    [
+     0.75,
+     12
+    ]
+   ],
+   "trap_rows": [
+    [
+     0.462963,
+     3
+    ]
+   ]
+  }
+ ],
+ "count": 10
+}
