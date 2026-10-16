@@ -210,14 +210,14 @@ def drafting_table():
     return rows
 
 
-def verdict(sens: dict):
+def verdict(sens: dict, central_best: str | None = None):
     """Apply the decision rule stated in the module docstring to a `sensitivity()` result."""
     planner = ("llm15_raw", "llm15_envelope", "llm7_raw", "llm7_envelope")
     out = {}
     for mode in ("pess", "opt"):
         w = sens[mode]["win_share"]
         out[mode] = dict(llm_planner_combined_win_share=round(sum(w[k] for k in planner), 3), hybrid_win_share=w["hybrid_add_only"], rules_win_share=w["rules_only"])
-    planner_reversal = any(out[m]["llm_planner_combined_win_share"] >= 0.5 for m in out)
+    planner_reversal = any(out[m]["llm_planner_combined_win_share"] >= 0.5 for m in out) and (central_best is None or central_best in OPTIONS[1:5])
     hybrid_unconditional = all(out[m]["hybrid_win_share"] >= 0.5 for m in out)
     hybrid_any = any(out[m]["hybrid_win_share"] >= 0.5 for m in out)
     out["llm_planner"] = "REVERSE the recommendation" if planner_reversal else "recommendation stands: do not use an LLM as planner"
@@ -232,7 +232,7 @@ def build_all():
         note="SYNTHETIC / ASSUMPTION-DRIVEN expected-cost model; PLACEHOLDER money; measured inputs from product_case/results/analysis.json",
         measured_inventory_inputs=M, central_case=central_case(M), grid=grid(M),
         breakeven_c_miss_hybrid_vs_rules=dict(optimistic=breakeven_c_miss(M, "optimistic"), pessimistic=breakeven_c_miss(M, "pessimistic")),
-        sensitivity=(sens := sensitivity(M)), verdict=verdict(sens), drafting_breakeven_table=drafting_table(),
+        sensitivity=(sens := sensitivity(M)), verdict=verdict(sens, central_case(M)["best"]), drafting_breakeven_table=drafting_table(),
     )
 
 
