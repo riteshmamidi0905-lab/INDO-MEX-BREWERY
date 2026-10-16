@@ -1,0 +1,31 @@
+{
+ "evaluation_split": "heldout + heldoutB clean scenarios",
+ "experiment": "clean control set (no faults)",
+ "false_alert_examples": [],
+ "false_alerts_by_rule": {},
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+ "planners": [
+  "deterministic",
+  "rule-model"
+ ],
+ "run_ms": {
+  "max": 333.117,
+  "p50": 69.019,
+  "p95": 137.938
+ },
+ "runs": 260,
+ "runs_with_any_event_or_run_alert": {
+  "ci95": [
+   0.0,
+   0.015
+  ],
+  "k": 0,
+  "n": 260,
+  "rate": 0.0
+ },
+ "scenarios": 130,
+ "threshold_calibration_split": "dev (56 clean scenarios, 0 alerts)",
+ "window_alert_evaluations": 260,
+ "window_alert_firings": 0,
+ "window_firings": []
+}

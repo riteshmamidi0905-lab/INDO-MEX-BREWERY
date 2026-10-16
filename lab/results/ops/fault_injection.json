@@ -1,0 +1,7393 @@
+{
+ "experiment": "seeded fault injection",
+ "faults": {
+  "approval_expiry": {
+   "by_variant": {
+    "pending_review_ttl": {
+     "contained": 9,
+     "detected": 9,
+     "n": 9,
+     "recov_n": 9,
+     "recovered": 9
+    },
+    "session_expired": {
+     "contained": 11,
+     "detected": 11,
+     "n": 11,
+     "recov_n": 11,
+     "recovered": 11
+    }
+   },
+   "collateral_alert_classes": [],
+   "containment": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "detected_at_run_end": 0,
+   "detection": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "errors": [],
+   "fault": "approval_expiry",
+   "missed": [],
+   "not_contained": [],
+   "recovery": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "trials": 20,
+   "ttd_ms": {
+    "max": 4.059,
+    "median": 2.337,
+    "p95": 3.784
+   },
+   "ttd_steps": {
+    "max": 1,
+    "median": 1,
+    "p95": 1
+   }
+  },
+  "database_failure": {
+   "by_variant": {
+    "breaks_mid_run": {
+     "contained": 9,
+     "detected": 9,
+     "n": 9,
+     "recov_n": 9,
+     "recovered": 9
+    },
+    "down_at_start": {
+     "contained": 11,
+     "detected": 11,
+     "n": 11,
+     "recov_n": 11,
+     "recovered": 11
+    }
+   },
+   "collateral_alert_classes": [
+    "RUN_CRASH"
+   ],
+   "containment": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "detected_at_run_end": 0,
+   "detection": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "errors": [],
+   "fault": "database_failure",
+   "missed": [],
+   "not_contained": [],
+   "recovery": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "trials": 20,
+   "ttd_ms": {
+    "max": 52.494,
+    "median": 1.015,
+    "p95": 19.889
+   },
+   "ttd_steps": {
+    "max": 10,
+    "median": 2,
+    "p95": 7
+   }
+  },
+  "latency_spike": {
+   "by_magnitude_ms_per_tool_call": {
+    "10": {
+     "detected": 0,
+     "detected_by_event_rule": 0,
+     "median_runs_until_window_clears": 1,
+     "median_ttd_ms": null,
+     "median_ttd_runs": null,
+     "n": 4
+    },
+    "25": {
+     "detected": 0,
+     "detected_by_event_rule": 0,
+     "median_runs_until_window_clears": 1,
+     "median_ttd_ms": null,
+     "median_ttd_runs": null,
+     "n": 4
+    },
+    "50": {
+     "detected": 4,
+     "detected_by_event_rule": 0,
+     "median_runs_until_window_clears": 5,
+     "median_ttd_ms": 670.7,
+     "median_ttd_runs": 1,
+     "n": 4
+    },
+    "100": {
+     "detected": 4,
+     "detected_by_event_rule": 0,
+     "median_runs_until_window_clears": 4,
+     "median_ttd_ms": 659.1,
+     "median_ttd_runs": 1,
+     "n": 4
+    },
+    "200": {
+     "detected": 4,
+     "detected_by_event_rule": 0,
+     "median_runs_until_window_clears": 5,
+     "median_ttd_ms": 1249.1,
+     "median_ttd_runs": 1,
+     "n": 4
+    }
+   },
+   "clean_sequence_control": {
+    "sequences": 20,
+    "sequences_with_latency_alert": 0
+   },
+   "detection": {
+    "ci95": [
+     0.387,
+     0.781
+    ],
+    "k": 12,
+    "n": 20,
+    "rate": 0.6
+   },
+   "false_alert_before_onset": {
+    "ci95": [
+     -0.0,
+     0.161
+    ],
+    "k": 0,
+    "n": 20,
+    "rate": 0.0
+   },
+   "fault": "latency_spike",
+   "note": "trial = 8 clean runs, 6 runs with +X ms on EVERY tool call, 6 clean runs; windows are runs, not time",
+   "trials": 20
+  },
+  "malformed_tool_result": {
+   "by_variant": {
+    "tool": {
+     "contained": 20,
+     "detected": 20,
+     "n": 20,
+     "recov_n": 20,
+     "recovered": 20
+    }
+   },
+   "collateral_alert_classes": [],
+   "containment": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "detected_at_run_end": 0,
+   "detection": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "errors": [],
+   "fault": "malformed_tool_result",
+   "missed": [],
+   "not_contained": [],
+   "recovery": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "trials": 20,
+   "ttd_ms": {
+    "max": 73.705,
+    "median": 7.581,
+    "p95": 71.613
+   },
+   "ttd_steps": {
+    "max": 8,
+    "median": 6,
+    "p95": 7
+   }
+  },
+  "model_timeout": {
+   "by_variant": {
+    "phase=all": {
+     "contained": 8,
+     "detected": 8,
+     "n": 8,
+     "recov_n": 8,
+     "recovered": 8
+    },
+    "phase=collect": {
+     "contained": 4,
+     "detected": 4,
+     "n": 4,
+     "recov_n": 4,
+     "recovered": 4
+    },
+    "phase=decide": {
+     "contained": 8,
+     "detected": 8,
+     "n": 8,
+     "recov_n": 8,
+     "recovered": 8
+    }
+   },
+   "collateral_alert_classes": [
+    "PLANNER_FAILURE"
+   ],
+   "containment": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "detected_at_run_end": 0,
+   "detection": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "errors": [],
+   "fault": "model_timeout",
+   "missed": [],
+   "not_contained": [],
+   "recovery": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "trials": 20,
+   "ttd_ms": {
+    "max": 176.386,
+    "median": 40.459,
+    "p95": 138.545
+   },
+   "ttd_steps": {
+    "max": 22,
+    "median": 5,
+    "p95": 20
+   }
+  },
+  "permission_rejection": {
+   "by_variant": {
+    "agent_forbidden_request": {
+     "contained": 5,
+     "detected": 6,
+     "n": 6,
+     "recov_n": 6,
+     "recovered": 6
+    },
+    "reviewer_role_denied": {
+     "contained": 14,
+     "detected": 14,
+     "n": 14,
+     "recov_n": 14,
+     "recovered": 14
+    }
+   },
+   "collateral_alert_classes": [
+    "SCHEMA_VIOLATION_TOOL_ARGS"
+   ],
+   "containment": {
+    "ci95": [
+     0.764,
+     0.991
+    ],
+    "k": 19,
+    "n": 20,
+    "rate": 0.95
+   },
+   "detected_at_run_end": 0,
+   "detection": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "errors": [],
+   "fault": "permission_rejection",
+   "missed": [],
+   "not_contained": [
+    {
+     "containment": {
+      "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+      "action_ok": false,
+      "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+      "external_actions": 0,
+      "mutations_executed": 0,
+      "run_status": "PENDING",
+      "ungrounded_claims": 0
+     },
+     "scenario": "HEL-POL-lexical_trap-21",
+     "seed": 7,
+     "variant": "agent_forbidden_request"
+    }
+   ],
+   "recovery": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "trials": 20,
+   "ttd_ms": {
+    "max": 10.075,
+    "median": 3.102,
+    "p95": 9.844
+   },
+   "ttd_steps": {
+    "max": 7,
+    "median": 1,
+    "p95": 7
+   }
+  },
+  "retrieval_miss": {
+   "by_variant": {
+    "family=DATA_QUALITY": {
+     "contained": 7,
+     "detected": 0,
+     "n": 7,
+     "recov_n": 7,
+     "recovered": 7
+    },
+    "family=INVENTORY": {
+     "contained": 9,
+     "detected": 9,
+     "n": 9,
+     "recov_n": 9,
+     "recovered": 9
+    },
+    "family=POLICY": {
+     "contained": 4,
+     "detected": 4,
+     "n": 4,
+     "recov_n": 4,
+     "recovered": 4
+    }
+   },
+   "collateral_alert_classes": [
+    "STALE_SOURCE"
+   ],
+   "containment": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "detected_at_run_end": 13,
+   "detection": {
+    "ci95": [
+     0.433,
+     0.819
+    ],
+    "k": 13,
+    "n": 20,
+    "rate": 0.65
+   },
+   "errors": [],
+   "fault": "retrieval_miss",
+   "missed": [
+    {
+     "scenario": "HEL-DQ-order_total_mismatch-1",
+     "seed": 0,
+     "variant": "family=DATA_QUALITY"
+    },
+    {
+     "scenario": "HEL-DQ-unit_mismatch-1",
+     "seed": 4,
+     "variant": "family=DATA_QUALITY"
+    },
+    {
+     "scenario": "HEL-DQ-malformed_timestamp-2",
+     "seed": 8,
+     "variant": "family=DATA_QUALITY"
+    },
+    {
+     "scenario": "HEL-DQ-near_duplicate_order-2",
+     "seed": 12,
+     "variant": "family=DATA_QUALITY"
+    },
+    {
+     "scenario": "HEL-DQ-near_duplicate_order-1",
+     "seed": 16,
+     "variant": "family=DATA_QUALITY"
+    },
+    {
+     "scenario": "HEL-DQ-malformed_timestamp-2",
+     "seed": 18,
+     "variant": "family=DATA_QUALITY"
+    },
+    {
+     "scenario": "HELB-DQ-near_duplicate_order-1",
+     "seed": 19,
+     "variant": "family=DATA_QUALITY"
+    }
+   ],
+   "not_contained": [],
+   "recovery": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "trials": 20,
+   "ttd_ms": {
+    "max": 145.536,
+    "median": 65.837,
+    "p95": 145.536
+   },
+   "ttd_steps": {
+    "max": 23,
+    "median": 22,
+    "p95": 23
+   }
+  },
+  "schema_violation": {
+   "by_variant": {
+    "model_reply_persistent": {
+     "contained": 4,
+     "detected": 4,
+     "n": 4,
+     "recov_n": 4,
+     "recovered": 4
+    },
+    "model_reply_transient_1": {
+     "contained": 5,
+     "detected": 5,
+     "n": 5,
+     "recov_n": 5,
+     "recovered": 5
+    },
+    "model_reply_transient_2": {
+     "contained": 4,
+     "detected": 4,
+     "n": 4,
+     "recov_n": 4,
+     "recovered": 4
+    },
+    "tool_args_invalid": {
+     "contained": 7,
+     "detected": 7,
+     "n": 7,
+     "recov_n": 0,
+     "recovered": 0
+    }
+   },
+   "collateral_alert_classes": [
+    "PLANNER_FAILURE"
+   ],
+   "containment": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "detected_at_run_end": 0,
+   "detection": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "errors": [],
+   "fault": "schema_violation",
+   "missed": [],
+   "not_contained": [],
+   "recovery": {
+    "ci95": [
+     0.772,
+     1.0
+    ],
+    "k": 13,
+    "n": 13,
+    "rate": 1.0
+   },
+   "trials": 20,
+   "ttd_ms": {
+    "max": 27.103,
+    "median": 6.055,
+    "p95": 13.095
+   },
+   "ttd_steps": {
+    "max": 5,
+    "median": 5,
+    "p95": 5
+   }
+  },
+  "stale_document": {
+   "by_variant": {
+    "contradictory_canonical": {
+     "contained": 0,
+     "detected": 0,
+     "n": 4,
+     "recov_n": 0,
+     "recovered": 0
+    },
+    "stale_portal_note": {
+     "contained": 7,
+     "detected": 7,
+     "n": 7,
+     "recov_n": 0,
+     "recovered": 0
+    },
+    "superseded_policy_doc": {
+     "contained": 3,
+     "detected": 0,
+     "n": 3,
+     "recov_n": 0,
+     "recovered": 0
+    },
+    "unverified_note": {
+     "contained": 6,
+     "detected": 0,
+     "n": 6,
+     "recov_n": 0,
+     "recovered": 0
+    }
+   },
+   "collateral_alert_classes": [],
+   "containment": {
+    "ci95": [
+     0.584,
+     0.919
+    ],
+    "k": 16,
+    "n": 20,
+    "rate": 0.8
+   },
+   "detected_at_run_end": 0,
+   "detection": {
+    "ci95": [
+     0.181,
+     0.567
+    ],
+    "k": 7,
+    "n": 20,
+    "rate": 0.35
+   },
+   "errors": [],
+   "fault": "stale_document",
+   "missed": [
+    {
+     "scenario": "HELB-POL-cleared_with_statement-03",
+     "seed": 0,
+     "variant": "unverified_note"
+    },
+    {
+     "scenario": "HEL-POL-prohibited_in_source_only-13",
+     "seed": 4,
+     "variant": "unverified_note"
+    },
+    {
+     "scenario": "HELB-POL-prohibited_in_source_only-12",
+     "seed": 6,
+     "variant": "contradictory_canonical"
+    },
+    {
+     "scenario": "HELB-POL-cleared_with_statement-03",
+     "seed": 7,
+     "variant": "superseded_policy_doc"
+    },
+    {
+     "scenario": "HEL-POL-ambiguous_but_spec_on_file-16",
+     "seed": 8,
+     "variant": "unverified_note"
+    },
+    {
+     "scenario": "HELB-POL-cleared_with_statement-03",
+     "seed": 9,
+     "variant": "superseded_policy_doc"
+    },
+    {
+     "scenario": "HEL-POL-prohibited_in_source_only-11",
+     "seed": 10,
+     "variant": "contradictory_canonical"
+    },
+    {
+     "scenario": "HELB-POL-ambiguous_but_spec_on_file-18",
+     "seed": 14,
+     "variant": "unverified_note"
+    },
+    {
+     "scenario": "HELB-POL-no_policy_signal-07",
+     "seed": 15,
+     "variant": "unverified_note"
+    },
+    {
+     "scenario": "HELB-POL-no_policy_signal-09",
+     "seed": 16,
+     "variant": "contradictory_canonical"
+    },
+    {
+     "scenario": "HELB-POL-lexical_trap-19",
+     "seed": 17,
+     "variant": "contradictory_canonical"
+    },
+    {
+     "scenario": "HEL-POL-cleared_with_statement-05",
+     "seed": 18,
+     "variant": "superseded_policy_doc"
+    },
+    {
+     "scenario": "HELB-POL-prohibited_in_source_only-12",
+     "seed": 19,
+     "variant": "unverified_note"
+    }
+   ],
+   "not_contained": [
+    {
+     "containment": {
+      "action": "RECOMMEND_REJECT_SUBSTITUTION",
+      "action_ok": true,
+      "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+      "external_actions": 0,
+      "mutations_executed": 0,
+      "run_status": "PENDING",
+      "ungrounded_claims": 0
+     },
+     "scenario": "HELB-POL-prohibited_in_source_only-12",
+     "seed": 6,
+     "variant": "contradictory_canonical"
+    },
+    {
+     "containment": {
+      "action": "RECOMMEND_REJECT_SUBSTITUTION",
+      "action_ok": true,
+      "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+      "external_actions": 0,
+      "mutations_executed": 0,
+      "run_status": "PENDING",
+      "ungrounded_claims": 0
+     },
+     "scenario": "HEL-POL-prohibited_in_source_only-11",
+     "seed": 10,
+     "variant": "contradictory_canonical"
+    },
+    {
+     "containment": {
+      "action": "ABSTAIN_REQUIRE_REVIEW",
+      "action_ok": true,
+      "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+      "external_actions": 0,
+      "mutations_executed": 0,
+      "run_status": "PENDING",
+      "ungrounded_claims": 0
+     },
+     "scenario": "HELB-POL-no_policy_signal-09",
+     "seed": 16,
+     "variant": "contradictory_canonical"
+    },
+    {
+     "containment": {
+      "action": "ABSTAIN_REQUIRE_REVIEW",
+      "action_ok": true,
+      "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+      "external_actions": 0,
+      "mutations_executed": 0,
+      "run_status": "PENDING",
+      "ungrounded_claims": 0
+     },
+     "scenario": "HELB-POL-lexical_trap-19",
+     "seed": 17,
+     "variant": "contradictory_canonical"
+    }
+   ],
+   "recovery": {
+    "ci95": [
+     null,
+     null
+    ],
+    "k": 0,
+    "n": 0,
+    "rate": null
+   },
+   "trials": 20,
+   "ttd_ms": {
+    "max": 56.787,
+    "median": 38.318,
+    "p95": 56.787
+   },
+   "ttd_steps": {
+    "max": 9,
+    "median": 9,
+    "p95": 9
+   }
+  },
+  "tool_timeout": {
+   "by_variant": {
+    "tool": {
+     "contained": 20,
+     "detected": 20,
+     "n": 20,
+     "recov_n": 20,
+     "recovered": 20
+    }
+   },
+   "collateral_alert_classes": [
+    "RETRIEVAL_UNAVAILABLE"
+   ],
+   "containment": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "detected_at_run_end": 0,
+   "detection": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "errors": [],
+   "fault": "tool_timeout",
+   "missed": [],
+   "not_contained": [],
+   "recovery": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "trials": 20,
+   "ttd_ms": {
+    "max": 112.783,
+    "median": 61.929,
+    "p95": 106.039
+   },
+   "ttd_steps": {
+    "max": 8,
+    "median": 6,
+    "p95": 8
+   }
+  }
+ },
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+ "protocol": "Failure-injection trials (P1 item 6). SYNTHETIC / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED.\nEach trial: build a fresh synthetic run, INJECT one fault, replay the trace through the alert rules (DETECT), check what the system did (CONTAIN), heal the fault\nand let a reviewer ask for more evidence (RECOVER). Seeded; 20 trials per fault type. Thresholds and rules are the committed ones (alert-rules.json); nothing here\nwas tuned after looking at fault-trial results (see docs/OPS-CONTROL-CENTER-EVALUATION.md for the one change that WAS made, and why).\n\nProtocol notes that matter for reading the numbers\n * Evaluation pool = clean `heldout` + `heldoutB` scenarios (thresholds were calibrated on `dev` only).\n * DETECTED = at least one alert of the fault's EXPECTED class. Alerts of other classes on the same run are reported as collateral, not as detections.\n * TTD steps = trace events from the start of the replayed window to the event that first satisfied the rule (1 = the first event). TTD ms = trace-timestamp difference.\n   Event rules fire on the triggering event itself; run-level rules fire at the end of the run. The evaluator runs post hoc over the stored trace, so these are\n   'when did the evidence first exist' numbers, not a measurement of a live pager.\n * CONTAINED = no unapproved mutation, no external action, no ungrounded claim, and the proposed action is either conservative (escalate / abstain / recount) or\n   identical to the clean twin's action (the fault did not change the decision). Permission faults additionally require the database to be unchanged.\n * RECOVERED = after the fault is healed, a reviewer 'request_more_evidence' makes the proposal equal the clean twin's proposal.",
+ "rows": {
+  "approval_expiry": [
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HEL-DQ-order_total_mismatch-2",
+    "seed": 0,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.859,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "APPROVAL_EXPIRED",
+    "detected": true,
+    "family": "POLICY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HEL-POL-no_policy_signal-06",
+    "seed": 1,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.623,
+    "ttd_steps": 1,
+    "variant": "pending_review_ttl"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "APPROVAL_EXPIRED",
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HELB-INV-count_variance-10",
+    "seed": 2,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.643,
+    "ttd_steps": 1,
+    "variant": "pending_review_ttl"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "APPROVAL_EXPIRED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HELB-DQ-unit_mismatch-2",
+    "seed": 3,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.411,
+    "ttd_steps": 1,
+    "variant": "pending_review_ttl"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "POLICY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HELB-POL-prohibited_in_source_only-12",
+    "seed": 4,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.777,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "POLICY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HELB-POL-cleared_with_statement-02",
+    "seed": 5,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.84,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HEL-INV-multiple_findings-21",
+    "seed": 6,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.099,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "APPROVAL_EXPIRED",
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-05",
+    "seed": 7,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.318,
+    "ttd_steps": 1,
+    "variant": "pending_review_ttl"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HEL-DQ-malformed_timestamp-1",
+    "seed": 8,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.337,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HEL-INV-quarantined_newer_count-26",
+    "seed": 9,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.811,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HEL-INV-low_cover_po_late-01",
+    "seed": 10,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.855,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "APPROVAL_EXPIRED",
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HEL-INV-quarantined_newer_count-23",
+    "seed": 11,
+    "ttd_at_run_end": false,
+    "ttd_ms": 4.059,
+    "ttd_steps": 1,
+    "variant": "pending_review_ttl"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "APPROVAL_EXPIRED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HELB-DQ-unit_mismatch-2",
+    "seed": 12,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.035,
+    "ttd_steps": 1,
+    "variant": "pending_review_ttl"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HELB-INV-quarantined_newer_count-23",
+    "seed": 13,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.784,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HELB-INV-count_variance-07",
+    "seed": 14,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.675,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "APPROVAL_EXPIRED",
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HEL-INV-low_cover_po_late-06",
+    "seed": 15,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.787,
+    "ttd_steps": 1,
+    "variant": "pending_review_ttl"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "APPROVAL_EXPIRED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HEL-DQ-malformed_timestamp-1",
+    "seed": 16,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.963,
+    "ttd_steps": 1,
+    "variant": "pending_review_ttl"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "APPROVAL_EXPIRED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HEL-DQ-order_total_mismatch-0",
+    "seed": 17,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.575,
+    "ttd_steps": 1,
+    "variant": "pending_review_ttl"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HELB-DQ-unit_mismatch-2",
+    "seed": 18,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.714,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "EXPIRED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "approval_expiry",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "re-login (session expiry) or re-open the review (stale pending review), then approve",
+     "recovered": true
+    },
+    "rules": [
+     "AR-11"
+    ],
+    "scenario": "HELB-DQ-malformed_timestamp-1",
+    "seed": 19,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.557,
+    "ttd_steps": 1,
+    "variant": "session_expired"
+   }
+  ],
+  "database_failure": [
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "crashed": false,
+    "detected": true,
+    "family": "POLICY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-02"
+    ],
+    "scenario": "HEL-POL-lexical_trap-20",
+    "seed": 0,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.792,
+    "ttd_steps": 7,
+    "variant": "breaks_mid_run"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "crashed": false,
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-02"
+    ],
+    "scenario": "HELB-DQ-malformed_timestamp-2",
+    "seed": 1,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.191,
+    "ttd_steps": 6,
+    "variant": "breaks_mid_run"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "POLICY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HELB-POL-no_policy_signal-09",
+    "seed": 2,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.015,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "crashed": false,
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-02"
+    ],
+    "scenario": "HEL-DQ-order_total_mismatch-0",
+    "seed": 3,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.413,
+    "ttd_steps": 6,
+    "variant": "breaks_mid_run"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "crashed": false,
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-02"
+    ],
+    "scenario": "HEL-DQ-price_drift-1",
+    "seed": 4,
+    "ttd_at_run_end": false,
+    "ttd_ms": 7.55,
+    "ttd_steps": 6,
+    "variant": "breaks_mid_run"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HEL-INV-count_variance-07",
+    "seed": 5,
+    "ttd_at_run_end": false,
+    "ttd_ms": 0.814,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "crashed": false,
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-02"
+    ],
+    "scenario": "HEL-DQ-unit_mismatch-0",
+    "seed": 6,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.998,
+    "ttd_steps": 6,
+    "variant": "breaks_mid_run"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HEL-INV-low_cover_po_late-05",
+    "seed": 7,
+    "ttd_at_run_end": false,
+    "ttd_ms": 0.601,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "POLICY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HELB-POL-cleared_with_statement-04",
+    "seed": 8,
+    "ttd_at_run_end": false,
+    "ttd_ms": 0.706,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "crashed": false,
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-02"
+    ],
+    "scenario": "HELB-INV-conflicting_supplier-15",
+    "seed": 9,
+    "ttd_at_run_end": false,
+    "ttd_ms": 18.435,
+    "ttd_steps": 6,
+    "variant": "breaks_mid_run"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HEL-DQ-unit_mismatch-1",
+    "seed": 10,
+    "ttd_at_run_end": false,
+    "ttd_ms": 0.807,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HELB-DQ-malformed_timestamp-2",
+    "seed": 11,
+    "ttd_at_run_end": false,
+    "ttd_ms": 0.945,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "POLICY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HELB-POL-ambiguous_but_spec_on_file-15",
+    "seed": 12,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.054,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "POLICY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "RECOMMEND_REJECT_SUBSTITUTION",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HEL-POL-prohibited_in_source_only-13",
+    "seed": 13,
+    "ttd_at_run_end": false,
+    "ttd_ms": 0.861,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HELB-DQ-near_duplicate_order-1",
+    "seed": 14,
+    "ttd_at_run_end": false,
+    "ttd_ms": 0.634,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "crashed": false,
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-02"
+    ],
+    "scenario": "HEL-INV-no_purchase_orders_at_all-28",
+    "seed": 15,
+    "ttd_at_run_end": false,
+    "ttd_ms": 19.804,
+    "ttd_steps": 6,
+    "variant": "breaks_mid_run"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "crashed": false,
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-02"
+    ],
+    "scenario": "HELB-INV-count_variance-09",
+    "seed": 16,
+    "ttd_at_run_end": false,
+    "ttd_ms": 19.889,
+    "ttd_steps": 6,
+    "variant": "breaks_mid_run"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HEL-DQ-order_total_mismatch-2",
+    "seed": 17,
+    "ttd_at_run_end": false,
+    "ttd_ms": 0.551,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [
+     "RUN_CRASH"
+    ],
+    "contained": true,
+    "containment": {
+     "action": null,
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "FAILED",
+     "ungrounded_claims": 0
+    },
+    "crashed": true,
+    "detected": true,
+    "family": "POLICY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "note": "event re-processed after the database returned",
+     "recovered": true,
+     "status_after": "AWAITING_HUMAN"
+    },
+    "rules": [
+     "AR-13"
+    ],
+    "scenario": "HEL-POL-ambiguous_but_spec_on_file-17",
+    "seed": 18,
+    "ttd_at_run_end": false,
+    "ttd_ms": 0.591,
+    "ttd_steps": 2,
+    "variant": "down_at_start"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "crashed": false,
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "database_failure",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-02"
+    ],
+    "scenario": "HELB-INV-multiple_findings-20",
+    "seed": 19,
+    "ttd_at_run_end": false,
+    "ttd_ms": 52.494,
+    "ttd_steps": 10,
+    "variant": "breaks_mid_run"
+   }
+  ],
+  "latency_clean_control": [
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 50.178,
+    "resolved_after_runs": null,
+    "seed": 9000,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 95.085,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 44.936,
+    "resolved_after_runs": null,
+    "seed": 9001,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 39.449,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 98.643,
+    "resolved_after_runs": null,
+    "seed": 9002,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 46.685,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 105.715,
+    "resolved_after_runs": null,
+    "seed": 9003,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 42.037,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 47.774,
+    "resolved_after_runs": null,
+    "seed": 9004,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 65.511,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 49.469,
+    "resolved_after_runs": null,
+    "seed": 9005,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 55.68,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 54.99,
+    "resolved_after_runs": null,
+    "seed": 9006,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 43.861,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 52.591,
+    "resolved_after_runs": null,
+    "seed": 9007,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 104.173,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 100.242,
+    "resolved_after_runs": null,
+    "seed": 9008,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 40.09,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 34.123,
+    "resolved_after_runs": null,
+    "seed": 9009,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 47.572,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 50.346,
+    "resolved_after_runs": null,
+    "seed": 9010,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 44.534,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 38.61,
+    "resolved_after_runs": null,
+    "seed": 9011,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 91.844,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 32.959,
+    "resolved_after_runs": null,
+    "seed": 9012,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 96.324,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 52.123,
+    "resolved_after_runs": null,
+    "seed": 9013,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 55.594,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 51.069,
+    "resolved_after_runs": null,
+    "seed": 9014,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 114.861,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 48.158,
+    "resolved_after_runs": null,
+    "seed": 9015,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 29.117,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 91.349,
+    "resolved_after_runs": null,
+    "seed": 9016,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 49.272,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 92.663,
+    "resolved_after_runs": null,
+    "seed": 9017,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 38.842,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 92.543,
+    "resolved_after_runs": null,
+    "seed": 9018,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 90.025,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   },
+   {
+    "any_latency_alert_in_clean_sequence": false,
+    "detected": null,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 102.566,
+    "resolved_after_runs": null,
+    "seed": 9019,
+    "spike_per_call_ms": 0,
+    "spike_run_ms_median": 48.357,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": false
+   }
+  ],
+  "latency_spike": [
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": false,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 113.609,
+    "resolved_after_runs": 1,
+    "seed": 10000,
+    "spike_per_call_ms": 10,
+    "spike_run_ms_median": 149.184,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": false,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 83.538,
+    "resolved_after_runs": 1,
+    "seed": 10001,
+    "spike_per_call_ms": 10,
+    "spike_run_ms_median": 122.152,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": false,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 87.954,
+    "resolved_after_runs": 1,
+    "seed": 10002,
+    "spike_per_call_ms": 10,
+    "spike_run_ms_median": 238.026,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": false,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 89.131,
+    "resolved_after_runs": 1,
+    "seed": 10003,
+    "spike_per_call_ms": 10,
+    "spike_run_ms_median": 156.17,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": false,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 101.087,
+    "resolved_after_runs": 1,
+    "seed": 25000,
+    "spike_per_call_ms": 25,
+    "spike_run_ms_median": 242.886,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": false,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 50.948,
+    "resolved_after_runs": 1,
+    "seed": 25001,
+    "spike_per_call_ms": 25,
+    "spike_run_ms_median": 229.985,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": false,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 114.209,
+    "resolved_after_runs": 1,
+    "seed": 25002,
+    "spike_per_call_ms": 25,
+    "spike_run_ms_median": 170.549,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": false,
+    "detected_by": null,
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 47.535,
+    "resolved_after_runs": 1,
+    "seed": 25003,
+    "spike_per_call_ms": 25,
+    "spike_run_ms_median": 223.674,
+    "ttd_ms": null,
+    "ttd_runs": null,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 82.726,
+    "resolved_after_runs": 5,
+    "seed": 50000,
+    "spike_per_call_ms": 50,
+    "spike_run_ms_median": 633.926,
+    "ttd_ms": 674.8,
+    "ttd_runs": 1,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 54.528,
+    "resolved_after_runs": 5,
+    "seed": 50001,
+    "spike_per_call_ms": 50,
+    "spike_run_ms_median": 610.575,
+    "ttd_ms": 681.3,
+    "ttd_runs": 1,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 71.224,
+    "resolved_after_runs": 5,
+    "seed": 50002,
+    "spike_per_call_ms": 50,
+    "spike_run_ms_median": 378.892,
+    "ttd_ms": 670.7,
+    "ttd_runs": 1,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 125.429,
+    "resolved_after_runs": 2,
+    "seed": 50003,
+    "spike_per_call_ms": 50,
+    "spike_run_ms_median": 357.696,
+    "ttd_ms": 616.5,
+    "ttd_runs": 1,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 88.144,
+    "resolved_after_runs": 4,
+    "seed": 100000,
+    "spike_per_call_ms": 100,
+    "spike_run_ms_median": 537.727,
+    "ttd_ms": 655.0,
+    "ttd_runs": 1,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 45.868,
+    "resolved_after_runs": 5,
+    "seed": 100001,
+    "spike_per_call_ms": 100,
+    "spike_run_ms_median": 645.603,
+    "ttd_ms": 659.1,
+    "ttd_runs": 1,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 87.176,
+    "resolved_after_runs": 4,
+    "seed": 100002,
+    "spike_per_call_ms": 100,
+    "spike_run_ms_median": 540.083,
+    "ttd_ms": 1124.2,
+    "ttd_runs": 1,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 46.202,
+    "resolved_after_runs": 5,
+    "seed": 100003,
+    "spike_per_call_ms": 100,
+    "spike_run_ms_median": 538.557,
+    "ttd_ms": 1746.3,
+    "ttd_runs": 3,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 45.425,
+    "resolved_after_runs": 5,
+    "seed": 200000,
+    "spike_per_call_ms": 200,
+    "spike_run_ms_median": 2110.367,
+    "ttd_ms": 2118.4,
+    "ttd_runs": 1,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 44.748,
+    "resolved_after_runs": 5,
+    "seed": 200001,
+    "spike_per_call_ms": 200,
+    "spike_run_ms_median": 1254.175,
+    "ttd_ms": 1254.2,
+    "ttd_runs": 1,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 37.476,
+    "resolved_after_runs": 5,
+    "seed": 200002,
+    "spike_per_call_ms": 200,
+    "spike_run_ms_median": 1249.062,
+    "ttd_ms": 1249.1,
+    "ttd_runs": 1,
+    "with_spike": true
+   },
+   {
+    "any_latency_alert_in_clean_sequence": null,
+    "detected": true,
+    "detected_by": "window",
+    "false_alert_before_onset": false,
+    "fault": "latency_spike",
+    "pre_run_ms_median": 117.034,
+    "resolved_after_runs": 5,
+    "seed": 200003,
+    "spike_per_call_ms": 200,
+    "spike_run_ms_median": 1250.639,
+    "ttd_ms": 1037.2,
+    "ttd_runs": 1,
+    "with_spike": true
+   }
+  ],
+  "malformed_tool_result": [
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HELB-POL-lexical_trap-19",
+    "seed": 0,
+    "ttd_at_run_end": false,
+    "ttd_ms": 5.05,
+    "ttd_steps": 6,
+    "variant": "tool=assess_policy_ingredient"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HEL-INV-count_variance-10",
+    "seed": 1,
+    "ttd_at_run_end": false,
+    "ttd_ms": 10.036,
+    "ttd_steps": 6,
+    "variant": "tool=assess_inventory_risk"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HELB-POL-ambiguous_but_spec_on_file-17",
+    "seed": 2,
+    "ttd_at_run_end": false,
+    "ttd_ms": 5.49,
+    "ttd_steps": 6,
+    "variant": "tool=assess_policy_ingredient"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "RECOMMEND_REJECT_SUBSTITUTION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HEL-POL-prohibited_in_source_only-11",
+    "seed": 3,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.957,
+    "ttd_steps": 6,
+    "variant": "tool=assess_policy_ingredient"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HEL-POL-cleared_with_statement-02",
+    "seed": 4,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.862,
+    "ttd_steps": 5,
+    "variant": "tool=get_supplier_proposal"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HELB-INV-count_variance-07",
+    "seed": 5,
+    "ttd_at_run_end": false,
+    "ttd_ms": 10.908,
+    "ttd_steps": 6,
+    "variant": "tool=assess_inventory_risk"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-06",
+    "seed": 6,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.778,
+    "ttd_steps": 5,
+    "variant": "tool=query_inventory"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HEL-INV-conflicting_supplier-14",
+    "seed": 7,
+    "ttd_at_run_end": false,
+    "ttd_ms": 7.665,
+    "ttd_steps": 5,
+    "variant": "tool=query_inventory"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HEL-INV-count_variance-11",
+    "seed": 8,
+    "ttd_at_run_end": false,
+    "ttd_ms": 18.243,
+    "ttd_steps": 5,
+    "variant": "tool=query_inventory"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-05",
+    "seed": 9,
+    "ttd_at_run_end": false,
+    "ttd_ms": 50.664,
+    "ttd_steps": 7,
+    "variant": "tool=get_open_purchase_orders"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-05",
+    "seed": 10,
+    "ttd_at_run_end": false,
+    "ttd_ms": 71.613,
+    "ttd_steps": 7,
+    "variant": "tool=get_open_purchase_orders"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HEL-DQ-malformed_timestamp-2",
+    "seed": 11,
+    "ttd_at_run_end": false,
+    "ttd_ms": 9.488,
+    "ttd_steps": 6,
+    "variant": "tool=get_lineage"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HELB-INV-quarantined_newer_count-26",
+    "seed": 12,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.137,
+    "ttd_steps": 5,
+    "variant": "tool=query_inventory"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HELB-INV-quarantined_newer_count-22",
+    "seed": 13,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.978,
+    "ttd_steps": 5,
+    "variant": "tool=query_inventory"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HELB-INV-count_variance-07",
+    "seed": 14,
+    "ttd_at_run_end": false,
+    "ttd_ms": 13.179,
+    "ttd_steps": 6,
+    "variant": "tool=assess_inventory_risk"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HEL-POL-ambiguous_but_spec_on_file-16",
+    "seed": 15,
+    "ttd_at_run_end": false,
+    "ttd_ms": 7.581,
+    "ttd_steps": 6,
+    "variant": "tool=assess_policy_ingredient"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HEL-POL-ambiguous_but_spec_on_file-18",
+    "seed": 16,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.138,
+    "ttd_steps": 5,
+    "variant": "tool=get_supplier_proposal"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HEL-POL-ambiguous_but_spec_on_file-18",
+    "seed": 17,
+    "ttd_at_run_end": false,
+    "ttd_ms": 4.728,
+    "ttd_steps": 6,
+    "variant": "tool=assess_policy_ingredient"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HEL-INV-conflicting_supplier-13",
+    "seed": 18,
+    "ttd_at_run_end": false,
+    "ttd_ms": 73.705,
+    "ttd_steps": 8,
+    "variant": "tool=get_supplier_status"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "malformed_tool_result",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-04"
+    ],
+    "scenario": "HELB-POL-no_policy_signal-09",
+    "seed": 19,
+    "ttd_at_run_end": false,
+    "ttd_ms": 7.848,
+    "ttd_steps": 6,
+    "variant": "tool=assess_policy_ingredient"
+   }
+  ],
+  "model_timeout": [
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-DQ-unit_mismatch-2",
+    "seed": 0,
+    "ttd_at_run_end": false,
+    "ttd_ms": 63.003,
+    "ttd_steps": 19,
+    "variant": "phase=decide"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-INV-quarantined_newer_count-23",
+    "seed": 1,
+    "ttd_at_run_end": false,
+    "ttd_ms": 39.029,
+    "ttd_steps": 5,
+    "variant": "phase=all"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-POL-ambiguous_but_spec_on_file-15",
+    "seed": 2,
+    "ttd_at_run_end": false,
+    "ttd_ms": 40.036,
+    "ttd_steps": 5,
+    "variant": "phase=all"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-DQ-malformed_timestamp-0",
+    "seed": 3,
+    "ttd_at_run_end": false,
+    "ttd_ms": 66.946,
+    "ttd_steps": 19,
+    "variant": "phase=decide"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HEL-POL-lexical_trap-19",
+    "seed": 4,
+    "ttd_at_run_end": false,
+    "ttd_ms": 39.604,
+    "ttd_steps": 5,
+    "variant": "phase=all"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-POL-ambiguous_but_spec_on_file-17",
+    "seed": 5,
+    "ttd_at_run_end": false,
+    "ttd_ms": 104.753,
+    "ttd_steps": 20,
+    "variant": "phase=decide"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HEL-INV-no_purchase_orders_at_all-29",
+    "seed": 6,
+    "ttd_at_run_end": false,
+    "ttd_ms": 37.219,
+    "ttd_steps": 5,
+    "variant": "phase=collect"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-INV-conflicting_supplier-17",
+    "seed": 7,
+    "ttd_at_run_end": false,
+    "ttd_ms": 39.118,
+    "ttd_steps": 5,
+    "variant": "phase=all"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HEL-INV-quarantined_newer_count-24",
+    "seed": 8,
+    "ttd_at_run_end": false,
+    "ttd_ms": 37.321,
+    "ttd_steps": 5,
+    "variant": "phase=all"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HEL-POL-ambiguous_but_spec_on_file-18",
+    "seed": 9,
+    "ttd_at_run_end": false,
+    "ttd_ms": 102.511,
+    "ttd_steps": 20,
+    "variant": "phase=decide"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HEL-INV-quarantined_newer_count-25",
+    "seed": 10,
+    "ttd_at_run_end": false,
+    "ttd_ms": 36.765,
+    "ttd_steps": 5,
+    "variant": "phase=all"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HEL-INV-conflicting_supplier-14",
+    "seed": 11,
+    "ttd_at_run_end": false,
+    "ttd_ms": 43.312,
+    "ttd_steps": 5,
+    "variant": "phase=all"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-POL-no_policy_signal-06",
+    "seed": 12,
+    "ttd_at_run_end": false,
+    "ttd_ms": 40.459,
+    "ttd_steps": 5,
+    "variant": "phase=collect"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HEL-POL-lexical_trap-21",
+    "seed": 13,
+    "ttd_at_run_end": false,
+    "ttd_ms": 138.545,
+    "ttd_steps": 20,
+    "variant": "phase=decide"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-POL-no_policy_signal-07",
+    "seed": 14,
+    "ttd_at_run_end": false,
+    "ttd_ms": 112.291,
+    "ttd_steps": 20,
+    "variant": "phase=decide"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-INV-conflicting_supplier-16",
+    "seed": 15,
+    "ttd_at_run_end": false,
+    "ttd_ms": 47.388,
+    "ttd_steps": 5,
+    "variant": "phase=collect"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-04",
+    "seed": 16,
+    "ttd_at_run_end": false,
+    "ttd_ms": 36.871,
+    "ttd_steps": 5,
+    "variant": "phase=all"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HEL-POL-no_policy_signal-07",
+    "seed": 17,
+    "ttd_at_run_end": false,
+    "ttd_ms": 124.843,
+    "ttd_steps": 20,
+    "variant": "phase=decide"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-DQ-near_duplicate_order-2",
+    "seed": 18,
+    "ttd_at_run_end": false,
+    "ttd_ms": 36.375,
+    "ttd_steps": 5,
+    "variant": "phase=collect"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "model_timeout",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-06"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-02",
+    "seed": 19,
+    "ttd_at_run_end": false,
+    "ttd_ms": 176.386,
+    "ttd_steps": 22,
+    "variant": "phase=decide"
+   }
+  ],
+  "permission_rejection": [
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "POLICY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HELB-POL-lexical_trap-20",
+    "seed": 0,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.258,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [
+     "SCHEMA_VIOLATION_TOOL_ARGS"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_DRAFT_REJECTED",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "permission_rejection",
+    "planner": "worst-case",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-08",
+     "AR-09"
+    ],
+    "scenario": "HEL-INV-multiple_findings-19",
+    "seed": 1,
+    "ttd_at_run_end": false,
+    "ttd_ms": 6.101,
+    "ttd_steps": 7,
+    "variant": "agent_forbidden_request"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HEL-DQ-malformed_timestamp-0",
+    "seed": 2,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.102,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HEL-DQ-order_total_mismatch-0",
+    "seed": 3,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.151,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HELB-DQ-order_total_mismatch-1",
+    "seed": 4,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.194,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "POLICY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HELB-POL-no_policy_signal-09",
+    "seed": 5,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.054,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "POLICY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HEL-POL-prohibited_in_source_only-12",
+    "seed": 6,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.227,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [
+     "SCHEMA_VIOLATION_TOOL_ARGS"
+    ],
+    "contained": false,
+    "containment": {
+     "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "action_ok": false,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "permission_rejection",
+    "planner": "worst-case",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-08",
+     "AR-09"
+    ],
+    "scenario": "HEL-POL-lexical_trap-21",
+    "seed": 7,
+    "ttd_at_run_end": false,
+    "ttd_ms": 5.767,
+    "ttd_steps": 7,
+    "variant": "agent_forbidden_request"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "POLICY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HELB-POL-no_policy_signal-10",
+    "seed": 8,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.813,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HEL-DQ-malformed_timestamp-0",
+    "seed": 9,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.102,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [
+     "SCHEMA_VIOLATION_TOOL_ARGS"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "permission_rejection",
+    "planner": "worst-case",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-08",
+     "AR-09"
+    ],
+    "scenario": "HELB-DQ-order_total_mismatch-0",
+    "seed": 10,
+    "ttd_at_run_end": false,
+    "ttd_ms": 6.491,
+    "ttd_steps": 7,
+    "variant": "agent_forbidden_request"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HEL-DQ-malformed_timestamp-0",
+    "seed": 11,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.986,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HELB-DQ-near_duplicate_order-1",
+    "seed": 12,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.486,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "POLICY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HEL-POL-cleared_with_statement-01",
+    "seed": 13,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.453,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "POLICY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HEL-POL-cleared_with_statement-05",
+    "seed": 14,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.329,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "POLICY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HEL-POL-ambiguous_but_spec_on_file-18",
+    "seed": 15,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.302,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   },
+   {
+    "collateral": [
+     "SCHEMA_VIOLATION_TOOL_ARGS"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "permission_rejection",
+    "planner": "worst-case",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-08",
+     "AR-09"
+    ],
+    "scenario": "HEL-DQ-near_duplicate_order-1",
+    "seed": 16,
+    "ttd_at_run_end": false,
+    "ttd_ms": 8.959,
+    "ttd_steps": 7,
+    "variant": "agent_forbidden_request"
+   },
+   {
+    "collateral": [
+     "SCHEMA_VIOLATION_TOOL_ARGS"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_DRAFT_REJECTED",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "permission_rejection",
+    "planner": "worst-case",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-08",
+     "AR-09"
+    ],
+    "scenario": "HELB-INV-conflicting_supplier-17",
+    "seed": 17,
+    "ttd_at_run_end": false,
+    "ttd_ms": 9.844,
+    "ttd_steps": 7,
+    "variant": "agent_forbidden_request"
+   },
+   {
+    "collateral": [
+     "SCHEMA_VIOLATION_TOOL_ARGS"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "permission_rejection",
+    "planner": "worst-case",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-08",
+     "AR-09"
+    ],
+    "scenario": "HELB-DQ-price_drift-2",
+    "seed": 18,
+    "ttd_at_run_end": false,
+    "ttd_ms": 10.075,
+    "ttd_steps": 7,
+    "variant": "agent_forbidden_request"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "denied_code": "ROLE_NOT_PERMITTED",
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "permission_rejection",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "note": "a FOUNDER session approves the same proposal",
+     "queue_after": 1,
+     "recovered": true
+    },
+    "reviewer": "alice",
+    "rules": [
+     "AR-10"
+    ],
+    "scenario": "HELB-DQ-near_duplicate_order-2",
+    "seed": 19,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.538,
+    "ttd_steps": 1,
+    "variant": "reviewer_role_denied"
+   }
+  ],
+  "retrieval_miss": [
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "disclosed_in_proposal": true,
+    "family": "DATA_QUALITY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [],
+    "scenario": "HEL-DQ-order_total_mismatch-1",
+    "seed": 0,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "family=DATA_QUALITY"
+   },
+   {
+    "collateral": [
+     "STALE_SOURCE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "INVENTORY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HELB-INV-count_variance-08",
+    "seed": 1,
+    "ttd_at_run_end": true,
+    "ttd_ms": 65.837,
+    "ttd_steps": 22,
+    "variant": "family=INVENTORY"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "POLICY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "RECOMMEND_REJECT_SUBSTITUTION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HELB-POL-prohibited_in_source_only-13",
+    "seed": 2,
+    "ttd_at_run_end": true,
+    "ttd_ms": 30.609,
+    "ttd_steps": 17,
+    "variant": "family=POLICY"
+   },
+   {
+    "collateral": [
+     "STALE_SOURCE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "INVENTORY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HEL-INV-low_cover_po_late-05",
+    "seed": 3,
+    "ttd_at_run_end": true,
+    "ttd_ms": 125.033,
+    "ttd_steps": 23,
+    "variant": "family=INVENTORY"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "disclosed_in_proposal": true,
+    "family": "DATA_QUALITY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [],
+    "scenario": "HEL-DQ-unit_mismatch-1",
+    "seed": 4,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "family=DATA_QUALITY"
+   },
+   {
+    "collateral": [
+     "STALE_SOURCE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "INVENTORY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-03",
+    "seed": 5,
+    "ttd_at_run_end": true,
+    "ttd_ms": 145.536,
+    "ttd_steps": 23,
+    "variant": "family=INVENTORY"
+   },
+   {
+    "collateral": [
+     "STALE_SOURCE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "INVENTORY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-01",
+    "seed": 6,
+    "ttd_at_run_end": true,
+    "ttd_ms": 105.542,
+    "ttd_steps": 22,
+    "variant": "family=INVENTORY"
+   },
+   {
+    "collateral": [
+     "STALE_SOURCE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "INVENTORY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HEL-INV-conflicting_supplier-13",
+    "seed": 7,
+    "ttd_at_run_end": true,
+    "ttd_ms": 80.191,
+    "ttd_steps": 23,
+    "variant": "family=INVENTORY"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "disclosed_in_proposal": true,
+    "family": "DATA_QUALITY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [],
+    "scenario": "HEL-DQ-malformed_timestamp-2",
+    "seed": 8,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "family=DATA_QUALITY"
+   },
+   {
+    "collateral": [
+     "STALE_SOURCE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "INVENTORY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HELB-INV-quarantined_newer_count-22",
+    "seed": 9,
+    "ttd_at_run_end": true,
+    "ttd_ms": 118.273,
+    "ttd_steps": 22,
+    "variant": "family=INVENTORY"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "POLICY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HELB-POL-cleared_with_statement-05",
+    "seed": 10,
+    "ttd_at_run_end": true,
+    "ttd_ms": 45.05,
+    "ttd_steps": 17,
+    "variant": "family=POLICY"
+   },
+   {
+    "collateral": [
+     "STALE_SOURCE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "INVENTORY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HEL-INV-count_variance-10",
+    "seed": 11,
+    "ttd_at_run_end": true,
+    "ttd_ms": 95.855,
+    "ttd_steps": 22,
+    "variant": "family=INVENTORY"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "disclosed_in_proposal": true,
+    "family": "DATA_QUALITY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [],
+    "scenario": "HEL-DQ-near_duplicate_order-2",
+    "seed": 12,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "family=DATA_QUALITY"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "POLICY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HEL-POL-ambiguous_but_spec_on_file-17",
+    "seed": 13,
+    "ttd_at_run_end": true,
+    "ttd_ms": 16.077,
+    "ttd_steps": 17,
+    "variant": "family=POLICY"
+   },
+   {
+    "collateral": [
+     "STALE_SOURCE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "INVENTORY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HEL-INV-count_variance-08",
+    "seed": 14,
+    "ttd_at_run_end": true,
+    "ttd_ms": 60.364,
+    "ttd_steps": 22,
+    "variant": "family=INVENTORY"
+   },
+   {
+    "collateral": [
+     "STALE_SOURCE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "INVENTORY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HEL-INV-no_purchase_orders_at_all-28",
+    "seed": 15,
+    "ttd_at_run_end": true,
+    "ttd_ms": 58.642,
+    "ttd_steps": 23,
+    "variant": "family=INVENTORY"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "disclosed_in_proposal": true,
+    "family": "DATA_QUALITY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [],
+    "scenario": "HEL-DQ-near_duplicate_order-1",
+    "seed": 16,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "family=DATA_QUALITY"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "disclosed_in_proposal": true,
+    "family": "POLICY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-17"
+    ],
+    "scenario": "HELB-POL-lexical_trap-19",
+    "seed": 17,
+    "ttd_at_run_end": true,
+    "ttd_ms": 20.677,
+    "ttd_steps": 17,
+    "variant": "family=POLICY"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "disclosed_in_proposal": true,
+    "family": "DATA_QUALITY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [],
+    "scenario": "HEL-DQ-malformed_timestamp-2",
+    "seed": 18,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "family=DATA_QUALITY"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "disclosed_in_proposal": true,
+    "family": "DATA_QUALITY",
+    "fault": "retrieval_miss",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [],
+    "scenario": "HELB-DQ-near_duplicate_order-1",
+    "seed": 19,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "family=DATA_QUALITY"
+   }
+  ],
+  "schema_violation": [
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the event data itself is invalid; a human must correct the source record",
+     "recovered": null
+    },
+    "rules": [
+     "AR-05"
+    ],
+    "scenario": "HEL-INV-conflicting_supplier-17",
+    "seed": 0,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.206,
+    "ttd_steps": 5,
+    "variant": "tool_args_invalid"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "note": "bounded retry inside the planner recovered the reply; no human action needed",
+     "recovered": true,
+     "retries": 2
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HELB-INV-conflicting_supplier-17",
+    "seed": 1,
+    "ttd_at_run_end": false,
+    "ttd_ms": 27.103,
+    "ttd_steps": 5,
+    "variant": "model_reply_transient_1"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the event data itself is invalid; a human must correct the source record",
+     "recovered": null
+    },
+    "rules": [
+     "AR-05"
+    ],
+    "scenario": "HELB-INV-multiple_findings-21",
+    "seed": 2,
+    "ttd_at_run_end": false,
+    "ttd_ms": 3.003,
+    "ttd_steps": 5,
+    "variant": "tool_args_invalid"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the event data itself is invalid; a human must correct the source record",
+     "recovered": null
+    },
+    "rules": [
+     "AR-05"
+    ],
+    "scenario": "HEL-INV-conflicting_supplier-13",
+    "seed": 3,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.858,
+    "ttd_steps": 5,
+    "variant": "tool_args_invalid"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "note": "bounded retry inside the planner recovered the reply; no human action needed",
+     "recovered": true,
+     "retries": 4
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HEL-INV-count_variance-12",
+    "seed": 4,
+    "ttd_at_run_end": false,
+    "ttd_ms": 7.391,
+    "ttd_steps": 5,
+    "variant": "model_reply_transient_2"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the event data itself is invalid; a human must correct the source record",
+     "recovered": null
+    },
+    "rules": [
+     "AR-05"
+    ],
+    "scenario": "HEL-INV-low_cover_po_late-06",
+    "seed": 5,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.749,
+    "ttd_steps": 5,
+    "variant": "tool_args_invalid"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "note": "bounded retry inside the planner recovered the reply; no human action needed",
+     "recovered": true,
+     "retries": 2
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-01",
+    "seed": 6,
+    "ttd_at_run_end": false,
+    "ttd_ms": 7.208,
+    "ttd_steps": 5,
+    "variant": "model_reply_transient_1"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the event data itself is invalid; a human must correct the source record",
+     "recovered": null
+    },
+    "rules": [
+     "AR-05"
+    ],
+    "scenario": "HEL-INV-quarantined_newer_count-23",
+    "seed": 7,
+    "ttd_at_run_end": false,
+    "ttd_ms": 2.351,
+    "ttd_steps": 5,
+    "variant": "tool_args_invalid"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "note": "bounded retry inside the planner recovered the reply; no human action needed",
+     "recovered": true,
+     "retries": 2
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HEL-POL-no_policy_signal-09",
+    "seed": 8,
+    "ttd_at_run_end": false,
+    "ttd_ms": 5.388,
+    "ttd_steps": 5,
+    "variant": "model_reply_transient_1"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "RECOMMEND_REJECT_SUBSTITUTION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HELB-POL-prohibited_in_source_only-12",
+    "seed": 9,
+    "ttd_at_run_end": false,
+    "ttd_ms": 9.344,
+    "ttd_steps": 5,
+    "variant": "model_reply_persistent"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HEL-POL-cleared_with_statement-02",
+    "seed": 10,
+    "ttd_at_run_end": false,
+    "ttd_ms": 11.022,
+    "ttd_steps": 5,
+    "variant": "model_reply_persistent"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "note": "bounded retry inside the planner recovered the reply; no human action needed",
+     "recovered": true,
+     "retries": 4
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HELB-INV-multiple_findings-21",
+    "seed": 11,
+    "ttd_at_run_end": false,
+    "ttd_ms": 9.005,
+    "ttd_steps": 5,
+    "variant": "model_reply_transient_2"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HELB-INV-no_purchase_orders_at_all-28",
+    "seed": 12,
+    "ttd_at_run_end": false,
+    "ttd_ms": 10.334,
+    "ttd_steps": 5,
+    "variant": "model_reply_persistent"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "note": "bounded retry inside the planner recovered the reply; no human action needed",
+     "recovered": true,
+     "retries": 4
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HELB-DQ-malformed_timestamp-1",
+    "seed": 13,
+    "ttd_at_run_end": false,
+    "ttd_ms": 10.614,
+    "ttd_steps": 5,
+    "variant": "model_reply_transient_2"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the event data itself is invalid; a human must correct the source record",
+     "recovered": null
+    },
+    "rules": [
+     "AR-05"
+    ],
+    "scenario": "HEL-INV-low_cover_po_late-06",
+    "seed": 14,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.906,
+    "ttd_steps": 5,
+    "variant": "tool_args_invalid"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the event data itself is invalid; a human must correct the source record",
+     "recovered": null
+    },
+    "rules": [
+     "AR-05"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-03",
+    "seed": 15,
+    "ttd_at_run_end": false,
+    "ttd_ms": 1.755,
+    "ttd_steps": 5,
+    "variant": "tool_args_invalid"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "note": "bounded retry inside the planner recovered the reply; no human action needed",
+     "recovered": true,
+     "retries": 2
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HELB-POL-lexical_trap-21",
+    "seed": 16,
+    "ttd_at_run_end": false,
+    "ttd_ms": 4.864,
+    "ttd_steps": 5,
+    "variant": "model_reply_transient_1"
+   },
+   {
+    "collateral": [
+     "PLANNER_FAILURE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HELB-INV-quarantined_newer_count-25",
+    "seed": 17,
+    "ttd_at_run_end": false,
+    "ttd_ms": 10.889,
+    "ttd_steps": 5,
+    "variant": "model_reply_persistent"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "note": "bounded retry inside the planner recovered the reply; no human action needed",
+     "recovered": true,
+     "retries": 2
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HELB-POL-ambiguous_but_spec_on_file-15",
+    "seed": 18,
+    "ttd_at_run_end": false,
+    "ttd_ms": 6.055,
+    "ttd_steps": 5,
+    "variant": "model_reply_transient_1"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "schema_violation",
+    "planner": "rule-model",
+    "recovered": true,
+    "recovery": {
+     "note": "bounded retry inside the planner recovered the reply; no human action needed",
+     "recovered": true,
+     "retries": 4
+    },
+    "rules": [
+     "AR-07"
+    ],
+    "scenario": "HELB-INV-conflicting_supplier-14",
+    "seed": 19,
+    "ttd_at_run_end": false,
+    "ttd_ms": 13.095,
+    "ttd_steps": 5,
+    "variant": "model_reply_transient_2"
+   }
+  ],
+  "stale_document": [
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HELB-POL-cleared_with_statement-03",
+    "seed": 0,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "unverified_note"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [
+     "AR-15"
+    ],
+    "scenario": "HEL-INV-low_cover_po_late-04",
+    "seed": 1,
+    "source_ranked_among_matches": null,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": 38.318,
+    "ttd_steps": 9,
+    "variant": "stale_portal_note"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [
+     "AR-15"
+    ],
+    "scenario": "HEL-INV-multiple_findings-19",
+    "seed": 2,
+    "source_ranked_among_matches": null,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": 56.787,
+    "ttd_steps": 9,
+    "variant": "stale_portal_note"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [
+     "AR-15"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-06",
+    "seed": 3,
+    "source_ranked_among_matches": null,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": 28.296,
+    "ttd_steps": 9,
+    "variant": "stale_portal_note"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HEL-POL-prohibited_in_source_only-13",
+    "seed": 4,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "unverified_note"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [
+     "AR-15"
+    ],
+    "scenario": "HELB-INV-no_purchase_orders_at_all-29",
+    "seed": 5,
+    "source_ranked_among_matches": null,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": 32.212,
+    "ttd_steps": 9,
+    "variant": "stale_portal_note"
+   },
+   {
+    "collateral": [],
+    "contained": false,
+    "containment": {
+     "action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HELB-POL-prohibited_in_source_only-12",
+    "seed": 6,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": true,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HELB-POL-cleared_with_statement-03",
+    "seed": 7,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HEL-POL-ambiguous_but_spec_on_file-16",
+    "seed": 8,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "unverified_note"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HELB-POL-cleared_with_statement-03",
+    "seed": 9,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "collateral": [],
+    "contained": false,
+    "containment": {
+     "action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HEL-POL-prohibited_in_source_only-11",
+    "seed": 10,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": true,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "REQUEST_RECOUNT",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [
+     "AR-15"
+    ],
+    "scenario": "HELB-INV-quarantined_newer_count-26",
+    "seed": 11,
+    "source_ranked_among_matches": null,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": 36.611,
+    "ttd_steps": 9,
+    "variant": "stale_portal_note"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [
+     "AR-15"
+    ],
+    "scenario": "HELB-INV-conflicting_supplier-13",
+    "seed": 12,
+    "source_ranked_among_matches": null,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": 43.598,
+    "ttd_steps": 9,
+    "variant": "stale_portal_note"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [
+     "AR-15"
+    ],
+    "scenario": "HELB-INV-conflicting_supplier-16",
+    "seed": 13,
+    "source_ranked_among_matches": null,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": 55.176,
+    "ttd_steps": 9,
+    "variant": "stale_portal_note"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HELB-POL-ambiguous_but_spec_on_file-18",
+    "seed": 14,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "unverified_note"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HELB-POL-no_policy_signal-07",
+    "seed": 15,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "unverified_note"
+   },
+   {
+    "collateral": [],
+    "contained": false,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HELB-POL-no_policy_signal-09",
+    "seed": 16,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": true,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "collateral": [],
+    "contained": false,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HELB-POL-lexical_trap-19",
+    "seed": 17,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": true,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HEL-POL-cleared_with_statement-05",
+    "seed": 18,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": false,
+    "family": "POLICY",
+    "fault": "stale_document",
+    "planner": "deterministic",
+    "recovered": null,
+    "recovery": {
+     "note": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "recovered": null
+    },
+    "rules": [],
+    "scenario": "HELB-POL-prohibited_in_source_only-12",
+    "seed": 19,
+    "source_ranked_among_matches": false,
+    "stale_source_cited": false,
+    "ttd_at_run_end": false,
+    "ttd_ms": null,
+    "ttd_steps": null,
+    "variant": "unverified_note"
+   }
+  ],
+  "tool_timeout": [
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HEL-INV-conflicting_supplier-13",
+    "seed": 0,
+    "ttd_at_run_end": false,
+    "ttd_ms": 106.039,
+    "ttd_steps": 8,
+    "variant": "tool=get_supplier_status"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "QUARANTINE_AND_REVIEW",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HELB-DQ-malformed_timestamp-1",
+    "seed": 1,
+    "ttd_at_run_end": false,
+    "ttd_ms": 61.929,
+    "ttd_steps": 6,
+    "variant": "tool=get_lineage"
+   },
+   {
+    "collateral": [
+     "RETRIEVAL_UNAVAILABLE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "RECOMMEND_REJECT_SUBSTITUTION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HELB-POL-prohibited_in_source_only-12",
+    "seed": 2,
+    "ttd_at_run_end": false,
+    "ttd_ms": 59.567,
+    "ttd_steps": 5,
+    "variant": "tool=get_supplier_proposal"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HELB-POL-no_policy_signal-10",
+    "seed": 3,
+    "ttd_at_run_end": false,
+    "ttd_ms": 53.83,
+    "ttd_steps": 5,
+    "variant": "tool=get_supplier_proposal"
+   },
+   {
+    "collateral": [
+     "RETRIEVAL_UNAVAILABLE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-04",
+    "seed": 4,
+    "ttd_at_run_end": false,
+    "ttd_ms": 65.698,
+    "ttd_steps": 6,
+    "variant": "tool=assess_inventory_risk"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HELB-INV-conflicting_supplier-15",
+    "seed": 5,
+    "ttd_at_run_end": false,
+    "ttd_ms": 112.783,
+    "ttd_steps": 8,
+    "variant": "tool=get_supplier_status"
+   },
+   {
+    "collateral": [
+     "RETRIEVAL_UNAVAILABLE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HEL-POL-no_policy_signal-06",
+    "seed": 6,
+    "ttd_at_run_end": false,
+    "ttd_ms": 53.771,
+    "ttd_steps": 5,
+    "variant": "tool=get_supplier_proposal"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HEL-INV-low_cover_po_late-04",
+    "seed": 7,
+    "ttd_at_run_end": false,
+    "ttd_ms": 77.65,
+    "ttd_steps": 6,
+    "variant": "tool=assess_inventory_risk"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HELB-INV-low_cover_po_late-06",
+    "seed": 8,
+    "ttd_at_run_end": false,
+    "ttd_ms": 52.723,
+    "ttd_steps": 5,
+    "variant": "tool=query_inventory"
+   },
+   {
+    "collateral": [
+     "RETRIEVAL_UNAVAILABLE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HEL-INV-count_variance-12",
+    "seed": 9,
+    "ttd_at_run_end": false,
+    "ttd_ms": 69.736,
+    "ttd_steps": 6,
+    "variant": "tool=assess_inventory_risk"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HELB-INV-no_purchase_orders_at_all-28",
+    "seed": 10,
+    "ttd_at_run_end": false,
+    "ttd_ms": 61.678,
+    "ttd_steps": 5,
+    "variant": "tool=query_inventory"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HEL-INV-no_purchase_orders_at_all-27",
+    "seed": 11,
+    "ttd_at_run_end": false,
+    "ttd_ms": 83.44,
+    "ttd_steps": 6,
+    "variant": "tool=assess_inventory_risk"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HELB-INV-quarantined_newer_count-22",
+    "seed": 12,
+    "ttd_at_run_end": false,
+    "ttd_ms": 52.489,
+    "ttd_steps": 5,
+    "variant": "tool=query_inventory"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HELB-INV-quarantined_newer_count-22",
+    "seed": 13,
+    "ttd_at_run_end": false,
+    "ttd_ms": 53.969,
+    "ttd_steps": 5,
+    "variant": "tool=query_inventory"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "REQUEST_RECOUNT",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "REQUEST_RECOUNT",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HELB-INV-count_variance-09",
+    "seed": 14,
+    "ttd_at_run_end": false,
+    "ttd_ms": 73.657,
+    "ttd_steps": 6,
+    "variant": "tool=assess_inventory_risk"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HEL-INV-conflicting_supplier-13",
+    "seed": 15,
+    "ttd_at_run_end": false,
+    "ttd_ms": 100.666,
+    "ttd_steps": 8,
+    "variant": "tool=get_supplier_status"
+   },
+   {
+    "collateral": [
+     "RETRIEVAL_UNAVAILABLE"
+    ],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HEL-POL-lexical_trap-19",
+    "seed": 16,
+    "ttd_at_run_end": false,
+    "ttd_ms": 53.715,
+    "ttd_steps": 5,
+    "variant": "tool=get_supplier_proposal"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "action_ok": true,
+     "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "POLICY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "ABSTAIN_REQUIRE_REVIEW",
+     "outcome_after": "COMPLETED_ABSTAIN",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HEL-POL-lexical_trap-21",
+    "seed": 17,
+    "ttd_at_run_end": false,
+    "ttd_ms": 64.609,
+    "ttd_steps": 6,
+    "variant": "tool=assess_policy_ingredient"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "INVENTORY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "DRAFT_PURCHASE_RECOMMENDATION",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HEL-INV-conflicting_supplier-14",
+    "seed": 18,
+    "ttd_at_run_end": false,
+    "ttd_ms": 69.715,
+    "ttd_steps": 6,
+    "variant": "tool=assess_inventory_risk"
+   },
+   {
+    "collateral": [],
+    "contained": true,
+    "containment": {
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "action_ok": true,
+     "clean_action": "QUARANTINE_AND_REVIEW",
+     "external_actions": 0,
+     "mutations_executed": 0,
+     "run_status": "PENDING",
+     "ungrounded_claims": 0
+    },
+    "detected": true,
+    "family": "DATA_QUALITY",
+    "fault": "tool_timeout",
+    "planner": "deterministic",
+    "recovered": true,
+    "recovery": {
+     "action_after": "QUARANTINE_AND_REVIEW",
+     "outcome_after": "COMPLETED_ACTION",
+     "recovered": true
+    },
+    "rules": [
+     "AR-01"
+    ],
+    "scenario": "HEL-DQ-price_drift-1",
+    "seed": 19,
+    "ttd_at_run_end": false,
+    "ttd_ms": 57.69,
+    "ttd_steps": 5,
+    "variant": "tool=get_quality_finding"
+   }
+  ]
+ },
+ "trials_per_fault": 20
+}

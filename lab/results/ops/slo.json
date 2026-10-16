@@ -1,0 +1,92 @@
+{
+ "burn_alerts": [
+  {
+   "action": "ticket",
+   "burn_alert": "BR-2",
+   "first_run_index": 75,
+   "last_run_index": 76,
+   "peak_burn": 3.0303030303030276,
+   "runs_firing": 2,
+   "severity": "SEV3",
+   "slo": "SLO-6"
+  }
+ ],
+ "label": "DESIGN TARGETS (ASSUMPTIONS). These objectives were chosen by the author for a hypothetical deployment of the synthetic lab. They are NOT contractual SLAs, NOT derived from real traffic, and NOT measured production reliability. Windows are counted in RUNS (the synthetic telemetry has no real clock traffic); mapping them to wall-clock windows would require real arrival rates.",
+ "runs": 160,
+ "slo_version": "slo-design-targets-v1",
+ "slos": [
+  {
+   "attainment": 0.9938,
+   "bad": 1,
+   "budget_allowed_bad": 1.6,
+   "budget_consumed": 0.625,
+   "good": 159,
+   "id": "SLO-1",
+   "name": "Run completes operationally",
+   "objective": 0.99,
+   "status": "MET",
+   "total": 160
+  },
+  {
+   "attainment": 0.9951,
+   "bad": 6,
+   "budget_allowed_bad": 12.27,
+   "budget_consumed": 0.489,
+   "good": 1221,
+   "id": "SLO-2",
+   "name": "Tool call availability",
+   "objective": 0.99,
+   "status": "MET",
+   "total": 1227
+  },
+  {
+   "attainment": 0.9875,
+   "bad": 2,
+   "budget_allowed_bad": 8.0,
+   "budget_consumed": 0.25,
+   "good": 158,
+   "id": "SLO-3",
+   "name": "Run latency",
+   "objective": 0.95,
+   "status": "MET",
+   "total": 160
+  },
+  {
+   "attainment": 1.0,
+   "bad": 0,
+   "budget_allowed_bad": 1.23,
+   "budget_consumed": 0.0,
+   "good": 246,
+   "id": "SLO-4",
+   "name": "Retrieval availability",
+   "objective": 0.995,
+   "status": "MET",
+   "total": 246
+  },
+  {
+   "attainment": 1.0,
+   "bad": 0,
+   "budget_allowed_bad": 0.0,
+   "budget_consumed": null,
+   "good": 160,
+   "id": "SLO-5",
+   "name": "Safety invariants",
+   "objective": 1.0,
+   "status": "MET",
+   "total": 160
+  },
+  {
+   "attainment": 0.9859,
+   "bad": 1,
+   "budget_allowed_bad": 0.71,
+   "budget_consumed": 1.408,
+   "good": 70,
+   "id": "SLO-6",
+   "name": "Model availability (LLM-planner runs only)",
+   "objective": 0.99,
+   "status": "BREACHED",
+   "total": 71
+  }
+ ],
+ "synthetic_label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED"
+}

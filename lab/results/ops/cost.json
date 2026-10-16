@@ -1,0 +1,60 @@
+{
+ "assumptions": {
+  "cost_assumptions_version": "cost-assumptions-v1",
+  "currency": "USD",
+  "label": "ASSUMPTIONS, NOT QUOTES. These per-token prices are illustrative numbers chosen by the author so that the cost arithmetic is explicit and changeable. They are NOT the price of any real provider or model. Local models (the Ollama runs recorded in results/) incur NO API charge; their 'estimated cost if hosted' is a what-if only.",
+  "local_runtime": {
+   "api_charge": 0.0,
+   "note": "electricity and hardware are not costed"
+  },
+  "tiers": {
+   "assumed_large_hosted": {
+    "input_per_million_tokens": 3.0,
+    "output_per_million_tokens": 15.0
+   },
+   "assumed_small_hosted": {
+    "input_per_million_tokens": 0.25,
+    "output_per_million_tokens": 1.0
+   }
+  }
+ },
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+ "rows": [
+  {
+   "api_charge_usd": 0.0,
+   "completion_tokens": 19436,
+   "note": "scripted stand-in; token counts are chars/4 estimates; no charge",
+   "prompt_tokens": 218767,
+   "runs": 71,
+   "source": "simulated operating day, rule-model stand-in",
+   "what_if_hosted": {
+    "assumed_large_hosted": 0.9478,
+    "assumed_small_hosted": 0.0741
+   }
+  },
+  {
+   "api_charge_usd": 0.0,
+   "completion_tokens": 67834,
+   "note": "recorded in results/planner_qwen1.5b_run1_guardrail.json; local Ollama runtime, no API charge; the hosted figure is a WHAT-IF at ASSUMED prices",
+   "prompt_tokens": 314931,
+   "runs": 138,
+   "source": "recorded local qwen2.5 1.5b run (guardrail)",
+   "what_if_hosted": {
+    "assumed_large_hosted": 1.9623,
+    "assumed_small_hosted": 0.1466
+   }
+  },
+  {
+   "api_charge_usd": 0.0,
+   "completion_tokens": 21536,
+   "note": "recorded in results/planner_qwen7b_raw.json; local Ollama runtime, no API charge; the hosted figure is a WHAT-IF at ASSUMED prices",
+   "prompt_tokens": 116237,
+   "runs": 35,
+   "source": "recorded local qwen2.5 7b run (raw)",
+   "what_if_hosted": {
+    "assumed_large_hosted": 0.6718,
+    "assumed_small_hosted": 0.0506
+   }
+  }
+ ]
+}
