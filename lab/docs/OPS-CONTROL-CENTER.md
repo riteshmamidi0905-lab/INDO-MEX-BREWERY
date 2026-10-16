@@ -112,3 +112,7 @@ python -m pytest -q -p no:cacheprovider tests          # full suite
 ```
 
 Counts and rates are seeded and deterministic. Wall-clock milliseconds are measurements of the machine they ran on and differ between runs; the committed values are from one run.
+
+## Reliability policies (added later)
+
+`FAILURE-POLICY.md` (retry classes, dead letters), `KNOWLEDGE-AUTHORITY.md` (authority rules v2, alerts AR-26/AR-27), `REGRESSION-GATE-CALIBRATION.md` (gate tolerance), `OBSERVABILITY-OTEL.md` (optional OpenTelemetry export). All are opt-in wrappers around the stock service.
