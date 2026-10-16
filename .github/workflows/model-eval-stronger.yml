@@ -1,8 +1,12 @@
 name: model-eval-stronger
 # ONE preregistered stronger-model comparison. See lab/docs/STRONGER-MODEL-PREREGISTRATION.md (frozen before this workflow existed).
 # FREE: public repo, GitHub-hosted standard runner, local Ollama runtime, Apache-2.0 models, no API key, no paid service. Manual trigger only.
+# A workflow that exists only on a non-default branch cannot be dispatched through the API (404), so a push to the single trigger file below on THIS branch also starts it. No other push starts it.
 on:
   workflow_dispatch:
+  push:
+    branches: ["career/stronger-model-prereg"]
+    paths: ["lab/eval-trigger/stronger-model-run.txt"]
 permissions:
   contents: write
 jobs:
