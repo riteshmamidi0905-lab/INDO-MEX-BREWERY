@@ -1,0 +1,7 @@
+# Hadolint policy for lab/Dockerfile.service. Ignored rules and why:
+#  DL3008 apt packages are not version-pinned: the base image is pinned by tag, and the build stage (the only stage with apt) is discarded.
+#  DL3013 pip packages are not version-pinned: requirements use lower bounds in this lab; a lock file is listed as residual work in docs/P5-HARDENED-SERVICE.md.
+ignored:
+  - DL3008
+  - DL3013
+failure-threshold: warning

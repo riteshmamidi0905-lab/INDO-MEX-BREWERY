@@ -1,0 +1,9 @@
+# Lint for the P5 service package and its tests (the older lab code is dense by house style and is not linted).
+target-version = "py312"
+line-length = 200
+extend-exclude = ["nasha_lab/[!s]*", "nasha_lab/ops", "baseline", "claims", "eval", "eval-trigger", "evidence", "portfolio", "ops", "results", "tests/[!p]*"]
+[lint]
+select = ["E9", "F", "B", "S", "UP", "C4", "SIM", "RUF100"]
+ignore = ["B008", "C408", "S101", "S311", "B904", "SIM105", "SIM108", "UP007", "UP006", "UP035", "UP037", "UP045", "S608", "B905"]
+[lint.per-file-ignores]
+"tests/**" = ["S", "B", "SIM", "UP", "C4"]

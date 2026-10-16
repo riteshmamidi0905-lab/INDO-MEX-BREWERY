@@ -1,0 +1,172 @@
+{
+ "AUTH_INVALID_TOKEN": {
+  "client_retry": "never",
+  "failure_class": "AUTH",
+  "status": 401
+ },
+ "AUTH_REQUIRED": {
+  "client_retry": "never",
+  "failure_class": "AUTH",
+  "status": 401
+ },
+ "AUTH_TOKEN_EXPIRED": {
+  "client_retry": "never",
+  "failure_class": "AUTH",
+  "status": 401
+ },
+ "CONFLICT_STATE": {
+  "client_retry": "never",
+  "failure_class": "VALIDATION",
+  "status": 409
+ },
+ "DB_POOL_EXHAUSTED": {
+  "client_retry": "after_retry_after",
+  "failure_class": "DEPENDENCY_DOWN",
+  "status": 503
+ },
+ "DB_TIMEOUT": {
+  "client_retry": "same_idempotency_key",
+  "failure_class": "TIMEOUT_AMBIGUOUS",
+  "status": 504
+ },
+ "DB_UNAVAILABLE": {
+  "client_retry": "after_retry_after",
+  "failure_class": "DEPENDENCY_DOWN",
+  "status": 503
+ },
+ "DEADLINE_EXCEEDED": {
+  "client_retry": "same_idempotency_key",
+  "failure_class": "TIMEOUT_AMBIGUOUS",
+  "status": 504
+ },
+ "DECISION_AMBIGUOUS": {
+  "client_retry": "after_human_review",
+  "failure_class": "TIMEOUT_AMBIGUOUS",
+  "status": 500
+ },
+ "DEPENDENCY_UNAVAILABLE": {
+  "client_retry": "after_retry_after",
+  "failure_class": "DEPENDENCY_DOWN",
+  "status": 503
+ },
+ "EVENT_ALREADY_PROCESSED": {
+  "client_retry": "never",
+  "failure_class": "VALIDATION",
+  "status": 409
+ },
+ "FORBIDDEN": {
+  "client_retry": "never",
+  "failure_class": "AUTH",
+  "status": 403
+ },
+ "IDEMPOTENCY_BUSY": {
+  "client_retry": "same_idempotency_key",
+  "failure_class": "TRANSIENT",
+  "status": 409
+ },
+ "IDEMPOTENCY_KEY_INVALID": {
+  "client_retry": "never",
+  "failure_class": "VALIDATION",
+  "status": 400
+ },
+ "IDEMPOTENCY_KEY_REQUIRED": {
+  "client_retry": "never",
+  "failure_class": "VALIDATION",
+  "status": 400
+ },
+ "IDEMPOTENCY_KEY_REUSED": {
+  "client_retry": "never",
+  "failure_class": "VALIDATION",
+  "status": 422
+ },
+ "INTERNAL_ERROR": {
+  "client_retry": "never",
+  "failure_class": "PERMANENT",
+  "status": 500
+ },
+ "INVALID_REQUEST": {
+  "client_retry": "never",
+  "failure_class": "VALIDATION",
+  "status": 422
+ },
+ "MALFORMED_BODY": {
+  "client_retry": "never",
+  "failure_class": "VALIDATION",
+  "status": 400
+ },
+ "METHOD_NOT_ALLOWED": {
+  "client_retry": "never",
+  "failure_class": "VALIDATION",
+  "status": 405
+ },
+ "NOT_FOUND": {
+  "client_retry": "never",
+  "failure_class": "PERMANENT",
+  "status": 404
+ },
+ "NOT_READY": {
+  "client_retry": "after_retry_after",
+  "failure_class": "DEPENDENCY_DOWN",
+  "status": 503
+ },
+ "PAYLOAD_TOO_LARGE": {
+  "client_retry": "never",
+  "failure_class": "VALIDATION",
+  "status": 413
+ },
+ "RATE_LIMITED": {
+  "client_retry": "after_retry_after",
+  "failure_class": "RATE_LIMIT",
+  "status": 429
+ },
+ "ROLE_NOT_PERMITTED": {
+  "client_retry": "never",
+  "failure_class": "AUTH",
+  "status": 403
+ },
+ "ROUTE_NOT_FOUND": {
+  "client_retry": "never",
+  "failure_class": "PERMANENT",
+  "status": 404
+ },
+ "RUN_NOT_RESUMABLE": {
+  "client_retry": "never",
+  "failure_class": "PERMANENT",
+  "status": 409
+ },
+ "SCHEMA_MISMATCH": {
+  "client_retry": "never",
+  "failure_class": "DEPENDENCY_DOWN",
+  "status": 503
+ },
+ "SHUTTING_DOWN": {
+  "client_retry": "after_retry_after",
+  "failure_class": "DEPENDENCY_DOWN",
+  "status": 503
+ },
+ "TOOL_TIMEOUT": {
+  "client_retry": "after_retry_after",
+  "failure_class": "TIMEOUT_AMBIGUOUS",
+  "status": 504
+ },
+ "UNKNOWN_EVENT": {
+  "client_retry": "never",
+  "failure_class": "PERMANENT",
+  "status": 404
+ },
+ "UNSUPPORTED_MEDIA_TYPE": {
+  "client_retry": "never",
+  "failure_class": "VALIDATION",
+  "status": 415
+ },
+ "UPSTREAM_FAILURE": {
+  "client_retry": "after_retry_after",
+  "failure_class": "TRANSIENT",
+  "status": 502
+ },
+ "UPSTREAM_MALFORMED": {
+  "client_retry": "never",
+  "failure_class": "MALFORMED_RESULT",
+  "status": 502
+ }
+}

@@ -1,0 +1,163 @@
+# P5 hardened service CI. SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED.
+# This workflow is the ONLY evidence that the Docker build, `docker compose config`, compose up, health checks and the container smoke test work:
+# the authoring sandbox had no Docker. It also runs the PostgreSQL-backed tests against a pgvector service container.
+name: p5-service-ci
+on:
+  push:
+    branches: ["career/**"]
+    paths: ["lab/**", ".github/workflows/p5-service-ci.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: p5-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  static:
+    name: lint, types, Dockerfile lint, secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r lab/requirements-service.txt mypy ruff pyyaml
+      - name: ruff (service package and its tests)
+        run: cd lab && ruff check nasha_lab/service tests/p5
+      - name: mypy (service package, disallow_untyped_defs)
+        run: cd lab && mypy
+      - name: hadolint
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: lab/Dockerfile.service
+          config: lab/.hadolint.yaml
+      - name: secret scan (lab, workflows, docs; allowlist in lab/ops/secrets-allowlist.json)
+        run: |
+          cd lab && python - <<'PY'
+          import os, sys
+          from nasha_lab.ops import hardening as H
+          bad = []
+          for root in ("..", ):
+              for sub in ("lab", ".github", "docs"):
+                  f, a = H.scan_tree(os.path.abspath(os.path.join(root, sub))); bad += f
+          print("findings:", bad)
+          sys.exit(1 if bad else 0)
+          PY
+      - name: no committed env or key files
+        run: |
+          ! git ls-files | grep -E '(^|/)\.env$|\.pem$|\.key$|lab/secrets/(db_password|database_url|jwt_keys)'
+  test:
+    name: unit, integration (PostgreSQL), contract, security, migration up/down
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env: { POSTGRES_USER: nasha, POSTGRES_PASSWORD: nasha, POSTGRES_DB: nasha }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U nasha" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      NASHA_PG_DSN: postgresql://nasha:nasha@localhost:5432/nasha
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r lab/requirements-service.txt hypothesis pyyaml
+      - name: P5 tests (real PostgreSQL; none may be skipped here)
+        run: |
+          cd lab && python -m pytest -p no:cacheprovider -q -rs tests/p5 | tee /tmp/p5.txt
+          ! grep -E "SKIPPED.*PostgreSQL unavailable" /tmp/p5.txt
+      - name: migration cycle through the CLI (up, status, verify, down to 0, up again)
+        run: |
+          cd lab
+          psql_url="postgresql://nasha:nasha@localhost:5432/nasha"
+          python - <<'PY'
+          import psycopg
+          with psycopg.connect("postgresql://nasha:nasha@localhost:5432/nasha", autocommit=True) as c:
+              c.execute("DROP DATABASE IF EXISTS p5_cli"); c.execute("CREATE DATABASE p5_cli")
+          PY
+          export NASHA_SVC_MIGRATE_DSN="postgresql://nasha:nasha@localhost:5432/p5_cli"
+          python -m nasha_lab.service.migrations up
+          python -m nasha_lab.service.migrations status
+          python -m nasha_lab.service.migrations verify
+          python -m nasha_lab.service.migrations down --target 0
+          python -m nasha_lab.service.migrations status | grep '"current": 0'
+          python -m nasha_lab.service.migrations up | grep '\[1, 2, 3\]'
+      - name: failure-scenario results are reproducible (counts and statuses)
+        run: |
+          cd lab && P5_WRITE_RESULTS=1 python -m pytest -p no:cacheprovider -q tests/p5/test_p5_failures.py
+          python - <<'PY'
+          import json
+          d = json.load(open("results/p5/failure_scenarios.json"))
+          bad = [s["id"] for s in d["scenarios"] if not s["passed"]]
+          print("scenarios:", len(d["scenarios"]), "failed:", bad)
+          assert not bad
+          PY
+  compose-smoke:
+    name: docker build, compose config, up, health, contract smoke
+    runs-on: ubuntu-latest
+    needs: [static]
+    steps:
+      - uses: actions/checkout@v4
+      - name: generate throw-away secrets for this run only (never committed, never reused)
+        run: |
+          cd lab && umask 077 && mkdir -p secrets
+          openssl rand -hex 16 > secrets/db_password
+          printf '{"k1":"%s"}' "$(openssl rand -hex 32)" > secrets/jwt_keys.json
+          printf 'postgresql://nasha:%s@db:5432/nasha' "$(cat secrets/db_password)" > secrets/database_url
+          chmod 644 secrets/db_password secrets/jwt_keys.json secrets/database_url
+          printf 'POSTGRES_USER=nasha\nPOSTGRES_DB=nasha\nP5_ENV=test\nP5_DOCS_ENABLED=true\n' > .env
+      - run: docker compose -f lab/docker-compose.service.yml --env-file lab/.env config -q
+      - name: build and start (db, migrate job, api)
+        run: docker compose -f lab/docker-compose.service.yml --env-file lab/.env up -d --build
+      - name: wait for /readyz
+        run: |
+          for i in $(seq 1 120); do curl -fsS localhost:8000/readyz >/tmp/ready.json && break || sleep 3; done
+          cat /tmp/ready.json
+          python3 -c "import json; r=json.load(open('/tmp/ready.json')); assert r['status']=='ready' and all(v['ok'] for v in r['checks'].values()), r"
+      - name: contract smoke (auth, idempotency, approval, metrics)
+        run: |
+          set -euo pipefail
+          C="docker compose -f lab/docker-compose.service.yml --env-file lab/.env"
+          code() { curl -s -o /dev/null -w '%{http_code}' "$@"; }
+          test "$(code localhost:8000/healthz)" = 200
+          test "$(code localhost:8000/v1/events)" = 401
+          test "$(code -H 'Authorization: Bearer not.a.token' localhost:8000/v1/events)" = 401
+          FT=$($C exec -T api python -m nasha_lab.service mint-token --sub ci-founder --role FOUNDER)
+          OT=$($C exec -T api python -m nasha_lab.service mint-token --sub ci-ops --role OPERATOR)
+          RT=$($C exec -T api python -m nasha_lab.service mint-token --sub ci-reader --role READER)
+          KEY="ci-$(date +%s)-$RANDOM"
+          RUN=$(curl -fsS -X POST localhost:8000/v1/runs -H "Authorization: Bearer $FT" -H "Idempotency-Key: $KEY" -H 'content-type: application/json' -d '{"event_id":"EV-A1"}')
+          RID=$(python3 -c "import json,sys; r=json.loads(sys.argv[1]); assert r['awaiting_human'] and r['run_id'].startswith('run-'), r; print(r['run_id'])" "$RUN")
+          RUN2=$(curl -fsS -D /tmp/h2 -X POST localhost:8000/v1/runs -H "Authorization: Bearer $FT" -H "Idempotency-Key: $KEY" -H 'content-type: application/json' -d '{"event_id":"EV-A1"}')
+          grep -i '^idempotent-replay: true' /tmp/h2
+          python3 -c "import json,sys; assert json.loads(sys.argv[1])['run_id']==sys.argv[2]" "$RUN2" "$RID"
+          test "$(code -X POST localhost:8000/v1/runs -H "Authorization: Bearer $FT" -H "Idempotency-Key: $KEY" -H 'content-type: application/json' -d '{"event_id":"EV-A2"}')" = 422
+          test "$(code -H "Authorization: Bearer $RT" localhost:8000/v1/runs/$RID)" = 404
+          test "$(code -X POST localhost:8000/v1/runs/$RID/approve -H "Authorization: Bearer $RT" -H "Idempotency-Key: ci-r-$RANDOM$RANDOM" -H 'content-type: application/json' -d '{}')" = 403
+          test "$(code -X POST localhost:8000/v1/runs/$RID/approve -H "Authorization: Bearer $FT" -H "Idempotency-Key: ci-a-$RANDOM$RANDOM" -H 'content-type: application/json' -d '{"note":"ci"}')" = 200
+          test "$(code -H "Authorization: Bearer $FT" localhost:8000/metrics)" = 403
+          curl -fsS -H "Authorization: Bearer $OT" localhost:8000/metrics | tee /tmp/metrics.txt | grep -q '^nasha_db_up 1'
+          grep -q 'nasha_http_requests_total' /tmp/metrics.txt
+          curl -fsS -H "Authorization: Bearer $OT" localhost:8000/v1/audit | python3 -c "import json,sys; e=json.load(sys.stdin)['entries']; assert any(x['action']=='run.approve' for x in e), e"
+      - name: container hardening facts
+        run: |
+          set -euo pipefail
+          C="docker compose -f lab/docker-compose.service.yml --env-file lab/.env"
+          test "$($C exec -T api id -u)" = 10001
+          ! $C exec -T api sh -c 'touch /app/should-fail' 2>/dev/null
+          test "$(docker inspect -f '{{.State.Health.Status}}' $($C ps -q api))" = healthy
+          test "$(docker inspect -f '{{.HostConfig.ReadonlyRootfs}}' $($C ps -q api))" = true
+      - name: graceful stop (SIGTERM) exits cleanly within the grace period
+        run: |
+          set -euo pipefail
+          C="docker compose -f lab/docker-compose.service.yml --env-file lab/.env"
+          CID=$($C ps -q api); START=$(date +%s)
+          $C stop -t 25 api
+          test $(( $(date +%s) - START )) -lt 25
+          test "$(docker inspect -f '{{.State.ExitCode}}' $CID)" = 0
+      - if: failure()
+        run: |
+          docker compose -f lab/docker-compose.service.yml --env-file lab/.env ps -a || true
+          docker compose -f lab/docker-compose.service.yml --env-file lab/.env logs --no-color | tail -150 || true
+      - if: always()
+        run: docker compose -f lab/docker-compose.service.yml --env-file lab/.env down -v || true

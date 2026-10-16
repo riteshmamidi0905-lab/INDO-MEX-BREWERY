@@ -1,0 +1,5 @@
+# P5 hardened service: runtime dependencies on top of the lab's own (all free and open source; no paid API or key).
+-r requirements.txt
+psycopg[binary,pool]>=3.2
+pydantic-settings>=2.4
+PyJWT>=2.8

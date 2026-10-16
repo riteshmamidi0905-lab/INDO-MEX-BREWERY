@@ -42,7 +42,7 @@ def load_migrations(directory: str = MIG_DIR) -> list[Migration]:
         m = FILE_RE.match(f)
         if not m: continue
         v, name, kind = int(m.group(1)), m.group(2), m.group(3)
-        text = open(os.path.join(directory, f), encoding="utf-8").read()
+        with open(os.path.join(directory, f), encoding="utf-8") as fh: text = fh.read()
         if kind == "up":
             if v in ups: raise MigrationError("DUPLICATE_VERSION", f"two up files for version {v}")
             ups[v] = (name, text)
@@ -107,7 +107,7 @@ class Migrator:
                     if m.version in applied or (target is not None and m.version > target): continue
                     try:
                         with c.transaction():
-                            c.execute(m.up.encode())                                                                  # type: ignore[call-overload]
+                            c.execute(m.up.encode())
                             c.execute(f"INSERT INTO {TABLE}(version, name, checksum) VALUES (%s, %s, %s)", (m.version, m.name, m.checksum))
                     except psycopg.Error as e:
                         raise MigrationError("MIGRATION_FAILED", f"migration {m.version} ({m.name}) failed and was rolled back; version stays {max(applied) if applied else 0}: {type(e).__name__}: {str(e).splitlines()[0][:160]}") from None
@@ -133,7 +133,7 @@ class Migrator:
                     if m is None or not m.down: raise MigrationError("NO_DOWN_SCRIPT", f"migration {v} has no down script in this build")
                     try:
                         with c.transaction():
-                            c.execute(m.down.encode())                                                                # type: ignore[call-overload]
+                            c.execute(m.down.encode())
                             c.execute(f"DELETE FROM {TABLE} WHERE version = %s", (v,))
                     except psycopg.Error as e:
                         raise MigrationError("ROLLBACK_FAILED", f"down {v} failed and was rolled back: {type(e).__name__}: {str(e).splitlines()[0][:160]}") from None

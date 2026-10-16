@@ -20,6 +20,7 @@ Receive = Callable[[], Awaitable[MutableMapping[str, Any]]]
 Send = Callable[[MutableMapping[str, Any]], Awaitable[None]]
 RID_RE = re.compile(r"^[A-Za-z0-9._-]{8,64}$")
 PROBES = ("/healthz", "/readyz")
+KNOWN_METHODS = frozenset({"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"})
 SECURITY_HEADERS = [(b"x-content-type-options", b"nosniff"), (b"cache-control", b"no-store"), (b"referrer-policy", b"no-referrer"),
                     (b"content-security-policy", b"default-src 'none'; frame-ancestors 'none'"), (b"cross-origin-resource-policy", b"same-origin")]
 
@@ -117,8 +118,9 @@ class HardeningMiddleware:
             rt.inflight -= 1
             route = getattr(scope.get("route"), "path", None) or "unmatched"
             dur = time.perf_counter() - t0; status = state["status"]
-            rt.metrics.inc("nasha_http_requests_total", help="HTTP requests", method=scope["method"], route=route, status=status)
-            rt.metrics.observe("nasha_http_request_duration_seconds", dur, help="HTTP request latency in seconds", method=scope["method"], route=route)
+            method = scope["method"] if scope["method"] in KNOWN_METHODS else "OTHER"          # client-chosen method tokens must not create metric series
+            rt.metrics.inc("nasha_http_requests_total", help="HTTP requests", method=method, route=route, status=status)
+            rt.metrics.observe("nasha_http_request_duration_seconds", dur, help="HTTP request latency in seconds", method=method, route=route)
             if status >= 400: rt.metrics.inc("nasha_http_errors_total", help="HTTP error responses", status=status)
-            emit(rt.log, logging.INFO if status < 500 else logging.ERROR, "request", request_id=rid, trace_id=trace_id, span_id=span_id, method=scope["method"], route=route, status=status,
+            emit(rt.log, logging.INFO if status < 500 else logging.ERROR, "request", request_id=rid, trace_id=trace_id, span_id=span_id, method=method, route=route, status=status,
                  ms=round(dur * 1000, 2), principal=scope["state"].get("principal_hash"), ip_hash=rt.hasher(ip), code=scope["state"].get("error_code"))

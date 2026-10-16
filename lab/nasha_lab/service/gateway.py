@@ -59,7 +59,7 @@ class ToolGateway:
 
         def sleep(s: float) -> None: time.sleep(min(s, deadline.remaining()))
 
-        runner = PolicyRunner(self.policy, _NoStore(), self.budget, self.breaker, sleep)        # type: ignore[arg-type]
+        runner = PolicyRunner(self.policy, _NoStore(), self.budget, self.breaker, sleep)
         rr = runner.run(op, attempt, correlation_id=request_id, args=args, tool=name, breaker_key=name)
         self.metrics.inc("nasha_tool_calls_total", help="tool calls by outcome", tool=name, outcome="ok" if rr.ok else (rr.code or "error"))
         if rr.attempts > 1: self.metrics.inc("nasha_tool_retries_total", rr.attempts - 1, help="tool retries taken under the explicit policy", tool=name)

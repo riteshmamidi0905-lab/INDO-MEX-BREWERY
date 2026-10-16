@@ -67,6 +67,7 @@ class Settings(BaseSettings):
     worker_threads: int = Field(16, ge=1, le=256)
     shutdown_grace_s: float = Field(10.0, ge=0, le=120)
     idempotency_ttl_s: int = Field(86400, ge=60)
+    maintenance_interval_s: float = Field(600.0, ge=0.5, le=86400)      # expired idempotency keys are deleted this often
     # --- exposure
     cors_origins: list[str] = Field(default_factory=list)
     docs_enabled: bool = False
@@ -74,7 +75,7 @@ class Settings(BaseSettings):
     # --- misc
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
     log_salt: Optional[SecretStr] = None       # keys the principal-id hash in logs; random per process when unset
-    data_dir: str = "/tmp/nasha_lab"
+    data_dir: str = "/tmp/nasha_lab"  # noqa: S108  (dev default; deployments set NASHA_SVC_DATA_DIR to a mounted volume)
     world_seed: int = 1
 
     @field_validator("jwt_keys")
@@ -120,7 +121,7 @@ class Settings(BaseSettings):
         """Settings with every secret replaced by a marker. Safe to log or print."""
         d = json.loads(self.model_dump_json())
         for k in SECRET_FIELDS:
-            if k == "jwt_keys": d[k] = {kid: "***" for kid in self.jwt_keys}
+            if k == "jwt_keys": d[k] = dict.fromkeys(self.jwt_keys, "***")
             elif d.get(k) is not None: d[k] = "***"
         return d
 

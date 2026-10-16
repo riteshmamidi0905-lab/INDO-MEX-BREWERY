@@ -11,7 +11,6 @@ import contextvars
 import json
 import logging
 import os
-import threading
 import time
 from contextlib import asynccontextmanager
 from concurrent.futures import ThreadPoolExecutor
@@ -26,13 +25,13 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from psycopg_pool import PoolClosed, PoolTimeout
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from .. import agent, generator, identity as ID, knowledge, tools as T, world as W
+from .. import agent, generator, identity as ID, knowledge, world as W
 from ..ops.failure_policy import decide, load_policy
 from . import LABEL, VERSION, schemas as S, store
 from .auth import ALL_PERMISSIONS, Principal, TokenService, parse_bearer
 from .config import Settings
 from .db import Database, Deadline, translate_db_error
-from .errors import ERROR_TABLE, ApiError, envelope
+from .errors import ApiError, envelope
 from .gateway import BridgedAuthority, ToolGateway
 from .middleware import HardeningMiddleware, Runtime
 from .migrations import latest_version
@@ -41,7 +40,7 @@ from .ratelimit import TokenBucketLimiter
 
 R = TypeVar("R")
 PUBLIC_PATHS = {"/healthz", "/readyz", "/v1/dev/token"}
-ERR = {c: {"model": S.ErrorEnvelope} for c in (400, 401, 403, 404, 409, 413, 415, 422, 429, 500, 502, 503, 504)}
+ERR: dict[int | str, dict[str, Any]] = {c: {"model": S.ErrorEnvelope} for c in (400, 401, 403, 404, 409, 413, 415, 422, 429, 500, 502, 503, 504)}
 IDEM_HEADER = "Idempotency-Key"
 
 
@@ -61,6 +60,12 @@ class Ctx:
         self.after_effect_hook: Optional[Callable[[], None]] = None          # test seam: runs after the agent effect, before the DB records it
         self.ready_cache: Optional[tuple[float, dict[str, Any]]] = None
         self.dl_cache: tuple[float, dict[str, int]] = (0.0, {})
+
+    def run_maintenance(self) -> int:
+        """Delete expired idempotency keys (before this they were only hidden by the TTL filter and the table grew without bound). Returns the number removed."""
+        with self.db.tx(Deadline(self.s.default_deadline_s)) as c: removed = store.idem_purge(c)
+        if removed: self.metrics.inc("nasha_idempotency_purged_total", removed, help="expired idempotency keys deleted")
+        return removed
 
 
 def view(row_or_summary: dict[str, Any], *, reconciled: bool = False) -> dict[str, Any]:
@@ -100,9 +105,18 @@ def create_hardened_app(settings: Settings, *, service: Optional[agent.AgentServ
                 raise RuntimeError("database unavailable at start and NASHA_SVC_REQUIRE_DB_AT_START is true; refusing to start")
             emit(log, logging.WARNING, "starting_degraded", detail="database unavailable at start; /readyz will report 503 until it is reachable")
         emit(log, logging.INFO, "started", detail=f"env={settings.env} version={VERSION} latest_schema={latest_version()}")
+
+        async def maintenance() -> None:
+            while True:
+                try: await asyncio.get_running_loop().run_in_executor(ex, ctx.run_maintenance)
+                except ApiError as e: emit(log, logging.WARNING, "maintenance_skipped", code=e.code)
+                except Exception as e: emit(log, logging.ERROR, "maintenance_failed", kind=type(e).__name__)
+                await asyncio.sleep(settings.maintenance_interval_s)
+        task = asyncio.create_task(maintenance())
         try:
             yield
         finally:
+            task.cancel()
             rt.draining = True                                        # graceful shutdown: refuse new work, let in-flight requests finish
             deadline = time.monotonic() + settings.shutdown_grace_s
             while rt.inflight > 0 and time.monotonic() < deadline: await asyncio.sleep(0.05)
@@ -112,7 +126,7 @@ def create_hardened_app(settings: Settings, *, service: Optional[agent.AgentServ
 
     app = FastAPI(title="NASHA Enterprise AI Lab: hardened service", version=VERSION, lifespan=lifespan,
                   description=f"{LABEL}. A hardened API layer over the lab agent: signed-token auth, roles, rate limits, deadlines, idempotency, PostgreSQL state.",
-                  docs_url="/docs" if settings.docs_enabled else None, redoc_url=None, openapi_url="/openapi.json" if settings.docs_enabled else None)
+                  redirect_slashes=False, docs_url="/docs" if settings.docs_enabled else None, redoc_url=None, openapi_url="/openapi.json" if settings.docs_enabled else None)
     app.state.ctx = ctx
     app.add_middleware(HardeningMiddleware, rt=rt)
     if settings.cors_origins:
@@ -144,7 +158,7 @@ def create_hardened_app(settings: Settings, *, service: Optional[agent.AgentServ
 
     @app.exception_handler(StarletteHTTPException)
     async def on_http(request: Request, e: StarletteHTTPException) -> JSONResponse:
-        m = {404: ("ROUTE_NOT_FOUND", "no such route"), 405: ("METHOD_NOT_ALLOWED", "method not allowed"), 413: ("PAYLOAD_TOO_LARGE", f"request body exceeds {settings.max_body_bytes} bytes")}
+        m = {400: ("MALFORMED_BODY", "request body could not be parsed"), 404: ("ROUTE_NOT_FOUND", "no such route"), 405: ("METHOD_NOT_ALLOWED", "method not allowed"), 413: ("PAYLOAD_TOO_LARGE", f"request body exceeds {settings.max_body_bytes} bytes")}
         code, msg = m.get(e.status_code, ("INVALID_REQUEST", "request rejected"))
         return err_response(request, ApiError(code, msg))
 
@@ -156,7 +170,7 @@ def create_hardened_app(settings: Settings, *, service: Optional[agent.AgentServ
         except ApiError as ae:
             return err_response(request, ae)
         errs = e.errors()
-        if any(x["type"] in ("json_invalid", "model_attributes_type") for x in errs): return err_response(request, ApiError("MALFORMED_BODY", "request body is not valid JSON"))
+        if any(x["type"] in ("json_invalid",) for x in errs): return err_response(request, ApiError("MALFORMED_BODY", "request body is not valid JSON"))
         det = [{"loc": ".".join(str(p) for p in x["loc"]), "msg": str(x["msg"])[:120], "type": x["type"]} for x in errs[:10]]        # never echo the input value
         return err_response(request, ApiError("INVALID_REQUEST", "request validation failed", details={"errors": det}))
 
@@ -206,7 +220,7 @@ def create_hardened_app(settings: Settings, *, service: Optional[agent.AgentServ
         fut = asyncio.get_running_loop().run_in_executor(ex, lambda: cv.run(fn, dl))
         try:
             return await asyncio.wait_for(fut, timeout=seconds)
-        except asyncio.TimeoutError:
+        except TimeoutError:
             dl.cancel(); metrics.inc("nasha_deadline_exceeded_total", help="requests that hit their deadline")
             raise ApiError("DEADLINE_EXCEEDED", f"the request exceeded its {seconds:g}s deadline", retry_after_s=1.0) from None
 
@@ -259,29 +273,29 @@ def create_hardened_app(settings: Settings, *, service: Optional[agent.AgentServ
         checks: dict[str, dict[str, Any]] = {}; version = 0
         try:
             with database.tx(Deadline(settings.db_pool_timeout_s)) as c:
-                checks["db"] = {"ok": True, "detail": "reachable"}
+                checks["db"] = {"ok": True, "detail": "ok"}
                 version = store.schema_version(c)
-        except ApiError as e:
-            checks["db"] = {"ok": False, "detail": e.code}
+        except ApiError:
+            checks["db"] = {"ok": False, "detail": "unavailable"}
         want = latest_version()
         if "ok" in checks["db"] and checks["db"]["ok"]:
-            if version == want or (version > want and settings.allow_newer_schema): checks["schema"] = {"ok": True, "detail": f"version {version}"}
-            elif version < want: checks["schema"] = {"ok": False, "detail": f"SCHEMA_OLDER: database {version}, build needs {want}; run the migration job"}
-            else: checks["schema"] = {"ok": False, "detail": f"SCHEMA_NEWER: database {version}, build supports {want}"}
+            if version == want or (version > want and settings.allow_newer_schema): checks["schema"] = {"ok": True, "detail": "ok"}       # versions are not disclosed to anonymous callers: see nasha_schema_version (OPERATOR)
+            elif version < want: checks["schema"] = {"ok": False, "detail": "SCHEMA_OLDER"}
+            else: checks["schema"] = {"ok": False, "detail": "SCHEMA_NEWER"}
         else: checks["schema"] = {"ok": False, "detail": "not checked: database unavailable"}
         try:
             n = service.rt.world.q("SELECT COUNT(*) n FROM fact_order")[0]["n"]
-            checks["agent"] = {"ok": bool(n > 0 and len(service.rt.kb.chunks) > 0), "detail": "world and knowledge base loaded"}
-        except Exception as e:
-            checks["agent"] = {"ok": False, "detail": type(e).__name__}
-        checks["draining"] = {"ok": not rt.draining, "detail": "accepting traffic" if not rt.draining else "shutting down"}
-        res = {"checks": checks, "schema_version": version}
+            checks["agent"] = {"ok": bool(n > 0 and len(service.rt.kb.chunks) > 0), "detail": "ok"}
+        except Exception:
+            checks["agent"] = {"ok": False, "detail": "unavailable"}
+        checks["draining"] = {"ok": not rt.draining, "detail": "ok" if not rt.draining else "shutting down"}
+        res = {"checks": checks}
         if all(v["ok"] for v in checks.values()) and os.path.exists(ctx.spool.path):
             try:
                 with database.tx() as c: n = ctx.spool.drain(c)
                 ctx.spool.clear(); emit(log, logging.INFO, "spool_replayed", count=n)
-            except Exception:
-                pass
+            except Exception as e:                                    # spool stays on disk; the next readiness probe retries
+                emit(log, logging.WARNING, "spool_replay_failed", kind=type(e).__name__)
         ctx.ready_cache = (now, res)
         return res
 
@@ -292,9 +306,9 @@ def create_hardened_app(settings: Settings, *, service: Optional[agent.AgentServ
         if failed:
             code = "SHUTTING_DOWN" if failed == ["draining"] else ("SCHEMA_MISMATCH" if failed == ["schema"] else ("DB_UNAVAILABLE" if "db" in failed else "NOT_READY"))
             return err_response(request, ApiError("NOT_READY" if code == "NOT_READY" else code, "not ready: " + ", ".join(failed), retry_after_s=2.0, details={"failed": failed, "checks": res["checks"]}))
-        return JSONResponse({"status": "ready", "checks": res["checks"], "schema_version": res["schema_version"], "synthetic": True})
+        return JSONResponse({"status": "ready", "checks": res["checks"], "synthetic": True})
 
-    @app.get("/metrics", response_class=PlainTextResponse, responses={401: {"model": S.ErrorEnvelope}, 403: {"model": S.ErrorEnvelope}}, tags=["ops"], summary="Prometheus text metrics (OPERATOR token)",
+    @app.get("/metrics", responses={200: {"description": "Prometheus text exposition format 0.0.4", "content": {"text/plain": {"schema": {"type": "string"}}}}, 401: {"model": S.ErrorEnvelope}, 403: {"model": S.ErrorEnvelope}, 429: {"model": S.ErrorEnvelope}, 503: {"model": S.ErrorEnvelope}}, tags=["ops"], summary="Prometheus text metrics (OPERATOR token)",
              include_in_schema=settings.metrics_enabled)
     async def prom(request: Request, _p: Principal = Depends(require("metrics:read"))) -> PlainTextResponse:
         if not settings.metrics_enabled: raise ApiError("ROUTE_NOT_FOUND", "metrics are disabled")

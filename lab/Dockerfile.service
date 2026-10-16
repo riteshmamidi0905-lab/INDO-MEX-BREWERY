@@ -1,0 +1,36 @@
+# syntax=docker/dockerfile:1.7
+# NASHA hardened service image. SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED. Build context = repository root:
+#   docker build -f lab/Dockerfile.service -t nasha-lab-service:local .
+# Verified only by GitHub Actions (p5-service-ci.yml); this repository's author could not run Docker locally.
+
+# ---- build stage: compilers/git live here and never reach the runtime image
+FROM python:3.12.7-slim-bookworm AS builder
+ENV PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1 PYTHONDONTWRITEBYTECODE=1
+RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN python -m venv /opt/venv
+ENV PATH=/opt/venv/bin:$PATH
+WORKDIR /build
+COPY lab/requirements.txt lab/requirements-service.txt lab/
+RUN pip install -r lab/requirements-service.txt
+
+# ---- runtime stage
+FROM python:3.12.7-slim-bookworm AS runtime
+# fixed non-root uid/gid; no login shell; the only writable paths are /data (volume) and /tmp (tmpfs), so the root filesystem can be mounted read-only
+RUN groupadd --gid 10001 nasha && useradd --uid 10001 --gid 10001 --no-create-home --home-dir /tmp --shell /usr/sbin/nologin nasha \
+    && mkdir /data && chown 10001:10001 /data
+COPY --from=builder /opt/venv /opt/venv
+ENV PATH=/opt/venv/bin:$PATH \
+    PYTHONPATH=/app/lab \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    HOME=/tmp \
+    NASHA_SVC_DATA_DIR=/data
+WORKDIR /app
+# the lab's knowledge base is built from the repository's documents at start-up, so the (filtered) repository is part of the image; see Dockerfile.service.dockerignore
+COPY . .
+USER 10001:10001
+EXPOSE 8000
+STOPSIGNAL SIGTERM
+HEALTHCHECK --interval=15s --timeout=3s --start-period=60s --retries=3 \
+  CMD ["python", "-c", "import sys, urllib.request; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/healthz', timeout=2).status == 200 else 1)"]
+CMD ["uvicorn", "--factory", "nasha_lab.service.serve:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", "--timeout-graceful-shutdown", "15"]

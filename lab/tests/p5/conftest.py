@@ -189,3 +189,11 @@ def app_env(migrated_db: str, keys: Keys, svc: agent.AgentService, tmp_path: Any
         class Env: pass
         e = Env(); e.client, e.app, e.settings, e.service, e.keys, e.dsn, e.tmp = client, app, s, svc, keys, migrated_db, str(tmp_path)    # type: ignore[attr-defined]
         yield e
+
+
+def pytest_sessionfinish(session: Any, exitstatus: Any) -> None:
+    try:
+        from results_recorder import flush
+        flush()
+    except Exception:
+        pass

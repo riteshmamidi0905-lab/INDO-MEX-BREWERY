@@ -1,0 +1,31 @@
+# Used automatically by BuildKit for lab/Dockerfile.service (takes precedence over the root .dockerignore).
+# Never send VCS data, environment files, key material, local secret files or test/caches into the build context or the image.
+.git
+.github
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+**/*.p12
+lab/secrets/*
+!lab/secrets/.gitignore
+!lab/secrets/README.md
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/.venv
+**/node_modules
+lab/tests
+lab/results
+lab/portfolio
+website
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.webp
+**/*.avif
+**/*.stl
+**/*.zip

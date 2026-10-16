@@ -83,7 +83,6 @@ def test_concurrent_requests_for_the_same_event_with_different_keys_start_one_ru
 def test_second_start_for_an_event_does_not_leak_the_run_id_to_a_stranger(app_env):
     start(app_env, "EV-A1", ("alice", "BUYER"))
     r = start(app_env, "EV-A1", ("eve", "READER" if False else "BUYER")); assert r.status_code == 409 and "details" in r.json()["error"]       # reviewers with read_all may see it
-    from conftest import tok
     r = app_env.client.post("/v1/runs", json={"event_id": "EV-A1"}, headers={**auth(app_env.keys, "mallory", "OPERATOR"), **K()}); assert r.status_code == 403         # OPERATOR cannot start runs
 
 
@@ -237,7 +236,7 @@ def test_audit_endpoint_is_restricted_and_hashes_principals(app_env):
 
 # ---------------------------------------------------------------------------- readiness, metrics, shutdown
 def test_readyz_reports_each_dependency(app_env):
-    r = app_env.client.get("/readyz"); b = r.json(); assert r.status_code == 200 and b["schema_version"] == 3 and set(b["checks"]) == {"db", "schema", "agent", "draining"} and all(v["ok"] for v in b["checks"].values())
+    r = app_env.client.get("/readyz"); b = r.json(); assert r.status_code == 200 and "schema_version" not in b and set(b["checks"]) == {"db", "schema", "agent", "draining"} and all(v["ok"] for v in b["checks"].values())
 
 
 def test_metrics_endpoint_requires_operator_and_exposes_the_required_series(app_env):

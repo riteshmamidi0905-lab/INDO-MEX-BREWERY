@@ -35,6 +35,7 @@ def translate_db_error(e: BaseException) -> ApiError:
     if isinstance(e, ApiError): return e
     if isinstance(e, PoolTimeout): return ApiError("DB_POOL_EXHAUSTED", "no database connection became available in time", retry_after_s=1.0)
     if isinstance(e, PoolClosed): return ApiError("DB_UNAVAILABLE", "database pool is closed", retry_after_s=1.0)
+    if isinstance(e, (pgerr.UndefinedTable, pgerr.UndefinedColumn, pgerr.UndefinedFunction)): return ApiError("SCHEMA_MISMATCH", "the database schema does not match this build; run the migration job")
     if isinstance(e, pgerr.QueryCanceled): return ApiError("DB_TIMEOUT", "the database statement exceeded its time limit")
     if isinstance(e, pgerr.LockNotAvailable): return ApiError("IDEMPOTENCY_BUSY", "a concurrent request holds the lock; retry with the same key", retry_after_s=1.0)
     if isinstance(e, (psycopg.OperationalError, psycopg.InterfaceError)): return ApiError("DB_UNAVAILABLE", "the database is unavailable", retry_after_s=2.0)
@@ -64,15 +65,20 @@ class Database:
         self.pool.open(wait=False)
 
     def wait_ready(self, seconds: float) -> bool:
+        """Poll until the pool holds a usable connection or `seconds` pass. NOT ConnectionPool.wait(): that CLOSES the pool when it times out (found by failure test F01),
+        which would leave a service that started while the database was down permanently broken."""
         if self.pool is None: return False
-        try: self.pool.wait(timeout=seconds); return True
-        except PoolTimeout: return False
+        end = time.monotonic() + seconds
+        while time.monotonic() < end:
+            if self.pool.get_stats().get("pool_available", 0) > 0: return True
+            time.sleep(0.05)
+        return self.pool.get_stats().get("pool_available", 0) > 0
 
     def close(self) -> None:
         if self.pool is not None: self.pool.close(timeout=2.0)
 
     @contextmanager
-    def tx(self, deadline: Optional[Deadline] = None) -> Iterator["psycopg.Connection[dict[str, Any]]"]:
+    def tx(self, deadline: Optional[Deadline] = None) -> Iterator["psycopg.Connection[Any]"]:
         """One transaction on a pooled connection: commit on success, rollback on any exception. Driver errors surface as ApiError."""
         if self.pool is None: raise ApiError("DB_UNAVAILABLE", "database pool is not open", retry_after_s=2.0)
         if not self.breaker.allow("db"):

@@ -1,13 +1,24 @@
 """Request and response models (the contract). Responses are typed so the OpenAPI document is complete and contract tests can validate real responses."""
 from __future__ import annotations
 
+import re
 from typing import Any, Literal, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+
+
+CONTROL_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
 
 
 class Strict(BaseModel):
+    """Request bodies: unknown fields are refused, and free text may not carry control characters (NUL cannot be stored in PostgreSQL text, and the others only help log forging)."""
     model_config = ConfigDict(extra="forbid")
+
+    @field_validator("*", mode="after")
+    @classmethod
+    def _no_control_chars(cls, v: Any) -> Any:
+        if isinstance(v, str) and CONTROL_RE.search(v): raise ValueError("control characters are not allowed")
+        return v
 
 
 class ErrorBody(BaseModel):
@@ -37,7 +48,6 @@ class CheckResult(BaseModel):
 class Ready(BaseModel):
     status: Literal["ready"]
     checks: dict[str, CheckResult]
-    schema_version: int
     synthetic: bool = True
 
 
@@ -49,7 +59,7 @@ class DevTokenIn(Strict):
 
 class TokenOut(BaseModel):
     token: str
-    token_type: Literal["bearer"] = "bearer"
+    token_type: Literal["bearer"] = "bearer"  # noqa: S105  (OAuth token-type label, not a secret)
     expires_in: int
 
 
