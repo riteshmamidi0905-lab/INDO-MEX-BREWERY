@@ -1,0 +1,345 @@
+{
+ "families": {
+  "deterministic": {
+   "DATA_QUALITY": {
+    "correct_action_ci95": [
+     0.927,
+     1.0
+    ],
+    "correct_action_when_needed": 49,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 49,
+    "need_action": 49,
+    "pass_all_checks": 49,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.073
+    ]
+   },
+   "INVENTORY": {
+    "correct_action_ci95": [
+     0.969,
+     1.0
+    ],
+    "correct_action_when_needed": 119,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 8,
+    "n": 128,
+    "need_action": 119,
+    "pass_all_checks": 128,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.031
+    ]
+   },
+   "POLICY": {
+    "correct_action_ci95": [
+     0.955,
+     1.0
+    ],
+    "correct_action_when_needed": 82,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 82,
+    "need_action": 82,
+    "pass_all_checks": 82,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.045
+    ]
+   }
+  },
+  "qwen1.5b_guardrail": {
+   "DATA_QUALITY": {
+    "correct_action_ci95": [
+     0.064,
+     0.301
+    ],
+    "correct_action_when_needed": 5,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 34,
+    "need_action": 34,
+    "pass_all_checks": 0,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.102
+    ]
+   },
+   "INVENTORY": {
+    "correct_action_ci95": [
+     0.203,
+     0.431
+    ],
+    "correct_action_when_needed": 18,
+    "false_alarms_on_healthy": 4,
+    "healthy_n": 4,
+    "n": 64,
+    "need_action": 59,
+    "pass_all_checks": 7,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.061
+    ]
+   },
+   "POLICY": {
+    "correct_action_ci95": [
+     0.516,
+     0.79
+    ],
+    "correct_action_when_needed": 28,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 42,
+    "need_action": 42,
+    "pass_all_checks": 1,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.084
+    ]
+   }
+  },
+  "qwen1.5b_raw": {
+   "DATA_QUALITY": {
+    "correct_action_ci95": [
+     0.479,
+     0.785
+    ],
+    "correct_action_when_needed": 22,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 34,
+    "need_action": 34,
+    "pass_all_checks": 0,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.102
+    ]
+   },
+   "INVENTORY": {
+    "correct_action_ci95": [
+     0.059,
+     0.225
+    ],
+    "correct_action_when_needed": 7,
+    "false_alarms_on_healthy": 4,
+    "healthy_n": 4,
+    "n": 64,
+    "need_action": 59,
+    "pass_all_checks": 5,
+    "silent_all_clear": 30,
+    "silent_ci95": [
+     0.384,
+     0.632
+    ]
+   },
+   "POLICY": {
+    "correct_action_ci95": [
+     0.377,
+     0.666
+    ],
+    "correct_action_when_needed": 22,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 42,
+    "need_action": 42,
+    "pass_all_checks": 0,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.084
+    ]
+   }
+  },
+  "qwen7b_guardrail": {
+   "DATA_QUALITY": {
+    "correct_action_ci95": [
+     0.03,
+     0.564
+    ],
+    "correct_action_when_needed": 1,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 6,
+    "need_action": 6,
+    "pass_all_checks": 0,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.39
+    ]
+   },
+   "INVENTORY": {
+    "correct_action_ci95": [
+     0.505,
+     0.898
+    ],
+    "correct_action_when_needed": 12,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 17,
+    "need_action": 16,
+    "pass_all_checks": 11,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.194
+    ]
+   },
+   "POLICY": {
+    "correct_action_ci95": [
+     0.468,
+     0.911
+    ],
+    "correct_action_when_needed": 9,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 12,
+    "need_action": 12,
+    "pass_all_checks": 0,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.243
+    ]
+   }
+  },
+  "qwen7b_raw": {
+   "DATA_QUALITY": {
+    "correct_action_ci95": [
+     0.03,
+     0.564
+    ],
+    "correct_action_when_needed": 1,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 6,
+    "need_action": 6,
+    "pass_all_checks": 0,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.39
+    ]
+   },
+   "INVENTORY": {
+    "correct_action_ci95": [
+     0.386,
+     0.815
+    ],
+    "correct_action_when_needed": 10,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 17,
+    "need_action": 16,
+    "pass_all_checks": 10,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.194
+    ]
+   },
+   "POLICY": {
+    "correct_action_ci95": [
+     0.468,
+     0.911
+    ],
+    "correct_action_when_needed": 9,
+    "false_alarms_on_healthy": 0,
+    "healthy_n": 0,
+    "n": 12,
+    "need_action": 12,
+    "pass_all_checks": 0,
+    "silent_all_clear": 0,
+    "silent_ci95": [
+     0.0,
+     0.243
+    ]
+   }
+  }
+ },
+ "latency": {
+  "deterministic_median_ms_same_140_ids_recomputed": 51.2,
+  "deterministic_p50_ms_259": 65.5,
+  "note": "ratios are order-of-magnitude only (different hosts; medians, not means)",
+  "qwen1_5b_p50_ms": 28031.7,
+  "qwen7b_p50_ms": 151524.4,
+  "ratio_1_5b_over_det_259": 428,
+  "ratio_1_5b_over_det_same_ids": 547,
+  "ratio_7b_over_det_259": 2313
+ },
+ "lexicon_probe": {
+  "benign": {
+   "Hamilton sauce": "NO_POLICY_SIGNAL",
+   "cauliflower": "NO_POLICY_SIGNAL",
+   "corn masa": "NO_POLICY_SIGNAL",
+   "sunflower oil": "NO_POLICY_SIGNAL"
+  },
+  "in_lexicon": {
+   "bacon bits": "PROHIBITED",
+   "beef stock": "PROHIBITED",
+   "beef tallow": "PROHIBITED",
+   "gelatin": "PROHIBITED",
+   "pork lard": "PROHIBITED"
+  },
+  "out_of_lexicon_animal": {
+   "bone marrow": "NO_POLICY_SIGNAL",
+   "gelatine": "NO_POLICY_SIGNAL",
+   "hamburger patty": "NO_POLICY_SIGNAL",
+   "oxtail": "NO_POLICY_SIGNAL",
+   "pancetta": "NO_POLICY_SIGNAL",
+   "pepperoni": "NO_POLICY_SIGNAL",
+   "prosciutto": "NO_POLICY_SIGNAL",
+   "ribeye": "NO_POLICY_SIGNAL",
+   "salami": "NO_POLICY_SIGNAL",
+   "suet": "NO_POLICY_SIGNAL"
+  },
+  "summary": {
+   "benign_prohibited": "0/4",
+   "caveat": "existence probe, not a rate: out-of-lexicon terms were chosen to be outside the lexicon, same author, n=10",
+   "in_lexicon_prohibited": "5/5",
+   "out_of_lexicon_not_flagged": "10/10"
+  }
+ },
+ "no_action_share": {
+  "ci95": [
+   0.016,
+   0.06
+  ],
+  "expected_exactly_no_action": 8,
+  "n": 259,
+  "share": 0.031
+ },
+ "note": "SYNTHETIC; re-analysis of frozen result files; nothing re-run",
+ "policy_direction": {
+  "deterministic": {
+   "acceptable": 82,
+   "n": 82
+  },
+  "qwen1.5b_guardrail": {
+   "abstains_where_oracle_wanted_a_specific_recommendation": 14,
+   "acceptable": 28,
+   "n": 42
+  },
+  "qwen1.5b_raw": {
+   "abstains_where_oracle_wanted_a_specific_recommendation": 3,
+   "acceptable": 22,
+   "leans_toward_confirm_where_oracle_required_abstain_or_reject": 5,
+   "n": 42,
+   "rejects_where_oracle_allowed_only_abstain_or_confirm": 12
+  },
+  "qwen7b_raw": {
+   "abstains_where_oracle_wanted_a_specific_recommendation": 3,
+   "acceptable": 9,
+   "n": 12
+  }
+ }
+}
