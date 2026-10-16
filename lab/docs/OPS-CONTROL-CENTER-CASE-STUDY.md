@@ -9,7 +9,7 @@ An AI agent that proposes actions for a human to approve is only half a system. 
 ## What I built
 
 * **Telemetry on real runs**: per-run and per-step latency, per-tool success and failure, retrieval hit / abstain / miss, planner type, token counts, approval state, outcome category, and version ids (planner, prompt hash, tool-schema hash, corpus hash). Metric names follow OpenTelemetry conventions; logs are structured JSON.
-* **Alert rules as data**: 25 declarative rules over a failure taxonomy of 19 classes, an evaluator, and incident records with timelines. Each class has a runbook (detection, triage, containment, recovery, rollback, escalation).
+* **Alert rules as data**: 27 declarative rules over a failure taxonomy of 20 classes, an evaluator, and incident records with timelines. Each class has a runbook (detection, triage, containment, recovery, rollback, escalation).
 * **A regression gate and a version registry**: a fixed 56-scenario suite, a frozen reference, and a rollback drill that switches versions, catches a bad candidate and restores the good one.
 * **SLOs as design targets** with multi-window burn-rate alerts.
 * **A static, accessible dashboard** rendered from the result files (no JavaScript, no CDN, axe-core clean at four viewports and themes).

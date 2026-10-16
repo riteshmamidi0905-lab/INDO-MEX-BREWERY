@@ -32,6 +32,8 @@
   {"id": "AR-22", "scope": "run", "class": "RETRIEVAL_UNAVAILABLE", "severity": "SEV3", "description": "retrieval answered from the lexical fallback because the primary retriever failed", "when": {"retrieval.fallback": {"gte": 1}}},
   {"id": "AR-23", "scope": "window", "class": "LATENCY_DEGRADATION", "severity": "SEV3", "description": "design target: p95 run compute time over the last 5 runs must stay at or below 600 ms", "metric": "timing.run_ms", "agg": "p95", "window": 5, "op": ">", "value": 600, "min_runs": 5},
   {"id": "AR-24", "scope": "window", "class": "TOOL_UPSTREAM_FAILURE", "severity": "SEV3", "description": "design target: tool failure rate over the last 10 runs must stay at or below 5%", "metric": "tool_failure_rate", "agg": "ratio", "window": 10, "op": ">", "value": 0.05, "min_runs": 10},
-  {"id": "AR-25", "scope": "gate", "class": "EVAL_REGRESSION", "severity": "SEV2", "description": "the regression gate failed against the frozen reference", "when": {"verdict": "FAIL"}}
+  {"id": "AR-25", "scope": "gate", "class": "EVAL_REGRESSION", "severity": "SEV2", "description": "the regression gate failed against the frozen reference", "when": {"verdict": "FAIL"}},
+  {"id": "AR-26", "scope": "run", "class": "AUTHORITY_CONFLICT", "severity": "SEV3", "description": "two sources of the same authority tier gave contradictory answers to a policy question (authority rules v2); the answer abstained and escalated", "when": {"retrieval.authority_conflicts": {"gte": 1}}},
+  {"id": "AR-27", "scope": "run", "class": "STALE_SOURCE", "severity": "SEV4", "description": "a superseded, historical or unverified source CONTRADICTS the current authoritative answer (authority rules v2); the current source governed", "when": {"retrieval.excluded_contradictions": {"gte": 1}}}
  ]
 }

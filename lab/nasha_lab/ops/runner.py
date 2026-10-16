@@ -39,7 +39,7 @@ class Env:
 
 
 def make_env(sc, planner="deterministic", *, timeout_s=None, stack=None, registry=None, logger=None, versions=None, kb_wrap=None, client_mode=None, client_kw=None,
-             flaky_db=False, session_mode=False, approval_ttl_s=900.0, session_ttl=900, resilient_kb=False, extra_faults=None, portal=None, faults=None, extra_docs=None):
+             flaky_db=False, session_mode=False, approval_ttl_s=900.0, session_ttl=900, resilient_kb=False, extra_faults=None, portal=None, faults=None, extra_docs=None, authority_rules=None):
     w = S.fresh_world(1, getattr(sc, "menu_version", "v1"), getattr(sc, "po_coverage", "v1")); payload = sc.setup(w)
     etype = {"INVENTORY": "INVENTORY_EXCEPTION", "DATA_QUALITY": "DQ_INCIDENT", "POLICY": "POLICY_REVIEW"}[sc.event_family]
     eid = S.add_event(w, etype, payload); w.con.commit(); w.faults = dict(sc.faults if faults is None else faults)
@@ -52,6 +52,9 @@ def make_env(sc, planner="deterministic", *, timeout_s=None, stack=None, registr
     kb = shared_kb(sc.extra_docs if extra_docs is None else extra_docs)
     if kb_wrap == "faultable": kb = FaultableKB(kb)
     if resilient_kb: kb = ResilientKB(kb, sleep=lambda s: None)
+    if authority_rules == "v2":
+        from ..knowledge_authority import AuthorityKB
+        kb = AuthorityKB(kb, "v2")
     flaky = None
     if flaky_db: flaky = FlakyConnection(w.con); w.con = flaky
     tmo = timeout_s if timeout_s is not None else (0.05 if "slow" in w.faults.values() else 2.0)

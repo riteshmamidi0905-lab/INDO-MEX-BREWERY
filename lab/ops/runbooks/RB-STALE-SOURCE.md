@@ -20,3 +20,5 @@ Not version-related.
 
 ## Escalation
 SEV4; SEV2 if a stale source was cited.
+
+AR-27 (authority rules v2): a superseded, historical or unverified source CONTRADICTS the current authoritative answer. The current source governed and the contradiction is recorded; check that the stale document is still needed.

@@ -114,8 +114,10 @@ class ExecStack:
                  retried=retried_codes, circuit_open=circuit_open)
         d = res.get("data") if res["ok"] else None
         if name == "get_current_policy" and d is not None:
-            s["retrieval"] = dict(abstained=bool(d.get("abstained")), n_citations=len(d.get("citations", [])), nonauth=len(d.get("non_authoritative_matches", [])),
-                                  nonauth_statuses=sorted({m.get("effective_status") for m in d.get("non_authoritative_matches", [])}), injection=len(d.get("injection_flagged", [])),
+            nam = d.get("non_authoritative_matches", []); conf = [m for m in nam if m.get("kind") == "authority_conflict"]          # authority rules v2 entries (knowledge_authority.py)
+            s["retrieval"] = dict(abstained=bool(d.get("abstained")), n_citations=len(d.get("citations", [])), nonauth=len(nam) - len(conf),
+                                  authority_conflicts=sum(1 for m in conf if m.get("blocking", not m.get("resolved"))), excluded_contradictions=sum(1 for m in conf if m.get("resolved") and m.get("conflict_type") in ("SUPERSEDED_CONTRADICTS_CURRENT", "EXCLUDED_CONTRADICTS_CURRENT")),
+                                  nonauth_statuses=sorted({m.get("effective_status") for m in nam if m.get("kind") != "authority_conflict"}), injection=len(d.get("injection_flagged", [])),
                                   cited_statuses=sorted({c.get("effective_status") for c in d.get("citations", [])}), fallback=(len(getattr(ctx.kb, "events", None) or []) > kb_events0) or None)
         if name == "get_supplier_notes_untrusted" and d is not None: s["untrusted"] = dict(ok=d.get("ok"), flags=list(d.get("flags", [])))
         self.samples.append(s)
@@ -153,11 +155,11 @@ def build_record(events, run, samples, wall_ms, meta, summary=None):
         t = tools[s["tool"]]; t["calls"] += 1; t["ok"] += int(s["ok"]); t["fail"] += int(not s["ok"]); t["ms"].append(s["ms"]); t["attempts"] += s["attempts"]
         if s["code"]: t["codes"][s["code"]] += 1
     tool_out = {k: dict(calls=v["calls"], ok=v["ok"], fail=v["fail"], codes=dict(v["codes"]), ms_max=max(v["ms"]), attempts=v["attempts"]) for k, v in tools.items()}
-    ret = dict(hit=0, abstain=0, miss=0, nonauth_matches=0, fallback=0)
+    ret = dict(hit=0, abstain=0, miss=0, nonauth_matches=0, fallback=0, authority_conflicts=0, excluded_contradictions=0)
     for s in samples:
         if s["tool"] != "get_current_policy": continue
         if not s["ok"]: ret["miss"] += 1; continue
-        r = s["retrieval"]; ret["abstain" if r["abstained"] else "hit"] += 1; ret["nonauth_matches"] += r["nonauth"]; ret["fallback"] += int(bool(r["fallback"]))
+        r = s["retrieval"]; ret["abstain" if r["abstained"] else "hit"] += 1; ret["nonauth_matches"] += r["nonauth"]; ret["authority_conflicts"] += r.get("authority_conflicts", 0); ret["excluded_contradictions"] += r.get("excluded_contradictions", 0); ret["fallback"] += int(bool(r["fallback"]))
     llm = [e for e in ev if e["kind"] == "llm_call"]
     llm_ok = [e for e in llm if e.get("ok")]
     planner = dict(type=rm.get("planner_type"), version=rm.get("planner_version"), model=rm.get("model"), llm_calls=len(llm_ok), llm_errors=sum(1 for e in llm if e.get("error")),

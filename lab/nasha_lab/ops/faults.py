@@ -25,7 +25,7 @@ from .util import rate, quantile
 FAULTS = ["model_timeout", "tool_timeout", "retrieval_miss", "malformed_tool_result", "stale_document", "permission_rejection", "approval_expiry", "database_failure", "schema_violation",
           "latency_spike", "evaluation_regression"]
 EXPECTED = {"model_timeout": {"MODEL_UNAVAILABLE"}, "tool_timeout": {"TOOL_TIMEOUT"}, "retrieval_miss": {"RETRIEVAL_ABSTAIN_ANOMALY"}, "malformed_tool_result": {"TOOL_MALFORMED_RESULT"},
-            "stale_document": {"STALE_SOURCE"}, "permission_rejection": {"PERMISSION_DENIED", "UNSAFE_ACTION_ATTEMPT"}, "approval_expiry": {"APPROVAL_EXPIRED"},
+            "stale_document": {"STALE_SOURCE", "AUTHORITY_CONFLICT"}, "permission_rejection": {"PERMISSION_DENIED", "UNSAFE_ACTION_ATTEMPT"}, "approval_expiry": {"APPROVAL_EXPIRED"},
             "database_failure": {"DATABASE_UNAVAILABLE"}, "schema_violation": {"MODEL_SCHEMA_VIOLATION", "SCHEMA_VIOLATION_TOOL_ARGS"}, "latency_spike": {"LATENCY_DEGRADATION"},
             "evaluation_regression": {"EVAL_REGRESSION"}}
 EVAL = A.AlertEvaluator()
@@ -157,13 +157,13 @@ STALE_DOCS = {
 }
 
 
-def f_stale(seed, variant=None):
+def f_stale(seed, variant=None, authority_rules=None):
     r = rng_for("stale_document", seed); variant = variant or r.choice(["superseded_policy_doc", "unverified_note", "contradictory_canonical", "stale_portal_note", "stale_portal_note"])
     if variant == "stale_portal_note": sc = r.choice(pool(["INVENTORY"])); docs = []; portal = "stale"; bad_path = None
     else:
         sc = r.choice(pool(["POLICY"])); d = STALE_DOCS[variant]; docs = [dict(source_path=d["source_path"], text=d["text"], **{"class": d["cls"]})]; portal = None; bad_path = d["source_path"]
     clean_action, _ = clean_twin(sc)
-    env = R.make_env(sc, "deterministic", extra_docs=docs or sc.extra_docs, portal=portal)
+    env = R.make_env(sc, "deterministic", extra_docs=docs or sc.extra_docs, portal=portal, authority_rules=authority_rules)
     s = env.ops.start(env.eid, "fi"); rid = s["run"]["run_id"]
     det, _ = detect(env, rid, "stale_document"); cont, rec0 = containment(env, rid, clean_action)
     cites = (env.ops.summary(rid)["proposal"] or {}).get("citations", []); cited_bad = bool(bad_path and bad_path in cites)

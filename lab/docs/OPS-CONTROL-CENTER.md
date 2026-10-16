@@ -63,9 +63,9 @@ Structured logs are JSON lines (`JsonLogger`), each with `seq`, `ts`, `level`, `
 
 ## 4. Failure taxonomy v1 and alert rules
 
-`lab/ops/failure-taxonomy.json` defines 19 incident classes, each with a layer, default severity, a runbook id, references to the failure catalog (FC / GAP ids) and the **expected containment**. Severities: SEV1 safety invariant violated; SEV2 dependency or evaluation signal lost, or unsafe behaviour attempted; SEV3 fault contained; SEV4 informational.
+`lab/ops/failure-taxonomy.json` defines 20 incident classes, each with a layer, default severity, a runbook id, references to the failure catalog (FC / GAP ids) and the **expected containment**. Severities: SEV1 safety invariant violated; SEV2 dependency or evaluation signal lost, or unsafe behaviour attempted; SEV3 fault contained; SEV4 informational.
 
-`lab/ops/alert-rules.json` holds 25 declarative rules in four scopes: *event* (evaluated on each trace event), *run* (on the completed run record), *window* (over the last N runs) and *gate* (on a regression-gate result). A small evaluator interprets them: conditions are conjunctions over fields with equality, `in`, `regex`, `not_regex`, `gte`, `gt`. An unknown operator raises; it never silently passes.
+`lab/ops/alert-rules.json` holds 27 declarative rules in four scopes: *event* (evaluated on each trace event), *run* (on the completed run record), *window* (over the last N runs) and *gate* (on a regression-gate result). A small evaluator interprets them: conditions are conjunctions over fields with equality, `in`, `regex`, `not_regex`, `gte`, `gt`. An unknown operator raises; it never silently passes.
 
 Every alert carries the **step** (1-based trace position, or run position) and **elapsed milliseconds** (trace timestamps) at which its triggering evidence first existed. The evaluator runs post hoc over stored traces, so these numbers say when the evidence existed, not how fast a live pager would have fired.
 

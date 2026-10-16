@@ -1,0 +1,867 @@
+{
+ "clean_control": {
+  "changed": [],
+  "runs": 130,
+  "runs_where_action_changed": 0,
+  "v1": {
+   "alerts_by_rule": {},
+   "policy_abstentions": 30
+  },
+  "v2": {
+   "alerts_by_rule": {
+    "AR-18": 100
+   },
+   "policy_abstentions": 30
+  }
+ },
+ "experiment": "authority rules v1 vs v2",
+ "fixed_before_running": {
+  "CONFLICT_COVER": 0.35,
+  "SURFACE_COVER": 0.2
+ },
+ "gap03_set_7_per_variant": {
+  "contradictory_canonical": {
+   "v1": {
+    "abstained": 3,
+    "action_unchanged": 7,
+    "contained": 0,
+    "detected": 0,
+    "detected_by_discriminating_rule_AR26_or_AR27": 0,
+    "n": 7,
+    "rules_fired": {},
+    "stale_source_cited": 7
+   },
+   "v2": {
+    "abstained": 7,
+    "action_unchanged": 3,
+    "contained": 7,
+    "detected": 7,
+    "detected_by_discriminating_rule_AR26_or_AR27": 7,
+    "n": 7,
+    "rules_fired": {
+     "AR-18": 7,
+     "AR-26": 7,
+     "AR-27": 7
+    },
+    "stale_source_cited": 0
+   }
+  },
+  "superseded_policy_doc": {
+   "v1": {
+    "abstained": 3,
+    "action_unchanged": 7,
+    "contained": 7,
+    "detected": 0,
+    "detected_by_discriminating_rule_AR26_or_AR27": 0,
+    "n": 7,
+    "rules_fired": {},
+    "stale_source_cited": 0
+   },
+   "v2": {
+    "abstained": 3,
+    "action_unchanged": 7,
+    "contained": 7,
+    "detected": 7,
+    "detected_by_discriminating_rule_AR26_or_AR27": 7,
+    "n": 7,
+    "rules_fired": {
+     "AR-18": 7,
+     "AR-27": 7
+    },
+    "stale_source_cited": 0
+   }
+  },
+  "unverified_note": {
+   "v1": {
+    "abstained": 3,
+    "action_unchanged": 7,
+    "contained": 7,
+    "detected": 0,
+    "detected_by_discriminating_rule_AR26_or_AR27": 0,
+    "n": 7,
+    "rules_fired": {},
+    "stale_source_cited": 0
+   },
+   "v2": {
+    "abstained": 3,
+    "action_unchanged": 7,
+    "contained": 7,
+    "detected": 7,
+    "detected_by_discriminating_rule_AR26_or_AR27": 7,
+    "n": 7,
+    "rules_fired": {
+     "AR-18": 7,
+     "AR-27": 7
+    },
+    "stale_source_cited": 0
+   }
+  }
+ },
+ "golden_false_conflict_check": {
+  "advisory_numeric": 0,
+  "blocking": 0,
+  "blocking_ids": [],
+  "by_split": {
+   "dev": {
+    "blocking": 0,
+    "questions": 38
+   },
+   "test": {
+    "blocking": 0,
+    "questions": 17
+   }
+  },
+  "questions": 55,
+  "resolved_status_rule": 1
+ },
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+ "latency": {
+  "calls": 100,
+  "note": "wall clock, warm, this machine",
+  "v1_ms": {
+   "p50": 11.6,
+   "p95": 23.6
+  },
+  "v2_ms": {
+   "p50": 20.1,
+   "p95": 42.8
+  }
+ },
+ "revision": "v2.1",
+ "rules_version": "authority-rules-v2",
+ "stale_document_20_trials": {
+  "rows_v1": [
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "contained": true,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 0,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": false,
+    "action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "action_unchanged": true,
+    "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15"
+    ],
+    "seed": 1,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "REQUEST_RECOUNT",
+    "action_unchanged": true,
+    "clean_action": "REQUEST_RECOUNT",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15"
+    ],
+    "seed": 2,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "action_unchanged": true,
+    "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15"
+    ],
+    "seed": 3,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "contained": true,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 4,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": false,
+    "action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "action_unchanged": true,
+    "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15"
+    ],
+    "seed": 5,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "contained": false,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 6,
+    "source_in_match_list": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "contained": true,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 7,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "contained": true,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 8,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "contained": true,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 9,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "contained": false,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 10,
+    "source_in_match_list": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": false,
+    "action": "REQUEST_RECOUNT",
+    "action_unchanged": true,
+    "clean_action": "REQUEST_RECOUNT",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15"
+    ],
+    "seed": 11,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "action_unchanged": true,
+    "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15"
+    ],
+    "seed": 12,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "action_unchanged": true,
+    "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15"
+    ],
+    "seed": 13,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "contained": true,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 14,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "contained": true,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 15,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "contained": false,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 16,
+    "source_in_match_list": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "contained": false,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 17,
+    "source_in_match_list": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "contained": true,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 18,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "contained": true,
+    "detected": false,
+    "rules_fired": [],
+    "seed": 19,
+    "source_in_match_list": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   }
+  ],
+  "rows_v2": [
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-18",
+     "AR-27"
+    ],
+    "seed": 0,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": false,
+    "action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "action_unchanged": true,
+    "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15",
+     "AR-18"
+    ],
+    "seed": 1,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "REQUEST_RECOUNT",
+    "action_unchanged": true,
+    "clean_action": "REQUEST_RECOUNT",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15",
+     "AR-18"
+    ],
+    "seed": 2,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "action_unchanged": true,
+    "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15",
+     "AR-18"
+    ],
+    "seed": 3,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-18",
+     "AR-27"
+    ],
+    "seed": 4,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": false,
+    "action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "action_unchanged": true,
+    "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15",
+     "AR-18"
+    ],
+    "seed": 5,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": false,
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-17",
+     "AR-18",
+     "AR-26",
+     "AR-27"
+    ],
+    "seed": 6,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-18",
+     "AR-27"
+    ],
+    "seed": 7,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-18",
+     "AR-27"
+    ],
+    "seed": 8,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-18",
+     "AR-27"
+    ],
+    "seed": 9,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": false,
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-17",
+     "AR-18",
+     "AR-26",
+     "AR-27"
+    ],
+    "seed": 10,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": false,
+    "action": "REQUEST_RECOUNT",
+    "action_unchanged": true,
+    "clean_action": "REQUEST_RECOUNT",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15",
+     "AR-18"
+    ],
+    "seed": 11,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "action_unchanged": true,
+    "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15",
+     "AR-18"
+    ],
+    "seed": 12,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": false,
+    "action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "action_unchanged": true,
+    "clean_action": "DRAFT_PURCHASE_RECOMMENDATION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-15",
+     "AR-18"
+    ],
+    "seed": 13,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "stale_portal_note"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-18",
+     "AR-27"
+    ],
+    "seed": 14,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-18",
+     "AR-27"
+    ],
+    "seed": 15,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-17",
+     "AR-18",
+     "AR-26",
+     "AR-27"
+    ],
+    "seed": 16,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-17",
+     "AR-18",
+     "AR-26",
+     "AR-27"
+    ],
+    "seed": 17,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-18",
+     "AR-27"
+    ],
+    "seed": 18,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "contained": true,
+    "detected": true,
+    "rules_fired": [
+     "AR-18",
+     "AR-27"
+    ],
+    "seed": 19,
+    "source_in_match_list": true,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   }
+  ],
+  "v1": {
+   "ALL": {
+    "contained": 16,
+    "detected": 7,
+    "n": 20,
+    "stale_source_cited": 4
+   },
+   "contradictory_canonical": {
+    "abstained": 2,
+    "action_unchanged": 4,
+    "contained": 0,
+    "detected": 0,
+    "detected_by_discriminating_rule_AR26_or_AR27": 0,
+    "n": 4,
+    "rules_fired": {},
+    "stale_source_cited": 4
+   },
+   "stale_portal_note": {
+    "abstained": 0,
+    "action_unchanged": 7,
+    "contained": 7,
+    "detected": 7,
+    "detected_by_discriminating_rule_AR26_or_AR27": 0,
+    "n": 7,
+    "rules_fired": {},
+    "stale_source_cited": 0
+   },
+   "superseded_policy_doc": {
+    "abstained": 0,
+    "action_unchanged": 3,
+    "contained": 3,
+    "detected": 0,
+    "detected_by_discriminating_rule_AR26_or_AR27": 0,
+    "n": 3,
+    "rules_fired": {},
+    "stale_source_cited": 0
+   },
+   "unverified_note": {
+    "abstained": 3,
+    "action_unchanged": 6,
+    "contained": 6,
+    "detected": 0,
+    "detected_by_discriminating_rule_AR26_or_AR27": 0,
+    "n": 6,
+    "rules_fired": {},
+    "stale_source_cited": 0
+   }
+  },
+  "v2": {
+   "ALL": {
+    "contained": 20,
+    "detected": 20,
+    "n": 20,
+    "stale_source_cited": 0
+   },
+   "contradictory_canonical": {
+    "abstained": 4,
+    "action_unchanged": 2,
+    "contained": 4,
+    "detected": 4,
+    "detected_by_discriminating_rule_AR26_or_AR27": 4,
+    "n": 4,
+    "rules_fired": {
+     "AR-18": 4,
+     "AR-26": 4,
+     "AR-27": 4
+    },
+    "stale_source_cited": 0
+   },
+   "stale_portal_note": {
+    "abstained": 0,
+    "action_unchanged": 7,
+    "contained": 7,
+    "detected": 7,
+    "detected_by_discriminating_rule_AR26_or_AR27": 0,
+    "n": 7,
+    "rules_fired": {
+     "AR-18": 7
+    },
+    "stale_source_cited": 0
+   },
+   "superseded_policy_doc": {
+    "abstained": 0,
+    "action_unchanged": 3,
+    "contained": 3,
+    "detected": 3,
+    "detected_by_discriminating_rule_AR26_or_AR27": 3,
+    "n": 3,
+    "rules_fired": {
+     "AR-18": 3,
+     "AR-27": 3
+    },
+    "stale_source_cited": 0
+   },
+   "unverified_note": {
+    "abstained": 3,
+    "action_unchanged": 6,
+    "contained": 6,
+    "detected": 6,
+    "detected_by_discriminating_rule_AR26_or_AR27": 6,
+    "n": 6,
+    "rules_fired": {
+     "AR-18": 6,
+     "AR-27": 6
+    },
+    "stale_source_cited": 0
+   }
+  }
+ },
+ "v2_0_first_run_before_revision": {
+  "causes": [
+   "R2 compared sprint numbers and list enumerators ((1), Sprint 22) between D-81 and D-82 and other decisions",
+   "R1 read 'Plain statement allowed ... We do not serve beef or pork' as PERMIT against D-54's beef-free"
+  ],
+  "clean_control_130_runs": {
+   "AR_26_false_alerts": 58,
+   "actions_changed": 0,
+   "policy_abstentions_v1": 30,
+   "policy_abstentions_v2": 88
+  },
+  "golden_55_questions": {
+   "blocking_conflicts": 12,
+   "from_R1_polarity": 1,
+   "from_R2_numeric": 11
+  },
+  "later_bug_fixed_before_final_run": "PERMIT_RE matched 'allowed' inside 'not allowed', making every such sentence MIXED (ignored); fixed by stripping prohibition matches before testing for permit. Golden-question and control results were re-measured after the fix.",
+  "note": "first run of the rule set BEFORE revision (R2 on any numeral; no 'do not serve' prohibition). Recorded from the first execution of this script; kept because it is a failure that shaped the revision."
+ }
+}
