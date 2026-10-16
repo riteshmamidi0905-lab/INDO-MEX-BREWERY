@@ -1,0 +1,4 @@
+CREATE TABLE menu(item_id TEXT PRIMARY KEY);
+CREATE TABLE sales(sale_id INTEGER PRIMARY KEY, item_id TEXT);
+INSERT INTO menu VALUES('M1'),('M2'),('M3'),('M4');
+INSERT INTO sales VALUES(1,'M1'),(2,'M2'),(3,NULL),(4,'M1');

@@ -1,0 +1,27 @@
+{
+ "columns": [
+  "item_name",
+  "units"
+ ],
+ "rows": [
+  [
+   "Gobi Taco",
+   5
+  ],
+  [
+   "Mango Habanero Gobi",
+   10
+  ]
+ ],
+ "trap_rows": [
+  [
+   "Gobi Taco",
+   10
+  ],
+  [
+   "Mango Habanero Gobi",
+   10
+  ]
+ ],
+ "ordered": true
+}

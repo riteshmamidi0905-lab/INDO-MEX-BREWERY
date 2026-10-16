@@ -1,0 +1,19 @@
+{
+ "columns": [
+  "on_time_rate",
+  "known_deliveries"
+ ],
+ "rows": [
+  [
+   0.75,
+   12
+  ]
+ ],
+ "trap_rows": [
+  [
+   0.46296296296296297,
+   3
+  ]
+ ],
+ "ordered": true
+}

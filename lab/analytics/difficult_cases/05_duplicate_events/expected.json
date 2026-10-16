@@ -1,0 +1,19 @@
+{
+ "columns": [
+  "completed_orders",
+  "completed_usd"
+ ],
+ "rows": [
+  [
+   3,
+   77.0
+  ]
+ ],
+ "trap_rows": [
+  [
+   7,
+   162.0
+  ]
+ ],
+ "ordered": true
+}
