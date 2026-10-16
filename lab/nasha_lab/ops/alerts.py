@@ -103,28 +103,22 @@ class AlertEvaluator:
 
 # ======================================================================================================= incidents
 def correlate(alerts, taxonomy):
-    """Group alerts of one subject: child classes (taxonomy.correlation) attach to the parent incident."""
-    children = {}
+    """Group alerts per subject. A class that the taxonomy lists as a child of another class present on the same subject is attached to that parent's incident."""
+    child_of = {}
     for parent, kids in taxonomy["correlation"].items():
-        for k in kids: children.setdefault(k, set()).add(parent)
+        for k in kids: child_of.setdefault(k, set()).add(parent)
     by_sub = {}
     for a in alerts: by_sub.setdefault(a["subject"], []).append(a)
     groups = []
     for sub, al in by_sub.items():
-        classes = {a["cls"] for a in al}
-        for a in sorted(al, key=lambda x: (x["step"], x["rule_id"])):
-            parents = children.get(a["cls"], set()) & classes
-            if parents:
-                p = sorted(parents)[0]; g = next(g for g in groups if g["subject"] == sub and g["primary"]["cls"] == p)
-                g["related"].append(a); continue
-            g = next((g for g in groups if g["subject"] == sub and g["primary"]["cls"] == a["cls"]), None)
-            if g: g["related"].append(a)
-            else: groups.append(dict(subject=sub, primary=a, related=[]))
-        # parents that appeared later than their children: re-home any child groups
-        for g in list(groups):
-            if g["subject"] == sub and children.get(g["primary"]["cls"], set()) & classes:
-                p = sorted(children[g["primary"]["cls"]] & classes)[0]; tgt = next(x for x in groups if x["subject"] == sub and x["primary"]["cls"] == p)
-                tgt["related"] += [g["primary"]] + g["related"]; groups.remove(g)
+        al = sorted(al, key=lambda x: (x["step"], x["rule_id"])); present = {a["cls"] for a in al}
+        primaries = {c for c in present if not (child_of.get(c, set()) & present)}
+        gs = {c: dict(subject=sub, primary=next(a for a in al if a["cls"] == c), related=[]) for c in sorted(primaries)}
+        for a in al:
+            home = a["cls"] if a["cls"] in gs else sorted(child_of[a["cls"]] & present)[0]
+            while home not in gs: home = sorted(child_of[home] & present)[0]
+            if gs[home]["primary"] is not a: gs[home]["related"].append(a)
+        groups += list(gs.values())
     return groups
 
 

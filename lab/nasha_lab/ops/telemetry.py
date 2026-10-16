@@ -89,6 +89,7 @@ class ExecStack:
     def _execute(self, w, name, args, ctx=None):
         ctx = ctx or T.ToolContext(); t0 = self.clock(); spec = T.TOOLS.get(name); perm = spec.permission if spec else None
         attempts, res, retried_codes, circuit_open = 0, None, [], False
+        kb_events0 = len(getattr(ctx.kb, "events", None) or []) if name == "get_current_policy" else 0
         pol = self.retry
         while True:
             if self.breaker is not None and not self.breaker.allow(name):
@@ -115,7 +116,7 @@ class ExecStack:
         if name == "get_current_policy" and d is not None:
             s["retrieval"] = dict(abstained=bool(d.get("abstained")), n_citations=len(d.get("citations", [])), nonauth=len(d.get("non_authoritative_matches", [])),
                                   nonauth_statuses=sorted({m.get("effective_status") for m in d.get("non_authoritative_matches", [])}), injection=len(d.get("injection_flagged", [])),
-                                  cited_statuses=sorted({c.get("effective_status") for c in d.get("citations", [])}), fallback=d.get("retriever_fallback"))
+                                  cited_statuses=sorted({c.get("effective_status") for c in d.get("citations", [])}), fallback=(len(getattr(ctx.kb, "events", None) or []) > kb_events0) or None)
         if name == "get_supplier_notes_untrusted" and d is not None: s["untrusted"] = dict(ok=d.get("ok"), flags=list(d.get("flags", [])))
         self.samples.append(s)
         return res

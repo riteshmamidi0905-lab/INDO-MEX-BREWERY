@@ -157,8 +157,8 @@ STALE_DOCS = {
 }
 
 
-def f_stale(seed):
-    r = rng_for("stale_document", seed); variant = r.choice(["superseded_policy_doc", "unverified_note", "contradictory_canonical", "stale_portal_note", "stale_portal_note"])
+def f_stale(seed, variant=None):
+    r = rng_for("stale_document", seed); variant = variant or r.choice(["superseded_policy_doc", "unverified_note", "contradictory_canonical", "stale_portal_note", "stale_portal_note"])
     if variant == "stale_portal_note": sc = r.choice(pool(["INVENTORY"])); docs = []; portal = "stale"; bad_path = None
     else:
         sc = r.choice(pool(["POLICY"])); d = STALE_DOCS[variant]; docs = [dict(source_path=d["source_path"], text=d["text"], **{"class": d["cls"]})]; portal = None; bad_path = d["source_path"]
