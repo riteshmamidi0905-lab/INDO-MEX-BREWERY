@@ -2,6 +2,20 @@
 
 **SYNTHETIC ENTERPRISE / ASSUMPTION-DRIVEN / SAME AUTHOR / NOT DEPLOYED.** NASHA is an independent founder concept: no restaurant, customer, supplier, interview, revenue or deployment exists. Personas are SIMULATED and are not evidence of demand. Money and volumes are placeholders. Targets are DESIGN TARGETS. Mango Habanero Gobi is an untested design hypothesis and plays no role here.
 
+## The case at a glance (read this first)
+
+| Stage | What this case says |
+|---|---|
+| Business problem | A stock, data-quality or policy exception arrives; a person must decide what to do, quickly and without a silent mistake (SIMULATED stakeholders; no real operation) |
+| Baseline | Deterministic rules plus a human approver (non-AI options N0, N1, N2 in `03-options-and-decision-matrix.md`) |
+| AI hypothesis | A language-model planner or add-on could detect or decide better than the rules, or write better supplier messages |
+| Evaluation | Frozen planner results re-analysed by event family (`product_case/analysis.py`), a seeded expected-cost model with PLACEHOLDER money, and a pre-stated decision rule |
+| Risk | Silent all-clears, forbidden-ingredient (D-54) misses, latency, cost, rubber-stamp review; all quantified or listed in `06-decision-memo.md` |
+| Decision | No AI in the decision path; templates first for messages |
+| Why rules win here | Rules: 0 of 119 silent all-clears; the 1.5B model: 30 of 59 raw. The same author wrote the scenarios, so this shows the harness, not the world |
+| What would reopen it | A labelled set of real exceptions where a model catches defects the rules miss without adding false alarms; owner-approved gates G-S, G-L and G-D in `07-rollout-and-roadmap.md` |
+| Two shadow experiments | EXPERIMENTAL, NOT APPROVED, NOT PRODUCTION, NOT BUSINESS VALIDATION. Add-only: they can only add escalations |
+
 ## The answer
 
 **For the decision core: no.** Detection, coverage arithmetic, the D-54 dietary verdict, supplier selection and approval should be deterministic rules plus a human approver. For the language edge (supplier messages, explanations): **not yet**; ship a template, and let a language model in only as a gated, shadow-only experiment that has to beat it on pre-registered measures.
