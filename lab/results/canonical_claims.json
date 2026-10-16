@@ -1,0 +1,40 @@
+{
+ "data_quality": {
+  "clean_dataset_findings": 0,
+  "detected_precision_recall_1": 11,
+  "eval_rule_keys": 12,
+  "injected_defect_types": 12,
+  "undetected": [
+   "near_duplicate_shifted"
+  ]
+ },
+ "failure_injection_scenarios": 22,
+ "mutation": {
+  "killed": 22,
+  "valid": 22
+ },
+ "planner": {
+  "deterministic_pass": "259/259",
+  "qwen1.5b_guardrail_pass": "8/140",
+  "qwen1.5b_raw_pass": "5/140",
+  "qwen1.5b_ts1_required_tools": "22/140",
+  "qwen1.5b_ts2_required_tools": "67/140",
+  "qwen7b_guardrail_pass": "11/35",
+  "qwen7b_raw_pass": "10/35",
+  "wrong_silent_no_action_ts1_guardrail": 0,
+  "wrong_silent_no_action_ts1_raw": 30,
+  "wrong_silent_no_action_ts2_guardrail": 0,
+  "wrong_silent_no_action_ts2_raw": 2
+ },
+ "retrieval_mrr": {
+  "bm25": "0.913",
+  "hybrid_minilm": "0.842",
+  "minilm": "0.672",
+  "static_neural": "0.259"
+ },
+ "tools": {
+  "exposed": 17,
+  "mcp": 9,
+  "registered": 19
+ }
+}
