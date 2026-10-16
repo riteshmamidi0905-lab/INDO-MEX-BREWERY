@@ -1,0 +1,22 @@
+  Model
+    architecture        qwen2     
+    parameters          14.8B     
+    context length      32768     
+    embedding length    5120      
+    quantization        Q4_K_M    
+
+  Capabilities
+    completion    
+    tools         
+
+  System
+    You are Qwen, created by Alibaba Cloud. You are a helpful assistant.    
+
+  License
+    Apache License               
+    Version 2.0, January 2004    
+    ...                          
+
+NAME                    ID              SIZE      MODIFIED               
+qwen2.5:14b-instruct    7cdf5a0187d5    9.0 GB    Less than a second ago    
+{"version":"0.40.5"}
