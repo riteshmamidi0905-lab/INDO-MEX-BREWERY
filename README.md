@@ -1,9 +1,11 @@
 # INDO MEX BREWERY
 
+> **For recruiters and reviewers.** This repository holds two separate things: an independent **founder hospitality concept** for Austin (not operating: no restaurant, customers, sales, staff or brewing) and the **Hospitality AI Lab**, a synthetic hospitality enterprise used to test where AI belongs in operations and where it does not. Start with the case study at https://riteshmamidi0905-lab.github.io/nasha-lab.html; the lab code is in `lab/` on branch `claude/nasha-enterprise-ai-lab`. All technical results here use synthetic data and same-author evaluation.
+
 > NOTE: the sprint log ends at 16 and 'no website code' is superseded; a concept prototype exists in website/ (noindex, not deployed). Current state: docs/FOUNDER-CONTROL-CENTER.md and docs/FOUNDER-ACTION-BOARD.md.
 
 Permanent source of truth for the project. Founder: Ritesh Mamidi. Target market: Austin, Texas.
-**Brand name: NASHA** (founder-selected, 2026-10-11; `SELECTED_BY_FOUNDER — LEGAL CLEARANCE PENDING`, D-62). This is not trademark clearance. "INDO MEX BREWERY" remains the repository and working name in earlier history; see `brand/NASHA-BRAND-STRATEGY.md` and `phase-one/09-brand-identity.md` (history).
+**Public name: none yet.** The internal working name that appears in file and folder names is not a public brand and has not been legally cleared (the earlier founder selection is recorded as D-62; brand material lives in `brand/` and is internal). "INDO MEX BREWERY" remains the repository name.
 
 ## Rules for this repo
 1. Nothing is deleted. Rejected ideas move to `docs/decisions/REJECTED.md` with the reason.
