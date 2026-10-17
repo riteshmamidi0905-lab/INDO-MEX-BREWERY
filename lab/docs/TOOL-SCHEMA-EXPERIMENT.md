@@ -20,6 +20,8 @@ In Block 3 the Qwen2.5 planners called the required evidence tools in only ~15% 
 - **Not done:** no second prompt variant, no tuning on any split, no larger model, no few-shot examples.
 
 ## Results
+> **Correction (career evidence audit, 2026-10-16):** an earlier version of this table showed 0 wrong silent `NO_ACTION` for ts2 raw. The committed result (`results/tool_schema_result.json`, computed by `tool_schema_report.py` from the raw rows: `HEL-INV-low_cover_po_late-01`, `HELB-INV-timeout_risk-37`) is **2**. The table had been typed by hand. Values are now checked by `tests/test_claim_consistency.py`.
+
 **Run:** CI run 38803177815 (commit d69c89b), qwen2.5:1.5b-instruct Q4_K_M (Ollama model id `65ec06548149`, 986 MB), 140 scenarios, 4 splits, temperature 0, seed 7. Raw per-scenario traces: `results/traces/ts2_1.5b_140_raw.jsonl`. Summary: `results/tool_schema_result.json` (`python -m nasha_lab.tool_schema_report`). Paired on 139 shared ids (one scenario id is duplicated in the Block 3 set, see `results/ERRATA.md`).
 
 | | ts1 (original, Block 3 run 2) | ts2 (simplified) | ts2 + evidence guardrail |
@@ -29,7 +31,7 @@ In Block 3 the Qwen2.5 planners called the required evidence tools in only ~15% 
 | correct action | 52 / 140 | 74 / 140 | 86 / 140 |
 | invalid tool arguments | 209 | 72 | 65 |
 | refused tool requests (unknown / forbidden names) | 119 | **0** | 0 |
-| wrong silent `NO_ACTION` | 30 | 0 | 0 |
+| wrong silent `NO_ACTION` (final action `NO_ACTION` while the scenario required action) | 30 | **2** | 0 |
 | schema failures (decision step) | 3 | **37** | 37 |
 | median latency | 28.0 s | 33.5 s | cached replies |
 

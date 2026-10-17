@@ -101,7 +101,7 @@ python -m nasha_lab.evaluate v1 | diff - results/eval_v1.json           # evalua
 | Claim | Evidence |
 |---|---|
 | Block 1: 30 tests pass | `tests/test_platform.py`; also run in `.github/workflows/lab-ci.yml` and `tools/validate_all.sh` |
-| 10 of 11 detectable defect types found with precision 1.0 and recall 1.0 over 5 seeds x 8 injections | `results/eval_v1.json` |
+| 11 of 12 injected defect types detected with precision 1.0 and recall 1.0 over 5 seeds x 8 injections (the 12th, a copy shifted by 1 s, is a recorded undetected gap) | `results/eval_v1.json` |
 | 0 findings on the clean dataset (no false positives over 5 seeds) | `results/eval_v1.json` -> `clean_dataset_findings` |
 | Fail-then-fix: `near_duplicate_order` recall 0.0 in baseline v0, 1.0 after adding the rule | `results/eval_v0_baseline.json` vs `eval_v1.json` |
 | Honest remaining gap: a copy shifted by 1 second is NOT detected (recall 0.0) | `test_known_limitation_...`, `docs/EVALUATION.md` |

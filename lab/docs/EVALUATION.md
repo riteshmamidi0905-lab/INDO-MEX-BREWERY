@@ -9,6 +9,8 @@ Protocol: seeds 1-5, 8 injected defects per type per seed (40 per type), each de
 | near_duplicate_order | 40 | 1.0 (v0: **0.0**) | 1.0 |
 | near_duplicate_shifted (copy +1 s) | 40 | **0.0** | n/a |
 
+**Counting (canonical).** 12 defect types are injected and there is one rule key per type (12 evaluated). 11 are detected with recall 1.0 and precision 1.0; the 12th (`near_duplicate_shifted`) is a recorded gap with recall 0.0. "10 of 11 detectable" in earlier README text was a miscount.
+
 **How to read this.** Perfect scores on easy, author-designed defects are expected and are **not** evidence of real-world quality. What is evidence: the evaluation can fail (v0 baseline), a failure was fixed by a specific change, one real pipeline bug was caught by the conservation invariant, tests catch deliberately broken rules, and a known gap is recorded rather than hidden.
 
 **Failures found and handled**
