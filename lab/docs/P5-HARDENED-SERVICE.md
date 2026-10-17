@@ -276,7 +276,7 @@ Found by the failure and security tests and fixed with regression tests: a servi
 | | docker (the legacy image) | success |
 | lab-ci 38967684841 (head `13adf4a`, earlier) | test | failure: `ModuleNotFoundError: pydantic_settings` (requirements-dev not yet updated in that commit; fixed in `f32e62b`) |
 
-All three causes are in `P5-FAILURE-LOG.md` section A2 and were fixed in the next commit; the result of the run on that commit is recorded in `CI_FINAL_PLACEHOLDER`.
+All three causes are in `P5-FAILURE-LOG.md` section A2 and were fixed in the next commit; the result of the run on that commit is recorded here: on commit 24736e8, p5-service-ci run 39007698821 concluded **success** in all three jobs (lint/types/hadolint/secret scan; unit, integration on PostgreSQL, contract, security, migration up/down with no skips; docker build, compose up, readiness, contract smoke, hardening facts and graceful stop) and lab-ci run 39007698625 concluded **success** (test and docker jobs). The Docker evidence is therefore CI-only; local Docker was NOT verified (no daemon in the authoring sandbox).
 
 Docker evidence, plainly: locally only the client-side `docker compose config -q` was run. Everything else (image build, hadolint, compose up, healthchecks, non-root and read-only-rootfs facts, the container smoke test, graceful stop) rests on the CI jobs above.
 
