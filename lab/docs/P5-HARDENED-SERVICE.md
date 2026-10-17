@@ -252,7 +252,33 @@ Found by the failure and security tests and fixed with regression tests: a servi
 
 ## 14. Evidence
 
-Local run (this sandbox, Python 3.13, real PostgreSQL 16.2 through `pgserver`): see `results/p5/failure_scenarios.json` and the counts in `P5-FAILURE-LOG.md`. Test files in `tests/p5/`: unit (config, secrets, tokens, limiter, observability, error table), migrations (13), service integration, security, contract, failures (22 tests, 21 recorded scenarios), properties (5), deploy-static (10). `CI_RESULT_PLACEHOLDER`
+**Local (this sandbox, Python 3.13, real PostgreSQL 16.2 through `pgserver`):** the whole lab suite `cd lab && python3 -m pytest -q -p no:cacheprovider tests` gave **555 passed, 3 skipped** (the skips are older optional integrations). `tests/p5/` has 181 tests; ruff and mypy are clean on `nasha_lab/service` and `tests/p5`.
+
+| Kind | File | Tests |
+|---|---|---|
+| unit (config, secrets, tokens, limiter, observability, error table) | `test_p5_unit.py` | 54 |
+| property-based (hypothesis) | `test_p5_properties.py` | 5 |
+| migration (real PostgreSQL) | `test_p5_migrations.py` | 13 |
+| integration (real PostgreSQL) | `test_p5_service.py` | 31 |
+| security | `test_p5_security.py` | 32 |
+| contract (normalised OpenAPI snapshot, response models, error table) | `test_p5_contract.py` | 9 |
+| failure injection (28 recorded scenarios in `results/p5/failure_scenarios.json`, all passing; some tests record two) | `test_p5_failures.py` | 27 |
+| deployment files, static | `test_p5_deploy_static.py` | 10 (one needs hadolint and skips locally; `docker compose config -q` runs and passes locally) |
+
+**CI (GitHub Actions), the only evidence for anything involving a Docker daemon.** First runs, head `f32e62b`:
+
+| Run | Job | Conclusion |
+|---|---|---|
+| p5-service-ci 38970640269 | lint, types, Dockerfile lint (hadolint), secret scan | success |
+| | unit, integration (PostgreSQL), contract, security, migration up/down (pgvector service container, no skips allowed) | success |
+| | docker build, compose config, up, health, contract smoke | failure, only at the final graceful-stop step; the image built, `compose config -q` passed, migrate job applied 1..3, api became ready, every contract smoke call and the hardening checks passed, and the shutdown log lines were present; the container exited 143 (SIGTERM re-raised by uvicorn) where the step expected 0 (finding P5-C3) |
+| lab-ci 38970640194 | test (full suite, requirements-dev) | failure: 2 tests failed, 554 passed, 2 skipped (P5-C1 OpenAPI snapshot sensitive to the pydantic version; P5-C2 a test that confused the CI password `nasha` with the logger name) |
+| | docker (the legacy image) | success |
+| lab-ci 38967684841 (head `13adf4a`, earlier) | test | failure: `ModuleNotFoundError: pydantic_settings` (requirements-dev not yet updated in that commit; fixed in `f32e62b`) |
+
+All three causes are in `P5-FAILURE-LOG.md` section A2 and were fixed in the next commit; the result of the run on that commit is recorded in `CI_FINAL_PLACEHOLDER`.
+
+Docker evidence, plainly: locally only the client-side `docker compose config -q` was run. Everything else (image build, hadolint, compose up, healthchecks, non-root and read-only-rootfs facts, the container smoke test, graceful stop) rests on the CI jobs above.
 
 ## 15. Known limitations and residual risks
 

@@ -227,8 +227,15 @@ def test_no_secret_or_token_appears_in_logs_responses_or_errors(migrated_db, key
                 seen.append(r.text + json.dumps(dict(r.headers)))
         seen.append(c.get("/readyz").text)
     blob = buf.getvalue() + "".join(seen)
-    for secret in (keys.k1, keys.k2, good, good.split(".")[1], good.split(".")[2]) + ((dsn_pw.group(1),) if dsn_pw else ()):
-        assert secret not in buf.getvalue() and secret not in "".join(seen).replace(good, "") or secret == good and secret not in buf.getvalue(), secret[:8]
+    logs, responses = buf.getvalue(), "".join(seen)
+    for secret in (keys.k1, keys.k2, good, good.split(".")[1], good.split(".")[2]):
+        assert secret not in logs, secret[:8]
+        assert secret not in responses.replace(good, ""), secret[:8]
+    # a database password can be a short dictionary word (CI uses the word 'nasha', which is also the logger name), so look for it in the forms in which it could leak
+    if dsn_pw:
+        pw = dsn_pw.group(1)
+        for form in (f"password={pw}", f":{pw}@", f"password: {pw}"):
+            assert form not in logs and form not in responses, form
     assert "Traceback" not in blob and "psycopg" not in blob and "postgresql://" not in blob
     for line in buf.getvalue().splitlines(): json.loads(line)                                     # every log line is valid JSON
 

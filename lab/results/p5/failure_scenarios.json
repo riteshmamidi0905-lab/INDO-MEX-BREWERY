@@ -26,7 +26,7 @@
    },
    "passed": true,
    "scenario": "database unavailable at start",
-   "wall_clock_ms_NOT_DETERMINISTIC": 3442.2
+   "wall_clock_ms_NOT_DETERMINISTIC": 3361.1
   },
   {
    "expected_stated_before_running": "The connection dies after the agent started the run but before the row is written: 503 (DB_UNAVAILABLE), no runs row, no idempotency row, one orphan agent run. The breaker then opens (fast 503 without waiting). After recovery the SAME Idempotency-Key succeeds with reconciled=true and the agent still has exactly one run for the event.",
@@ -54,7 +54,7 @@
    },
    "passed": true,
    "scenario": "database lost mid-request (between agent effect and DB write)",
-   "wall_clock_ms_NOT_DETERMINISTIC": 15238.1
+   "wall_clock_ms_NOT_DETERMINISTIC": 15217.8
   },
   {
    "expected_stated_before_running": "A statement slower than db_statement_timeout_ms is cancelled by PostgreSQL: 504 DB_TIMEOUT, advised retry only with the same key. When every pooled connection is busy the next request waits at most db_pool_timeout_s then gets 503 DB_POOL_EXHAUSTED with Retry-After. Afterwards the pool is healthy: the next normal request is 200 and no connection stays in 'idle in transaction'.",
@@ -78,7 +78,7 @@
    },
    "passed": true,
    "scenario": "slow database: statement timeout and pool timeout",
-   "wall_clock_ms_NOT_DETERMINISTIC": 1152.6
+   "wall_clock_ms_NOT_DETERMINISTIC": 1148.0
   },
   {
    "expected_stated_before_running": "With 0.8 s added to every database packet and a 1 s request deadline, a DB-backed request returns 504 DEADLINE_EXCEEDED (or 503) within about 2 s instead of hanging; with the delay removed requests succeed again.",
@@ -94,7 +94,7 @@
    },
    "passed": true,
    "scenario": "slow network to the database (added latency)",
-   "wall_clock_ms_NOT_DETERMINISTIC": 2127.6
+   "wall_clock_ms_NOT_DETERMINISTIC": 2107.9
   },
   {
    "expected_stated_before_running": "No/garbage/forged token: 401 AUTH_REQUIRED or AUTH_INVALID_TOKEN; expired token: 401 AUTH_TOKEN_EXPIRED; zero database connections used and zero rows written for all of them.",
@@ -189,7 +189,7 @@
    },
    "passed": true,
    "scenario": "duplicate request (idempotency)",
-   "wall_clock_ms_NOT_DETERMINISTIC": 178.0
+   "wall_clock_ms_NOT_DETERMINISTIC": 162.5
   },
   {
    "expected_stated_before_running": "query_inventory is SAFE_TO_RETRY, so a timing-out tool is attempted 3 times (policy max_attempts) and then returns 504 TOOL_TIMEOUT with attempts=3 and policy_actions [RETRY, RETRY, ...]; the total stays within the request deadline; a mutating route is never retried by this path.",
@@ -210,7 +210,7 @@
    },
    "passed": true,
    "scenario": "tool timeout",
-   "wall_clock_ms_NOT_DETERMINISTIC": 1070.0
+   "wall_clock_ms_NOT_DETERMINISTIC": 1061.1
   },
   {
    "expected_stated_before_running": "A tool that always raises (upstream 500): 502 UPSTREAM_FAILURE after 3 attempts; consecutive failures open the per-tool circuit breaker, after which calls fail fast with 503 DEPENDENCY_UNAVAILABLE and ZERO attempts; a transient fault that clears after 2 failures is absorbed (200 with attempts=3); the retry budget is respected.",
@@ -235,7 +235,7 @@
    },
    "passed": true,
    "scenario": "upstream 500 (retry, breaker, recovery)",
-   "wall_clock_ms_NOT_DETERMINISTIC": 235.0
+   "wall_clock_ms_NOT_DETERMINISTIC": 226.1
   },
   {
    "expected_stated_before_running": "Truncated JSON, invalid UTF-8, wrong types, unknown fields, NUL bytes, wrong media type, oversize body: only 4xx envelopes (400/413/415/422); zero rows written; the agent was never called.",
@@ -274,7 +274,7 @@
    },
    "passed": true,
    "scenario": "schema drift: database older than the app",
-   "wall_clock_ms_NOT_DETERMINISTIC": 244.2
+   "wall_clock_ms_NOT_DETERMINISTIC": 237.8
   },
   {
    "expected_stated_before_running": "Database migrated beyond the build (extra additive migration 4): /readyz 503 SCHEMA_MISMATCH naming SCHEMA_NEWER; with allow_newer_schema=true (explicit rollback-compat switch) the same build is ready and serves requests.",
@@ -442,7 +442,7 @@
    },
    "passed": true,
    "scenario": "request deadline exceeded mid-work (cancellation and rollback)",
-   "wall_clock_ms_NOT_DETERMINISTIC": 2238.9
+   "wall_clock_ms_NOT_DETERMINISTIC": 2231.1
   },
   {
    "expected_stated_before_running": "One worker thread, three concurrent starts for different events, each agent step 1.0 s, deadline 1.5 s: one request completes (201); the other two answer 504 within the deadline; the queued one is cancelled before it starts so it creates NO agent run (agent runs = 2: one recorded, one executed-but-rolled-back), runs rows = 1.",
@@ -478,7 +478,7 @@
    },
    "passed": true,
    "scenario": "graceful shutdown with an in-flight request",
-   "wall_clock_ms_NOT_DETERMINISTIC": 778.1
+   "wall_clock_ms_NOT_DETERMINISTIC": 775.6
   },
   {
    "expected_stated_before_running": "While the database is unreachable /healthz is 200 and /metrics (OPERATOR token) is still 200 with nasha_db_up 0; after recovery nasha_db_up is 1. Operators can see the outage in the metrics that the outage affects.",

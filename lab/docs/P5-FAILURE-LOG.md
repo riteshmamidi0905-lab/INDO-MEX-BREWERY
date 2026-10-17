@@ -17,6 +17,15 @@
 | P5-W9 | contract | read of a run by an AUDITOR was refused `403` on `GET /v1/runs/{id}` although the role holds `runs:read_all` | AUDITOR lacked `runs:read_own`, which the route requires | permission table corrected | `test_privileged_roles_can_see_all_runs` |
 | P5-W10 | F10 malformed payloads | invalid UTF-8 body answered `422 INVALID_REQUEST "request rejected"`; a JSON array was reported as malformed JSON (400) | status mapping defaults | 400 maps to `MALFORMED_BODY`; only `json_invalid` is malformed, shape errors are 422 | `test_malformed_bodies_and_media_types` |
 
+## A2. Found by the first CI run (head f32e62b), the only place these could appear
+
+| ID | Where | First-observed behaviour | Root cause | Fix | Regression |
+|---|---|---|---|---|---|
+| P5-C1 | lab-ci `test` (full suite, requirements-dev) | `test_openapi_document_matches_the_committed_snapshot` failed: the generated OpenAPI differed from the snapshot | the snapshot recorded generator-specific spelling (constants, nullable types); the full suite installs a different pydantic than my sandbox, and the same test had passed in p5-service-ci | the contract test compares a normalised form (routes, methods, parameters, schema and status-code references, security, property names, required sets); it passes locally under pydantic 2.10.6 and 2.13.5 | `test_openapi_document_matches_the_committed_snapshot` |
+| P5-C2 | lab-ci `test` | `test_no_secret_or_token_appears_in_logs_responses_or_errors` failed: 'nasha' found in logs | the CI database password is the throw-away word `nasha`, which is also the logger name `nasha.service`; the test searched for the bare password. Not a leak (the service logs no DSN) but a test that could not tell | the test now looks for the password in the forms in which it could leak (`password=<pw>`, `:<pw>@`), and still searches keys and tokens by value | same test |
+| P5-C3 | p5-service-ci `compose-smoke` | build, `compose up`, health, the whole contract smoke and the hardening checks passed; the graceful-stop step failed on exit code | my expectation (exit 0) was wrong: uvicorn re-raises SIGTERM after a clean shutdown, so the container exits 143; the log showed "Application shutdown complete" | the step accepts 0 or 143 (137 would mean a kill) and requires the shutdown log lines | workflow step |
+| P5-C4 | earlier lab-ci run (head 13adf4a) | `ModuleNotFoundError: pydantic_settings` collecting tests/p5 | requirements-dev.txt had not yet been updated in that commit | fixed in f32e62b (dev requirements include requirements-service.txt) | CI |
+
 W8, W9 and W10 were found by the development tests on first run (not by an injected fault); W1 to W7 by failure injection or review.
 
 ## B. Scenarios that behaved as expected on the first run

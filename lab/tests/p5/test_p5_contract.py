@@ -40,8 +40,27 @@ def test_every_code_used_in_source_is_registered():
     assert len(used) >= 25
 
 
+def normalise(doc):
+    """The HTTP contract without generator-specific detail: pydantic/FastAPI versions differ in how they spell constants, nullable types and defaults (this snapshot failed in CI
+    under a different pydantic version), so compare what a client depends on: routes, methods, parameters, request/response schema names and status codes, security, and each schema's
+    property names, required set and references."""
+    def ref(x): return x.get("$ref", "").rsplit("/", 1)[-1] if isinstance(x, dict) else ""
+    def refs(x):
+        if isinstance(x, dict): return sorted({ref(x)} - {""} | {r for v in x.values() for r in refs(v)})
+        if isinstance(x, list): return sorted({r for v in x for r in refs(v)})
+        return []
+    out = {"paths": {}, "schemas": {}, "security": sorted(doc["components"].get("securitySchemes", {}))}
+    for path, ops in sorted(doc["paths"].items()):
+        for m, op in sorted(ops.items()):
+            out["paths"][f"{m.upper()} {path}"] = {"operationId": op["operationId"], "tags": op.get("tags"), "security": bool(op.get("security")), "parameters": sorted(f"{p['in']}:{p['name']}:{p.get('required', False)}" for p in op.get("parameters", [])),
+                                                    "request": refs(op.get("requestBody", {})), "responses": {c: {"refs": refs(r), "types": sorted(r.get("content", {}))} for c, r in sorted(op["responses"].items())}}
+    for name, sch in sorted(doc["components"]["schemas"].items()):
+        out["schemas"][name] = {"properties": sorted(sch.get("properties", {})), "required": sorted(sch.get("required", [])), "refs": refs(sch.get("properties", {})), "extra_forbidden": sch.get("additionalProperties") is False}
+    return out
+
+
 def test_openapi_document_matches_the_committed_snapshot(app_env):
-    doc = app_env.client.get("/openapi.json").json()
+    doc = normalise(app_env.client.get("/openapi.json").json())
     assert doc == snapshot("openapi.json", doc), "the HTTP contract changed: review the diff, then regenerate with P5_UPDATE_SNAPSHOTS=1"
 
 

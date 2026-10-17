@@ -154,7 +154,11 @@ jobs:
           CID=$($C ps -q api); START=$(date +%s)
           $C stop -t 25 api
           test $(( $(date +%s) - START )) -lt 25
-          test "$(docker inspect -f '{{.State.ExitCode}}' $CID)" = 0
+          # uvicorn re-raises SIGTERM after a clean shutdown, so a graceful stop exits 143 (128+15); 0 is also acceptable. A kill would be 137.
+          CODE=$(docker inspect -f '{{.State.ExitCode}}' $CID); echo "exit code $CODE"
+          test "$CODE" = 0 -o "$CODE" = 143
+          $C logs api 2>&1 | grep -q 'Application shutdown complete'
+          $C logs api 2>&1 | grep -q '"event": "stopping"'
       - if: failure()
         run: |
           docker compose -f lab/docker-compose.service.yml --env-file lab/.env ps -a || true
