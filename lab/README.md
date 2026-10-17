@@ -39,7 +39,7 @@ Two planners (deterministic control, LLM) behind one interface, one tool/permiss
 
 ```bash
 cd lab && pip install -r requirements-dev.txt && python -m playwright install chromium
-python -m pytest -q tests                                        # 229 tests; integrations that need a model/DB skip loudly
+python -m pytest -q tests                                        # 267 collected; integrations that need a model/DB skip loudly (CI on 9cb7ca4: 266 passed, 1 skipped; local run without PostgreSQL: 265 passed, 2 skipped; see docs/CANONICAL-FACTS.md)
 python -m nasha_lab.eval_planners deterministic out.json         # also: rule-model | worst-case | parrot | parrot+guardrail | taint-copier | ollama | ollama+guardrail
 python -m nasha_lab.compare_planners a.json b.json               # paired comparison, exact sign test
 python -m nasha_lab.eval_rag2 out.json                           # NASHA_PG_DSN=postgresql://... to include pgvector
@@ -64,7 +64,7 @@ Three scenario families (9 events): **inventory exceptions** (low cover, stale o
 | Surface | What | Where |
 |---|---|---|
 | Knowledge | 758 chunks from 82 NASHA sources with status metadata; 6 retrievers compared; 55-question golden set | `nasha_lab/knowledge.py`, `eval/rag_golden.jsonl`, [RAG-EVALUATION](docs/RAG-EVALUATION.md) |
-| Tools | 18 typed tools, 5 permission classes, approval bound to exact arguments | `nasha_lab/tools.py` |
+| Tools | 19 registered typed tools (17 callable, 2 registered-but-forbidden external-action placeholders), 5 permission classes, approval bound to exact arguments (see docs/CANONICAL-FACTS.md) | `nasha_lab/tools.py` |
 | API | FastAPI: runs, review, traces, inventory, quality, knowledge; request ids, JSON logs, one error contract | `nasha_lab/api.py` |
 | MCP | 9 read/analyze/draft tools; no mutation, SQL, filesystem or shell | `nasha_lab/mcp_server.py` |
 | Agent | LangGraph state machine with interrupt/resume and SQLite checkpoints | `nasha_lab/agent.py`, [AGENT](docs/AGENT.md) |
