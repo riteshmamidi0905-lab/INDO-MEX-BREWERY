@@ -6,7 +6,8 @@ missing measurements.
 """
 from __future__ import annotations
 
-from datetime import datetime\nfrom typing import Literal
+from datetime import datetime
+from typing import Literal
 from pydantic import BaseModel, Field
 
 MetricStatus = Literal["MEASURED", "UNAVAILABLE", "NOT_APPLICABLE"]
