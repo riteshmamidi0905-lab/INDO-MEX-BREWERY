@@ -49,7 +49,7 @@ def evaluate(root: Path | None = None, failure_runner: Callable[[], dict] = eval
 
     # Keep extraction deliberately defensive: result formats are historical evidence
     # and should fail closed if a required metric disappears.
-    defect_rows = dq.get("per_defect") or dq.get("defects") or {}
+    defect_rows = (dq.get("injected") or {}).get("per_rule") or dq.get("per_defect") or dq.get("defects") or {}
     defect_metrics = list(defect_rows.values()) if isinstance(defect_rows, dict) else defect_rows
     recalls = [float(x["recall"]) for x in defect_metrics if isinstance(x, dict) and "recall" in x]
     precisions = [float(x["precision"]) for x in defect_metrics if isinstance(x, dict) and "precision" in x]
