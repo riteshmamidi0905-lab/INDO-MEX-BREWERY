@@ -77,7 +77,7 @@ def evaluate(root: Path | None = None, failure_runner: Callable[[], dict] = eval
     passed = all(c.passed for c in checks)
     return {
         "schema_version": 1,
-        "portfolio_release_ready": passed,
+        "decision": decision,\n        "portfolio_release_ready": decision == "PASS",
         "scope": "synthetic/offline engineering evidence; not production readiness or business validation",
         "generated_unix": int(time.time()),
         "checks": [asdict(c) for c in checks],
