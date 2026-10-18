@@ -31,6 +31,7 @@ def test_result_preserves_truth_boundary_and_limitations():
         split="heldout",
         synthetic=True,
         measurement_scope="offline deterministic evaluation",
+        provenance=dict(benchmark="operations-golden", dataset_version="v1", evaluator_version="1.0", measured_at="2026-10-18T00:00:00Z", commit_sha="abc123"),
         metrics=[metric()],
         limitations=["No production traffic or user-adoption evidence."],
     )
