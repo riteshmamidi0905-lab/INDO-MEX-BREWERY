@@ -1,101 +1,144 @@
-"""Deterministic release-readiness gate for the NASHA Enterprise AI Lab.
-
-This gate never claims production readiness. It answers a narrower question:
-does the synthetic/offline engineering evidence meet the thresholds required
-before this branch may be presented as a portfolio-ready technical case study?
-"""
+"""Deterministic, fail-safe release gate over offline engineering evidence."""
 from __future__ import annotations
-
-import argparse
-import json
-import time
+import argparse, json, time
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Callable
-
+from typing import Callable, Literal
 from . import eval_failures
 
+Decision = Literal["PASS", "FAIL", "REQUIRES_REVIEW"]
 
 @dataclass(frozen=True)
 class Check:
     name: str
-    passed: bool
-    measured: float
-    threshold: float
+    decision: Decision
+    measured: float | None
+    threshold: float | None
     unit: str
     evidence: str
+    reason: str
 
+    @property
+    def passed(self) -> bool:
+        return self.decision == "PASS"
 
-def _read_json(path: Path):
+def _read_json(path: Path) -> dict:
     with path.open(encoding="utf-8") as f:
-        return json.load(f)
+        value = json.load(f)
+    if not isinstance(value, dict):
+        raise ValueError(f"{path.name}: top-level JSON must be an object")
+    return value
 
+def _metric(name: str, value, threshold: float, unit: str, evidence: str, *, higher=True) -> Check:
+    if value is None:
+        return Check(name, "REQUIRES_REVIEW", None, threshold, unit, evidence, "required metric unavailable")
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return Check(name, "REQUIRES_REVIEW", None, threshold, unit, evidence, "required metric malformed")
+    measured = float(value)
+    ok = measured >= threshold if higher else measured <= threshold
+    return Check(name, "PASS" if ok else "FAIL", measured, threshold, unit, evidence,
+                 "measured evidence satisfies policy" if ok else "measured evidence violates policy")
 
-def _fraction(ok: int, total: int) -> float:
-    return 0.0 if total == 0 else ok / total
+def _aggregate(checks: list[Check]) -> Decision:
+    if any(c.decision == "FAIL" for c in checks):
+        return "FAIL"
+    if any(c.decision == "REQUIRES_REVIEW" for c in checks):
+        return "REQUIRES_REVIEW"
+    return "PASS"
 
+def _version_check(doc: dict, expected: str, evidence: str) -> Check | None:
+    # Historical committed artifacts predate explicit evaluator metadata and are handled
+    # by their versioned legacy adapter. If metadata is present it must match.
+    version = doc.get("evaluator_version")
+    if version is None:
+        return None
+    if not isinstance(version, str):
+        return Check("evaluator_version", "REQUIRES_REVIEW", None, None, "version", evidence, "evaluator version malformed")
+    return Check("evaluator_version", "PASS" if version == expected else "REQUIRES_REVIEW",
+                 None, None, "version", evidence,
+                 "supported evaluator version" if version == expected else f"unsupported evaluator version {version!r}")
 
 def evaluate(root: Path | None = None, failure_runner: Callable[[], dict] = eval_failures.run_all) -> dict:
     root = root or Path(__file__).resolve().parents[1]
     results = root / "results"
+    checks: list[Check] = []
+    failure_cases: dict = {}
 
-    failures = failure_runner()
-    failure_pass = sum(bool(v.get("passed")) for v in failures.values())
-    failure_rate = _fraction(failure_pass, len(failures))
+    try:
+        failure_cases = failure_runner()
+        if not isinstance(failure_cases, dict) or not failure_cases:
+            checks.append(Check("security_failure_injection", "REQUIRES_REVIEW", None, 1.0, "pass_rate",
+                                "nasha_lab.eval_failures", "security evidence missing or incomplete"))
+        elif any(not isinstance(v, dict) or "passed" not in v or not isinstance(v["passed"], bool)
+                 for v in failure_cases.values()):
+            checks.append(Check("security_failure_injection", "REQUIRES_REVIEW", None, 1.0, "pass_rate",
+                                "nasha_lab.eval_failures", "security evidence malformed or incomplete"))
+        else:
+            passed = sum(v["passed"] for v in failure_cases.values())
+            checks.append(_metric("security_failure_injection", passed / len(failure_cases), 1.0,
+                                  "pass_rate", "nasha_lab.eval_failures"))
+    except Exception as exc:
+        checks.append(Check("security_failure_injection", "REQUIRES_REVIEW", None, 1.0, "pass_rate",
+                            "nasha_lab.eval_failures", f"security evaluator unavailable: {type(exc).__name__}"))
 
-    dq = _read_json(results / "eval_v1.json")
-    planner = _read_json(results / "planner_deterministic.json")
-    rag = _read_json(results / "rag2_retrieval.json")
+    docs = {}
+    for key, filename in (("dq", "eval_v1.json"), ("planner", "planner_deterministic.json"), ("rag", "rag2_retrieval.json")):
+        try:
+            docs[key] = _read_json(results / filename)
+        except (OSError, json.JSONDecodeError, ValueError) as exc:
+            checks.append(Check(key, "REQUIRES_REVIEW", None, None, "evidence", f"results/{filename}",
+                                f"required evidence unavailable or malformed: {type(exc).__name__}"))
 
-    # Keep extraction deliberately defensive: result formats are historical evidence
-    # and should fail closed if a required metric disappears.
-    defect_rows = (dq.get("injected") or {}).get("per_rule") or dq.get("per_defect") or dq.get("defects") or {}
-    defect_metrics = list(defect_rows.values()) if isinstance(defect_rows, dict) else defect_rows
-    # A shifted-near-duplicate rule is a committed known limitation (recall=0).
-    # It stays in raw evidence; supported-rule gates must not pretend null precision is zero.
-    supported = [x for x in defect_metrics if isinstance(x, dict) and x.get("recall") is not None and float(x["recall"]) > 0]
-    recalls = [float(x["recall"]) for x in supported]
-    precisions = [float(x["precision"]) for x in supported if x.get("precision") is not None]
-    min_recall = min(recalls) if recalls else 0.0
-    min_precision = min(precisions) if precisions else 0.0
+    dq = docs.get("dq")
+    if dq is not None:
+        vc = _version_check(dq, "1.0", "results/eval_v1.json")
+        if vc: checks.append(vc)
+        rows = ((dq.get("injected") or {}).get("per_rule") if isinstance(dq.get("injected"), dict) else None)
+        if not isinstance(rows, dict) or not rows:
+            checks.append(Check("data_quality", "REQUIRES_REVIEW", None, None, "metric", "results/eval_v1.json",
+                                "DQ per-rule evidence missing"))
+        else:
+            supported = [v for v in rows.values() if isinstance(v, dict) and v.get("recall") is not None and float(v["recall"]) > 0]
+            precisions = [v.get("precision") for v in supported if v.get("precision") is not None]
+            recalls = [v.get("recall") for v in supported]
+            checks.append(_metric("data_quality_precision", min(precisions) if precisions else None, .99,
+                                  "minimum_precision", "results/eval_v1.json"))
+            checks.append(_metric("data_quality_recall", min(recalls) if recalls else None, .90,
+                                  "minimum_recall", "results/eval_v1.json"))
 
-    planner_rate = float(((planner.get("overall") or {}).get("pass_rate") or {}).get("rate", 0.0))
+    planner = docs.get("planner")
+    if planner is not None:
+        try: value = ((planner.get("overall") or {}).get("pass_rate") or {}).get("rate")
+        except AttributeError: value = None
+        checks.append(_metric("deterministic_planner", value, .99, "scenario_pass_rate",
+                              "results/planner_deterministic.json"))
 
-    retrieval = rag.get("retrieval") or rag.get("summary") or rag.get("retrievers") or {}
-    bm25 = retrieval.get("bm25") or retrieval.get("BM25") or {}
-    if isinstance(bm25, dict) and "all" in bm25:
-        bm25 = (bm25.get("all") or {}).get("ALL") or {}
-    bm25_mrr = float(bm25.get("mrr", bm25.get("MRR", 0.0))) if isinstance(bm25, dict) else 0.0
+    rag = docs.get("rag")
+    if rag is not None:
+        try:
+            retrieval = rag.get("retrieval") or rag.get("summary") or rag.get("retrievers") or {}
+            bm25 = retrieval.get("bm25") or retrieval.get("BM25") or {}
+            if isinstance(bm25, dict) and "all" in bm25: bm25 = (bm25.get("all") or {}).get("ALL") or {}
+            value = bm25.get("mrr", bm25.get("MRR")) if isinstance(bm25, dict) else None
+        except AttributeError:
+            value = None
+        checks.append(_metric("retrieval_bm25", value, .80, "MRR", "results/rag2_retrieval.json"))
 
-    checks = [
-        Check("failure_injection", failure_rate == 1.0, failure_rate, 1.0, "pass_rate", "nasha_lab.eval_failures"),
-        Check("data_quality_precision", min_precision >= 0.99, min_precision, 0.99, "minimum_precision", "results/eval_v1.json"),
-        Check("data_quality_recall", min_recall >= 0.90, min_recall, 0.90, "minimum_recall", "results/eval_v1.json"),
-        Check("deterministic_planner", planner_rate >= 0.99, planner_rate, 0.99, "scenario_pass_rate", "results/planner_deterministic.json"),
-        Check("retrieval_bm25", bm25_mrr >= 0.80, bm25_mrr, 0.80, "MRR", "results/rag2_retrieval.json"),
-    ]
-    decision = "PASS" if all(c.passed for c in checks) else "FAIL"
+    decision = _aggregate(checks)
     return {
-        "schema_version": 1,
-        "decision": decision,\n        "portfolio_release_ready": decision == "PASS",
+        "schema_version": 2,
+        "decision": decision,
+        "portfolio_release_ready": decision == "PASS",
         "scope": "synthetic/offline engineering evidence; not production readiness or business validation",
         "generated_unix": int(time.time()),
-        "checks": [asdict(c) for c in checks],
-        "failure_cases": failures,
+        "checks": [asdict(c) | {"passed": c.passed} for c in checks],
+        "failure_cases": failure_cases,
     }
 
-
 def main() -> int:
-    p = argparse.ArgumentParser()
-    p.add_argument("--out")
-    args = p.parse_args()
-    report = evaluate()
-    payload = json.dumps(report, indent=2, sort_keys=True)
-    print(payload)
-    if args.out:
-        Path(args.out).write_text(payload + "\n", encoding="utf-8")
-    return 0 if report["portfolio_release_ready"] else 3
+    p=argparse.ArgumentParser(); p.add_argument("--out"); args=p.parse_args()
+    report=evaluate(); payload=json.dumps(report, indent=2, sort_keys=True); print(payload)
+    if args.out: Path(args.out).write_text(payload+"\n", encoding="utf-8")
+    return 0 if report["decision"] == "PASS" else 3
 
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__ == "__main__": raise SystemExit(main())
