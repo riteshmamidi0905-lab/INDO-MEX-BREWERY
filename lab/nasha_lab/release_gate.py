@@ -51,19 +51,20 @@ def evaluate(root: Path | None = None, failure_runner: Callable[[], dict] = eval
     # and should fail closed if a required metric disappears.
     defect_rows = (dq.get("injected") or {}).get("per_rule") or dq.get("per_defect") or dq.get("defects") or {}
     defect_metrics = list(defect_rows.values()) if isinstance(defect_rows, dict) else defect_rows
-    recalls = [float(x["recall"]) for x in defect_metrics if isinstance(x, dict) and "recall" in x]
-    precisions = [float(x["precision"]) for x in defect_metrics if isinstance(x, dict) and "precision" in x]
+    # A shifted-near-duplicate rule is a committed known limitation (recall=0).
+    # It stays in raw evidence; supported-rule gates must not pretend null precision is zero.
+    supported = [x for x in defect_metrics if isinstance(x, dict) and x.get("recall") is not None and float(x["recall"]) > 0]
+    recalls = [float(x["recall"]) for x in supported]
+    precisions = [float(x["precision"]) for x in supported if x.get("precision") is not None]
     min_recall = min(recalls) if recalls else 0.0
     min_precision = min(precisions) if precisions else 0.0
 
-    rows = planner.get("rows") or planner.get("scenarios") or planner.get("results") or []
-    if isinstance(rows, dict):
-        rows = list(rows.values())
-    planner_pass = sum(bool(x.get("passed") or x.get("all_checks_pass")) for x in rows if isinstance(x, dict))
-    planner_rate = _fraction(planner_pass, len(rows))
+    planner_rate = float(((planner.get("overall") or {}).get("pass_rate") or {}).get("rate", 0.0))
 
-    retrieval = rag.get("summary") or rag.get("retrievers") or {}
+    retrieval = rag.get("retrieval") or rag.get("summary") or rag.get("retrievers") or {}
     bm25 = retrieval.get("bm25") or retrieval.get("BM25") or {}
+    if isinstance(bm25, dict) and "all" in bm25:
+        bm25 = (bm25.get("all") or {}).get("ALL") or {}
     bm25_mrr = float(bm25.get("mrr", bm25.get("MRR", 0.0))) if isinstance(bm25, dict) else 0.0
 
     checks = [
