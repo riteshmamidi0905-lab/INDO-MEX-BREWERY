@@ -35,5 +35,5 @@ def test_result_preserves_truth_boundary_and_limitations():
         limitations=["No production traffic or user-adoption evidence."],
     )
     assert r.synthetic is True
-    assert r.metric("task_success").denominator == 10
+    assert r.metric("task_success").denominator == 10\n    assert r.provenance.commit_sha == "abc123"
     assert "production traffic" in r.limitations[0]
