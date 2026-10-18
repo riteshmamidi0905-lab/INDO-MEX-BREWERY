@@ -2,7 +2,7 @@ import json
 from nasha_lab import release_gate
 
 def _write_results(root, *, planner=1.0, mrr=.91, dq_precision=1.0, dq_recall=1.0, evaluator_version=None):
-    d=root/"results"; d.mkdir()
+    d=root/"results"; d.mkdir(parents=True, exist_ok=True)
     dq={"injected":{"per_rule":{"a":{"precision":dq_precision,"recall":dq_recall},"known_gap":{"precision":None,"recall":0.0}}}}
     if evaluator_version is not None: dq["evaluator_version"]=evaluator_version
     (d/"eval_v1.json").write_text(json.dumps(dq))
