@@ -14,7 +14,7 @@ ERROR, WARN, BLOCKER = "ERROR", "WARN", "BLOCKER"
 
 ALL_RULES = [
     "malformed_timestamp", "missing_location", "future_timestamp", "duplicate_order",
-    "near_duplicate_order", "order_total_mismatch", "orphan_item", "nonpositive_qty",
+    "near_duplicate_order", "near_duplicate_shifted", "order_total_mismatch", "orphan_item", "nonpositive_qty",
     "price_drift", "forbidden_protein", "unit_mismatch",
 ]
 
@@ -67,11 +67,17 @@ def run_rules(st, enabled=None):
         ls = lines_by.get(oid, [])
         if ls and sum(l["qty"] * l["unit_price_cents"] for l in ls) != o["total_cents"]:
             add("order_total_mismatch", "orders", oid, ERROR, f'{o["total_cents"]}')
-        sig = (o["location_id"], o["ts"], tuple(sorted((l["item_id"], l["qty"], l["unit_price_cents"]) for l in ls)))
-        if ls and sig in sig_seen:
-            add("near_duplicate_order", "orders", oid, ERROR, f"same as {sig_seen[sig]}")
+        basket = (o["location_id"], tuple(sorted((l["item_id"], l["qty"], l["unit_price_cents"]) for l in ls)))
+        prior = sig_seen.get(basket)
+        if ls and prior:
+            prior_oid, prior_ts = prior
+            delta = abs((o["ts"] - prior_ts).total_seconds())
+            if delta == 0:
+                add("near_duplicate_order", "orders", oid, ERROR, f"same as {prior_oid}")
+            elif delta <= 1:
+                add("near_duplicate_shifted", "orders", oid, ERROR, f"within {delta:g}s of {prior_oid}")
         else:
-            sig_seen.setdefault(sig, oid)
+            sig_seen.setdefault(basket, (oid, o["ts"]))
 
     for r in st["inventory_counts"]:
         exp = INGREDIENT_UNIT.get(r["ingredient"])
