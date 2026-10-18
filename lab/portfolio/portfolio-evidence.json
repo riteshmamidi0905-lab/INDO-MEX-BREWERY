@@ -1409,7 +1409,7 @@
    {
     "detail": {
      "permission": "READ",
-     "result_summary": "{\"findings\": [{\"finding_id\": 76, \"rule\": \"unit_mismatch\", \"table\": \"inventory_counts\", \"key\": \"L01:2026-03-02:malt\", \"severity\": \"ERROR\", \"detail\": \"lb\"}, {\"fin",
+     "result_summary": "{\"findings\": [{\"finding_id\": 84, \"rule\": \"unit_mismatch\", \"table\": \"inventory_counts\", \"key\": \"L01:2026-03-02:malt\", \"severity\": \"ERROR\", \"detail\": \"lb\"}, {\"fin",
      "tool": "list_quality_findings",
      "trust": null
     },
