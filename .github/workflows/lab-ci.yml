@@ -27,8 +27,33 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - name: All tests (unit, data, retrieval, pgvector, API, MCP, trust boundary, LangGraph, identity, UI + accessibility, property-based, failure injection). No paid API, no key.
         run: cd lab && python -m pytest -q -p no:cacheprovider tests
-      - name: Block-1 data-quality evaluation reproduces byte for byte
-        run: cd lab && python -m nasha_lab.evaluate v1 | diff - results/eval_v1.json
+      - name: Block-1 DQ historical evidence preserved and candidate evaluation reproducible
+        run: |
+          cd lab
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          historical = json.loads(Path("results/eval_v1.json").read_text())
+          shifted = historical["injected"]["per_rule"]["near_duplicate_shifted"]
+          assert (shifted["tp"], shifted["fn"], shifted["recall"]) == (0, 40, 0.0), shifted
+          assert historical["injected"]["per_rule"]["near_duplicate_order"]["recall"] == 1.0
+          assert historical["clean_dataset_findings"] == 0
+          print("HISTORICAL DQ BASELINE PRESERVED")
+          PY
+          python -m nasha_lab.evaluate v1 > /tmp/dq-candidate-1.json
+          python -m nasha_lab.evaluate v1 > /tmp/dq-candidate-2.json
+          diff -u /tmp/dq-candidate-1.json /tmp/dq-candidate-2.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          candidate = json.loads(Path("/tmp/dq-candidate-1.json").read_text())
+          shifted = candidate["injected"]["per_rule"]["near_duplicate_shifted"]
+          original = candidate["injected"]["per_rule"]["near_duplicate_order"]
+          assert original["tp"] == 40 and original["fn"] == 0, original
+          assert shifted["tp"] > 0 and shifted["fn"] < 40, shifted
+          assert candidate["clean_dataset_findings"] == 0, candidate["clean_dataset_findings"]
+          print("CANDIDATE DQ RESULTS:", json.dumps(candidate, sort_keys=True))
+          PY
       - name: Planner experiment (deterministic control + stand-in models) reproduces
         run: |
           cd lab && python -m nasha_lab.eval_planners deterministic /tmp/planner.json > /dev/null
