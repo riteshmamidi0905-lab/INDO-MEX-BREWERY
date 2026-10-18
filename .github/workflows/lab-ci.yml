@@ -33,7 +33,7 @@ jobs:
         run: |
           cd lab && python -m nasha_lab.eval_planners deterministic /tmp/planner.json > /dev/null
           python -m nasha_lab.repro_check planner /tmp/planner.json results/planner_deterministic.json
-      - name: Retrieval evaluation v2 reproduces (BM25 exact; SVD / neural / HNSW within 0.03)
+      - name: Portfolio release gate: failure injection + DQ + planner + retrieval thresholds\n        run: cd lab && python -m nasha_lab.release_gate --out /tmp/release-gate.json\n      - name: Retrieval evaluation v2 reproduces (BM25 exact; SVD / neural / HNSW within 0.03)
         run: |
           cd lab && python -m nasha_lab.eval_rag2 /tmp/rag2.json > /dev/null
           python -m nasha_lab.repro_check rag2 /tmp/rag2.json results/rag2_retrieval.json
