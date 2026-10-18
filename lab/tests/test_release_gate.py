@@ -1,37 +1,73 @@
 import json
-
 from nasha_lab import release_gate
 
+def _write_results(root, *, planner=1.0, mrr=.91, dq_precision=1.0, dq_recall=1.0, evaluator_version=None):
+    d=root/"results"; d.mkdir()
+    dq={"injected":{"per_rule":{"a":{"precision":dq_precision,"recall":dq_recall},"known_gap":{"precision":None,"recall":0.0}}}}
+    if evaluator_version is not None: dq["evaluator_version"]=evaluator_version
+    (d/"eval_v1.json").write_text(json.dumps(dq))
+    (d/"planner_deterministic.json").write_text(json.dumps({"overall":{"pass_rate":{"rate":planner}}}))
+    (d/"rag2_retrieval.json").write_text(json.dumps({"retrieval":{"bm25":{"all":{"ALL":{"mrr":mrr}}}}}))
 
-def _write_results(root, *, planner=1.0, mrr=0.91):
-    d = root / "results"
-    d.mkdir()
-    (d / "eval_v1.json").write_text(json.dumps({"injected":{"per_rule":{
-        "a":{"precision":1.0,"recall":1.0},
-        "known_gap":{"precision":None,"recall":0.0}}}}))
-    (d / "planner_deterministic.json").write_text(json.dumps({"overall":{"pass_rate":{"rate":planner}}}))
-    (d / "rag2_retrieval.json").write_text(json.dumps({"retrieval":{"bm25":{"all":{"ALL":{"mrr":mrr}}}}}))
+def good_security():
+    return {"timeout":{"passed":True},"injection":{"passed":True},"permission":{"passed":True}}
 
-
-def test_release_gate_passes_only_with_complete_failure_suite(tmp_path):
+def test_valid_historical_evidence_passes(tmp_path):
     _write_results(tmp_path)
-    failures = {"timeout":{"passed":True}, "injection":{"passed":True}, "permission":{"passed":True}}
-    report = release_gate.evaluate(tmp_path, failure_runner=lambda: failures)
-    assert report["portfolio_release_ready"] is True
-    assert all(x["passed"] for x in report["checks"])
+    r=release_gate.evaluate(tmp_path, failure_runner=good_security)
+    assert r["decision"]=="PASS" and r["portfolio_release_ready"]
 
-
-def test_release_gate_fails_closed_on_any_failure_injection_regression(tmp_path):
+def test_security_failure_fails(tmp_path):
     _write_results(tmp_path)
-    failures = {"timeout":{"passed":True}, "permission":{"passed":False}}
-    report = release_gate.evaluate(tmp_path, failure_runner=lambda: failures)
-    assert report["portfolio_release_ready"] is False
-    check = next(x for x in report["checks"] if x["name"] == "failure_injection")
-    assert check["measured"] == 0.5
+    r=release_gate.evaluate(tmp_path, failure_runner=lambda:{"timeout":{"passed":True},"permission":{"passed":False}})
+    assert r["decision"]=="FAIL"
 
+def test_incomplete_security_evidence_requires_review(tmp_path):
+    _write_results(tmp_path)
+    r=release_gate.evaluate(tmp_path, failure_runner=lambda:{"timeout":{"detail":"no verdict"}})
+    assert r["decision"]=="REQUIRES_REVIEW" and not r["portfolio_release_ready"]
 
-def test_release_gate_fails_on_retrieval_regression(tmp_path):
-    _write_results(tmp_path, mrr=0.79)
-    report = release_gate.evaluate(tmp_path, failure_runner=lambda: {"x":{"passed":True}})
-    assert report["portfolio_release_ready"] is False
-    assert next(x for x in report["checks"] if x["name"] == "retrieval_bm25")["passed"] is False
+def test_missing_evidence_requires_review(tmp_path):
+    (tmp_path/"results").mkdir()
+    r=release_gate.evaluate(tmp_path, failure_runner=good_security)
+    assert r["decision"]=="REQUIRES_REVIEW"
+
+def test_malformed_metric_requires_review(tmp_path):
+    _write_results(tmp_path)
+    p=tmp_path/"results"/"rag2_retrieval.json"
+    p.write_text(json.dumps({"retrieval":{"bm25":{"all":{"ALL":{"mrr":"not-a-number"}}}}}))
+    r=release_gate.evaluate(tmp_path, failure_runner=good_security)
+    assert r["decision"]=="REQUIRES_REVIEW"
+
+def test_null_metric_requires_review(tmp_path):
+    _write_results(tmp_path)
+    p=tmp_path/"results"/"rag2_retrieval.json"
+    p.write_text(json.dumps({"retrieval":{"bm25":{"all":{"ALL":{"mrr":None}}}}}))
+    assert release_gate.evaluate(tmp_path, failure_runner=good_security)["decision"]=="REQUIRES_REVIEW"
+
+def test_unsupported_evaluator_version_requires_review(tmp_path):
+    _write_results(tmp_path, evaluator_version="99")
+    r=release_gate.evaluate(tmp_path, failure_runner=good_security)
+    assert r["decision"]=="REQUIRES_REVIEW"
+
+def test_supported_evaluator_version_passes(tmp_path):
+    _write_results(tmp_path, evaluator_version="1.0")
+    assert release_gate.evaluate(tmp_path, failure_runner=good_security)["decision"]=="PASS"
+
+def test_retrieval_regression_fails(tmp_path):
+    _write_results(tmp_path,mrr=.79)
+    assert release_gate.evaluate(tmp_path, failure_runner=good_security)["decision"]=="FAIL"
+
+def test_dq_regression_fails(tmp_path):
+    _write_results(tmp_path,dq_recall=.89)
+    assert release_gate.evaluate(tmp_path, failure_runner=good_security)["decision"]=="FAIL"
+
+def test_planner_regression_fails(tmp_path):
+    _write_results(tmp_path,planner=.98)
+    assert release_gate.evaluate(tmp_path, failure_runner=good_security)["decision"]=="FAIL"
+
+def test_improvement_and_unchanged_results_pass(tmp_path):
+    _write_results(tmp_path,planner=1.0,mrr=.95)
+    assert release_gate.evaluate(tmp_path, failure_runner=good_security)["decision"]=="PASS"
+    _write_results(tmp_path/"second",planner=1.0,mrr=.95)
+    assert release_gate.evaluate(tmp_path/"second", failure_runner=good_security)["decision"]=="PASS"
