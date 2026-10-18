@@ -103,7 +103,28 @@ def build():
 def main(argv):
     ev = build(); text = json.dumps(ev, indent=1, sort_keys=True, default=str)
     if "--check" in argv:
-        ok = OUT.exists() and OUT.read_text() == text; print("PORTFOLIO EVIDENCE FRESH" if ok else "PORTFOLIO EVIDENCE STALE"); return 0 if ok else 1
+        ok = OUT.exists() and OUT.read_text() == text
+        if not ok and OUT.exists():
+            committed = json.loads(OUT.read_text())
+            def diff(a, b, path="$"):
+                if isinstance(a, dict) and isinstance(b, dict):
+                    for k in sorted(set(a) | set(b)):
+                        if k not in a or k not in b:
+                            print("EVIDENCE_DIFF", path + "." + k, "committed=", repr(a.get(k, "<missing>")), "generated=", repr(b.get(k, "<missing>")))
+                        else:
+                            diff(a[k], b[k], path + "." + k)
+                elif isinstance(a, list) and isinstance(b, list):
+                    if len(a) != len(b):
+                        print("EVIDENCE_DIFF", path + ".length", len(a), len(b))
+                    for i, (x, y) in enumerate(zip(a, b)):
+                        diff(x, y, path + "[" + str(i) + "]")
+                elif a != b:
+                    print("EVIDENCE_DIFF", path, "committed=", repr(a)[:300], "generated=", repr(b)[:300])
+            diff(committed, ev)
+            if committed == ev:
+                print("EVIDENCE_DIFF: JSON identical; serialized formatting differs")
+        print("PORTFOLIO EVIDENCE FRESH" if ok else "PORTFOLIO EVIDENCE STALE")
+        return 0 if ok else 1
     OUT.parent.mkdir(exist_ok=True); OUT.write_text(text); print("wrote", OUT, len(text), "bytes")
     return 0
 
