@@ -3,7 +3,7 @@ import pytest
 from nasha_lab import dq, evaluate, generator, pipeline
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-DETECTABLE = [t for t in generator.DEFECT_TYPES if t != "near_duplicate_shifted"]
+DETECTABLE = list(generator.DEFECT_TYPES)
 
 
 def run(seed=1, k=8, types=None, enabled=None):
@@ -39,10 +39,10 @@ def test_each_injected_defect_type_is_found_exactly(t):
     assert f == truth and truth, (t, len(truth), len(f))
 
 
-def test_known_limitation_one_second_shifted_duplicate_is_not_detected():
-    """DOCUMENTED GAP: exact-signature near-duplicate detection misses a copy shifted by 1 s. If this starts failing, update docs/EVALUATION.md."""
+def test_candidate_one_second_shifted_duplicate_is_detected():
+    """Supersedes historical limitation assertion; historical results/eval_v1.json remains unchanged."""
     _, truth, _, rep = run(types=["near_duplicate_shifted"])
-    assert truth and not (found(rep) & truth)
+    assert truth and {x for x in found(rep) if x[0] == "near_duplicate_shifted"} == truth
 
 
 def test_lineage_conservation_every_raw_row_is_modeled_or_quarantined():
@@ -124,9 +124,12 @@ def test_committed_eval_results_show_the_fail_then_fix_story():
     assert v1["injected"]["per_rule"]["near_duplicate_shifted"]["recall"] == 0.0   # honest remaining gap
 
 
-def test_evaluate_matches_committed_results_exactly():
-    fresh = evaluate.score(range(1, 6))
-    assert json.loads(json.dumps(fresh["per_rule"])) == json.loads((ROOT / "results" / "eval_v1.json").read_text())["injected"]["per_rule"]
+def test_candidate_evaluation_is_reproducible_without_overwriting_historical_baseline():
+    first = evaluate.score(range(1, 6))
+    second = evaluate.score(range(1, 6))
+    assert first == second
+    historical = json.loads((ROOT / "results" / "eval_v1.json").read_text())
+    assert historical["injected"]["per_rule"]["near_duplicate_shifted"]["recall"] == 0.0
 
 
 def test_write_raw_roundtrip(tmp_path):
