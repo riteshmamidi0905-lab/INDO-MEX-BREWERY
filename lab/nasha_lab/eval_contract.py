@@ -36,6 +36,16 @@ class Metric(BaseModel):
             raise ValueError("denominator cannot be negative")
 
 
+class Provenance(BaseModel):
+    benchmark: str
+    dataset_version: str
+    evaluator_version: str
+    measured_at: datetime
+    commit_sha: str
+    model: str | None = None
+    provider: str | None = None
+
+
 class EvaluationResult(BaseModel):
     schema_version: Literal["1.0"] = "1.0"
     workflow: str
@@ -44,6 +54,7 @@ class EvaluationResult(BaseModel):
     split: str
     synthetic: bool
     measurement_scope: str
+    provenance: Provenance
     metrics: list[Metric]
     limitations: list[str] = Field(default_factory=list)
 
