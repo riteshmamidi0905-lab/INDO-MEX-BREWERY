@@ -53,8 +53,10 @@ def run_rules(st, enabled=None):
         if base and abs(l["unit_price_cents"] - base) / base > PRICE_TOLERANCE:
             add("price_drift", "order_lines", f'{l["order_id"]}:{l["line_no"]}', WARN, f'{l["unit_price_cents"]} vs {base}')
 
-    seen, sig_seen = set(), {}
-    for o in sorted(st["orders"], key=lambda r: r["order_id"]):
+    # Index every eligible transaction, not just the first basket occurrence.
+    # Stable ordering makes the selected original independent of incoming row order.
+    seen, sig_seen = set(), defaultdict(list)
+    for o in sorted(st["orders"], key=lambda r: (r["ts"], r["order_id"])):
         oid = o["order_id"]
         if oid in seen:
             add("duplicate_order", "orders", oid, ERROR)
@@ -68,16 +70,22 @@ def run_rules(st, enabled=None):
         if ls and sum(l["qty"] * l["unit_price_cents"] for l in ls) != o["total_cents"]:
             add("order_total_mismatch", "orders", oid, ERROR, f'{o["total_cents"]}')
         basket = (o["location_id"], tuple(sorted((l["item_id"], l["qty"], l["unit_price_cents"]) for l in ls)))
-        prior = sig_seen.get(basket)
-        if ls and prior:
-            prior_oid, prior_ts = prior
-            delta = abs((o["ts"] - prior_ts).total_seconds())
-            if delta == 0:
-                add("near_duplicate_order", "orders", oid, ERROR, f"same as {prior_oid}")
-            elif delta <= 1:
-                add("near_duplicate_shifted", "orders", oid, ERROR, f"within {delta:g}s of {prior_oid}")
-        else:
-            sig_seen.setdefault(basket, (oid, o["ts"]))
+        if ls:
+            candidates = sig_seen[basket]
+            # Exact timestamp wins; otherwise use the closest earlier candidate.
+            # Sorting by timestamp and ID ensures stable ties and no self-matches.
+            exact = next(((pid, pts) for pid, pts in candidates if pts == o["ts"]), None)
+            shifted = next(((pid, pts) for pid, pts in reversed(candidates)
+                            if 0 < (o["ts"] - pts).total_seconds() <= 1), None)
+            match = exact or shifted
+            if match:
+                prior_oid, prior_ts = match
+                delta = (o["ts"] - prior_ts).total_seconds()
+                if delta == 0:
+                    add("near_duplicate_order", "orders", oid, ERROR, f"same as {prior_oid}")
+                else:
+                    add("near_duplicate_shifted", "orders", oid, ERROR, f"within {delta:g}s of {prior_oid}")
+            candidates.append((oid, o["ts"]))
 
     for r in st["inventory_counts"]:
         exp = INGREDIENT_UNIT.get(r["ingredient"])
