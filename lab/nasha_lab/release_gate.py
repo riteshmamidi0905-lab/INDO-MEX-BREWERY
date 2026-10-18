@@ -74,7 +74,7 @@ def evaluate(root: Path | None = None, failure_runner: Callable[[], dict] = eval
         Check("deterministic_planner", planner_rate >= 0.99, planner_rate, 0.99, "scenario_pass_rate", "results/planner_deterministic.json"),
         Check("retrieval_bm25", bm25_mrr >= 0.80, bm25_mrr, 0.80, "MRR", "results/rag2_retrieval.json"),
     ]
-    passed = all(c.passed for c in checks)
+    decision = "PASS" if all(c.passed for c in checks) else "FAIL"
     return {
         "schema_version": 1,
         "decision": decision,\n        "portfolio_release_ready": decision == "PASS",
