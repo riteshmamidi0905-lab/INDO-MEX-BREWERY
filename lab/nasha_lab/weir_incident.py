@@ -13,14 +13,16 @@ class Incident:
     chain_valid: bool
     protected_executions: int
     approvals_consumed: int
+    complete: bool
+    missing: tuple[str, ...]
 
-def reconstruct(correlation_id: str, *, weir_store: Any, nasha_events: list[dict[str, Any]] | None = None) -> Incident:
+def reconstruct(correlation_id: str, *, weir_store: Any, nasha_events: list[dict[str, Any]] | None = None,\n                require_complete: bool = False) -> Incident:
     if not isinstance(correlation_id, str) or not correlation_id:
         raise ValueError("correlation_id required")
     valid, _, _ = weir_store.verify_chain()
     if not valid:
         raise RuntimeError("THE WEIR audit chain verification failed")
-    events: list[dict[str, Any]] = []
+    events: list[dict[str, Any]] = []\n    if require_complete and any(e.get("correlation_id") != correlation_id for e in (nasha_events or [])):\n        raise ValueError("inconsistent NASHA correlation identifiers")
     for event in nasha_events or []:
         if event.get("correlation_id") == correlation_id:
             events.append({"system": "NASHA", **event})
@@ -39,4 +41,4 @@ def reconstruct(correlation_id: str, *, weir_store: Any, nasha_events: list[dict
         1 for approval in weir_store.list_approvals()
         if approval.session_id == correlation_id and approval.state == "consumed"
     )
-    return Incident(correlation_id, tuple(events), True, executions, consumed)
+    kinds = {str(e.get("kind")) for e in events}\n    required = {"handoff", "final_outcome", "call.decision", "approval.consumed", "call.result"}\n    missing = tuple(sorted(required - kinds))\n    if require_complete and missing:\n        raise RuntimeError("incomplete cross-system trace: " + ", ".join(missing))\n    return Incident(correlation_id, tuple(events), True, executions, consumed, not missing, missing)
