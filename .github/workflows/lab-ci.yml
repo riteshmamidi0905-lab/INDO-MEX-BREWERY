@@ -24,7 +24,9 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -r lab/requirements-dev.txt
-      - name: Install pinned THE WEIR gateway for real integration acceptance\n        run: pip install 'git+https://github.com/riteshmamidi0905-lab/mcp-weir.git@5df274563a4a73ebbd31a6380e3a7d829b6bf4a2'\n      - run: python -m playwright install --with-deps chromium
+      - name: Install pinned THE WEIR gateway for real integration acceptance
+        run: pip install 'git+https://github.com/riteshmamidi0905-lab/mcp-weir.git@5df274563a4a73ebbd31a6380e3a7d829b6bf4a2'
+      - run: python -m playwright install --with-deps chromium
       - name: All tests (unit, data, retrieval, pgvector, API, MCP, trust boundary, LangGraph, identity, UI + accessibility, property-based, failure injection). No paid API, no key.
         run: cd lab && python -m pytest -q -p no:cacheprovider tests
       - name: Portfolio exporter three-run deterministic serialization and SHA-256
