@@ -27,6 +27,19 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - name: All tests (unit, data, retrieval, pgvector, API, MCP, trust boundary, LangGraph, identity, UI + accessibility, property-based, failure injection). No paid API, no key.
         run: cd lab && python -m pytest -q -p no:cacheprovider tests
+      - name: Portfolio exporter three-run deterministic serialization and SHA-256
+        run: |
+          cd lab
+          python - <<'PY'
+          import hashlib
+          import json
+          from nasha_lab import export_portfolio
+          outputs = [json.dumps(export_portfolio.build(), indent=1, sort_keys=True, default=str).encode() for _ in range(3)]
+          hashes = [hashlib.sha256(payload).hexdigest() for payload in outputs]
+          assert len(set(hashes)) == 1, hashes
+          assert export_portfolio.main(["--check"]) == 0
+          print("EXPORTER THREE-RUN SHA256", hashes)
+          PY
       - name: Block-1 DQ historical evidence preserved and candidate evaluation reproducible
         run: |
           cd lab
