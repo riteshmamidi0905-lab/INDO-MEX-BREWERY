@@ -23,7 +23,7 @@ class WorkflowResult:
     external_actions: int
     elapsed_ms: float
 
-def execute(workflow: str, *, correlation_id: str | None = None) -> WorkflowResult:
+def execute(workflow: str, *, correlation_id: str | None = None, audit: Any = None) -> WorkflowResult:
     if workflow not in {"seasonal_beer", "inventory_procurement", "customer_marketing"}:
         raise ValueError("unsupported workflow")
     start=time.perf_counter()
@@ -32,6 +32,8 @@ def execute(workflow: str, *, correlation_id: str | None = None) -> WorkflowResu
     def step(role: str, payload: dict[str,Any]) -> SpecialistResult:
         result=invoke(role,payload)
         done.append(result)
+        if audit is not None:
+            audit.record(correlation_id=cid, role=role, kind="handoff", payload={"status": result.status, "evaluation": result.evaluation})
         if result.status != "OK":
             raise ValueError("specialist requires review")
         return result
@@ -64,4 +66,6 @@ def execute(workflow: str, *, correlation_id: str | None = None) -> WorkflowResu
         status="REQUIRES_HUMAN_APPROVAL"
     except (ValueError, KeyError, TypeError):
         status="REQUIRES_REVIEW"
+    if audit is not None:
+        audit.record(correlation_id=cid, role="NEXUS", kind="final_outcome", payload={"status":status,"external_actions":0})
     return WorkflowResult(workflow,cid,status,tuple(done),True,0,(time.perf_counter()-start)*1000)
