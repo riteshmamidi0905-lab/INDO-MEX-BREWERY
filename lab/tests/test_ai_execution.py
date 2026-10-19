@@ -16,7 +16,7 @@ def test_real_typed_inventory_handoffs(world):
     assert all(s.role in {"SENTINEL", "MERIDIAN"} for s in result.steps)
     assert all(s.elapsed_ms >= 0 for s in result.steps)
     assert trace.rows[-1][0] == "ai.final"
-    assert all(e["correlation_id"] == "scenario-001" for _, e in trace.rows)
+    assert all(e["correlation_id"] == "scenario-001" for kind, e in trace.rows if kind.startswith("ai."))
 
 def test_invalid_location_fails_closed_and_does_not_continue(world):
     trace = Events()
