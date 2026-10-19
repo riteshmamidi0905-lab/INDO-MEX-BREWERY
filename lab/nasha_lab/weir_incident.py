@@ -32,7 +32,8 @@ def reconstruct(correlation_id: str, *, weir_store: Any, nasha_events: list[dict
     executions = sum(
         1 for event in events if event.get("system") == "THE_WEIR"
         and event.get("kind") == "call.result"
-        and not bool(event.get("payload", {}).get("is_error"))\n        and not bool(event.get("payload", {}).get("uncertain"))
+        and not bool(event.get("payload", {}).get("is_error"))
+        and not bool(event.get("payload", {}).get("uncertain"))
     )
     consumed = sum(
         1 for approval in weir_store.list_approvals()
