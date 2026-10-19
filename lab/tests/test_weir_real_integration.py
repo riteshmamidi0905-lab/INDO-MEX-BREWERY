@@ -69,7 +69,7 @@ def test_real_gateway_scoped_approval_consumption_replay_and_audit(tmp_path):
     other = gateway.open_session("another-caller")
     other_result = run(gateway.call_tool_detailed(other, TOOL, ARGS))
     assert not other_result.forwarded and other_result.approval_id != first.approval_id
-    assert store.resolve_approval(first.approval_id, True)
+    assert store.resolve_approval(first.approval_id, True) == "approved"
     success = run(adapter.invoke(TOOL, ARGS, correlation_id=session.id))
     assert success.status == "ALLOW" and success.forwarded
     assert len(world.effects) == 1 and world.effects[0]["op"] == "save"
@@ -80,6 +80,8 @@ def test_real_gateway_scoped_approval_consumption_replay_and_audit(tmp_path):
     assert store.verify_chain()[0]  # tamper-evident audit chain
     incident = reconstruct(session.id, weir_store=store)
     assert incident.chain_valid and incident.approvals_consumed == 1
+    assert incident.protected_executions == 1
+    assert any(e["kind"] == "approval.consumed" for e in incident.events)
     assert any(e["kind"] == "call.decision" for e in incident.events)
     assert any(e["kind"] == "call.result" for e in incident.events)
     assert store.get_approval(first.approval_id).session_id == workflow.correlation_id
@@ -95,9 +97,9 @@ def test_real_gateway_allow_deny_and_missing_permission(tmp_path):
     assert denied.status == "DENY" and not denied.forwarded
     assert len(world.effects) == 1
     raw = run(gateway.call_tool_detailed(session, "notes__publish_note", ARGS))
-    assert not raw.forwarded and "DENY" in raw.decision.verdict.name
+    assert not raw.forwarded and raw.decision.verdict.name == "DENY"
     unknown = run(gateway.call_tool_detailed(session, "notes__nonexistent", {}))
-    assert not unknown.forwarded and "R-UNKNOWN" in unknown.codes
+    assert not unknown.forwarded and unknown.decision.verdict.name == "DENY"
 
 
 def test_expired_approval_fails_closed(tmp_path):
@@ -106,7 +108,7 @@ def test_expired_approval_fails_closed(tmp_path):
     assert pending.approval_id
     now[0] += 10
     # An expired approval must not permit execution, even if an operator attempts resolution.
-    store.resolve_approval(pending.approval_id, True)
+    assert store.resolve_approval(pending.approval_id, True) == "expired"
     expired = run(adapter.invoke(TOOL, ARGS))
     assert not expired.forwarded and not world.effects
 
