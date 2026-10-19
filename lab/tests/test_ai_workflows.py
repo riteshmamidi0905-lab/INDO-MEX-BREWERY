@@ -13,7 +13,7 @@ def test_workflow_is_structured_and_nonexecuting(name):
     for i, step in enumerate(p["steps"]):
         assert step["step"] == i + 1
         assert step["status"] == "NOT_EXECUTED"
-        assert step["depends_on"] == ([i] if i else [])
+        assert step["depends_on"] == ((i,) if i else ())
 
 def test_rejects_unknown_or_non_synthetic_workflows():
     with pytest.raises(ValueError):
