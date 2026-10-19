@@ -18,6 +18,7 @@ from weir_testbed.servers import in_process_upstreams
 from weir_testbed.world import World
 from nasha_lab.weir_adapter import WeirAdapter
 from nasha_lab.specialist_workflows import execute
+from nasha_lab.weir_incident import reconstruct
 
 TOOL = "notes__save_note"
 ARGS = {"title": "synthetic procurement review", "body": "wheat malt reorder proposal only"}
@@ -77,7 +78,10 @@ def test_real_gateway_scoped_approval_consumption_replay_and_audit(tmp_path):
     assert replay.approval_id != first.approval_id and len(world.effects) == 1
     assert store.get_approval(first.approval_id).state == "consumed"
     assert store.verify_chain()[0]  # tamper-evident audit chain
-    events = list(store.events(session_id=session.id)) if hasattr(store, "events") else []
+    incident = reconstruct(session.id, weir_store=store)
+    assert incident.chain_valid and incident.approvals_consumed == 1
+    assert any(e["kind"] == "call.decision" for e in incident.events)
+    assert any(e["kind"] == "call.result" for e in incident.events)
     assert store.get_approval(first.approval_id).session_id == workflow.correlation_id
 
 
