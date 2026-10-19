@@ -1,6 +1,6 @@
 """Deterministic, fail-safe release gate over offline engineering evidence."""
 from __future__ import annotations
-import argparse, json, time
+import argparse, json, math, time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Callable, Literal
@@ -35,6 +35,8 @@ def _metric(name: str, value, threshold: float, unit: str, evidence: str, *, hig
     if isinstance(value, bool) or not isinstance(value, (int, float)):
         return Check(name, "REQUIRES_REVIEW", None, threshold, unit, evidence, "required metric malformed")
     measured = float(value)
+    if not math.isfinite(measured):
+        return Check(name, "REQUIRES_REVIEW", None, threshold, unit, evidence, "required metric non-finite")
     ok = measured >= threshold if higher else measured <= threshold
     return Check(name, "PASS" if ok else "FAIL", measured, threshold, unit, evidence,
                  "measured evidence satisfies policy" if ok else "measured evidence violates policy")
@@ -98,8 +100,19 @@ def evaluate(root: Path | None = None, failure_runner: Callable[[], dict] = eval
             checks.append(Check("data_quality", "REQUIRES_REVIEW", None, None, "metric", "results/eval_v1.json",
                                 "DQ per-rule evidence missing"))
         else:
-            supported = [v for v in rows.values() if isinstance(v, dict) and v.get("recall") is not None and float(v["recall"]) > 0]
-            precisions = [v.get("precision") for v in supported if v.get("precision") is not None]
+            def numeric(v):
+                return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)
+            malformed = any(
+                not isinstance(v, dict)
+                or not numeric(v.get("recall"))
+                or (v.get("precision") is not None and not numeric(v.get("precision")))
+                for v in rows.values()
+            )
+            if malformed:
+                checks.append(Check("data_quality_schema", "REQUIRES_REVIEW", None, None, "metric",
+                                    "results/eval_v1.json", "DQ per-rule metric malformed or non-finite"))
+            supported = [v for v in rows.values() if isinstance(v, dict) and numeric(v.get("recall")) and v["recall"] > 0]
+            precisions = [v.get("precision") for v in supported if numeric(v.get("precision"))]
             recalls = [v.get("recall") for v in supported]
             checks.append(_metric("data_quality_precision", min(precisions) if precisions else None, .99,
                                   "minimum_precision", "results/eval_v1.json"))
