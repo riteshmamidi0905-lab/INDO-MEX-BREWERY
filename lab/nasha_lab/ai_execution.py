@@ -39,7 +39,7 @@ def investigate_inventory(world: Any, kb: Any, location_id: str, ingredient: str
     ctx = T.ToolContext(run_id=execution_id, request_id=correlation_id, kb=kb, trace=trace)
     def emit(kind: str, **values: Any) -> None:
         if trace is not None:
-            trace.event(kind, correlation_id=correlation_id, execution_id=execution_id, **values)
+            trace.event(kind, **dict(values, correlation_id=correlation_id, execution_id=execution_id))
     for role, tool, args in (
         ("SENTINEL", "query_inventory", {"location_id": location_id, "ingredient": ingredient}),
         ("SENTINEL", "assess_inventory_risk", {"location_id": location_id, "ingredient": ingredient}),
