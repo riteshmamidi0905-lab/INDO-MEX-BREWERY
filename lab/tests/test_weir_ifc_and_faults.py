@@ -54,7 +54,7 @@ def test_secret_information_flow_cannot_leave_via_mail(tmp_path):
 
 def test_upstream_failure_is_not_reported_as_success(tmp_path):
     from nasha_lab.weir_adapter import WeirAdapter
-    from .test_weir_real_integration import POLICY, TOOL, ARGS
+    from test_weir_real_integration import POLICY, TOOL, ARGS
     world = World.from_fixture({})
     upstream = in_process_upstreams(world)["notes"]
     async def failing_call(name, arguments, timeout):
