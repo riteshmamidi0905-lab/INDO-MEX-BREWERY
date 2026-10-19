@@ -71,3 +71,30 @@ def test_improvement_and_unchanged_results_pass(tmp_path):
     assert release_gate.evaluate(tmp_path, failure_runner=good_security)["decision"]=="PASS"
     _write_results(tmp_path/"second",planner=1.0,mrr=.95)
     assert release_gate.evaluate(tmp_path/"second", failure_runner=good_security)["decision"]=="PASS"
+
+
+def test_dq_malformed_recall_requires_review(tmp_path):
+    _write_results(tmp_path)
+    p = tmp_path / "results" / "eval_v1.json"
+    d = json.loads(p.read_text())
+    d["injected"]["per_rule"]["a"]["recall"] = "not-a-number"
+    p.write_text(json.dumps(d))
+    r = release_gate.evaluate(tmp_path, failure_runner=good_security)
+    assert r["decision"] == "REQUIRES_REVIEW"
+    assert not r["portfolio_release_ready"]
+
+
+def test_nonfinite_metric_requires_review(tmp_path):
+    _write_results(tmp_path, planner=float("nan"))
+    r = release_gate.evaluate(tmp_path, failure_runner=good_security)
+    assert r["decision"] == "REQUIRES_REVIEW"
+    assert not r["portfolio_release_ready"]
+
+
+def test_measured_failure_dominates_malformed_evidence(tmp_path):
+    _write_results(tmp_path, planner=.5)
+    p = tmp_path / "results" / "eval_v1.json"
+    d = json.loads(p.read_text())
+    d["injected"]["per_rule"]["a"]["recall"] = "bad"
+    p.write_text(json.dumps(d))
+    assert release_gate.evaluate(tmp_path, failure_runner=good_security)["decision"] == "FAIL"
