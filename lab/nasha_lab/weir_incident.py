@@ -27,12 +27,12 @@ def reconstruct(correlation_id: str, *, weir_store: Any, nasha_events: list[dict
     for event in weir_store.events(session_id=correlation_id):
         events.append({"system": "THE_WEIR", **event})
     events.sort(key=lambda event: (float(event.get("ts", 0)), str(event.get("system"))))
-    # Count only gateway-confirmed forwarded results and consumed approval events;
+    # Count successful gateway-recorded results and consumed approval events;
     # do not infer execution from an APPROVE decision alone.
     executions = sum(
         1 for event in events if event.get("system") == "THE_WEIR"
         and event.get("kind") == "call.result"
-        and bool(event.get("payload", {}).get("forwarded"))
+        and not bool(event.get("payload", {}).get("is_error"))\n        and not bool(event.get("payload", {}).get("uncertain"))
     )
     consumed = sum(
         1 for approval in weir_store.list_approvals()
