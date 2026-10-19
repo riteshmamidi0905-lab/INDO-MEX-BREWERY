@@ -29,6 +29,8 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - name: All tests (unit, data, retrieval, pgvector, API, MCP, trust boundary, LangGraph, identity, UI + accessibility, property-based, failure injection). No paid API, no key.
         run: cd lab && python -m pytest -q -p no:cacheprovider tests
+      - name: Measure reproducible three-workflow synthetic acceptance
+        run: cd lab && python -m nasha_lab.eval_workflows_acceptance
       - name: Portfolio exporter three-run deterministic serialization and SHA-256
         run: |
           cd lab
