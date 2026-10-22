@@ -22,9 +22,9 @@
   "status": "LOCAL-ONLY concept visualization; not photographs of real products; not published; no logo (D-66)"
  },
  {
-  "asset": "visuals/concepts/can-concepts-badshah-paapi",
-  "svg_sha256": "c5dc80cc40d31a1d2493029af640b44c09cf9a6617bda8f554cccb912e6782ef",
-  "png_sha256": "3acdf43b8cec4541fa539be65679055c4d1c9dac48532991aaf593d76e331e6c",
+  "asset": "visuals/concepts/can-concepts-amba-haze-badshah",
+  "svg_sha256": "6710502ca19d4186cfe17e6254d1674ffd9ed85198dc0d84dcffdd3bb55bb266",
+  "png_sha256": "2224f2bc795bf5664cbc2f56ae291432eeeb1539cf06c851c36f8da4024e7fab",
   "png_ok": true,
   "method": "procedural vector drawing by code (visuals/tools/concept_art.py), rendered with headless Chromium; no generative image model, no Runway",
   "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",

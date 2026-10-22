@@ -1,0 +1,81 @@
+{
+ "synthetic": true,
+ "disclaimer": "SYNTHETIC DATA. Placeholder prices, wages and costs; uncalibrated volumes. Not NASHA results: NASHA is a concept and no business operates.",
+ "source": {
+  "profile": "full",
+  "seed": 20261022,
+  "locations": 14,
+  "scenario_days": 731,
+  "orders": 2499173,
+  "order_lines": 5751400,
+  "loyalty_profiles": 150000,
+  "employees": 450,
+  "generation_seconds": 47.0,
+  "orders_above_hourly_capacity_after_queueing": 34705,
+  "compressed_bytes": 49225798,
+  "numpy": "2.5.3",
+  "pandas": "3.0.5"
+ },
+ "first_full_run": {
+  "seconds": 297.0,
+  "status": "published",
+  "steps_over_1s": [
+   [
+    "ingest:orders",
+    41.3,
+    2499173
+   ],
+   [
+    "ingest:order_lines",
+    63.0,
+    5751400
+   ],
+   [
+    "model:fact_order",
+    22.0,
+    2499173
+   ],
+   [
+    "model:fact_order_line",
+    52.9,
+    5751400
+   ],
+   [
+    "model:marts",
+    43.5,
+    10890
+   ]
+  ]
+ },
+ "gates": [
+  {
+   "gate": "raw",
+   "severity": "blocking",
+   "passed": true,
+   "count": 10
+  },
+  {
+   "gate": "warehouse",
+   "severity": "blocking",
+   "passed": true,
+   "count": 11
+  },
+  {
+   "gate": "warehouse",
+   "severity": "warning",
+   "passed": true,
+   "count": 2
+  }
+ ],
+ "warehouse_totals_placeholder_cents": {
+  "orders": 2499173,
+  "net": 7732279213,
+  "gross": 7752386132,
+  "discount": 20106919,
+  "cogs": 2079197550,
+  "labor": 1784634582,
+  "waste": 9234889,
+  "member_orders": 949161
+ },
+ "warehouse_db_bytes": 1467023360
+}

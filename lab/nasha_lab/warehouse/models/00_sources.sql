@@ -1,0 +1,4 @@
+-- model: sources
+-- kind: views
+-- depends: raw
+-- Source views expose only COMPLETE partitions of each raw table (a crash mid-load never leaks partial data).

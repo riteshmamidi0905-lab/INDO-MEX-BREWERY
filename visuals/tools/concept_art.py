@@ -166,8 +166,8 @@ def can(x, y, w, h, grad, label_art, name, sub, txt):
             f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="34" fill="url(#{g})"/>'
             f'<rect x="{x + 10}" y="{y - 18}" width="{w - 20}" height="26" rx="10" fill="{C["stainless"]}"/>'
             f'<rect x="{x + 10}" y="{y + h - 8}" width="{w - 20}" height="26" rx="10" fill="{C["stainless"]}"/>'
-            f'<text x="{x + w / 2}" y="{y + 120}" text-anchor="middle" {FONT} font-size="64" letter-spacing="6" fill="{txt}">{name}</text>'
-            f'<text x="{x + w / 2}" y="{y + 168}" text-anchor="middle" {FONT} font-size="24" letter-spacing="6" fill="{txt}">{sub}</text>'
+            f'<text x="{x + w / 2}" y="{y + 120}" text-anchor="middle" {FONT} font-size="{56 if len(name) > 8 else 64}" letter-spacing="6" fill="{txt}">{name}</text>'
+            f'<text x="{x + w / 2}" y="{y + 168}" text-anchor="middle" {FONT} font-size="{18 if len(sub) > 16 else 24}" letter-spacing="5" fill="{txt}">{sub}</text>'
             + label_art +
             f'<text x="{x + w / 2}" y="{y + h - 44}" text-anchor="middle" {FONT} font-size="16" letter-spacing="3" fill="{txt}">CONCEPT · NOT A REAL PRODUCT</text>'
             f'<rect x="{x + w * .88}" y="{y + 40}" width="14" height="{h - 80}" rx="7" fill="#ffffff" opacity=".12"/>')
@@ -188,10 +188,11 @@ def cans():
         paapi += f'<ellipse cx="{c2 + 20}" cy="{yy + 18}" rx="13" ry="26" transform="rotate(24 {c2 + 20} {yy + 18})" fill="{C["tamarind"]}" opacity=".85"/>'
     paapi += f'<ellipse cx="{c2}" cy="450" rx="12" ry="28" fill="{C["tamarind"]}" opacity=".85"/>'
     body = (f'<rect y="760" width="{w}" height="240" fill="{C["char"]}"/>'
-            + can(100, 130, 520, 760, (C["copper"], "#F0A23C", "#D9892B"), badshah, "BADSHAH", "MANGO HAZY IPA", C["soot"])
-            + can(980, 130, 520, 760, (C["straw"], "#F3D98A", "#E2B84F"), paapi, "PAAPI", "HEFEWEIZEN", C["soot"])
-            + f'<text x="800" y="948" text-anchor="middle" {FONT} font-size="22" letter-spacing="6" fill="{C["smoke"]}">PACKAGING PRESENTATION CONCEPT · DEVELOPMENT TARGETS · NEVER BREWED · NO LOGO (D-66)</text>')
-    return svg(w, h, body, C["char"], "Concept art: BADSHAH mango hazy IPA and PAAPI hefeweizen can presentations. Illustrations, not photographs.")
+            + can(100, 130, 520, 760, (C["copper"], "#F0A23C", "#D9892B"), badshah, "AMBA HAZE", "MANGO HAZY IPA · WORKING NAME", C["soot"])
+            + can(980, 130, 520, 760, (C["straw"], "#F3D98A", "#E2B84F"), paapi, "BADSHAH", "HEFEWEIZEN", C["soot"])
+            + f'<text x="800" y="936" text-anchor="middle" {FONT} font-size="20" letter-spacing="5" fill="{C["smoke"]}">PACKAGING CONCEPT · NEVER BREWED · NO LOGO (D-66)</text>'
+            + f'<text x="800" y="968" text-anchor="middle" {FONT} font-size="18" letter-spacing="4" fill="{C["smoke"]}">NAMES ARE INTERNAL WORKING NAMES, NOT LEGALLY CLEARED</text>')
+    return svg(w, h, body, C["char"], "Concept art: AMBA HAZE (working name, experimental mango hazy IPA) and BADSHAH (existing hefeweizen identity) can presentations. Illustrations, not photographs.")
 
 
 def sha(path):
@@ -200,7 +201,7 @@ def sha(path):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    arts = {"hoodie-01-courtyard-back": courtyard(), "hoodie-02-two-worlds-back": two_worlds(), "can-concepts-badshah-paapi": cans()}
+    arts = {"hoodie-01-courtyard-back": courtyard(), "hoodie-02-two-worlds-back": two_worlds(), "can-concepts-amba-haze-badshah": cans()}
     chrome = os.environ.get("CHROMIUM_PATH", "/opt/pw-browsers/chromium-1194/chrome-linux/chrome")
     prov = []
     for name, s in arts.items():

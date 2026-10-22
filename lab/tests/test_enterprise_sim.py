@@ -58,7 +58,7 @@ def test_checker_detects_corruption(dev, tmp_path):
 def test_catalog_has_no_forbidden_proteins_and_concept_skus_are_labelled():
     for c in es.CATALOG:
         assert not any(t in c[4].lower() for t in es.FORBIDDEN_TERMS)
-        if c[0] in ("B04", "B05") or c[0].startswith("G"):
+        if c[0] == "B04" or c[0].startswith("G"):
             assert "concept" in c[5] and "never" in c[5]
 
 

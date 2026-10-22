@@ -14,3 +14,10 @@
 - Chicken Tikka Nachos overlaps Chicken 65 Totopos; the word "nachos" is barred in guest copy and GENERIC_NACHOS is a D-74 failure gate. Logged as BACKLOG, working label only; run only after Session 1.
 - BADSHAH is recorded as a HEFEWEIZEN (phase-one/05) with a living-person stage-name flag; a mango IPA re-assigns the name. B-2 (no IPA at opening) and Monsoon Fruit Wheat (mango) overlap.
 - PAAPI duplicates the SONA hefeweizen slot, reads as "sinner" in Hindi/Urdu/Punjabi contexts and is unscreened. Treat as a candidate name only.
+
+## Second set of decisions (same day, Phase 2 authorization)
+- BADSHAH keeps its existing hefeweizen identity. The mango juicy IPA is a separate experimental concept with a WORKING NAME (this repository uses "AMBA HAZE", unscreened; replace freely). PAAPI is an internal naming candidate only; research its linguistic, cultural and trademark implications; never publish it as finalized.
+- Core 5 preserved; Mango Habanero Gobi stays the existing appetizer concept; Chicken Tikka Nachos stays an R&D candidate (overlaps Chicken 65 Totopos; "nachos" conflicts with guest-copy terminology).
+- Push authorized ONLY for `career/integration-review` to the existing repository for CI (done; the repository is PUBLIC, content was identical to branches already public, no deploy path). No merge to any production branch, no deploy, no publication.
+- Runway means https://runwayml.com/ (not runway.team); Wispr Flow means https://wisprflow.ai/ (dictation, not the meetings connector). No account connection and no paid generation without approval.
+- Phase 2: data platform, business intelligence, product analytics, website collection pages, learning modules; all synthetic data labelled.

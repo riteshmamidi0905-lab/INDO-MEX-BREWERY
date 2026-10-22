@@ -60,8 +60,7 @@ PROFILES = {
 # ---------------------------------------------------------------- catalog (placeholders; concept SKUs are NOT products)
 CATALOG = [  # item_id, name, category, price_cents, ingredients, status
     *[(m[0], m[1], m[2], m[3], m[4], "baseline catalog; placeholder price") for m in generator.MENU_V2],
-    ("B04", "Badshah mango juicy IPA (concept)", "beer", 900, "water;malt;hops;yeast;mango", "concept SKU, never brewed; placeholder price"),
-    ("B05", "Paapi hefeweizen (concept)", "beer", 850, "water;malt;hops;yeast", "concept SKU, never brewed; placeholder price"),
+    ("B04", "Amba Haze mango hazy IPA (working name, experimental concept)", "beer", 900, "water;malt;hops;yeast;mango", "experimental concept SKU, never brewed; working name; placeholder price"),
     ("G01", "Hoodie 01 The Courtyard (concept)", "merch", 8800, "", "concept merchandise, never made or sold; placeholder price"),
     ("G02", "Hoodie 02 Two Worlds (concept)", "merch", 8800, "", "concept merchandise, never made or sold; placeholder price"),
     ("G03", "Graphic tee (concept)", "merch", 3200, "", "concept merchandise, never made or sold; placeholder price"),
@@ -72,8 +71,8 @@ ITEM_PRICE = np.array([c[3] for c in CATALOG], dtype=np.int64)
 MERCH_IDX = np.where(ITEM_CAT == "merch")[0]
 CORE_IDX = np.where(ITEM_CAT != "merch")[0]
 # base popularity per item for a fast-casual site and a beer garden (row-normalised later)
-POP_FAST = {"M01": 5, "M02": 4, "M03": 3, "M04": 3, "M05": 4, "B01": 1.5, "B02": 1.2, "B03": 1.2, "B04": 1.5, "B05": 1.0, "N01": 3, "N02": 2.5}
-POP_GARDEN = {"M01": 3, "M02": 2, "M03": 2, "M04": 3, "M05": 2, "B01": 5, "B02": 4, "B03": 4, "B04": 5, "B05": 3.5, "N01": 1.5, "N02": 1.2}
+POP_FAST = {"M01": 5, "M02": 4, "M03": 3, "M04": 3, "M05": 4, "B01": 1.5, "B02": 1.2, "B03": 1.2, "B04": 1.5, "N01": 3, "N02": 2.5}
+POP_GARDEN = {"M01": 3, "M02": 2, "M03": 2, "M04": 3, "M05": 2, "B01": 5, "B02": 4, "B03": 4, "B04": 4, "N01": 1.5, "N02": 1.2}
 HOUR_FAST = np.array([4, 7, 6, 3, 2, 3, 5, 8, 8, 6, 3, 1], dtype=float)            # hours 11..22
 HOUR_GARDEN = np.array([1, 2, 2, 3, 4, 5, 7, 9, 10, 9, 6, 3], dtype=float)
 ROLES = [("cook", .30), ("server", .27), ("bartender", .13), ("cashier", .13), ("shift lead", .08), ("manager", .05), ("brewer", .04)]
