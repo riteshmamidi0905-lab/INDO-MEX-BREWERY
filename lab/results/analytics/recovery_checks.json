@@ -1,0 +1,118 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "unlogged_shrink_recovery": {
+  "injected": "L03 goat, unlogged shrink = 6% of daily usage",
+  "observed_variance_pct_of_usage": -0.06262,
+  "rank_most_negative_all_24_pairs": 2,
+  "pairs_total": 24,
+  "rank_most_negative_pairs_with_usage_ge_20kg": 1,
+  "pairs_with_usage_ge_20kg": 21,
+  "most_negative_five_all": [
+   [
+    "L03",
+    "hops",
+    -0.1143,
+    1.1
+   ],
+   [
+    "L03",
+    "goat",
+    -0.0626,
+    62.6
+   ],
+   [
+    "L02",
+    "hops",
+    -0.0581,
+    1.5
+   ],
+   [
+    "L01",
+    "hops",
+    -0.0331,
+    2.0
+   ],
+   [
+    "L03",
+    "cheese",
+    -0.0074,
+    21.6
+   ]
+  ],
+  "multi_seed_rank_pairs_ge_20kg": [
+   {
+    "seed": 1,
+    "rank_of_L03_goat_among_pairs_ge_20kg": 1,
+    "pairs": 21
+   },
+   {
+    "seed": 2,
+    "rank_of_L03_goat_among_pairs_ge_20kg": 1,
+    "pairs": 20
+   },
+   {
+    "seed": 3,
+    "rank_of_L03_goat_among_pairs_ge_20kg": 1,
+    "pairs": 21
+   },
+   {
+    "seed": 4,
+    "rank_of_L03_goat_among_pairs_ge_20kg": 1,
+    "pairs": 20
+   },
+   {
+    "seed": 5,
+    "rank_of_L03_goat_among_pairs_ge_20kg": 1,
+    "pairs": 20
+   }
+  ]
+ },
+ "late_supplier_recovery": {
+  "injected_late_probability": {
+   "S01": 0.05,
+   "S02": 0.1,
+   "S03": 0.4,
+   "S04": 0.05,
+   "S05": 0.25
+  },
+  "observed_on_time_rate_worst_first": [
+   [
+    "S03",
+    0.636,
+    22
+   ],
+   [
+    "S05",
+    0.708,
+    24
+   ],
+   [
+    "S02",
+    0.905,
+    21
+   ],
+   [
+    "S01",
+    0.957,
+    23
+   ],
+   [
+    "S04",
+    1.0,
+    39
+   ]
+  ],
+  "worst_two_match_injected_worst_two": true
+ },
+ "corn_masa_kg_per_day_before_after_recipe_change": [
+  [
+   false,
+   6.633
+  ],
+  [
+   true,
+   5.35
+  ]
+ ]
+}

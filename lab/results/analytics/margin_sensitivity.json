@@ -1,0 +1,284 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "cost_multipliers": [
+  0.75,
+  1.0,
+  1.25
+ ],
+ "ranking_by_multiplier": {
+  "0.75": [
+   {
+    "item": "M05 Butter Chicken Quesadilla",
+    "category": "food",
+    "units": 1516,
+    "sales_usd": 22760.25,
+    "margin_usd": 19381.84,
+    "margin_pct": 85.2
+   },
+   {
+    "item": "M03 Goat Birria",
+    "category": "food",
+    "units": 1443,
+    "sales_usd": 23102.4,
+    "margin_usd": 18242.02,
+    "margin_pct": 79.0
+   },
+   {
+    "item": "M01 Chicken 65 Totopos",
+    "category": "food",
+    "units": 1470,
+    "sales_usd": 20592.6,
+    "margin_usd": 17758.23,
+    "margin_pct": 86.2
+   },
+   {
+    "item": "M02 Paneer Tikka Taco",
+    "category": "food",
+    "units": 1485,
+    "sales_usd": 19305.0,
+    "margin_usd": 16253.33,
+    "margin_pct": 84.2
+   },
+   {
+    "item": "M04 Gobi Taco",
+    "category": "food",
+    "units": 1156,
+    "sales_usd": 13872.0,
+    "margin_usd": 12320.07,
+    "margin_pct": 88.8
+   },
+   {
+    "item": "B03 Amber",
+    "category": "beer",
+    "units": 1539,
+    "sales_usd": 12218.4,
+    "margin_usd": 10388.91,
+    "margin_pct": 85.0
+   },
+   {
+    "item": "B01 Signature Hefe",
+    "category": "beer",
+    "units": 1480,
+    "sales_usd": 11723.2,
+    "margin_usd": 9963.85,
+    "margin_pct": 85.0
+   },
+   {
+    "item": "B02 Lager",
+    "category": "beer",
+    "units": 1556,
+    "sales_usd": 10788.4,
+    "margin_usd": 8938.7,
+    "margin_pct": 82.9
+   },
+   {
+    "item": "N02 Tamarind zero-proof",
+    "category": "na",
+    "units": 1537,
+    "sales_usd": 8445.25,
+    "margin_usd": 7407.77,
+    "margin_pct": 87.7
+   },
+   {
+    "item": "N01 Lime zero-proof",
+    "category": "na",
+    "units": 1484,
+    "sales_usd": 7433.5,
+    "margin_usd": 6431.8,
+    "margin_pct": 86.5
+   },
+   {
+    "item": "M04 Mango Habanero Gobi",
+    "category": "food",
+    "units": 370,
+    "sales_usd": 4440.0,
+    "margin_usd": 3968.25,
+    "margin_pct": 89.4
+   }
+  ],
+  "1.0": [
+   {
+    "item": "M05 Butter Chicken Quesadilla",
+    "category": "food",
+    "units": 1516,
+    "sales_usd": 22760.25,
+    "margin_usd": 18255.71,
+    "margin_pct": 80.2
+   },
+   {
+    "item": "M01 Chicken 65 Totopos",
+    "category": "food",
+    "units": 1470,
+    "sales_usd": 20592.6,
+    "margin_usd": 16813.44,
+    "margin_pct": 81.6
+   },
+   {
+    "item": "M03 Goat Birria",
+    "category": "food",
+    "units": 1443,
+    "sales_usd": 23102.4,
+    "margin_usd": 16621.89,
+    "margin_pct": 71.9
+   },
+   {
+    "item": "M02 Paneer Tikka Taco",
+    "category": "food",
+    "units": 1485,
+    "sales_usd": 19305.0,
+    "margin_usd": 15236.1,
+    "margin_pct": 78.9
+   },
+   {
+    "item": "M04 Gobi Taco",
+    "category": "food",
+    "units": 1156,
+    "sales_usd": 13872.0,
+    "margin_usd": 11802.76,
+    "margin_pct": 85.1
+   },
+   {
+    "item": "B03 Amber",
+    "category": "beer",
+    "units": 1539,
+    "sales_usd": 12218.4,
+    "margin_usd": 9779.08,
+    "margin_pct": 80.0
+   },
+   {
+    "item": "B01 Signature Hefe",
+    "category": "beer",
+    "units": 1480,
+    "sales_usd": 11723.2,
+    "margin_usd": 9377.4,
+    "margin_pct": 80.0
+   },
+   {
+    "item": "B02 Lager",
+    "category": "beer",
+    "units": 1556,
+    "sales_usd": 10788.4,
+    "margin_usd": 8322.14,
+    "margin_pct": 77.1
+   },
+   {
+    "item": "N02 Tamarind zero-proof",
+    "category": "na",
+    "units": 1537,
+    "sales_usd": 8445.25,
+    "margin_usd": 7061.95,
+    "margin_pct": 83.6
+   },
+   {
+    "item": "N01 Lime zero-proof",
+    "category": "na",
+    "units": 1484,
+    "sales_usd": 7433.5,
+    "margin_usd": 6097.9,
+    "margin_pct": 82.0
+   },
+   {
+    "item": "M04 Mango Habanero Gobi",
+    "category": "food",
+    "units": 370,
+    "sales_usd": 4440.0,
+    "margin_usd": 3811.0,
+    "margin_pct": 85.8
+   }
+  ],
+  "1.25": [
+   {
+    "item": "M05 Butter Chicken Quesadilla",
+    "category": "food",
+    "units": 1516,
+    "sales_usd": 22760.25,
+    "margin_usd": 17129.57,
+    "margin_pct": 75.3
+   },
+   {
+    "item": "M01 Chicken 65 Totopos",
+    "category": "food",
+    "units": 1470,
+    "sales_usd": 20592.6,
+    "margin_usd": 15868.65,
+    "margin_pct": 77.1
+   },
+   {
+    "item": "M03 Goat Birria",
+    "category": "food",
+    "units": 1443,
+    "sales_usd": 23102.4,
+    "margin_usd": 15001.76,
+    "margin_pct": 64.9
+   },
+   {
+    "item": "M02 Paneer Tikka Taco",
+    "category": "food",
+    "units": 1485,
+    "sales_usd": 19305.0,
+    "margin_usd": 14218.88,
+    "margin_pct": 73.7
+   },
+   {
+    "item": "M04 Gobi Taco",
+    "category": "food",
+    "units": 1156,
+    "sales_usd": 13872.0,
+    "margin_usd": 11285.45,
+    "margin_pct": 81.4
+   },
+   {
+    "item": "B03 Amber",
+    "category": "beer",
+    "units": 1539,
+    "sales_usd": 12218.4,
+    "margin_usd": 9169.26,
+    "margin_pct": 75.0
+   },
+   {
+    "item": "B01 Signature Hefe",
+    "category": "beer",
+    "units": 1480,
+    "sales_usd": 11723.2,
+    "margin_usd": 8790.95,
+    "margin_pct": 75.0
+   },
+   {
+    "item": "B02 Lager",
+    "category": "beer",
+    "units": 1556,
+    "sales_usd": 10788.4,
+    "margin_usd": 7705.57,
+    "margin_pct": 71.4
+   },
+   {
+    "item": "N02 Tamarind zero-proof",
+    "category": "na",
+    "units": 1537,
+    "sales_usd": 8445.25,
+    "margin_usd": 6716.12,
+    "margin_pct": 79.5
+   },
+   {
+    "item": "N01 Lime zero-proof",
+    "category": "na",
+    "units": 1484,
+    "sales_usd": 7433.5,
+    "margin_usd": 5764.0,
+    "margin_pct": 77.5
+   },
+   {
+    "item": "M04 Mango Habanero Gobi",
+    "category": "food",
+    "units": 370,
+    "sales_usd": 4440.0,
+    "margin_usd": 3653.75,
+    "margin_pct": 82.3
+   }
+  ]
+ },
+ "ranking_identical_across_multipliers": false,
+ "top3_identical_across_multipliers": false,
+ "note": "Costs are ASSUMPTIONS; this tests only whether the ORDER of items is sensitive to a uniform +/-25% change in all assumed costs."
+}

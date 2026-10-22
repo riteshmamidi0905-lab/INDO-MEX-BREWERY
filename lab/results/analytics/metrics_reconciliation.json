@@ -1,0 +1,236 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "metrics_file": "lab/analytics/metrics.json",
+ "all_ok": true,
+ "rows": [
+  {
+   "metric": "orders",
+   "groups": 3,
+   "max_abs_diff": 0,
+   "ok": true,
+   "mart": {
+    "L01": 1799,
+    "L02": 1283,
+    "L03": 901
+   },
+   "source": {
+    "L01": 1799,
+    "L02": 1283,
+    "L03": 901
+   }
+  },
+  {
+   "metric": "gross_sales_usd",
+   "groups": 3,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "L01": 69939.55,
+    "L02": 49542.75,
+    "L03": 35198.7
+   },
+   "source": {
+    "L01": 69939.55,
+    "L02": 49542.75,
+    "L03": 35198.7
+   }
+  },
+  {
+   "metric": "units_sold",
+   "groups": 3,
+   "max_abs_diff": 0,
+   "ok": true,
+   "mart": {
+    "L01": 6761,
+    "L02": 4850,
+    "L03": 3425
+   },
+   "source": {
+    "L01": 6761,
+    "L02": 4850,
+    "L03": 3425
+   }
+  },
+  {
+   "metric": "avg_order_value_usd",
+   "groups": 3,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "L01": 38.876904,
+    "L02": 38.61477,
+    "L03": 39.06626
+   },
+   "source": {
+    "L01": 38.876904,
+    "L02": 38.61477,
+    "L03": 39.06626
+   }
+  },
+  {
+   "metric": "items_per_order",
+   "groups": 3,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "L01": 2.500834,
+    "L02": 2.54092,
+    "L03": 2.498335
+   },
+   "source": {
+    "L01": 2.500834,
+    "L02": 2.54092,
+    "L03": 2.498335
+   }
+  },
+  {
+   "metric": "food_share_of_sales",
+   "groups": 3,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "L01": 0.680561,
+    "L02": 0.66242,
+    "L03": 0.67207
+   },
+   "source": {
+    "L01": 0.680561,
+    "L02": 0.66242,
+    "L03": 0.67207
+   }
+  },
+  {
+   "metric": "gobi_attach_rate",
+   "groups": 3,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "L01": 0.256253,
+    "L02": 0.25643,
+    "L03": 0.254162
+   },
+   "source": {
+    "L01": 0.256253,
+    "L02": 0.25643,
+    "L03": 0.254162
+   }
+  },
+  {
+   "metric": "theoretical_usage_kg",
+   "groups": 3,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "L01": 862.964,
+    "L02": 600.481,
+    "L03": 431.39
+   },
+   "source": {
+    "L01": 862.964,
+    "L02": 600.481,
+    "L03": 431.39
+   }
+  },
+  {
+   "metric": "contribution_margin_usd",
+   "groups": 3,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "L01": 55663.785,
+    "L02": 39471.695,
+    "L03": 28043.89
+   },
+   "source": {
+    "L01": 55663.785,
+    "L02": 39471.695,
+    "L03": 28043.89
+   }
+  },
+  {
+   "metric": "logged_waste_rate",
+   "groups": 3,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "L01": 0.009734,
+    "L02": 0.017819,
+    "L03": 0.018614
+   },
+   "source": {
+    "L01": 0.009734,
+    "L02": 0.017819,
+    "L03": 0.018614
+   }
+  },
+  {
+   "metric": "count_variance_pct",
+   "groups": 3,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "L01": 0.005583,
+    "L02": 0.004257,
+    "L03": 0.003937
+   },
+   "source": {
+    "L01": 0.005583,
+    "L02": 0.004257,
+    "L03": 0.003937
+   }
+  },
+  {
+   "metric": "supplier_on_time_rate",
+   "groups": 5,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "S01": 0.956522,
+    "S02": 0.904762,
+    "S03": 0.636364,
+    "S04": 1.0,
+    "S05": 0.708333
+   },
+   "source": {
+    "S01": 0.956522,
+    "S02": 0.904762,
+    "S03": 0.636364,
+    "S04": 1.0,
+    "S05": 0.708333
+   }
+  },
+  {
+   "metric": "avg_actual_lead_time_days",
+   "groups": 5,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "S01": 2.043478,
+    "S02": 5.142857,
+    "S03": 2.681818,
+    "S04": 3.0,
+    "S05": 5.25
+   },
+   "source": {
+    "S01": 2.043478,
+    "S02": 5.142857,
+    "S03": 2.681818,
+    "S04": 3.0,
+    "S05": 5.25
+   }
+  },
+  {
+   "metric": "dq_quarantine_rate",
+   "groups": 1,
+   "max_abs_diff": 0.0,
+   "ok": true,
+   "mart": {
+    "ALL": 0.015814
+   },
+   "source": {
+    "ALL": 0.015814
+   }
+  }
+ ]
+}

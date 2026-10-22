@@ -1,0 +1,933 @@
+{
+ "_banner": "SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED",
+ "_config_hash": "afc6e5fc59df",
+ "queries": [
+  {
+   "id": "Q01",
+   "title": "Cumulative gross sales per site",
+   "question": "How does gross sales accumulate day by day at each site, and where does it end up?",
+   "technique": "window aggregate over a grouped aggregate (SUM(SUM(x)) OVER), running total with PARTITION BY / ORDER BY",
+   "expected_shape": "one row per site x order date (3 x 56); cumulative_usd is non-decreasing and ends at the site total",
+   "rows": 168,
+   "columns": [
+    "site_id",
+    "date",
+    "daily_sales_usd",
+    "cumulative_usd"
+   ],
+   "first_rows": [
+    [
+     "L01",
+     "2026-03-02",
+     1030.5,
+     1030.5
+    ],
+    [
+     "L01",
+     "2026-03-03",
+     1501.9,
+     2532.4
+    ],
+    [
+     "L01",
+     "2026-03-04",
+     1205.0,
+     3737.4
+    ]
+   ]
+  },
+  {
+   "id": "Q02",
+   "title": "Week-over-week change and next-day look-ahead",
+   "question": "Is a site's daily sales above or below the same weekday one week earlier?",
+   "technique": "LAG(x, 7) for same-weekday comparison on a DENSE daily series, LEAD(x) for the next day; NULL-safe percentage",
+   "expected_shape": "one row per site x date; wow_pct is NULL for each site's first 7 days",
+   "rows": 168,
+   "columns": [
+    "site_id",
+    "date",
+    "sales",
+    "sales_7d_ago",
+    "wow_pct",
+    "next_day_sales"
+   ],
+   "first_rows": [
+    [
+     "L01",
+     "2026-03-02",
+     1030.5,
+     null,
+     null,
+     1501.9
+    ],
+    [
+     "L01",
+     "2026-03-03",
+     1501.9,
+     null,
+     null,
+     1205.0
+    ],
+    [
+     "L01",
+     "2026-03-04",
+     1205.0,
+     null,
+     null,
+     795.6
+    ]
+   ]
+  },
+  {
+   "id": "Q03",
+   "title": "Seven-day moving average of daily orders",
+   "question": "What is the smoothed daily order volume per site, and which points rest on an incomplete window?",
+   "technique": "ROWS BETWEEN 6 PRECEDING AND CURRENT ROW frame; window size counter to flag the warm-up period",
+   "expected_shape": "one row per site x date; window_days = 7 from the 7th day onward",
+   "rows": 168,
+   "columns": [
+    "site_id",
+    "date",
+    "orders",
+    "orders_ma7",
+    "window_days"
+   ],
+   "first_rows": [
+    [
+     "L01",
+     "2026-03-02",
+     26,
+     26.0,
+     1
+    ],
+    [
+     "L01",
+     "2026-03-03",
+     38,
+     32.0,
+     2
+    ],
+    [
+     "L01",
+     "2026-03-04",
+     29,
+     31.0,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "Q04",
+   "title": "Order-value quartiles and their share of sales",
+   "question": "How concentrated is revenue across order-value quartiles?",
+   "technique": "NTILE(4) over orders, then aggregate per bucket; share of total with an empty-OVER window",
+   "expected_shape": "4 rows; quartile sizes differ by at most 1; share_of_sales sums to 1",
+   "rows": 4,
+   "columns": [
+    "quartile",
+    "orders",
+    "min_usd",
+    "max_usd",
+    "share_of_sales"
+   ],
+   "first_rows": [
+    [
+     1,
+     996,
+     5.0,
+     21.0,
+     0.082
+    ],
+    [
+     2,
+     996,
+     21.0,
+     37.0,
+     0.1853
+    ],
+    [
+     3,
+     996,
+     37.0,
+     53.5,
+     0.2888
+    ]
+   ]
+  },
+  {
+   "id": "Q05",
+   "title": "Top three items per site by gross sales (ties kept)",
+   "question": "Which three menu items earn the most at each site?",
+   "technique": "RANK() (not ROW_NUMBER) so ties are kept, filter on the window result via a subquery, SCD2-safe grouping on item_id with the CURRENT name",
+   "expected_shape": ">= 3 rows per site, ranks 1..3 present",
+   "rows": 9,
+   "columns": [
+    "site_id",
+    "rnk",
+    "item_id",
+    "current_name",
+    "sales"
+   ],
+   "first_rows": [
+    [
+     "L01",
+     1,
+     "M03",
+     "Goat Birria",
+     10942.4
+    ],
+    [
+     "L01",
+     2,
+     "M05",
+     "Butter Chicken Quesadilla",
+     9981.75
+    ],
+    [
+     "L01",
+     3,
+     "M01",
+     "Chicken 65 Totopos",
+     9170.0
+    ]
+   ]
+  },
+  {
+   "id": "Q06",
+   "title": "Weekly food-unit mix across the dish rename",
+   "question": "How did the share of food units held by the dish M04 move around the menu change, and under which name?",
+   "technique": "SCD2 name carried on the fact (item_key), weekly grain via dim_date, share-of-group with a partitioned window computed in a CTE BEFORE filtering (a WHERE in the same SELECT would shrink the window's partition)",
+   "expected_shape": "M04 appears as 'Gobi Taco' for weeks before the change date and 'Mango Habanero Gobi' after; the change week has both names",
+   "rows": 8,
+   "columns": [
+    "week_start",
+    "item_name",
+    "units",
+    "share_of_food_units"
+   ],
+   "first_rows": [
+    [
+     "2026-03-02",
+     "Gobi Taco",
+     203,
+     0.2063
+    ],
+    [
+     "2026-03-09",
+     "Gobi Taco",
+     181,
+     0.216
+    ],
+    [
+     "2026-03-16",
+     "Gobi Taco",
+     201,
+     0.2145
+    ]
+   ]
+  },
+  {
+   "id": "Q07",
+   "title": "Contribution margin by item version (ASSUMPTION costs)",
+   "question": "Given the ASSUMED costs in analytics/config.py, which item versions contribute most per unit and in total?",
+   "technique": "separate pre-aggregated CTEs per cost component joined on item_key (avoids fan-out), COALESCE for items without recipes, RANK",
+   "expected_shape": "one row per item version (11 sold items incl. both M04 versions); sums to the contribution_margin_usd metric",
+   "rows": 11,
+   "columns": [
+    "item_id",
+    "item_name",
+    "category",
+    "units",
+    "sales_usd",
+    "margin_usd",
+    "margin_pct",
+    "margin_rank"
+   ],
+   "first_rows": [
+    [
+     "M05",
+     "Butter Chicken Quesadilla",
+     "food",
+     1516,
+     22760.25,
+     18255.7,
+     80.2,
+     1
+    ],
+    [
+     "M01",
+     "Chicken 65 Totopos",
+     "food",
+     1470,
+     20592.6,
+     16813.44,
+     81.6,
+     2
+    ],
+    [
+     "M03",
+     "Goat Birria",
+     "food",
+     1443,
+     23102.4,
+     16621.89,
+     71.9,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "Q08",
+   "title": "Item pair affinity (support and lift)",
+   "question": "Which items are bought together more often than independence would predict?",
+   "technique": "self-join of order lines on order, a < b to count each pair once, COUNT(DISTINCT order) to avoid fan-out, lift = P(a,b) / (P(a) P(b))",
+   "expected_shape": "45 pairs of the 10 menu items; there is no planted affinity, and every lift is BELOW 1 (0.8-1.0) because the generator draws 1-4 distinct items per order without replacement; read that as a sampling artifact, not substitution",
+   "rows": 45,
+   "columns": [
+    "item_a",
+    "item_b",
+    "orders_with_both",
+    "support",
+    "lift"
+   ],
+   "first_rows": [
+    [
+     "B02",
+     "M01",
+     256,
+     0.0643,
+     0.975
+    ],
+    [
+     "B02",
+     "M02",
+     247,
+     0.062,
+     0.968
+    ],
+    [
+     "B01",
+     "B02",
+     248,
+     0.0623,
+     0.957
+    ]
+   ]
+  },
+  {
+   "id": "Q09",
+   "title": "Weekly guest-cohort retention (SYNTHETIC guests)",
+   "question": "Of the guests first seen in week c, what share order again k weeks later?",
+   "technique": "cohort = week of first order (dim_guest), activity grid by week offset, retention = active / cohort size; guests only (guest_key <> 0)",
+   "expected_shape": "one row per cohort week x offset (offset 0..7-c); offset 0 retention = 1.0; retention never exceeds 1",
+   "rows": 36,
+   "columns": [
+    "cohort_week",
+    "cohort_size",
+    "week_offset",
+    "active_guests",
+    "retention"
+   ],
+   "first_rows": [
+    [
+     0,
+     76,
+     0,
+     76,
+     1.0
+    ],
+    [
+     0,
+     76,
+     1,
+     44,
+     0.579
+    ],
+    [
+     0,
+     76,
+     2,
+     32,
+     0.421
+    ]
+   ]
+  },
+  {
+   "id": "Q10",
+   "title": "Inventory exception funnel (count event -> exception -> approval -> resolution)",
+   "question": "Of all weekly count events, how many raise an exception, get approved, and get resolved?",
+   "technique": "stage counts UNIONed into one funnel, conversion vs previous stage and vs start with LAG / FIRST_VALUE windows",
+   "expected_shape": "4 rows with non-increasing n; stage 1 = snapshots that have a previous count (192). Approval/resolution are SIMULATED stages.",
+   "rows": 4,
+   "columns": [
+    "stage_no",
+    "stage",
+    "n",
+    "conv_vs_prev",
+    "conv_vs_start"
+   ],
+   "first_rows": [
+    [
+     1,
+     "count event",
+     192,
+     null,
+     1.0
+    ],
+    [
+     2,
+     "exception raised",
+     19,
+     0.099,
+     0.099
+    ],
+    [
+     3,
+     "approved",
+     12,
+     0.632,
+     0.063
+    ]
+   ]
+  },
+  {
+   "id": "Q11",
+   "title": "Latest days of cover versus supplier lead time",
+   "question": "At the latest count, which site x ingredient pairs would run out before a new order could arrive?",
+   "technique": "latest-row-per-group with ROW_NUMBER, derived ratio, comparison to a dimension attribute, inbound open PO quantity via pre-aggregated subquery",
+   "expected_shape": "24 rows (3 sites x 8 ingredients); at_risk = cover < lead time AND no open PO quantity covering the gap is NOT modelled (flag is conservative)",
+   "rows": 24,
+   "columns": [
+    "site_id",
+    "ingredient",
+    "count_date",
+    "on_hand_qty",
+    "avg_daily_usage",
+    "days_of_cover",
+    "lead_time_days",
+    "open_po_qty",
+    "below_lead_time"
+   ],
+   "first_rows": [
+    [
+     "L01",
+     "cauliflower",
+     "2026-04-27",
+     7.16,
+     2.271,
+     3.2,
+     2,
+     17.8,
+     0
+    ],
+    [
+     "L01",
+     "chicken thigh",
+     "2026-04-27",
+     12.98,
+     4.05,
+     3.2,
+     2,
+     31.6,
+     0
+    ],
+    [
+     "L02",
+     "cauliflower",
+     "2026-04-27",
+     7.32,
+     1.814,
+     4.0,
+     2,
+     12.6,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "Q12",
+   "title": "Logged waste by ingredient and reason",
+   "question": "How much is logged as waste per ingredient, split by reason, relative to theoretical usage?",
+   "technique": "conditional aggregation (pivot via CASE), ratio to a separately pre-aggregated denominator (no fan-out), loss sign convention (qty > 0 = loss)",
+   "expected_shape": "one row per ingredient (8); the reason columns sum to logged_kg; waste events are SIMULATED",
+   "rows": 8,
+   "columns": [
+    "ingredient",
+    "logged_kg",
+    "spoilage_kg",
+    "prep_trim_kg",
+    "spill_kg",
+    "expired_kg",
+    "usage_kg",
+    "waste_pct_of_usage"
+   ],
+   "first_rows": [
+    [
+     "hops",
+     0.2,
+     0.0,
+     0.0,
+     0.2,
+     0.0,
+     4.6,
+     4.37
+    ],
+    [
+     "cheese",
+     3.0,
+     0.48,
+     1.63,
+     0.89,
+     0.0,
+     91.0,
+     3.3
+    ],
+    [
+     "cauliflower",
+     5.97,
+     2.46,
+     3.51,
+     0.0,
+     0.0,
+     305.2,
+     1.96
+    ]
+   ]
+  },
+  {
+   "id": "Q13",
+   "title": "Supplier delivery reliability",
+   "question": "Which suppliers deliver on time, and how late are the late ones? (open POs are excluded: right-censored)",
+   "technique": "conditional aggregation, AVG over a filtered subset, RANK on on-time rate, explicit denominator",
+   "expected_shape": "5 rows (one per supplier). Delays are SIMULATED from config.SUPPLIER_LATE_PROB, so the ordering is checked against that known truth.",
+   "rows": 5,
+   "columns": [
+    "supplier_id",
+    "status",
+    "received_lines",
+    "on_time_rate",
+    "avg_days_late_when_late",
+    "max_days_late",
+    "worst_rank"
+   ],
+   "first_rows": [
+    [
+     "S03",
+     "ON_HOLD",
+     22,
+     0.636,
+     1.88,
+     3,
+     1
+    ],
+    [
+     "S05",
+     "ACTIVE",
+     24,
+     0.708,
+     1.71,
+     2,
+     2
+    ],
+    [
+     "S02",
+     "ACTIVE",
+     21,
+     0.905,
+     1.5,
+     2,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "Q14",
+   "title": "ABC classification of items by gross sales",
+   "question": "Which few items make up 70% / 90% of sales?",
+   "technique": "cumulative share with SUM() OVER (ORDER BY ... ROWS UNBOUNDED PRECEDING); class by the cumulative share BEFORE the row so the item that crosses the threshold is still class A",
+   "expected_shape": "one row per item id (10); cumulative_share ends at 1.0; classes A, B, C partition the rows",
+   "rows": 10,
+   "columns": [
+    "item_id",
+    "sales_usd",
+    "cumulative_share",
+    "abc_class"
+   ],
+   "first_rows": [
+    [
+     "M03",
+     23102.4,
+     0.1494,
+     "A"
+    ],
+    [
+     "M05",
+     22760.25,
+     0.2965,
+     "A"
+    ],
+    [
+     "M01",
+     20592.6,
+     0.4296,
+     "A"
+    ]
+   ]
+  },
+  {
+   "id": "Q15",
+   "title": "Missing site-days via a recursive calendar",
+   "question": "Are there site-days inside the data window with no orders at all (a silent ingestion gap)?",
+   "technique": "recursive CTE to generate a date spine, CROSS JOIN with sites, anti-join to facts",
+   "expected_shape": "3 rows (one per site) with missing_days = 0 for this build; the same query would list gaps if a day were dropped",
+   "rows": 3,
+   "columns": [
+    "site_id",
+    "days_in_window",
+    "missing_days",
+    "first_missing_day"
+   ],
+   "first_rows": [
+    [
+     "L01",
+     56,
+     0,
+     null
+    ],
+    [
+     "L02",
+     56,
+     0,
+     null
+    ],
+    [
+     "L03",
+     56,
+     0,
+     null
+    ]
+   ]
+  },
+  {
+   "id": "Q16",
+   "title": "Streaks of above-average sales days (gaps and islands)",
+   "question": "What are the longest consecutive runs of days where a site beat its own average daily sales?",
+   "technique": "gaps-and-islands: island id = day number minus ROW_NUMBER over the filtered rows (constant within a consecutive run)",
+   "expected_shape": "islands per site; lengths sum to the number of above-average days; islands never overlap",
+   "rows": 42,
+   "columns": [
+    "site_id",
+    "island_start",
+    "island_end",
+    "length_days"
+   ],
+   "first_rows": [
+    [
+     "L01",
+     "2026-03-03",
+     "2026-03-03",
+     1
+    ],
+    [
+     "L01",
+     "2026-03-06",
+     "2026-03-08",
+     3
+    ],
+    [
+     "L01",
+     "2026-03-12",
+     "2026-03-13",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "Q17",
+   "title": "Exact duplicate orders in the raw landing zone",
+   "question": "Which order ids landed more than once, and which copy would a dedup keep?",
+   "technique": "ROW_NUMBER() OVER (PARTITION BY business key ORDER BY load order) = 1 keeps the first; COUNT(*) OVER to see the group size",
+   "expected_shape": "one row per surplus copy (8 injected exact duplicates in this build), each with copy_no = 2",
+   "rows": 8,
+   "columns": [
+    "order_id",
+    "location_id",
+    "ts",
+    "total_cents",
+    "copy_no",
+    "copies"
+   ],
+   "first_rows": [
+    [
+     "O000321",
+     "L02",
+     "2026-03-06T13:02:38",
+     "3050",
+     2,
+     2
+    ],
+    [
+     "O000636",
+     "L02",
+     "2026-03-10T13:09:31",
+     "1600",
+     2,
+     2
+    ],
+    [
+     "O001263",
+     "L01",
+     "2026-03-20T18:45:57",
+     "550",
+     2,
+     2
+    ]
+   ]
+  },
+  {
+   "id": "Q18",
+   "title": "Near-duplicate orders by content signature (exact timestamp)",
+   "question": "Which different order ids carry an identical site, timestamp and basket?",
+   "technique": "build a basket signature with GROUP_CONCAT over pre-ordered lines, group by (site, ts, signature), keep groups with > 1 distinct order id",
+   "expected_shape": "one row per near-duplicate group; finds the injected exact-timestamp copies but NOT the copies shifted by one second (documented miss; see DQ evaluation)",
+   "rows": 8,
+   "columns": [
+    "location_id",
+    "ts",
+    "basket",
+    "order_ids",
+    "first_id",
+    "later_id"
+   ],
+   "first_rows": [
+    [
+     "L01",
+     "2026-03-03T20:57:56",
+     "B01x1@800|M02x1@1300|N01x1@500|N02x2@550",
+     2,
+     "O000088",
+     "O904036"
+    ],
+    [
+     "L01",
+     "2026-03-14T19:54:45",
+     "B01x1@800|B02x1@700",
+     2,
+     "O000882",
+     "O904037"
+    ],
+    [
+     "L02",
+     "2026-03-25T18:43:44",
+     "B02x1@700|B03x2@800",
+     2,
+     "O001706",
+     "O904032"
+    ]
+   ]
+  },
+  {
+   "id": "Q19",
+   "title": "Late-arriving facts and restated daily totals (inline fixture)",
+   "question": "By how much does a day's reported sales change when late events are loaded afterwards?",
+   "technique": "event time vs load time; cumulative \"as of load date\" totals versus the final total; late = loaded after the day following the event",
+   "expected_shape": "3 rows (one per event day) with reported_on_next_day vs final_total; the restatement is exactly the late rows' amounts",
+   "rows": 3,
+   "columns": [
+    "event_date",
+    "reported_on_next_day",
+    "final_total",
+    "late_rows"
+   ],
+   "first_rows": [
+    [
+     "2026-03-02",
+     150,
+     220,
+     1
+    ],
+    [
+     "2026-03-03",
+     240,
+     240,
+     0
+    ],
+    [
+     "2026-03-04",
+     90,
+     145,
+     2
+    ]
+   ]
+  },
+  {
+   "id": "Q20",
+   "title": "Fan-out when joining an order header to its lines",
+   "question": "Why does SUM(order_total) after joining lines overstate sales, and what is the safe pattern?",
+   "technique": "demonstrate the trap (header measure repeated per line) next to the correct pre-aggregation; grain awareness",
+   "expected_shape": "1 row: naive_total_usd > correct_total_usd; correct equals gross sales from the line grain; inflation_factor is the order-value-weighted number of lines per order (larger than the plain mean, shown for contrast)",
+   "rows": 1,
+   "columns": [
+    "naive_total_usd",
+    "correct_total_usd",
+    "line_grain_total_usd",
+    "inflation_factor",
+    "lines_per_order_unweighted"
+   ],
+   "first_rows": [
+    [
+     464767.45,
+     154681.0,
+     154681.0,
+     3.005,
+     2.513
+    ]
+   ]
+  },
+  {
+   "id": "Q21",
+   "title": "Median and 90th percentile of order value per site (no percentile function)",
+   "question": "What are the p50 and p90 order values at each site?",
+   "technique": "percentile emulation: ROW_NUMBER and COUNT(*) OVER per site, average the two middle rows for the median, nearest-rank for p90",
+   "expected_shape": "3 rows; p50 <= p90; matches numpy (median, nearest-rank) on the same data",
+   "rows": 3,
+   "columns": [
+    "site_id",
+    "orders",
+    "p50_usd",
+    "p90_usd_nearest_rank"
+   ],
+   "first_rows": [
+    [
+     "L01",
+     1799,
+     36.5,
+     71.0
+    ],
+    [
+     "L02",
+     1283,
+     37.0,
+     68.5
+    ],
+    [
+     "L03",
+     901,
+     37.5,
+     70.0
+    ]
+   ]
+  },
+  {
+   "id": "Q22",
+   "title": "Orphan keys in the raw landing zone",
+   "question": "Which raw order lines point at a menu item or an order that does not exist?",
+   "technique": "anti-join with NOT EXISTS (NULL-safe, unlike NOT IN); UNION ALL of the two orphan kinds",
+   "expected_shape": "rows of kind 'unknown item' (the injected orphan_item defects, 8 in this build); 'missing parent order' = 0",
+   "rows": 8,
+   "columns": [
+    "kind",
+    "order_id",
+    "line_no",
+    "bad_key"
+   ],
+   "first_rows": [
+    [
+     "unknown item",
+     "O000727",
+     "1",
+     "X01"
+    ],
+    [
+     "unknown item",
+     "O000840",
+     "2",
+     "M99"
+    ],
+    [
+     "unknown item",
+     "O003006",
+     "1",
+     "X01"
+    ]
+   ]
+  },
+  {
+   "id": "Q23",
+   "title": "Order header total versus the sum of its lines (raw landing)",
+   "question": "Which raw orders have a header total that disagrees with their lines?",
+   "technique": "pre-aggregate lines to the order grain BEFORE joining (no fan-out), compare, tolerate nothing (integer cents)",
+   "expected_shape": "rows of order_id with a non-zero diff_cents; includes the injected order_total_mismatch orders (8) and reports honestly any others",
+   "rows": 8,
+   "columns": [
+    "order_id",
+    "header_cents",
+    "lines_cents",
+    "diff_cents"
+   ],
+   "first_rows": [
+    [
+     "O001477",
+     5839,
+     5300,
+     539
+    ],
+    [
+     "O001496",
+     2049,
+     2350,
+     -301
+    ],
+    [
+     "O001584",
+     4412,
+     4000,
+     412
+    ]
+   ]
+  },
+  {
+   "id": "Q24",
+   "title": "Line price versus item median price (raw landing)",
+   "question": "Which order lines were charged far from the item's usual price?",
+   "technique": "data-derived reference (item median via window emulation) instead of trusting the menu table; ratio band [0.8, 1.2]",
+   "expected_shape": "rows outside the band; the 10% happy-hour beer discount is inside the band by design; injected drift factors (0.45, 0.5, 1.45, 1.9) are outside",
+   "rows": 13,
+   "columns": [
+    "order_id",
+    "line_no",
+    "item_id",
+    "price",
+    "median_price",
+    "ratio"
+   ],
+   "first_rows": [
+    [
+     "O000047",
+     "1",
+     "M01",
+     2660,
+     1400.0,
+     1.9
+    ],
+    [
+     "O000580",
+     "2",
+     "N01",
+     950,
+     500.0,
+     1.9
+    ],
+    [
+     "O000727",
+     "1",
+     "X01",
+     1300,
+     1050.0,
+     1.24
+    ]
+   ]
+  }
+ ],
+ "count": 24
+}
