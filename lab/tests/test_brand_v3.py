@@ -16,8 +16,11 @@ def test_provenance_hashes_match_and_every_record_has_status():
     for r in recs:
         assert hashlib.sha256((ROOT / r["asset"]).read_bytes()).hexdigest() == r["sha256"], r["asset"]
         assert r["approval"] and r["rights"] and r["method"]
-    ref = next(r for r in recs if "chatgpt" in r["asset"])
-    assert "EXPLORATORY" in ref["approval"] and "not a product photograph" in ref["approval"]
+    refs = [r for r in recs if "chatgpt" in r["asset"]]
+    assert len(refs) == 2                                   # both ChatGPT boards are recorded
+    for ref in refs:
+        assert "EXPLORATORY" in ref["approval"] and "not a photograph of an existing nasha product or location" in ref["approval"].lower()
+        assert "not independently verified" in ref["rights"].lower() and "2026-10-22" in ref["method"]
     assert not any("generative" in r["method"] and "no generative" not in r["method"] and "chatgpt" not in r["asset"] for r in recs)
 
 
