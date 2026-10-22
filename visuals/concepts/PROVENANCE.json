@@ -1,0 +1,35 @@
+[
+ {
+  "asset": "visuals/concepts/hoodie-01-courtyard-back",
+  "svg_sha256": "b11b565817ea902b525e6c1febee9734708f715df50996b7e7ad24482852f8ef",
+  "png_sha256": "af9e317c6860a643562c95834568071b06dd6dd4d08aa98def68b55c2969c44b",
+  "png_ok": true,
+  "method": "procedural vector drawing by code (visuals/tools/concept_art.py), rendered with headless Chromium; no generative image model, no Runway",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "sources": "shapes drawn from scratch; reference research in brand/goods/GOODS-CREATIVE-BRIEFS.md; no third-party artwork, no tracing",
+  "rights": "no third-party material; ownership/assignment not yet documented (needs counsel)",
+  "status": "LOCAL-ONLY concept visualization; not photographs of real products; not published; no logo (D-66)"
+ },
+ {
+  "asset": "visuals/concepts/hoodie-02-two-worlds-back",
+  "svg_sha256": "bbcb7bcae1f8e9b9ec6f8141c7c24ce5099775c4fc1397e302ca7afd9e4abff0",
+  "png_sha256": "4df40e066299a91133c88916b12029435cd30d57400a73ba1b0a82371e673a69",
+  "png_ok": true,
+  "method": "procedural vector drawing by code (visuals/tools/concept_art.py), rendered with headless Chromium; no generative image model, no Runway",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "sources": "shapes drawn from scratch; reference research in brand/goods/GOODS-CREATIVE-BRIEFS.md; no third-party artwork, no tracing",
+  "rights": "no third-party material; ownership/assignment not yet documented (needs counsel)",
+  "status": "LOCAL-ONLY concept visualization; not photographs of real products; not published; no logo (D-66)"
+ },
+ {
+  "asset": "visuals/concepts/can-concepts-badshah-paapi",
+  "svg_sha256": "c5dc80cc40d31a1d2493029af640b44c09cf9a6617bda8f554cccb912e6782ef",
+  "png_sha256": "3acdf43b8cec4541fa539be65679055c4d1c9dac48532991aaf593d76e331e6c",
+  "png_ok": true,
+  "method": "procedural vector drawing by code (visuals/tools/concept_art.py), rendered with headless Chromium; no generative image model, no Runway",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "sources": "shapes drawn from scratch; reference research in brand/goods/GOODS-CREATIVE-BRIEFS.md; no third-party artwork, no tracing",
+  "rights": "no third-party material; ownership/assignment not yet documented (needs counsel)",
+  "status": "LOCAL-ONLY concept visualization; not photographs of real products; not published; no logo (D-66)"
+ }
+]
