@@ -45,3 +45,9 @@ Recorded from a real full run; regenerate with `nasha_lab.warehouse.record_run`.
 
 ## Limits
 Placeholder prices, wages, costs; uncalibrated volumes; labor model is a fixed baseline plus a volume term (small profiles show absurd labor %); inventory counts are simulated from volume, so no days-of-cover or variance analysis is offered; no slowly changing dimensions; SQLite is single-writer and would be replaced at scale; promotions have no behavioural response in the simulator; experiment outcomes are simulated from the warehouse baseline with injected effects.
+
+## PostgreSQL variant and forecasting (added 2026-10-22)
+- `nasha_lab/warehouse/pg_variant.py` builds the same 22 dimension/fact/mart tables in a PostgreSQL schema (sqlite→postgres via sqlglot; calendar model hand-written) from staged rows copied out of the published SQLite warehouse, then reconciles row counts and numeric-column sums. Ingestion, contracts and the quality gates are NOT re-implemented in PostgreSQL.
+- Reconciliation found three real portability issues, all fixed: (1) PostgreSQL has no `sum(boolean)`; (2) two marts relied on SQLite's lax GROUP BY (models now use full GROUP BY); (3) `round()` — SQLite rounds half away from zero, PostgreSQL rounds doubles half-to-even (11 cents of waste cost differed); schema-local `round` functions restore SQLite semantics.
+- `tests/test_warehouse_pg.py` runs against `NASHA_PG_DSN` or an embedded server (`pixeltable-pgserver`) and skips with a reason otherwise. CI would skip it unless that package and sqlglot are installed.
+- `nasha_lab/warehouse/forecast.py` + dashboard pages `labor.html`, `forecast.html`: seasonal-naive, seasonal-mean and Holt-Winters with rolling-origin backtests (WAPE), and labor variance/productivity analytics. Synthetic data with built-in weekly seasonality, so success shows structure recovery, not real-world forecastability.

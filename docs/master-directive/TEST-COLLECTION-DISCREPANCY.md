@@ -17,3 +17,7 @@ The 7 OpenTelemetry export tests have been **silently skipped in CI**; they only
 
 ## Recommended fix (not applied, needs approval to touch CI)
 Add `pip install -r lab/requirements-otel.txt` to lab-ci, and run pytest with `-rs` so skip reasons are in the log.
+
+## Update: PostgreSQL available locally (2026-10-22)
+`pip install pixeltable-pgserver` provides a real embedded PostgreSQL 18.4 in this sandbox (the `pgserver` package name used by `tests/p5` is not installable here, so the server is started separately and passed as `NASHA_PG_DSN`).
+Run on a clean worktree of `306b29d`: `pytest tests/p5` → **180 passed, 1 skipped** (the skip is `hadolint` not installed; CI runs it). So the Postgres-gated p5 tests, previously "skipped locally, passing only in CI", have now also been executed locally and pass. pgvector remains unavailable (`test_retrieval_v2` pgvector case still not run locally).
