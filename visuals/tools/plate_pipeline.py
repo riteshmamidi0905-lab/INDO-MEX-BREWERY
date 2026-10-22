@@ -227,6 +227,24 @@ def render_composite(plate_img: Image.Image, cfg: dict, variant="primary") -> Im
     raise ValueError(f"unknown mode {mode}")
 
 
+G1_MIN_CAP_PX = 32
+G1_CAP_FRACTION_OF_WRAP = 0.085        # label wraps: the G1 header's cap height is ~85 art px of the 1000 px wrap height
+
+
+def g1_cap_px(cfg, item):
+    """Cap height (px) the G1 wordmark would have on the FINAL plate image, or None when the item does not use G1."""
+    name = str(pick(item, "g1") if cfg.get("mode") != "can" else pick(cfg, "g1"))
+    if "g1" not in name.lower():
+        return None
+    if cfg.get("mode") == "can":
+        x0, y0, x1, y1 = cfg["region"]
+        return (y1 - y0) * G1_CAP_FRACTION_OF_WRAP
+    im = Image.open(art_path(name))
+    q = item["quad"]
+    qw = ((q[1][0] - q[0][0]) ** 2 + (q[1][1] - q[0][1]) ** 2) ** .5
+    return 100 * im.height / (100 + 12) * qw / im.width          # artwork height = 100 + 2*6 units
+
+
 def validate_config(cfg, variant="primary"):
     errs = []
     if cfg.get("status", "").startswith("TEMPLATE"):
@@ -236,6 +254,10 @@ def validate_config(cfg, variant="primary"):
         name = pick(it, variant)
         if cfg.get("mode") != "none" and (not name or not art_path(name).exists()):
             errs.append(f"artwork not found: {name}")
+        if variant == "g1":
+            cap = g1_cap_px(cfg, it)
+            if cap is not None and cap < G1_MIN_CAP_PX and any(q for q in (it.get("quad") or it.get("region") or []) if q):
+                errs.append(f"G1 alternate would have a cap height of ~{cap:.0f}px on this plate; the approved minimum is {G1_MIN_CAP_PX}px (use the original wordmark or a higher-resolution plate)")
         if "g1" in str(name).lower() and cfg.get("plate_kind") not in ("can", "glass", "signage"):
             errs.append("G1 alternate is approved only for cans, glassware and architectural signage (never apparel, food, small formats)")
     return errs

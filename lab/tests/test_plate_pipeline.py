@@ -92,3 +92,14 @@ def test_all_seven_config_templates_exist_and_reference_real_artwork(pp):
         cfg = json.loads((ROOT / f"visuals/compositing-configs/{pid}.json").read_text())
         errs = [e for e in pp.validate_config(cfg, "primary") + pp.validate_config(cfg, "g1") if "TEMPLATE" not in e]
         assert errs == [], (pid, errs)
+
+
+def test_g1_minimum_cap_height_guard_uses_final_plate_size(pp):
+    small = {"mode": "can", "plate_kind": "can", "status": "READY", "art": "badshah_wrap", "art_g1": "badshah_wrap_g1", "region": [78, 112, 247, 448]}     # 336 px tall -> ~29 px cap
+    big = dict(small, region=[100, 100, 600, 1400])                                                                                                     # 1300 px tall -> ~110 px cap
+    assert any("approved minimum is 32px" in e for e in pp.validate_config(small, "g1"))
+    assert pp.validate_config(big, "g1") == [] and pp.validate_config(small, "primary") == []
+    glass = {"mode": "print", "plate_kind": "glass", "status": "READY", "items": [{"art": "glass-etch-crest-white.png", "art_g1": "glass-etch-g1-white.png", "quad": [[118, 160], [242, 160], [238, 235], [122, 235]]}]}
+    assert any("cap height" in e for e in pp.validate_config(glass, "g1"))
+    glass["items"][0]["quad"] = [[0, 0], [600, 0], [600, 150], [0, 150]]
+    assert pp.validate_config(glass, "g1") == []

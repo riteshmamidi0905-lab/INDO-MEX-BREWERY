@@ -1,0 +1,180 @@
+{
+ "status": "FIT TEST ONLY \u2014 low-resolution crops of a user-supplied 7-panel contact sheet; plates NOT accepted, composites NOT registered, not for use",
+ "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+ "plate_tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+ "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+ "artwork": "verified vector masters (visuals/brand-v3)",
+ "outputs": {
+  "badshah_can": {
+   "file": "visuals/composites/_fit-tests/badshah_can-FIT-TEST-preview.png",
+   "sha256": "a7f6fa4a901bf0f86d953169e3b227e245afef5c0e92e61016dd78bead870c08",
+   "plate_crop_sha256": "288025b812f702b73ba36a3e0a69a5c303db8368b533a2d20f2201835db273ec",
+   "config": {
+    "mode": "can",
+    "plate_kind": "can",
+    "art": "badshah_wrap",
+    "art_g1": "badshah_wrap_g1",
+    "region": [
+     78,
+     112,
+     247,
+     448
+    ],
+    "shade_strength": 0.8,
+    "ink": 1.0
+   }
+  },
+  "amba_can": {
+   "file": "visuals/composites/_fit-tests/amba_can-FIT-TEST-preview.png",
+   "sha256": "1e048f26ec2938fab0035f223d9c2c24432647a606ed9745e08228e8061e758a",
+   "plate_crop_sha256": "6a2af2ac5452006c618cc92980c349df60ceb3e8e75669e14ccdd302fa8fd234",
+   "config": {
+    "mode": "can",
+    "plate_kind": "can",
+    "art": "amba_wrap",
+    "art_g1": "amba_wrap_g1",
+    "region": [
+     77,
+     62,
+     245,
+     428
+    ],
+    "shade_strength": 0.45,
+    "ink": 1.0
+   }
+  },
+  "badshah_glass": {
+   "file": "visuals/composites/_fit-tests/badshah_glass-FIT-TEST-preview.png",
+   "sha256": "5a265172b6294775484073057a993405ffd73b133fca05e9bab4d785a2626878",
+   "plate_crop_sha256": "d7e309934aad5f641510c479db8275e4c0398fff31042b34d3d25273dabeb762",
+   "config": {
+    "mode": "print",
+    "plate_kind": "glass",
+    "items": [
+     {
+      "art": "glass-etch-crest-white.png",
+      "art_g1": "glass-etch-g1-white.png",
+      "quad": [
+       [
+        118,
+        160
+       ],
+       [
+        242,
+        160
+       ],
+       [
+        238,
+        235
+       ],
+       [
+        122,
+        235
+       ]
+      ],
+      "blend": "screen",
+      "opacity": 0.8,
+      "luminance_follow": 0.5
+     }
+    ]
+   }
+  },
+  "amba_glass": {
+   "file": "visuals/composites/_fit-tests/amba_glass-FIT-TEST-preview.png",
+   "sha256": "a8fda3d6622ef01e04aeb40cf014136b5f64239800e49c694cf3a94163c3c8a5",
+   "plate_crop_sha256": "420dabcb2d410f8411927bba897e454e2c2e27f7d371ff2cd76168d6987fd741",
+   "config": {
+    "mode": "print",
+    "plate_kind": "glass",
+    "items": [
+     {
+      "art": "glass-etch-crest-white.png",
+      "art_g1": "glass-etch-g1-white.png",
+      "quad": [
+       [
+        134,
+        170
+       ],
+       [
+        250,
+        170
+       ],
+       [
+        247,
+        240
+       ],
+       [
+        137,
+        240
+       ]
+      ],
+      "blend": "screen",
+      "opacity": 0.8,
+      "luminance_follow": 0.5
+     }
+    ]
+   }
+  },
+  "hoodie": {
+   "file": "visuals/composites/_fit-tests/hoodie-FIT-TEST-preview.png",
+   "sha256": "e54c4c78de103d8efe010166d5854288acc49311c4fede44148fd2dcfa780934",
+   "plate_crop_sha256": "72b0a4c455cdc773757c6ece926a5cafe8c9e796e4e31661a171a2f3b9271184",
+   "config": {
+    "mode": "print",
+    "plate_kind": "apparel",
+    "items": [
+     {
+      "art": "hoodie-symbol-gold.png",
+      "quad": [
+       [
+        160,
+        216
+       ],
+       [
+        240,
+        214
+       ],
+       [
+        241,
+        284
+       ],
+       [
+        159,
+        286
+       ]
+      ],
+      "blend": "normal",
+      "opacity": 0.95,
+      "luminance_follow": 0.3,
+      "displace": 0.5
+     },
+     {
+      "art": "hoodie-monogram-gold.png",
+      "quad": [
+       [
+        268,
+        150
+       ],
+       [
+        300,
+        152
+       ],
+       [
+        300,
+        184
+       ],
+       [
+        267,
+        182
+       ]
+      ],
+      "blend": "normal",
+      "opacity": 0.95,
+      "luminance_follow": 0.3,
+      "displace": 0.5
+     }
+    ]
+   }
+  }
+ }
+}

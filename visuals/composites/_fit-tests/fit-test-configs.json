@@ -1,0 +1,148 @@
+{
+ "badshah_can": {
+  "mode": "can",
+  "plate_kind": "can",
+  "art": "badshah_wrap",
+  "art_g1": "badshah_wrap_g1",
+  "region": [
+   78,
+   112,
+   247,
+   448
+  ],
+  "shade_strength": 0.8,
+  "ink": 1.0
+ },
+ "amba_can": {
+  "mode": "can",
+  "plate_kind": "can",
+  "art": "amba_wrap",
+  "art_g1": "amba_wrap_g1",
+  "region": [
+   77,
+   62,
+   245,
+   428
+  ],
+  "shade_strength": 0.45,
+  "ink": 1.0
+ },
+ "badshah_glass": {
+  "mode": "print",
+  "plate_kind": "glass",
+  "items": [
+   {
+    "art": "glass-etch-crest-white.png",
+    "art_g1": "glass-etch-g1-white.png",
+    "quad": [
+     [
+      118,
+      160
+     ],
+     [
+      242,
+      160
+     ],
+     [
+      238,
+      235
+     ],
+     [
+      122,
+      235
+     ]
+    ],
+    "blend": "screen",
+    "opacity": 0.8,
+    "luminance_follow": 0.5
+   }
+  ]
+ },
+ "amba_glass": {
+  "mode": "print",
+  "plate_kind": "glass",
+  "items": [
+   {
+    "art": "glass-etch-crest-white.png",
+    "art_g1": "glass-etch-g1-white.png",
+    "quad": [
+     [
+      134,
+      170
+     ],
+     [
+      250,
+      170
+     ],
+     [
+      247,
+      240
+     ],
+     [
+      137,
+      240
+     ]
+    ],
+    "blend": "screen",
+    "opacity": 0.8,
+    "luminance_follow": 0.5
+   }
+  ]
+ },
+ "hoodie": {
+  "mode": "print",
+  "plate_kind": "apparel",
+  "items": [
+   {
+    "art": "hoodie-symbol-gold.png",
+    "quad": [
+     [
+      160,
+      216
+     ],
+     [
+      240,
+      214
+     ],
+     [
+      241,
+      284
+     ],
+     [
+      159,
+      286
+     ]
+    ],
+    "blend": "normal",
+    "opacity": 0.95,
+    "luminance_follow": 0.3,
+    "displace": 0.5
+   },
+   {
+    "art": "hoodie-monogram-gold.png",
+    "quad": [
+     [
+      268,
+      150
+     ],
+     [
+      300,
+      152
+     ],
+     [
+      300,
+      184
+     ],
+     [
+      267,
+      182
+     ]
+    ],
+    "blend": "normal",
+    "opacity": 0.95,
+    "luminance_follow": 0.3,
+    "displace": 0.5
+   }
+  ]
+ }
+}
