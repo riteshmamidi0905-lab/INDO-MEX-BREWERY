@@ -1,0 +1,1875 @@
+{
+ "paths": {
+  "GET /healthz": {
+   "operationId": "healthz_healthz_get",
+   "parameters": [],
+   "request": [],
+   "responses": {
+    "200": {
+     "refs": [
+      "Live"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": false,
+   "tags": [
+    "ops"
+   ]
+  },
+  "GET /metrics": {
+   "operationId": "prom_metrics_get",
+   "parameters": [],
+   "request": [],
+   "responses": {
+    "200": {
+     "refs": [],
+     "types": [
+      "application/json",
+      "text/plain"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "ops"
+   ]
+  },
+  "GET /readyz": {
+   "operationId": "readyz_readyz_get",
+   "parameters": [],
+   "request": [],
+   "responses": {
+    "200": {
+     "refs": [
+      "Ready"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": false,
+   "tags": [
+    "ops"
+   ]
+  },
+  "GET /v1/audit": {
+   "operationId": "audit_list_v1_audit_get",
+   "parameters": [
+    "query:limit:False"
+   ],
+   "request": [],
+   "responses": {
+    "200": {
+     "refs": [
+      "AuditList"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "ops"
+   ]
+  },
+  "GET /v1/dead-letters": {
+   "operationId": "dead_letters_v1_dead_letters_get",
+   "parameters": [
+    "query:limit:False",
+    "query:status:False"
+   ],
+   "request": [],
+   "responses": {
+    "200": {
+     "refs": [
+      "DeadLetterList"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "ops"
+   ]
+  },
+  "GET /v1/events": {
+   "operationId": "events_v1_events_get",
+   "parameters": [],
+   "request": [],
+   "responses": {
+    "200": {
+     "refs": [
+      "EventList"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "tools"
+   ]
+  },
+  "GET /v1/inventory/{ingredient}": {
+   "operationId": "inventory_v1_inventory__ingredient__get",
+   "parameters": [
+    "path:ingredient:True",
+    "query:location_id:True"
+   ],
+   "request": [],
+   "responses": {
+    "200": {
+     "refs": [
+      "ToolData"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "tools"
+   ]
+  },
+  "GET /v1/quality/findings": {
+   "operationId": "findings_v1_quality_findings_get",
+   "parameters": [
+    "query:limit:False",
+    "query:rule:False"
+   ],
+   "request": [],
+   "responses": {
+    "200": {
+     "refs": [
+      "ToolData"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "tools"
+   ]
+  },
+  "GET /v1/runs": {
+   "operationId": "list_runs_v1_runs_get",
+   "parameters": [
+    "query:before:False",
+    "query:limit:False"
+   ],
+   "request": [],
+   "responses": {
+    "200": {
+     "refs": [
+      "RunList"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "runs"
+   ]
+  },
+  "GET /v1/runs/{run_id}": {
+   "operationId": "get_run_v1_runs__run_id__get",
+   "parameters": [
+    "path:run_id:True"
+   ],
+   "request": [],
+   "responses": {
+    "200": {
+     "refs": [
+      "RunView"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "runs"
+   ]
+  },
+  "POST /v1/dead-letters/{dl_id}/resolve": {
+   "operationId": "resolve_v1_dead_letters__dl_id__resolve_post",
+   "parameters": [
+    "path:dl_id:True"
+   ],
+   "request": [
+    "ResolveIn"
+   ],
+   "responses": {
+    "200": {
+     "refs": [
+      "DeadLetterView"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "ops"
+   ]
+  },
+  "POST /v1/knowledge/ask": {
+   "operationId": "ask_v1_knowledge_ask_post",
+   "parameters": [],
+   "request": [
+    "AskIn"
+   ],
+   "responses": {
+    "200": {
+     "refs": [
+      "ToolData"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "tools"
+   ]
+  },
+  "POST /v1/runs": {
+   "operationId": "start_run_v1_runs_post",
+   "parameters": [],
+   "request": [
+    "RunStartIn"
+   ],
+   "responses": {
+    "201": {
+     "refs": [
+      "RunView"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "runs"
+   ]
+  },
+  "POST /v1/runs/{run_id}/approve": {
+   "operationId": "approve_run_v1_runs__run_id__approve_post",
+   "parameters": [
+    "path:run_id:True"
+   ],
+   "request": [
+    "DecisionIn"
+   ],
+   "responses": {
+    "200": {
+     "refs": [
+      "RunView"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "runs"
+   ]
+  },
+  "POST /v1/runs/{run_id}/reject": {
+   "operationId": "reject_run_v1_runs__run_id__reject_post",
+   "parameters": [
+    "path:run_id:True"
+   ],
+   "request": [
+    "DecisionIn"
+   ],
+   "responses": {
+    "200": {
+     "refs": [
+      "RunView"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "400": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "401": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "403": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "404": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "409": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "413": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "415": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "422": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "429": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "500": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "502": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "503": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    },
+    "504": {
+     "refs": [
+      "ErrorEnvelope"
+     ],
+     "types": [
+      "application/json"
+     ]
+    }
+   },
+   "security": true,
+   "tags": [
+    "runs"
+   ]
+  }
+ },
+ "schemas": {
+  "AskIn": {
+   "extra_forbidden": true,
+   "properties": [
+    "question"
+   ],
+   "refs": [],
+   "required": [
+    "question"
+   ]
+  },
+  "AuditEntry": {
+   "extra_forbidden": false,
+   "properties": [
+    "action",
+    "at",
+    "audit_id",
+    "detail",
+    "outcome",
+    "principal_hash",
+    "request_id",
+    "resource"
+   ],
+   "refs": [],
+   "required": [
+    "action",
+    "at",
+    "audit_id",
+    "detail",
+    "outcome",
+    "principal_hash",
+    "request_id",
+    "resource"
+   ]
+  },
+  "AuditList": {
+   "extra_forbidden": false,
+   "properties": [
+    "entries"
+   ],
+   "refs": [
+    "AuditEntry"
+   ],
+   "required": [
+    "entries"
+   ]
+  },
+  "CheckResult": {
+   "extra_forbidden": false,
+   "properties": [
+    "detail",
+    "ok"
+   ],
+   "refs": [],
+   "required": [
+    "ok"
+   ]
+  },
+  "DeadLetterList": {
+   "extra_forbidden": false,
+   "properties": [
+    "dead_letters"
+   ],
+   "refs": [
+    "DeadLetterView"
+   ],
+   "required": [
+    "dead_letters"
+   ]
+  },
+  "DeadLetterView": {
+   "extra_forbidden": false,
+   "properties": [
+    "attempts",
+    "correlation_id",
+    "created_at",
+    "dl_id",
+    "failure_class",
+    "failure_code",
+    "op_class",
+    "operation",
+    "reason",
+    "replay_instructions",
+    "resolution",
+    "run_id",
+    "status",
+    "tool"
+   ],
+   "refs": [],
+   "required": [
+    "attempts",
+    "correlation_id",
+    "created_at",
+    "dl_id",
+    "failure_class",
+    "op_class",
+    "operation",
+    "reason",
+    "replay_instructions",
+    "run_id",
+    "status"
+   ]
+  },
+  "DecisionIn": {
+   "extra_forbidden": true,
+   "properties": [
+    "note"
+   ],
+   "refs": [],
+   "required": []
+  },
+  "ErrorBody": {
+   "extra_forbidden": false,
+   "properties": [
+    "client_retry",
+    "code",
+    "details",
+    "failure_class",
+    "message",
+    "request_id",
+    "retry_after_s"
+   ],
+   "refs": [],
+   "required": [
+    "client_retry",
+    "code",
+    "failure_class",
+    "message",
+    "request_id"
+   ]
+  },
+  "ErrorEnvelope": {
+   "extra_forbidden": false,
+   "properties": [
+    "error"
+   ],
+   "refs": [
+    "ErrorBody"
+   ],
+   "required": [
+    "error"
+   ]
+  },
+  "EventList": {
+   "extra_forbidden": false,
+   "properties": [
+    "events"
+   ],
+   "refs": [
+    "EventOut"
+   ],
+   "required": [
+    "events"
+   ]
+  },
+  "EventOut": {
+   "extra_forbidden": false,
+   "properties": [
+    "event_id",
+    "payload"
+   ],
+   "refs": [],
+   "required": [
+    "event_id",
+    "payload"
+   ]
+  },
+  "Live": {
+   "extra_forbidden": false,
+   "properties": [
+    "status",
+    "synthetic"
+   ],
+   "refs": [],
+   "required": [
+    "status"
+   ]
+  },
+  "Ready": {
+   "extra_forbidden": false,
+   "properties": [
+    "checks",
+    "status",
+    "synthetic"
+   ],
+   "refs": [
+    "CheckResult"
+   ],
+   "required": [
+    "checks",
+    "status"
+   ]
+  },
+  "ResolveIn": {
+   "extra_forbidden": true,
+   "properties": [
+    "note",
+    "status"
+   ],
+   "refs": [],
+   "required": [
+    "note",
+    "status"
+   ]
+  },
+  "RunList": {
+   "extra_forbidden": false,
+   "properties": [
+    "next_before",
+    "runs"
+   ],
+   "refs": [
+    "RunView"
+   ],
+   "required": [
+    "runs"
+   ]
+  },
+  "RunStartIn": {
+   "extra_forbidden": true,
+   "properties": [
+    "event_id"
+   ],
+   "refs": [],
+   "required": [
+    "event_id"
+   ]
+  },
+  "RunView": {
+   "extra_forbidden": false,
+   "properties": [
+    "awaiting_human",
+    "created_at",
+    "event_id",
+    "final",
+    "proposal",
+    "reconciled",
+    "run_id",
+    "status",
+    "updated_at"
+   ],
+   "refs": [],
+   "required": [
+    "awaiting_human",
+    "created_at",
+    "event_id",
+    "run_id",
+    "status",
+    "updated_at"
+   ]
+  },
+  "ToolData": {
+   "extra_forbidden": false,
+   "properties": [
+    "attempts",
+    "data"
+   ],
+   "refs": [],
+   "required": [
+    "attempts",
+    "data"
+   ]
+  }
+ },
+ "security": [
+  "HTTPBearer"
+ ]
+}

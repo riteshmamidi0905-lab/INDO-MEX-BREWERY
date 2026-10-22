@@ -1,9 +1,11 @@
 # Test / evaluation extras (not needed to run the API). All free and open source.
--r requirements.txt
+-r requirements-service.txt
 hypothesis>=6
-psycopg[binary]>=3.1
 spacy>=3.7
 playwright>=1.45
 axe-playwright-python>=0.1.4
 # static neural word vectors used by the `static_neural` retriever (MIT licence, GitHub release asset)
 en_core_web_md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl
+# P5: static checks
+mypy>=1.10
+ruff>=0.5

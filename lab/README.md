@@ -113,3 +113,7 @@ Read next: [ARCHITECTURE](docs/ARCHITECTURE.md) · [EVALUATION](docs/EVALUATION.
 ## AI Operations Control Center and reliability evidence (P1/P2)
 
 SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED. Additive package `nasha_lab/ops/` (telemetry, alert rules, incidents, SLO design targets, version registry, regression gate, failure injection, resilience wrappers, static dashboard). Start with `docs/OPS-CONTROL-CENTER.md`; measured results and misses in `docs/OPS-CONTROL-CENTER-EVALUATION.md`; every failure-catalog entry mapped in `docs/RELIABILITY-MATRIX.md`; runbooks in `ops/runbooks/`; data in `results/ops/`.
+
+## Hardened service layer (P5)
+
+SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED. Additive package `nasha_lab/service/` (`create_hardened_app`): typed validated config, signed-token auth with roles, rate limits, deadlines, idempotency, PostgreSQL state with versioned migrations, structured errors/logs/metrics, health and readiness. Start with `docs/P5-HARDENED-SERVICE.md`; threat model `docs/P5-THREAT-MODEL.md`; runbook and rollback `docs/P5-RUNBOOK.md`; deployment design (not deployed) `docs/P5-DEPLOYMENT-ARCHITECTURE.md`; failures found and fixed `docs/P5-FAILURE-LOG.md`; measured scenarios `results/p5/`. Docker was not run locally: CI (`.github/workflows/p5-service-ci.yml`) is the only evidence for the image and compose stack.

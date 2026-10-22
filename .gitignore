@@ -11,3 +11,6 @@ visuals/glass-studies/v2/*.stl
 lab/results/ops/dashboard-*.png
 # optional OpenTelemetry file export output
 lab/results/ops/otel/
+# P5: local env file for the hardened compose stack (secrets live in lab/secrets/, also ignored)
+lab/.env
+lab/.env.ci

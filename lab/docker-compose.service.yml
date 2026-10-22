@@ -1,0 +1,102 @@
+# P5 hardened service: api + PostgreSQL (pgvector image) + one-shot migration job. SYNTHETIC DATA / SIMULATED OPERATION / NOT PRODUCTION DEPLOYED.
+# Not verified locally (no Docker in the authoring sandbox): `docker compose config -q`, build, up and the smoke test run only in GitHub Actions (.github/workflows/p5-service-ci.yml).
+# Secrets are FILES (lab/secrets/*, see its README), never environment literals and never committed. Required variables fail loudly (`:?`).
+name: nasha-p5
+
+x-hardening: &hardening
+  security_opt: ["no-new-privileges:true"]
+  cap_drop: ["ALL"]
+  init: true
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    <<: *hardening
+    cap_drop: []                       # the official postgres entrypoint needs its default capabilities to drop privileges
+    security_opt: ["no-new-privileges:true"]
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER in lab/.env}
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB in lab/.env}
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets: [db_password]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    networks: [backend]                # no published port: only the api and migrate containers can reach it
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    mem_limit: 1g
+    cpus: 1.0
+    pids_limit: 200
+    restart: unless-stopped
+
+  migrate:
+    build: { context: .., dockerfile: lab/Dockerfile.service }
+    image: nasha-lab-service:local
+    <<: *hardening
+    command: ["python", "-m", "nasha_lab.service.migrations", "up"]
+    environment:
+      NASHA_SVC_DATABASE_URL_FILE: /run/secrets/database_url
+      NASHA_SVC_JWT_KEYS_FILE: /run/secrets/jwt_keys
+      NASHA_SVC_JWT_ACTIVE_KID: ${NASHA_SVC_JWT_ACTIVE_KID:-k1}
+      NASHA_SVC_ENV: ${P5_ENV:-staging}
+    secrets: [database_url, jwt_keys]
+    depends_on:
+      db: { condition: service_healthy }
+    networks: [backend]
+    read_only: true
+    tmpfs: ["/tmp:size=16m,mode=1777"]
+    mem_limit: 256m
+    cpus: 0.5
+    pids_limit: 64
+    restart: "no"
+
+  api:
+    build: { context: .., dockerfile: lab/Dockerfile.service }
+    image: nasha-lab-service:local
+    <<: *hardening
+    ports: ["127.0.0.1:${P5_API_PORT:-8000}:8000"]     # loopback only; put a TLS-terminating proxy in front for anything else
+    environment:
+      NASHA_SVC_ENV: ${P5_ENV:-staging}
+      NASHA_SVC_DOCS_ENABLED: ${P5_DOCS_ENABLED:-false}
+      NASHA_SVC_DATABASE_URL_FILE: /run/secrets/database_url
+      NASHA_SVC_JWT_KEYS_FILE: /run/secrets/jwt_keys
+      NASHA_SVC_JWT_ACTIVE_KID: ${NASHA_SVC_JWT_ACTIVE_KID:-k1}
+      NASHA_SVC_JWT_ISSUER: ${NASHA_SVC_JWT_ISSUER:-nasha-lab-dev}
+      NASHA_SVC_JWT_AUDIENCE: ${NASHA_SVC_JWT_AUDIENCE:-nasha-lab-api}
+      NASHA_SVC_DB_POOL_MAX: ${NASHA_SVC_DB_POOL_MAX:-10}
+      NASHA_SVC_RATE_IP_CAPACITY: ${NASHA_SVC_RATE_IP_CAPACITY:-60}
+      NASHA_SVC_RATE_PRINCIPAL_CAPACITY: ${NASHA_SVC_RATE_PRINCIPAL_CAPACITY:-30}
+      NASHA_SVC_REQUIRE_DB_AT_START: "false"
+    secrets: [database_url, jwt_keys]
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+    networks: [backend]
+    volumes: ["api_data:/data"]
+    read_only: true
+    tmpfs: ["/tmp:size=64m,mode=1777"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys, urllib.request; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/readyz', timeout=2).status == 200 else 1)"]
+      interval: 10s
+      timeout: 3s
+      start_period: 90s
+      retries: 6
+    stop_grace_period: 25s
+    mem_limit: 1536m
+    cpus: 1.5
+    pids_limit: 256
+    restart: unless-stopped
+
+secrets:
+  db_password: { file: ./secrets/db_password }
+  database_url: { file: ./secrets/database_url }
+  jwt_keys: { file: ./secrets/jwt_keys.json }
+
+networks:
+  backend: {}
+
+volumes:
+  pgdata: {}
+  api_data: {}
