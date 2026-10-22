@@ -1,0 +1,10 @@
+{
+ "cost_assumptions_version": "cost-assumptions-v1",
+ "label": "ASSUMPTIONS, NOT QUOTES. These per-token prices are illustrative numbers chosen by the author so that the cost arithmetic is explicit and changeable. They are NOT the price of any real provider or model. Local models (the Ollama runs recorded in results/) incur NO API charge; their 'estimated cost if hosted' is a what-if only.",
+ "currency": "USD",
+ "tiers": {
+  "assumed_small_hosted": {"input_per_million_tokens": 0.25, "output_per_million_tokens": 1.00},
+  "assumed_large_hosted": {"input_per_million_tokens": 3.00, "output_per_million_tokens": 15.00}
+ },
+ "local_runtime": {"api_charge": 0.0, "note": "electricity and hardware are not costed"}
+}

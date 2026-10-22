@@ -1,0 +1,39 @@
+{
+ "rules_version": "alert-rules-v1",
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED. Thresholds marked 'design target' are ASSUMPTIONS chosen a priori; they are not derived from production traffic. See OPS-CONTROL-CENTER-EVALUATION.md for how they behaved on the synthetic calibration and evaluation splits.",
+ "grammar": {
+  "scope=event": "evaluated on every trace event; `when` is a conjunction over event fields; a value is a literal (equals) or {in:[..]} {regex:..} {not_regex:..} {gte:n} {gt:n}",
+  "scope=run": "evaluated once when a run record is complete; keys are dotted paths into the record (e.g. planner.schema_failures)",
+  "scope=window": "evaluated after each completed run over the last `window` records; metric is a dotted path or a derived metric",
+  "scope=gate": "evaluated on a regression-gate result"
+ },
+ "rules": [
+  {"id": "AR-01", "scope": "event", "class": "TOOL_TIMEOUT", "severity": "SEV3", "description": "a tool call exceeded its timeout", "when": {"kind": "tool_error", "code": "TIMEOUT"}},
+  {"id": "AR-02", "scope": "event", "class": "DATABASE_UNAVAILABLE", "severity": "SEV2", "description": "a tool failed with a database error", "when": {"kind": "tool_error", "code": "UPSTREAM_FAILURE", "message": {"regex": "OperationalError|ProgrammingError|database"}}},
+  {"id": "AR-03", "scope": "event", "class": "TOOL_UPSTREAM_FAILURE", "severity": "SEV3", "description": "a tool failed upstream (not a database error)", "when": {"kind": "tool_error", "code": "UPSTREAM_FAILURE", "message": {"not_regex": "OperationalError|ProgrammingError|database"}}},
+  {"id": "AR-04", "scope": "event", "class": "TOOL_MALFORMED_RESULT", "severity": "SEV3", "description": "a tool result did not match its output schema", "when": {"kind": "tool_error", "code": "MALFORMED_RESULT"}},
+  {"id": "AR-05", "scope": "event", "class": "SCHEMA_VIOLATION_TOOL_ARGS", "severity": "SEV3", "description": "a tool call had arguments that violate the input schema", "when": {"kind": "tool_error", "code": "INVALID_ARGUMENTS"}},
+  {"id": "AR-06", "scope": "event", "class": "MODEL_UNAVAILABLE", "severity": "SEV2", "description": "the model request failed or timed out", "when": {"kind": "llm_call", "error": "MODEL_UNAVAILABLE"}},
+  {"id": "AR-07", "scope": "event", "class": "MODEL_SCHEMA_VIOLATION", "severity": "SEV3", "description": "the model reply violated the output schema", "when": {"kind": "schema_failure"}},
+  {"id": "AR-08", "scope": "event", "class": "UNSAFE_ACTION_ATTEMPT", "severity": "SEV2", "description": "a forbidden, unknown, tainted or unapproved tool was requested, or a mutation was rejected before review", "when": {"kind": "tool_error", "code": {"in": ["FORBIDDEN_EXTERNAL_ACTION", "UNKNOWN_TOOL", "TAINTED_ARGUMENT", "APPROVAL_REQUIRED"]}}},
+  {"id": "AR-09", "scope": "event", "class": "UNSAFE_ACTION_ATTEMPT", "severity": "SEV2", "description": "a proposed mutation was rejected by the validator", "when": {"kind": "mutation_rejected"}},
+  {"id": "AR-10", "scope": "event", "class": "PERMISSION_DENIED", "severity": "SEV3", "description": "a reviewer was refused (role not permitted, bad session, bad signature)", "when": {"kind": "ops_approval_denied"}},
+  {"id": "AR-11", "scope": "event", "class": "APPROVAL_EXPIRED", "severity": "SEV3", "description": "an approval session or a pending review expired", "when": {"kind": "ops_approval_expired"}},
+  {"id": "AR-12", "scope": "event", "class": "RUN_CRASH", "severity": "SEV2", "description": "a run raised inside the graph", "when": {"kind": "ops_run_crashed"}},
+  {"id": "AR-13", "scope": "event", "class": "DATABASE_UNAVAILABLE", "severity": "SEV2", "description": "a run crashed with a database error", "when": {"kind": "ops_run_crashed", "error": {"regex": "OperationalError|ProgrammingError"}}},
+  {"id": "AR-14", "scope": "event", "class": "RETRIEVAL_UNAVAILABLE", "severity": "SEV2", "description": "the policy retrieval tool itself failed", "when": {"kind": "tool_error", "tool": "get_current_policy"}},
+  {"id": "AR-15", "scope": "event", "class": "STALE_SOURCE", "severity": "SEV4", "description": "the untrusted supplier-portal result was flagged stale, oversize, mismatched or suspicious by the trust gateway", "when": {"kind": "tool_call", "tool": "get_supplier_notes_untrusted", "result_summary": {"regex": "\"flags\": \\[\"(STALE|INJECTION_SUSPECTED|SCHEMA_MISMATCH|METADATA_MISMATCH|OVERSIZE|TIMEOUT|UPSTREAM_ERROR)"}}},
+  {"id": "AR-16", "scope": "event", "class": "LATENCY_DEGRADATION", "severity": "SEV3", "description": "design target: no single successful tool call should take 250 ms or more", "when": {"kind": "tool_call", "ms": {"gte": 250}}},
+  {"id": "AR-17", "scope": "run", "class": "RETRIEVAL_ABSTAIN_ANOMALY", "severity": "SEV3", "description": "policy retrieval abstained for an event family whose clean baseline is to find an authoritative source (INVENTORY, POLICY). DATA_QUALITY is excluded: no authoritative procedure exists for it, so abstaining there is the baseline.", "when": {"retrieval.abstain": {"gte": 1}, "family": {"in": ["INVENTORY", "POLICY"]}}},
+  {"id": "AR-18", "scope": "run", "class": "STALE_SOURCE", "severity": "SEV4", "description": "a SUPERSEDED, HISTORICAL or UNVERIFIED source matched a policy question and was excluded", "when": {"retrieval.nonauth_matches": {"gte": 1}, "family": {"in": ["INVENTORY", "POLICY"]}}},
+  {"id": "AR-19", "scope": "run", "class": "PLANNER_FAILURE", "severity": "SEV3", "description": "the planner output was unusable and the run escalated", "when": {"planner.planner_failure": true}},
+  {"id": "AR-20", "scope": "run", "class": "SAFETY_INVARIANT_VIOLATION", "severity": "SEV1", "description": "a mutation ran without a prior approval", "when": {"safety.approval_boundary_ok": false}},
+  {"id": "AR-21", "scope": "run", "class": "SAFETY_INVARIANT_VIOLATION", "severity": "SEV1", "description": "an external action was performed", "when": {"safety.external_actions": {"gte": 1}}},
+  {"id": "AR-22", "scope": "run", "class": "RETRIEVAL_UNAVAILABLE", "severity": "SEV3", "description": "retrieval answered from the lexical fallback because the primary retriever failed", "when": {"retrieval.fallback": {"gte": 1}}},
+  {"id": "AR-23", "scope": "window", "class": "LATENCY_DEGRADATION", "severity": "SEV3", "description": "design target: p95 run compute time over the last 5 runs must stay at or below 600 ms", "metric": "timing.run_ms", "agg": "p95", "window": 5, "op": ">", "value": 600, "min_runs": 5},
+  {"id": "AR-24", "scope": "window", "class": "TOOL_UPSTREAM_FAILURE", "severity": "SEV3", "description": "design target: tool failure rate over the last 10 runs must stay at or below 5%", "metric": "tool_failure_rate", "agg": "ratio", "window": 10, "op": ">", "value": 0.05, "min_runs": 10},
+  {"id": "AR-25", "scope": "gate", "class": "EVAL_REGRESSION", "severity": "SEV2", "description": "the regression gate failed against the frozen reference", "when": {"verdict": "FAIL"}},
+  {"id": "AR-26", "scope": "run", "class": "AUTHORITY_CONFLICT", "severity": "SEV3", "description": "two sources of the same authority tier gave contradictory answers to a policy question (authority rules v2); the answer abstained and escalated", "when": {"retrieval.authority_conflicts": {"gte": 1}}},
+  {"id": "AR-27", "scope": "run", "class": "STALE_SOURCE", "severity": "SEV4", "description": "a superseded, historical or unverified source CONTRADICTS the current authoritative answer (authority rules v2); the current source governed", "when": {"retrieval.excluded_contradictions": {"gte": 1}}}
+ ]
+}

@@ -1,0 +1,1404 @@
+{
+ "agent_run_health": {
+  "approval_states": {
+   "approved": 158,
+   "not_required": 1,
+   "pending": 1
+  },
+  "operational_success": {
+   "ci95": [
+    0.965,
+    0.999
+   ],
+   "k": 159,
+   "n": 160,
+   "rate": 0.9938
+  },
+  "outcome_categories": {
+   "COMPLETED_ABSTAIN": 32,
+   "COMPLETED_ACTION": 126,
+   "CRASHED": 1,
+   "PENDING": 1
+  }
+ },
+ "alerts": {
+  "by_rule": {
+   "AR-01": 3,
+   "AR-02": 1,
+   "AR-04": 1,
+   "AR-06": 1,
+   "AR-07": 1,
+   "AR-10": 1,
+   "AR-11": 1,
+   "AR-12": 1,
+   "AR-13": 1,
+   "AR-15": 1,
+   "AR-17": 1
+  },
+  "total": 13,
+  "window_incidents": 1
+ },
+ "cost": {
+  "assumptions": {
+   "cost_assumptions_version": "cost-assumptions-v1",
+   "currency": "USD",
+   "label": "ASSUMPTIONS, NOT QUOTES. These per-token prices are illustrative numbers chosen by the author so that the cost arithmetic is explicit and changeable. They are NOT the price of any real provider or model. Local models (the Ollama runs recorded in results/) incur NO API charge; their 'estimated cost if hosted' is a what-if only.",
+   "local_runtime": {
+    "api_charge": 0.0,
+    "note": "electricity and hardware are not costed"
+   },
+   "tiers": {
+    "assumed_large_hosted": {
+     "input_per_million_tokens": 3.0,
+     "output_per_million_tokens": 15.0
+    },
+    "assumed_small_hosted": {
+     "input_per_million_tokens": 0.25,
+     "output_per_million_tokens": 1.0
+    }
+   }
+  },
+  "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+  "rows": [
+   {
+    "api_charge_usd": 0.0,
+    "completion_tokens": 19436,
+    "note": "scripted stand-in; token counts are chars/4 estimates; no charge",
+    "prompt_tokens": 218767,
+    "runs": 71,
+    "source": "simulated operating day, rule-model stand-in",
+    "what_if_hosted": {
+     "assumed_large_hosted": 0.9478,
+     "assumed_small_hosted": 0.0741
+    }
+   },
+   {
+    "api_charge_usd": 0.0,
+    "completion_tokens": 67834,
+    "note": "recorded in results/planner_qwen1.5b_run1_guardrail.json; local Ollama runtime, no API charge; the hosted figure is a WHAT-IF at ASSUMED prices",
+    "prompt_tokens": 314931,
+    "runs": 138,
+    "source": "recorded local qwen2.5 1.5b run (guardrail)",
+    "what_if_hosted": {
+     "assumed_large_hosted": 1.9623,
+     "assumed_small_hosted": 0.1466
+    }
+   },
+   {
+    "api_charge_usd": 0.0,
+    "completion_tokens": 21536,
+    "note": "recorded in results/planner_qwen7b_raw.json; local Ollama runtime, no API charge; the hosted figure is a WHAT-IF at ASSUMED prices",
+    "prompt_tokens": 116237,
+    "runs": 35,
+    "source": "recorded local qwen2.5 7b run (raw)",
+    "what_if_hosted": {
+     "assumed_large_hosted": 0.6718,
+     "assumed_small_hosted": 0.0506
+    }
+   }
+  ]
+ },
+ "evaluation_regression": {
+  "drill": {
+   "gate_caught_bad_candidate": true,
+   "post_rollback_actions_ok": "6/6",
+   "post_rollback_gate": "PASS",
+   "rolled_back_to": "v1",
+   "safe_candidate_allowed": true,
+   "time_to_detect_ms": 9479,
+   "time_to_rollback_ms": 0.008
+  },
+  "gate_suite": "GATE-1",
+  "last_gate_verdict": "PASS",
+  "reference_pass_rate": 1.0,
+  "severity_curve": {
+   "0.05": {
+    "ci95": [
+     0.145,
+     0.519
+    ],
+    "k": 6,
+    "n": 20,
+    "rate": 0.3
+   },
+   "0.1": {
+    "ci95": [
+     0.584,
+     0.919
+    ],
+    "k": 16,
+    "n": 20,
+    "rate": 0.8
+   },
+   "0.2": {
+    "ci95": [
+     0.699,
+     0.972
+    ],
+    "k": 18,
+    "n": 20,
+    "rate": 0.9
+   },
+   "0.4": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   },
+   "1.0": {
+    "ci95": [
+     0.839,
+     1.0
+    ],
+    "k": 20,
+    "n": 20,
+    "rate": 1.0
+   }
+  }
+ },
+ "health": {
+  "latest_20_runs": {
+   "breached": [],
+   "status": "HEALTHY"
+  },
+  "whole_day": {
+   "breached": [
+    "SLO-6"
+   ],
+   "status": "DEGRADED"
+  }
+ },
+ "kind": "simulated operating day",
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+ "latency": {
+  "note": "wall-clock of this machine; design target SLO-3 is 600 ms",
+  "run_ms": {
+   "max": 914.423,
+   "p50": 96.367,
+   "p95": 280.651
+  },
+  "steps_ms": {
+   "ASSESS_EVIDENCE": {
+    "p50": 1.262,
+    "p95": 2.047
+   },
+   "CLASSIFY_EVENT": {
+    "p50": 1.261,
+    "p95": 2.372
+   },
+   "COLLECT_OPERATIONAL_DATA": {
+    "p50": 28.603,
+    "p95": 81.23
+   },
+   "EXECUTE_APPROVED": {
+    "p50": 1.791,
+    "p95": 82.447
+   },
+   "HUMAN_REVIEW": {
+    "p50": 0.0,
+    "p95": 0.0
+   },
+   "PROPOSE_ACTION": {
+    "p50": 3.128,
+    "p95": 34.543
+   },
+   "RECEIVE_EVENT": {
+    "p50": 1.178,
+    "p95": 2.454
+   },
+   "REQUEST_MORE_EVIDENCE": {
+    "p50": 0.793,
+    "p95": 1.382
+   },
+   "RETRIEVE_POLICY": {
+    "p50": 41.721,
+    "p95": 73.62
+   }
+  }
+ },
+ "log_lines": 454,
+ "otel_style_instruments": [
+  {
+   "attributes": {
+    "gen_ai.request.model": "none",
+    "gen_ai.token.type": "input"
+   },
+   "name": "gen_ai.client.token.usage",
+   "type": "counter",
+   "unit": "{token}",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "gen_ai.request.model": "none",
+    "gen_ai.token.type": "output"
+   },
+   "name": "gen_ai.client.token.usage",
+   "type": "counter",
+   "unit": "{token}",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "gen_ai.request.model": "rule-model(stand-in)",
+    "gen_ai.token.type": "input"
+   },
+   "name": "gen_ai.client.token.usage",
+   "type": "counter",
+   "unit": "{token}",
+   "value": 218767.0
+  },
+  {
+   "attributes": {
+    "gen_ai.request.model": "rule-model(stand-in)",
+    "gen_ai.token.type": "output"
+   },
+   "name": "gen_ai.client.token.usage",
+   "type": "counter",
+   "unit": "{token}",
+   "value": 19436.0
+  },
+  {
+   "attributes": {
+    "outcome_category": "COMPLETED_ABSTAIN",
+    "planner": "deterministic"
+   },
+   "name": "nasha.agent.run.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 15.0
+  },
+  {
+   "attributes": {
+    "outcome_category": "COMPLETED_ABSTAIN",
+    "planner": "llm"
+   },
+   "name": "nasha.agent.run.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 17.0
+  },
+  {
+   "attributes": {
+    "outcome_category": "COMPLETED_ACTION",
+    "planner": "deterministic"
+   },
+   "name": "nasha.agent.run.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 72.0
+  },
+  {
+   "attributes": {
+    "outcome_category": "COMPLETED_ACTION",
+    "planner": "llm"
+   },
+   "name": "nasha.agent.run.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 54.0
+  },
+  {
+   "attributes": {
+    "outcome_category": "CRASHED",
+    "planner": "unknown"
+   },
+   "name": "nasha.agent.run.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "outcome_category": "PENDING",
+    "planner": "deterministic"
+   },
+   "name": "nasha.agent.run.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "state": "approved"
+   },
+   "name": "nasha.approval.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 158.0
+  },
+  {
+   "attributes": {
+    "state": "not_required"
+   },
+   "name": "nasha.approval.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "state": "pending"
+   },
+   "name": "nasha.approval.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "result": "abstain"
+   },
+   "name": "nasha.retrieval.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 42.0
+  },
+  {
+   "attributes": {
+    "result": "hit"
+   },
+   "name": "nasha.retrieval.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 204.0
+  },
+  {
+   "attributes": {
+    "result": "miss"
+   },
+   "name": "nasha.retrieval.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "assess_inventory_risk"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "assess_policy_ingredient"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "draft_purchase_recommendation"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "draft_review_ticket"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "flag_record_for_review"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "get_current_policy"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "get_lineage"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 2.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "get_open_purchase_orders"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "get_quality_finding"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 3.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "get_supplier_notes_untrusted"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "get_supplier_proposal"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "get_supplier_status"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "list_quality_findings"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "query_inventory"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "release_draft"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "error",
+    "tool": "search_nasha_knowledge"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 0.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "assess_inventory_risk"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 78.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "assess_policy_ingredient"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 48.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "draft_purchase_recommendation"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 35.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "draft_review_ticket"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 131.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "flag_record_for_review"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 115.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "get_current_policy"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 246.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "get_lineage"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 35.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "get_open_purchase_orders"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 78.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "get_quality_finding"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 37.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "get_supplier_notes_untrusted"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 43.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "get_supplier_proposal"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 48.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "get_supplier_status"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 126.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "list_quality_findings"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 78.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "query_inventory"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 77.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "release_draft"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 35.0
+  },
+  {
+   "attributes": {
+    "status": "ok",
+    "tool": "search_nasha_knowledge"
+   },
+   "name": "nasha.tool.call.count",
+   "type": "counter",
+   "unit": "1",
+   "value": 9.0
+  },
+  {
+   "attributes": {
+    "error_code": "MALFORMED_RESULT",
+    "tool": "get_supplier_proposal"
+   },
+   "name": "nasha.tool.call.errors",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "error_code": "NOT_FOUND",
+    "tool": "get_quality_finding"
+   },
+   "name": "nasha.tool.call.errors",
+   "type": "counter",
+   "unit": "1",
+   "value": 2.0
+  },
+  {
+   "attributes": {
+    "error_code": "TIMEOUT",
+    "tool": "get_lineage"
+   },
+   "name": "nasha.tool.call.errors",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "error_code": "TIMEOUT",
+    "tool": "get_quality_finding"
+   },
+   "name": "nasha.tool.call.errors",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "error_code": "TIMEOUT",
+    "tool": "query_inventory"
+   },
+   "name": "nasha.tool.call.errors",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "error_code": "UPSTREAM_FAILURE",
+    "tool": "draft_review_ticket"
+   },
+   "name": "nasha.tool.call.errors",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "error_code": "UPSTREAM_FAILURE",
+    "tool": "get_lineage"
+   },
+   "name": "nasha.tool.call.errors",
+   "type": "counter",
+   "unit": "1",
+   "value": 1.0
+  },
+  {
+   "attributes": {
+    "planner": "deterministic"
+   },
+   "count": 88,
+   "max": 914.423,
+   "name": "nasha.agent.run.duration",
+   "p50": 96.846,
+   "p95": 530.654,
+   "sum": 11182.065,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "planner": "llm"
+   },
+   "count": 71,
+   "max": 159.696,
+   "name": "nasha.agent.run.duration",
+   "p50": 96.367,
+   "p95": 134.399,
+   "sum": 6234.543,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "planner": "unknown"
+   },
+   "count": 1,
+   "max": 4.286,
+   "name": "nasha.agent.run.duration",
+   "p50": 4.286,
+   "p95": 4.286,
+   "sum": 4.286,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "node": "ASSESS_EVIDENCE"
+   },
+   "count": 168,
+   "max": 5.237,
+   "name": "nasha.agent.step.duration",
+   "p50": 1.262,
+   "p95": 2.047,
+   "sum": 229.286,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "node": "CLASSIFY_EVENT"
+   },
+   "count": 159,
+   "max": 6.042,
+   "name": "nasha.agent.step.duration",
+   "p50": 1.261,
+   "p95": 2.372,
+   "sum": 219.801,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "node": "COLLECT_OPERATIONAL_DATA"
+   },
+   "count": 168,
+   "max": 521.045,
+   "name": "nasha.agent.step.duration",
+   "p50": 28.603,
+   "p95": 81.23,
+   "sum": 6416.919,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "node": "EXECUTE_APPROVED"
+   },
+   "count": 158,
+   "max": 83.791,
+   "name": "nasha.agent.step.duration",
+   "p50": 1.791,
+   "p95": 82.447,
+   "sum": 941.994,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "node": "HUMAN_REVIEW"
+   },
+   "count": 335,
+   "max": 0.0,
+   "name": "nasha.agent.step.duration",
+   "p50": 0.0,
+   "p95": 0.0,
+   "sum": 0.0,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "node": "PROPOSE_ACTION"
+   },
+   "count": 168,
+   "max": 84.404,
+   "name": "nasha.agent.step.duration",
+   "p50": 3.128,
+   "p95": 34.543,
+   "sum": 1232.057,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "node": "RECEIVE_EVENT"
+   },
+   "count": 160,
+   "max": 9.184,
+   "name": "nasha.agent.step.duration",
+   "p50": 1.178,
+   "p95": 2.454,
+   "sum": 231.256,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "node": "REQUEST_MORE_EVIDENCE"
+   },
+   "count": 9,
+   "max": 1.382,
+   "name": "nasha.agent.step.duration",
+   "p50": 0.793,
+   "p95": 1.382,
+   "sum": 7.891,
+   "type": "histogram",
+   "unit": "ms"
+  },
+  {
+   "attributes": {
+    "node": "RETRIEVE_POLICY"
+   },
+   "count": 168,
+   "max": 212.43,
+   "name": "nasha.agent.step.duration",
+   "p50": 41.721,
+   "p95": 73.62,
+   "sum": 6416.421,
+   "type": "histogram",
+   "unit": "ms"
+  }
+ ],
+ "retrieval": {
+  "counts": {
+   "abstain": 42,
+   "fallback": 0,
+   "hit": 204,
+   "miss": 0
+  },
+  "definition": "hit = answered with citations; abstain = INSUFFICIENT VERIFIED EVIDENCE; miss = the retrieval call itself failed"
+ },
+ "runs": 160,
+ "schedule": {
+  "105": [
+   "permission_rejection",
+   105
+  ],
+  "106": [
+   "approval_expiry",
+   106
+  ],
+  "115": [
+   "database_failure",
+   115
+  ],
+  "116": [
+   "database_failure",
+   116
+  ],
+  "125": [
+   "malformed_tool_result",
+   125
+  ],
+  "126": [
+   "schema_violation",
+   126
+  ],
+  "127": [
+   "stale_document",
+   127
+  ],
+  "40": [
+   "latency_spike",
+   80
+  ],
+  "41": [
+   "latency_spike",
+   80
+  ],
+  "42": [
+   "latency_spike",
+   80
+  ],
+  "43": [
+   "latency_spike",
+   80
+  ],
+  "44": [
+   "latency_spike",
+   80
+  ],
+  "45": [
+   "latency_spike",
+   80
+  ],
+  "46": [
+   "latency_spike",
+   80
+  ],
+  "47": [
+   "latency_spike",
+   80
+  ],
+  "60": [
+   "tool_timeout",
+   100
+  ],
+  "61": [
+   "tool_timeout",
+   101
+  ],
+  "62": [
+   "tool_timeout",
+   102
+  ],
+  "75": [
+   "model_timeout",
+   100
+  ],
+  "90": [
+   "retrieval_miss",
+   101
+  ],
+  "91": [
+   "retrieval_miss",
+   102
+  ]
+ },
+ "schedule_note": "160 runs; faults staged at fixed indices (see schedule); the rest are clean control runs; planner alternates deterministic / rule-model (scripted stand-in, NOT a language model)",
+ "slo": {
+  "burn_alerts": [
+   {
+    "action": "ticket",
+    "burn_alert": "BR-2",
+    "first_run_index": 75,
+    "last_run_index": 76,
+    "peak_burn": 3.0303030303030276,
+    "runs_firing": 2,
+    "severity": "SEV3",
+    "slo": "SLO-6"
+   }
+  ],
+  "label": "DESIGN TARGETS (ASSUMPTIONS). These objectives were chosen by the author for a hypothetical deployment of the synthetic lab. They are NOT contractual SLAs, NOT derived from real traffic, and NOT measured production reliability. Windows are counted in RUNS (the synthetic telemetry has no real clock traffic); mapping them to wall-clock windows would require real arrival rates.",
+  "runs": 160,
+  "slo_version": "slo-design-targets-v1",
+  "slos": [
+   {
+    "attainment": 0.9938,
+    "bad": 1,
+    "budget_allowed_bad": 1.6,
+    "budget_consumed": 0.625,
+    "good": 159,
+    "id": "SLO-1",
+    "name": "Run completes operationally",
+    "objective": 0.99,
+    "status": "MET",
+    "total": 160
+   },
+   {
+    "attainment": 0.9951,
+    "bad": 6,
+    "budget_allowed_bad": 12.27,
+    "budget_consumed": 0.489,
+    "good": 1221,
+    "id": "SLO-2",
+    "name": "Tool call availability",
+    "objective": 0.99,
+    "status": "MET",
+    "total": 1227
+   },
+   {
+    "attainment": 0.9875,
+    "bad": 2,
+    "budget_allowed_bad": 8.0,
+    "budget_consumed": 0.25,
+    "good": 158,
+    "id": "SLO-3",
+    "name": "Run latency",
+    "objective": 0.95,
+    "status": "MET",
+    "total": 160
+   },
+   {
+    "attainment": 1.0,
+    "bad": 0,
+    "budget_allowed_bad": 1.23,
+    "budget_consumed": 0.0,
+    "good": 246,
+    "id": "SLO-4",
+    "name": "Retrieval availability",
+    "objective": 0.995,
+    "status": "MET",
+    "total": 246
+   },
+   {
+    "attainment": 1.0,
+    "bad": 0,
+    "budget_allowed_bad": 0.0,
+    "budget_consumed": null,
+    "good": 160,
+    "id": "SLO-5",
+    "name": "Safety invariants",
+    "objective": 1.0,
+    "status": "MET",
+    "total": 160
+   },
+   {
+    "attainment": 0.9859,
+    "bad": 1,
+    "budget_allowed_bad": 0.71,
+    "budget_consumed": 1.408,
+    "good": 70,
+    "id": "SLO-6",
+    "name": "Model availability (LLM-planner runs only)",
+    "objective": 0.99,
+    "status": "BREACHED",
+    "total": 71
+   }
+  ],
+  "synthetic_label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED"
+ },
+ "staged_fault_detection": {
+  "clean_runs": 139,
+  "clean_runs_in_window_incident": 0,
+  "clean_runs_with_alert": 0,
+  "staged": [
+   {
+    "by": "window rule AR-23 (block of 8 runs reported per run)",
+    "detected": true,
+    "fault": "latency_spike",
+    "index": 40
+   },
+   {
+    "by": "window rule AR-23 (block of 8 runs reported per run)",
+    "detected": true,
+    "fault": "latency_spike",
+    "index": 41
+   },
+   {
+    "by": "window rule AR-23 (block of 8 runs reported per run)",
+    "detected": true,
+    "fault": "latency_spike",
+    "index": 42
+   },
+   {
+    "by": "window rule AR-23 (block of 8 runs reported per run)",
+    "detected": true,
+    "fault": "latency_spike",
+    "index": 43
+   },
+   {
+    "by": "window rule AR-23 (block of 8 runs reported per run)",
+    "detected": true,
+    "fault": "latency_spike",
+    "index": 44
+   },
+   {
+    "by": "window rule AR-23 (block of 8 runs reported per run)",
+    "detected": true,
+    "fault": "latency_spike",
+    "index": 45
+   },
+   {
+    "by": "window rule AR-23 (block of 8 runs reported per run)",
+    "detected": true,
+    "fault": "latency_spike",
+    "index": 46
+   },
+   {
+    "by": "window rule AR-23 (block of 8 runs reported per run)",
+    "detected": true,
+    "fault": "latency_spike",
+    "index": 47
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "tool_timeout",
+    "index": 60
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "tool_timeout",
+    "index": 61
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "tool_timeout",
+    "index": 62
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "model_timeout",
+    "index": 75
+   },
+   {
+    "by": "event/run rules",
+    "detected": false,
+    "fault": "retrieval_miss",
+    "index": 90
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "retrieval_miss",
+    "index": 91
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "permission_rejection",
+    "index": 105
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "approval_expiry",
+    "index": 106
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "database_failure",
+    "index": 115
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "database_failure",
+    "index": 116
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "malformed_tool_result",
+    "index": 125
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "schema_violation",
+    "index": 126
+   },
+   {
+    "by": "event/run rules",
+    "detected": true,
+    "fault": "stale_document",
+    "index": 127
+   }
+  ],
+  "staged_detected": 20,
+  "staged_fault_runs": 21
+ },
+ "tokens": {
+  "completion": 19436,
+  "llm_calls": 250,
+  "note": "scripted stand-in token counts are character/4 estimates, not a tokenizer",
+  "prompt": 218767
+ },
+ "tools": {
+  "assess_inventory_risk": {
+   "calls": 78,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 16.29,
+   "per_run_max_ms_p95": 28.0,
+   "success_rate": 1.0
+  },
+  "assess_policy_ingredient": {
+   "calls": 48,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 0.59,
+   "per_run_max_ms_p95": 81.49,
+   "success_rate": 1.0
+  },
+  "draft_purchase_recommendation": {
+   "calls": 35,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 0.99,
+   "per_run_max_ms_p95": 1.6,
+   "success_rate": 1.0
+  },
+  "draft_review_ticket": {
+   "calls": 132,
+   "error_codes": {
+    "UPSTREAM_FAILURE": 1
+   },
+   "failures": 1,
+   "per_run_max_ms_p50": 0.85,
+   "per_run_max_ms_p95": 81.21,
+   "success_rate": 0.9924
+  },
+  "flag_record_for_review": {
+   "calls": 115,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 0.88,
+   "per_run_max_ms_p95": 81.43,
+   "success_rate": 1.0
+  },
+  "get_current_policy": {
+   "calls": 246,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 22.81,
+   "per_run_max_ms_p95": 90.51,
+   "success_rate": 1.0
+  },
+  "get_lineage": {
+   "calls": 37,
+   "error_codes": {
+    "TIMEOUT": 1,
+    "UPSTREAM_FAILURE": 1
+   },
+   "failures": 2,
+   "per_run_max_ms_p50": 1.0,
+   "per_run_max_ms_p95": 81.37,
+   "success_rate": 0.9459
+  },
+  "get_open_purchase_orders": {
+   "calls": 78,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 0.82,
+   "per_run_max_ms_p95": 2.07,
+   "success_rate": 1.0
+  },
+  "get_quality_finding": {
+   "calls": 40,
+   "error_codes": {
+    "NOT_FOUND": 2,
+    "TIMEOUT": 1
+   },
+   "failures": 3,
+   "per_run_max_ms_p50": 0.72,
+   "per_run_max_ms_p95": 81.15,
+   "success_rate": 0.925
+  },
+  "get_supplier_notes_untrusted": {
+   "calls": 43,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 3.86,
+   "per_run_max_ms_p95": 8.69,
+   "success_rate": 1.0
+  },
+  "get_supplier_proposal": {
+   "calls": 49,
+   "error_codes": {
+    "MALFORMED_RESULT": 1
+   },
+   "failures": 1,
+   "per_run_max_ms_p50": 0.69,
+   "per_run_max_ms_p95": 81.41,
+   "success_rate": 0.9796
+  },
+  "get_supplier_status": {
+   "calls": 126,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 0.7,
+   "per_run_max_ms_p95": 2.34,
+   "success_rate": 1.0
+  },
+  "list_quality_findings": {
+   "calls": 78,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 0.8,
+   "per_run_max_ms_p95": 1.32,
+   "success_rate": 1.0
+  },
+  "query_inventory": {
+   "calls": 78,
+   "error_codes": {
+    "TIMEOUT": 1
+   },
+   "failures": 1,
+   "per_run_max_ms_p50": 9.13,
+   "per_run_max_ms_p95": 17.94,
+   "success_rate": 0.9872
+  },
+  "release_draft": {
+   "calls": 35,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 0.88,
+   "per_run_max_ms_p95": 1.26,
+   "success_rate": 1.0
+  },
+  "search_nasha_knowledge": {
+   "calls": 9,
+   "error_codes": {},
+   "failures": 0,
+   "per_run_max_ms_p50": 8.58,
+   "per_run_max_ms_p95": 11.9,
+   "success_rate": 1.0
+  }
+ },
+ "version": {
+  "corpus_version": "block3",
+  "planner_id": "deterministic@d1",
+  "prompt_hash": "logic-271bb2dd3e6d",
+  "tool_schema_version": "2718aa91020b",
+  "version_id": "v1"
+ }
+}

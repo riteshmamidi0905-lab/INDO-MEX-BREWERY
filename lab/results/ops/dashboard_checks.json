@@ -1,0 +1,39 @@
+{
+ "light-desktop": {
+  "scrollWidth": 1280,
+  "viewport": 1280,
+  "horizontal_scroll": false,
+  "axe": {
+   "violations": [],
+   "passes": 44
+  }
+ },
+ "first_tab_focus": "skip:Skip to main content",
+ "light-phone": {
+  "scrollWidth": 390,
+  "viewport": 390,
+  "horizontal_scroll": false,
+  "axe": {
+   "violations": [],
+   "passes": 45
+  }
+ },
+ "dark-desktop": {
+  "scrollWidth": 1280,
+  "viewport": 1280,
+  "horizontal_scroll": false,
+  "axe": {
+   "violations": [],
+   "passes": 44
+  }
+ },
+ "dark-phone": {
+  "scrollWidth": 390,
+  "viewport": 390,
+  "horizontal_scroll": false,
+  "axe": {
+   "violations": [],
+   "passes": 45
+  }
+ }
+}

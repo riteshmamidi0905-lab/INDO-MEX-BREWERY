@@ -1,0 +1,544 @@
+{
+ "count": 15,
+ "incidents": [
+  {
+   "cls": "LATENCY_DEGRADATION",
+   "detection_rule": "AR-23",
+   "ground_truth": "latency_spike",
+   "incident_id": "INC-3cf88d8b",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "window",
+   "run_index": 40,
+   "runbook_id": "RB-LATENCY",
+   "severity": "SEV3",
+   "status": "RESOLVED",
+   "subject": "window@40",
+   "timeline": [
+    {
+     "detail": "AR-23 p95(timing.run_ms) over 5 runs = 908.808 > 600",
+     "event": "DETECTED",
+     "step": 40,
+     "t_ms": null
+    },
+    {
+     "detail": "peak observed 914.423",
+     "event": "PEAK",
+     "step": 46,
+     "t_ms": null
+    },
+    {
+     "detail": "window condition no longer holds",
+     "event": "CLEARED",
+     "step": 47,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "TOOL_TIMEOUT",
+   "detection_rule": "AR-01",
+   "expected_containment": "the failed check becomes a gap; the planner escalates instead of concluding no-action",
+   "ground_truth": "tool_timeout",
+   "incident_id": "INC-92b510ff",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "tool",
+   "opened_elapsed_ms": 53.899,
+   "opened_step": 6,
+   "related_alerts": [],
+   "run_index": 60,
+   "runbook_id": "RB-TOOL-TIMEOUT",
+   "severity": "SEV3",
+   "status": "RESOLVED",
+   "subject": "run-10a2c3a20d",
+   "timeline": [
+    {
+     "detail": "AR-01 tool_error: tool=get_lineage, code=TIMEOUT, message=tool exceeded 0.05s",
+     "event": "DETECTED",
+     "step": 6,
+     "t_ms": 53.899
+    },
+    {
+     "detail": "action QUARANTINE_AND_REVIEW (clean action QUARANTINE_AND_REVIEW); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 7,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "TOOL_TIMEOUT",
+   "detection_rule": "AR-01",
+   "expected_containment": "the failed check becomes a gap; the planner escalates instead of concluding no-action",
+   "ground_truth": "tool_timeout",
+   "incident_id": "INC-c9f3c764",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "tool",
+   "opened_elapsed_ms": 53.007,
+   "opened_step": 5,
+   "related_alerts": [],
+   "run_index": 61,
+   "runbook_id": "RB-TOOL-TIMEOUT",
+   "severity": "SEV3",
+   "status": "RESOLVED",
+   "subject": "run-a14616dc4f",
+   "timeline": [
+    {
+     "detail": "AR-01 tool_error: tool=query_inventory, code=TIMEOUT, message=tool exceeded 0.05s",
+     "event": "DETECTED",
+     "step": 5,
+     "t_ms": 53.007
+    },
+    {
+     "detail": "action ESCALATE_INSUFFICIENT_EVIDENCE (clean action REQUEST_RECOUNT); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 6,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "TOOL_TIMEOUT",
+   "detection_rule": "AR-01",
+   "expected_containment": "the failed check becomes a gap; the planner escalates instead of concluding no-action",
+   "ground_truth": "tool_timeout",
+   "incident_id": "INC-d81663ac",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "tool",
+   "opened_elapsed_ms": 53.151,
+   "opened_step": 5,
+   "related_alerts": [],
+   "run_index": 62,
+   "runbook_id": "RB-TOOL-TIMEOUT",
+   "severity": "SEV3",
+   "status": "RESOLVED",
+   "subject": "run-280b457b64",
+   "timeline": [
+    {
+     "detail": "AR-01 tool_error: tool=get_quality_finding, code=TIMEOUT, message=tool exceeded 0.05s",
+     "event": "DETECTED",
+     "step": 5,
+     "t_ms": 53.151
+    },
+    {
+     "detail": "action ESCALATE_INSUFFICIENT_EVIDENCE (clean action QUARANTINE_AND_REVIEW); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 6,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "SLO_BURN",
+   "detection_rule": "BR-2/SLO-6",
+   "ground_truth": "model_timeout",
+   "incident_id": "INC-047f69a0",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "slo",
+   "run_index": 75,
+   "runbook_id": "RB-SLO-BURN",
+   "severity": "SEV3",
+   "status": "RESOLVED",
+   "subject": "slo:SLO-6",
+   "timeline": [
+    {
+     "detail": "BR-2 fired at run 75, last firing run 76, 2 runs, peak burn 3.0303030303030276",
+     "event": "DETECTED",
+     "step": 75,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "MODEL_UNAVAILABLE",
+   "detection_rule": "AR-06",
+   "expected_containment": "planner returns ESCALATE_INSUFFICIENT_EVIDENCE with planner_failure=true; no mutating action is proposed",
+   "ground_truth": "model_timeout",
+   "incident_id": "INC-ef0c3675",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "model",
+   "opened_elapsed_ms": 80.877,
+   "opened_step": 20,
+   "related_alerts": [],
+   "run_index": 75,
+   "runbook_id": "RB-MODEL-UNAVAILABLE",
+   "severity": "SEV2",
+   "status": "RESOLVED",
+   "subject": "run-ac5c0cbd4f",
+   "timeline": [
+    {
+     "detail": "AR-06 llm_call: error=MODEL_UNAVAILABLE",
+     "event": "DETECTED",
+     "step": 20,
+     "t_ms": 80.877
+    },
+    {
+     "detail": "action ESCALATE_INSUFFICIENT_EVIDENCE (clean action ABSTAIN_REQUIRE_REVIEW); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 21,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "RETRIEVAL_ABSTAIN_ANOMALY",
+   "detection_rule": "AR-17",
+   "expected_containment": "abstain with INSUFFICIENT VERIFIED EVIDENCE; unconfirmed policy is listed as an uncertainty",
+   "ground_truth": "retrieval_miss",
+   "incident_id": "INC-51eda6f8",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "retrieval",
+   "opened_elapsed_ms": 75.101,
+   "opened_step": 41,
+   "related_alerts": [],
+   "run_index": 91,
+   "runbook_id": "RB-RETRIEVAL",
+   "severity": "SEV3",
+   "status": "RESOLVED",
+   "subject": "run-d9262bf586",
+   "timeline": [
+    {
+     "detail": "AR-17 run-level: policy retrieval abstained for an event family whose clean baseline is to find a",
+     "event": "DETECTED",
+     "step": 41,
+     "t_ms": 75.101
+    },
+    {
+     "detail": "action ABSTAIN_REQUIRE_REVIEW (clean action ABSTAIN_REQUIRE_REVIEW); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 42,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "PERMISSION_DENIED",
+   "detection_rule": "AR-10",
+   "expected_containment": "no grant is minted; the run stays awaiting a permitted reviewer; nothing executes",
+   "ground_truth": "permission_rejection",
+   "incident_id": "INC-891aeeb2",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "approval",
+   "opened_elapsed_ms": 22.893,
+   "opened_step": 16,
+   "related_alerts": [],
+   "run_index": 105,
+   "runbook_id": "RB-PERMISSION-DENIED",
+   "severity": "SEV3",
+   "status": "RESOLVED",
+   "subject": "run-a670550024",
+   "timeline": [
+    {
+     "detail": "AR-10 ops_approval_denied: code=ROLE_NOT_PERMITTED",
+     "event": "DETECTED",
+     "step": 16,
+     "t_ms": 22.893
+    },
+    {
+     "detail": "action QUARANTINE_AND_REVIEW (clean action QUARANTINE_AND_REVIEW); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 17,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "APPROVAL_EXPIRED",
+   "detection_rule": "AR-11",
+   "expected_containment": "an expired session or stale pending review cannot approve; nothing executes; the review can be re-opened",
+   "ground_truth": "approval_expiry",
+   "incident_id": "INC-254fa5b3",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "approval",
+   "opened_elapsed_ms": 31.895,
+   "opened_step": 17,
+   "related_alerts": [],
+   "run_index": 106,
+   "runbook_id": "RB-APPROVAL-EXPIRED",
+   "severity": "SEV3",
+   "status": "RESOLVED",
+   "subject": "run-534103ee72",
+   "timeline": [
+    {
+     "detail": "AR-11 ops_approval_expired: code=EXPIRED",
+     "event": "DETECTED",
+     "step": 17,
+     "t_ms": 31.895
+    },
+    {
+     "detail": "action ABSTAIN_REQUIRE_REVIEW (clean action ABSTAIN_REQUIRE_REVIEW); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 18,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "DATABASE_UNAVAILABLE",
+   "detection_rule": "AR-02",
+   "expected_containment": "tool reads fail as UPSTREAM_FAILURE and the run escalates; a crash marks the run FAILED so the event can be re-processed",
+   "ground_truth": "database_failure",
+   "incident_id": "INC-84b15ca4",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "platform",
+   "opened_elapsed_ms": 3.133,
+   "opened_step": 6,
+   "related_alerts": [],
+   "run_index": 115,
+   "runbook_id": "RB-DATABASE",
+   "severity": "SEV2",
+   "status": "RESOLVED",
+   "subject": "run-20ed8053ce",
+   "timeline": [
+    {
+     "detail": "AR-02 tool_error: tool=get_lineage, code=UPSTREAM_FAILURE, message=OperationalError: database is locked",
+     "event": "DETECTED",
+     "step": 6,
+     "t_ms": 3.133
+    },
+    {
+     "detail": "action QUARANTINE_AND_REVIEW (clean action QUARANTINE_AND_REVIEW); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 7,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "DATABASE_UNAVAILABLE",
+   "detection_rule": "AR-13",
+   "expected_containment": "tool reads fail as UPSTREAM_FAILURE and the run escalates; a crash marks the run FAILED so the event can be re-processed",
+   "ground_truth": "database_failure",
+   "incident_id": "INC-259c911b",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "platform",
+   "opened_elapsed_ms": 1.0,
+   "opened_step": 2,
+   "related_alerts": [
+    "AR-12@2"
+   ],
+   "run_index": 116,
+   "runbook_id": "RB-DATABASE",
+   "severity": "SEV2",
+   "status": "RESOLVED",
+   "subject": "run-86ad4e13a7",
+   "timeline": [
+    {
+     "detail": "AR-13 ops_run_crashed: error=OperationalError",
+     "event": "DETECTED",
+     "step": 2,
+     "t_ms": 1.0
+    },
+    {
+     "detail": "action None (clean action DRAFT_PURCHASE_RECOMMENDATION); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 3,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "TOOL_MALFORMED_RESULT",
+   "detection_rule": "AR-04",
+   "expected_containment": "output schema validation rejects the result (MALFORMED_RESULT); it never reaches a claim",
+   "ground_truth": "malformed_tool_result",
+   "incident_id": "INC-747b9a64",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "tool",
+   "opened_elapsed_ms": 2.851,
+   "opened_step": 5,
+   "related_alerts": [],
+   "run_index": 125,
+   "runbook_id": "RB-MALFORMED-RESULT",
+   "severity": "SEV3",
+   "status": "RESOLVED",
+   "subject": "run-07f6e9f157",
+   "timeline": [
+    {
+     "detail": "AR-04 tool_error: tool=get_supplier_proposal, code=MALFORMED_RESULT, message=tool result did not match its output schema",
+     "event": "DETECTED",
+     "step": 5,
+     "t_ms": 2.851
+    },
+    {
+     "detail": "action ABSTAIN_REQUIRE_REVIEW (clean action ABSTAIN_REQUIRE_REVIEW); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 6,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "MODEL_SCHEMA_VIOLATION",
+   "detection_rule": "AR-07",
+   "expected_containment": "bounded retry (2) then escalate; invalid output never becomes an action",
+   "ground_truth": "schema_violation",
+   "incident_id": "INC-bb654ba6",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "model",
+   "opened_elapsed_ms": 8.007,
+   "opened_step": 5,
+   "related_alerts": [],
+   "run_index": 126,
+   "runbook_id": "RB-SCHEMA-VIOLATION",
+   "severity": "SEV3",
+   "status": "RESOLVED",
+   "subject": "run-ff99e23f52",
+   "timeline": [
+    {
+     "detail": "AR-07 schema_failure: ",
+     "event": "DETECTED",
+     "step": 5,
+     "t_ms": 8.007
+    },
+    {
+     "detail": "action ESCALATE_INSUFFICIENT_EVIDENCE (clean action QUARANTINE_AND_REVIEW); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 6,
+     "t_ms": null
+    },
+    {
+     "detail": "fault healed; reviewer asked for more evidence (or equivalent); proposal matches the clean twin",
+     "event": "recovery verified",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "STALE_SOURCE",
+   "detection_rule": "AR-15",
+   "expected_containment": "stale, superseded or unverified sources are excluded or flagged and never cited as authority",
+   "ground_truth": "stale_document",
+   "incident_id": "INC-b700695a",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "retrieval",
+   "opened_elapsed_ms": 36.032,
+   "opened_step": 9,
+   "related_alerts": [],
+   "run_index": 127,
+   "runbook_id": "RB-STALE-SOURCE",
+   "severity": "SEV4",
+   "status": "RESOLVED",
+   "subject": "run-dfb0ac96f0",
+   "timeline": [
+    {
+     "detail": "AR-15 tool_call: tool=get_supplier_notes_untrusted",
+     "event": "DETECTED",
+     "step": 9,
+     "t_ms": 36.032
+    },
+    {
+     "detail": "action REQUEST_RECOUNT (clean action REQUEST_RECOUNT); mutations executed 0; external actions 0; ungrounded claims 0",
+     "event": "containment check",
+     "step": 10,
+     "t_ms": null
+    },
+    {
+     "detail": "not applicable: the stale source is excluded at retrieval; nothing to heal",
+     "event": "no recovery action applicable",
+     "step": null,
+     "t_ms": null
+    }
+   ]
+  },
+  {
+   "cls": "EVAL_REGRESSION",
+   "detection_rule": "AR-25",
+   "expected_containment": "the regression gate fails; the candidate version is not promoted; rollback is the recovery",
+   "ground_truth": "evaluation_regression (rollback drill)",
+   "incident_id": "INC-ce514556",
+   "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+   "layer": "evaluation",
+   "opened_elapsed_ms": null,
+   "opened_step": 0,
+   "related_alerts": [],
+   "run_index": null,
+   "runbook_id": "RB-EVAL-REGRESSION",
+   "severity": "SEV2",
+   "status": "RESOLVED",
+   "subject": "gate:v3",
+   "timeline": [
+    {
+     "detail": "AR-25 gate: 1 adversarial scenarios newly fail",
+     "event": "DETECTED",
+     "step": 0,
+     "t_ms": null
+    },
+    {
+     "detail": "",
+     "event": "candidate not promoted: gate FAIL blocks promotion",
+     "step": 7,
+     "t_ms": null
+    },
+    {
+     "detail": "",
+     "event": "rolled back to v1; gate re-run verdict PASS",
+     "step": 7,
+     "t_ms": null
+    }
+   ]
+  }
+ ],
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+ "taxonomy": "nasha-ops-failure-taxonomy-v1"
+}

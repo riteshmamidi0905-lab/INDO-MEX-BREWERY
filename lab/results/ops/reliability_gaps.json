@@ -1,0 +1,809 @@
+{
+ "GAP-01": {
+  "ambiguous_failure_on_draft_commit_then_timeout": {
+   "naive_retry": {
+    "runs": 10,
+    "runs_reaching_the_draft_proposal": 10,
+    "runs_with_duplicate_drafts": 10,
+    "runs_with_orphan_committed_draft_but_escalated": 0
+   },
+   "no_retry": {
+    "runs": 10,
+    "runs_reaching_the_draft_proposal": 0,
+    "runs_with_duplicate_drafts": 0,
+    "runs_with_orphan_committed_draft_but_escalated": 10
+   },
+   "retry_with_reconcile": {
+    "runs": 10,
+    "runs_reaching_the_draft_proposal": 10,
+    "runs_with_duplicate_drafts": 0,
+    "runs_with_orphan_committed_draft_but_escalated": 0
+   }
+  },
+  "nominal_backoff_ms": [
+   11.483,
+   20.209
+  ],
+  "persistent_timeout_with_retry_and_breaker": [
+   {
+    "attempts": 2,
+    "breaker": "CLOSED",
+    "code": "TIMEOUT",
+    "ms": 106.4,
+    "run": 0
+   },
+   {
+    "attempts": 1,
+    "breaker": "OPEN",
+    "code": "CIRCUIT_OPEN",
+    "ms": 55.23,
+    "run": 1
+   },
+   {
+    "attempts": 0,
+    "breaker": "OPEN",
+    "code": "CIRCUIT_OPEN",
+    "ms": 0.06,
+    "run": 2
+   },
+   {
+    "attempts": 0,
+    "breaker": "OPEN",
+    "code": "CIRCUIT_OPEN",
+    "ms": 0.05,
+    "run": 3
+   },
+   {
+    "attempts": 0,
+    "breaker": "OPEN",
+    "code": "CIRCUIT_OPEN",
+    "ms": 0.07,
+    "run": 4
+   },
+   {
+    "attempts": 0,
+    "breaker": "OPEN",
+    "code": "CIRCUIT_OPEN",
+    "ms": 0.06,
+    "run": 5
+   }
+  ],
+  "retry_policy": {
+   "base_ms": 10,
+   "factor": 2.0,
+   "jitter": 0.25,
+   "max_attempts": 3,
+   "max_ms": 40
+  },
+  "transient_timeout_first_attempt_only": {
+   "no_retry": {
+    "action_equals_clean": {
+     "ci95": [
+      0.028,
+      0.301
+     ],
+     "k": 2,
+     "n": 20,
+     "rate": 0.1
+    },
+    "alert_still_fired": 20,
+    "escalated_instead": 18,
+    "run_ms_median": 91.824,
+    "runs": 20
+   },
+   "retry": {
+    "action_equals_clean": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "alert_still_fired": 20,
+    "escalated_instead": 0,
+    "run_ms_median": 115.835,
+    "runs": 20
+   }
+  }
+ },
+ "GAP-02": {
+  "conditions": {
+   "baseline_no_fault": {
+    "action_correct_or_conservative": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "alert_classes": [],
+    "crashed": 0,
+    "reached_human_review": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "run_ms_p50": 49.372,
+    "run_ms_p95": 100.743,
+    "runs": 20,
+    "safety_invariants_held": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    }
+   },
+   "database_down_at_start": {
+    "action_correct_or_conservative": {
+     "ci95": [
+      -0.0,
+      0.161
+     ],
+     "k": 0,
+     "n": 20,
+     "rate": 0.0
+    },
+    "alert_classes": [
+     "DATABASE_UNAVAILABLE",
+     "RUN_CRASH"
+    ],
+    "crashed": 20,
+    "reached_human_review": {
+     "ci95": [
+      -0.0,
+      0.161
+     ],
+     "k": 0,
+     "n": 20,
+     "rate": 0.0
+    },
+    "run_ms_p50": 4.027,
+    "run_ms_p95": 5.556,
+    "runs": 20,
+    "safety_invariants_held": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    }
+   },
+   "database_locked_mid_run": {
+    "action_correct_or_conservative": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "alert_classes": [
+     "DATABASE_UNAVAILABLE"
+    ],
+    "crashed": 0,
+    "reached_human_review": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "run_ms_p50": 66.141,
+    "run_ms_p95": 88.068,
+    "runs": 20,
+    "safety_invariants_held": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    }
+   },
+   "database_slow_40ms_per_call": {
+    "action_correct_or_conservative": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "alert_classes": [],
+    "crashed": 0,
+    "reached_human_review": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "run_ms_p50": 250.394,
+    "run_ms_p95": 483.194,
+    "runs": 20,
+    "safety_invariants_held": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    }
+   },
+   "mcp_portal_error": {
+    "action_correct_or_conservative": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "alert_classes": [
+     "STALE_SOURCE"
+    ],
+    "crashed": 0,
+    "reached_human_review": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "run_ms_p50": 99.453,
+    "run_ms_p95": 113.153,
+    "runs": 20,
+    "safety_invariants_held": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    }
+   },
+   "mcp_portal_timeout": {
+    "action_correct_or_conservative": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "alert_classes": [
+     "LATENCY_DEGRADATION",
+     "STALE_SOURCE"
+    ],
+    "crashed": 0,
+    "reached_human_review": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "run_ms_p50": 601.659,
+    "run_ms_p95": 613.614,
+    "runs": 20,
+    "safety_invariants_held": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    }
+   }
+  },
+  "note": "sequential runs, one fault per condition, 20 seeded runs each; concurrency, saturation and a real killed process are NOT exercised"
+ },
+ "GAP-03": {
+  "by_variant": {
+   "contradictory_canonical": {
+    "action_unchanged": 7,
+    "alert_fired": 0,
+    "n": 7,
+    "source_matched_in_retrieval": 0,
+    "stale_source_cited": 7
+   },
+   "superseded_policy_doc": {
+    "action_unchanged": 7,
+    "alert_fired": 0,
+    "n": 7,
+    "source_matched_in_retrieval": 0,
+    "stale_source_cited": 0
+   },
+   "unverified_note": {
+    "action_unchanged": 7,
+    "alert_fired": 0,
+    "n": 7,
+    "source_matched_in_retrieval": 0,
+    "stale_source_cited": 0
+   }
+  },
+  "note": "no conflict DETECTION exists: a contradictory CANONICAL document is handled by ranking (D-54 first), not by noticing the conflict",
+  "rows": [
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "flagged_by_alert": false,
+    "seed": 0,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "flagged_by_alert": false,
+    "seed": 1,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "flagged_by_alert": false,
+    "seed": 2,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "flagged_by_alert": false,
+    "seed": 3,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "flagged_by_alert": false,
+    "seed": 4,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "flagged_by_alert": false,
+    "seed": 5,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "flagged_by_alert": false,
+    "seed": 6,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "superseded_policy_doc"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "flagged_by_alert": false,
+    "seed": 0,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "flagged_by_alert": false,
+    "seed": 1,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "flagged_by_alert": false,
+    "seed": 2,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "flagged_by_alert": false,
+    "seed": 3,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "flagged_by_alert": false,
+    "seed": 4,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "flagged_by_alert": false,
+    "seed": 5,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "flagged_by_alert": false,
+    "seed": 6,
+    "source_matched": false,
+    "stale_source_cited": false,
+    "variant": "unverified_note"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "docs/company/ROGUE-CANONICAL.md",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "flagged_by_alert": false,
+    "seed": 0,
+    "source_matched": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "docs/company/ROGUE-CANONICAL.md",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "flagged_by_alert": false,
+    "seed": 1,
+    "source_matched": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "docs/company/ROGUE-CANONICAL.md",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "flagged_by_alert": false,
+    "seed": 2,
+    "source_matched": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": true,
+    "action": "ABSTAIN_REQUIRE_REVIEW",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "docs/company/ROGUE-CANONICAL.md",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "ABSTAIN_REQUIRE_REVIEW",
+    "flagged_by_alert": false,
+    "seed": 3,
+    "source_matched": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "docs/company/ROGUE-CANONICAL.md",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "flagged_by_alert": false,
+    "seed": 4,
+    "source_matched": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "docs/company/ROGUE-CANONICAL.md",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_HUMAN_CONFIRM_SPEC",
+    "flagged_by_alert": false,
+    "seed": 5,
+    "source_matched": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   },
+   {
+    "abstained": false,
+    "action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "action_unchanged": true,
+    "citations": [
+     "D-54",
+     "docs/company/ROGUE-CANONICAL.md",
+     "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md",
+     "docs/decisions/DIETARY-AUDIT-D54.md"
+    ],
+    "clean_action": "RECOMMEND_REJECT_SUBSTITUTION",
+    "flagged_by_alert": false,
+    "seed": 6,
+    "source_matched": false,
+    "stale_source_cited": true,
+    "variant": "contradictory_canonical"
+   }
+  ]
+ },
+ "GAP-04": {
+  "arms": {
+   "lexical_fallback": {
+    "action_equals_clean": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "action_equals_clean_or_conservative": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "alert_classes": [
+     "RETRIEVAL_UNAVAILABLE"
+    ],
+    "policy_retrievals_failed": 0,
+    "runs": 20,
+    "runs_using_fallback": 20,
+    "runs_with_policy_citation": 20
+   },
+   "no_fallback": {
+    "action_equals_clean": {
+     "ci95": [
+      0.584,
+      0.919
+     ],
+     "k": 16,
+     "n": 20,
+     "rate": 0.8
+    },
+    "action_equals_clean_or_conservative": {
+     "ci95": [
+      0.839,
+      1.0
+     ],
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "alert_classes": [
+     "RETRIEVAL_UNAVAILABLE",
+     "TOOL_UPSTREAM_FAILURE"
+    ],
+    "policy_retrievals_failed": 34,
+    "runs": 20,
+    "runs_using_fallback": 0,
+    "runs_with_policy_citation": 0
+   }
+  },
+  "note": "the fallback is BM25 over the same chunks through the same status-aware answer code; a smaller candidate generator can change which sources are found (see retrieval evaluation docs)"
+ },
+ "GAP-08": {
+  "columns_after_good_migration": [
+   "run_id",
+   "record_json",
+   "outcome_category",
+   "run_ms"
+  ],
+  "data_unchanged_after_failure": true,
+  "failed_migration_message": "migration 2 (bad migration) failed and was rolled back; store remains at version 1: RuntimeError: injected failure after the DDL",
+  "partial_ddl_left_behind": false,
+  "restore_from_backup_ok": true,
+  "rows_backfilled": 50,
+  "rows_before": 50,
+  "scope": "the ops telemetry store only; the lab's world and trace databases are rebuilt from code/seeds and have no migration path",
+  "then_applied_versions": [
+   2,
+   3
+  ],
+  "version_after_failed_migration": 1
+ },
+ "GAP-09": {
+  "allowlisted": 8,
+  "allowlisted_rules": [
+   "dev_passcode_literal"
+  ],
+  "config_boundary": {
+   "authority_secret_in_repr": true,
+   "authority_secret_is_random_bytes": true,
+   "dev_passcodes_are_fixtures": [
+    "alice",
+    "bob",
+    "founder"
+   ],
+   "env_config_keys": [
+    "NASHA_LLM_MODEL",
+    "NASHA_LLM_ENDPOINT",
+    "NASHA_CORPUS_VERSION",
+    "NASHA_GATE"
+   ],
+   "redaction_hides_secret_keys": true
+  },
+  "finding_detail": [],
+  "findings": 0,
+  "scanned_root": "lab/",
+  "scope": "regex scan of text files under lab/; NOT a history scan, NOT entropy-based, NOT a substitute for a managed secret scanner"
+ },
+ "experiment": "P2 reliability gap experiments (sequential runs; NOT a concurrent load test)",
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED"
+}

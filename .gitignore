@@ -6,3 +6,8 @@ website/qa/node_modules/
 .cache/
 # Regenerable Glass V2 meshes (~90 MB): rebuild with `python3 tools/glass_v2.py build`
 visuals/glass-studies/v2/*.stl
+
+# Regenerable dashboard screenshots (about 4 MB): python -m nasha_lab.ops.render_dashboard --png  (see lab/results/ops/README.md)
+lab/results/ops/dashboard-*.png
+# optional OpenTelemetry file export output
+lab/results/ops/otel/

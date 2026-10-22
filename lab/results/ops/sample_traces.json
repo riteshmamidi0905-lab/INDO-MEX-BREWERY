@@ -1,0 +1,3395 @@
+{
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+ "traces": [
+  {
+   "action": "DRAFT_PURCHASE_RECOMMENDATION",
+   "alerts": [],
+   "approval_state": "approved",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "None",
+     "planner_type": "deterministic",
+     "planner_version": "d1",
+     "prompt_version": "None",
+     "seq": 2,
+     "t_ms": 0.16,
+     "tool_schema_version": "None"
+    },
+    {
+     "family": "INVENTORY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 1.17
+    },
+    {
+     "family": "INVENTORY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 2.07
+    },
+    {
+     "kind": "tool_call",
+     "ms": "7.4",
+     "permission": "READ",
+     "seq": 5,
+     "t_ms": 9.78,
+     "tool": "query_inventory",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "16.15",
+     "permission": "ANALYZE",
+     "seq": 6,
+     "t_ms": 26.41,
+     "tool": "assess_inventory_risk",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.67",
+     "permission": "READ",
+     "seq": 7,
+     "t_ms": 27.6,
+     "tool": "get_open_purchase_orders",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.48",
+     "permission": "READ",
+     "seq": 8,
+     "t_ms": 28.29,
+     "tool": "get_supplier_status",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "3.87",
+     "permission": "READ",
+     "seq": 9,
+     "t_ms": 32.47,
+     "tool": "get_supplier_notes_untrusted",
+     "trust": "UNTRUSTED"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.58",
+     "permission": "READ",
+     "seq": 10,
+     "t_ms": 33.39,
+     "tool": "list_quality_findings",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 11,
+     "t_ms": 34.61
+    },
+    {
+     "kind": "tool_call",
+     "ms": "44.07",
+     "permission": "READ",
+     "seq": 12,
+     "t_ms": 79.34,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What is the dietary policy for proteins such as goat, lamb and chicken and suppl",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 13,
+     "t_ms": 79.65
+    },
+    {
+     "kind": "tool_call",
+     "ms": "26.96",
+     "permission": "READ",
+     "seq": 14,
+     "t_ms": 106.88,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What does the zero-dollar pre-capital build mean for purchasing and spending?",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 15,
+     "t_ms": 107.12
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 16,
+     "t_ms": 108.23
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "['D-54', 'food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md', 'D-81', 'D-82', 'README.m",
+     "seq": 17,
+     "t_ms": 108.55
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 18,
+     "t_ms": 109.58
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.6",
+     "permission": "DRAFT",
+     "seq": 19,
+     "t_ms": 110.49,
+     "tool": "draft_purchase_recommendation",
+     "trust": "None"
+    },
+    {
+     "abstain": "False",
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "draft_id": "DR-00757657",
+     "kind": "proposal",
+     "seq": 20,
+     "t_ms": 110.97
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 21,
+     "t_ms": 111.63
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 22,
+     "t_ms": 115.41
+    },
+    {
+     "decision": "approve",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 23,
+     "t_ms": 115.48
+    },
+    {
+     "kind": "state",
+     "node": "EXECUTE_APPROVED",
+     "seq": 24,
+     "t_ms": 117.27
+    },
+    {
+     "kind": "approval_verified",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 25,
+     "t_ms": 117.59,
+     "tool": "release_draft"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.56",
+     "permission": "MUTATE_SIMULATION",
+     "seq": 26,
+     "t_ms": 118.07,
+     "tool": "release_draft",
+     "trust": "None"
+    },
+    {
+     "actions": "[{'tool': 'release_draft', 'ok': True, 'error': None, 'data': {'draft_id': 'DR-0",
+     "kind": "executed",
+     "seq": 27,
+     "t_ms": 118.21
+    },
+    {
+     "draft_id": "DR-00757657",
+     "duplicate_of": "None",
+     "executed": "[{'tool': 'release_draft', 'ok': True, 'error': None, 'data': {'draft_id': 'DR-0",
+     "external_actions_performed": "0",
+     "kind": "final",
+     "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+     "seq": 28,
+     "t_ms": 118.98
+    }
+   ],
+   "events_total": 28,
+   "family": "INVENTORY",
+   "ground_truth": "clean",
+   "index": 0,
+   "model": null,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "outcome_category": "COMPLETED_ACTION",
+   "planner": "deterministic",
+   "run_id": "run-bf0f7d80c5",
+   "run_ms": 122.571,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  },
+  {
+   "action": "DRAFT_PURCHASE_RECOMMENDATION",
+   "alerts": [],
+   "approval_state": "approved",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "None",
+     "planner_type": "deterministic",
+     "planner_version": "d1",
+     "prompt_version": "None",
+     "seq": 2,
+     "t_ms": 0.15,
+     "tool_schema_version": "None"
+    },
+    {
+     "family": "INVENTORY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 1.06
+    },
+    {
+     "family": "INVENTORY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 3.01
+    },
+    {
+     "kind": "tool_call",
+     "ms": "8.4",
+     "permission": "READ",
+     "seq": 5,
+     "t_ms": 91.81,
+     "tool": "query_inventory",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "13.66",
+     "permission": "ANALYZE",
+     "seq": 6,
+     "t_ms": 186.16,
+     "tool": "assess_inventory_risk",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "1.18",
+     "permission": "READ",
+     "seq": 7,
+     "t_ms": 268.09,
+     "tool": "get_open_purchase_orders",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.95",
+     "permission": "READ",
+     "seq": 8,
+     "t_ms": 349.84,
+     "tool": "get_supplier_status",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "4.79",
+     "permission": "READ",
+     "seq": 9,
+     "t_ms": 435.14,
+     "tool": "get_supplier_notes_untrusted",
+     "trust": "UNTRUSTED"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.85",
+     "permission": "READ",
+     "seq": 10,
+     "t_ms": 516.64,
+     "tool": "list_quality_findings",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 11,
+     "t_ms": 518.65
+    },
+    {
+     "kind": "tool_call",
+     "ms": "28.92",
+     "permission": "READ",
+     "seq": 12,
+     "t_ms": 628.37,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What is the dietary policy for proteins such as goat, lamb and chicken and suppl",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 13,
+     "t_ms": 628.5
+    },
+    {
+     "kind": "tool_call",
+     "ms": "20.57",
+     "permission": "READ",
+     "seq": 14,
+     "t_ms": 729.69,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What does the zero-dollar pre-capital build mean for purchasing and spending?",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 15,
+     "t_ms": 729.82
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 16,
+     "t_ms": 731.08
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "['D-54', 'food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md', 'D-81', 'D-82', 'README.m",
+     "seq": 17,
+     "t_ms": 731.26
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 18,
+     "t_ms": 732.08
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.87",
+     "permission": "DRAFT",
+     "seq": 19,
+     "t_ms": 813.95,
+     "tool": "draft_purchase_recommendation",
+     "trust": "None"
+    },
+    {
+     "abstain": "False",
+     "action": "DRAFT_PURCHASE_RECOMMENDATION",
+     "draft_id": "DR-0c479058",
+     "kind": "proposal",
+     "seq": 20,
+     "t_ms": 814.05
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 21,
+     "t_ms": 815.07
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 22,
+     "t_ms": 819.14
+    },
+    {
+     "decision": "approve",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 23,
+     "t_ms": 819.21
+    },
+    {
+     "kind": "state",
+     "node": "EXECUTE_APPROVED",
+     "seq": 24,
+     "t_ms": 820.36
+    },
+    {
+     "kind": "approval_verified",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 25,
+     "t_ms": 900.97,
+     "tool": "release_draft"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "1.04",
+     "permission": "MUTATE_SIMULATION",
+     "seq": 26,
+     "t_ms": 901.8,
+     "tool": "release_draft",
+     "trust": "None"
+    },
+    {
+     "actions": "[{'tool': 'release_draft', 'ok': True, 'error': None, 'data': {'draft_id': 'DR-0",
+     "kind": "executed",
+     "seq": 27,
+     "t_ms": 901.96
+    },
+    {
+     "draft_id": "DR-0c479058",
+     "duplicate_of": "None",
+     "executed": "[{'tool': 'release_draft', 'ok': True, 'error': None, 'data': {'draft_id': 'DR-0",
+     "external_actions_performed": "0",
+     "kind": "final",
+     "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+     "seq": 28,
+     "t_ms": 903.09
+    }
+   ],
+   "events_total": 28,
+   "family": "INVENTORY",
+   "ground_truth": "latency_spike",
+   "index": 40,
+   "model": null,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "outcome_category": "COMPLETED_ACTION",
+   "planner": "deterministic",
+   "run_id": "run-c0dc85be8b",
+   "run_ms": 908.808,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  },
+  {
+   "action": "QUARANTINE_AND_REVIEW",
+   "alerts": [
+    {
+     "cls": "TOOL_TIMEOUT",
+     "rule": "AR-01",
+     "severity": "SEV3",
+     "step": 6
+    }
+   ],
+   "approval_state": "approved",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "None",
+     "planner_type": "deterministic",
+     "planner_version": "d1",
+     "prompt_version": "None",
+     "seq": 2,
+     "t_ms": 0.18,
+     "tool_schema_version": "None"
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 1.1
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 2.33
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.44",
+     "permission": "READ",
+     "seq": 5,
+     "t_ms": 3.05,
+     "tool": "get_quality_finding",
+     "trust": "None"
+    },
+    {
+     "code": "TIMEOUT",
+     "kind": "tool_error",
+     "message": "tool exceeded 0.05s",
+     "permission": "READ",
+     "seq": 6,
+     "t_ms": 53.9,
+     "tool": "get_lineage"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 7,
+     "t_ms": 55.64
+    },
+    {
+     "kind": "tool_call",
+     "ms": "7.56",
+     "permission": "READ",
+     "seq": 8,
+     "t_ms": 63.94,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "True",
+     "gate_p": "0.255",
+     "kind": "policy_retrieved",
+     "question": "What is the procedure for handling corrupt or duplicate operational records and ",
+     "reason": "answerability gate: estimated answerability 0.25 is below the threshold 0.59",
+     "retriever": "hybrid",
+     "seq": 9,
+     "t_ms": 64.09
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 10,
+     "t_ms": 65.44
+    },
+    {
+     "gap_codes": "['get_lineage:TIMEOUT']",
+     "kind": "assessment",
+     "policy_citations": "[]",
+     "seq": 11,
+     "t_ms": 65.82
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 12,
+     "t_ms": 66.94
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.6",
+     "permission": "DRAFT",
+     "seq": 13,
+     "t_ms": 67.91,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "False",
+     "action": "QUARANTINE_AND_REVIEW",
+     "draft_id": "DR-d02aff11",
+     "kind": "proposal",
+     "seq": 14,
+     "t_ms": 68.1
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 15,
+     "t_ms": 69.04
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 16,
+     "t_ms": 75.96
+    },
+    {
+     "decision": "request_more_evidence",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 17,
+     "t_ms": 76.08
+    },
+    {
+     "kind": "state",
+     "node": "REQUEST_MORE_EVIDENCE",
+     "round": "1",
+     "seq": 18,
+     "t_ms": 77.69
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "1",
+     "seq": 19,
+     "t_ms": 78.49
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.45",
+     "permission": "READ",
+     "seq": 20,
+     "t_ms": 79.33,
+     "tool": "get_quality_finding",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.73",
+     "permission": "READ",
+     "seq": 21,
+     "t_ms": 80.34,
+     "tool": "get_lineage",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "11.51",
+     "permission": "READ",
+     "seq": 22,
+     "t_ms": 92.33,
+     "tool": "search_nasha_knowledge",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 23,
+     "t_ms": 93.9
+    },
+    {
+     "kind": "tool_call",
+     "ms": "10.11",
+     "permission": "READ",
+     "seq": 24,
+     "t_ms": 104.72,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "True",
+     "gate_p": "0.255",
+     "kind": "policy_retrieved",
+     "question": "What is the procedure for handling corrupt or duplicate operational records and ",
+     "reason": "answerability gate: estimated answerability 0.25 is below the threshold 0.59",
+     "retriever": "hybrid",
+     "seq": 25,
+     "t_ms": 104.85
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 26,
+     "t_ms": 105.89
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "[]",
+     "seq": 27,
+     "t_ms": 106.28
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 28,
+     "t_ms": 107.07
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.58",
+     "permission": "DRAFT",
+     "seq": 29,
+     "t_ms": 107.99,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "False",
+     "action": "QUARANTINE_AND_REVIEW",
+     "draft_id": "DR-e5ca66a0",
+     "kind": "proposal",
+     "seq": 30,
+     "t_ms": 108.12
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 31,
+     "t_ms": 110.15
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 32,
+     "t_ms": 116.18
+    },
+    {
+     "decision": "approve",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 33,
+     "t_ms": 116.27
+    },
+    {
+     "kind": "state",
+     "node": "EXECUTE_APPROVED",
+     "seq": 34,
+     "t_ms": 117.67
+    },
+    {
+     "kind": "approval_verified",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 35,
+     "t_ms": 117.91,
+     "tool": "flag_record_for_review"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.64",
+     "permission": "MUTATE_SIMULATION",
+     "seq": 36,
+     "t_ms": 118.47,
+     "tool": "flag_record_for_review",
+     "trust": "None"
+    },
+    {
+     "actions": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "kind": "executed",
+     "seq": 37,
+     "t_ms": 118.65
+    },
+    {
+     "draft_id": "DR-e5ca66a0",
+     "duplicate_of": "None",
+     "executed": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "external_actions_performed": "0",
+     "kind": "final",
+     "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+     "seq": 38,
+     "t_ms": 119.41
+    }
+   ],
+   "events_total": 38,
+   "family": "DATA_QUALITY",
+   "ground_truth": "tool_timeout",
+   "index": 60,
+   "model": null,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "outcome_category": "COMPLETED_ACTION",
+   "planner": "deterministic",
+   "run_id": "run-10a2c3a20d",
+   "run_ms": 119.406,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  },
+  {
+   "action": "ABSTAIN_REQUIRE_REVIEW",
+   "alerts": [
+    {
+     "cls": "MODEL_UNAVAILABLE",
+     "rule": "AR-06",
+     "severity": "SEV2",
+     "step": 20
+    }
+   ],
+   "approval_state": "approved",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "rule-model(stand-in)",
+     "planner_type": "llm",
+     "planner_version": "s1",
+     "prompt_version": "p1",
+     "seq": 2,
+     "t_ms": 0.32,
+     "tool_schema_version": "ts1"
+    },
+    {
+     "family": "POLICY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 1.62
+    },
+    {
+     "family": "POLICY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 2.88
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "45",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "collect0",
+     "prompt_tokens": "725",
+     "seq": 5,
+     "t_ms": 9.32
+    },
+    {
+     "kind": "planner_step",
+     "phase": "collect0",
+     "requested": "['get_supplier_proposal']",
+     "seq": 6,
+     "summary": "Collect the standard evidence for this event family.",
+     "t_ms": 9.4
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.74",
+     "permission": "READ",
+     "seq": 7,
+     "t_ms": 10.28,
+     "tool": "get_supplier_proposal",
+     "trust": "None"
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "80",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "collect1",
+     "prompt_tokens": "760",
+     "seq": 8,
+     "t_ms": 14.43
+    },
+    {
+     "kind": "planner_step",
+     "phase": "collect1",
+     "requested": "['assess_policy_ingredient', 'get_supplier_status']",
+     "seq": 9,
+     "summary": "Collect the standard evidence for this event family.",
+     "t_ms": 14.47
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.42",
+     "permission": "ANALYZE",
+     "seq": 10,
+     "t_ms": 15.0,
+     "tool": "assess_policy_ingredient",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.62",
+     "permission": "READ",
+     "seq": 11,
+     "t_ms": 15.91,
+     "tool": "get_supplier_status",
+     "trust": "None"
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "27",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "collect2",
+     "prompt_tokens": "924",
+     "seq": 12,
+     "t_ms": 20.81
+    },
+    {
+     "kind": "planner_step",
+     "phase": "collect2",
+     "requested": "[]",
+     "seq": 13,
+     "summary": "Collect the standard evidence for this event family.",
+     "t_ms": 20.87
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 14,
+     "t_ms": 22.02
+    },
+    {
+     "kind": "tool_call",
+     "ms": "23.16",
+     "permission": "READ",
+     "seq": 15,
+     "t_ms": 45.94,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What is the dietary policy on beef, pork and hidden derivatives such as stock, b",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 16,
+     "t_ms": 46.1
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 17,
+     "t_ms": 47.36
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "['D-54', 'food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md', 'docs/decisions/DIETARY-A",
+     "seq": 18,
+     "t_ms": 47.87
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 19,
+     "t_ms": 48.79
+    },
+    {
+     "attempt": "0",
+     "detail": "injected: model request timed out",
+     "error": "MODEL_UNAVAILABLE",
+     "kind": "llm_call",
+     "phase": "decide",
+     "seq": 20,
+     "t_ms": 80.88
+    },
+    {
+     "kind": "tool_call",
+     "ms": "1.01",
+     "permission": "DRAFT",
+     "seq": 21,
+     "t_ms": 82.23,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "True",
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "draft_id": "DR-328e3d29",
+     "kind": "proposal",
+     "seq": 22,
+     "t_ms": 82.37
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 23,
+     "t_ms": 83.33
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 24,
+     "t_ms": 88.54
+    },
+    {
+     "decision": "request_more_evidence",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 25,
+     "t_ms": 88.61
+    },
+    {
+     "kind": "state",
+     "node": "REQUEST_MORE_EVIDENCE",
+     "round": "1",
+     "seq": 26,
+     "t_ms": 89.9
+    },
+    {
+     "family": "POLICY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "1",
+     "seq": 27,
+     "t_ms": 90.46
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "45",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "collect0",
+     "prompt_tokens": "725",
+     "seq": 28,
+     "t_ms": 93.81
+    },
+    {
+     "kind": "planner_step",
+     "phase": "collect0",
+     "requested": "['get_supplier_proposal']",
+     "seq": 29,
+     "summary": "Collect the standard evidence for this event family.",
+     "t_ms": 93.85
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.47",
+     "permission": "READ",
+     "seq": 30,
+     "t_ms": 94.61,
+     "tool": "get_supplier_proposal",
+     "trust": "None"
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "80",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "collect1",
+     "prompt_tokens": "760",
+     "seq": 31,
+     "t_ms": 98.12
+    },
+    {
+     "kind": "planner_step",
+     "phase": "collect1",
+     "requested": "['assess_policy_ingredient', 'get_supplier_status']",
+     "seq": 32,
+     "summary": "Collect the standard evidence for this event family.",
+     "t_ms": 98.2
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.33",
+     "permission": "ANALYZE",
+     "seq": 33,
+     "t_ms": 98.63,
+     "tool": "assess_policy_ingredient",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.44",
+     "permission": "READ",
+     "seq": 34,
+     "t_ms": 99.28,
+     "tool": "get_supplier_status",
+     "trust": "None"
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "27",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "collect2",
+     "prompt_tokens": "924",
+     "seq": 35,
+     "t_ms": 102.52
+    },
+    {
+     "kind": "planner_step",
+     "phase": "collect2",
+     "requested": "[]",
+     "seq": 36,
+     "summary": "Collect the standard evidence for this event family.",
+     "t_ms": 102.56
+    },
+    {
+     "kind": "tool_call",
+     "ms": "8.09",
+     "permission": "READ",
+     "seq": 37,
+     "t_ms": 110.98,
+     "tool": "search_nasha_knowledge",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 38,
+     "t_ms": 112.27
+    },
+    {
+     "kind": "tool_call",
+     "ms": "26.67",
+     "permission": "READ",
+     "seq": 39,
+     "t_ms": 139.72,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What is the dietary policy on beef, pork and hidden derivatives such as stock, b",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 40,
+     "t_ms": 139.89
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 41,
+     "t_ms": 142.51
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "['D-54', 'food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md', 'docs/decisions/DIETARY-A",
+     "seq": 42,
+     "t_ms": 143.08
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 43,
+     "t_ms": 144.12
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "123",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "decide",
+     "prompt_tokens": "958",
+     "seq": 44,
+     "t_ms": 146.54
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.57",
+     "permission": "DRAFT",
+     "seq": 45,
+     "t_ms": 147.39,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "True",
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "draft_id": "DR-74ca00d3",
+     "kind": "proposal",
+     "seq": 46,
+     "t_ms": 147.47
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 47,
+     "t_ms": 148.58
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 48,
+     "t_ms": 154.92
+    },
+    {
+     "decision": "approve",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 49,
+     "t_ms": 155.0
+    },
+    {
+     "kind": "state",
+     "node": "EXECUTE_APPROVED",
+     "seq": 50,
+     "t_ms": 156.39
+    },
+    {
+     "kind": "approval_verified",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 51,
+     "t_ms": 156.61,
+     "tool": "flag_record_for_review"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.52",
+     "permission": "MUTATE_SIMULATION",
+     "seq": 52,
+     "t_ms": 157.05,
+     "tool": "flag_record_for_review",
+     "trust": "None"
+    },
+    {
+     "actions": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "kind": "executed",
+     "seq": 53,
+     "t_ms": 157.2
+    },
+    {
+     "draft_id": "DR-74ca00d3",
+     "duplicate_of": "None",
+     "executed": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "external_actions_performed": "0",
+     "kind": "final",
+     "outcome": "APPROVED_ABSTENTION_ACKNOWLEDGED",
+     "seq": 54,
+     "t_ms": 158.08
+    }
+   ],
+   "events_total": 54,
+   "family": "POLICY",
+   "ground_truth": "model_timeout",
+   "index": 75,
+   "model": "rule-model(stand-in)",
+   "outcome": "APPROVED_ABSTENTION_ACKNOWLEDGED",
+   "outcome_category": "COMPLETED_ABSTAIN",
+   "planner": "llm",
+   "run_id": "run-ac5c0cbd4f",
+   "run_ms": 159.696,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  },
+  {
+   "action": "QUARANTINE_AND_REVIEW",
+   "alerts": [],
+   "approval_state": "approved",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "None",
+     "planner_type": "deterministic",
+     "planner_version": "d1",
+     "prompt_version": "None",
+     "seq": 2,
+     "t_ms": 0.18,
+     "tool_schema_version": "None"
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 0.93
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 2.44
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.47",
+     "permission": "READ",
+     "seq": 5,
+     "t_ms": 3.11,
+     "tool": "get_quality_finding",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "1.38",
+     "permission": "READ",
+     "seq": 6,
+     "t_ms": 4.78,
+     "tool": "get_lineage",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 7,
+     "t_ms": 6.04
+    },
+    {
+     "kind": "tool_call",
+     "ms": "6.46",
+     "permission": "READ",
+     "seq": 8,
+     "t_ms": 12.7,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "True",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What is the procedure for handling corrupt or duplicate operational records and ",
+     "reason": "the question refers to terms absent from the NASHA corpus: corrupt, duplicate, p",
+     "retriever": "hybrid",
+     "seq": 9,
+     "t_ms": 12.92
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 10,
+     "t_ms": 13.98
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "[]",
+     "seq": 11,
+     "t_ms": 14.2
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 12,
+     "t_ms": 14.79
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.74",
+     "permission": "DRAFT",
+     "seq": 13,
+     "t_ms": 15.76,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "False",
+     "action": "QUARANTINE_AND_REVIEW",
+     "draft_id": "DR-1a1bef22",
+     "kind": "proposal",
+     "seq": 14,
+     "t_ms": 15.83
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 15,
+     "t_ms": 16.56
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 16,
+     "t_ms": 21.4
+    },
+    {
+     "decision": "request_more_evidence",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 17,
+     "t_ms": 21.48
+    },
+    {
+     "kind": "state",
+     "node": "REQUEST_MORE_EVIDENCE",
+     "round": "1",
+     "seq": 18,
+     "t_ms": 22.63
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "1",
+     "seq": 19,
+     "t_ms": 23.58
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.36",
+     "permission": "READ",
+     "seq": 20,
+     "t_ms": 24.05,
+     "tool": "get_quality_finding",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "2.29",
+     "permission": "READ",
+     "seq": 21,
+     "t_ms": 26.64,
+     "tool": "get_lineage",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "9.16",
+     "permission": "READ",
+     "seq": 22,
+     "t_ms": 36.04,
+     "tool": "search_nasha_knowledge",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 23,
+     "t_ms": 37.26
+    },
+    {
+     "kind": "tool_call",
+     "ms": "7.42",
+     "permission": "READ",
+     "seq": 24,
+     "t_ms": 45.38,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "True",
+     "gate_p": "0.255",
+     "kind": "policy_retrieved",
+     "question": "What is the procedure for handling corrupt or duplicate operational records and ",
+     "reason": "answerability gate: estimated answerability 0.25 is below the threshold 0.59",
+     "retriever": "hybrid",
+     "seq": 25,
+     "t_ms": 45.56
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 26,
+     "t_ms": 47.61
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "[]",
+     "seq": 27,
+     "t_ms": 47.89
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 28,
+     "t_ms": 48.97
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.71",
+     "permission": "DRAFT",
+     "seq": 29,
+     "t_ms": 50.11,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "False",
+     "action": "QUARANTINE_AND_REVIEW",
+     "draft_id": "DR-bfa7e394",
+     "kind": "proposal",
+     "seq": 30,
+     "t_ms": 50.33
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 31,
+     "t_ms": 51.54
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 32,
+     "t_ms": 57.51
+    },
+    {
+     "decision": "approve",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 33,
+     "t_ms": 57.6
+    },
+    {
+     "kind": "state",
+     "node": "EXECUTE_APPROVED",
+     "seq": 34,
+     "t_ms": 59.13
+    },
+    {
+     "kind": "approval_verified",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 35,
+     "t_ms": 59.53,
+     "tool": "flag_record_for_review"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.66",
+     "permission": "MUTATE_SIMULATION",
+     "seq": 36,
+     "t_ms": 60.1,
+     "tool": "flag_record_for_review",
+     "trust": "None"
+    },
+    {
+     "actions": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "kind": "executed",
+     "seq": 37,
+     "t_ms": 60.3
+    },
+    {
+     "draft_id": "DR-bfa7e394",
+     "duplicate_of": "None",
+     "executed": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "external_actions_performed": "0",
+     "kind": "final",
+     "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+     "seq": 38,
+     "t_ms": 61.32
+    }
+   ],
+   "events_total": 38,
+   "family": "DATA_QUALITY",
+   "ground_truth": "retrieval_miss",
+   "index": 90,
+   "model": null,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "outcome_category": "COMPLETED_ACTION",
+   "planner": "deterministic",
+   "run_id": "run-0aead37c45",
+   "run_ms": 61.47,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  },
+  {
+   "action": "QUARANTINE_AND_REVIEW",
+   "alerts": [
+    {
+     "cls": "PERMISSION_DENIED",
+     "rule": "AR-10",
+     "severity": "SEV3",
+     "step": 16
+    }
+   ],
+   "approval_state": "approved",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "None",
+     "planner_type": "deterministic",
+     "planner_version": "d1",
+     "prompt_version": "None",
+     "seq": 2,
+     "t_ms": 0.2,
+     "tool_schema_version": "None"
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 1.14
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 2.67
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.58",
+     "permission": "READ",
+     "seq": 5,
+     "t_ms": 3.49,
+     "tool": "get_quality_finding",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.65",
+     "permission": "READ",
+     "seq": 6,
+     "t_ms": 4.38,
+     "tool": "get_lineage",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 7,
+     "t_ms": 5.24
+    },
+    {
+     "kind": "tool_call",
+     "ms": "10.49",
+     "permission": "READ",
+     "seq": 8,
+     "t_ms": 16.14,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "True",
+     "gate_p": "0.255",
+     "kind": "policy_retrieved",
+     "question": "What is the procedure for handling corrupt or duplicate operational records and ",
+     "reason": "answerability gate: estimated answerability 0.25 is below the threshold 0.59",
+     "retriever": "hybrid",
+     "seq": 9,
+     "t_ms": 16.27
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 10,
+     "t_ms": 17.31
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "[]",
+     "seq": 11,
+     "t_ms": 17.71
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 12,
+     "t_ms": 18.41
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.79",
+     "permission": "DRAFT",
+     "seq": 13,
+     "t_ms": 19.56,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "False",
+     "action": "QUARANTINE_AND_REVIEW",
+     "draft_id": "DR-5d781d8b",
+     "kind": "proposal",
+     "seq": 14,
+     "t_ms": 19.69
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 15,
+     "t_ms": 20.41
+    },
+    {
+     "code": "ROLE_NOT_PERMITTED",
+     "decision": "approve",
+     "kind": "ops_approval_denied",
+     "seq": 16,
+     "t_ms": 22.89
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 17,
+     "t_ms": 26.43
+    },
+    {
+     "decision": "approve",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 18,
+     "t_ms": 26.49
+    },
+    {
+     "kind": "state",
+     "node": "EXECUTE_APPROVED",
+     "seq": 19,
+     "t_ms": 27.64
+    },
+    {
+     "kind": "approval_verified",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 20,
+     "t_ms": 27.79,
+     "tool": "flag_record_for_review"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.57",
+     "permission": "MUTATE_SIMULATION",
+     "seq": 21,
+     "t_ms": 28.32,
+     "tool": "flag_record_for_review",
+     "trust": "None"
+    },
+    {
+     "actions": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "kind": "executed",
+     "seq": 22,
+     "t_ms": 28.45
+    },
+    {
+     "draft_id": "DR-5d781d8b",
+     "duplicate_of": "None",
+     "executed": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "external_actions_performed": "0",
+     "kind": "final",
+     "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+     "seq": 23,
+     "t_ms": 29.06
+    }
+   ],
+   "events_total": 23,
+   "family": "DATA_QUALITY",
+   "ground_truth": "permission_rejection",
+   "index": 105,
+   "model": null,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "outcome_category": "COMPLETED_ACTION",
+   "planner": "deterministic",
+   "run_id": "run-a670550024",
+   "run_ms": 30.392,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  },
+  {
+   "action": "ABSTAIN_REQUIRE_REVIEW",
+   "alerts": [
+    {
+     "cls": "APPROVAL_EXPIRED",
+     "rule": "AR-11",
+     "severity": "SEV3",
+     "step": 17
+    }
+   ],
+   "approval_state": "approved",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "None",
+     "planner_type": "deterministic",
+     "planner_version": "d1",
+     "prompt_version": "None",
+     "seq": 2,
+     "t_ms": 0.16,
+     "tool_schema_version": "None"
+    },
+    {
+     "family": "POLICY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 0.96
+    },
+    {
+     "family": "POLICY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 1.96
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.44",
+     "permission": "READ",
+     "seq": 5,
+     "t_ms": 2.71,
+     "tool": "get_supplier_proposal",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.27",
+     "permission": "ANALYZE",
+     "seq": 6,
+     "t_ms": 3.19,
+     "tool": "assess_policy_ingredient",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.45",
+     "permission": "READ",
+     "seq": 7,
+     "t_ms": 3.83,
+     "tool": "get_supplier_status",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 8,
+     "t_ms": 5.51
+    },
+    {
+     "kind": "tool_call",
+     "ms": "19.06",
+     "permission": "READ",
+     "seq": 9,
+     "t_ms": 25.12,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What is the dietary policy on beef, pork and hidden derivatives such as stock, b",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 10,
+     "t_ms": 25.19
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 11,
+     "t_ms": 26.26
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "['D-54', 'food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md', 'docs/decisions/DIETARY-A",
+     "seq": 12,
+     "t_ms": 26.89
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 13,
+     "t_ms": 27.63
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.82",
+     "permission": "DRAFT",
+     "seq": 14,
+     "t_ms": 28.92,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "True",
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "draft_id": "DR-22b8c843",
+     "kind": "proposal",
+     "seq": 15,
+     "t_ms": 29.01
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 16,
+     "t_ms": 29.66
+    },
+    {
+     "code": "EXPIRED",
+     "decision": "approve",
+     "kind": "ops_approval_expired",
+     "seq": 17,
+     "t_ms": 31.89
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 18,
+     "t_ms": 35.69
+    },
+    {
+     "decision": "approve",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 19,
+     "t_ms": 35.76
+    },
+    {
+     "kind": "state",
+     "node": "EXECUTE_APPROVED",
+     "seq": 20,
+     "t_ms": 37.05
+    },
+    {
+     "kind": "approval_verified",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 21,
+     "t_ms": 37.25,
+     "tool": "flag_record_for_review"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.75",
+     "permission": "MUTATE_SIMULATION",
+     "seq": 22,
+     "t_ms": 37.93,
+     "tool": "flag_record_for_review",
+     "trust": "None"
+    },
+    {
+     "actions": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "kind": "executed",
+     "seq": 23,
+     "t_ms": 38.12
+    },
+    {
+     "draft_id": "DR-22b8c843",
+     "duplicate_of": "None",
+     "executed": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "external_actions_performed": "0",
+     "kind": "final",
+     "outcome": "APPROVED_ABSTENTION_ACKNOWLEDGED",
+     "seq": 24,
+     "t_ms": 38.79
+    }
+   ],
+   "events_total": 24,
+   "family": "POLICY",
+   "ground_truth": "approval_expiry",
+   "index": 106,
+   "model": null,
+   "outcome": "APPROVED_ABSTENTION_ACKNOWLEDGED",
+   "outcome_category": "COMPLETED_ABSTAIN",
+   "planner": "deterministic",
+   "run_id": "run-534103ee72",
+   "run_ms": 41.546,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  },
+  {
+   "action": "QUARANTINE_AND_REVIEW",
+   "alerts": [
+    {
+     "cls": "DATABASE_UNAVAILABLE",
+     "rule": "AR-02",
+     "severity": "SEV2",
+     "step": 6
+    }
+   ],
+   "approval_state": "approved",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "None",
+     "planner_type": "deterministic",
+     "planner_version": "d1",
+     "prompt_version": "None",
+     "seq": 2,
+     "t_ms": 0.2,
+     "tool_schema_version": "None"
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 1.0
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 1.92
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.45",
+     "permission": "READ",
+     "seq": 5,
+     "t_ms": 2.68,
+     "tool": "get_quality_finding",
+     "trust": "None"
+    },
+    {
+     "code": "UPSTREAM_FAILURE",
+     "kind": "tool_error",
+     "message": "OperationalError: database is locked",
+     "permission": "READ",
+     "seq": 6,
+     "t_ms": 3.13,
+     "tool": "get_lineage"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 7,
+     "t_ms": 4.0
+    },
+    {
+     "kind": "tool_call",
+     "ms": "8.82",
+     "permission": "READ",
+     "seq": 8,
+     "t_ms": 13.44,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "True",
+     "gate_p": "0.255",
+     "kind": "policy_retrieved",
+     "question": "What is the procedure for handling corrupt or duplicate operational records and ",
+     "reason": "answerability gate: estimated answerability 0.25 is below the threshold 0.59",
+     "retriever": "hybrid",
+     "seq": 9,
+     "t_ms": 13.59
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 10,
+     "t_ms": 14.75
+    },
+    {
+     "gap_codes": "['get_lineage:UPSTREAM_FAILURE']",
+     "kind": "assessment",
+     "policy_citations": "[]",
+     "seq": 11,
+     "t_ms": 14.99
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 12,
+     "t_ms": 16.04
+    },
+    {
+     "code": "UPSTREAM_FAILURE",
+     "kind": "tool_error",
+     "message": "OperationalError: database is locked",
+     "permission": "DRAFT",
+     "seq": 13,
+     "t_ms": 16.64,
+     "tool": "draft_review_ticket"
+    },
+    {
+     "abstain": "False",
+     "action": "QUARANTINE_AND_REVIEW",
+     "draft_id": "None",
+     "kind": "proposal",
+     "seq": 14,
+     "t_ms": 16.77
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 15,
+     "t_ms": 17.79
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 16,
+     "t_ms": 23.5
+    },
+    {
+     "decision": "request_more_evidence",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 17,
+     "t_ms": 23.58
+    },
+    {
+     "kind": "state",
+     "node": "REQUEST_MORE_EVIDENCE",
+     "round": "1",
+     "seq": 18,
+     "t_ms": 24.84
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "1",
+     "seq": 19,
+     "t_ms": 25.68
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.66",
+     "permission": "READ",
+     "seq": 20,
+     "t_ms": 26.53,
+     "tool": "get_quality_finding",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "1.66",
+     "permission": "READ",
+     "seq": 21,
+     "t_ms": 28.39,
+     "tool": "get_lineage",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "7.96",
+     "permission": "READ",
+     "seq": 22,
+     "t_ms": 36.7,
+     "tool": "search_nasha_knowledge",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 23,
+     "t_ms": 38.21
+    },
+    {
+     "kind": "tool_call",
+     "ms": "8.44",
+     "permission": "READ",
+     "seq": 24,
+     "t_ms": 47.09,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "True",
+     "gate_p": "0.255",
+     "kind": "policy_retrieved",
+     "question": "What is the procedure for handling corrupt or duplicate operational records and ",
+     "reason": "answerability gate: estimated answerability 0.25 is below the threshold 0.59",
+     "retriever": "hybrid",
+     "seq": 25,
+     "t_ms": 47.31
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 26,
+     "t_ms": 48.28
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "[]",
+     "seq": 27,
+     "t_ms": 48.83
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 28,
+     "t_ms": 49.62
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.54",
+     "permission": "DRAFT",
+     "seq": 29,
+     "t_ms": 50.53,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "False",
+     "action": "QUARANTINE_AND_REVIEW",
+     "draft_id": "DR-0a7836ff",
+     "kind": "proposal",
+     "seq": 30,
+     "t_ms": 50.65
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 31,
+     "t_ms": 51.44
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 32,
+     "t_ms": 55.94
+    },
+    {
+     "decision": "approve",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 33,
+     "t_ms": 56.02
+    },
+    {
+     "kind": "state",
+     "node": "EXECUTE_APPROVED",
+     "seq": 34,
+     "t_ms": 57.29
+    },
+    {
+     "kind": "approval_verified",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 35,
+     "t_ms": 57.53,
+     "tool": "flag_record_for_review"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.58",
+     "permission": "MUTATE_SIMULATION",
+     "seq": 36,
+     "t_ms": 58.02,
+     "tool": "flag_record_for_review",
+     "trust": "None"
+    },
+    {
+     "actions": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "kind": "executed",
+     "seq": 37,
+     "t_ms": 58.16
+    },
+    {
+     "draft_id": "DR-0a7836ff",
+     "duplicate_of": "None",
+     "executed": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "external_actions_performed": "0",
+     "kind": "final",
+     "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+     "seq": 38,
+     "t_ms": 58.74
+    }
+   ],
+   "events_total": 38,
+   "family": "DATA_QUALITY",
+   "ground_truth": "database_failure",
+   "index": 115,
+   "model": null,
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "outcome_category": "COMPLETED_ACTION",
+   "planner": "deterministic",
+   "run_id": "run-20ed8053ce",
+   "run_ms": 59.049,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  },
+  {
+   "action": "ABSTAIN_REQUIRE_REVIEW",
+   "alerts": [
+    {
+     "cls": "TOOL_MALFORMED_RESULT",
+     "rule": "AR-04",
+     "severity": "SEV3",
+     "step": 5
+    }
+   ],
+   "approval_state": "approved",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "None",
+     "planner_type": "deterministic",
+     "planner_version": "d1",
+     "prompt_version": "None",
+     "seq": 2,
+     "t_ms": 0.15,
+     "tool_schema_version": "None"
+    },
+    {
+     "family": "POLICY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 0.89
+    },
+    {
+     "family": "POLICY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 2.37
+    },
+    {
+     "code": "MALFORMED_RESULT",
+     "kind": "tool_error",
+     "message": "tool result did not match its output schema",
+     "permission": "READ",
+     "seq": 5,
+     "t_ms": 2.85,
+     "tool": "get_supplier_proposal"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 6,
+     "t_ms": 3.99
+    },
+    {
+     "kind": "tool_call",
+     "ms": "18.87",
+     "permission": "READ",
+     "seq": 7,
+     "t_ms": 23.35,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What is the dietary policy on beef, pork and hidden derivatives such as stock, b",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 8,
+     "t_ms": 23.52
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 9,
+     "t_ms": 24.86
+    },
+    {
+     "gap_codes": "['get_supplier_proposal:MALFORMED_RESULT']",
+     "kind": "assessment",
+     "policy_citations": "['D-54', 'food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md', 'docs/decisions/DIETARY-A",
+     "seq": 10,
+     "t_ms": 24.91
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 11,
+     "t_ms": 25.59
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.69",
+     "permission": "DRAFT",
+     "seq": 12,
+     "t_ms": 26.68,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "True",
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "draft_id": "DR-0cfbb449",
+     "kind": "proposal",
+     "seq": 13,
+     "t_ms": 26.78
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 14,
+     "t_ms": 27.48
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 15,
+     "t_ms": 32.43
+    },
+    {
+     "decision": "request_more_evidence",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 16,
+     "t_ms": 32.59
+    },
+    {
+     "kind": "state",
+     "node": "REQUEST_MORE_EVIDENCE",
+     "round": "1",
+     "seq": 17,
+     "t_ms": 33.9
+    },
+    {
+     "family": "POLICY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "1",
+     "seq": 18,
+     "t_ms": 35.29
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.44",
+     "permission": "READ",
+     "seq": 19,
+     "t_ms": 35.98,
+     "tool": "get_supplier_proposal",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.27",
+     "permission": "ANALYZE",
+     "seq": 20,
+     "t_ms": 36.51,
+     "tool": "assess_policy_ingredient",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.43",
+     "permission": "READ",
+     "seq": 21,
+     "t_ms": 37.09,
+     "tool": "get_supplier_status",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "7.55",
+     "permission": "READ",
+     "seq": 22,
+     "t_ms": 45.01,
+     "tool": "search_nasha_knowledge",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 23,
+     "t_ms": 46.45
+    },
+    {
+     "kind": "tool_call",
+     "ms": "17.72",
+     "permission": "READ",
+     "seq": 24,
+     "t_ms": 64.48,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What is the dietary policy on beef, pork and hidden derivatives such as stock, b",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 25,
+     "t_ms": 64.61
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 26,
+     "t_ms": 65.72
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "['D-54', 'food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md', 'docs/decisions/DIETARY-A",
+     "seq": 27,
+     "t_ms": 66.04
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 28,
+     "t_ms": 66.66
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.88",
+     "permission": "DRAFT",
+     "seq": 29,
+     "t_ms": 68.03,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "True",
+     "action": "ABSTAIN_REQUIRE_REVIEW",
+     "draft_id": "DR-026b8e33",
+     "kind": "proposal",
+     "seq": 30,
+     "t_ms": 68.16
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 31,
+     "t_ms": 68.9
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 32,
+     "t_ms": 73.18
+    },
+    {
+     "decision": "approve",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 33,
+     "t_ms": 73.24
+    },
+    {
+     "kind": "state",
+     "node": "EXECUTE_APPROVED",
+     "seq": 34,
+     "t_ms": 74.44
+    },
+    {
+     "kind": "approval_verified",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 35,
+     "t_ms": 74.66,
+     "tool": "flag_record_for_review"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.61",
+     "permission": "MUTATE_SIMULATION",
+     "seq": 36,
+     "t_ms": 75.2,
+     "tool": "flag_record_for_review",
+     "trust": "None"
+    },
+    {
+     "actions": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "kind": "executed",
+     "seq": 37,
+     "t_ms": 75.32
+    },
+    {
+     "draft_id": "DR-026b8e33",
+     "duplicate_of": "None",
+     "executed": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "external_actions_performed": "0",
+     "kind": "final",
+     "outcome": "APPROVED_ABSTENTION_ACKNOWLEDGED",
+     "seq": 38,
+     "t_ms": 76.08
+    }
+   ],
+   "events_total": 38,
+   "family": "POLICY",
+   "ground_truth": "malformed_tool_result",
+   "index": 125,
+   "model": null,
+   "outcome": "APPROVED_ABSTENTION_ACKNOWLEDGED",
+   "outcome_category": "COMPLETED_ABSTAIN",
+   "planner": "deterministic",
+   "run_id": "run-07f6e9f157",
+   "run_ms": 76.48,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  },
+  {
+   "action": "QUARANTINE_AND_REVIEW",
+   "alerts": [
+    {
+     "cls": "MODEL_SCHEMA_VIOLATION",
+     "rule": "AR-07",
+     "severity": "SEV3",
+     "step": 5
+    }
+   ],
+   "approval_state": "approved",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "rule-model(stand-in)",
+     "planner_type": "llm",
+     "planner_version": "s1",
+     "prompt_version": "p1",
+     "seq": 2,
+     "t_ms": 0.2,
+     "tool_schema_version": "ts1"
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 1.57
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 2.92
+    },
+    {
+     "attempt": "0",
+     "detail": "1 validation error for ToolPlan",
+     "kind": "schema_failure",
+     "model": "rule-model(stand-in)",
+     "phase": "collect0",
+     "raw_len": "62",
+     "seq": 5,
+     "t_ms": 8.01
+    },
+    {
+     "attempt": "1",
+     "detail": "1 validation error for ToolPlan",
+     "kind": "schema_failure",
+     "model": "rule-model(stand-in)",
+     "phase": "collect0",
+     "raw_len": "62",
+     "seq": 6,
+     "t_ms": 8.1
+    },
+    {
+     "attempt": "2",
+     "detail": "1 validation error for ToolPlan",
+     "kind": "schema_failure",
+     "model": "rule-model(stand-in)",
+     "phase": "collect0",
+     "raw_len": "62",
+     "seq": 7,
+     "t_ms": 8.15
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 8,
+     "t_ms": 9.56
+    },
+    {
+     "kind": "tool_call",
+     "ms": "7.73",
+     "permission": "READ",
+     "seq": 9,
+     "t_ms": 17.64,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "True",
+     "gate_p": "0.255",
+     "kind": "policy_retrieved",
+     "question": "What is the procedure for handling corrupt or duplicate operational records and ",
+     "reason": "answerability gate: estimated answerability 0.25 is below the threshold 0.59",
+     "retriever": "hybrid",
+     "seq": 10,
+     "t_ms": 17.88
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 11,
+     "t_ms": 19.36
+    },
+    {
+     "gap_codes": "['planner:SCHEMA_FAILURE']",
+     "kind": "assessment",
+     "policy_citations": "[]",
+     "seq": 12,
+     "t_ms": 19.43
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 13,
+     "t_ms": 20.52
+    },
+    {
+     "attempt": "0",
+     "detail": "7 validation errors for PlannerOutput",
+     "kind": "schema_failure",
+     "model": "rule-model(stand-in)",
+     "phase": "decide",
+     "raw_len": "62",
+     "seq": 14,
+     "t_ms": 23.08
+    },
+    {
+     "attempt": "1",
+     "detail": "7 validation errors for PlannerOutput",
+     "kind": "schema_failure",
+     "model": "rule-model(stand-in)",
+     "phase": "decide",
+     "raw_len": "62",
+     "seq": 15,
+     "t_ms": 23.19
+    },
+    {
+     "attempt": "2",
+     "detail": "7 validation errors for PlannerOutput",
+     "kind": "schema_failure",
+     "model": "rule-model(stand-in)",
+     "phase": "decide",
+     "raw_len": "62",
+     "seq": 16,
+     "t_ms": 23.33
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.54",
+     "permission": "DRAFT",
+     "seq": 17,
+     "t_ms": 24.05,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "True",
+     "action": "ESCALATE_INSUFFICIENT_EVIDENCE",
+     "draft_id": "DR-281ccf20",
+     "kind": "proposal",
+     "seq": 18,
+     "t_ms": 24.24
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 19,
+     "t_ms": 25.35
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 20,
+     "t_ms": 31.6
+    },
+    {
+     "decision": "request_more_evidence",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 21,
+     "t_ms": 31.7
+    },
+    {
+     "kind": "state",
+     "node": "REQUEST_MORE_EVIDENCE",
+     "round": "1",
+     "seq": 22,
+     "t_ms": 33.15
+    },
+    {
+     "family": "DATA_QUALITY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "1",
+     "seq": 23,
+     "t_ms": 33.9
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "43",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "collect0",
+     "prompt_tokens": "725",
+     "seq": 24,
+     "t_ms": 37.81
+    },
+    {
+     "kind": "planner_step",
+     "phase": "collect0",
+     "requested": "['get_quality_finding']",
+     "seq": 25,
+     "summary": "Collect the standard evidence for this event family.",
+     "t_ms": 37.85
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.45",
+     "permission": "READ",
+     "seq": 26,
+     "t_ms": 38.4,
+     "tool": "get_quality_finding",
+     "trust": "None"
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "52",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "collect1",
+     "prompt_tokens": "761",
+     "seq": 27,
+     "t_ms": 41.34
+    },
+    {
+     "kind": "planner_step",
+     "phase": "collect1",
+     "requested": "['get_lineage']",
+     "seq": 28,
+     "summary": "Collect the standard evidence for this event family.",
+     "t_ms": 41.47
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.54",
+     "permission": "READ",
+     "seq": 29,
+     "t_ms": 42.12,
+     "tool": "get_lineage",
+     "trust": "None"
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "52",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "collect2",
+     "prompt_tokens": "817",
+     "seq": 30,
+     "t_ms": 48.8
+    },
+    {
+     "kind": "planner_step",
+     "phase": "collect2",
+     "requested": "['get_lineage']",
+     "seq": 31,
+     "summary": "Collect the standard evidence for this event family.",
+     "t_ms": 48.84
+    },
+    {
+     "kind": "tool_call",
+     "ms": "8.08",
+     "permission": "READ",
+     "seq": 32,
+     "t_ms": 57.17,
+     "tool": "search_nasha_knowledge",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 33,
+     "t_ms": 58.46
+    },
+    {
+     "kind": "tool_call",
+     "ms": "7.18",
+     "permission": "READ",
+     "seq": 34,
+     "t_ms": 66.1,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "True",
+     "gate_p": "0.255",
+     "kind": "policy_retrieved",
+     "question": "What is the procedure for handling corrupt or duplicate operational records and ",
+     "reason": "answerability gate: estimated answerability 0.25 is below the threshold 0.59",
+     "retriever": "hybrid",
+     "seq": 35,
+     "t_ms": 66.19
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 36,
+     "t_ms": 67.15
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "[]",
+     "seq": 37,
+     "t_ms": 67.37
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 38,
+     "t_ms": 68.12
+    },
+    {
+     "attempt": "0",
+     "completion_tokens": "125",
+     "kind": "llm_call",
+     "ok": "True",
+     "phase": "decide",
+     "prompt_tokens": "732",
+     "seq": 39,
+     "t_ms": 70.04
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.53",
+     "permission": "DRAFT",
+     "seq": 40,
+     "t_ms": 70.79,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "False",
+     "action": "QUARANTINE_AND_REVIEW",
+     "draft_id": "DR-b9a09ad7",
+     "kind": "proposal",
+     "seq": 41,
+     "t_ms": 70.93
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 42,
+     "t_ms": 71.68
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "1",
+     "seq": 43,
+     "t_ms": 75.59
+    },
+    {
+     "decision": "approve",
+     "edits": "None",
+     "kind": "human_decision",
+     "note": "",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 44,
+     "t_ms": 75.65
+    },
+    {
+     "kind": "state",
+     "node": "EXECUTE_APPROVED",
+     "seq": 45,
+     "t_ms": 76.84
+    },
+    {
+     "kind": "approval_verified",
+     "reviewer": "founder",
+     "role": "FOUNDER",
+     "seq": 46,
+     "t_ms": 77.03,
+     "tool": "flag_record_for_review"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.49",
+     "permission": "MUTATE_SIMULATION",
+     "seq": 47,
+     "t_ms": 77.46,
+     "tool": "flag_record_for_review",
+     "trust": "None"
+    },
+    {
+     "actions": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "kind": "executed",
+     "seq": 48,
+     "t_ms": 77.57
+    },
+    {
+     "draft_id": "DR-b9a09ad7",
+     "duplicate_of": "None",
+     "executed": "[{'tool': 'flag_record_for_review', 'ok': True, 'error': None, 'data': {'review_",
+     "external_actions_performed": "0",
+     "kind": "final",
+     "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+     "seq": 49,
+     "t_ms": 78.39
+    }
+   ],
+   "events_total": 49,
+   "family": "DATA_QUALITY",
+   "ground_truth": "schema_violation",
+   "index": 126,
+   "model": "rule-model(stand-in)",
+   "outcome": "APPROVED_AND_EXECUTED_IN_SIMULATION",
+   "outcome_category": "COMPLETED_ACTION",
+   "planner": "llm",
+   "run_id": "run-ff99e23f52",
+   "run_ms": 79.419,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  },
+  {
+   "action": "REQUEST_RECOUNT",
+   "alerts": [
+    {
+     "cls": "STALE_SOURCE",
+     "rule": "AR-15",
+     "severity": "SEV4",
+     "step": 9
+    }
+   ],
+   "approval_state": "pending",
+   "event_id": "EV-S001",
+   "events": [
+    {
+     "event_id": "EV-S001",
+     "kind": "state",
+     "node": "RECEIVE_EVENT",
+     "seq": 1,
+     "t_ms": 0.0
+    },
+    {
+     "kind": "run_meta",
+     "model": "None",
+     "planner_type": "deterministic",
+     "planner_version": "d1",
+     "prompt_version": "None",
+     "seq": 2,
+     "t_ms": 0.16,
+     "tool_schema_version": "None"
+    },
+    {
+     "family": "INVENTORY",
+     "kind": "state",
+     "node": "CLASSIFY_EVENT",
+     "seq": 3,
+     "t_ms": 0.99
+    },
+    {
+     "family": "INVENTORY",
+     "kind": "state",
+     "node": "COLLECT_OPERATIONAL_DATA",
+     "round": "0",
+     "seq": 4,
+     "t_ms": 2.15
+    },
+    {
+     "kind": "tool_call",
+     "ms": "12.4",
+     "permission": "READ",
+     "seq": 5,
+     "t_ms": 15.1,
+     "tool": "query_inventory",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "14.79",
+     "permission": "ANALYZE",
+     "seq": 6,
+     "t_ms": 30.47,
+     "tool": "assess_inventory_risk",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.53",
+     "permission": "READ",
+     "seq": 7,
+     "t_ms": 31.35,
+     "tool": "get_open_purchase_orders",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.46",
+     "permission": "READ",
+     "seq": 8,
+     "t_ms": 32.11,
+     "tool": "get_supplier_status",
+     "trust": "None"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "3.56",
+     "permission": "READ",
+     "seq": 9,
+     "t_ms": 36.03,
+     "tool": "get_supplier_notes_untrusted",
+     "trust": "UNTRUSTED"
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.61",
+     "permission": "READ",
+     "seq": 10,
+     "t_ms": 36.91,
+     "tool": "list_quality_findings",
+     "trust": "None"
+    },
+    {
+     "kind": "state",
+     "node": "RETRIEVE_POLICY",
+     "seq": 11,
+     "t_ms": 38.49
+    },
+    {
+     "kind": "tool_call",
+     "ms": "22.48",
+     "permission": "READ",
+     "seq": 12,
+     "t_ms": 61.9,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What is the dietary policy for proteins such as goat, lamb and chicken and suppl",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 13,
+     "t_ms": 62.04
+    },
+    {
+     "kind": "tool_call",
+     "ms": "25.75",
+     "permission": "READ",
+     "seq": 14,
+     "t_ms": 88.19,
+     "tool": "get_current_policy",
+     "trust": "None"
+    },
+    {
+     "abstained": "False",
+     "gate_p": "None",
+     "kind": "policy_retrieved",
+     "question": "What does the zero-dollar pre-capital build mean for purchasing and spending?",
+     "reason": "",
+     "retriever": "hybrid",
+     "seq": 15,
+     "t_ms": 88.54
+    },
+    {
+     "kind": "state",
+     "node": "ASSESS_EVIDENCE",
+     "seq": 16,
+     "t_ms": 89.97
+    },
+    {
+     "gap_codes": "[]",
+     "kind": "assessment",
+     "policy_citations": "['D-54', 'food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md', 'D-81', 'D-82', 'README.m",
+     "seq": 17,
+     "t_ms": 90.22
+    },
+    {
+     "kind": "state",
+     "node": "PROPOSE_ACTION",
+     "seq": 18,
+     "t_ms": 91.11
+    },
+    {
+     "kind": "tool_call",
+     "ms": "0.72",
+     "permission": "DRAFT",
+     "seq": 19,
+     "t_ms": 92.15,
+     "tool": "draft_review_ticket",
+     "trust": "None"
+    },
+    {
+     "abstain": "False",
+     "action": "REQUEST_RECOUNT",
+     "draft_id": "DR-cd8f3d8f",
+     "kind": "proposal",
+     "seq": 20,
+     "t_ms": 92.29
+    },
+    {
+     "kind": "state",
+     "node": "HUMAN_REVIEW",
+     "round": "0",
+     "seq": 21,
+     "t_ms": 93.09
+    }
+   ],
+   "events_total": 21,
+   "family": "INVENTORY",
+   "ground_truth": "stale_document",
+   "index": 127,
+   "model": null,
+   "outcome": null,
+   "outcome_category": "PENDING",
+   "planner": "deterministic",
+   "run_id": "run-dfb0ac96f0",
+   "run_ms": 97.005,
+   "versions": {
+    "corpus_version": "block3",
+    "planner_id": "deterministic@d1",
+    "prompt_hash": "logic-271bb2dd3e6d",
+    "tool_schema_version": "2718aa91020b",
+    "version_id": "v1"
+   }
+  }
+ ]
+}

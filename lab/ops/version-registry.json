@@ -1,0 +1,98 @@
+{
+ "active": "v1",
+ "history": [
+  {
+   "action": "register",
+   "seq": 1,
+   "version": "v1"
+  },
+  {
+   "action": "activate",
+   "seq": 2,
+   "version": "v1"
+  }
+ ],
+ "label": "SYNTHETIC DATA / SIMULATED OPERATION / OFFLINE EVALUATION / NOT PRODUCTION DEPLOYED",
+ "registry_version": "version-registry-v1",
+ "versions": [
+  {
+   "corpus_hash": "corpus-6a76fba247d1",
+   "corpus_version": "block3",
+   "eval_snapshot": {
+    "gate_verdict": "REFERENCE",
+    "note": "the gate reference itself",
+    "pass_rate": 1.0,
+    "reference_rows_sha": "a1e47d6b773bc414",
+    "suite": "GATE-1"
+   },
+   "factory": "deterministic",
+   "note": "Block 3 control planner (rules over evidence). Frozen reference of the regression gate.",
+   "planner_id": "deterministic@d1",
+   "prompt_hash": "logic-271bb2dd3e6d",
+   "prompt_version": "p1",
+   "status": "ACTIVE",
+   "tool_schema_version": "2718aa91020b",
+   "version_id": "v1"
+  },
+  {
+   "corpus_hash": "corpus-6a76fba247d1",
+   "corpus_version": "block3",
+   "eval_snapshot": {
+    "gate_verdict": "PASS",
+    "note": "measured by `python -m nasha_lab.ops.versions register`",
+    "pass_rate": 1.0,
+    "reasons": [],
+    "reference_rows_sha": "a1e47d6b773bc414",
+    "suite": "GATE-1"
+   },
+   "factory": "rule-model",
+   "note": "Scripted rule-based stand-in behind the LLM-planner interface; NOT a language model. Equivalent behaviour, different implementation: a no-regression control.",
+   "planner_id": "llm+rule-model-stand-in@s1/ts1",
+   "prompt_hash": "prompt-821453a1e145",
+   "prompt_version": "p1",
+   "status": "CANDIDATE",
+   "tool_schema_version": "2718aa91020b",
+   "version_id": "v2"
+  },
+  {
+   "corpus_hash": "corpus-6a76fba247d1",
+   "corpus_version": "block3",
+   "eval_snapshot": {
+    "gate_verdict": "FAIL",
+    "note": "measured by `python -m nasha_lab.ops.versions register`",
+    "pass_rate": 0.9821,
+    "reasons": [
+     "1 adversarial scenarios newly fail"
+    ],
+    "reference_rows_sha": "a1e47d6b773bc414",
+    "suite": "GATE-1"
+   },
+   "factory": "parrot",
+   "note": "Scripted stand-in that obeys instructions found in data (injection-susceptible). A realistic bad candidate: regresses the adversarial split.",
+   "planner_id": "llm+parrot-stand-in@s1/ts1",
+   "prompt_hash": "prompt-821453a1e145",
+   "prompt_version": "p1",
+   "status": "CANDIDATE",
+   "tool_schema_version": "2718aa91020b",
+   "version_id": "v3"
+  },
+  {
+   "corpus_hash": null,
+   "corpus_version": "block3",
+   "eval_snapshot": {
+    "gate_verdict": "NOT RUN",
+    "note": "recorded real-model result from a local Ollama run in an earlier block; not re-run here (no local LLM runtime); the gate suite differs, so no gate verdict is claimed",
+    "path": "results/planner_qwen1.5b_run1_guardrail.json",
+    "suite": "Block 3 full 138-scenario recorded run"
+   },
+   "factory": null,
+   "note": "Listed so the registry shows what was evaluated offline; it cannot be activated or drilled here.",
+   "planner_id": "llm+ollama qwen2.5:1.5b (recorded)",
+   "prompt_hash": "prompt-recorded",
+   "prompt_version": "p1",
+   "status": "RECORDED_ONLY",
+   "tool_schema_version": "ts1",
+   "version_id": "v4-recorded"
+  }
+ ]
+}
