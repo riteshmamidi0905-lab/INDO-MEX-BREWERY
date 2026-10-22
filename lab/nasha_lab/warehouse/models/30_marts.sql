@@ -30,7 +30,7 @@ FROM mart_daily_location GROUP BY month, location_id, format;
 CREATE TABLE mart_product_month AS
 SELECT substr(d.date,1,7) AS month, p.item_id, p.name, p.category, p.is_concept_sku, sum(f.qty) units, sum(f.gross_cents) gross_cents, sum(f.discount_alloc_cents) discount_cents, sum(f.net_cents) net_cents, sum(f.cogs_cents) cogs_cents,
        sum(f.margin_cents) margin_cents, round(1.0 * sum(f.margin_cents) / sum(f.net_cents), 4) margin_pct
-FROM fact_order_line f JOIN dim_date d ON d.date_key = f.date_key JOIN dim_product p ON p.product_key = f.product_key GROUP BY 1, 2;
+FROM fact_order_line f JOIN dim_date d ON d.date_key = f.date_key JOIN dim_product p ON p.product_key = f.product_key GROUP BY 1, 2, 3, 4, 5;   -- full GROUP BY: portable to PostgreSQL
 CREATE TABLE mart_merch_month AS
 WITH s AS (SELECT month, item_id, name, units, net_cents FROM mart_product_month WHERE category = 'merch'),
      r AS (SELECT substr(d.date,1,7) month, p.item_id, count(*) returns, sum(r.refund_cents) refund_cents FROM fact_return r JOIN dim_date d ON d.date_key = r.date_key JOIN dim_product p ON p.product_key = r.product_key GROUP BY 1,2)
@@ -39,6 +39,6 @@ CREATE TABLE mart_loyalty_cohort AS
 WITH m AS (SELECT dm.cohort_month, substr(d.date,1,7) AS month, f.member_key, count(*) orders, sum(f.total_cents) net_cents FROM fact_order f JOIN dim_member dm ON dm.member_key = f.member_key JOIN dim_date d ON d.date_key = f.date_key GROUP BY 1,2,3),
      sz AS (SELECT cohort_month, count(*) members FROM dim_member GROUP BY 1)
 SELECT m.cohort_month, m.month, sz.members AS cohort_size, count(*) active_members, sum(m.orders) orders, sum(m.net_cents) net_cents, round(1.0 * count(*) / sz.members, 4) retention
-FROM m JOIN sz USING (cohort_month) GROUP BY m.cohort_month, m.month;
+FROM m JOIN sz USING (cohort_month) GROUP BY m.cohort_month, m.month, sz.members;
 CREATE TABLE mart_inventory_waste AS
 SELECT substr(d.date,1,7) AS month, l.location_id, w.ingredient, sum(w.qty_kg) waste_kg, sum(w.waste_cost_cents) waste_cost_cents, count(*) events FROM fact_waste w JOIN dim_date d ON d.date_key = w.date_key JOIN dim_location l ON l.location_key = w.location_key GROUP BY 1,2,3;
