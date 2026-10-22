@@ -1,0 +1,152 @@
+[
+ {
+  "asset": "visuals/brand-v3/labels/badshah-wrap.svg",
+  "sha256": "0ee6498cc9638e999bbc615039a712d86a5332afa968f6425233e72476e1c5c3",
+  "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
+  "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
+  "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/labels/badshah-wrap.png",
+  "sha256": "72c6ed8fb046af35bc67e7b9ddec29aaac108d4a8b5f8790f58c9a47386dfeb6",
+  "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
+  "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
+  "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/labels/amba-haze-wrap.svg",
+  "sha256": "9652bb26957a43cd0ba1aa3fba9fc2cb22b225f39d961416f09502b62e7fbadc",
+  "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
+  "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
+  "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/labels/amba-haze-wrap.png",
+  "sha256": "d8e156403beba2239a340c9639c57ac2367817b53aa0d8764773de4802e8f6c1",
+  "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
+  "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
+  "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/mockups/blank-can-plate-procedural.png",
+  "sha256": "c5b5a1d5eecdf1adef46f58bed3a5a56c1a5be541b00a6cf557fb0f3258e7b48",
+  "method": "procedural render by code (visuals/tools/composite_label.py); NOT a photograph, no generative model",
+  "sources": "procedural plate + the label wraps above",
+  "usage": "pipeline proof / concept mockup only; never label as photography",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/mockups/badshah-can-procedural.png",
+  "sha256": "d4e171fc290b04b93291e73850871f4209444352612644d1a6c4046dba728fb4",
+  "method": "procedural render by code (visuals/tools/composite_label.py); NOT a photograph, no generative model",
+  "sources": "procedural plate + the label wraps above",
+  "usage": "pipeline proof / concept mockup only; never label as photography",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/mockups/amba-haze-can-procedural.png",
+  "sha256": "3ec319350af04f43f46dc265942354f7da3416155f2f0a3197da3ddf97191a07",
+  "method": "procedural render by code (visuals/tools/composite_label.py); NOT a photograph, no generative model",
+  "sources": "procedural plate + the label wraps above",
+  "usage": "pipeline proof / concept mockup only; never label as photography",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/mockups/cans-pair-procedural.png",
+  "sha256": "b5c4e04da405b03925cc18c1e4f4def9572013ba34c01efe4f84db11dceef9a4",
+  "method": "procedural render by code (visuals/tools/composite_label.py); NOT a photograph, no generative model",
+  "sources": "procedural plate + the label wraps above",
+  "usage": "pipeline proof / concept mockup only; never label as photography",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/identity-board-v3.svg",
+  "sha256": "d46a7f7a2ce76a80b7c00d8b999f16becba89e43cfa60e83b5612db77f2e75e6",
+  "method": "flat vector board built by brand/tools/brand_v3_board.py",
+  "sources": "Courtyard refined marks + v3 palette; label wraps; procedural can renders",
+  "usage": "internal review board",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/identity-board-v3.png",
+  "sha256": "a0559f03ae1f2de042eedcf9d0a46a569c6264ae8a527a1636504e5fcb8c3379",
+  "method": "flat vector board built by brand/tools/brand_v3_board.py",
+  "sources": "Courtyard refined marks + v3 palette; label wraps; procedural can renders",
+  "usage": "internal review board",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "website/preview-courtyard/assets/badshah-label-front.webp",
+  "sha256": "15bcc2287126f69315be2d1a2477d3403575ec146e1476c68681a04825397849",
+  "method": "optimised web copy (crop + WebP) of the brand-v3 source files",
+  "sources": "visuals/brand-v3 (sources kept separately)",
+  "usage": "local noindex website preview only; never deployed",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "website/preview-courtyard/assets/badshah-can.webp",
+  "sha256": "dde52270232c9617acd236489aa504518a5f9e5f77590505a69e37151d399bae",
+  "method": "optimised web copy (crop + WebP) of the brand-v3 source files",
+  "sources": "visuals/brand-v3 (sources kept separately)",
+  "usage": "local noindex website preview only; never deployed",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "website/preview-courtyard/assets/amba-haze-label-front.webp",
+  "sha256": "5fa7446ec837c5d96ae4fad6d160a61ba4c94d1917ea532f08dc2f0f50e4433b",
+  "method": "optimised web copy (crop + WebP) of the brand-v3 source files",
+  "sources": "visuals/brand-v3 (sources kept separately)",
+  "usage": "local noindex website preview only; never deployed",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "website/preview-courtyard/assets/amba-haze-can.webp",
+  "sha256": "ca24f60167c162194d5beeb18f1c1d966370f0fb923da540e3f2c47124fd4ed8",
+  "method": "optimised web copy (crop + WebP) of the brand-v3 source files",
+  "sources": "visuals/brand-v3 (sources kept separately)",
+  "usage": "local noindex website preview only; never deployed",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/references/chatgpt-brand-board-2026-10-22.webp",
+  "sha256": "e8cb93e3f0742ba7f4943e33d1a3f0be5accba9ab772468190b8fe2abac2ea1c",
+  "method": "AI image generation with ChatGPT's image-generation tool, by the founder, 2026-10-22 (per the founder)",
+  "authorship": "founder-prompted, model-generated",
+  "sources": "not copied from another brand (per the founder); prompt text not recorded in the repo",
+  "rights": "OpenAI terms for this account/plan not verified; ownership of outputs not verified; image contains model-drawn text and logo-like marks",
+  "approval": "EXPLORATORY CONCEPT ARTWORK, creative reference only; not a product photograph; not trademark-cleared; not for publication or reuse",
+  "usage": "mood/palette/composition reference; nothing from it is incorporated into any asset"
+ }
+]
