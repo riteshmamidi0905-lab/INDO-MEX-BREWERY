@@ -1,0 +1,22 @@
+# python 3.13.16 on Linux — installed versions of direct dependencies when last validated (tools/make_lock.py)
+axe-playwright-python==0.1.8
+en-core-web-md==3.8.0
+fastapi==0.143.2
+httpx==0.28.1
+hypothesis==6.169.4
+langgraph==1.2.15
+langgraph-checkpoint-sqlite==3.1.2
+mcp==2.2.0
+numpy==2.5.3
+opentelemetry-exporter-otlp-proto-http==1.45.1
+opentelemetry-sdk==1.45.1
+playwright==1.64.0
+psycopg==3.3.6
+pydantic==2.13.5
+pytest==9.1.1
+ragqa==0.1.0
+rapidocr-onnxruntime==1.2.3
+scikit-learn==1.9.1
+spacy==3.8.16
+sqlglot==30.24.0
+uvicorn==0.53.0

@@ -1,0 +1,43 @@
+{
+ "profile": "dev",
+ "tables": 22,
+ "identical": true,
+ "differing_tables": [],
+ "eval_hash_equal": true,
+ "table_hashes": {
+  "dim_date": "7b5aef481edae5ee",
+  "dim_employee": "7db18bc282c81f83",
+  "dim_location": "0acaa89ac7d8a676",
+  "dim_member": "b44291c0e6bad14c",
+  "dim_product": "842b548be5cd0e7d",
+  "dim_promotion": "4c44ce2f0d9053ed",
+  "dim_supplier": "2c6783964b013715",
+  "fact_brew_batch": "a29b607b8e2f7eb5",
+  "fact_inventory_count": "d5c9ab01a75cb623",
+  "fact_labor_daily": "049da44391efe2ce",
+  "fact_order": "6576ee2d47e53eab",
+  "fact_order_line": "7ff6bc555cba3652",
+  "fact_quality_event": "269ff099a86ec4d9",
+  "fact_return": "83081b2c8308623e",
+  "fact_waste": "86b61aec281f04d7",
+  "mart_company_month": "b3addd6208475aac",
+  "mart_daily_location": "2bb8f5937abacce9",
+  "mart_inventory_waste": "6640743f6d42d197",
+  "mart_location_month": "d0814cfc653274c6",
+  "mart_loyalty_cohort": "02234af93212507c",
+  "mart_merch_month": "c276c149316a9805",
+  "mart_product_month": "397af4943696429f"
+ },
+ "environment": {
+  "python": "3.13.16",
+  "platform": "Linux-6.18.44-fc-v140-x86_64-with-glibc2.39",
+  "packages": {
+   "numpy": "2.5.3",
+   "pandas": "3.0.5",
+   "sqlglot": "30.24.0",
+   "psycopg": "3.3.6",
+   "pydantic": "2.13.5",
+   "fastapi": "0.143.2"
+  }
+ }
+}

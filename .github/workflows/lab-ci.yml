@@ -36,6 +36,8 @@ jobs:
       - if: always()
         uses: actions/upload-artifact@v4
         with: { name: junit-and-skip-report, path: "/tmp/junit.xml\n/tmp/skip-report.md" }
+      - name: Ops AI evaluation passes on a fresh warehouse and a rebuild is bit-identical (fails on any wrong answer, false allow, or table-hash difference)
+        run: cd lab && make eval && make repro
       - name: Block-1 data-quality evaluation reproduces byte for byte
         run: cd lab && python -m nasha_lab.evaluate v1 | diff - results/eval_v1.json
       - name: Planner experiment (deterministic control + stand-in models) reproduces

@@ -38,3 +38,10 @@ Arch-and-botanical crest (arch outline + three-leaf sprig). Supports merchandise
 
 ## Misuse
 No stretch, outline, shadow, gradient or photo effects; no AI-generated logos or text; no recolour outside the palette; no use on busy backgrounds without a solid panel; no ™/® symbols.
+
+## Collateral built so far (all flat concepts; `visuals/brand-v3/`)
+- Packaging: BADSHAH and AMBA HAZE label wraps (original wordmark primary; `-g1` alternates for cans at ≥ 32 px cap height) — `labels/`.
+- Glassware: crest and G1 one-colour etch artwork — `artwork/`.
+- Signage set (facade G1, blade, wayfinding, entrance arch, door plate), menu cover + inner page, merchandise set (hoodie front/back, three tees) — `collateral/`.
+- Placeholders everywhere for ABV, volume, ingredients, certifications, regulatory text, barcode, prices and hours. Dishes are concept names only (never cooked or tasted); no beef or pork; no halal claim.
+- Production photography is **not** available: all received plates are below the 1600 px minimum and are reference/fit-test only (`docs/master-directive/COMPOSITING-READINESS.md`).

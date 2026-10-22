@@ -280,6 +280,66 @@
   "approval": "NOT approved by founder; concept only; unpublished"
  },
  {
+  "asset": "visuals/brand-v3/collateral/menu-concept.png",
+  "sha256": "bfab5b281780842cb3abf89a651f8094cfbdba37e1d8fe980df8631818e26639",
+  "method": "flat vector collateral built by brand/tools/brand_v3_collateral.py",
+  "sources": "brand-v3 marks; glass-A G1 only on large-format signage",
+  "usage": "internal concept collateral (menu, signage, merchandise); placeholders for all unverified specs, prices and ABV",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/collateral/menu-concept.svg",
+  "sha256": "26488b9f301f000979fe7801f522fcce3b866dbb337800758776e8a15c44ac6c",
+  "method": "flat vector collateral built by brand/tools/brand_v3_collateral.py",
+  "sources": "brand-v3 marks; glass-A G1 only on large-format signage",
+  "usage": "internal concept collateral (menu, signage, merchandise); placeholders for all unverified specs, prices and ABV",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/collateral/merchandise-set.png",
+  "sha256": "f7d697d83acb797202b5c7382f927f720b5fd64a737f20f5d4e94d0bd026af30",
+  "method": "flat vector collateral built by brand/tools/brand_v3_collateral.py",
+  "sources": "brand-v3 marks; glass-A G1 only on large-format signage",
+  "usage": "internal concept collateral (menu, signage, merchandise); placeholders for all unverified specs, prices and ABV",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/collateral/merchandise-set.svg",
+  "sha256": "fb3dfd1f4838a8bd7d4cca34170d17228f78f07a726e16265c9cd632c747b37a",
+  "method": "flat vector collateral built by brand/tools/brand_v3_collateral.py",
+  "sources": "brand-v3 marks; glass-A G1 only on large-format signage",
+  "usage": "internal concept collateral (menu, signage, merchandise); placeholders for all unverified specs, prices and ABV",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/collateral/signage-set.png",
+  "sha256": "267227c285900d3afcb6668a097af79cdf3080467c3d6e4222ffbee27280f933",
+  "method": "flat vector collateral built by brand/tools/brand_v3_collateral.py",
+  "sources": "brand-v3 marks; glass-A G1 only on large-format signage",
+  "usage": "internal concept collateral (menu, signage, merchandise); placeholders for all unverified specs, prices and ABV",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/collateral/signage-set.svg",
+  "sha256": "5fa90a48690a180d1aed9ab01147526431454d16960676f788982c52209ec9b7",
+  "method": "flat vector collateral built by brand/tools/brand_v3_collateral.py",
+  "sources": "brand-v3 marks; glass-A G1 only on large-format signage",
+  "usage": "internal concept collateral (menu, signage, merchandise); placeholders for all unverified specs, prices and ABV",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
   "asset": "visuals/brand-v3/identity-board-v3.svg",
   "sha256": "d46a7f7a2ce76a80b7c00d8b999f16becba89e43cfa60e83b5612db77f2e75e6",
   "method": "flat vector board built by brand/tools/brand_v3_board.py",

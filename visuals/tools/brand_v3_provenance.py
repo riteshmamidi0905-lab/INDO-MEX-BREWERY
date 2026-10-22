@@ -12,6 +12,8 @@ for f in ("blank-can-plate-procedural.png", "badshah-can-procedural.png", "amba-
 import glob
 for f in sorted(pathlib.Path(R / "visuals/brand-v3/artwork").glob("*")):
     items.append(dict(asset=str(f.relative_to(R)), sha256=sha(str(f.relative_to(R))), method="vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)", sources="Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest", usage="compositing artwork for approved source plates; never on unreviewed plates", **common))
+for f in sorted(pathlib.Path(R / "visuals/brand-v3/collateral").glob("*")):
+    items.append(dict(asset=str(f.relative_to(R)), sha256=sha(str(f.relative_to(R))), method="flat vector collateral built by brand/tools/brand_v3_collateral.py", sources="brand-v3 marks; glass-A G1 only on large-format signage", usage="internal concept collateral (menu, signage, merchandise); placeholders for all unverified specs, prices and ABV", **common))
 for f in ("identity-board-v3.svg", "identity-board-v3.png"):
     items.append(dict(asset=f"visuals/brand-v3/{f}", sha256=sha(f"visuals/brand-v3/{f}"), method="flat vector board built by brand/tools/brand_v3_board.py", sources="Courtyard refined marks + v3 palette; label wraps; procedural can renders", usage="internal review board", **common))
 for f in ("badshah-label-front.webp", "badshah-can.webp", "amba-haze-label-front.webp", "amba-haze-can.webp"):

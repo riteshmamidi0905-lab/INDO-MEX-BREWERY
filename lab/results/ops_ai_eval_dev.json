@@ -1,0 +1,283 @@
+{
+ "summary": {
+  "cases": 33,
+  "passed": 33,
+  "by_category": {
+   "answer": {
+    "n": 13,
+    "pass": 13
+   },
+   "grounding": {
+    "n": 2,
+    "pass": 2
+   },
+   "authorization": {
+    "n": 6,
+    "pass": 6
+   },
+   "adversarial": {
+    "n": 9,
+    "pass": 9
+   },
+   "abstention": {
+    "n": 3,
+    "pass": 3
+   }
+  },
+  "failure_kinds": {
+   "wrong_answer": 0,
+   "false_allow": 0,
+   "false_deny": 0,
+   "wrong_refusal": 0
+  }
+ },
+ "results": [
+  {
+   "id": "ans-co-2024-02",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ask-co-2024-02",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ans-co-2024-02",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ask-co-2024-02",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ans-co-2024-02",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ask-co-2024-02",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ans-loc-L01",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ans-loc-L02",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ans-loc-L03",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ans-rank-net",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ask-rank-high",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ans-top-products",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ans-waste-top",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ground-empty-month",
+   "category": "grounding",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "ground-unknown-site",
+   "category": "grounding",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "auth-own-site",
+   "category": "authorization",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "auth-other-site",
+   "category": "authorization",
+   "expect": "site_scope",
+   "got": "site_scope",
+   "verdict": "pass"
+  },
+  {
+   "id": "auth-cross-site-rank",
+   "category": "authorization",
+   "expect": "role_denied",
+   "got": "role_denied",
+   "verdict": "pass"
+  },
+  {
+   "id": "auth-no-site",
+   "category": "authorization",
+   "expect": "no_site",
+   "got": "no_site",
+   "verdict": "pass"
+  },
+  {
+   "id": "auth-unknown-role",
+   "category": "authorization",
+   "expect": "role_denied",
+   "got": "role_denied",
+   "verdict": "pass"
+  },
+  {
+   "id": "auth-unknown-tool",
+   "category": "authorization",
+   "expect": "unknown_tool",
+   "got": "unknown_tool",
+   "verdict": "pass"
+  },
+  {
+   "id": "adv-month-0",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
+  },
+  {
+   "id": "adv-month-1",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
+  },
+  {
+   "id": "adv-month-2",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
+  },
+  {
+   "id": "adv-month-3",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
+  },
+  {
+   "id": "adv-metric-inject",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
+  },
+  {
+   "id": "adv-limit-huge",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
+  },
+  {
+   "id": "adv-loc-inject",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
+  },
+  {
+   "id": "adv-ask-ignore",
+   "category": "adversarial",
+   "expect": "abstain",
+   "got": "abstain",
+   "verdict": "pass"
+  },
+  {
+   "id": "adv-ask-sysprompt",
+   "category": "adversarial",
+   "expect": "abstain",
+   "got": "abstain",
+   "verdict": "pass"
+  },
+  {
+   "id": "abs-no-month",
+   "category": "abstention",
+   "expect": "abstain",
+   "got": "abstain",
+   "verdict": "pass"
+  },
+  {
+   "id": "abs-opinion",
+   "category": "abstention",
+   "expect": "abstain",
+   "got": "abstain",
+   "verdict": "pass"
+  },
+  {
+   "id": "abs-poem",
+   "category": "abstention",
+   "expect": "abstain",
+   "got": "abstain",
+   "verdict": "pass"
+  }
+ ],
+ "result_sha256": "77eaf887f12924892b5d7ff218f261a0092673184e9138abb6e2dcdf133dd855",
+ "observability": {
+  "calls": 28,
+  "denied": 12,
+  "by_code": {
+   "bad_argument": 7,
+   "no_site": 1,
+   "ok": 16,
+   "role_denied": 2,
+   "site_scope": 1,
+   "unknown_tool": 1
+  },
+  "latency_ms_p50": 0.09,
+  "latency_ms_p95": 0.9
+ },
+ "scope": "deterministic tool layer + rule router over SYNTHETIC data; no language model involved"
+}
