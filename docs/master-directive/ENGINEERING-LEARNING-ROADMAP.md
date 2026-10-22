@@ -10,7 +10,7 @@ A theory; B small independent implementation; C where it appears in this lab (fi
 
 ## Sequence (the first three are started by the diagnostic and the existing lab)
 1. **Now:** take `python -m learning.diagnostic run --out learning/results.jsonl` (27 items, 9 areas, no tools). Return the results file; Claude reviews the short answers against the rubric in conversation and records only observed performance.
-2. SQL + data quality against `career/p4-analytics-mart-clean` (mart, 25+ library queries).
+2. SQL + data quality against `career/p4-analytics-mart-clean` (mart, 24 library queries).
 3. FastAPI + auth + idempotency against the P5 service.
 4. RAG evaluation and the planner experiment in `lab/docs/`.
 5. Agent safety: trust gateway, THE WEIR approvals, negative tests.

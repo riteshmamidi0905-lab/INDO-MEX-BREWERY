@@ -1,0 +1,10 @@
+{
+  "asset": "visuals/external/<tool>/<date>-<slug>/original/<file>",
+  "tool": "", "model_or_version": "", "prompt_exact": "", "negative_prompt": "", "seed": null, "date_generated": "",
+  "account_and_plan": "", "licence_terms_url_and_summary": "", "commercial_use_allowed": null,
+  "inputs_used": "none, or list each reference image with its rights status (no third-party artwork)",
+  "brief": "brand/goods/GOODS-CREATIVE-BRIEFS.md (section)", "creative_decisions": "",
+  "approved_by": "", "approval_date": "", "quality_review": {"cultural_review": "NOT DONE", "similarity_sweep": "NOT DONE", "defects_found": []},
+  "status": "LOCAL-ONLY concept visualization; not a photograph of a real product; not published",
+  "web_derivatives": []
+}
