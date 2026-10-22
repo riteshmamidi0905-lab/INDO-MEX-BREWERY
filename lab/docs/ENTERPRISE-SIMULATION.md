@@ -20,5 +20,19 @@ Not measured: runtime on other hardware; memory with other pandas/numpy versions
 ## Checks (`enterprise_sim.check`)
 unique order ids; every line has an order and a known item; positive qty and price; subtotal equals line sum; total equals subtotal minus discount; members exist and joined before ordering; employees and orders reference known sites; no order before a site opens; no forbidden protein terms in the catalog. 7 tests cover determinism, seed sensitivity, baseline preservation, corruption detection, labelling and manifest content.
 
-## Calibration (NOT DONE)
-To calibrate, cite public sources for: restaurant orders per site per day and average check by format (for example National Restaurant Association and Technomic-type industry reports), labor hours and wages (Bureau of Labor Statistics), craft-brewery production and taproom sales (Brewers Association), loyalty member share (published program surveys). Until each parameter has a dated citation here, treat the data as a structural test bed, not a market model.
+## Calibration findings (2026-10-22): LOW-CONFIDENCE leads, not a calibration
+A public-source pass (web-search summaries; no primary page could be opened; publication years mostly inferred) found the following. Treat every row as a lead to verify before it drives a parameter.
+| Parameter | Simulation (full profile) | Public lead | Source and confidence |
+|---|---|---|---|
+| Average ticket | about $30.6 (placeholder prices) | about $21.80 for one fast-casual chain (Q2 2025); segment average NOT FOUND | Advan Research; low |
+| Orders per site per day | about 245 | fast-casual AUV about $2.8-2.9M (Cava, Sweetgreen, 2024), consistent with the simulated annual sales per site | MarketBeat; medium for AUV |
+| Loyalty member share of orders | 38% | 75th percentile 30%, 90th about 37% or more of transactions | Paytronix 2024; medium |
+| COGS % of net sales | about 27% | food cost about 31-33% (garbled table, undated) | vendor page; low |
+| Labor % of net sales | 16-29% by site | prime cost about 60% limited service (labor not isolated) | Toast, 7shifts; medium for prime cost only |
+| Waste | about 0.4% of COGS | 4-10% of purchased food (primary source NOT FOUND; NRA attribution unconfirmed); check that the simulation counts the same thing | several secondary pages; low to medium |
+| Employees per site | about 32 (450 / 14) | about 17.8 for limited service (derived from an aggregator; low); the directive fixes about 450 employees | low |
+| Beer margin | n/a | Brewers Association survey: average beer gross margin 41% (2023 data), implying about 59% COGS | BA via Brewbound; medium |
+**Decision.** The `full` profile is unchanged. A `calibrated` profile moves three parameters toward the leads: loyalty share 0.30, list prices x0.78 (ticket about $24), waste x10 (waste near the cited 4-10% range). Employees, labor and COGS are NOT changed (leads too weak). Everything else stays a placeholder. Re-verify each source against its primary document before quoting any figure.
+
+## Remaining capacity-model limits
+Orders above a site's hourly capacity queue into later hours for up to three passes; at full scale 34,705 orders (1.4%) still exceed capacity afterwards, concentrated in peak hours of the busiest sites. There is no balking or lost-sales model, no kitchen-throughput model by item, and no staff-constrained capacity; labor hours follow volume with a fixed baseline, so labor % is unrealistic in low-volume profiles.

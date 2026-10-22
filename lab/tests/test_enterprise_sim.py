@@ -74,3 +74,15 @@ def test_manifest_records_config_and_hashes(dev):
     out, m = dev
     disk = json.loads((out / "manifest.json").read_text())
     assert disk["config"]["seed"] == es.PROFILES["dev"].seed and len(disk["tables"]["orders"]["sha256"]) == 64
+
+
+def test_calibrated_profile_moves_only_the_documented_parameters(tmp_path):
+    from dataclasses import asdict
+    full, cal = asdict(es.PROFILES["full"]), asdict(es.PROFILES["calibrated"])
+    changed = {k for k in full if full[k] != cal[k]}
+    assert changed == {"name", "loyalty_order_share", "price_scale", "waste_scale"}
+    small = es.SimConfig(**{**cal, "months": 2, "fast_casual": 2, "beer_gardens": 1, "target_orders": 6000, "loyalty_profiles": 1500, "employees": 40, "open_at_start": 3})
+    base = es.SimConfig(**{**asdict(small), "price_scale": 1.0, "waste_scale": 1.0, "loyalty_order_share": 0.38})
+    a, b = es.generate(small, tmp_path / "a"), es.generate(base, tmp_path / "b")
+    assert es.check(tmp_path / "a") == []
+    assert a["summary"]["revenue_cents_placeholder"] < 0.85 * b["summary"]["revenue_cents_placeholder"]

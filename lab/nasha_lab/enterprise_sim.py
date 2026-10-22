@@ -49,6 +49,8 @@ class SimConfig:
     open_at_start: int = 8                    # others open over the first 18 months (a growing business)
     price_step_date: str = "2025-01-01"
     price_step: float = 1.04
+    price_scale: float = 1.0                  # placeholder list prices are multiplied by this (calibration)
+    waste_scale: float = 1.0                  # multiplies wasted kg per event (calibration)
     name: str = "custom"
 
 
@@ -56,6 +58,8 @@ PROFILES = {
     "dev": SimConfig(name="dev", months=2, fast_casual=2, beer_gardens=1, target_orders=6_000, loyalty_profiles=1_500, employees=40, open_at_start=3),
     "full": SimConfig(name="full"),
 }
+# Calibration profile: three parameters moved toward cited public benchmarks (see lab/docs/ENTERPRISE-SIMULATION.md, calibration findings). Low-confidence sources; a lead, not a fit.
+PROFILES["calibrated"] = SimConfig(**{**asdict(PROFILES["full"]), "name": "calibrated", "loyalty_order_share": 0.30, "price_scale": 0.78, "waste_scale": 10.0})
 
 # ---------------------------------------------------------------- catalog (placeholders; concept SKUs are NOT products)
 CATALOG = [  # item_id, name, category, price_cents, ingredients, status
@@ -174,7 +178,7 @@ def generate(cfg, out, progress=False):
 
     # -- dimensions
     t = tbl("locations"); t.write(pd.DataFrame(locs).assign(open_date=lambda d: [(start + dt.timedelta(days=int(x))).isoformat() for x in d.open_day]).drop(columns="open_day")); t.close()
-    t = tbl("menu_items"); t.write(pd.DataFrame([{"item_id": c[0], "name": c[1], "category": c[2], "price_cents": c[3], "ingredients": c[4], "status": c[5]} for c in CATALOG])); t.close()
+    t = tbl("menu_items"); t.write(pd.DataFrame([{"item_id": c[0], "name": c[1], "category": c[2], "price_cents": int(round(c[3] * cfg.price_scale)), "ingredients": c[4], "status": c[5]} for c in CATALOG])); t.close()
     t = tbl("suppliers"); t.write(pd.DataFrame(SUPPLIERS, columns=["supplier_id", "name", "category"])); t.close()
     t = tbl("promotions")
     t.write(pd.DataFrame([{"promo_id": p[0], "name": p[1], "start_date": (start + dt.timedelta(days=p[2])).isoformat(), "end_date": (start + dt.timedelta(days=p[2] + p[3] - 1)).isoformat(), "discount_fraction": p[4]} for p in PROMOS if p[2] < n_days]))
@@ -287,7 +291,7 @@ def generate(cfg, out, progress=False):
         o2 = np.argsort(oi, kind="stable")
         oi, item, qty = oi[o2], item[o2], qty[o2]
         line_no = np.arange(len(oi)) - np.searchsorted(oi, oi) + 1
-        price = ITEM_PRICE[item] * np.where(day[oi] >= step_day, cfg.price_step, 1.0)
+        price = ITEM_PRICE[item] * cfg.price_scale * np.where(day[oi] >= step_day, cfg.price_step, 1.0)
         happy = (hr[oi] >= 15) & (hr[oi] < 17) & (ITEM_CAT[item] == "beer")
         price = np.rint(np.where(happy, price * 0.9, price)).astype(np.int64)
         line_total = qty * price
@@ -325,7 +329,7 @@ def generate(cfg, out, progress=False):
                 wi = r.choice(len(INGREDIENT_UNIT), size=wmask.sum())
                 ings = list(INGREDIENT_UNIT)
                 tw.write(pd.DataFrame({"date": [(start + dt.timedelta(days=int(x))).isoformat() for x in dd[wmask]], "location_id": L["location_id"],
-                                       "ingredient": [ings[i] for i in wi], "qty_kg": np.round(r.gamma(2.0, 0.6, size=wmask.sum()) * (1 + vol[wmask] / 250), 2),
+                                       "ingredient": [ings[i] for i in wi], "qty_kg": np.round(r.gamma(2.0, 0.6, size=wmask.sum()) * (1 + vol[wmask] / 250) * cfg.waste_scale, 2),
                                        "reason": r.choice(["spoilage", "prep loss", "overproduction", "dropped"], size=wmask.sum(), p=[.4, .3, .2, .1])}))
             qmask = opened & (r.random(len(dd)) < 0.012)
             if qmask.any():
