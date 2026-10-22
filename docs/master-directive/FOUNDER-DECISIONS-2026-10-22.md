@@ -21,3 +21,9 @@
 - Push authorized ONLY for `career/integration-review` to the existing repository for CI (done; the repository is PUBLIC, content was identical to branches already public, no deploy path). No merge to any production branch, no deploy, no publication.
 - Runway means https://runwayml.com/ (not runway.team); Wispr Flow means https://wisprflow.ai/ (dictation, not the meetings connector). No account connection and no paid generation without approval.
 - Phase 2: data platform, business intelligence, product analytics, website collection pages, learning modules; all synthetic data labelled.
+
+## Creative direction decision (2026-10-22, later in session)
+- **Direction A "The Courtyard"** provisionally selected as NASHA's primary identity **for development only** — not final, not cleared, not for launch. D-66 stays at EXPLORATION until Ritesh reviews the refined board.
+- **Direction B** kept as a botanical/illustration language for merchandise and secondary packaging (never a primary logo); small-size problem fixed by a simplified leaf cut.
+- **Direction C** preserved as inspiration for nightlife/event campaigns only.
+- **Photorealistic generation:** only free, no-subscription generators may be used; none reachable from this environment (see `PHOTOREAL-BLOCKER.md`). No spending.
