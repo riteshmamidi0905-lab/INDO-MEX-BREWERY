@@ -148,5 +148,15 @@
   "rights": "OpenAI terms for this account/plan not verified; ownership of outputs not verified; image contains model-drawn text and logo-like marks",
   "approval": "EXPLORATORY CONCEPT ARTWORK, creative reference only; not a product photograph; not trademark-cleared; not for publication or reuse",
   "usage": "mood/palette/composition reference; nothing from it is incorporated into any asset"
+ },
+ {
+  "asset": "visuals/references/chatgpt-brand-board-2-2026-10-22.webp",
+  "sha256": "f4b39a4b78ab06e3a49a2dc8f03b374fb09b55cc363284d8c37f435a4d8d1e2b",
+  "method": "user-supplied second exploratory board; generator/tool, plan and prompt NOT stated in the message (appears AI-generated: model-drawn text, a typo 'THE COURTYAAD', photoreal-style scenes); it appears to have been prompted with Claude's brand-v3 outputs",
+  "authorship": "founder-supplied; origin to be confirmed by founder",
+  "sources": "not copied from another brand (per founder for board 1; unconfirmed for board 2)",
+  "rights": "terms/ownership unverified; contains model-drawn logos and text",
+  "approval": "EXPLORATORY CONCEPT ARTWORK, creative reference only; not a product photograph; not for publication or reuse; no pixels incorporated into any asset",
+  "usage": "composition/lighting/photography-direction reference only"
  }
 ]
