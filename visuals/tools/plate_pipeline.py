@@ -231,6 +231,12 @@ G1_MIN_CAP_PX = 32
 G1_CAP_FRACTION_OF_WRAP = 0.085        # label wraps: the G1 header's cap height is ~85 art px of the 1000 px wrap height
 
 
+def _is_set(geom):
+    """True when a region/quad holds real coordinates (templates hold all zeros)."""
+    flat = [v for p in (geom or []) for v in (p if isinstance(p, (list, tuple)) else [p])]
+    return any(abs(v) > 0 for v in flat)
+
+
 def g1_cap_px(cfg, item):
     """Cap height (px) the G1 wordmark would have on the FINAL plate image, or None when the item does not use G1."""
     name = str(pick(item, "g1") if cfg.get("mode") != "can" else pick(cfg, "g1"))
@@ -256,7 +262,7 @@ def validate_config(cfg, variant="primary"):
             errs.append(f"artwork not found: {name}")
         if variant == "g1":
             cap = g1_cap_px(cfg, it)
-            if cap is not None and cap < G1_MIN_CAP_PX and any(q for q in (it.get("quad") or it.get("region") or []) if q):
+            if cap is not None and cap < G1_MIN_CAP_PX and _is_set(it.get("quad") or it.get("region")):
                 errs.append(f"G1 alternate would have a cap height of ~{cap:.0f}px on this plate; the approved minimum is {G1_MIN_CAP_PX}px (use the original wordmark or a higher-resolution plate)")
         if "g1" in str(name).lower() and cfg.get("plate_kind") not in ("can", "glass", "signage"):
             errs.append("G1 alternate is approved only for cans, glassware and architectural signage (never apparel, food, small formats)")
