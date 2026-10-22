@@ -1,3 +1,5 @@
+> **D-85 NOTE (2026-10-22):** the ABV figures in this document are HISTORICAL (older wording). The founder's provisional targets are **BADSHAH 4.7%** and **AMBA HAZE 6.0%** (targets, not measurements); see `beer/specs/BEER-SPECIFICATIONS-V1.md` and the formulation briefs `06-` / `07-`. The text below is intentionally not rewritten.
+
 # Beer concepts: BADSHAH (existing hefeweizen), AMBA HAZE (experimental mango hazy IPA, working name), PAAPI (internal naming candidate)
 
 STATUS: HYPOTHESES / development targets. Never brewed, measured or validated; ranges are to be tested; BJCP figures marked UNCITED come from memory, not the official PDF. A licensed brewer owns every real decision (G-6 open).

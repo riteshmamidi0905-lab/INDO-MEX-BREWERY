@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Brand v3 art helpers (PROVISIONAL concept art; flat vector). Palette, secondary crest, wheat/mango/leaf motifs, BADSHAH and AMBA HAZE label wraps.
 Labels use NO verified beverage specification other than: BADSHAH = hefeweizen (existing identity), AMBA HAZE = mango-forward juicy IPA working concept.
-ABV, volume, ingredients, certifications, barcode, government/regulatory text are PLACEHOLDERS in boxes. No ™/®. Text on art is real type from Instrument Serif / Inter."""
+Target ABV (D-85: 4.7% BADSHAH, 6.0% AMBA HAZE) appears ONLY as "TARGET ABV x% · PROVISIONAL" (never a bare "x% ABV"); volume, ingredients, certifications, barcode, government/regulatory text are PLACEHOLDERS in boxes. No ™/®. Text on art is real type from Instrument Serif / Inter."""
 import math, os, re, subprocess, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -93,6 +93,15 @@ WRAP_W, WRAP_H = 2070, 1000
 FRONT_CX = 1035
 
 
+def abv_target(beer_id):
+    """Provisional target ABV from beer/specs/beer_specs.json (D-85), e.g. '4.7'. A target, not a measurement."""
+    import json
+    for b in json.loads((ROOT / "beer/specs/beer_specs.json").read_text())["beers"]:
+        if b["id"] == beer_id:
+            return f"{b['target_abv_pct']:.1f}"
+    raise KeyError(beer_id)
+
+
 def placeholder(x, y, w, h, text, col, op=.7, size=22):
     import textwrap
     lines = textwrap.wrap(text, max(8, int(w / (size * .56))))
@@ -113,13 +122,13 @@ def nasha_header(cx, y, w, col, acc, g1=False):
     return f'<g transform="translate({cx - w / 2},{y}) scale({k:.4f})" style="color:{col};--accent:{acc}">{inner}</g>', hh * k
 
 
-def back_panels(bg, fg, acc, name, desc):
+def back_panels(bg, fg, acc, name, desc, abv):
     s = []
     s.append(f'<text x="120" y="190" font-family="Instrument Serif" font-size="58" fill="{fg}">{name}</text>')
     s.append(f'<text x="120" y="240" font-family="Inter" font-size="21" fill="{fg}" opacity=".85" letter-spacing="1">{desc}</text>')
     s.append(placeholder(120, 300, 400, 150, "TASTING NOTES — TBD (no tasting done)", fg))
     s.append(placeholder(120, 480, 400, 150, "INGREDIENTS — TBD (unverified)", fg))
-    s.append(placeholder(120, 660, 400, 110, "ABV / VOLUME — TBD", fg))
+    s.append(placeholder(120, 660, 400, 110, f"TARGET ABV {abv}% (PROVISIONAL, NOT MEASURED) · VOLUME — TBD", fg))
     s.append(placeholder(1570, 150, 380, 130, "CERTIFICATIONS — NONE CLAIMED", fg))
     s.append(placeholder(1570, 310, 380, 230, "REGULATORY / GOVERNMENT WARNING — TBD (needs compliance review)", fg))
     s.append(placeholder(1570, 570, 260, 170, "BARCODE — TBD", fg))
@@ -144,8 +153,8 @@ def badshah_wrap(g1=False):
     s.append(f'<text x="{cx}" y="770" text-anchor="middle" font-family="Instrument Serif" font-size="128" fill="{P["gold_lt"]}" letter-spacing="14">BADSHAH</text>')
     s.append(f'<text x="{cx}" y="830" text-anchor="middle" font-family="Inter" font-weight="600" font-size="28" fill="{P["ivory"]}" letter-spacing="14">HEFEWEIZEN</text>')
     s.append(f'<rect x="{cx - 150}" y="858" width="300" height="2" fill="{P["gold"]}"/>')
-    s.append(placeholder(cx - 170, 872, 340, 48, "ABV · VOLUME — TBD", P["ivory"], .65))
-    s.append(back_panels(P["forest"], P["ivory"], P["gold"], "BADSHAH", "HEFEWEIZEN · WORKING CONCEPT"))
+    s.append(placeholder(cx - 190, 872, 380, 44, f"TARGET ABV {abv_target('badshah')}% · PROVISIONAL", P["ivory"], .8, 20))
+    s.append(back_panels(P["forest"], P["ivory"], P["gold"], "BADSHAH", "HEFEWEIZEN · WORKING CONCEPT", abv_target("badshah")))
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WRAP_W} {WRAP_H}" width="{WRAP_W}" height="{WRAP_H}">{"".join(s)}</svg>'
 
 
@@ -166,9 +175,9 @@ def amba_wrap(g1=False):
     s.append(hdr)
     s.append(f'<text x="{cx}" y="796" text-anchor="middle" font-family="Instrument Serif" font-style="italic" font-size="132" fill="{P["ivory"]}">Amba Haze</text>')
     s.append(f'<text x="{cx}" y="846" text-anchor="middle" font-family="Inter" font-weight="600" font-size="26" fill="{P["saffron"]}" letter-spacing="10">JUICY MANGO IPA</text>')
-    s.append(placeholder(cx - 170, 858, 340, 38, "ABV · VOLUME — TBD", P["ivory"], .75))
+    s.append(placeholder(cx - 170, 858, 340, 36, f"TARGET ABV {abv_target('amba-haze')}% · PROVISIONAL", P["ivory"], .85, 18))
     s.append(f'<rect x="0" y="0" width="{WRAP_W}" height="22" fill="{P["terra"]}"/><rect x="0" y="{WRAP_H - 22}" width="{WRAP_W}" height="22" fill="{P["terra"]}"/>')
-    s.append(back_panels(P["ivory"], P["forest"], P["terra"], "AMBA HAZE", "MANGO-FORWARD HAZY IPA · WORKING CONCEPT"))
+    s.append(back_panels(P["ivory"], P["forest"], P["terra"], "AMBA HAZE", "MANGO-FORWARD JUICY IPA · WORKING CONCEPT", abv_target("amba-haze")))
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WRAP_W} {WRAP_H}" width="{WRAP_W}" height="{WRAP_H}">{"".join(s)}</svg>'
 
 

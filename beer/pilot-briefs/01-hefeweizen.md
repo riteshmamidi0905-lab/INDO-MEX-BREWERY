@@ -1,3 +1,5 @@
+> **D-85 NOTE (2026-10-22):** the ABV figures in this document are HISTORICAL (older wording). The founder's provisional targets are **BADSHAH 4.7%** and **AMBA HAZE 6.0%** (targets, not measurements); see `beer/specs/BEER-SPECIFICATIONS-V1.md` and the formulation briefs `06-` / `07-`. The text below is intentionally not rewritten.
+
 # Pilot Brief: Hefeweizen (SONA): the gate beer
 
 **Status:** brewer-facing brief. **Nothing has been brewed.** This is a *specification of intent and a test plan*, not a recipe. **No** grist, hop weights, spice doses, brewhouse efficiency, water chemistry, pitch rates, fermentation schedules or production yields appear here, and none may be inferred from it: they are the **licensed head brewer's professional responsibility** and come only from real brewing work. Reference ranges: BJCP 2021 via search extracts (`S-107, S-108`; open the PDF before use). Targets are `[TEST]`. Parent documents: `beer/OPENING-BEER-PROGRAM-V1.md`, `beer/HEFEWEIZEN-BENCHMARK.md`. Pairings: `food/MENU-V1.1-TEST-MENU.md`.

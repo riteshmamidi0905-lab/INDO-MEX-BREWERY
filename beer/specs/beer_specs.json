@@ -1,0 +1,124 @@
+{
+ "decision": "D-85",
+ "date": "2026-10-22",
+ "disclaimer": "Target values, not measured production results; not laboratory-verified alcohol content.",
+ "beers": [
+  {
+   "id": "badshah",
+   "name": "BADSHAH",
+   "style": "Hefeweizen (Bavarian-style wheat beer; BJCP 10A Weissbier reference)",
+   "status": "Concept formulation, not brewed or tested",
+   "target_abv_pct": 4.7,
+   "og": 1.048,
+   "fg": 1.012,
+   "expected_abv_formula_pct": 4.73,
+   "apparent_attenuation": 0.75,
+   "plato_og": 11.9,
+   "ibu_objective": 11,
+   "ibu_window": [
+    10,
+    13
+   ],
+   "srm_window": [
+    3,
+    5
+   ],
+   "co2_volumes_target": 3.4,
+   "co2_volumes_window": [
+    3.0,
+    3.8
+   ],
+   "grist_percent": {
+    "wheat malt": 55,
+    "pilsner malt": 45
+   },
+   "pilot_batch_l": 100,
+   "assumed_efficiency": 0.72,
+   "grist_total_kg": 21.3,
+   "grist_kg": {
+    "wheat malt": 11.7,
+    "pilsner malt": 9.57
+   },
+   "bittering_hops": {
+    "type": "noble-type hop (e.g. Hallertau, Tettnang or Spalt class)",
+    "assumed_alpha_pct": 4.0,
+    "boil_min": 60,
+    "grams_for_objective": 113.0
+   },
+   "contains": [
+    "wheat (gluten)",
+    "barley malt (gluten)"
+   ],
+   "no_gluten_free_claim": true,
+   "provisional_placeholders": [
+    "package volume",
+    "regulatory/label statements (TTB, TABC)",
+    "certifications",
+    "barcode",
+    "price",
+    "measured ABV"
+   ]
+  },
+  {
+   "id": "amba-haze",
+   "name": "AMBA HAZE",
+   "style": "Mango-forward juicy (hazy) IPA; BJCP 21B7 Hazy IPA reference",
+   "status": "Concept formulation, not brewed or tested",
+   "working_name": true,
+   "target_abv_pct": 6.0,
+   "base_wort_og": 1.055,
+   "fruit_gravity_points": 5.76,
+   "og_with_fruit": 1.0607,
+   "fg": 1.015,
+   "expected_abv_formula_pct": 6.0,
+   "ibu_objective": 35,
+   "ibu_window": [
+    25,
+    45
+   ],
+   "srm_window": [
+    3,
+    6
+   ],
+   "co2_volumes_target": 2.4,
+   "co2_volumes_window": [
+    2.2,
+    2.6
+   ],
+   "grist_percent": {
+    "pilsner malt": 70,
+    "flaked oats": 15,
+    "wheat malt": 12,
+    "dextrin malt": 3
+   },
+   "pilot_batch_l": 100,
+   "assumed_efficiency": 0.72,
+   "grist_total_kg": 25.1,
+   "grist_kg": {
+    "pilsner malt": 17.59,
+    "flaked oats": 3.77,
+    "wheat malt": 3.02,
+    "dextrin malt": 0.75
+   },
+   "mango_puree": {
+    "kg_per_100_l": 10.0,
+    "assumed_brix": 15.0,
+    "spec": "aseptic or pasteurised single-strength puree, no added sugar; record preservatives (sulfites are declarable)"
+   },
+   "contains": [
+    "barley malt (gluten)",
+    "wheat (gluten)",
+    "oats (gluten-containing in a brewing context)"
+   ],
+   "no_gluten_free_claim": true,
+   "provisional_placeholders": [
+    "package volume",
+    "regulatory/label statements (TTB, TABC)",
+    "certifications",
+    "barcode",
+    "price",
+    "measured ABV"
+   ]
+  }
+ ]
+}

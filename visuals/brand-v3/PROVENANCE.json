@@ -1,7 +1,7 @@
 [
  {
   "asset": "visuals/brand-v3/labels/badshah-wrap.svg",
-  "sha256": "0ee6498cc9638e999bbc615039a712d86a5332afa968f6425233e72476e1c5c3",
+  "sha256": "e25e9ae08caa3b99c26d76740f5908a0e5fb173abe97181248ccbcebf76a96f7",
   "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
   "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
   "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
@@ -11,7 +11,7 @@
  },
  {
   "asset": "visuals/brand-v3/labels/badshah-wrap.png",
-  "sha256": "72c6ed8fb046af35bc67e7b9ddec29aaac108d4a8b5f8790f58c9a47386dfeb6",
+  "sha256": "79cf706c870a60a819417c417ac7935960ea979a4901b9d53fbe3498d040c90a",
   "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
   "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
   "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
@@ -21,7 +21,7 @@
  },
  {
   "asset": "visuals/brand-v3/labels/amba-haze-wrap.svg",
-  "sha256": "4e4c8df72fc455de9102d9cc18436fb470f46762b3e1a77037ae45a1044076c6",
+  "sha256": "2f6e2cba947486cc2b603ca4ec8c7cbd504a908f67676fe0e14d7aff3600dc5f",
   "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
   "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
   "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
@@ -31,7 +31,7 @@
  },
  {
   "asset": "visuals/brand-v3/labels/amba-haze-wrap.png",
-  "sha256": "961b5abc7eb9353200f9cdb58ec11c7fe26944bd8477cd99e907b104c3163910",
+  "sha256": "6141dedcea56e463589db1c5ffbc4a543c72bc88378bd1676df1334cfd56ab43",
   "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
   "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
   "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
@@ -41,7 +41,7 @@
  },
  {
   "asset": "visuals/brand-v3/labels/badshah-wrap-g1.svg",
-  "sha256": "c5e346eed8eb44429aa176b3d2f7617931f260a38c2d14687a2bbea0a30c5389",
+  "sha256": "eaa967fd29db79377572a3bda7ff15029db82aa7b71410b93a9e9d59f9983417",
   "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
   "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
   "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
@@ -51,7 +51,7 @@
  },
  {
   "asset": "visuals/brand-v3/labels/badshah-wrap-g1.png",
-  "sha256": "a43fb92b6b289891366d077ef92536005bf7b4371486db44e1a0827540b1aa83",
+  "sha256": "32ea9d95d1209899b5ab51146b2627e40d3889c5fd34b491eb0464c02d95bc85",
   "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
   "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
   "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
@@ -61,7 +61,7 @@
  },
  {
   "asset": "visuals/brand-v3/labels/amba-haze-wrap-g1.svg",
-  "sha256": "267d36ee0718ad5519cf4882308c18ccf297a01ef6e5b94baa2f6f1d0e584abe",
+  "sha256": "c76eaaf26a1ea4de6e3de80bc7d9081f55cd9b327841bb54670113ec0605bdc4",
   "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
   "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
   "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
@@ -71,7 +71,7 @@
  },
  {
   "asset": "visuals/brand-v3/labels/amba-haze-wrap-g1.png",
-  "sha256": "32c8a146a14f8869abb4e534cf321485101bd11e705169fd937516dd33ba1bae",
+  "sha256": "c04411a0f4b58001bc85929aa9cce9b0d0a58410d776b1f3bb39c85828f506a6",
   "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
   "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
   "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
@@ -91,7 +91,7 @@
  },
  {
   "asset": "visuals/brand-v3/mockups/badshah-can-procedural.png",
-  "sha256": "d4e171fc290b04b93291e73850871f4209444352612644d1a6c4046dba728fb4",
+  "sha256": "b04c5c798a57b201cf63ea30050599a4f9dd12fc5865cbaac617bf8da00fba00",
   "method": "procedural render by code (visuals/tools/composite_label.py); NOT a photograph, no generative model",
   "sources": "procedural plate + the label wraps above",
   "usage": "pipeline proof / concept mockup only; never label as photography",
@@ -101,7 +101,7 @@
  },
  {
   "asset": "visuals/brand-v3/mockups/amba-haze-can-procedural.png",
-  "sha256": "3ec319350af04f43f46dc265942354f7da3416155f2f0a3197da3ddf97191a07",
+  "sha256": "0cca6651f92633020efa83b8c4349053c86f6b18f9583c1df5051e76058ef930",
   "method": "procedural render by code (visuals/tools/composite_label.py); NOT a photograph, no generative model",
   "sources": "procedural plate + the label wraps above",
   "usage": "pipeline proof / concept mockup only; never label as photography",
@@ -111,7 +111,7 @@
  },
  {
   "asset": "visuals/brand-v3/mockups/cans-pair-procedural.png",
-  "sha256": "b5c4e04da405b03925cc18c1e4f4def9572013ba34c01efe4f84db11dceef9a4",
+  "sha256": "f8a780f484ea26dfa055b59bae977de193010c36f79a0b95af2d4ace6ecfe14b",
   "method": "procedural render by code (visuals/tools/composite_label.py); NOT a photograph, no generative model",
   "sources": "procedural plate + the label wraps above",
   "usage": "pipeline proof / concept mockup only; never label as photography",
@@ -361,7 +361,7 @@
  },
  {
   "asset": "website/preview-courtyard/assets/badshah-label-front.webp",
-  "sha256": "15bcc2287126f69315be2d1a2477d3403575ec146e1476c68681a04825397849",
+  "sha256": "9e40f3680f470b58ceca0de2d1f46a3d3c46302cf9f0c6aed0f9e42a0a5e3b68",
   "method": "optimised web copy (crop + WebP) of the brand-v3 source files",
   "sources": "visuals/brand-v3 (sources kept separately)",
   "usage": "local noindex website preview only; never deployed",
@@ -371,7 +371,7 @@
  },
  {
   "asset": "website/preview-courtyard/assets/badshah-can.webp",
-  "sha256": "dde52270232c9617acd236489aa504518a5f9e5f77590505a69e37151d399bae",
+  "sha256": "d62234b2dfa6cd9c7fedf17797d69f56f5239e2b55d1f0582da8afd87e36bb4f",
   "method": "optimised web copy (crop + WebP) of the brand-v3 source files",
   "sources": "visuals/brand-v3 (sources kept separately)",
   "usage": "local noindex website preview only; never deployed",
@@ -381,7 +381,7 @@
  },
  {
   "asset": "website/preview-courtyard/assets/amba-haze-label-front.webp",
-  "sha256": "5fa7446ec837c5d96ae4fad6d160a61ba4c94d1917ea532f08dc2f0f50e4433b",
+  "sha256": "171d7f28cda26b3f26934d145157c06db4593c6abe3d13d1309141131664b7e9",
   "method": "optimised web copy (crop + WebP) of the brand-v3 source files",
   "sources": "visuals/brand-v3 (sources kept separately)",
   "usage": "local noindex website preview only; never deployed",
@@ -391,7 +391,7 @@
  },
  {
   "asset": "website/preview-courtyard/assets/amba-haze-can.webp",
-  "sha256": "ca24f60167c162194d5beeb18f1c1d966370f0fb923da540e3f2c47124fd4ed8",
+  "sha256": "830de368bc4ec498915faae28313cf77bb532791f21b903434683e0e9a625e41",
   "method": "optimised web copy (crop + WebP) of the brand-v3 source files",
   "sources": "visuals/brand-v3 (sources kept separately)",
   "usage": "local noindex website preview only; never deployed",
