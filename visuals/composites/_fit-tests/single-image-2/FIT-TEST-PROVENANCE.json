@@ -1,0 +1,45 @@
+{
+ "status": "FIT TEST ONLY \u2014 reference plates below the 1600 px minimum / not human-accepted; not registered; original wordmark only",
+ "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+ "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+ "outputs": {
+  "badshah_can": {
+   "file": "visuals/composites/_fit-tests/single-image-2/badshah_can-FIT-TEST.png",
+   "sha256": "1e835d8193113f3173809d8b448e4bea9030f7370d870fc5ded7e61952a4863f",
+   "plate": "visuals/source-plates/reference-fit-test/badshah_can/single-image-2__single_badshah_can.webp",
+   "plate_sha256": "1c6ae5017807c206f7e9b6099b3784e130e1806257d177912def6d8092816ccb",
+   "config": {
+    "mode": "can",
+    "plate_kind": "can",
+    "art": "badshah_wrap",
+    "region": [
+     479,
+     192,
+     889,
+     993
+    ],
+    "shade_strength": 0.7,
+    "ink": 1.0
+   }
+  },
+  "amba_can": {
+   "file": "visuals/composites/_fit-tests/single-image-2/amba_can-FIT-TEST.png",
+   "sha256": "6647e1d348c2aaf71e8957215aa5c21f85ed4cd7d89f03b57783964c832a7a03",
+   "plate": "visuals/source-plates/reference-fit-test/amba_can/single-image-2__single_amba_can.webp",
+   "plate_sha256": "b2332e632700988ed9e0c1a833a9962259171cf7908cf65bbcdff6e8cad09d5b",
+   "config": {
+    "mode": "can",
+    "plate_kind": "can",
+    "art": "amba_wrap",
+    "region": [
+     583,
+     182,
+     946,
+     889
+    ],
+    "shade_strength": 0.5,
+    "ink": 1.0
+   }
+  }
+ }
+}

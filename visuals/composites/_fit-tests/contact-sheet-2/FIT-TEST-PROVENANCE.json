@@ -1,0 +1,191 @@
+{
+ "status": "FIT TEST ONLY \u2014 reference plates below the 1600 px minimum / not human-accepted; not registered; original wordmark only",
+ "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+ "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+ "outputs": {
+  "badshah_can": {
+   "file": "visuals/composites/_fit-tests/contact-sheet-2/badshah_can-FIT-TEST.png",
+   "sha256": "1c78e92631aeeb2587e52fad7ca2d0f65efbc974b54d02898be3204a5e83b178",
+   "plate": "visuals/source-plates/reference-fit-test/badshah_can/contact-sheet-2__badshah_can.png",
+   "plate_sha256": "003086ffb350d4e3276c986e7c9b5f6d183a6ae9e168cf3923d1e97f764418fd",
+   "config": {
+    "mode": "can",
+    "plate_kind": "can",
+    "art": "badshah_wrap",
+    "region": [
+     112,
+     92,
+     261,
+     448
+    ],
+    "shade_strength": 0.7,
+    "ink": 1.0
+   }
+  },
+  "amba_can": {
+   "file": "visuals/composites/_fit-tests/contact-sheet-2/amba_can-FIT-TEST.png",
+   "sha256": "a42deeca3b2a31691d1be4af3f0415908c6824f0c677ff7cb12536173e99284f",
+   "plate": "visuals/source-plates/reference-fit-test/amba_can/contact-sheet-2__amba_can.png",
+   "plate_sha256": "782b0306569f7894e852a3029b18c1a034a979119493f9680ac504be14fa92ac",
+   "config": {
+    "mode": "can",
+    "plate_kind": "can",
+    "art": "amba_wrap",
+    "region": [
+     113,
+     99,
+     263,
+     448
+    ],
+    "shade_strength": 0.5,
+    "ink": 1.0
+   }
+  },
+  "badshah_glass": {
+   "file": "visuals/composites/_fit-tests/contact-sheet-2/badshah_glass-FIT-TEST.png",
+   "sha256": "9f502edc79a9a47b14f8fad56175ba9cd9c080b007eec46db597bb33197db99f",
+   "plate": "visuals/source-plates/reference-fit-test/badshah_glass/contact-sheet-2__badshah_glass.png",
+   "plate_sha256": "1bbf55003a4df84a06e144f113ff016da01781d63489783344206f8e9e159908",
+   "config": {
+    "mode": "print",
+    "plate_kind": "glass",
+    "items": [
+     {
+      "art": "glass-etch-crest-white.png",
+      "quad": [
+       [
+        153.4,
+        176.4
+       ],
+       [
+        220.6,
+        176.4
+       ],
+       [
+        220.6,
+        243.6
+       ],
+       [
+        153.4,
+        243.6
+       ]
+      ],
+      "blend": "screen",
+      "opacity": 0.85,
+      "luminance_follow": 0.5
+     }
+    ]
+   }
+  },
+  "amba_glass": {
+   "file": "visuals/composites/_fit-tests/contact-sheet-2/amba_glass-FIT-TEST.png",
+   "sha256": "e1baff982f05b1d98dc396c963792ded7b13582a655db85b4117757bf5a3c1e6",
+   "plate": "visuals/source-plates/reference-fit-test/amba_glass/contact-sheet-2__amba_glass.png",
+   "plate_sha256": "75f845b4a3ac9f19dd06a5de02d061fff343ade7403cd24d6af6113c97032f67",
+   "config": {
+    "mode": "print",
+    "plate_kind": "glass",
+    "items": [
+     {
+      "art": "glass-etch-crest-white.png",
+      "quad": [
+       [
+        153.3,
+        149.8
+       ],
+       [
+        219.7,
+        149.8
+       ],
+       [
+        219.7,
+        216.2
+       ],
+       [
+        153.3,
+        216.2
+       ]
+      ],
+      "blend": "screen",
+      "opacity": 0.85,
+      "luminance_follow": 0.5
+     }
+    ]
+   }
+  },
+  "brewhouse_exterior": {
+   "file": "visuals/composites/_fit-tests/contact-sheet-2/brewhouse_exterior-FIT-TEST.png",
+   "sha256": "1b594d3d0eb412d5cc047f783ad7cccbc81591aceffbf4df76ee5a356407354a",
+   "plate": "visuals/source-plates/reference-fit-test/brewhouse_exterior/contact-sheet-2__brewhouse_exterior.png",
+   "plate_sha256": "3abfe4c9daaf56a74b410dfe423f3136e8b7c514e33ae3cdb42def56f2211996",
+   "config": {
+    "mode": "print",
+    "plate_kind": "signage",
+    "items": [
+     {
+      "art": "sign-original-gold.png",
+      "quad": [
+       [
+        320,
+        112
+       ],
+       [
+        456,
+        91
+       ],
+       [
+        456,
+        134
+       ],
+       [
+        316,
+        148
+       ]
+      ],
+      "blend": "normal",
+      "opacity": 0.97,
+      "luminance_follow": 0.1,
+      "glow": 0.2
+     }
+    ]
+   }
+  },
+  "hoodie": {
+   "file": "visuals/composites/_fit-tests/contact-sheet-2/hoodie-FIT-TEST.png",
+   "sha256": "826997df2e55bc1d1dbe37f29e418b86e153dd2935bac2bc5e2079bb9e8c0462",
+   "plate": "visuals/source-plates/reference-fit-test/hoodie/contact-sheet-2__hoodie.png",
+   "plate_sha256": "1d021f81a0ee4d23580dec9e550e0042cce824ffbc549278fe09cbadbdd54334",
+   "config": {
+    "mode": "print",
+    "plate_kind": "apparel",
+    "items": [
+     {
+      "art": "hoodie-symbol-gold.png",
+      "quad": [
+       [
+        172.05,
+        173.05
+       ],
+       [
+        226.95,
+        173.05
+       ],
+       [
+        226.95,
+        227.95
+       ],
+       [
+        172.05,
+        227.95
+       ]
+      ],
+      "blend": "normal",
+      "opacity": 0.95,
+      "luminance_follow": 0.3,
+      "displace": 0.5
+     }
+    ]
+   }
+  }
+ }
+}

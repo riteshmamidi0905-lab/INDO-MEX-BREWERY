@@ -109,6 +109,22 @@ def hf_energy_ratio(img: Image.Image):
 UPSCALE_SUSPECT_BELOW = 1e-3                  # real native samples measured 0.017-0.093; 3x bicubic/lanczos upscales 0.00004-0.00022
 
 
+def border_artifact_sides(g):
+    """Sides whose outer 2 px form a uniform line that differs strongly from the image just inside it (leftover contact-sheet gutter/border)."""
+    sides = {"top": (g[:2], g[4:8]), "bottom": (g[-2:], g[-8:-4]), "left": (g[:, :2].T, g[:, 4:8].T), "right": (g[:, -2:].T, g[:, -8:-4].T)}
+    return [k for k, (edge, inner) in sides.items() if abs(edge.mean() - inner.mean()) > 45 and edge.std() < 12]
+
+
+def integrity_metrics(img: Image.Image):
+    """Visual integrity: leftover border/gutter lines, sharpness, clipping. Advisory numbers recorded for human review."""
+    a = np.asarray(img.convert("RGB")).astype(np.float32)
+    g = a.mean(axis=2)
+    h, w = g.shape
+    gy, gx = np.gradient(g)
+    return {"border_artifact_sides": border_artifact_sides(g), "sharpness_grad_var": round(float((gx ** 2 + gy ** 2).mean()), 2),
+            "clipped_fraction": round(float(((g <= 2) | (g >= 253)).mean()), 4), "aspect": round(w / h, 3)}
+
+
 def intake_checks(path, generated_size=None):
     p = Path(path)
     c = {"format_ok": p.suffix.lower() in EXTS}
@@ -120,6 +136,8 @@ def intake_checks(path, generated_size=None):
     c["text_found"] = found
     c["text_clean"] = bool(ocr_ok and not found)
     c["alpha_channel"] = img.mode in ("RGBA", "LA")
+    c["integrity"] = integrity_metrics(img)
+    c["border_clean"] = not c["integrity"]["border_artifact_sides"]
     c["hf_energy_ratio"] = round(hf_energy_ratio(img), 6)
     c["upscale_suspect"] = c["hf_energy_ratio"] < UPSCALE_SUSPECT_BELOW        # advisory
     if generated_size:
@@ -132,7 +150,7 @@ def cmd_intake(a):
     if a.plate_id not in SUBJECTS:
         sys.exit(f"unknown plate id; choose from {sorted(SUBJECTS)}")
     src = Path(a.image)
-    dst = PLATES_DIR / "incoming" / a.plate_id / src.name
+    dst = PLATES_DIR / "incoming" / a.plate_id / (f"{a.set}__{src.name}" if getattr(a, "set", None) else src.name)      # set prefix: no cross-batch overwrite
     dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src, dst)
     gs = tuple(int(v) for v in a.generated_size.lower().split("x")) if getattr(a, "generated_size", None) else None
@@ -143,8 +161,15 @@ def cmd_intake(a):
            "tool": TOOL, "prompt": prompt or "NOT RECORDED (founder to supply)", "classification": CLASSIFICATION, "caption": CAPTION,
            "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
            "checks": checks, "review": {"status": "pending", "by": None, "at": None, "note": None},
-           "auto_verdict": "pass" if (checks["format_ok"] and checks["long_side_ok"] and checks["text_clean"] and not checks["upscale_suspect"] and checks.get("matches_declared_generation_size", True)) else "needs attention",
+           "set": getattr(a, "set", None) or "default", "creative_brief": (Path(a.brief_file).read_text() if getattr(a, "brief_file", None) else None),
+           "auto_verdict": "pass" if (checks["format_ok"] and checks["long_side_ok"] and checks["text_clean"] and checks["border_clean"] and not checks["upscale_suspect"] and checks.get("matches_declared_generation_size", True)) else "needs attention",
            "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof."}
+    if getattr(a, "auto_reference_on_fail", False) and not checks["long_side_ok"]:
+        ref = PLATES_DIR / "reference-fit-test" / a.plate_id / dst.name
+        ref.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(dst), ref)
+        rec["file"] = rel(ref)
+        rec["review"] = {"status": "reference", "by": "auto: failed production intake (resolution)", "at": now(), "note": f"native long side {max(checks['size'])} px < {MIN_LONG_SIDE} px minimum; retained as reference / fit-test asset only. Not an acceptance decision."}
     reg = [r for r in reg if not (r["plate_id"] == a.plate_id and r["sha256"] == rec["sha256"])] + [rec]
     save(REGISTER, reg)
     print(json.dumps({k: rec[k] for k in ("plate_id", "file", "auto_verdict", "checks")}, indent=1))
@@ -358,7 +383,7 @@ def cmd_qa(a):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = ap.add_subparsers(dest="cmd", required=True)
-    i = sp.add_parser("intake"); i.add_argument("image"); i.add_argument("--plate-id", required=True); i.add_argument("--prompt-file"); i.add_argument("--generated-on", default="not stated"); i.add_argument("--generated-size", help="WxH the generator actually produced, if known (flags files that differ)")
+    i = sp.add_parser("intake"); i.add_argument("image"); i.add_argument("--plate-id", required=True); i.add_argument("--prompt-file"); i.add_argument("--generated-on", default="not stated"); i.add_argument("--set", help="batch label, e.g. contact-sheet-2"); i.add_argument("--brief-file", help="descriptive creative brief (NOT a verbatim prompt)"); i.add_argument("--auto-reference-on-fail", action="store_true", help="file a plate that fails the resolution minimum under reference-fit-test (retention, not acceptance)"); i.add_argument("--generated-size", help="WxH the generator actually produced, if known (flags files that differ)")
     r = sp.add_parser("review"); r.add_argument("plate_id"); r.add_argument("--decision", required=True, choices=["accepted", "rejected", "reference"]); r.add_argument("--by", required=True); r.add_argument("--note", default=""); r.add_argument("--override", action="store_true")
     o = sp.add_parser("overlay"); o.add_argument("plate_id"); o.add_argument("--any-status", action="store_true")
     c = sp.add_parser("composite"); c.add_argument("plate_id"); c.add_argument("--variant", choices=["primary", "g1"], default="primary", help="g1 = approved glass-A alternate (cans, glassware, signage only)")

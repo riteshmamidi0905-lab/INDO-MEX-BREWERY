@@ -1,0 +1,682 @@
+[
+ {
+  "plate_id": "badshah_can",
+  "set": "contact-sheet-1",
+  "native_size": [
+   320,
+   490
+  ],
+  "text_found": [],
+  "border_clean": null,
+  "upscale_suspect": null,
+  "review": "reference",
+  "proposal": {
+   "kind": "can",
+   "found": true,
+   "region": [
+    134,
+    149,
+    224,
+    430
+   ],
+   "bbox": [
+    134,
+    103,
+    224,
+    455
+   ],
+   "aspect_h_over_w": 3.91,
+   "g1_cap_px": 23.9,
+   "zone": {
+    "zone_px": [
+     90,
+     281
+    ],
+    "lum_std": 36.22,
+    "specular_fraction": 0.0019,
+    "edge_density": 0.4539
+   }
+  },
+  "blockers": [
+   "native long side 490 px < 1600 px minimum",
+   "review status = reference (human acceptance required)",
+   "G1 would be ~24 px cap height (< 32 px): original wordmark only"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-1__badshah_can.png"
+ },
+ {
+  "plate_id": "badshah_glass",
+  "set": "contact-sheet-1",
+  "native_size": [
+   373,
+   490
+  ],
+  "text_found": [],
+  "border_clean": null,
+  "upscale_suspect": null,
+  "review": "reference",
+  "proposal": {
+   "kind": "glass",
+   "found": true,
+   "bbox": [
+    111,
+    51,
+    260,
+    437
+   ],
+   "print_zone": [
+    144,
+    167,
+    227,
+    252
+   ],
+   "g1_cap_px": 16.8,
+   "zone": {
+    "zone_px": [
+     83,
+     85
+    ],
+    "lum_std": 9.82,
+    "specular_fraction": 0.0,
+    "edge_density": 0.1538
+   }
+  },
+  "blockers": [
+   "native long side 490 px < 1600 px minimum",
+   "review status = reference (human acceptance required)",
+   "G1 would be ~17 px cap height (< 32 px): original wordmark only"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-1__badshah_glass.png"
+ },
+ {
+  "plate_id": "brewhouse_exterior",
+  "set": "contact-sheet-1",
+  "native_size": [
+   812,
+   490
+  ],
+  "text_found": [],
+  "border_clean": null,
+  "upscale_suspect": null,
+  "review": "reference",
+  "proposal": {
+   "kind": "sign",
+   "found": false
+  },
+  "blockers": [
+   "native long side 812 px < 1600 px minimum",
+   "review status = reference (human acceptance required)",
+   "no rectangular dark signboard detected"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-1__brewhouse_exterior.png"
+ },
+ {
+  "plate_id": "amba_can",
+  "set": "contact-sheet-1",
+  "native_size": [
+   320,
+   519
+  ],
+  "text_found": [],
+  "border_clean": null,
+  "upscale_suspect": null,
+  "review": "reference",
+  "proposal": {
+   "kind": "can",
+   "found": true,
+   "region": [
+    96,
+    82,
+    224,
+    404
+   ],
+   "bbox": [
+    96,
+    30,
+    224,
+    432
+   ],
+   "aspect_h_over_w": 3.14,
+   "g1_cap_px": 27.4,
+   "zone": {
+    "zone_px": [
+     128,
+     322
+    ],
+    "lum_std": 50.96,
+    "specular_fraction": 0.0,
+    "edge_density": 0.3847
+   }
+  },
+  "blockers": [
+   "native long side 519 px < 1600 px minimum",
+   "review status = reference (human acceptance required)",
+   "G1 would be ~27 px cap height (< 32 px): original wordmark only"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-1__amba_can.png"
+ },
+ {
+  "plate_id": "amba_glass",
+  "set": "contact-sheet-1",
+  "native_size": [
+   319,
+   519
+  ],
+  "text_found": [],
+  "border_clean": null,
+  "upscale_suspect": null,
+  "review": "reference",
+  "proposal": {
+   "kind": "glass",
+   "found": true,
+   "bbox": [
+    95,
+    55,
+    222,
+    333
+   ],
+   "print_zone": [
+    123,
+    138,
+    194,
+    200
+   ],
+   "g1_cap_px": 14.4,
+   "zone": {
+    "zone_px": [
+     71,
+     62
+    ],
+    "lum_std": 8.83,
+    "specular_fraction": 0.0,
+    "edge_density": 0.1022
+   }
+  },
+  "blockers": [
+   "native long side 519 px < 1600 px minimum",
+   "review status = reference (human acceptance required)",
+   "G1 would be ~14 px cap height (< 32 px): original wordmark only"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-1__amba_glass.png"
+ },
+ {
+  "plate_id": "hoodie",
+  "set": "contact-sheet-1",
+  "native_size": [
+   402,
+   519
+  ],
+  "text_found": [],
+  "border_clean": null,
+  "upscale_suspect": null,
+  "review": "reference",
+  "proposal": {
+   "kind": "apparel",
+   "found": true,
+   "bbox": [
+    32,
+    50,
+    358,
+    475
+   ],
+   "chest_zone": [
+    149,
+    190,
+    241,
+    250
+   ],
+   "zone": {
+    "zone_px": [
+     92,
+     60
+    ],
+    "lum_std": 17.28,
+    "specular_fraction": 0.0,
+    "edge_density": 0.0937
+   }
+  },
+  "blockers": [
+   "native long side 519 px < 1600 px minimum",
+   "review status = reference (human acceptance required)"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-1__hoodie.png"
+ },
+ {
+  "plate_id": "gobi",
+  "set": "contact-sheet-1",
+  "native_size": [
+   451,
+   519
+  ],
+  "text_found": [],
+  "border_clean": null,
+  "upscale_suspect": null,
+  "review": "reference",
+  "proposal": {
+   "kind": "food",
+   "found": true,
+   "note": "food plate stays unbranded"
+  },
+  "blockers": [
+   "native long side 519 px < 1600 px minimum",
+   "review status = reference (human acceptance required)"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-1__gobi.png"
+ },
+ {
+  "plate_id": "badshah_can",
+  "set": "contact-sheet-2",
+  "native_size": [
+   374,
+   517
+  ],
+  "text_found": [],
+  "border_clean": true,
+  "upscale_suspect": false,
+  "review": "reference",
+  "proposal": {
+   "kind": "can",
+   "found": true,
+   "region": [
+    112,
+    92,
+    261,
+    448
+   ],
+   "bbox": [
+    112,
+    34,
+    261,
+    479
+   ],
+   "aspect_h_over_w": 2.99,
+   "g1_cap_px": 30.3,
+   "zone": {
+    "zone_px": [
+     149,
+     356
+    ],
+    "lum_std": 56.58,
+    "specular_fraction": 0.1485,
+    "edge_density": 0.4231
+   }
+  },
+  "blockers": [
+   "native long side 517 px < 1600 px minimum",
+   "review status = reference (human acceptance required)",
+   "G1 would be ~30 px cap height (< 32 px): original wordmark only"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-2__badshah_can.png"
+ },
+ {
+  "plate_id": "amba_can",
+  "set": "contact-sheet-2",
+  "native_size": [
+   377,
+   517
+  ],
+  "text_found": [],
+  "border_clean": true,
+  "upscale_suspect": false,
+  "review": "reference",
+  "proposal": {
+   "kind": "can",
+   "found": true,
+   "region": [
+    113,
+    99,
+    263,
+    448
+   ],
+   "bbox": [
+    113,
+    42,
+    263,
+    479
+   ],
+   "aspect_h_over_w": 2.91,
+   "g1_cap_px": 29.7,
+   "zone": {
+    "zone_px": [
+     150,
+     349
+    ],
+    "lum_std": 58.17,
+    "specular_fraction": 0.0267,
+    "edge_density": 0.4269
+   }
+  },
+  "blockers": [
+   "native long side 517 px < 1600 px minimum",
+   "review status = reference (human acceptance required)",
+   "G1 would be ~30 px cap height (< 32 px): original wordmark only"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-2__amba_can.png"
+ },
+ {
+  "plate_id": "badshah_glass",
+  "set": "contact-sheet-2",
+  "native_size": [
+   376,
+   517
+  ],
+  "text_found": [],
+  "border_clean": true,
+  "upscale_suspect": false,
+  "review": "reference",
+  "proposal": {
+   "kind": "glass",
+   "found": true,
+   "bbox": [
+    112,
+    25,
+    262,
+    475
+   ],
+   "print_zone": [
+    145,
+    160,
+    229,
+    259
+   ],
+   "g1_cap_px": 17.0,
+   "zone": {
+    "zone_px": [
+     84,
+     99
+    ],
+    "lum_std": 8.84,
+    "specular_fraction": 0.0,
+    "edge_density": 0.1239
+   }
+  },
+  "blockers": [
+   "native long side 517 px < 1600 px minimum",
+   "review status = reference (human acceptance required)",
+   "G1 would be ~17 px cap height (< 32 px): original wordmark only"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-2__badshah_glass.png"
+ },
+ {
+  "plate_id": "amba_glass",
+  "set": "contact-sheet-2",
+  "native_size": [
+   374,
+   517
+  ],
+  "text_found": [],
+  "border_clean": true,
+  "upscale_suspect": false,
+  "review": "reference",
+  "proposal": {
+   "kind": "glass",
+   "found": true,
+   "bbox": [
+    112,
+    45,
+    261,
+    381
+   ],
+   "print_zone": [
+    145,
+    146,
+    228,
+    220
+   ],
+   "g1_cap_px": 16.8,
+   "zone": {
+    "zone_px": [
+     83,
+     74
+    ],
+    "lum_std": 7.39,
+    "specular_fraction": 0.0,
+    "edge_density": 0.0718
+   }
+  },
+  "blockers": [
+   "native long side 517 px < 1600 px minimum",
+   "review status = reference (human acceptance required)",
+   "G1 would be ~17 px cap height (< 32 px): original wordmark only"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-2__amba_glass.png"
+ },
+ {
+  "plate_id": "brewhouse_exterior",
+  "set": "contact-sheet-2",
+  "native_size": [
+   656,
+   492
+  ],
+  "text_found": [],
+  "border_clean": true,
+  "upscale_suspect": false,
+  "review": "reference",
+  "proposal": {
+   "kind": "sign",
+   "found": true,
+   "board_quad": [
+    [
+     278,
+     99
+    ],
+    [
+     500,
+     59
+    ],
+    [
+     503,
+     154
+    ],
+    [
+     267,
+     172
+    ]
+   ],
+   "board_area_frac": 0.0628,
+   "rectangularity": 0.866,
+   "art_quad": [
+    [
+     320,
+     112
+    ],
+    [
+     456,
+     91
+    ],
+    [
+     456,
+     134
+    ],
+    [
+     316,
+     148
+    ]
+   ],
+   "g1_cap_px": 31.3,
+   "zone": {
+    "zone_px": [
+     236,
+     113
+    ],
+    "lum_std": 28.41,
+    "specular_fraction": 0.0,
+    "edge_density": 0.0894
+   }
+  },
+  "blockers": [
+   "native long side 656 px < 1600 px minimum",
+   "review status = reference (human acceptance required)",
+   "G1 would be ~31 px cap height (< 32 px): original wordmark only"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-2__brewhouse_exterior.png"
+ },
+ {
+  "plate_id": "hoodie",
+  "set": "contact-sheet-2",
+  "native_size": [
+   401,
+   492
+  ],
+  "text_found": [],
+  "border_clean": true,
+  "upscale_suspect": false,
+  "review": "reference",
+  "proposal": {
+   "kind": "apparel",
+   "found": true,
+   "bbox": [
+    32,
+    27,
+    367,
+    461
+   ],
+   "chest_zone": [
+    153,
+    170,
+    246,
+    231
+   ],
+   "zone": {
+    "zone_px": [
+     93,
+     61
+    ],
+    "lum_std": 27.52,
+    "specular_fraction": 0.0,
+    "edge_density": 0.1555
+   }
+  },
+  "blockers": [
+   "native long side 492 px < 1600 px minimum",
+   "review status = reference (human acceptance required)"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-2__hoodie.png"
+ },
+ {
+  "plate_id": "gobi",
+  "set": "contact-sheet-2",
+  "native_size": [
+   451,
+   492
+  ],
+  "text_found": [],
+  "border_clean": true,
+  "upscale_suspect": false,
+  "review": "reference",
+  "proposal": {
+   "kind": "food",
+   "found": true,
+   "note": "food plate stays unbranded"
+  },
+  "blockers": [
+   "native long side 492 px < 1600 px minimum",
+   "review status = reference (human acceptance required)"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/contact-sheet-2__gobi.png"
+ },
+ {
+  "plate_id": "badshah_can",
+  "set": "single-image-2",
+  "native_size": [
+   1374,
+   1145
+  ],
+  "text_found": [],
+  "border_clean": true,
+  "upscale_suspect": false,
+  "review": "reference",
+  "proposal": {
+   "kind": "can",
+   "found": true,
+   "region": [
+    479,
+    192,
+    889,
+    993
+   ],
+   "bbox": [
+    479,
+    62,
+    889,
+    1063
+   ],
+   "aspect_h_over_w": 2.44,
+   "g1_cap_px": 68.1,
+   "zone": {
+    "zone_px": [
+     410,
+     801
+    ],
+    "lum_std": 54.53,
+    "specular_fraction": 0.1851,
+    "edge_density": 0.4144
+   }
+  },
+  "blockers": [
+   "native long side 1374 px < 1600 px minimum",
+   "review status = reference (human acceptance required)"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/single-image-2__badshah_can.png"
+ },
+ {
+  "plate_id": "amba_can",
+  "set": "single-image-2",
+  "native_size": [
+   1536,
+   1024
+  ],
+  "text_found": [],
+  "border_clean": true,
+  "upscale_suspect": false,
+  "review": "reference",
+  "proposal": {
+   "kind": "can",
+   "found": true,
+   "region": [
+    583,
+    182,
+    946,
+    889
+   ],
+   "bbox": [
+    583,
+    67,
+    946,
+    950
+   ],
+   "aspect_h_over_w": 2.44,
+   "g1_cap_px": 60.1,
+   "zone": {
+    "zone_px": [
+     363,
+     707
+    ],
+    "lum_std": 57.16,
+    "specular_fraction": 0.1398,
+    "edge_density": 0.4162
+   }
+  },
+  "blockers": [
+   "native long side 1536 px < 1600 px minimum",
+   "review status = reference (human acceptance required)"
+  ],
+  "production_ready": false,
+  "overlay": "visuals/composites/_readiness/single-image-2__amba_can.png"
+ }
+]

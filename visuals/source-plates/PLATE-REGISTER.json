@@ -2,7 +2,7 @@
  {
   "plate_id": "badshah_can",
   "subject": "BADSHAH beer can (blank)",
-  "file": "visuals/source-plates/reference-fit-test/badshah_can/badshah_can.png",
+  "file": "visuals/source-plates/reference-fit-test/badshah_can/contact-sheet-1__badshah_can.png",
   "sha256": "288025b812f702b73ba36a3e0a69a5c303db8368b533a2d20f2201835db273ec",
   "received_at": "2026-10-22T20:54:19Z",
   "generated_on": "2026-10-22",
@@ -32,12 +32,13 @@
   "auto_verdict": "needs attention",
   "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
   "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
-  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation.",
+  "set": "contact-sheet-1"
  },
  {
   "plate_id": "badshah_glass",
   "subject": "Wheat beer glass for BADSHAH (blank)",
-  "file": "visuals/source-plates/reference-fit-test/badshah_glass/badshah_glass.png",
+  "file": "visuals/source-plates/reference-fit-test/badshah_glass/contact-sheet-1__badshah_glass.png",
   "sha256": "d7e309934aad5f641510c479db8275e4c0398fff31042b34d3d25273dabeb762",
   "received_at": "2026-10-22T20:54:20Z",
   "generated_on": "2026-10-22",
@@ -67,12 +68,13 @@
   "auto_verdict": "needs attention",
   "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
   "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
-  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation.",
+  "set": "contact-sheet-1"
  },
  {
   "plate_id": "brewhouse_exterior",
   "subject": "Court Brewhouse exterior / courtyard (blank sign board)",
-  "file": "visuals/source-plates/reference-fit-test/brewhouse_exterior/brewhouse_exterior.png",
+  "file": "visuals/source-plates/reference-fit-test/brewhouse_exterior/contact-sheet-1__brewhouse_exterior.png",
   "sha256": "bd261d74988547bcedb9abfe2a1fc643674e0003e676fd5db9f609ffb0d713a6",
   "received_at": "2026-10-22T20:54:21Z",
   "generated_on": "2026-10-22",
@@ -102,12 +104,13 @@
   "auto_verdict": "needs attention",
   "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
   "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
-  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation.",
+  "set": "contact-sheet-1"
  },
  {
   "plate_id": "amba_can",
   "subject": "AMBA HAZE beer can (blank)",
-  "file": "visuals/source-plates/reference-fit-test/amba_can/amba_can.png",
+  "file": "visuals/source-plates/reference-fit-test/amba_can/contact-sheet-1__amba_can.png",
   "sha256": "6a2af2ac5452006c618cc92980c349df60ceb3e8e75669e14ccdd302fa8fd234",
   "received_at": "2026-10-22T20:54:22Z",
   "generated_on": "2026-10-22",
@@ -137,12 +140,13 @@
   "auto_verdict": "needs attention",
   "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
   "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
-  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation.",
+  "set": "contact-sheet-1"
  },
  {
   "plate_id": "amba_glass",
   "subject": "IPA glass for AMBA HAZE (blank)",
-  "file": "visuals/source-plates/reference-fit-test/amba_glass/amba_glass.png",
+  "file": "visuals/source-plates/reference-fit-test/amba_glass/contact-sheet-1__amba_glass.png",
   "sha256": "420dabcb2d410f8411927bba897e454e2c2e27f7d371ff2cd76168d6987fd741",
   "received_at": "2026-10-22T20:54:23Z",
   "generated_on": "2026-10-22",
@@ -172,12 +176,13 @@
   "auto_verdict": "needs attention",
   "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
   "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
-  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation.",
+  "set": "contact-sheet-1"
  },
  {
   "plate_id": "hoodie",
   "subject": "THE COURTYARD hoodie (blank)",
-  "file": "visuals/source-plates/reference-fit-test/hoodie/hoodie.png",
+  "file": "visuals/source-plates/reference-fit-test/hoodie/contact-sheet-1__hoodie.png",
   "sha256": "72b0a4c455cdc773757c6ece926a5cafe8c9e796e4e31661a171a2f3b9271184",
   "received_at": "2026-10-22T20:54:24Z",
   "generated_on": "2026-10-22",
@@ -207,12 +212,13 @@
   "auto_verdict": "needs attention",
   "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
   "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
-  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation.",
+  "set": "contact-sheet-1"
  },
  {
   "plate_id": "gobi",
   "subject": "Mango Habanero Gobi (concept dish)",
-  "file": "visuals/source-plates/reference-fit-test/gobi/gobi.png",
+  "file": "visuals/source-plates/reference-fit-test/gobi/contact-sheet-1__gobi.png",
   "sha256": "b05d745c7e8d6e040a8e2567f4163629565f50a6a6fc2b953076cf0cca6f84d8",
   "received_at": "2026-10-22T20:54:25Z",
   "generated_on": "2026-10-22",
@@ -242,7 +248,8 @@
   "auto_verdict": "needs attention",
   "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
   "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
-  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation.",
+  "set": "contact-sheet-1"
  },
  {
   "plate_id": "_contact_sheet",
@@ -267,6 +274,565 @@
    "by": "Ritesh (founder decision)",
    "at": "2026-10-22T21:04:45Z",
    "note": "Creative-direction reference and fit-test source only; not a production asset."
+  },
+  "auto_verdict": "n/a (reference)"
+ },
+ {
+  "plate_id": "badshah_can",
+  "subject": "BADSHAH beer can (blank)",
+  "file": "visuals/source-plates/reference-fit-test/badshah_can/contact-sheet-2__badshah_can.png",
+  "sha256": "003086ffb350d4e3276c986e7c9b5f6d183a6ae9e168cf3923d1e97f764418fd",
+  "received_at": "2026-10-22T21:25:34Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED (the descriptive creative brief is not a verbatim prompt)",
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
+  "checks": {
+   "format_ok": true,
+   "size": [
+    374,
+    517
+   ],
+   "long_side_ok": false,
+   "text_scan_available": true,
+   "text_found": [],
+   "text_clean": true,
+   "alpha_channel": false,
+   "integrity": {
+    "border_artifact_sides": [],
+    "sharpness_grad_var": 286.22,
+    "clipped_fraction": 0.0142,
+    "aspect": 0.723
+   },
+   "border_clean": true,
+   "hf_energy_ratio": 0.041564,
+   "upscale_suspect": false
+  },
+  "review": {
+   "status": "reference",
+   "by": "auto: failed production intake (resolution)",
+   "at": "2026-10-22T21:25:34Z",
+   "note": "native long side 517 px < 1600 px minimum; retained as reference / fit-test asset only. Not an acceptance decision."
+  },
+  "set": "contact-sheet-2",
+  "creative_brief": "DESCRIPTIVE BRIEF (supplied by the founder; NOT a verified verbatim prompt):\n\"Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.\"\nExact generation prompt: not supplied. ChatGPT account plan: not independently verified.\n",
+  "auto_verdict": "needs attention",
+  "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof.",
+  "provenance": {
+   "generator": "ChatGPT image generation",
+   "generation_date": "2026-10-22",
+   "purpose": "NASHA conceptual brand visualization",
+   "source": "User-provided generated image",
+   "account_plan": "Not independently verified",
+   "status": "Conceptual AI-generated imagery",
+   "commercial_rights": "Not independently reviewed",
+   "photography_status": "Not photographs of existing products, buildings or food",
+   "creative_brief": "Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.",
+   "creative_brief_type": "Descriptive brief supplied by the founder; NOT a verified verbatim prompt. Exact prompt not supplied."
+  },
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; NOT upscaled",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet-2/plate-contact-sheet-2-1536x1024.webp"
+ },
+ {
+  "plate_id": "amba_can",
+  "subject": "AMBA HAZE beer can (blank)",
+  "file": "visuals/source-plates/reference-fit-test/amba_can/contact-sheet-2__amba_can.png",
+  "sha256": "782b0306569f7894e852a3029b18c1a034a979119493f9680ac504be14fa92ac",
+  "received_at": "2026-10-22T21:25:35Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED (the descriptive creative brief is not a verbatim prompt)",
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
+  "checks": {
+   "format_ok": true,
+   "size": [
+    377,
+    517
+   ],
+   "long_side_ok": false,
+   "text_scan_available": true,
+   "text_found": [],
+   "text_clean": true,
+   "alpha_channel": false,
+   "integrity": {
+    "border_artifact_sides": [],
+    "sharpness_grad_var": 299.58,
+    "clipped_fraction": 0.0011,
+    "aspect": 0.729
+   },
+   "border_clean": true,
+   "hf_energy_ratio": 0.03932,
+   "upscale_suspect": false
+  },
+  "review": {
+   "status": "reference",
+   "by": "auto: failed production intake (resolution)",
+   "at": "2026-10-22T21:25:35Z",
+   "note": "native long side 517 px < 1600 px minimum; retained as reference / fit-test asset only. Not an acceptance decision."
+  },
+  "set": "contact-sheet-2",
+  "creative_brief": "DESCRIPTIVE BRIEF (supplied by the founder; NOT a verified verbatim prompt):\n\"Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.\"\nExact generation prompt: not supplied. ChatGPT account plan: not independently verified.\n",
+  "auto_verdict": "needs attention",
+  "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof.",
+  "provenance": {
+   "generator": "ChatGPT image generation",
+   "generation_date": "2026-10-22",
+   "purpose": "NASHA conceptual brand visualization",
+   "source": "User-provided generated image",
+   "account_plan": "Not independently verified",
+   "status": "Conceptual AI-generated imagery",
+   "commercial_rights": "Not independently reviewed",
+   "photography_status": "Not photographs of existing products, buildings or food",
+   "creative_brief": "Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.",
+   "creative_brief_type": "Descriptive brief supplied by the founder; NOT a verified verbatim prompt. Exact prompt not supplied."
+  },
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; NOT upscaled",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet-2/plate-contact-sheet-2-1536x1024.webp"
+ },
+ {
+  "plate_id": "badshah_glass",
+  "subject": "Wheat beer glass for BADSHAH (blank)",
+  "file": "visuals/source-plates/reference-fit-test/badshah_glass/contact-sheet-2__badshah_glass.png",
+  "sha256": "1bbf55003a4df84a06e144f113ff016da01781d63489783344206f8e9e159908",
+  "received_at": "2026-10-22T21:25:37Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED (the descriptive creative brief is not a verbatim prompt)",
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
+  "checks": {
+   "format_ok": true,
+   "size": [
+    376,
+    517
+   ],
+   "long_side_ok": false,
+   "text_scan_available": true,
+   "text_found": [],
+   "text_clean": true,
+   "alpha_channel": false,
+   "integrity": {
+    "border_artifact_sides": [],
+    "sharpness_grad_var": 192.07,
+    "clipped_fraction": 0.001,
+    "aspect": 0.727
+   },
+   "border_clean": true,
+   "hf_energy_ratio": 0.010808,
+   "upscale_suspect": false
+  },
+  "review": {
+   "status": "reference",
+   "by": "auto: failed production intake (resolution)",
+   "at": "2026-10-22T21:25:37Z",
+   "note": "native long side 517 px < 1600 px minimum; retained as reference / fit-test asset only. Not an acceptance decision."
+  },
+  "set": "contact-sheet-2",
+  "creative_brief": "DESCRIPTIVE BRIEF (supplied by the founder; NOT a verified verbatim prompt):\n\"Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.\"\nExact generation prompt: not supplied. ChatGPT account plan: not independently verified.\n",
+  "auto_verdict": "needs attention",
+  "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof.",
+  "provenance": {
+   "generator": "ChatGPT image generation",
+   "generation_date": "2026-10-22",
+   "purpose": "NASHA conceptual brand visualization",
+   "source": "User-provided generated image",
+   "account_plan": "Not independently verified",
+   "status": "Conceptual AI-generated imagery",
+   "commercial_rights": "Not independently reviewed",
+   "photography_status": "Not photographs of existing products, buildings or food",
+   "creative_brief": "Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.",
+   "creative_brief_type": "Descriptive brief supplied by the founder; NOT a verified verbatim prompt. Exact prompt not supplied."
+  },
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; NOT upscaled",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet-2/plate-contact-sheet-2-1536x1024.webp"
+ },
+ {
+  "plate_id": "amba_glass",
+  "subject": "IPA glass for AMBA HAZE (blank)",
+  "file": "visuals/source-plates/reference-fit-test/amba_glass/contact-sheet-2__amba_glass.png",
+  "sha256": "75f845b4a3ac9f19dd06a5de02d061fff343ade7403cd24d6af6113c97032f67",
+  "received_at": "2026-10-22T21:25:38Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED (the descriptive creative brief is not a verbatim prompt)",
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
+  "checks": {
+   "format_ok": true,
+   "size": [
+    374,
+    517
+   ],
+   "long_side_ok": false,
+   "text_scan_available": true,
+   "text_found": [],
+   "text_clean": true,
+   "alpha_channel": false,
+   "integrity": {
+    "border_artifact_sides": [],
+    "sharpness_grad_var": 182.39,
+    "clipped_fraction": 0.0019,
+    "aspect": 0.723
+   },
+   "border_clean": true,
+   "hf_energy_ratio": 0.027141,
+   "upscale_suspect": false
+  },
+  "review": {
+   "status": "reference",
+   "by": "auto: failed production intake (resolution)",
+   "at": "2026-10-22T21:25:38Z",
+   "note": "native long side 517 px < 1600 px minimum; retained as reference / fit-test asset only. Not an acceptance decision."
+  },
+  "set": "contact-sheet-2",
+  "creative_brief": "DESCRIPTIVE BRIEF (supplied by the founder; NOT a verified verbatim prompt):\n\"Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.\"\nExact generation prompt: not supplied. ChatGPT account plan: not independently verified.\n",
+  "auto_verdict": "needs attention",
+  "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof.",
+  "provenance": {
+   "generator": "ChatGPT image generation",
+   "generation_date": "2026-10-22",
+   "purpose": "NASHA conceptual brand visualization",
+   "source": "User-provided generated image",
+   "account_plan": "Not independently verified",
+   "status": "Conceptual AI-generated imagery",
+   "commercial_rights": "Not independently reviewed",
+   "photography_status": "Not photographs of existing products, buildings or food",
+   "creative_brief": "Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.",
+   "creative_brief_type": "Descriptive brief supplied by the founder; NOT a verified verbatim prompt. Exact prompt not supplied."
+  },
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; NOT upscaled",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet-2/plate-contact-sheet-2-1536x1024.webp"
+ },
+ {
+  "plate_id": "brewhouse_exterior",
+  "subject": "Court Brewhouse exterior / courtyard (blank sign board)",
+  "file": "visuals/source-plates/reference-fit-test/brewhouse_exterior/contact-sheet-2__brewhouse_exterior.png",
+  "sha256": "3abfe4c9daaf56a74b410dfe423f3136e8b7c514e33ae3cdb42def56f2211996",
+  "received_at": "2026-10-22T21:25:39Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED (the descriptive creative brief is not a verbatim prompt)",
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
+  "checks": {
+   "format_ok": true,
+   "size": [
+    656,
+    492
+   ],
+   "long_side_ok": false,
+   "text_scan_available": true,
+   "text_found": [],
+   "text_clean": true,
+   "alpha_channel": false,
+   "integrity": {
+    "border_artifact_sides": [],
+    "sharpness_grad_var": 686.08,
+    "clipped_fraction": 0.0079,
+    "aspect": 1.333
+   },
+   "border_clean": true,
+   "hf_energy_ratio": 0.075251,
+   "upscale_suspect": false
+  },
+  "review": {
+   "status": "reference",
+   "by": "auto: failed production intake (resolution)",
+   "at": "2026-10-22T21:25:39Z",
+   "note": "native long side 656 px < 1600 px minimum; retained as reference / fit-test asset only. Not an acceptance decision."
+  },
+  "set": "contact-sheet-2",
+  "creative_brief": "DESCRIPTIVE BRIEF (supplied by the founder; NOT a verified verbatim prompt):\n\"Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.\"\nExact generation prompt: not supplied. ChatGPT account plan: not independently verified.\n",
+  "auto_verdict": "needs attention",
+  "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof.",
+  "provenance": {
+   "generator": "ChatGPT image generation",
+   "generation_date": "2026-10-22",
+   "purpose": "NASHA conceptual brand visualization",
+   "source": "User-provided generated image",
+   "account_plan": "Not independently verified",
+   "status": "Conceptual AI-generated imagery",
+   "commercial_rights": "Not independently reviewed",
+   "photography_status": "Not photographs of existing products, buildings or food",
+   "creative_brief": "Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.",
+   "creative_brief_type": "Descriptive brief supplied by the founder; NOT a verified verbatim prompt. Exact prompt not supplied."
+  },
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; NOT upscaled",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet-2/plate-contact-sheet-2-1536x1024.webp"
+ },
+ {
+  "plate_id": "hoodie",
+  "subject": "THE COURTYARD hoodie (blank)",
+  "file": "visuals/source-plates/reference-fit-test/hoodie/contact-sheet-2__hoodie.png",
+  "sha256": "1d021f81a0ee4d23580dec9e550e0042cce824ffbc549278fe09cbadbdd54334",
+  "received_at": "2026-10-22T21:25:40Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED (the descriptive creative brief is not a verbatim prompt)",
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
+  "checks": {
+   "format_ok": true,
+   "size": [
+    401,
+    492
+   ],
+   "long_side_ok": false,
+   "text_scan_available": true,
+   "text_found": [],
+   "text_clean": true,
+   "alpha_channel": false,
+   "integrity": {
+    "border_artifact_sides": [],
+    "sharpness_grad_var": 348.3,
+    "clipped_fraction": 0.0243,
+    "aspect": 0.815
+   },
+   "border_clean": true,
+   "hf_energy_ratio": 0.045114,
+   "upscale_suspect": false
+  },
+  "review": {
+   "status": "reference",
+   "by": "auto: failed production intake (resolution)",
+   "at": "2026-10-22T21:25:40Z",
+   "note": "native long side 492 px < 1600 px minimum; retained as reference / fit-test asset only. Not an acceptance decision."
+  },
+  "set": "contact-sheet-2",
+  "creative_brief": "DESCRIPTIVE BRIEF (supplied by the founder; NOT a verified verbatim prompt):\n\"Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.\"\nExact generation prompt: not supplied. ChatGPT account plan: not independently verified.\n",
+  "auto_verdict": "needs attention",
+  "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof.",
+  "provenance": {
+   "generator": "ChatGPT image generation",
+   "generation_date": "2026-10-22",
+   "purpose": "NASHA conceptual brand visualization",
+   "source": "User-provided generated image",
+   "account_plan": "Not independently verified",
+   "status": "Conceptual AI-generated imagery",
+   "commercial_rights": "Not independently reviewed",
+   "photography_status": "Not photographs of existing products, buildings or food",
+   "creative_brief": "Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.",
+   "creative_brief_type": "Descriptive brief supplied by the founder; NOT a verified verbatim prompt. Exact prompt not supplied."
+  },
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; NOT upscaled",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet-2/plate-contact-sheet-2-1536x1024.webp"
+ },
+ {
+  "plate_id": "gobi",
+  "subject": "Mango Habanero Gobi (concept dish)",
+  "file": "visuals/source-plates/reference-fit-test/gobi/contact-sheet-2__gobi.png",
+  "sha256": "8d8c457e72f61b6a8baa5c4494b9a5e70f73a14d14bcda1eb467285dfef98cb8",
+  "received_at": "2026-10-22T21:25:41Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED (the descriptive creative brief is not a verbatim prompt)",
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
+  "checks": {
+   "format_ok": true,
+   "size": [
+    451,
+    492
+   ],
+   "long_side_ok": false,
+   "text_scan_available": true,
+   "text_found": [],
+   "text_clean": true,
+   "alpha_channel": false,
+   "integrity": {
+    "border_artifact_sides": [],
+    "sharpness_grad_var": 434.47,
+    "clipped_fraction": 0.0118,
+    "aspect": 0.917
+   },
+   "border_clean": true,
+   "hf_energy_ratio": 0.066358,
+   "upscale_suspect": false
+  },
+  "review": {
+   "status": "reference",
+   "by": "auto: failed production intake (resolution)",
+   "at": "2026-10-22T21:25:41Z",
+   "note": "native long side 492 px < 1600 px minimum; retained as reference / fit-test asset only. Not an acceptance decision."
+  },
+  "set": "contact-sheet-2",
+  "creative_brief": "DESCRIPTIVE BRIEF (supplied by the founder; NOT a verified verbatim prompt):\n\"Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.\"\nExact generation prompt: not supplied. ChatGPT account plan: not independently verified.\n",
+  "auto_verdict": "needs attention",
+  "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof.",
+  "provenance": {
+   "generator": "ChatGPT image generation",
+   "generation_date": "2026-10-22",
+   "purpose": "NASHA conceptual brand visualization",
+   "source": "User-provided generated image",
+   "account_plan": "Not independently verified",
+   "status": "Conceptual AI-generated imagery",
+   "commercial_rights": "Not independently reviewed",
+   "photography_status": "Not photographs of existing products, buildings or food",
+   "creative_brief": "Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.",
+   "creative_brief_type": "Descriptive brief supplied by the founder; NOT a verified verbatim prompt. Exact prompt not supplied."
+  },
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; NOT upscaled",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet-2/plate-contact-sheet-2-1536x1024.webp"
+ },
+ {
+  "plate_id": "badshah_can",
+  "subject": "BADSHAH beer can (blank)",
+  "file": "visuals/source-plates/reference-fit-test/badshah_can/single-image-2__single_badshah_can.webp",
+  "sha256": "1c6ae5017807c206f7e9b6099b3784e130e1806257d177912def6d8092816ccb",
+  "received_at": "2026-10-22T21:25:43Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED (the descriptive creative brief is not a verbatim prompt)",
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
+  "checks": {
+   "format_ok": true,
+   "size": [
+    1374,
+    1145
+   ],
+   "long_side_ok": false,
+   "text_scan_available": true,
+   "text_found": [],
+   "text_clean": true,
+   "alpha_channel": false,
+   "integrity": {
+    "border_artifact_sides": [],
+    "sharpness_grad_var": 200.97,
+    "clipped_fraction": 0.0116,
+    "aspect": 1.2
+   },
+   "border_clean": true,
+   "hf_energy_ratio": 0.027932,
+   "upscale_suspect": false
+  },
+  "review": {
+   "status": "reference",
+   "by": "auto: failed production intake (resolution)",
+   "at": "2026-10-22T21:25:43Z",
+   "note": "native long side 1374 px < 1600 px minimum; retained as reference / fit-test asset only. Not an acceptance decision."
+  },
+  "set": "single-image-2",
+  "creative_brief": "DESCRIPTIVE BRIEF (supplied by the founder; NOT a verified verbatim prompt):\n\"Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.\"\nExact generation prompt: not supplied. ChatGPT account plan: not independently verified.\n",
+  "auto_verdict": "needs attention",
+  "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof.",
+  "provenance": {
+   "generator": "ChatGPT image generation",
+   "generation_date": "2026-10-22",
+   "purpose": "NASHA conceptual brand visualization",
+   "source": "User-provided generated image",
+   "account_plan": "Not independently verified",
+   "status": "Conceptual AI-generated imagery",
+   "commercial_rights": "Not independently reviewed",
+   "photography_status": "Not photographs of existing products, buildings or food",
+   "creative_brief": "Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.",
+   "creative_brief_type": "Descriptive brief supplied by the founder; NOT a verified verbatim prompt. Exact prompt not supplied."
+  },
+  "crop_note": "individually supplied image (not a crop), native size as received; below the 1600 px minimum; NOT upscaled"
+ },
+ {
+  "plate_id": "amba_can",
+  "subject": "AMBA HAZE beer can (blank)",
+  "file": "visuals/source-plates/reference-fit-test/amba_can/single-image-2__single_amba_can.webp",
+  "sha256": "b2332e632700988ed9e0c1a833a9962259171cf7908cf65bbcdff6e8cad09d5b",
+  "received_at": "2026-10-22T21:25:44Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED (the descriptive creative brief is not a verbatim prompt)",
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
+  "checks": {
+   "format_ok": true,
+   "size": [
+    1536,
+    1024
+   ],
+   "long_side_ok": false,
+   "text_scan_available": true,
+   "text_found": [],
+   "text_clean": true,
+   "alpha_channel": false,
+   "integrity": {
+    "border_artifact_sides": [],
+    "sharpness_grad_var": 178.55,
+    "clipped_fraction": 0.0073,
+    "aspect": 1.5
+   },
+   "border_clean": true,
+   "hf_energy_ratio": 0.027878,
+   "upscale_suspect": false
+  },
+  "review": {
+   "status": "reference",
+   "by": "auto: failed production intake (resolution)",
+   "at": "2026-10-22T21:25:44Z",
+   "note": "native long side 1536 px < 1600 px minimum; retained as reference / fit-test asset only. Not an acceptance decision."
+  },
+  "set": "single-image-2",
+  "creative_brief": "DESCRIPTIVE BRIEF (supplied by the founder; NOT a verified verbatim prompt):\n\"Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.\"\nExact generation prompt: not supplied. ChatGPT account plan: not independently verified.\n",
+  "auto_verdict": "needs attention",
+  "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof.",
+  "provenance": {
+   "generator": "ChatGPT image generation",
+   "generation_date": "2026-10-22",
+   "purpose": "NASHA conceptual brand visualization",
+   "source": "User-provided generated image",
+   "account_plan": "Not independently verified",
+   "status": "Conceptual AI-generated imagery",
+   "commercial_rights": "Not independently reviewed",
+   "photography_status": "Not photographs of existing products, buildings or food",
+   "creative_brief": "Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.",
+   "creative_brief_type": "Descriptive brief supplied by the founder; NOT a verified verbatim prompt. Exact prompt not supplied."
+  },
+  "crop_note": "individually supplied image (not a crop), native size as received; below the 1600 px minimum; NOT upscaled"
+ },
+ {
+  "plate_id": "_contact_sheet_2",
+  "set": "contact-sheet-2",
+  "subject": "Second 7-panel contact sheet (BADSHAH can, AMBA HAZE can, weizen glass, IPA glass, Court Brewhouse with blank signboard, forest-green hoodie, Mango Habanero Gobi)",
+  "file": "visuals/source-plates/reference-fit-test/_contact-sheet-2/plate-contact-sheet-2-1536x1024.webp",
+  "sha256": "7794d3b07539a049e481250a37c825b91a3f904b34b2adde271c2db6a213e673",
+  "received_at": "2026-10-22T21:25:57Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED (the descriptive creative brief is not a verbatim prompt)",
+  "provenance": {
+   "generator": "ChatGPT image generation",
+   "generation_date": "2026-10-22",
+   "purpose": "NASHA conceptual brand visualization",
+   "source": "User-provided generated image",
+   "account_plan": "Not independently verified",
+   "status": "Conceptual AI-generated imagery",
+   "commercial_rights": "Not independently reviewed",
+   "photography_status": "Not photographs of existing products, buildings or food",
+   "creative_brief": "Photorealistic commercial imagery of seven unbranded NASHA concept subjects, including beer cans, beer glasses, a courtyard brewhouse, a forest-green hoodie and a cauliflower dish, with natural materials, warm lighting, no logos and no text.",
+   "creative_brief_type": "Descriptive brief supplied by the founder; NOT a verified verbatim prompt. Exact prompt not supplied."
+  },
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "Commercial rights not independently reviewed; account plan not independently verified; not approved for publication",
+  "checks": {
+   "size": [
+    1536,
+    1024
+   ]
+  },
+  "review": {
+   "status": "reference",
+   "by": "founder instruction: retain as reference/fit-test if crops fail intake",
+   "at": "2026-10-22T21:25:57Z",
+   "note": "Not a production asset."
   },
   "auto_verdict": "n/a (reference)"
  }
