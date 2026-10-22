@@ -1,0 +1,33 @@
+{
+ "status": "TEMPLATE \u2014 region/quad coordinates are placeholders; set them (pixels of the ACCEPTED plate) and check with `overlay` before compositing",
+ "mode": "print",
+ "plate_kind": "glass",
+ "items": [
+  {
+   "art": "glass-etch-crest-white.png",
+   "art_g1": "glass-etch-g1-white.png",
+   "quad": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "blend": "screen",
+   "opacity": 0.85,
+   "luminance_follow": 0.5
+  }
+ ],
+ "notes": "Same as badshah_glass; opaque orange-gold beer means use higher opacity or multiply with a light ink."
+}

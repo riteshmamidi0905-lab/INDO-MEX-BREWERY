@@ -36,14 +36,14 @@ def css_fonts():
             f'@font-face{{font-family:Inter;font-weight:100 900;src:url("file://{f}/inter-latin-wght-normal.woff2")}}')
 
 
-def render(svg, png, w, h, scale=1):
+def render(svg, png, w, h, scale=1, transparent=False):
     """SVG string -> PNG via headless Chromium (window oversized then cropped, as elsewhere in this repo)."""
     html = Path(str(png) + ".html")
     html.write_text(f'<!doctype html><meta charset=utf-8><style>{css_fonts()}html,body{{margin:0;background:transparent}}svg{{display:block}}</style>{svg}')
-    subprocess.run([EXE, "--headless", "--no-sandbox", "--disable-gpu", f"--force-device-scale-factor={scale}", f"--screenshot={png}", f"--window-size={w + 20},{h + 240}", "--hide-scrollbars", f"file://{html}"], capture_output=True, timeout=180)
+    subprocess.run([EXE, "--headless", "--no-sandbox", "--disable-gpu", *(["--default-background-color=00000000"] if transparent else []), f"--force-device-scale-factor={scale}", f"--screenshot={png}", f"--window-size={w + 20},{h + 240}", "--hide-scrollbars", f"file://{html}"], capture_output=True, timeout=180)
     html.unlink()
     from PIL import Image
-    Image.open(png).crop((0, 0, w * scale, h * scale)).save(png)
+    Image.open(png).convert('RGBA' if transparent else 'RGB').crop((0, 0, w * scale, h * scale)).save(png)
 
 
 # ------------------------------------------------------------------ motifs
@@ -101,8 +101,14 @@ def placeholder(x, y, w, h, text, col, op=.7, size=22):
     return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="none" stroke="{col}" stroke-width="2" stroke-dasharray="10 7" opacity="{op}"/><text text-anchor="middle" font-family="Inter" font-size="{size}" fill="{col}" opacity="{op}">{tx}</text>'
 
 
-def nasha_header(cx, y, w, col, acc):
-    inner, ww, hh = L.wordmark(L.SMALL)
+def nasha_header(cx, y, w, col, acc, g1=False):
+    """g1=True uses the approved glass-A G1 alternate; its cap height must stay >= 32 px (~8.5 mm at 10 px/mm = 85 art px)."""
+    if g1:
+        import logo_glass_a as G
+        inner, ww, hh = G.VARIANTS["glass-G1"](True)
+        assert w * 100 / ww >= 85, "G1 alternate would fall below the 32 px / 8.5 mm minimum"
+    else:
+        inner, ww, hh = L.wordmark(L.SMALL)
     k = w / ww
     return f'<g transform="translate({cx - w / 2},{y}) scale({k:.4f})" style="color:{col};--accent:{acc}">{inner}</g>', hh * k
 
@@ -121,7 +127,7 @@ def back_panels(bg, fg, acc, name, desc):
     return "".join(s)
 
 
-def badshah_wrap():
+def badshah_wrap(g1=False):
     P = PAL
     s = [f'<rect width="{WRAP_W}" height="{WRAP_H}" fill="{P["forest"]}"/>']
     s.append(lattice(0, 0, WRAP_W, 60, P["gold"], 30, .5) + lattice(0, WRAP_H - 60, WRAP_W, 60, P["gold"], 30, .5))
@@ -132,8 +138,8 @@ def badshah_wrap():
         top = 110 + i * 0
         s.append(f'<path d="M{cx - half},650V{360 - 0}A{half},{half} 0 0 1 {cx + half},{360}V650" fill="none" stroke="{P["gold"]}" stroke-width="{sw}"/>'.replace("A300", "A300"))
     s.append(f'<path d="M{cx - 232},650V360A232,232 0 0 1 {cx + 232},360V650Z" fill="{P["forest_deep"]}"/>')
-    s.append(f'<g transform="translate({cx},640)">{wheat(330, P["gold"])}</g>')
-    hdr, hh = nasha_header(cx, 215, 250, P["ivory"], P["saffron"])
+    s.append(f'<g transform="translate({cx},640)">{wheat(230 if g1 else 330, P["gold"])}</g>')
+    hdr, hh = nasha_header(cx, 285 if g1 else 215, 420 if g1 else 250, P["ivory"], P["saffron"], g1)
     s.append(hdr)
     s.append(f'<text x="{cx}" y="770" text-anchor="middle" font-family="Instrument Serif" font-size="128" fill="{P["gold_lt"]}" letter-spacing="14">BADSHAH</text>')
     s.append(f'<text x="{cx}" y="830" text-anchor="middle" font-family="Inter" font-weight="600" font-size="28" fill="{P["ivory"]}" letter-spacing="14">HEFEWEIZEN</text>')
@@ -143,7 +149,7 @@ def badshah_wrap():
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WRAP_W} {WRAP_H}" width="{WRAP_W}" height="{WRAP_H}">{"".join(s)}</svg>'
 
 
-def amba_wrap():
+def amba_wrap(g1=False):
     P = PAL
     s = [f'<rect width="{WRAP_W}" height="{WRAP_H}" fill="{P["ivory"]}"/>']
     cx = FRONT_CX
@@ -155,7 +161,7 @@ def amba_wrap():
     for k in (-1, 1):
         s.append(f'<path d="{leaf_path(cx + k * 330, 590, 300, 70, -90 + k * 62)}" fill="{P["forest"]}" opacity=".9"/>')
     s.append(mango(cx - 120, 520, 150, P["saffron"], P["terra"], P["leaf"], -16) + mango(cx + 130, 560, 125, P["terra"], "#8E3E20", P["forest"], 14) + mango(cx + 10, 430, 100, P["gold_lt"], P["saffron"], P["leaf"], 4))
-    hdr, hh = nasha_header(cx, 60, 250, P["forest"], P["terra"])
+    hdr, hh = nasha_header(cx, 50, 420 if g1 else 250, P["forest"], P["terra"], g1)
     s.append(f'<rect x="{cx - 330}" y="690" width="660" height="210" fill="{P["forest"]}"/>')
     s.append(hdr)
     s.append(f'<text x="{cx}" y="796" text-anchor="middle" font-family="Instrument Serif" font-style="italic" font-size="132" fill="{P["ivory"]}">Amba Haze</text>')
@@ -170,9 +176,10 @@ def main():
     OUTV3.mkdir(parents=True, exist_ok=True)
     (OUTV3 / "labels").mkdir(exist_ok=True)
     for name, fn in (("badshah", badshah_wrap), ("amba-haze", amba_wrap)):
-        svg = fn()
-        (OUTV3 / "labels" / f"{name}-wrap.svg").write_text(svg)
-        render(svg, OUTV3 / "labels" / f"{name}-wrap.png", WRAP_W, WRAP_H)
+        for suffix, g1 in (("", False), ("-g1", True)):
+            svg = fn(g1)
+            (OUTV3 / "labels" / f"{name}-wrap{suffix}.svg").write_text(svg)
+            render(svg, OUTV3 / "labels" / f"{name}-wrap{suffix}.png", WRAP_W, WRAP_H)
     print("labels written")
 
 

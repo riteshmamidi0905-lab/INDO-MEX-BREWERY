@@ -21,7 +21,7 @@
  },
  {
   "asset": "visuals/brand-v3/labels/amba-haze-wrap.svg",
-  "sha256": "9652bb26957a43cd0ba1aa3fba9fc2cb22b225f39d961416f09502b62e7fbadc",
+  "sha256": "4e4c8df72fc455de9102d9cc18436fb470f46762b3e1a77037ae45a1044076c6",
   "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
   "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
   "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
@@ -31,7 +31,47 @@
  },
  {
   "asset": "visuals/brand-v3/labels/amba-haze-wrap.png",
-  "sha256": "d8e156403beba2239a340c9639c57ac2367817b53aa0d8764773de4802e8f6c1",
+  "sha256": "961b5abc7eb9353200f9cdb58ec11c7fe26944bd8477cd99e907b104c3163910",
+  "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
+  "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
+  "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/labels/badshah-wrap-g1.svg",
+  "sha256": "c5e346eed8eb44429aa176b3d2f7617931f260a38c2d14687a2bbea0a30c5389",
+  "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
+  "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
+  "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/labels/badshah-wrap-g1.png",
+  "sha256": "a43fb92b6b289891366d077ef92536005bf7b4371486db44e1a0827540b1aa83",
+  "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
+  "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
+  "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/labels/amba-haze-wrap-g1.svg",
+  "sha256": "267d36ee0718ad5519cf4882308c18ccf297a01ef6e5b94baa2f6f1d0e584abe",
+  "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
+  "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
+  "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/labels/amba-haze-wrap-g1.png",
+  "sha256": "32c8a146a14f8869abb4e534cf321485101bd11e705169fd937516dd33ba1bae",
   "method": "procedural vector drawing by code (brand/tools/brand_v3_art.py), PNG via headless Chromium; real type = Instrument Serif/Inter (OFL, licence record pending)",
   "sources": "drawn from scratch; mood/palette informed by the user-supplied ChatGPT reference board, nothing copied or traced",
   "usage": "concept label artwork; ABV, volume, ingredients, certifications, regulatory text, barcode are PLACEHOLDERS",
@@ -75,6 +115,166 @@
   "method": "procedural render by code (visuals/tools/composite_label.py); NOT a photograph, no generative model",
   "sources": "procedural plate + the label wraps above",
   "usage": "pipeline proof / concept mockup only; never label as photography",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/glass-etch-crest-white.png",
+  "sha256": "db35d4e4d69013fc60e60f110809c61084054d6e6cff9dde0cc920d772cfbd56",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/glass-etch-crest-white.svg",
+  "sha256": "55a8d125c7767147ac514ad2f198b0dc0e91d40243ae5a9d3cf8d1652cc128bd",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/glass-etch-g1-white.png",
+  "sha256": "49955f1cb8d0ea9f237c16f5111ba30524592eee66dfdc2a1f5a6570b3f20145",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/glass-etch-g1-white.svg",
+  "sha256": "9f9e46a7a1ba10ba601eab4610c1e23ca13dfea78a0b7b8179d6e278e6abc977",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/hoodie-crest-gold.png",
+  "sha256": "fb904281f9211fc459b162a4d1fc11867927df40e6c0bb203c8e7c3c74b7b65f",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/hoodie-crest-gold.svg",
+  "sha256": "71b01daf5137a5cb97c040438494d4a1b5d73609828eb13d0748b4c95c03a2bb",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/hoodie-monogram-gold.png",
+  "sha256": "7d790bd7c22b03c13ace72eb04e689ef327704c2b5c970fec04d539e6da0d2d9",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/hoodie-monogram-gold.svg",
+  "sha256": "eea8c573eac9a4c43d3c7507e3ca08c6e210daa70dbda1f51f579893ad5a26f3",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/hoodie-symbol-gold.png",
+  "sha256": "193d69742c4281fd5535e3d383693795512f8ffb13f413c8f1de9224b1e3b518",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/hoodie-symbol-gold.svg",
+  "sha256": "64cf042e6eab1f21f07dcaa3102b537b26107a88ae0af5c08281ed26e4e82029",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/sign-crest-gold.png",
+  "sha256": "165ad8ea0ddea535dcec4fdbaa9803b2e0c9bce4e8363114c28bdcf31c5667d3",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/sign-crest-gold.svg",
+  "sha256": "594ce27112e15536313bbe90d105822bbe015ab1f02f4e2fd24fa1fa4521cbc0",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/sign-g1-gold.png",
+  "sha256": "bb0337669efdb128b4ada882da4d6b32a80102aa2c0cf9c6c4dc367d95ba9afc",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/sign-g1-gold.svg",
+  "sha256": "14a3749d1158a9ac9aac5c9fc60108fa951355aba4d1719064b0bb046036a8bf",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/sign-original-gold.png",
+  "sha256": "5aef7dd98e71f5df30a80859d4364c7a1572cb91decc977bf9c36c8d20044e95",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
+  "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
+  "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
+  "approval": "NOT approved by founder; concept only; unpublished"
+ },
+ {
+  "asset": "visuals/brand-v3/artwork/sign-original-gold.svg",
+  "sha256": "ddb6cf1a9e66e65a1a9a60b551ef060fb4a677466f14d4e7f0372d16c7d426e8",
+  "method": "vector artwork rendered by brand/tools/artwork_pack.py from verified masters (transparent PNG + SVG)",
+  "sources": "Courtyard marks, approved glass-A G1 alternate (cans, glassware, signage only, >= 32 px cap height), crest",
+  "usage": "compositing artwork for approved source plates; never on unreviewed plates",
   "authorship": "Claude Code in a session with the founder; AI-assisted, declare as such",
   "rights": "No third-party material; ownership/assignment undocumented (needs counsel); NOT trademark-cleared",
   "approval": "NOT approved by founder; concept only; unpublished"
@@ -145,18 +345,18 @@
   "method": "AI image generation with ChatGPT's image-generation tool, by the founder, 2026-10-22 (per the founder)",
   "authorship": "founder-prompted, model-generated",
   "sources": "not copied from another brand (per the founder); prompt text not recorded in the repo",
-  "rights": "OpenAI terms for this account/plan not verified; ownership of outputs not verified; image contains model-drawn text and logo-like marks",
-  "approval": "EXPLORATORY CONCEPT ARTWORK, creative reference only; not a product photograph; not trademark-cleared; not for publication or reuse",
+  "rights": "ChatGPT plan not independently verified; OpenAI terms for this account/plan not verified; ownership of outputs not verified; image contains model-drawn text and logo-like marks",
+  "approval": "EXPLORATORY CONCEPT ART-DIRECTION REFERENCE ONLY (founder decision 2026-10-22); conceptual AI-generated image; not a photograph of an existing NASHA product or location; not trademark-cleared; not for publication or reuse",
   "usage": "mood/palette/composition reference; nothing from it is incorporated into any asset"
  },
  {
   "asset": "visuals/references/chatgpt-brand-board-2-2026-10-22.webp",
   "sha256": "f4b39a4b78ab06e3a49a2dc8f03b374fb09b55cc363284d8c37f435a4d8d1e2b",
-  "method": "user-supplied second exploratory board; generator/tool, plan and prompt NOT stated in the message (appears AI-generated: model-drawn text, a typo 'THE COURTYAAD', photoreal-style scenes); it appears to have been prompted with Claude's brand-v3 outputs",
-  "authorship": "founder-supplied; origin to be confirmed by founder",
-  "sources": "not copied from another brand (per founder for board 1; unconfirmed for board 2)",
-  "rights": "terms/ownership unverified; contains model-drawn logos and text",
-  "approval": "EXPLORATORY CONCEPT ARTWORK, creative reference only; not a product photograph; not for publication or reuse; no pixels incorporated into any asset",
+  "method": "AI image generation with ChatGPT's image-generation tool, by the founder, 2026-10-22, specifically for NASHA (per the founder); apparently prompted with Claude's brand-v3 outputs",
+  "authorship": "founder-prompted, model-generated",
+  "sources": "generated for NASHA; not copied from another brand (per the founder)",
+  "rights": "ChatGPT plan: NOT independently verified. OpenAI terms and output ownership for this account/plan not verified. Image contains model-drawn logos and text (including a typo 'THE COURTYAAD').",
+  "approval": "EXPLORATORY CONCEPT ART-DIRECTION REFERENCE ONLY (founder decision 2026-10-22). Conceptual AI-generated image; not a photograph of any existing NASHA product or location; not for publication or reuse; no pixels incorporated into any asset",
   "usage": "composition/lighting/photography-direction reference only"
  }
 ]

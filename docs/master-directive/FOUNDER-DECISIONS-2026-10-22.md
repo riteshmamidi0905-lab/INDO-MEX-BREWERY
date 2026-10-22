@@ -27,3 +27,10 @@
 - **Direction B** kept as a botanical/illustration language for merchandise and secondary packaging (never a primary logo); small-size problem fixed by a simplified leaf cut.
 - **Direction C** preserved as inspiration for nightlife/event campaigns only.
 - **Photorealistic generation:** only free, no-subscription generators may be used; none reachable from this environment (see `PHOTOREAL-BLOCKER.md`). No spending.
+
+## Wordmark and plate decisions (2026-10-22, evening)
+1. **Original Courtyard wordmark = provisional primary logo** (still not final; D-66 stays EXPLORATION; no trademark search).
+2. **Glass-A G1 approved for further development as a large-format alternate** on beer cans, glassware and architectural signage. **Not below 32 px cap height** (founder rule; my own test showed it gets busy at ≤ 24 px). **G2 stays exploratory.**
+3. brand-v3 palette and the verified vector masters are preserved exactly (`brand/BRAND-GUIDELINES-v3.md`).
+4. Both ChatGPT-generated boards (2026-10-22, plan not independently verified) are exploratory art-direction references only.
+5. **Option 1 chosen:** the founder will supply clean, unbranded photorealistic source plates generated through ChatGPT (BADSHAH can + wheat-beer glass, AMBA HAZE can + IPA glass, Court Brewhouse exterior, THE COURTYARD hoodie, Mango Habanero Gobi). Plates must contain no logos, readable text, packaging claims or brand graphics; NASHA vector artwork is applied only at compositing. Only approved product information is used; no invented ABV, volume, tasting results, ingredients or certifications. Every generated image is recorded as a conceptual AI-generated asset, not a photograph of any existing NASHA product or location.

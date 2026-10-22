@@ -30,8 +30,11 @@ Arch-and-botanical crest (arch outline + three-leaf sprig). Supports merchandise
 - AMBA HAZE (mango-forward juicy IPA, working concept): ivory + terracotta + saffron + leaf greens; mango and long leaves; italic serif name.
 - Only verified specs appear: BADSHAH = hefeweizen; AMBA HAZE = mango-forward juicy IPA concept. ABV, volume, ingredients, certifications, regulatory text and barcode are placeholders.
 
-## Wordmark variation (glass-inspired A) — decision pending
-See `courtyard-refined-2026-10-22/glass-variation/README.md`. Original stays primary; G1 is an optional large-format alternate; not finalized.
+## Wordmark and glass-A alternate (founder decision 2026-10-22)
+- **Original Courtyard wordmark = provisional primary logo** (not final, not cleared).
+- **Glass-A G1** (foam-line gap in both A's) is approved for further development as a **large-format alternate** on beer cans, glassware and architectural signage. **Never below 32 px cap height (≈ 8.5 mm in print).** Use the small-cut G1 at 32–96 px and the text-cut G1 above 96 px. G2 stays exploratory.
+- Everything else (UI, menus, small print, merchandise tags, social avatars) uses the original wordmark.
+- See `courtyard-refined-2026-10-22/glass-variation/` for files and the true-pixel comparison.
 
 ## Misuse
 No stretch, outline, shadow, gradient or photo effects; no AI-generated logos or text; no recolour outside the palette; no use on busy backgrounds without a solid panel; no ™/® symbols.

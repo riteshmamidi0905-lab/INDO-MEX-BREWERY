@@ -1,0 +1,34 @@
+{
+ "status": "TEMPLATE \u2014 region/quad coordinates are placeholders; set them (pixels of the ACCEPTED plate) and check with `overlay` before compositing",
+ "mode": "print",
+ "plate_kind": "signage",
+ "items": [
+  {
+   "art": "sign-original-gold.png",
+   "art_g1": "sign-g1-gold.png",
+   "quad": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "blend": "normal",
+   "opacity": 0.95,
+   "luminance_follow": 0.2,
+   "glow": 0.25
+  }
+ ],
+ "notes": "quad = the four corners of the BLANK sign board in perspective (TL,TR,BR,BL). Add a second item for a crest if the plate has room."
+}

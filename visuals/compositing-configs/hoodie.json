@@ -1,0 +1,58 @@
+{
+ "status": "TEMPLATE \u2014 region/quad coordinates are placeholders; set them (pixels of the ACCEPTED plate) and check with `overlay` before compositing",
+ "mode": "print",
+ "plate_kind": "apparel",
+ "items": [
+  {
+   "art": "hoodie-symbol-gold.png",
+   "quad": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "blend": "normal",
+   "opacity": 0.92,
+   "luminance_follow": 0.6,
+   "displace": 0.6
+  },
+  {
+   "art": "hoodie-monogram-gold.png",
+   "quad": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "blend": "normal",
+   "opacity": 0.92,
+   "luminance_follow": 0.6,
+   "displace": 0.6
+  }
+ ],
+ "notes": "Apparel always uses the ORIGINAL marks (G1 is not approved for apparel). First item = front symbol, second = left-chest monogram."
+}

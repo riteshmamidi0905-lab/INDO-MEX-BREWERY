@@ -1,0 +1,17 @@
+{
+ "status": "TEMPLATE \u2014 region/quad coordinates are placeholders; set them (pixels of the ACCEPTED plate) and check with `overlay` before compositing",
+ "mode": "can",
+ "plate_kind": "can",
+ "art": "badshah_wrap",
+ "art_g1": "badshah_wrap_g1",
+ "region": [
+  0,
+  0,
+  0,
+  0
+ ],
+ "center_frac": 0.5,
+ "shade_strength": 1.0,
+ "ink": 0.96,
+ "notes": "Upright can, straight-on. region = x0,y0,x1,y1 of the can body between shoulders (x range = visible diameter). Label front faces the camera."
+}
