@@ -22,7 +22,8 @@ def test_tampered_asset_and_missing_provenance_are_caught(tmp_path):
     d = tmp_path / "visuals" / "concepts"
     d.mkdir(parents=True)
     for f in (ROOT / "visuals/concepts").glob("*"):
-        shutil.copy(f, d / f.name)
+        if f.is_file():
+            shutil.copy(f, d / f.name)
     m.DIR = d
     (d / "hoodie-01-courtyard-back.png").write_bytes(b"x" * 10 + (d / "hoodie-01-courtyard-back.png").read_bytes())
     prov = json.loads((d / "PROVENANCE.json").read_text())
