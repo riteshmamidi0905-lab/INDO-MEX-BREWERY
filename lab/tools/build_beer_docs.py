@@ -37,7 +37,7 @@ def spec_doc(sp):
 | Allergen/ingredient notes | contains wheat and barley (gluten); no gluten-free claim | contains barley, wheat, oats (gluten); mango; check puree for sulfites; no gluten-free claim |
 
 ## How the figures relate to earlier records
-`beer/pilot-briefs/01-hefeweizen.md` recorded an R&D window of 4.8-5.3% ABV, and `beer/concepts/BADSHAH-PAAPI-CONCEPT-SPEC.md` a mango-IPA hypothesis of about 6.0-7.5%. Those are historical (older wording); D-85 sets the provisional targets above. 4.7% is inside the BJCP Weissbier range (4.3-5.6%) quoted in `beer/HEFEWEIZEN-BENCHMARK.md` but below the earlier R&D window, so the first pilot must confirm the yeast and attenuation can land there.
+`beer/pilot-briefs/01-hefeweizen.md` recorded an ABV R&D window of 4.8-5.3%, and `beer/concepts/BADSHAH-PAAPI-CONCEPT-SPEC.md` a mango-IPA hypothesis of about 6.0-7.5%. Those are historical (older wording); D-85 sets the provisional targets above. 4.7% is inside the BJCP Weissbier range (4.3-5.6%) quoted in `beer/HEFEWEIZEN-BENCHMARK.md` but below the earlier R&D window, so the first pilot must confirm the yeast and attenuation can land there.
 
 ## What is provisional (placeholders until reviewed)
 Package volume · measured ABV · label statements and any ABV tolerance language (TTB/TABC review, [PRO]) · certifications (none claimed) · barcode · price · ingredient statements as packaged · allergen statements as packaged.
