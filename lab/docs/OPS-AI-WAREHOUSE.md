@@ -9,4 +9,4 @@
 - **Router** (`ask`): rule-based, no model; unrecognised or non-read-only requests abstain.
 - **Evaluation**: `tests/test_ops_ai_warehouse.py` (14 tests) checks answers against values recomputed from fact tables by an independent query path, scope/role denials, injection strings, unpublished-warehouse refusal, audit completeness.
 
-Limits: this is an in-repo stand-in for a policy gate in the style of THE WEIR, not an integration with THE WEIR. No LLM is involved, so no claim is made about language-model behaviour. Data is synthetic.
+Limits: the built-in gate is an in-repo policy gate in the style of THE WEIR. THE WEIR integration is separate and optional (`nasha_lab/warehouse/ops_ai_weir.py`, see `OPS-AI-WEIR.md`). No LLM is involved, so no claim is made about language-model behaviour. Data is synthetic.

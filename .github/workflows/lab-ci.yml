@@ -23,10 +23,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install -r lab/requirements-dev.txt
+      - run: pip install -r lab/requirements-dev.txt -r lab/requirements-ci-extras.txt
+      - name: Install pinned THE WEIR gateway so the real-gateway tests run instead of skipping
+        run: pip install 'git+https://github.com/riteshmamidi0905-lab/mcp-weir.git@5df274563a4a73ebbd31a6380e3a7d829b6bf4a2'
       - run: python -m playwright install --with-deps chromium
       - name: All tests (unit, data, retrieval, pgvector, API, MCP, trust boundary, LangGraph, identity, UI + accessibility, property-based, failure injection). No paid API, no key.
-        run: cd lab && python -m pytest -q -p no:cacheprovider tests
+        run: cd lab && python -m pytest -q -p no:cacheprovider -rs --junitxml=/tmp/junit.xml tests
+      - name: Skip report (report-only; flip to --strict after the first clean run)
+        if: always()
+        run: |
+          cd lab && python tools/skip_report.py /tmp/junit.xml --md /tmp/skip-report.md | tee -a "$GITHUB_STEP_SUMMARY"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with: { name: junit-and-skip-report, path: "/tmp/junit.xml\n/tmp/skip-report.md" }
       - name: Block-1 data-quality evaluation reproduces byte for byte
         run: cd lab && python -m nasha_lab.evaluate v1 | diff - results/eval_v1.json
       - name: Planner experiment (deterministic control + stand-in models) reproduces

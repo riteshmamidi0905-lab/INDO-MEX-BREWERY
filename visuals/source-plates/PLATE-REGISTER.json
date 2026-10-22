@@ -2,12 +2,12 @@
  {
   "plate_id": "badshah_can",
   "subject": "BADSHAH beer can (blank)",
-  "file": "visuals/source-plates/incoming/badshah_can/badshah_can.png",
+  "file": "visuals/source-plates/reference-fit-test/badshah_can/badshah_can.png",
   "sha256": "288025b812f702b73ba36a3e0a69a5c303db8368b533a2d20f2201835db273ec",
   "received_at": "2026-10-22T20:54:19Z",
-  "generated_on": "not stated (supplied 2026-10-22 as a 7-panel contact sheet)",
+  "generated_on": "2026-10-22",
   "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
-  "prompt": "NOT RECORDED (founder to supply)",
+  "prompt": "NOT SUPPLIED. ChatGPT image generation, 2026-10-22; requested as unbranded photorealistic NASHA concept imagery (per the founder). Exact internal prompt and account-plan details NOT supplied: unverified.",
   "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
   "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
   "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
@@ -24,22 +24,25 @@
    "alpha_channel": false
   },
   "review": {
-   "status": "pending",
-   "by": null,
-   "at": null,
-   "note": null
+   "status": "reference",
+   "by": "Ritesh (founder decision)",
+   "at": "2026-10-22T21:04:45Z",
+   "note": "Compositions approved as creative direction; low-res crops NOT accepted as production assets; kept as reference / fit-test only. Replacement high-resolution images (>=2048 px long side) to be generated individually."
   },
-  "auto_verdict": "needs attention"
+  "auto_verdict": "needs attention",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
  },
  {
   "plate_id": "badshah_glass",
   "subject": "Wheat beer glass for BADSHAH (blank)",
-  "file": "visuals/source-plates/incoming/badshah_glass/badshah_glass.png",
+  "file": "visuals/source-plates/reference-fit-test/badshah_glass/badshah_glass.png",
   "sha256": "d7e309934aad5f641510c479db8275e4c0398fff31042b34d3d25273dabeb762",
   "received_at": "2026-10-22T20:54:20Z",
-  "generated_on": "not stated (supplied 2026-10-22 as a 7-panel contact sheet)",
+  "generated_on": "2026-10-22",
   "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
-  "prompt": "NOT RECORDED (founder to supply)",
+  "prompt": "NOT SUPPLIED. ChatGPT image generation, 2026-10-22; requested as unbranded photorealistic NASHA concept imagery (per the founder). Exact internal prompt and account-plan details NOT supplied: unverified.",
   "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
   "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
   "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
@@ -56,22 +59,25 @@
    "alpha_channel": false
   },
   "review": {
-   "status": "pending",
-   "by": null,
-   "at": null,
-   "note": null
+   "status": "reference",
+   "by": "Ritesh (founder decision)",
+   "at": "2026-10-22T21:04:45Z",
+   "note": "Compositions approved as creative direction; low-res crops NOT accepted as production assets; kept as reference / fit-test only. Replacement high-resolution images (>=2048 px long side) to be generated individually."
   },
-  "auto_verdict": "needs attention"
+  "auto_verdict": "needs attention",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
  },
  {
   "plate_id": "brewhouse_exterior",
   "subject": "Court Brewhouse exterior / courtyard (blank sign board)",
-  "file": "visuals/source-plates/incoming/brewhouse_exterior/brewhouse_exterior.png",
+  "file": "visuals/source-plates/reference-fit-test/brewhouse_exterior/brewhouse_exterior.png",
   "sha256": "bd261d74988547bcedb9abfe2a1fc643674e0003e676fd5db9f609ffb0d713a6",
   "received_at": "2026-10-22T20:54:21Z",
-  "generated_on": "not stated (supplied 2026-10-22 as a 7-panel contact sheet)",
+  "generated_on": "2026-10-22",
   "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
-  "prompt": "NOT RECORDED (founder to supply)",
+  "prompt": "NOT SUPPLIED. ChatGPT image generation, 2026-10-22; requested as unbranded photorealistic NASHA concept imagery (per the founder). Exact internal prompt and account-plan details NOT supplied: unverified.",
   "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
   "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
   "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
@@ -88,22 +94,25 @@
    "alpha_channel": false
   },
   "review": {
-   "status": "pending",
-   "by": null,
-   "at": null,
-   "note": null
+   "status": "reference",
+   "by": "Ritesh (founder decision)",
+   "at": "2026-10-22T21:04:45Z",
+   "note": "Compositions approved as creative direction; low-res crops NOT accepted as production assets; kept as reference / fit-test only. Replacement high-resolution images (>=2048 px long side) to be generated individually."
   },
-  "auto_verdict": "needs attention"
+  "auto_verdict": "needs attention",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
  },
  {
   "plate_id": "amba_can",
   "subject": "AMBA HAZE beer can (blank)",
-  "file": "visuals/source-plates/incoming/amba_can/amba_can.png",
+  "file": "visuals/source-plates/reference-fit-test/amba_can/amba_can.png",
   "sha256": "6a2af2ac5452006c618cc92980c349df60ceb3e8e75669e14ccdd302fa8fd234",
   "received_at": "2026-10-22T20:54:22Z",
-  "generated_on": "not stated (supplied 2026-10-22 as a 7-panel contact sheet)",
+  "generated_on": "2026-10-22",
   "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
-  "prompt": "NOT RECORDED (founder to supply)",
+  "prompt": "NOT SUPPLIED. ChatGPT image generation, 2026-10-22; requested as unbranded photorealistic NASHA concept imagery (per the founder). Exact internal prompt and account-plan details NOT supplied: unverified.",
   "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
   "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
   "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
@@ -120,22 +129,25 @@
    "alpha_channel": false
   },
   "review": {
-   "status": "pending",
-   "by": null,
-   "at": null,
-   "note": null
+   "status": "reference",
+   "by": "Ritesh (founder decision)",
+   "at": "2026-10-22T21:04:45Z",
+   "note": "Compositions approved as creative direction; low-res crops NOT accepted as production assets; kept as reference / fit-test only. Replacement high-resolution images (>=2048 px long side) to be generated individually."
   },
-  "auto_verdict": "needs attention"
+  "auto_verdict": "needs attention",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
  },
  {
   "plate_id": "amba_glass",
   "subject": "IPA glass for AMBA HAZE (blank)",
-  "file": "visuals/source-plates/incoming/amba_glass/amba_glass.png",
+  "file": "visuals/source-plates/reference-fit-test/amba_glass/amba_glass.png",
   "sha256": "420dabcb2d410f8411927bba897e454e2c2e27f7d371ff2cd76168d6987fd741",
   "received_at": "2026-10-22T20:54:23Z",
-  "generated_on": "not stated (supplied 2026-10-22 as a 7-panel contact sheet)",
+  "generated_on": "2026-10-22",
   "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
-  "prompt": "NOT RECORDED (founder to supply)",
+  "prompt": "NOT SUPPLIED. ChatGPT image generation, 2026-10-22; requested as unbranded photorealistic NASHA concept imagery (per the founder). Exact internal prompt and account-plan details NOT supplied: unverified.",
   "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
   "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
   "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
@@ -152,22 +164,25 @@
    "alpha_channel": false
   },
   "review": {
-   "status": "pending",
-   "by": null,
-   "at": null,
-   "note": null
+   "status": "reference",
+   "by": "Ritesh (founder decision)",
+   "at": "2026-10-22T21:04:45Z",
+   "note": "Compositions approved as creative direction; low-res crops NOT accepted as production assets; kept as reference / fit-test only. Replacement high-resolution images (>=2048 px long side) to be generated individually."
   },
-  "auto_verdict": "needs attention"
+  "auto_verdict": "needs attention",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
  },
  {
   "plate_id": "hoodie",
   "subject": "THE COURTYARD hoodie (blank)",
-  "file": "visuals/source-plates/incoming/hoodie/hoodie.png",
+  "file": "visuals/source-plates/reference-fit-test/hoodie/hoodie.png",
   "sha256": "72b0a4c455cdc773757c6ece926a5cafe8c9e796e4e31661a171a2f3b9271184",
   "received_at": "2026-10-22T20:54:24Z",
-  "generated_on": "not stated (supplied 2026-10-22 as a 7-panel contact sheet)",
+  "generated_on": "2026-10-22",
   "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
-  "prompt": "NOT RECORDED (founder to supply)",
+  "prompt": "NOT SUPPLIED. ChatGPT image generation, 2026-10-22; requested as unbranded photorealistic NASHA concept imagery (per the founder). Exact internal prompt and account-plan details NOT supplied: unverified.",
   "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
   "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
   "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
@@ -184,22 +199,25 @@
    "alpha_channel": false
   },
   "review": {
-   "status": "pending",
-   "by": null,
-   "at": null,
-   "note": null
+   "status": "reference",
+   "by": "Ritesh (founder decision)",
+   "at": "2026-10-22T21:04:45Z",
+   "note": "Compositions approved as creative direction; low-res crops NOT accepted as production assets; kept as reference / fit-test only. Replacement high-resolution images (>=2048 px long side) to be generated individually."
   },
-  "auto_verdict": "needs attention"
+  "auto_verdict": "needs attention",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
  },
  {
   "plate_id": "gobi",
   "subject": "Mango Habanero Gobi (concept dish)",
-  "file": "visuals/source-plates/incoming/gobi/gobi.png",
+  "file": "visuals/source-plates/reference-fit-test/gobi/gobi.png",
   "sha256": "b05d745c7e8d6e040a8e2567f4163629565f50a6a6fc2b953076cf0cca6f84d8",
   "received_at": "2026-10-22T20:54:25Z",
-  "generated_on": "not stated (supplied 2026-10-22 as a 7-panel contact sheet)",
+  "generated_on": "2026-10-22",
   "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
-  "prompt": "NOT RECORDED (founder to supply)",
+  "prompt": "NOT SUPPLIED. ChatGPT image generation, 2026-10-22; requested as unbranded photorealistic NASHA concept imagery (per the founder). Exact internal prompt and account-plan details NOT supplied: unverified.",
   "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
   "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
   "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
@@ -216,11 +234,40 @@
    "alpha_channel": false
   },
   "review": {
-   "status": "pending",
-   "by": null,
-   "at": null,
-   "note": null
+   "status": "reference",
+   "by": "Ritesh (founder decision)",
+   "at": "2026-10-22T21:04:45Z",
+   "note": "Compositions approved as creative direction; low-res crops NOT accepted as production assets; kept as reference / fit-test only. Replacement high-resolution images (>=2048 px long side) to be generated individually."
   },
-  "auto_verdict": "needs attention"
+  "auto_verdict": "needs attention",
+  "source_sheet": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
+  "crop_note": "crop of a 7-panel 1536x1024 contact sheet; low resolution; NOT upscaled",
+  "native_resolution_note": "Not for production. Do not upscale and present as an original high-resolution generation."
+ },
+ {
+  "plate_id": "_contact_sheet",
+  "subject": "7-panel contact sheet of unbranded concept plates (BADSHAH can, weizen glass, Court Brewhouse, AMBA HAZE can, IPA glass, hoodie, Gobi)",
+  "file": "visuals/source-plates/reference-fit-test/_contact-sheet/plate-contact-sheet-1536x1024.webp",
+  "sha256": "258c7244071afcddf5659f8763dc55b95c4f6d3a5c6ab685267e5885b825bcd0",
+  "received_at": "2026-10-22T21:04:45Z",
+  "generated_on": "2026-10-22",
+  "tool": "ChatGPT image generation (supplied by the founder); ChatGPT plan NOT independently verified; OpenAI terms/output ownership not verified",
+  "prompt": "NOT SUPPLIED. ChatGPT image generation, 2026-10-22; requested as unbranded photorealistic NASHA concept imagery (per the founder). Exact internal prompt and account-plan details NOT supplied: unverified.",
+  "classification": "AI-generated conceptual asset. Not a photograph of any existing NASHA product or location. Not a verified product image.",
+  "caption": "Conceptual AI-generated image \u2014 not a photograph of an existing NASHA product or location.",
+  "rights": "unverified; no third-party material known; not approved for publication",
+  "checks": {
+   "size": [
+    1536,
+    1024
+   ]
+  },
+  "review": {
+   "status": "reference",
+   "by": "Ritesh (founder decision)",
+   "at": "2026-10-22T21:04:45Z",
+   "note": "Creative-direction reference and fit-test source only; not a production asset."
+  },
+  "auto_verdict": "n/a (reference)"
  }
 ]

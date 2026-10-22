@@ -27,5 +27,8 @@ Prompts for each are in `docs/master-directive/COMPOSITING-SPECS.md`. Add "no te
 - **Glass-A G1** is allowed only on cans (`--variant g1`), glassware and architectural signage; its cap height must be ≥ 32 px on the final image (≈ ≥ 136 px wide for the text cut, ≥ 154 px for the small cut). Apparel, food and small formats use the original wordmark.
 - Never push, merge, deploy or publish from this folder without the founder's approval.
 
+## Reference / fit-test category (2026-10-22 decision)
+The seven low-resolution crops and the contact sheet they came from are in `reference-fit-test/` with review status `reference`: compositions approved as creative direction, **not** production assets. They fail the 1600 px intake minimum and must not be upscaled. See `PRODUCTION-BRIEFS.md` for the seven replacement images.
+
 ## Layout
-`incoming/` (received, unreviewed) · `accepted/` · `rejected/` · `PLATE-REGISTER.json` (provenance + review state) · `../compositing-configs/*.json` · `../composites/` (outputs + `COMPOSITE-REGISTER.json`).
+`incoming/` (received, unreviewed) · `accepted/` · `rejected/` · `reference-fit-test/` · `PLATE-REGISTER.json` (provenance + review state) · `../compositing-configs/*.json` · `../composites/` (outputs + `COMPOSITE-REGISTER.json`).

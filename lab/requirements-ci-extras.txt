@@ -1,0 +1,6 @@
+# Optional integrations that tests gate with importorskip/skipif. Installed in CI so they RUN instead of silently skipping
+# (found 2026-10-22: the OpenTelemetry export tests had never run in lab-ci because their SDK was not installed).
+opentelemetry-sdk>=1.27
+opentelemetry-exporter-otlp-proto-http>=1.27
+sqlglot>=25            # PostgreSQL warehouse variant (tests/test_warehouse_pg.py)
+rapidocr-onnxruntime   # readable-text check in the source-plate pipeline (tests/test_plate_pipeline.py)

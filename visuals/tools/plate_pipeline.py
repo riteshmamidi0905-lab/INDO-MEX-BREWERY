@@ -7,7 +7,7 @@ logos, readable text, packaging claims or brand graphics. NASHA artwork is appli
 existing NASHA product or location.
 
     python3 visuals/tools/plate_pipeline.py intake  <image> --plate-id badshah_can [--prompt-file p.txt] [--generated-on 2026-10-22]
-    python3 visuals/tools/plate_pipeline.py review  <plate_id> --decision accepted|rejected --by "Ritesh" [--note ...]   # human decision, required
+    python3 visuals/tools/plate_pipeline.py review  <plate_id> --decision accepted|rejected|reference --by "Ritesh" [--note ...]   # human decision, required
     python3 visuals/tools/plate_pipeline.py overlay <plate_id>        # draws the configured region/quad on the plate for visual checking
     python3 visuals/tools/plate_pipeline.py composite <plate_id> [--variant g1]   # only for ACCEPTED plates; g1 = approved large-format alternate
     python3 visuals/tools/plate_pipeline.py qa [<plate_id>]
@@ -91,7 +91,25 @@ def scan_text(img: Image.Image, min_score=0.5):
     return True, out
 
 
-def intake_checks(path):
+def hf_energy_ratio(img: Image.Image):
+    """Share of spectral energy in the top half of the frequency range (grey, centre-cropped to 1024). Genuine camera/model detail keeps some;
+    an upscaled image has almost none. ADVISORY heuristic only — it cannot prove an image is native resolution."""
+    g = np.asarray(img.convert("L"), np.float64)
+    h, w = g.shape
+    s = min(h, w, 1024)
+    g = g[(h - s) // 2:(h - s) // 2 + s, (w - s) // 2:(w - s) // 2 + s]
+    g = (g - g.mean()) * np.outer(np.hanning(s), np.hanning(s))
+    f = np.abs(np.fft.fftshift(np.fft.fft2(g))) ** 2
+    yy, xx = np.indices(f.shape)
+    r = np.hypot(yy - s / 2, xx - s / 2) / (s / 2)
+    tot = f.sum()
+    return float(f[r > 0.5].sum() / tot) if tot else 0.0
+
+
+UPSCALE_SUSPECT_BELOW = 1e-3                  # real native samples measured 0.017-0.093; 3x bicubic/lanczos upscales 0.00004-0.00022
+
+
+def intake_checks(path, generated_size=None):
     p = Path(path)
     c = {"format_ok": p.suffix.lower() in EXTS}
     img = Image.open(p)
@@ -102,6 +120,11 @@ def intake_checks(path):
     c["text_found"] = found
     c["text_clean"] = bool(ocr_ok and not found)
     c["alpha_channel"] = img.mode in ("RGBA", "LA")
+    c["hf_energy_ratio"] = round(hf_energy_ratio(img), 6)
+    c["upscale_suspect"] = c["hf_energy_ratio"] < UPSCALE_SUSPECT_BELOW        # advisory
+    if generated_size:
+        c["declared_generation_size"] = list(generated_size)
+        c["matches_declared_generation_size"] = list(img.size) == list(generated_size)
     return c
 
 
@@ -112,14 +135,16 @@ def cmd_intake(a):
     dst = PLATES_DIR / "incoming" / a.plate_id / src.name
     dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src, dst)
-    checks = intake_checks(dst)
+    gs = tuple(int(v) for v in a.generated_size.lower().split("x")) if getattr(a, "generated_size", None) else None
+    checks = intake_checks(dst, gs)
     reg = load(REGISTER, [])
     prompt = Path(a.prompt_file).read_text() if a.prompt_file else None
     rec = {"plate_id": a.plate_id, "subject": SUBJECTS[a.plate_id], "file": rel(dst), "sha256": sha(dst), "received_at": now(), "generated_on": a.generated_on,
            "tool": TOOL, "prompt": prompt or "NOT RECORDED (founder to supply)", "classification": CLASSIFICATION, "caption": CAPTION,
            "rights": "unverified; no third-party material known; NASHA/trademark clearance not assumed; not approved for publication",
            "checks": checks, "review": {"status": "pending", "by": None, "at": None, "note": None},
-           "auto_verdict": "pass" if (checks["format_ok"] and checks["long_side_ok"] and checks["text_clean"]) else "needs attention"}
+           "auto_verdict": "pass" if (checks["format_ok"] and checks["long_side_ok"] and checks["text_clean"] and not checks["upscale_suspect"] and checks.get("matches_declared_generation_size", True)) else "needs attention",
+           "native_resolution_note": "Files must be the generator's native output. Upscaling a smaller image to pass the 1600 px check is not allowed; upscale_suspect is an advisory heuristic, not proof."}
     reg = [r for r in reg if not (r["plate_id"] == a.plate_id and r["sha256"] == rec["sha256"])] + [rec]
     save(REGISTER, reg)
     print(json.dumps({k: rec[k] for k in ("plate_id", "file", "auto_verdict", "checks")}, indent=1))
@@ -136,7 +161,7 @@ def cmd_review(a):
     if a.decision == "accepted" and r["auto_verdict"] != "pass" and not a.override:
         sys.exit("auto checks did not pass (" + json.dumps(r["checks"]) + "); fix the plate or pass --override with a note")
     src = ROOT / r["file"]
-    folder = "accepted" if a.decision == "accepted" else "rejected"
+    folder = {"accepted": "accepted", "rejected": "rejected", "reference": "reference-fit-test"}[a.decision]
     dst = PLATES_DIR / folder / a.plate_id / src.name
     dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.move(str(src), dst)
@@ -333,8 +358,8 @@ def cmd_qa(a):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = ap.add_subparsers(dest="cmd", required=True)
-    i = sp.add_parser("intake"); i.add_argument("image"); i.add_argument("--plate-id", required=True); i.add_argument("--prompt-file"); i.add_argument("--generated-on", default="not stated")
-    r = sp.add_parser("review"); r.add_argument("plate_id"); r.add_argument("--decision", required=True, choices=["accepted", "rejected"]); r.add_argument("--by", required=True); r.add_argument("--note", default=""); r.add_argument("--override", action="store_true")
+    i = sp.add_parser("intake"); i.add_argument("image"); i.add_argument("--plate-id", required=True); i.add_argument("--prompt-file"); i.add_argument("--generated-on", default="not stated"); i.add_argument("--generated-size", help="WxH the generator actually produced, if known (flags files that differ)")
+    r = sp.add_parser("review"); r.add_argument("plate_id"); r.add_argument("--decision", required=True, choices=["accepted", "rejected", "reference"]); r.add_argument("--by", required=True); r.add_argument("--note", default=""); r.add_argument("--override", action="store_true")
     o = sp.add_parser("overlay"); o.add_argument("plate_id"); o.add_argument("--any-status", action="store_true")
     c = sp.add_parser("composite"); c.add_argument("plate_id"); c.add_argument("--variant", choices=["primary", "g1"], default="primary", help="g1 = approved glass-A alternate (cans, glassware, signage only)")
     q = sp.add_parser("qa"); q.add_argument("plate_id", nargs="?")

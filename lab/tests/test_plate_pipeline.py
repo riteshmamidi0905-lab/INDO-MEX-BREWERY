@@ -30,7 +30,8 @@ def can_plate(path):
     import composite_label as C
     img, region = C.blank_can_plate()
     img = img.resize((img.width * 2, img.height * 2), Image.LANCZOS)
-    img.save(path)
+    a = np.asarray(img, np.float32) + np.random.default_rng(1).normal(0, 6, (img.height, img.width, 3))      # fine grain, as a real photograph/generation has
+    Image.fromarray(np.clip(a, 0, 255).astype("uint8")).save(path)
     return [v * 2 for v in region]
 
 
@@ -103,3 +104,24 @@ def test_g1_minimum_cap_height_guard_uses_final_plate_size(pp):
     assert any("cap height" in e for e in pp.validate_config(glass, "g1"))
     glass["items"][0]["quad"] = [[0, 0], [600, 0], [600, 150], [0, 150]]
     assert pp.validate_config(glass, "g1") == []
+
+
+def test_reference_decision_blocks_compositing_and_upscaled_images_are_flagged(pp, tmp_path):
+    rng = np.random.default_rng(3)
+    native = Image.fromarray((rng.random((1800, 1800, 3)) * 255).astype("uint8"))                 # detail all the way to Nyquist
+    from PIL import ImageFilter
+    small = Image.fromarray((rng.random((600, 600, 3)) * 255).astype("uint8")).filter(ImageFilter.GaussianBlur(3))   # a photo-like low-res source
+    from PIL import ImageOps; small = ImageOps.autocontrast(small, cutoff=1)                                           # full-range signal, so 8-bit quantisation noise is negligible, as in a photo
+    up = small.resize((1800, 1800), Image.BICUBIC)                                                                       # upscaled 3x
+    assert pp.hf_energy_ratio(native) > pp.UPSCALE_SUSPECT_BELOW * 100
+    assert pp.hf_energy_ratio(up) < pp.UPSCALE_SUSPECT_BELOW
+    f = tmp_path / "up.png"; up.save(f)
+    c = pp.intake_checks(f, (600, 600))
+    assert c["long_side_ok"] and c["upscale_suspect"] and not c["matches_declared_generation_size"]       # passes the pixel count but is caught
+    pp.cmd_intake(type("A", (), dict(image=str(f), plate_id="gobi", prompt_file=None, generated_on="x", generated_size="600x600")))
+    rec = json.loads(pp.REGISTER.read_text())[-1]
+    assert rec["auto_verdict"] == "needs attention" and "upscal" in rec["native_resolution_note"].lower()
+    pp.cmd_review(type("A", (), dict(plate_id="gobi", decision="reference", by="Ritesh", note="fit-test only", override=False)))
+    assert "reference-fit-test" in json.loads(pp.REGISTER.read_text())[-1]["file"]
+    with pytest.raises(SystemExit):
+        pp.cmd_composite(type("A", (), dict(plate_id="gobi", variant="primary")))

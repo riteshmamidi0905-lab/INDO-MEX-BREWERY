@@ -14,7 +14,7 @@
 
 ## 3. Warehouse-backed Ops AI with an authorization gate
 - Read-only, fixed-SQL tools over the marts; default-deny role and site scoping; audit row for every call incl. denials; warehouse opened `mode=ro`; answers checked against independently recomputed values (14 tests passing locally).
-- **Not claimed:** integration with the separate THE WEIR gateway; any LLM behaviour (the router is rule-based).
+- THE WEIR: the same tools also run behind the real `mcp_weir` Gateway (see `lab/docs/OPS-AI-WEIR.md`). **Not claimed:** any LLM behaviour (the router is rule-based).
 
 ## 4. PostgreSQL port with reconciliation
 - Transpiled the SQLite model SQL to PostgreSQL (sqlglot) and rebuilt all 22 dimension/fact/mart tables on a real embedded PostgreSQL 18.4, then reconciled row counts and numeric-column sums against SQLite.
