@@ -15,3 +15,14 @@
 ## 3. Warehouse-backed Ops AI with an authorization gate
 - Read-only, fixed-SQL tools over the marts; default-deny role and site scoping; audit row for every call incl. denials; warehouse opened `mode=ro`; answers checked against independently recomputed values (14 tests passing locally).
 - **Not claimed:** integration with the separate THE WEIR gateway; any LLM behaviour (the router is rule-based).
+
+## 4. PostgreSQL port with reconciliation
+- Transpiled the SQLite model SQL to PostgreSQL (sqlglot) and rebuilt all 22 dimension/fact/mart tables on a real embedded PostgreSQL 18.4, then reconciled row counts and numeric-column sums against SQLite.
+- Reconciliation caught three real portability bugs: no `sum(boolean)` in PostgreSQL; two marts relying on SQLite's lax `GROUP BY`; and `round()` semantics (SQLite rounds half away from zero, PostgreSQL rounds doubles half-to-even — 11 cents of waste cost differed).
+- Limits: staging rows are copied from the SQLite warehouse; ingestion, contracts and quality gates are not re-implemented in PostgreSQL.
+
+## 5. Forecasting with an honest backtest
+- Seasonal-naive, seasonal-mean and Holt-Winters with a rolling-origin backtest (WAPE) and labor analytics. The simulator has built-in weekly seasonality, so results show recovery of known structure, not real-world forecastability.
+
+## 6. Second-customer tenancy
+- Tenant gateway over per-tenant warehouses with default-deny grants, override refusal and separate audits. Design-level isolation only; see `lab/docs/SECOND-CUSTOMER-DEPLOYMENT.md`.
