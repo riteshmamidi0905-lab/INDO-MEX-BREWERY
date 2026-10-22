@@ -1,0 +1,80 @@
+{
+ "id": "hari-salsa-verde",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Hari (tomatillo salsa verde cruda)",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 950,
+ "shelf_life_note": "2 days at ≤ 5 °C (ASSUMPTION)",
+ "lines": [
+  {
+   "ingredient": "i-tomatillo",
+   "qty": 600,
+   "unit": "g",
+   "prep": "husked, rinsed"
+  },
+  {
+   "ingredient": "i-green-chile",
+   "qty": 40,
+   "unit": "g",
+   "prep": "serrano, stemmed"
+  },
+  {
+   "ingredient": "i-cilantro",
+   "qty": 80,
+   "unit": "g",
+   "prep": "leaves and tender stems"
+  },
+  {
+   "ingredient": "i-onion-white",
+   "qty": 80,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-garlic",
+   "qty": 12,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-lime-juice",
+   "qty": 50,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 10,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-water",
+   "qty": 100,
+   "unit": "ml"
+  }
+ ],
+ "method": [
+  "Rinse husked tomatillos; blend all ingredients to a loose pulp (keep some texture).",
+  "Rest 20 min, taste for acid and salt; adjust with lime or salt.",
+  "Hold cold; blend fresh every 2 days for colour."
+ ],
+ "sauce_spec": {
+  "texture": "loose, slightly textured",
+  "acid": "high (tomatillo + lime)",
+  "heat": "1-2",
+  "salt": "about 1%",
+  "use": "tacos, birria, 65 garnish; the Mexican-identity acid"
+ },
+ "food_safety": [
+  "Raw produce: wash tomatillos, cilantro and chiles; keep at or below 5 °C; date-mark; discard per the written policy (assume 2 days for colour and safety margin).",
+  "Gloves for chile handling."
+ ],
+ "allergens_declared": [],
+ "test_variables": [
+  "tomatillo vs yogurt version",
+  "serrano grams"
+ ],
+ "evidence": [
+  "food/SAUCE-SYSTEM.md (#2 Hari, tomatillo version)",
+  "food/sessions/S2-paneer-tikka-taco.md (salsa verde ingredients)"
+ ],
+ "estimates_label": "All quantities, yields and shelf-life values are preliminary estimates until tested by a person in a kitchen."
+}

@@ -1,0 +1,190 @@
+{
+ "id": "paneer-makhani-pizza",
+ "name": "Paneer Makhani Pizza",
+ "menu_role": "Pizza (12 inch, one person)",
+ "menu_category": "main",
+ "menu_status": "candidate",
+ "classification_note": "Variant of approved pool item #12 (Paneer Tikka Pizza), with makhani base. Oven is a gating professional item.",
+ "cooking_method": "Stretch dough, makhani-rajas base, bake hot; paneer finished with char",
+ "portion": {
+  "description": "1 pizza, about 30 cm",
+  "targets": {
+   "dough": "230 g",
+   "makhani-rajas": "60 g",
+   "paneer": "90 g",
+   "mozzarella": "90 g",
+   "oaxaca": "30 g"
+  },
+  "construction": "makhani base, cheese, seared paneer cubes, rajas, onion"
+ },
+ "components": [
+  {
+   "name": "Base",
+   "lines": [
+    {
+     "subrecipe": "pizza-dough",
+     "qty": 230,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "makhani-rajas-sauce",
+     "qty": 60,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-mozzarella",
+     "qty": 90,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-cheese-oaxaca",
+     "qty": 30,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "name": "Toppings",
+   "lines": [
+    {
+     "ingredient": "i-paneer",
+     "qty": 90,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-hung-curd",
+     "qty": 15,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-kasuri-methi",
+     "qty": 0.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 1,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 1,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "roasted-poblano-rajas",
+     "qty": 40,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "pickled-red-onion",
+     "qty": 12,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 5,
+     "unit": "ml"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "pizza-dough",
+  "makhani-rajas-sauce",
+  "roasted-poblano-rajas",
+  "pickled-red-onion"
+ ],
+ "method": {
+  "steps": [
+   "Marinate paneer cubes 2 h; sear.",
+   "Stretch dough, sauce, cheese, rajas; bake in hot oven until blistered.",
+   "Add paneer, onion, cilantro, kasuri methi at the end."
+  ],
+  "critical_parameters": {
+   "oven_C": "TBD by oven (menu matrix: deck/wood-fired)",
+   "bake_time": "TBD at T1"
+  }
+ },
+ "plating": "Whole pizza on a board, sliced in 6.",
+ "equipment": [
+  "High-heat oven",
+  "Peel",
+  "Cold storage"
+ ],
+ "food_safety": [
+  "Pasteurized dairy only.",
+  "Oven/hood and fuel decisions are professional review items."
+ ],
+ "workflow": {
+  "stations": [
+   "dough",
+   "oven"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 3.5,
+   "service": 3.0
+  },
+  "fryer_load": "none",
+  "capacity_note": "estimate; measure at T1"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Wheat body suits tomato-cream.",
+   "risk": "Esters vs sweet tomato.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Hop aroma cuts cream.",
+   "risk": "Bitterness vs tomato acidity.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Overhead, wooden peel.",
+  "must_show": [
+   "blistered crust edge",
+   "orange makhani base, cubes of paneer, green poblano strips"
+  ],
+  "must_not_show": [
+   "pepperoni-style toppings",
+   "cheese pull cliché",
+   "any text, logo or menu card"
+  ],
+  "realism_notes": "Leopard-spot char only if oven allows.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk",
+  "wheat"
+ ],
+ "allergen_notes": "Milk, wheat. No allergen-free claim.",
+ "evidence": [
+  "food/MENU-DEVELOPMENT-MATRIX-V1.md (#12 Paneer Tikka Pizza, Makhani-Rajas or Hari base)"
+ ],
+ "research": {
+  "practice": "Paneer tikka and makhani gravy are established North Indian preparations; 'paneer pizza' is a common fusion item.",
+  "nasha_combination": "Makhani-rajas base on a pizza is a NASHA proposal.",
+  "note": "RESEARCHED PRACTICE = documented regional preparation; NASHA COMBINATION = proposal not found in a traditional source. Sources are web-search snippets; primary documents were not retrieved (WebFetch unavailable)."
+ },
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "target_gross_margin_pct": 70,
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": true,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "no beef or pork ingredient; supplier statements required"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+}

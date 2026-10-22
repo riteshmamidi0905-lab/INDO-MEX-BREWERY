@@ -1,0 +1,84 @@
+{
+ "id": "kerala-coconut-sauce",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Kerala-leaning coconut crema (coconut, curry leaf, tamarind, lime)",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 520,
+ "shelf_life_note": "3 days at ≤ 5 °C (ASSUMPTION: set by a food-safety professional)",
+ "lines": [
+  {
+   "ingredient": "i-coconut-milk",
+   "qty": 0.4,
+   "unit": "l"
+  },
+  {
+   "ingredient": "i-green-chile",
+   "qty": 20,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-ginger",
+   "qty": 20,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-curry-leaf",
+   "qty": 5,
+   "unit": "g",
+   "prep": "fried 15 s in the oil"
+  },
+  {
+   "ingredient": "i-turmeric",
+   "qty": 2,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-mustard-seed",
+   "qty": 3,
+   "unit": "g",
+   "prep": "popped in the oil"
+  },
+  {
+   "ingredient": "i-tamarind-paste",
+   "qty": 20,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-lime-juice",
+   "qty": 25,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-oil-neutral",
+   "qty": 20,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 6,
+   "unit": "g"
+  }
+ ],
+ "method": [
+  "Pop mustard seed and fry curry leaf in the oil; add ginger and chile, then turmeric.",
+  "Add coconut milk and tamarind; simmer gently 10 min (do not boil hard); cool.",
+  "Blend smooth, add lime and salt; chill."
+ ],
+ "sauce_spec": {
+  "texture": "pourable crema",
+  "acid": "medium",
+  "heat": "1-2",
+  "use": "fish taco sauce"
+ },
+ "food_safety": [
+  "Two-stage cooling within 2 h + 4 h.",
+  "Check coconut-milk labelling; no allergen-free claim."
+ ],
+ "allergens_declared": [],
+ "test_variables": [],
+ "evidence": [
+  "Practice: Kerala fish dishes combine coconut milk, tamarind/kokum, turmeric, chile and curry leaf (web-search snippet level). Taco format is a NASHA composition."
+ ],
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted."
+}

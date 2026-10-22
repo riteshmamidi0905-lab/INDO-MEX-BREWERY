@@ -1,0 +1,186 @@
+{
+ "id": "goat-birria",
+ "name": "Goat Birria, Sealed-Pot Braise",
+ "menu_role": "BIRRIA — 2 tacos + consommé (Core 5; goat only)",
+ "cooking_method": "Sear, coat with chile adobo, seal and braise low, skim; dip tortillas in surface fat and griddle to order",
+ "portion": {
+  "description": "2 tacos + a small cup of consommé",
+  "targets": {
+   "braised goat meat": "100 g",
+   "consommé": "90 ml",
+   "corn tortillas": "2 × 28 g",
+   "hari salsa": "15 g",
+   "raw onion": "10 g",
+   "cilantro": "3 g"
+  },
+  "construction": "no cheese by default; bones and visible fibre keep it reading as goat, not beef"
+ },
+ "components": [
+  {
+   "name": "Birria",
+   "lines": [
+    {
+     "subrecipe": "goat-birria-braise",
+     "qty": 100,
+     "unit": "g",
+     "prep": "100 g cooked meat from the batch + 90 ml consommé (by-product, allocated at zero)"
+    },
+    {
+     "ingredient": "i-corn-tortilla",
+     "qty": 56,
+     "unit": "g",
+     "prep": "2 tortillas, dipped in skimmed braise fat and griddled"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 4,
+     "unit": "ml",
+     "prep": "griddle allocation"
+    }
+   ]
+  },
+  {
+   "name": "Garnish",
+   "lines": [
+    {
+     "ingredient": "i-onion-white",
+     "qty": 10,
+     "unit": "g",
+     "prep": "raw, finely diced"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 3,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "hari-salsa-verde",
+     "qty": 15,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.17,
+     "unit": "each"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 0.5,
+     "unit": "g",
+     "prep": "finishing"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "goat-birria-braise",
+  "hari-salsa-verde"
+ ],
+ "method": {
+  "steps": [
+   "Prepare the braise batch (see sub-recipe): adobo, sear, seal, braise low until tender but fibrous; skim and strain.",
+   "Cool and store in shallow pans following the written cooling process (professional-set).",
+   "To order: reheat meat and consommé to 74 °C or above; dip tortillas in skimmed fat, griddle until lightly crisp; fill with meat, raw onion, cilantro, hari; serve with the consommé cup and lime."
+  ],
+  "critical_parameters": {
+   "braise": "time/temperature set by a chef and logged; no authoritative goat braise temperature found in the repository research",
+   "reheat_C": "74 (165 °F) minimum for the consommé and meat",
+   "cooling": "57 → 21 °C within 2 h, → 5 °C within 4 more hours (US Food Code orientation; professional sets the process)"
+  }
+ },
+ "plating": "Two tacos on a plate, edges crisped by the dipped-and-griddled tortilla; consommé in a small clay or steel cup (katori-like) with a visible fat sheen and a few chile flecks; raw onion, cilantro and a lime wedge on the plate, hari in a small spoonful.",
+ "equipment": [
+  "Braise kettle or oven (long braise; lead time)",
+  "Shallow pans and blast-chill or ice bath for cooling",
+  "Comal/griddle",
+  "Cold storage and hot hold",
+  "Small clay or steel cups for consommé"
+ ],
+ "food_safety": [
+  "Largest food-safety risk in the Core 5: large-batch braise cooling, storage and reheating; a food-safety professional must write the process before any service.",
+  "Goat/chicken/vegetable stock only; no beef or pork products, no lard (D-54); no halal claim.",
+  "Skimmed fat solidifies; label and use within the written shelf life.",
+  "Hot consommé service: burn risk, correct cup, handle temperature."
+ ],
+ "workflow": {
+  "stations": [
+   "braise",
+   "cold prep",
+   "comal/assembly"
+  ],
+  "day_before": [
+   "Braise batch (about 12 portions), cool and portion",
+   "Make hari"
+  ],
+  "morning": [
+   "Reheat portions, mise en place of garnishes"
+  ],
+  "service": [
+   "Dip and griddle tortillas, plate with consommé"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 6.0,
+   "service": 3.0
+  },
+  "fryer_load": "none",
+  "capacity_note": "long lead and yield/trim waste unknown; goat sourcing and supplier reliability unverified"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Carbonation lifts the consommé fat; existing hypothesis PF-05.",
+   "risk": "Clove against cinnamon-clove in the adobo may stack and taste muddy.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Tropical fruit contrasts the deep chile braise.",
+   "risk": "Hop bitterness plus very rich fat can taste harsh; mango sweetness may clash with adobo spice.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Tabletop, two tacos and a consommé cup, low warm side light, steam wisp if shown fresh.",
+  "must_show": [
+   "deep red-orange adobo colour on tender, fibrous goat (not pulled-beef uniformity)",
+   "crisped, lightly oiled tortilla edges",
+   "consommé in a small cup with fat sheen and chile flecks",
+   "raw onion, cilantro, lime"
+  ],
+  "must_not_show": [
+   "melted cheese (none by default)",
+   "uniform beef-like texture or a quesabirria look",
+   "text or logos"
+  ],
+  "realism_notes": "Goat is leaner and more fibrous than beef; show some visible grain and a few small bone-adjacent fibres.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [],
+ "allergen_notes": "No major allergen expected from the baseline. Possible: milk if the yogurt-papaya pre-marinade (arm C) is used; wheat if a dough seal is used; celery depending on stock; check chile blends. No allergen-free claim.",
+ "evidence": [
+  "food/CORE5-FOOD-MATRIX.csv#goat-birria",
+  "food/sessions/S5-goat-birria.md (T5 baseline)",
+  "food/DIETARY-POLICY-AND-INGREDIENT-SPEC.md"
+ ],
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": false,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "goat only; supplier statement required; no halal claim"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
+ "menu_category": "main",
+ "menu_status": "approved_core5",
+ "classification_note": "Core 5 item; not in the founder's appetizer/main candidate lists: provisionally priced as a main pending founder classification.",
+ "target_gross_margin_pct": 70,
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "research": {
+  "practice": "see evidence list",
+  "nasha_combination": "see cultural/food research files",
+  "note": "Earlier research baseline; not re-sourced in D-87."
+ }
+}

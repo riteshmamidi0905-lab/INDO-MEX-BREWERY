@@ -1,0 +1,99 @@
+{
+ "id": "nawaabi-enchilada-sauce",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Nawaabi enchilada sauce (cashew-cream, tomato, mild chile, saffron)",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 900,
+ "shelf_life_note": "3 days at ≤ 5 °C (ASSUMPTION: set by a food-safety professional)",
+ "lines": [
+  {
+   "ingredient": "i-cashew",
+   "qty": 90,
+   "unit": "g",
+   "prep": "soaked 30 min in hot water"
+  },
+  {
+   "ingredient": "i-cream",
+   "qty": 0.2,
+   "unit": "l"
+  },
+  {
+   "ingredient": "i-onion-white",
+   "qty": 150,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-ginger-garlic-paste",
+   "qty": 30,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-tomato-passata",
+   "qty": 250,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-ancho",
+   "qty": 25,
+   "unit": "g",
+   "prep": "toasted, soaked"
+  },
+  {
+   "ingredient": "i-butter",
+   "qty": 30,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-cardamom",
+   "qty": 1,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-kasuri-methi",
+   "qty": 2,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-saffron",
+   "qty": 0.1,
+   "unit": "g",
+   "prep": "bloomed in a spoon of warm water"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 8,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-water",
+   "qty": 0.12,
+   "unit": "l"
+  }
+ ],
+ "method": [
+  "Sweat the onion in butter; add ginger-garlic paste and cardamom; add passata and ancho and simmer 15 min.",
+  "Blend with the soaked cashews, cream and water until silky; pass through a sieve.",
+  "Return to heat, add saffron and kasuri methi, adjust salt; cool and chill."
+ ],
+ "sauce_spec": {
+  "texture": "silky, nappe",
+  "acid": "low-medium",
+  "heat": "1",
+  "richness": "high",
+  "use": "enchilada sauce"
+ },
+ "food_safety": [
+  "Two-stage cooling within 2 h + 4 h.",
+  "TREE NUT: cashew. Dedicated utensils and allergen label."
+ ],
+ "allergens_declared": [
+  "milk",
+  "tree_nut"
+ ],
+ "test_variables": [],
+ "evidence": [
+  "Practice: Mughlai/'nawaabi' gravies use a cashew-cream base (web-search snippet level). Enchilada sauce structure is Mexican. The combination is a NASHA proposal."
+ ],
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted."
+}

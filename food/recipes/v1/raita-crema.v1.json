@@ -1,0 +1,79 @@
+{
+ "id": "raita-crema",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Raita-Crema (cooling sauce)",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 980,
+ "shelf_life_note": "3-4 days at ≤ 5 °C (ASSUMPTION: set by a food-safety professional)",
+ "lines": [
+  {
+   "ingredient": "i-yogurt",
+   "qty": 450,
+   "unit": "g",
+   "prep": "thick, strained if loose"
+  },
+  {
+   "ingredient": "i-crema",
+   "qty": 450,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-lime-juice",
+   "qty": 40,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-garlic",
+   "qty": 20,
+   "unit": "g",
+   "prep": "roasted until soft, mashed"
+  },
+  {
+   "ingredient": "i-cumin-ground",
+   "qty": 3,
+   "unit": "g",
+   "prep": "toasted"
+  },
+  {
+   "ingredient": "i-mint",
+   "qty": 15,
+   "unit": "g",
+   "prep": "chopped fine"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 8,
+   "unit": "g"
+  }
+ ],
+ "method": [
+  "Roast garlic cloves until soft (about 160 °C, 20-25 min), cool, mash.",
+  "Whisk yogurt and crema smooth; fold in garlic, toasted cumin, lime juice, mint and salt.",
+  "Rest 30 min under refrigeration, taste and adjust salt/acid, hold at or below 5 °C."
+ ],
+ "sauce_spec": {
+  "texture": "thick, spoonable, holds a line",
+  "acid": "lime, moderate",
+  "heat": "0 (cooling role)",
+  "salt": "about 0.8% (adjust to taste)",
+  "use": "dip and cooler for every hot dish (Heat architecture level 1)"
+ },
+ "food_safety": [
+  "Keep at or below 5 °C (41 °F); date-mark ready-to-eat TCS food and discard on the day the local rule requires (the US Food Code default is 7 days; the kitchen's written policy governs).",
+  "Clean spoon for each portion; never top up an open container with fresh sauce."
+ ],
+ "allergens_declared": [
+  "milk"
+ ],
+ "test_variables": [
+  "crema:yogurt ratio",
+  "raw vs roasted garlic",
+  "mint on/off"
+ ],
+ "evidence": [
+  "food/SAUCE-SYSTEM.md (#8 Raita-Crema)",
+  "food/t1-test-sheets/11-chicken-65-totopos-prototype-protocol-FROZEN.md (crema 20 g per plate)"
+ ],
+ "estimates_label": "All quantities, yields and shelf-life values are preliminary estimates until tested by a person in a kitchen."
+}

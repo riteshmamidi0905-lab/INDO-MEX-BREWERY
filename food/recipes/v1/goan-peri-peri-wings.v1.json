@@ -1,0 +1,180 @@
+{
+ "id": "goan-peri-peri-wings",
+ "name": "Goan Peri-Peri Wings",
+ "menu_role": "Shareable small plate",
+ "menu_category": "appetizer",
+ "menu_status": "candidate",
+ "classification_note": "Overlaps approved pool item #4 (Hefe-brined Wings) in format; differs in sauce. Not a replacement; proposed as a sauce variant.",
+ "cooking_method": "Dry-brine wings, fry in two stages to 74 °C, toss in peri-peri sauce",
+ "portion": {
+  "description": "1 shareable plate (about 6 split wing pieces)",
+  "targets": {
+   "wings (as purchased)": "300 g",
+   "peri-peri sauce": "45 g",
+   "raita-crema": "30 g"
+  },
+  "construction": "wings tossed in sauce, crema on the side"
+ },
+ "components": [
+  {
+   "name": "Wings",
+   "lines": [
+    {
+     "ingredient": "i-chicken-wing",
+     "qty": 300,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-turmeric",
+     "qty": 0.3,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 1.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-cornflour",
+     "qty": 8,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 22,
+     "unit": "ml",
+     "prep": "fry allocation"
+    }
+   ]
+  },
+  {
+   "name": "Sauce and garnish",
+   "lines": [
+    {
+     "subrecipe": "peri-peri-sauce",
+     "qty": 45,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "raita-crema",
+     "qty": 30,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "pickled-red-onion",
+     "qty": 10,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.17,
+     "unit": "each"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 1,
+     "unit": "g"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "peri-peri-sauce",
+  "raita-crema",
+  "pickled-red-onion"
+ ],
+ "method": {
+  "steps": [
+   "Dry-brine wings 2-12 h at ≤ 4 °C; pat dry; dust with cornflour just before frying.",
+   "Fry at about 175 °C 9-11 min until deep golden; probe to 74 °C.",
+   "Toss in warm peri-peri sauce; plate with crema, onion and lime."
+  ],
+  "critical_parameters": {
+   "fry_temp_C": "about 175 (chef decision)",
+   "core_C": "74 minimum"
+  }
+ },
+ "plating": "Black stoneware plate, wings piled, crema pool at the edge, lime wedge.",
+ "equipment": [
+  "Fryer",
+  "Probe thermometer",
+  "Toss bowls"
+ ],
+ "food_safety": [
+  "Cook wings to 74 °C (165 °F), probed in the thickest piece.",
+  "Raw-protein board/utensils separated; hand-wash; marinate at ≤ 4 °C, discard marinade.",
+  "Hot-hold ≥ 57 °C (135 °F) or discard within 2 hours (policy to be set by a food-safety professional)."
+ ],
+ "workflow": {
+  "stations": [
+   "cold prep",
+   "fryer",
+   "plating"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 3.0,
+   "service": 3.0
+  },
+  "fryer_load": "H",
+  "capacity_note": "estimate; measure at T1"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Carbonation cleans fry fat; soft wheat body tempers chile.",
+   "risk": "Thin body against heavy sauce.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Fruity hop aroma against garlic-lemon heat.",
+   "risk": "IBU amplifies chile heat.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Three-quarter angle, warm side light.",
+  "must_show": [
+   "glossy red-orange sauced wings",
+   "lime and cilantro",
+   "white crema pool"
+  ],
+  "must_not_show": [
+   "blue-cheese dip",
+   "celery sticks (not in recipe)",
+   "any text, logo or menu card"
+  ],
+  "realism_notes": "Sauce should coat, not pool.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk"
+ ],
+ "allergen_notes": "Milk (crema). Fryer shared; no allergen-free claim.",
+ "evidence": [
+  "food/MENU-DEVELOPMENT-MATRIX-V1.md (#4 Hefe-brined Wings: related; this candidate has a different sauce and no beer brine)"
+ ],
+ "research": {
+  "practice": "Peri-peri/piri-piri chicken is an established Portuguese-influenced preparation (Goa shares the heritage).",
+  "nasha_combination": "Peri-peri wings with raita-crema and pickled onion are a NASHA proposal.",
+  "note": "RESEARCHED PRACTICE = documented regional preparation; NASHA COMBINATION = proposal not found in a traditional source. Sources are web-search snippets; primary documents were not retrieved (WebFetch unavailable)."
+ },
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "target_gross_margin_pct": 70,
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": false,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "no beef or pork ingredient; supplier statements required"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+}

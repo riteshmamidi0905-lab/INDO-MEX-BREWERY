@@ -1,0 +1,88 @@
+{
+ "id": "makhani-rajas-sauce",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Makhani-Rajas sauce (reduced tomato-butter-cream)",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 790,
+ "shelf_life_note": "3 days at ≤ 5 °C (ASSUMPTION)",
+ "lines": [
+  {
+   "ingredient": "i-tomato-passata",
+   "qty": 1000,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-onion-white",
+   "qty": 100,
+   "unit": "g",
+   "prep": "finely chopped, sweated in butter"
+  },
+  {
+   "ingredient": "i-butter",
+   "qty": 80,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-cream",
+   "qty": 150,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-ginger-garlic-paste",
+   "qty": 25,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-kasuri-methi",
+   "qty": 6,
+   "unit": "g",
+   "prep": "crushed, added late"
+  },
+  {
+   "ingredient": "i-garam-masala",
+   "qty": 4,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-red-chilli-powder",
+   "qty": 6,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 8,
+   "unit": "g",
+   "prep": "added AFTER reduction"
+  }
+ ],
+ "method": [
+  "Sweat onion in butter, add ginger-garlic paste and spices (cook 2 min), add passata.",
+  "Simmer, stirring, until reduced to about 57% of the raw weight (raw 1,371 g → about 780 g); thick enough to coat a spoon and hold a drawn line (Session 4 arm A).",
+  "Stir in cream and kasuri methi, simmer 3 min; add salt after reduction; chill completely before assembling."
+ ],
+ "sauce_spec": {
+  "texture": "thick, clingy",
+  "acid": "low-medium (tomato)",
+  "heat": "1",
+  "richness": "high",
+  "salt": "about 1%",
+  "use": "quesadilla filling; keep reduced so the tortilla stays crisp"
+ },
+ "food_safety": [
+  "Cool to 5 °C within the 2 h + 4 h limits; chill before assembly so the filling does not steam the tortilla.",
+  "Date-mark and discard per the written policy."
+ ],
+ "allergens_declared": [
+  "milk"
+ ],
+ "test_variables": [
+  "reduction 55-60% vs 75% (Session 4 variable)",
+  "cashew-free by default"
+ ],
+ "evidence": [
+  "food/sessions/S4-butter-chicken-quesadilla.md (T4 baseline: reduce to 55-60% of raw weight; salt after reduction)",
+  "food/SAUCE-SYSTEM.md (#5 Makhani-Rajas)"
+ ],
+ "estimates_label": "All quantities, yields and shelf-life values are preliminary estimates until tested by a person in a kitchen."
+}

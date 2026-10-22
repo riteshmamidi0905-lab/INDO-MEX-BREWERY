@@ -1,0 +1,113 @@
+{
+ "id": "vindaloo-sauce",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Chicken vindaloo-style sauce (vinegar-chile-spice, no pork)",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 640,
+ "shelf_life_note": "3 days at ≤ 5 °C (ASSUMPTION: set by a food-safety professional)",
+ "lines": [
+  {
+   "ingredient": "i-onion-red",
+   "qty": 200,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-ginger",
+   "qty": 30,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-garlic",
+   "qty": 40,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-red-chilli-powder",
+   "qty": 25,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-guajillo",
+   "qty": 20,
+   "unit": "g",
+   "prep": "toasted, soaked, drained"
+  },
+  {
+   "ingredient": "i-cumin-ground",
+   "qty": 6,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-turmeric",
+   "qty": 2,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-black-pepper",
+   "qty": 3,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-clove",
+   "qty": 1,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-cinnamon",
+   "qty": 2,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-cider-vinegar",
+   "qty": 120,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-jaggery",
+   "qty": 12,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-oil-neutral",
+   "qty": 60,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-tomato-passata",
+   "qty": 100,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 10,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-water",
+   "qty": 0.15,
+   "unit": "l"
+  }
+ ],
+ "method": [
+  "Blend onion, ginger, garlic, toasted chiles, spices and vinegar to a paste.",
+  "Cook the paste in oil 15 min, add passata, jaggery, salt and water; simmer 15 min to a thick sauce.",
+  "Cool in shallow pans; chill. Chicken is added and braised separately in the dish recipe."
+ ],
+ "sauce_spec": {
+  "texture": "thick, jammy",
+  "acid": "high (vinegar)",
+  "heat": "3",
+  "use": "braise base for pizza topping"
+ },
+ "food_safety": [
+  "Two-stage cooling within 2 h + 4 h.",
+  "Date-mark and discard per policy."
+ ],
+ "allergens_declared": [],
+ "test_variables": [],
+ "evidence": [
+  "Practice: vindaloo derives from Portuguese carne de vinha d'alhos; the Goan version is a vinegar-and-chile marinade/braise traditionally with pork (web-search snippet level). NASHA uses CHICKEN ONLY (D-54: no pork)."
+ ],
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted."
+}

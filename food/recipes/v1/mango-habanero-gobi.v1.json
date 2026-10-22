@@ -1,0 +1,222 @@
+{
+ "id": "mango-habanero-gobi",
+ "name": "Mango Habanero Gobi",
+ "menu_role": "Appetizer / shareable (Core 5; D-84: not a taco, no tortilla)",
+ "cooking_method": "Blanch about 3 min, steam-dry, coat thinly, roast hot (about 200 °C) to dark tips, toss with warm glaze to order; fried-batter comparison arm kept as a test variant",
+ "portion": {
+  "description": "1 shareable plate (cauliflower visible and recognisable, D-84)",
+  "targets": {
+   "trimmed florets (raw)": "300 g (about 210 g cooked)",
+   "mango-habanero glaze": "55 g",
+   "raita-crema dip": "30 g"
+  },
+  "construction": "roast-first v1.0 (keeps visible floret structure and avoids a fried-chicken look); batter-fry arm in v1.1 as a documented variant"
+ },
+ "components": [
+  {
+   "name": "Cauliflower",
+   "lines": [
+    {
+     "ingredient": "i-cauliflower",
+     "qty": 300,
+     "unit": "g",
+     "prep": "florets about 4-5 cm with stem attached"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 3,
+     "unit": "g",
+     "prep": "in blanching water"
+    },
+    {
+     "ingredient": "i-yogurt",
+     "qty": 45,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-besan",
+     "qty": 9,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 1.9,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-turmeric",
+     "qty": 0.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-chaat-masala",
+     "qty": 1.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 3,
+     "unit": "g",
+     "prep": "in the coating"
+    },
+    {
+     "ingredient": "i-lemon-juice",
+     "qty": 4.5,
+     "unit": "ml"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 12,
+     "unit": "ml",
+     "prep": "tray/roasting oil"
+    }
+   ]
+  },
+  {
+   "name": "Glaze and finish",
+   "lines": [
+    {
+     "subrecipe": "mango-habanero-glaze",
+     "qty": 55,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "raita-crema",
+     "qty": 30,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.17,
+     "unit": "each",
+     "prep": "1/6 wedge"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 3,
+     "unit": "g"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "mango-habanero-glaze",
+  "raita-crema"
+ ],
+ "method": {
+  "steps": [
+   "Day before: make glaze and raita-crema; cut florets (store dry, covered, ≤ 5 °C).",
+   "Blanch florets about 3 min in salted boiling water; drain and steam-dry until the surface is dry (needed for coating to stick and to brown).",
+   "Toss with the yogurt-besan-spice film (thin; it should cling, not pool).",
+   "Roast on a perforated or hot tray at about 200 °C, not crowded, turning once, until the tips are dark and stems cream (about 14-18 min; ASSUMPTION: measure).",
+   "Toss with warmed glaze (≥ 70 °C) to order, plate within 60 s; lime and cilantro; dip on the side."
+  ],
+  "critical_parameters": {
+   "blanch_min": "about 3",
+   "roast_C": "about 200 (oven; convection preferred)",
+   "glaze_temp_C": "≥ 70 at toss",
+   "crunch_gate": "design assumption: crunch retained about 10 min (NOT TESTED)",
+   "habanero_g_per_glaze_batch": "12 (test variable)"
+  }
+ },
+ "plating": "Shareable shallow bowl or plate: florets heaped so cauliflower structure is visible, glaze glossy and clinging (not pooled), dark roasted tips showing through, cilantro leaves and one lime wedge, dip in a small cup beside. Nothing else on the plate.",
+ "equipment": [
+  "Convection oven or combi (roast), perforated trays",
+  "Steam/blanch pot and ice or dry-rack for steam-drying",
+  "Glaze kettle or heavy saucepan",
+  "Warm holding for glaze (≥ 70 °C)",
+  "Fryer only for the batter variant"
+ ],
+ "food_safety": [
+  "Cool the glaze within the 2 h + 4 h limits (cooling rule) and reheat to at least 74 °C if it has been cooled.",
+  "Habanero handling: gloves, no touching eyes; label heat level.",
+  "Roasted florets held for service must be kept hot (≥ 57 °C) and discarded after the written hold time; crispness degrades long before safety limits (hold time is a measured attribute: T+0/5/10).",
+  "Vegetarian dish with dairy: keep dairy cross-contact in mind in shared fryers if the batter variant is used."
+ ],
+ "workflow": {
+  "stations": [
+   "cold prep",
+   "oven",
+   "plating"
+  ],
+  "day_before": [
+   "Cook and cool glaze (batch 450 g ≈ 8 portions)",
+   "Make raita-crema"
+  ],
+  "morning": [
+   "Cut florets; blanch, steam-dry and coat per forecast (coat late)",
+   "Preheat ovens, warm glaze"
+  ],
+  "service": [
+   "Roast per order in rolling batches (14-18 min)",
+   "Toss with glaze, plate within 60 s"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 2.5,
+   "service": 1.5
+  },
+  "fryer_load": "none (roast arm)",
+  "capacity_note": "oven time per batch is the constraint; batch-roast two trays ahead at peak and re-crisp"
+ },
+ "pairing": [
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Mango in the glaze echoes the beer's mango-forward aroma; juicy body and low perceived bitterness soften habanero heat.",
+   "risk": "Sweet-on-sweet; hop bitterness plus capsaicin can amplify burn; target ABV also raises perceived heat.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "High carbonation and soft wheat body reset the palate between glazed bites.",
+   "risk": "Banana ester next to mango sweetness may read fruity-on-fruity. The existing matrix uses Pilsner as the deliberate counter-test (PF-02).",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Three-quarter angle, shallow bowl, warm evening side light, dark ceramic or stone surface, slight steam only if freshly roasted.",
+  "must_show": [
+   "cauliflower florets with stems attached, obviously cauliflower",
+   "dark roasted tips and cream-coloured stems showing through a glossy orange-amber glaze",
+   "glaze clinging in thin streaks, not a thick sauce pool",
+   "fresh cilantro leaves, a lime wedge, a small cup of white raita-crema"
+  ],
+  "must_not_show": [
+   "battered nugget look or a uniform golden fried coating (that is the v1.1 variant, label it if shown)",
+   "microgreens, black sesame seeds, crushed nuts or any garnish not in the recipe (the first concept image had these: they are NOT in this recipe)",
+   "a tortilla or taco format (D-84)",
+   "any text, logo or menu card"
+  ],
+  "realism_notes": "Roasted cauliflower dries and browns unevenly: show irregular char, some floret edges dark, glaze catching light. Habanero is in the glaze, not on top.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk"
+ ],
+ "allergen_notes": "Milk (yogurt coating, raita-crema). Chickpea (besan) is not a major US allergen: check the label for wheat cross-contact; if the batter variant uses flour or a shared fryer, wheat must be added. Mango puree: check for sulfites. No allergen-free and no gluten-free claim.",
+ "evidence": [
+  "food/CORE5-FOOD-MATRIX.csv#gobi-taco (D-84: appetizer)",
+  "food/sessions/S3-gobi-taco.md (coating proportions per 1,600 g florets, scaled; blanch/roast parameters)",
+  "docs/decisions/DECISIONS.md D-84"
+ ],
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": true,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "vegetarian as designed; verify glaze ingredients and any oil for derivatives"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
+ "menu_category": "appetizer",
+ "menu_status": "approved_core5",
+ "classification_note": "Core 5 appetizer; matches founder candidate 'Mango Habanero Gobi' (D-84: not a taco).",
+ "target_gross_margin_pct": 70,
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "research": {
+  "practice": "see evidence list",
+  "nasha_combination": "see cultural/food research files",
+  "note": "Earlier research baseline; not re-sourced in D-87."
+ }
+}

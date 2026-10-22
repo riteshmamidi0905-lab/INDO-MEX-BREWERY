@@ -84,10 +84,38 @@ def build_pg(sqlite_path, dsn, schema="nasha_wh"):
     return parts
 
 
+def build_scn(sqlite_path, dsn, schema="nasha_wh"):
+    """D-87 scenario in PostgreSQL: copy the scenario BASE and python-derived tables, then rebuild the SQL-derived scn_ tables with the same transpiled statements.
+    Requires build_pg to have run first (the derived SQL joins the fact and dimension tables)."""
+    import psycopg
+    from .scenario import BASE_TABLES, DDL, DERIVED_TABLES, PY_TABLES, SQL
+    lite = sqlite3.connect(f"file:{sqlite_path}?mode=ro", uri=True)
+    pgtype = {"TEXT": "text", "INTEGER": "bigint", "REAL": "double precision"}
+    with psycopg.connect(dsn, autocommit=True) as con:
+        con.execute(f'SET search_path TO "{schema}", pg_catalog, public')
+        for t in BASE_TABLES + PY_TABLES:
+            cols = [c.split() for c in DDL[t].split(", ")]
+            con.execute(f"DROP TABLE IF EXISTS {t}")
+            con.execute(f"CREATE TABLE {t} (" + ", ".join(f"{n} {pgtype[ty]}" for n, ty in cols) + ")")
+            rows = lite.execute(f"SELECT * FROM {t}").fetchall()
+            if rows:
+                with con.cursor().copy(f"COPY {t} FROM STDIN") as cp:
+                    for r in rows:
+                        cp.write_row(list(r))
+        for t in reversed(DERIVED_TABLES):
+            con.execute(f"DROP TABLE IF EXISTS {t}")
+        body = "\n".join(l for l in SQL.read_text().splitlines() if not l.startswith("--"))
+        body = re.sub(r"(?i)\bsum\(\s*([\w.]+ IS (?:NOT )?NULL)\s*\)", r"sum(CASE WHEN \1 THEN 1 ELSE 0 END)", body)
+        for st in sqlglot.parse(body, read="sqlite"):
+            if st is not None:
+                con.execute(st.sql(dialect="postgres"))
+    lite.close()
+
+
 def reconcile(sqlite_path, dsn, schema="nasha_wh", rel_tol=1e-5):
     import psycopg
     lite = sqlite3.connect(f"file:{sqlite_path}?mode=ro", uri=True)
-    tables = [r[0] for r in lite.execute("SELECT name FROM sqlite_master WHERE type='table' AND (name LIKE 'dim_%' OR name LIKE 'fact_%' OR name LIKE 'mart_%') ORDER BY 1")]
+    tables = [r[0] for r in lite.execute("SELECT name FROM sqlite_master WHERE type='table' AND (name LIKE 'dim_%' OR name LIKE 'fact_%' OR name LIKE 'mart_%' OR name LIKE 'scn_%') ORDER BY 1")]
     out = []
     with psycopg.connect(dsn, autocommit=True) as con:
         con.execute(f'SET search_path TO "{schema}", public')

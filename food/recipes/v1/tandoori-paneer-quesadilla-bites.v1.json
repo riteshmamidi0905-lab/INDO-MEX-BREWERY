@@ -1,0 +1,213 @@
+{
+ "id": "tandoori-paneer-quesadilla-bites",
+ "name": "Tandoori Paneer Quesadilla Bites",
+ "menu_role": "Shareable small plate",
+ "menu_category": "appetizer",
+ "menu_status": "candidate",
+ "classification_note": "Appetizer per the founder candidate list; shares paneer, hari and raita with the approved Paneer Tikka Taco (cross-utilization).",
+ "cooking_method": "Marinate, griddle paneer; press quesadilla on a hot comal; cut in 8 triangles",
+ "portion": {
+  "description": "1 shareable plate (8 triangles)",
+  "targets": {
+   "paneer": "110 g",
+   "flour tortillas": "2 x 25 cm halves",
+   "oaxaca": "50 g",
+   "dips": "hari 30 g + raita-crema 25 g"
+  },
+  "construction": "folded half-moon quesadilla pressed, cut in 8"
+ },
+ "components": [
+  {
+   "name": "Tandoori paneer",
+   "lines": [
+    {
+     "ingredient": "i-paneer",
+     "qty": 110,
+     "unit": "g",
+     "prep": "cut 1.5 cm cubes"
+    },
+    {
+     "ingredient": "i-hung-curd",
+     "qty": 25,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-ginger-garlic-paste",
+     "qty": 5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-garam-masala",
+     "qty": 1,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-kasuri-methi",
+     "qty": 0.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 1.2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lemon-juice",
+     "qty": 4,
+     "unit": "ml"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 8,
+     "unit": "ml"
+    }
+   ]
+  },
+  {
+   "name": "Quesadilla",
+   "lines": [
+    {
+     "ingredient": "i-flour-tortilla-25",
+     "qty": 2,
+     "unit": "each"
+    },
+    {
+     "ingredient": "i-cheese-oaxaca",
+     "qty": 50,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 5,
+     "unit": "ml",
+     "prep": "comal allocation"
+    }
+   ]
+  },
+  {
+   "name": "Dips and garnish",
+   "lines": [
+    {
+     "subrecipe": "hari-salsa-verde",
+     "qty": 30,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "raita-crema",
+     "qty": 25,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "pickled-red-onion",
+     "qty": 10,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 1,
+     "unit": "g"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "hari-salsa-verde",
+  "raita-crema",
+  "pickled-red-onion"
+ ],
+ "method": {
+  "steps": [
+   "Marinate paneer 2-4 h at ≤ 4 °C (acid ≤ 30 min per paneer texture note).",
+   "Sear paneer on a very hot comal until charred spots form.",
+   "Fill tortilla with oaxaca and paneer, press 2-3 min per side until crisp and melted.",
+   "Rest 30 s, cut in 8, plate with dips."
+  ],
+  "critical_parameters": {
+   "comal_C": "about 220 (chef decision)",
+   "press_time": "2-3 min/side"
+  }
+ },
+ "plating": "Black stoneware plate, triangles fanned, dips in two small bowls, pickled onion heap.",
+ "equipment": [
+  "Comal/flat-top",
+  "Press or weighted pan",
+  "Cold storage ≤ 4 °C"
+ ],
+ "food_safety": [
+  "Pasteurized dairy only (supplier statement).",
+  "Hold assembled-unfried quesadillas ≤ 4 °C; discard marinade."
+ ],
+ "workflow": {
+  "stations": [
+   "cold prep",
+   "comal"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 3.0,
+   "service": 2.5
+  },
+  "fryer_load": "none",
+  "capacity_note": "estimate; measure at T1"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Carbonation and soft body cut cheese richness; clove/banana esters may echo tandoori spice.",
+   "risk": "Banana ester vs charred paneer.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Mango-citrus hop aroma lifts the charred spice.",
+   "risk": "Bitterness stacks with chile heat.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Overhead, black stoneware, warm side light.",
+  "must_show": [
+   "pressed golden triangles with visible paneer and melted cheese",
+   "green and cream dips",
+   "pink pickled onion"
+  ],
+  "must_not_show": [
+   "pizza-style topping",
+   "melted cheese sauce pool",
+   "any text, logo or menu card"
+  ],
+  "realism_notes": "Crisp tortilla edges with char spots; cheese pulls only if hot.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk",
+  "wheat"
+ ],
+ "allergen_notes": "Milk (paneer, cheese, yogurt, crema); wheat (tortilla). Comal shared with other items; no allergen-free claim.",
+ "evidence": [
+  "food/MENU-DEVELOPMENT-MATRIX-V1.md (#6 Paneer Tikka Taco, #10, #11 flavour logic)",
+  "food/SAUCE-SYSTEM.md (hari, raita-crema)"
+ ],
+ "research": {
+  "practice": "Paneer tikka (marinated, tandoor-char) is an established North Indian preparation; quesadilla is a Mexican format.",
+  "nasha_combination": "Paneer tikka inside a pressed quesadilla cut into bites is a NASHA proposal.",
+  "note": "RESEARCHED PRACTICE = documented regional preparation; NASHA COMBINATION = proposal not found in a traditional source. Sources are web-search snippets; primary documents were not retrieved (WebFetch unavailable)."
+ },
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "target_gross_margin_pct": 70,
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": true,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "no beef or pork ingredient; supplier statements required"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+}

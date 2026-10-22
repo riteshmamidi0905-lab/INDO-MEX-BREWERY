@@ -1,0 +1,203 @@
+{
+ "id": "tandoori-lamb-tacos",
+ "name": "Tandoori Lamb Tacos",
+ "menu_role": "Taco trio",
+ "menu_category": "main",
+ "menu_status": "candidate",
+ "classification_note": "Equals approved pool item #8 (Tandoori Lamb Taco). Lamb costing carries high price risk.",
+ "cooking_method": "Long marinade, grill lamb to 63 °C (+ rest), 3 tacos",
+ "portion": {
+  "description": "3 tacos",
+  "targets": {
+   "lamb (raw trimmed)": "190 g",
+   "corn tortillas": "3 x ~26 g",
+   "raita-crema": "36 g",
+   "hari": "24 g"
+  },
+  "construction": "sliced grilled lamb, onion, hari, raita-crema"
+ },
+ "components": [
+  {
+   "name": "Lamb",
+   "lines": [
+    {
+     "ingredient": "i-lamb-leg",
+     "qty": 190,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-hung-curd",
+     "qty": 45,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-ginger-garlic-paste",
+     "qty": 10,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 3,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-garam-masala",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-turmeric",
+     "qty": 0.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-cumin-ground",
+     "qty": 1,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 3,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lemon-juice",
+     "qty": 8,
+     "unit": "ml"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 15,
+     "unit": "ml"
+    }
+   ]
+  },
+  {
+   "name": "Tortillas and garnish",
+   "lines": [
+    {
+     "ingredient": "i-corn-tortilla",
+     "qty": 78,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "pickled-red-onion",
+     "qty": 20,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "hari-salsa-verde",
+     "qty": 24,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "raita-crema",
+     "qty": 36,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.33,
+     "unit": "each"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "pickled-red-onion",
+  "hari-salsa-verde",
+  "raita-crema"
+ ],
+ "method": {
+  "steps": [
+   "Marinate 8-24 h at ≤ 4 °C.",
+   "Grill on high heat to 63 °C (145 °F) minimum, rest 3 min, slice across the grain.",
+   "Warm tortillas; assemble."
+  ],
+  "critical_parameters": {
+   "core_C": "63 minimum + rest",
+   "marinade_time": "8-24 h at ≤ 4 °C"
+  }
+ },
+ "plating": "Three tacos, sliced lamb fan, bright herb sauces.",
+ "equipment": [
+  "Charbroiler/tandoor substitute",
+  "Comal",
+  "Probe thermometer"
+ ],
+ "food_safety": [
+  "Whole-muscle lamb to 63 °C with a 3-minute rest (official guidance; confirm local code); cut/diced or tenderized pieces to 71 °C.",
+  "Raw-protein separation; discard marinade."
+ ],
+ "workflow": {
+  "stations": [
+   "cold prep",
+   "grill",
+   "comal"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 4.5,
+   "service": 3.5
+  },
+  "fryer_load": "L",
+  "capacity_note": "estimate; measure at T1"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Wheat body and carbonation tame fat and char.",
+   "risk": "Esters vs lamb gaminess.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Fruit and hop aroma against rich lamb.",
+   "risk": "Bitterness vs char.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Three-quarter angle, board.",
+  "must_show": [
+   "pink-centred sliced lamb with char",
+   "pickled onion, hari, crema"
+  ],
+  "must_not_show": [
+   "beef-style carne asada look",
+   "pulled/shredded texture",
+   "any text, logo or menu card"
+  ],
+  "realism_notes": "Show char and sliced pink; no steak-house garnish.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk"
+ ],
+ "allergen_notes": "Milk. Tortilla label check. No allergen-free claim.",
+ "evidence": [
+  "food/MENU-DEVELOPMENT-MATRIX-V1.md (#8 Tandoori Lamb Taco, D-54)"
+ ],
+ "research": {
+  "practice": "Lamb tikka/seekh in tandoor-style marinades is established; taco is a Mexican format.",
+  "nasha_combination": "Documented as 'our own composition' in menu matrix #8.",
+  "note": "RESEARCHED PRACTICE = documented regional preparation; NASHA COMBINATION = proposal not found in a traditional source. Sources are web-search snippets; primary documents were not retrieved (WebFetch unavailable)."
+ },
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "target_gross_margin_pct": 70,
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": false,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "no beef or pork ingredient; supplier statements required"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+}

@@ -1,0 +1,119 @@
+{
+ "id": "goat-birria-braise",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Goat birria braise and consommé (batch; costed per gram of cooked meat)",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 1000,
+ "shelf_life_note": "3 days at ≤ 5 °C (ASSUMPTION; set by a professional)",
+ "lines": [
+  {
+   "ingredient": "i-goat-bone-in",
+   "qty": 2400,
+   "unit": "g",
+   "prep": "shoulder/leg pieces, seared in batches"
+  },
+  {
+   "ingredient": "i-guajillo",
+   "qty": 90,
+   "unit": "g",
+   "prep": "toasted, soaked, blended"
+  },
+  {
+   "ingredient": "i-ancho",
+   "qty": 45,
+   "unit": "g",
+   "prep": "toasted, soaked, blended"
+  },
+  {
+   "ingredient": "i-garlic",
+   "qty": 40,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-onion-white",
+   "qty": 200,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-cider-vinegar",
+   "qty": 100,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-oregano-mx",
+   "qty": 4,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-cumin-ground",
+   "qty": 6,
+   "unit": "g",
+   "prep": "toasted whole then ground"
+  },
+  {
+   "ingredient": "i-cinnamon",
+   "qty": 2,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-clove",
+   "qty": 1,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-bay",
+   "qty": 1,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 28,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-oil-neutral",
+   "qty": 40,
+   "unit": "ml",
+   "prep": "searing"
+  },
+  {
+   "ingredient": "i-water",
+   "qty": 1600,
+   "unit": "ml"
+  }
+ ],
+ "method": [
+  "Toast chiles briefly (do not scorch), soak in hot water 20 min, blend with garlic, onion, vinegar, oregano and ground whole spices to a smooth adobo.",
+  "Sear goat in batches; coat with adobo (optionally fry the paste until the oil separates: Session 5 arm B), add water and bay; cover/seal.",
+  "Braise low (a chef sets the temperature and time; Session 5 records them) until tender but fibrous; target about 1,000 g cooked boneless meat and about 1,250 ml consommé from the batch (ASSUMPTION: measure the real yield).",
+  "Skim the surface fat into a container (used to dip and griddle the tortillas); strain and season the consommé; shred or pull the meat, keeping some fibre so it reads as goat."
+ ],
+ "sauce_spec": {
+  "texture": "tender, fibrous meat; drinkable consommé",
+  "acid": "vinegar in adobo + lime at service",
+  "heat": "2",
+  "richness": "very high",
+  "salt": "about 1.2% of goat weight, adjusted after braise",
+  "use": "2 tacos + small cup of consommé per portion (about 100 g meat + 90 ml consommé)"
+ },
+ "food_safety": [
+  "Large-batch braise is the highest food-safety risk in the Core 5: cooling and reheating must follow a written process set by a food-safety professional (US Food Code orientation: cool 57 °C → 21 °C within 2 h and → 5 °C within 4 more hours; reheat to 74 °C within 2 h; hot-hold at or above 57 °C).",
+  "Use goat/chicken/vegetable stock only (D-54): no beef or pork stock, bones or lard. No halal claim.",
+  "Skimmed fat sets on cooling: keep separate, label, use within the written shelf life."
+ ],
+ "allergens_declared": [],
+ "test_variables": [
+  "adobo fried vs raw (arm B)",
+  "yogurt-papaya pre-marinade (arm C)",
+  "braise time/temperature",
+  "consommé volume per portion"
+ ],
+ "evidence": [
+  "food/CORE5-FOOD-MATRIX.csv (goat-birria)",
+  "food/sessions/S5-goat-birria.md (T5 baseline: ~600 g bone-in goat per arm, adobo, braise, 2 tacos + consommé)",
+  "food/SAUCE-SYSTEM.md (#6 Adobo-Dum)"
+ ],
+ "estimates_label": "All quantities, yields and shelf-life values are preliminary estimates until tested by a person in a kitchen.",
+ "costing_basis": "Cost basis = about 1,000 g cooked boneless meat per batch (ASSUMPTION: ~42% of the 2,400 g bone-in goat). The consommé (about 1,250 ml) is a by-product allocated at zero cost, so each portion (100 g meat + 90 ml consommé) carries the full goat cost."
+}

@@ -42,3 +42,15 @@ def test_round_half_away_from_zero_matches_sqlite(built):
     with psycopg.connect(built[1], autocommit=True) as c:
         c.execute('SET search_path TO "nasha_wh", pg_catalog, public')
         assert c.execute("SELECT round(2.5::double precision), round(0.5::double precision), round(-2.5::double precision), round(1.00005::double precision, 4)").fetchone() == (3.0, 1.0, -3.0, 1.0001)
+
+
+def test_d87_scenario_tables_reconcile_in_postgresql(built):
+    """The scenario's SQL-derived tables are rebuilt in PostgreSQL from the same transpiled statements and must match SQLite (rows + numeric sums)."""
+    from nasha_lab.warehouse import scenario
+    path, dsn = built
+    scenario.build(path)
+    V.build_pg(path, dsn)
+    V.build_scn(path, dsn)
+    rep = V.reconcile(path, dsn)
+    scn = [r for r in rep if r["table"].startswith("scn_")]
+    assert len(scn) == len(scenario.ALL_TABLES) and [r for r in scn if r["mismatches"]] == []

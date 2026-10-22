@@ -1,0 +1,231 @@
+{
+ "id": "paneer-tikka-taco",
+ "name": "Paneer Tikka Taco",
+ "menu_role": "TACOS — 2 small tacos per order (Core 5; vegetarian signature)",
+ "cooking_method": "Marinate in hung curd 1-4 h, char over very high direct heat to order (tandoor unresolved; charbroiler/comal/oven+broiler as a labelled substitute)",
+ "portion": {
+  "description": "2 small tacos (about 55 g paneer each)",
+  "targets": {
+   "paneer": "110 g (about 6 cubes per taco, weigh)",
+   "corn tortillas": "2 × 28 g",
+   "salsa verde": "30 g",
+   "raw white onion": "16 g",
+   "cilantro": "4 g"
+  },
+  "construction": "two small folded tacos, salsa on the side"
+ },
+ "components": [
+  {
+   "name": "Paneer tikka",
+   "lines": [
+    {
+     "ingredient": "i-paneer",
+     "qty": 110,
+     "unit": "g",
+     "prep": "about 2 cm cubes, cold, patted dry"
+    },
+    {
+     "ingredient": "i-hung-curd",
+     "qty": 27.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-ginger-garlic-paste",
+     "qty": 3.3,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 0.8,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-turmeric",
+     "qty": 0.2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-kasuri-methi",
+     "qty": 0.3,
+     "unit": "g",
+     "prep": "crushed"
+    },
+    {
+     "ingredient": "i-chaat-masala",
+     "qty": 0.6,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 1.1,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lemon-juice",
+     "qty": 1.7,
+     "unit": "ml"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 2.2,
+     "unit": "ml",
+     "prep": "in the marinade (mustard oil is EXCLUDED from the baseline)"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 4,
+     "unit": "ml",
+     "prep": "char/griddle allocation"
+    }
+   ]
+  },
+  {
+   "name": "Taco assembly",
+   "lines": [
+    {
+     "ingredient": "i-corn-tortilla",
+     "qty": 56,
+     "unit": "g",
+     "prep": "2 tortillas, warmed on a comal"
+    },
+    {
+     "subrecipe": "hari-salsa-verde",
+     "qty": 30,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-onion-white",
+     "qty": 16,
+     "unit": "g",
+     "prep": "raw, finely diced"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 4,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "pickled-red-onion",
+     "qty": 12,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.17,
+     "unit": "each"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "hari-salsa-verde",
+  "pickled-red-onion"
+ ],
+ "method": {
+  "steps": [
+   "Hang yogurt 2-4 h (about 50% weight) in the cold; make marinade (hung curd, ginger-garlic, chilli, turmeric, kasuri methi, chaat masala, salt, lemon, oil).",
+   "Marinate paneer cubes 1-4 h at ≤ 5 °C (not past 8 h; the marinade waters and the texture softens).",
+   "Skewer or place cubes on a very hot surface; char 2-4 min total, turning, until visible char with a soft interior (heat source decided in Session 2).",
+   "Warm tortillas on a dry comal; fill with 3 cubes each, salsa, raw onion, cilantro, pickled onion; serve at once with lime."
+  ],
+  "critical_parameters": {
+   "paneer_core_C": "hold at 60 °C or above after cooking (Session 2 rule); discard cooked or marinated paneer left out of temperature control for 2 h or more",
+   "heat_source": "UNRESOLVED (tandoor vs charbroiler vs comal+broiler); a substitute is labelled, not called a tandoor"
+  }
+ },
+ "plating": "Two small tacos on a plate cross-section visible, 2-3 charred paneer cubes showing, salsa verde in a small cup at the side, lime wedge. No melted cheese.",
+ "equipment": [
+  "Tandoor (UNRESOLVED) or charbroiler/high-heat grill; hood and fire-suppression answer is a [PRO] question",
+  "Comal for tortillas",
+  "Cloth/sieve for hanging yogurt, cold storage ≤ 5 °C",
+  "Skewers or grill basket"
+ ],
+ "food_safety": [
+  "Marinate at or below 5 °C; discard marinated or cooked paneer held 2 h or more outside temperature control.",
+  "Paneer is a TCS dairy food: keep cold, hot-hold at or above 57 °C after cooking.",
+  "Separate raw-onion and salsa handling; wash produce.",
+  "Check rennet/acid source for vegetarian labelling; mustard only if mustard oil/blends are ever introduced (excluded from the baseline)."
+ ],
+ "workflow": {
+  "stations": [
+   "cold prep",
+   "grill/tandoor",
+   "assembly"
+  ],
+  "day_before": [
+   "Hang yogurt (4 h), marinade batch, cut and marinate paneer (≤ 8 h)",
+   "Make hari and pickled onion"
+  ],
+  "morning": [
+   "Skewer cubes, prepare tortillas warm station"
+  ],
+  "service": [
+   "Char to order (2-4 min), warm tortillas, assemble"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 2.0,
+   "service": 3.0
+  },
+  "fryer_load": "none",
+  "capacity_note": "heat-source capacity is unresolved (tandoor answer)"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Soft wheat body suits soft paneer; carbonation cuts yogurt richness (existing matrix lists hefeweizen/witbier).",
+   "risk": "Banana esters against char and chaat masala.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Tropical aroma lifts the salsa verde acid.",
+   "risk": "IPA bitterness beside char reads bitter; strong hop aroma may overpower paneer.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Two tacos on a plate, 45° angle, warm side light, shallow depth of field, small cup of green salsa.",
+  "must_show": [
+   "visible char marks on the paneer cubes, orange-red tikka marinade colour",
+   "corn tortillas with natural spots, folded not rolled",
+   "bright green salsa, white raw onion, cilantro, pink pickled onion, lime wedge"
+  ],
+  "must_not_show": [
+   "melted cheese or a quesadilla look",
+   "pineapple or al-pastor cues (excluded from the baseline)",
+   "text or logos"
+  ],
+  "realism_notes": "Paneer chars unevenly; cubes should be slightly irregular with dark edges, not uniformly grill-marked.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk"
+ ],
+ "allergen_notes": "Milk (paneer, hung curd). Wheat only if a flour tortilla is used (corn baseline). Mustard only if mustard oil or a mustard-containing blend is introduced (excluded). No allergen-free claim.",
+ "evidence": [
+  "food/CORE5-FOOD-MATRIX.csv#paneer-tikka-taco",
+  "food/sessions/S2-paneer-tikka-taco.md (T2 baseline marinade per 600 g paneer, scaled; ~55 g paneer per taco)",
+  "food/SAUCE-SYSTEM.md"
+ ],
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": true,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "rennet/acid source recorded for vegetarian labelling"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
+ "menu_category": "main",
+ "menu_status": "approved_core5",
+ "classification_note": "Core 5 item; not in the founder's appetizer/main candidate lists: provisionally priced as a main (taco trio) pending founder classification.",
+ "target_gross_margin_pct": 70,
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "research": {
+  "practice": "see evidence list",
+  "nasha_combination": "see cultural/food research files",
+  "note": "Earlier research baseline; not re-sourced in D-87."
+ }
+}

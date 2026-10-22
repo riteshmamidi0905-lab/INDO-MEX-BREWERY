@@ -21,11 +21,12 @@ KEYS = ("numpy", "pandas", "sqlglot", "psycopg", "pydantic", "fastapi")
 
 def table_hashes(db_path):
     con = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
-    names = [r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table' AND (name LIKE 'dim_%' OR name LIKE 'fact_%' OR name LIKE 'mart_%') ORDER BY 1")]
+    names = [r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table' AND (name LIKE 'dim_%' OR name LIKE 'fact_%' OR name LIKE 'mart_%' OR name LIKE 'scn_%') AND name <> 'scn_scenario_run' ORDER BY 1")]
     out = {}
     for t in names:
         h = hashlib.sha256()
-        for row in con.execute(f"SELECT * FROM {t} ORDER BY 1,2,3,4"):
+        k = min(4, len(con.execute(f"PRAGMA table_info({t})").fetchall()))
+        for row in con.execute(f"SELECT * FROM {t} ORDER BY {','.join(map(str, range(1, k + 1)))}"):
             h.update(repr(row).encode())
         out[t] = h.hexdigest()[:16]
     con.close()

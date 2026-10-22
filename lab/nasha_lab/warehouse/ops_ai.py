@@ -131,6 +131,93 @@ TOOLS = {t.name: t for t in (
     Tool("daily_series", "Daily orders, sales and labor for a location-month.", ALL, True, _t_daily),
 )}
 
+
+# ------------------------------------------------------------------ scenario (D-87) tools: recipes, menu economics, inventory, procurement (SYNTHETIC; read-only)
+ING = re.compile(r"^i-[a-z0-9-]{2,40}$")
+
+
+def _need_scn(con):
+    if not con.execute("SELECT 1 FROM sqlite_master WHERE name='scn_menu_item'").fetchone():
+        raise Denied("scenario_not_built", "the pricing/recipe scenario has not been built into this warehouse")
+
+
+def _t_price_config(con, a):
+    _need_scn(con)
+    return _rows(con, "SELECT config_id, price_key, kind, price_cents, status FROM scn_pricing WHERE config_id NOT LIKE '%v1%' ORDER BY price_key"), "scn_pricing"
+
+
+def _t_menu_economics(con, a):
+    _need_scn(con)
+    cat = a.get("menu_category")
+    if cat is not None and cat not in ("appetizer", "main"):
+        raise Denied("bad_argument", "menu_category must be appetizer or main")
+    sql = ("SELECT menu_item_id, name, menu_category, price_cents, round(unit_food_cost_cents, 2) AS unit_food_cost_cents, round(unit_consumables_cents, 2) AS unit_consumables_cents, "
+           "round(unit_food_cost_cents / price_cents, 4) AS food_cost_pct, round(price_cents - unit_food_cost_cents - unit_consumables_cents, 2) AS gross_profit_cents, menu_status "
+           "FROM scn_menu_item" + (" WHERE menu_category=?" if cat else "") + " ORDER BY unit_food_cost_cents / price_cents DESC, menu_item_id")
+    return _rows(con, sql, (cat,) if cat else ()), "scn_menu_item"
+
+
+def _t_menu_profitability(con, a):
+    _need_scn(con)
+    m, lim = _month(a), _limit(a)
+    return _rows(con, "SELECT menu_item_id, sum(units) units, sum(restated_net_cents) restated_net_cents, sum(food_and_consumables_cents) food_and_consumables_cents, sum(gross_profit_cents) gross_profit_cents "
+                      "FROM scn_menu_profitability_month WHERE month=? GROUP BY menu_item_id ORDER BY 5 DESC, 1 LIMIT ?", (m, lim)), "scn_menu_profitability_month"
+
+
+def _t_ingredient_usage(con, a):
+    _need_scn(con)
+    l, lim = _loc(a), _limit(a)
+    w = a.get("week")
+    if not isinstance(w, int) or isinstance(w, bool) or not 0 <= w <= 2000:
+        raise Denied("bad_argument", "week must be an integer 0..2000")
+    return _rows(con, "SELECT ingredient_id, round(theoretical_qty, 4) theoretical_qty, round(measured_qty, 4) measured_qty, variance_pct FROM scn_variance_week WHERE location_id=? AND week=? ORDER BY theoretical_qty DESC, ingredient_id LIMIT ?", (l, w, lim)), "scn_variance_week"
+
+
+def _t_variance_flags(con, a):
+    _need_scn(con)
+    l, lim = _loc(a, required=False), _limit(a, 10)
+    sql = "SELECT location_id, week, ingredient_id, variance_pct, baseline_pct, excess_pct, pattern, severity FROM scn_variance_flag" + (" WHERE location_id=?" if l else "") + " ORDER BY excess_pct DESC, location_id, week, ingredient_id LIMIT ?"
+    return _rows(con, sql, ((l,) if l else ()) + (lim,)), "scn_variance_flag"
+
+
+def _t_reorder(con, a):
+    _need_scn(con)
+    l, lim = _loc(a, required=False), _limit(a, 10)
+    sql = ("SELECT reco_id, location_id, ingredient_id, round(need_qty, 4) need_qty, round(on_hand_qty, 4) on_hand_qty, order_qty, unit, supplier_id, est_cost_usd, price_class, status FROM scn_procurement_reco"
+           + (" WHERE location_id=?" if l else "") + " ORDER BY est_cost_usd DESC, reco_id LIMIT ?")
+    return _rows(con, sql, ((l,) if l else ()) + (lim,)), "scn_procurement_reco"
+
+
+def _t_supplier_compare(con, a):
+    _need_scn(con)
+    ing = a.get("ingredient_id")
+    if not isinstance(ing, str) or not ING.match(ing):
+        raise Denied("bad_argument", "ingredient_id must look like i-chicken-thigh")
+    return _rows(con, "SELECT supplier_id, quote_id, unit_price, pack_qty, lead_days, price_class FROM scn_supplier_quote WHERE ingredient_id=? ORDER BY unit_price, supplier_id", (ing,)), "scn_supplier_quote"
+
+
+def _t_recipe_bom(con, a):
+    _need_scn(con)
+    r = a.get("recipe_id")
+    if not isinstance(r, str) or not re.match(r"^[a-z0-9-]{3,60}$", r):
+        raise Denied("bad_argument", "recipe_id must look like chicken-65-totopos")
+    return _rows(con, "SELECT recipe_id, recipe_version, ingredient_id, round(ap_qty_per_portion, 5) ap_qty_per_portion, unit FROM scn_recipe_bom WHERE recipe_id=? ORDER BY ap_qty_per_portion DESC, ingredient_id", (r,)), "scn_recipe_bom"
+
+
+SCN_CORP = frozenset({"exec", "finance", "analyst"})
+TOOLS.update({t.name: t for t in (
+    Tool("price_config", "Approved CONCEPT menu prices and pending serving-volume decisions.", ALL, False, _t_price_config),
+    Tool("menu_economics", "Per-dish price, planning food cost, food-cost % and gross profit (planning assumptions).", SCN_CORP, False, _t_menu_economics),
+    Tool("menu_profitability", "Simulated menu profitability for a month at approved concept prices (restated; synthetic).", SCN_CORP, False, _t_menu_profitability),
+    Tool("ingredient_usage", "Theoretical vs measured ingredient usage for a site-week.", ALL, True, _t_ingredient_usage),
+    Tool("variance_flags", "Waste/variance flags for unexplained excess usage.", ALL, True, _t_variance_flags),
+    Tool("reorder_recommendations", "PROPOSED reorder recommendations (not orders; need human approval).", ALL, True, _t_reorder),
+    Tool("supplier_comparison", "Compare SYNTHETIC supplier quotes for an ingredient.", SCN_CORP, False, _t_supplier_compare),
+    Tool("recipe_bom", "Bill of materials (as-purchased units per portion) for a dish.", SCN_CORP, False, _t_recipe_bom),
+)})
+SITE_DEFAULT_TOOLS = {"waste", "variance_flags", "reorder_recommendations"}
+
+
 AUDIT = """CREATE TABLE IF NOT EXISTS ops_ai_audit (call_id TEXT PRIMARY KEY, ts TEXT, user TEXT, role TEXT, site TEXT, tool TEXT, args TEXT, decision TEXT, code TEXT, rows INTEGER, ms REAL, warehouse_run TEXT, source TEXT)"""
 
 
@@ -170,7 +257,7 @@ class OpsAI:
                     raise Denied("no_site", "site_manager principal has no valid site")
                 if t.site_scoped:
                     loc = args.get("location_id")
-                    if loc is None and tool == "waste":
+                    if loc is None and tool in SITE_DEFAULT_TOOLS:
                         args["location_id"] = who.site   # default to their own site, never company-wide
                     elif loc != who.site:
                         raise Denied("site_scope", f"{who.user} is scoped to {who.site}")
@@ -194,10 +281,16 @@ class OpsAI:
         ll = re.search(r"\b(l\d{2})\b", question, re.I)
         month = mm.group(1) if mm else None
         loc = ll.group(1).upper() if ll else None
-        if month is None:
-            return {"ok": False, "code": "abstain", "error": "name a month as YYYY-MM"}
         if re.search(r"\b(drop|delete|update|insert|ignore previous|system prompt)\b", q):
             return {"ok": False, "code": "abstain", "error": "request is not a read-only business question"}
+        if re.search(r"\b(reorder|procure|purchase order)", q) and not re.search(r"\b(place|send|submit|approve|execute)\b", q):
+            return self.call(who, "reorder_recommendations", {**({"location_id": loc} if loc else {})})
+        if "variance" in q or "over-portion" in q or "unexplained usage" in q:
+            return self.call(who, "variance_flags", {**({"location_id": loc} if loc else {})})
+        if re.search(r"food cost|menu margin|dish margin|gross profit per dish", q):
+            return self.call(who, "menu_economics", {})
+        if month is None:
+            return {"ok": False, "code": "abstain", "error": "name a month as YYYY-MM"}
         if "waste" in q:
             return self.call(who, "waste", {"month": month, **({"location_id": loc} if loc else {})})
         if "top" in q and ("product" in q or "item" in q or "seller" in q):

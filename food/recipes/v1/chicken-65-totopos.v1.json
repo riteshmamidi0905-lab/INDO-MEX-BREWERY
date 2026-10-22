@@ -1,0 +1,267 @@
+{
+ "id": "chicken-65-totopos",
+ "name": "Chicken 65 Totopos",
+ "menu_role": "CHOTA — shareable small plate (Core 5)",
+ "cooking_method": "Marinate, coat just before frying, deep-fry in small batches at about 175 °C, probe to 74 °C; fry curry leaf and chile; fry the chips last",
+ "portion": {
+  "description": "1 shareable plate (T1 portion targets)",
+  "targets": {
+   "cooked chicken": "120 g (from 165 g raw trimmed thigh)",
+   "fried totopos": "about 60 g (from 55 g raw corn tortilla)",
+   "raita-crema": "22 g",
+   "pickled red onion": "10 g",
+   "lime": "1/6 per plate"
+  },
+  "construction": "v1.0 = Construction C (composed board: chips, chicken and crema in controlled contact) because the T1 holding risk is chip softening; A (integrated) and B (ring) remain test constructions"
+ },
+ "components": [
+  {
+   "name": "Chicken 65",
+   "lines": [
+    {
+     "ingredient": "i-chicken-thigh",
+     "qty": 165,
+     "unit": "g",
+     "prep": "boneless skinless thigh, trimmed, cut into 2.5-3 cm pieces"
+    },
+    {
+     "ingredient": "i-yogurt",
+     "qty": 10,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-ginger-garlic-paste",
+     "qty": 7,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-turmeric",
+     "qty": 0.3,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-coriander-powder",
+     "qty": 1,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 1.7,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lemon-juice",
+     "qty": 4,
+     "unit": "ml"
+    },
+    {
+     "ingredient": "i-rice-flour",
+     "qty": 6.6,
+     "unit": "g",
+     "prep": "coating, applied just before frying"
+    },
+    {
+     "ingredient": "i-cornflour",
+     "qty": 6.6,
+     "unit": "g",
+     "prep": "coating, applied just before frying"
+    },
+    {
+     "ingredient": "i-curry-leaf",
+     "qty": 1.5,
+     "unit": "g",
+     "prep": "fried 15-20 s"
+    },
+    {
+     "ingredient": "i-green-chile",
+     "qty": 5,
+     "unit": "g",
+     "prep": "slit/sliced, fried"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 20,
+     "unit": "ml",
+     "prep": "allocation: oil absorbed/degraded by frying the chicken"
+    }
+   ]
+  },
+  {
+   "name": "Totopos",
+   "lines": [
+    {
+     "ingredient": "i-corn-tortilla",
+     "qty": 55,
+     "unit": "g",
+     "prep": "2 tortillas, dried 30 min, cut in 6-8 wedges"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 0.8,
+     "unit": "g",
+     "prep": "while hot"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 15,
+     "unit": "ml",
+     "prep": "allocation: oil absorbed/degraded by frying the chips"
+    }
+   ]
+  },
+  {
+   "name": "Garnish and sauce",
+   "lines": [
+    {
+     "subrecipe": "raita-crema",
+     "qty": 22,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "pickled-red-onion",
+     "qty": 10,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.17,
+     "unit": "each",
+     "prep": "1/6 wedge"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 1,
+     "unit": "g"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "raita-crema",
+  "pickled-red-onion"
+ ],
+ "method": {
+  "steps": [
+   "Day before: marinate chicken (yogurt, ginger-garlic, chilli, turmeric, coriander, salt, lemon) at 4 °C or below, 1 h to overnight (max 24 h). Make raita-crema and pickled onion.",
+   "Morning: dry corn tortillas 30 min, cut into wedges; weigh rice flour + cornflour 1:1; set fryer to 175 °C and check oil quality.",
+   "Service: toss marinated chicken in the flour mix just before frying; fry in small batches (about 4-5 min) until deep red-orange and crisp; probe every batch to 74 °C in the thickest piece; rest on a rack.",
+   "Fry curry leaf (15-20 s) and chile (about 30 s) and toss through the chicken; hold chicken on a rack at about 90 °C (T1 protocol).",
+   "Fry the chips LAST, immediately before plating (about 75-90 s at 170-175 °C until crisp), salt while hot.",
+   "Plate within 60 seconds (see plating)."
+  ],
+  "critical_parameters": {
+   "fry_temp_C": "about 175 (chef decision)",
+   "chicken_core_C": "74 (165 °F) minimum, probed per batch",
+   "marinade_time": "1-24 h at ≤ 4 °C",
+   "chip_crispness_gate": "still crisp at T+10 min (T1 gate 3.5)"
+  }
+ },
+ "plating": "Black stoneware plate or board. Chips fanned on one side, chicken pieces in a loose pile partly resting on a small rack/liner so steam escapes, a pool of raita-crema at the edge (not poured over), pickled onion in a small heap, fried curry leaves and green chile visible on top, lime wedge beside. Chicken pieces must look like boneless thigh pieces with a lightly crinkled, red-orange crust, not uniform nuggets.",
+ "equipment": [
+  "Deep fryer (heavy load; two baskets: chicken and chips)",
+  "Probe thermometer, calibrated",
+  "Cooling/draining rack and hot-hold at about 90 °C",
+  "Cold storage at ≤ 4 °C for marinade",
+  "Station for dry flour dredge",
+  "Black stoneware serviceware"
+ ],
+ "food_safety": [
+  "Poultry to 74 °C (165 °F), probed in the thickest piece on every fry batch.",
+  "Marinate at or below 4 °C; discard marinade; never reuse; separate raw-chicken board/utensils and hand-wash.",
+  "Hot-hold cooked chicken at or above 57 °C (135 °F); discard plates or held chicken over 2 hours (T1 rule).",
+  "Fryer: shared oil between chicken (milk in the marinade) and chips means NO allergen-free claim; filter and test oil quality on a schedule.",
+  "Hot oil safety, wet-food-in-oil splatter control, second person during peak (T1: execution risk medium)."
+ ],
+ "workflow": {
+  "stations": [
+   "cold prep",
+   "fryer",
+   "plating"
+  ],
+  "day_before": [
+   "Marinate chicken (batch 5 kg raw = 30 plates)",
+   "Make raita-crema, pickled onion (batches)"
+  ],
+  "morning": [
+   "Dry and cut tortilla wedges (can be cut the day before, held dry)",
+   "Mix coating, verify fryer oil, mise en place garnishes"
+  ],
+  "service": [
+   "Dredge and fry chicken in batches; hot hold on rack",
+   "Fry curry leaf/chile with the last chicken batch",
+   "Fry chips to order, plate within 60 s"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 3.5,
+   "service": 3.0
+  },
+  "fryer_load": "H",
+  "capacity_note": "fryer is the bottleneck (shared with other fried items)"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "High carbonation and soft wheat body clean fry fat and soften chile heat; clove/banana esters may echo the spice. Existing matrix: BODY|CONTRAST|ECHO|HEAT.",
+   "risk": "Banana ester against curry-leaf bitterness; thin body against a heavy fry.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Mango-tropical hop aroma echoes the lime and chile freshness.",
+   "risk": "Hop bitterness (about 35 IBU objective) amplifies chile heat; juicy sweetness could stack with fried richness.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Overhead three-quarter angle, black stoneware plate, warm side light (low evening window light), shallow depth of field.",
+  "must_show": [
+   "boneless thigh pieces with a crinkled red-orange crust, irregular sizes (2.5-3 cm)",
+   "visible fried curry leaves and slit green chile on the chicken",
+   "thick golden fried corn wedges (not thin factory chips)",
+   "a pool of white-pale raita-crema at the edge, pink pickled red onion heap, one lime wedge"
+  ],
+  "must_not_show": [
+   "uniform breaded nuggets",
+   "cheese sauce or nacho-style toppings (GENERIC_NACHOS is a D-74 failure gate)",
+   "microgreens, sesame or ingredients not in the recipe",
+   "any text, logo or menu card"
+  ],
+  "realism_notes": "Show a little oil sheen on the chips and a steam wisp only if the chicken is meant to be fresh; the chips must look sturdy enough to carry a piece of chicken.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk"
+ ],
+ "allergen_notes": "Milk (yogurt, crema). Wheat not expected (rice flour + cornflour) but fryer cross-contact with other fried items must be recorded; check flour and tortilla labels. No allergen-free claim.",
+ "evidence": [
+  "food/CORE5-FOOD-MATRIX.csv#chicken-65-totopos",
+  "food/t1-test-sheets/11-chicken-65-totopos-prototype-protocol-FROZEN.md (portion targets, 1 kg marinade/coating baseline)",
+  "food/SAUCE-SYSTEM.md"
+ ],
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": false,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "chicken only; no lard in tortillas or oil (verify labels)"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
+ "menu_category": "appetizer",
+ "menu_status": "approved_core5",
+ "classification_note": "Core 5 anchor appetizer; matches founder candidate 'Chicken 65 Totopos'.",
+ "target_gross_margin_pct": 70,
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "research": {
+  "practice": "see evidence list",
+  "nasha_combination": "see cultural/food research files",
+  "note": "Earlier research baseline; not re-sourced in D-87."
+ }
+}

@@ -1,0 +1,180 @@
+{
+ "id": "goan-chicken-vindaloo-pizza",
+ "name": "Goan Chicken Vindaloo Pizza",
+ "menu_role": "Pizza (12 inch, one person)",
+ "menu_category": "main",
+ "menu_status": "candidate",
+ "classification_note": "New main; pork-free by design (D-54).",
+ "cooking_method": "Braise chicken in vindaloo sauce, drain, top and bake",
+ "portion": {
+  "description": "1 pizza, about 30 cm",
+  "targets": {
+   "dough": "230 g",
+   "chicken (raw)": "130 g",
+   "vindaloo sauce": "60 g",
+   "mozzarella": "85 g"
+  },
+  "construction": "braised vindaloo chicken, dry-ish, on mozzarella"
+ },
+ "components": [
+  {
+   "name": "Base",
+   "lines": [
+    {
+     "subrecipe": "pizza-dough",
+     "qty": 230,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-mozzarella",
+     "qty": 85,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "name": "Vindaloo chicken",
+   "lines": [
+    {
+     "ingredient": "i-chicken-thigh",
+     "qty": 130,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "vindaloo-sauce",
+     "qty": 60,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-water",
+     "qty": 0.02,
+     "unit": "l"
+    }
+   ]
+  },
+  {
+   "name": "Finish",
+   "lines": [
+    {
+     "ingredient": "i-onion-red",
+     "qty": 25,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-green-chile",
+     "qty": 4,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "raita-crema",
+     "qty": 20,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.17,
+     "unit": "each"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "pizza-dough",
+  "vindaloo-sauce",
+  "raita-crema"
+ ],
+ "method": {
+  "steps": [
+   "Braise chicken in vindaloo sauce to 74 °C, shred or chop, reduce until nearly dry.",
+   "Cool two-stage if batch-cooked; chill.",
+   "Top the stretched dough, bake hot; finish with onion, chile, cilantro and raita-crema."
+  ],
+  "critical_parameters": {
+   "core_C": "74 minimum",
+   "topping": "must be dry (menu matrix: 'dry shred only')"
+  }
+ },
+ "plating": "Whole pizza on a board, crema in lines.",
+ "equipment": [
+  "High-heat oven",
+  "Braise pot/tilting kettle",
+  "Probe thermometer"
+ ],
+ "food_safety": [
+  "Poultry to 74 °C; cool braise per two-stage rule; reheat to 74 °C if re-heated for hot holding.",
+  "NO PORK: traditional vindaloo is often pork; NASHA recipe is chicken only (D-54)."
+ ],
+ "workflow": {
+  "stations": [
+   "braise",
+   "dough",
+   "oven"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 4.0,
+   "service": 3.0
+  },
+  "fryer_load": "none",
+  "capacity_note": "estimate; measure at T1"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Carbonation cleans vinegar-chile richness.",
+   "risk": "Esters vs vinegar tang.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Fruity hops soften vinegar heat.",
+   "risk": "Bitterness stacks with chile.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Overhead, wooden peel.",
+  "must_show": [
+   "deep red braised chicken pieces",
+   "white raita-crema lines",
+   "red onion and green chile"
+  ],
+  "must_not_show": [
+   "pork look",
+   "pineapple or other non-recipe toppings",
+   "any text, logo or menu card"
+  ],
+  "realism_notes": "Topping should look dry-roasted, not saucy.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk",
+  "wheat"
+ ],
+ "allergen_notes": "Milk, wheat. No allergen-free claim.",
+ "evidence": [
+  "food/MENU-DEVELOPMENT-MATRIX-V1.md (#13 Birria Pizza conditional: 'dry shred only' logic)"
+ ],
+ "research": {
+  "practice": "Goan vindaloo is a vinegar-chile marinade/braise, traditionally pork in many versions.",
+  "nasha_combination": "Chicken vindaloo as a pizza topping is a NASHA proposal.",
+  "note": "RESEARCHED PRACTICE = documented regional preparation; NASHA COMBINATION = proposal not found in a traditional source. Sources are web-search snippets; primary documents were not retrieved (WebFetch unavailable)."
+ },
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "target_gross_margin_pct": 70,
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": false,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "no beef or pork ingredient; supplier statements required"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+}

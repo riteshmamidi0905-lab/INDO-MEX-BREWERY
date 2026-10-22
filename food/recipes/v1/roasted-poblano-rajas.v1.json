@@ -1,0 +1,61 @@
+{
+ "id": "roasted-poblano-rajas",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Roasted poblano rajas",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 560,
+ "shelf_life_note": "3 days at ≤ 5 °C (ASSUMPTION)",
+ "lines": [
+  {
+   "ingredient": "i-poblano",
+   "qty": 440,
+   "unit": "g",
+   "prep": "roasted over flame/broiler until blistered, steamed 10 min, peeled, seeded, cut in strips, drained and patted dry"
+  },
+  {
+   "ingredient": "i-onion-white",
+   "qty": 150,
+   "unit": "g",
+   "prep": "sliced, sautéed until soft"
+  },
+  {
+   "ingredient": "i-oil-neutral",
+   "qty": 20,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 6,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-lime-juice",
+   "qty": 10,
+   "unit": "ml"
+  }
+ ],
+ "method": [
+  "Roast whole poblanos (about 30 min total including steaming), peel, seed, strip, drain and pat dry (target EP 440 g from about 800 g AP).",
+  "Sauté onion until soft; add chile strips, salt and lime; cook briefly and drain again.",
+  "Cool and hold; keep drained so the quesadilla does not leak."
+ ],
+ "sauce_spec": {
+  "texture": "soft strips, drained",
+  "acid": "low",
+  "heat": "1",
+  "use": "counterweight to richness (smoke and acid)"
+ },
+ "food_safety": [
+  "Hold at or below 5 °C; date-mark."
+ ],
+ "allergens_declared": [],
+ "test_variables": [
+  "roast method (flame vs broiler)",
+  "amount of onion"
+ ],
+ "evidence": [
+  "food/sessions/S4-butter-chicken-quesadilla.md (poblano roasting steps)"
+ ],
+ "estimates_label": "All quantities, yields and shelf-life values are preliminary estimates until tested by a person in a kitchen."
+}

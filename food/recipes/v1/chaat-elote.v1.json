@@ -1,0 +1,183 @@
+{
+ "id": "chaat-elote",
+ "name": "Chaat Elote",
+ "menu_role": "CHOTA — vegetarian shareable (approved 12-dish test menu #2; not Core 5)",
+ "cooking_method": "Char corn on a grill/comal with ghee, toss while hot with raita-crema, cheese, chaat masala, lime and chile",
+ "portion": {
+  "description": "1 cup/bowl of charred kernels",
+  "targets": {
+   "corn kernels": "160 g",
+   "raita-crema": "25 g",
+   "cotija-style cheese": "10 g",
+   "sev": "5 g"
+  },
+  "construction": "roadside-style layered cup; exact lime-salt-heat balance is the identity test"
+ },
+ "components": [
+  {
+   "name": "Elote",
+   "lines": [
+    {
+     "ingredient": "i-corn-kernels",
+     "qty": 160,
+     "unit": "g",
+     "prep": "fresh cut or thawed, dried well"
+    },
+    {
+     "ingredient": "i-ghee",
+     "qty": 6,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 0.8,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "raita-crema",
+     "qty": 25,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-cotija",
+     "qty": 10,
+     "unit": "g",
+     "prep": "crumbled"
+    },
+    {
+     "ingredient": "i-chaat-masala",
+     "qty": 1.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 0.6,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime-juice",
+     "qty": 6,
+     "unit": "ml"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-sev",
+     "qty": 5,
+     "unit": "g",
+     "prep": "added at the last second for crunch"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.17,
+     "unit": "each"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "raita-crema"
+ ],
+ "method": {
+  "steps": [
+   "Pat kernels dry; char in a hot dry pan or on the comal in small batches with ghee until browned in spots.",
+   "Toss hot with salt, raita-crema, half the cheese, chaat masala, chile, lime juice; taste for salt-lime-heat balance.",
+   "Serve in a cup topped with the remaining cheese, cilantro and sev; lime wedge."
+  ],
+  "critical_parameters": {
+   "char": "browned spots without drying the corn out",
+   "balance": "lime-salt-heat is the identity test"
+  }
+ },
+ "plating": "Small bowl or paper-lined cup, kernels glossy with crema, cheese crumbs, sev crown, cilantro, lime wedge.",
+ "equipment": [
+  "Grill or comal/flat-top",
+  "Pan or tray for char batches",
+  "Cold storage"
+ ],
+ "food_safety": [
+  "Cooked corn held hot at or above 57 °C or cooled per policy; cold dairy toppings at or below 5 °C.",
+  "Check cotija rennet source; check sev oil/fryer cross-contact."
+ ],
+ "workflow": {
+  "stations": [
+   "cold prep",
+   "comal"
+  ],
+  "day_before": [
+   "Make raita-crema",
+   "Cut/thaw corn"
+  ],
+  "morning": [
+   "Portion kernels (160 g)"
+  ],
+  "service": [
+   "Char, toss, top (about 2 min)"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 1.0,
+   "service": 2.0
+  },
+  "fryer_load": "none",
+  "capacity_note": "comal shared with quesadillas"
+ },
+ "pairing": [
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Lime, chaat tang and mango-hop aroma echo; juicy body softens chile.",
+   "risk": "Hop bitterness plus chaat salt and chile.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Wheat softness and carbonation cut the creamy toppings.",
+   "risk": "Banana vs sweet corn may read sweet-on-sweet. (The existing test menu pairs this dish with a Mexican lager.)",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Close three-quarter angle, rustic cup/bowl, warm light.",
+  "must_show": [
+   "charred corn kernels with browned spots, creamy white sauce, crumbled white cheese, yellow sev crown, green cilantro, lime"
+  ],
+  "must_not_show": [
+   "mayo-heavy esquites look if the recipe is crema-only",
+   "bacon or any pork/beef topping (D-54)",
+   "text or logos"
+  ],
+  "realism_notes": "Kernels should look slightly shrivelled and browned where charred.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk"
+ ],
+ "allergen_notes": "Milk (ghee, crema, cheese). Sev: check wheat/shared-fryer. Chaat masala blend: check label. No allergen-free claim.",
+ "evidence": [
+  "food/MENU-V1.1-TEST-MENU.md (#2 Chaat Elote)",
+  "food/OPENING-MENU-V2.md (shared-ingredient map)"
+ ],
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": true,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "vegetarian status also depends on cotija rennet source (unverified)"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
+ "menu_category": "appetizer",
+ "menu_status": "approved_menu_v1_1",
+ "classification_note": "Approved 12-dish test menu item #2. Overlaps founder candidate 'Masala Street Corn': treated as the same dish track (rename not applied).",
+ "target_gross_margin_pct": 70,
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "research": {
+  "practice": "see evidence list",
+  "nasha_combination": "see cultural/food research files",
+  "note": "Earlier research baseline; not re-sourced in D-87."
+ }
+}

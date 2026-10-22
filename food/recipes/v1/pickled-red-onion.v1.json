@@ -1,0 +1,66 @@
+{
+ "id": "pickled-red-onion",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Pickled red onion (achari-style, mustard omitted)",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 650,
+ "shelf_life_note": "7 days at ≤ 5 °C (ASSUMPTION: acidic pickle; confirm pH with a professional)",
+ "lines": [
+  {
+   "ingredient": "i-onion-red",
+   "qty": 400,
+   "unit": "g",
+   "prep": "thin half-moons"
+  },
+  {
+   "ingredient": "i-cider-vinegar",
+   "qty": 150,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-lime-juice",
+   "qty": 50,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-sugar",
+   "qty": 20,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 10,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-water",
+   "qty": 100,
+   "unit": "ml"
+  }
+ ],
+ "method": [
+  "Dissolve sugar and salt in warm water; add vinegar and lime juice.",
+  "Pour over sliced onion; press to submerge; rest at least 1 hour.",
+  "Hold refrigerated; flavour peaks after about a day."
+ ],
+ "sauce_spec": {
+  "texture": "crisp-tender",
+  "acid": "high",
+  "heat": "0",
+  "salt": "about 1.5%",
+  "use": "acid and freshness against fried or rich food"
+ },
+ "food_safety": [
+  "Hold at or below 5 °C; keep submerged; date-mark."
+ ],
+ "allergens_declared": [],
+ "test_variables": [
+  "add mustard seed/fennel/nigella (adds mustard allergen)"
+ ],
+ "evidence": [
+  "food/SAUCE-SYSTEM.md (Achari Onion)",
+  "docs: mustard seed OMITTED from the v1.0 baseline so that mustard stays out of the declared allergens (a later test variable)"
+ ],
+ "estimates_label": "All quantities, yields and shelf-life values are preliminary estimates until tested by a person in a kitchen."
+}

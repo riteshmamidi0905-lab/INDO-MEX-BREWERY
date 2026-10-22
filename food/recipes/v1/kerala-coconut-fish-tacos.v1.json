@@ -1,0 +1,202 @@
+{
+ "id": "kerala-coconut-fish-tacos",
+ "name": "Kerala Coconut Fish Tacos",
+ "menu_role": "Taco trio",
+ "menu_category": "main",
+ "menu_status": "candidate",
+ "classification_note": "Equals approved pool item #7 (Malabar Fish Taco) in concept; naming differs (Kerala vs Malabar). Treat as the same development track.",
+ "cooking_method": "Marinate, pan-sear/shallow-fry fish to 63 °C, tacos with coconut crema and slaw",
+ "portion": {
+  "description": "3 tacos",
+  "targets": {
+   "fish (raw)": "170 g",
+   "corn tortillas": "3 x ~26 g",
+   "coconut sauce": "45 g",
+   "slaw": "45 g"
+  },
+  "construction": "crisp-edged fish pieces on tortilla, coconut crema, slaw"
+ },
+ "components": [
+  {
+   "name": "Fish",
+   "lines": [
+    {
+     "ingredient": "i-white-fish",
+     "qty": 170,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-turmeric",
+     "qty": 0.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime-juice",
+     "qty": 8,
+     "unit": "ml"
+    },
+    {
+     "ingredient": "i-ginger-garlic-paste",
+     "qty": 5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-rice-flour",
+     "qty": 14,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 30,
+     "unit": "ml",
+     "prep": "pan-fry allocation"
+    },
+    {
+     "ingredient": "i-curry-leaf",
+     "qty": 1,
+     "unit": "g",
+     "prep": "fried 15 s"
+    }
+   ]
+  },
+  {
+   "name": "Tortillas, sauce and garnish",
+   "lines": [
+    {
+     "ingredient": "i-corn-tortilla",
+     "qty": 78,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "kerala-coconut-sauce",
+     "qty": 45,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "kachumber-slaw",
+     "qty": 45,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "pickled-red-onion",
+     "qty": 12,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.33,
+     "unit": "each"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "kerala-coconut-sauce",
+  "kachumber-slaw",
+  "pickled-red-onion"
+ ],
+ "method": {
+  "steps": [
+   "Marinate fish 20-30 min at ≤ 4 °C (acid limits time).",
+   "Dust in rice flour; pan-sear/shallow-fry until crisp edges; probe 63 °C (145 °F).",
+   "Warm tortillas; assemble with sauce, slaw, onion; fry curry leaf to garnish."
+  ],
+  "critical_parameters": {
+   "core_C": "63 minimum (fish)",
+   "marinade_time": "20-30 min"
+  }
+ },
+ "plating": "Three tacos, white sauce, green slaw, fried curry leaf.",
+ "equipment": [
+  "Flat-top/pan",
+  "Probe thermometer",
+  "Cold storage"
+ ],
+ "food_safety": [
+  "Fish to 63 °C (145 °F); fish species and sourcing TBD (parasite destruction/supplier documentation per official guidance).",
+  "FISH allergen: dedicated utensils and label; shared fryer/pan = cross-contact."
+ ],
+ "workflow": {
+  "stations": [
+   "cold prep",
+   "flat-top",
+   "plating"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 4.0,
+   "service": 4.0
+  },
+  "fryer_load": "L",
+  "capacity_note": "estimate; measure at T1"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Wheat softness and carbonation suit light fish and coconut.",
+   "risk": "Esters vs coconut.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Tropical hops echo coconut-mango.",
+   "risk": "Hop bitterness vs delicate fish.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Three-quarter angle, light side window.",
+  "must_show": [
+   "golden fish pieces",
+   "white coconut sauce",
+   "pink and green slaw",
+   "fried curry leaf"
+  ],
+  "must_not_show": [
+   "fish fingers/tartar look",
+   "beer-batter puffiness",
+   "any text, logo or menu card"
+  ],
+  "realism_notes": "Light crisp crust only.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "fish"
+ ],
+ "allergen_notes": "Fish. Fryer/pan cross-contact; coconut labelling check. No allergen-free claim.",
+ "evidence": [
+  "food/MENU-DEVELOPMENT-MATRIX-V1.md (#7 Malabar Fish Taco: same concept, coconut sauce instead of Malabar pepper sauce)"
+ ],
+ "research": {
+  "practice": "Kerala fish curries combine coconut milk, turmeric, tamarind/kokum, chile and curry leaf. Fish tacos are a Baja/Mexican format.",
+  "nasha_combination": "Kerala-style coconut crema on fish tacos is a NASHA proposal.",
+  "note": "RESEARCHED PRACTICE = documented regional preparation; NASHA COMBINATION = proposal not found in a traditional source. Sources are web-search snippets; primary documents were not retrieved (WebFetch unavailable)."
+ },
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "target_gross_margin_pct": 70,
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": false,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "no beef or pork ingredient; supplier statements required"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+}

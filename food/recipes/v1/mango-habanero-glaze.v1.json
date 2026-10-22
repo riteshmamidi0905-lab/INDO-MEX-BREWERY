@@ -1,0 +1,87 @@
+{
+ "id": "mango-habanero-glaze",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Mango-habanero glaze",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 450,
+ "shelf_life_note": "4 days at ≤ 5 °C (ASSUMPTION)",
+ "lines": [
+  {
+   "ingredient": "i-mango-puree",
+   "qty": 500,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-habanero",
+   "qty": 12,
+   "unit": "g",
+   "prep": "deseeded, minced; heat is the main test variable"
+  },
+  {
+   "ingredient": "i-garlic",
+   "qty": 8,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-ginger",
+   "qty": 6,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-jaggery",
+   "qty": 40,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-lime-juice",
+   "qty": 40,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-cider-vinegar",
+   "qty": 20,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 5,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-cornstarch",
+   "qty": 6,
+   "unit": "g",
+   "prep": "slurried in 20 ml cold water (water cost negligible)"
+  }
+ ],
+ "method": [
+  "Simmer puree, habanero, garlic, ginger, jaggery, lime juice, vinegar and salt, stirring, until reduced by about 30% (target about 450 g from 637 g).",
+  "Whisk in the cornstarch slurry; boil 1 minute; the glaze should coat the back of a spoon and hold a drawn line.",
+  "Cool fast (see food safety); hold cold; rewarm to 70 °C or above before tossing to order."
+ ],
+ "sauce_spec": {
+  "texture": "glossy, spoon-coating, not gluey",
+  "acid": "medium-high (lime, vinegar)",
+  "heat": "medium-high; start at 12 g deseeded habanero per batch and adjust per test",
+  "sweetness": "medium (mango + jaggery)",
+  "salt": "about 1.1%",
+  "use": "Mango Habanero Gobi finish; about 55 g per portion"
+ },
+ "food_safety": [
+  "Cool from 57 °C to 21 °C within 2 hours and to 5 °C within a further 4 hours (US Food Code cooling rule; the written HACCP plan governs): shallow pans, ice bath.",
+  "Reheat to 74 °C (165 °F) for hot holding if it has been cooled; never top up an old batch.",
+  "Wear gloves for habanero; wash tools; keep eyes/skin contact in mind for staff."
+ ],
+ "allergens_declared": [],
+ "test_variables": [
+  "habanero grams (level 2-3 heat)",
+  "fresh vs aseptic mango",
+  "glaze viscosity vs crunch retention at T+10"
+ ],
+ "evidence": [
+  "food/CORE5-FOOD-MATRIX.csv (gobi-taco row: mango-habanero glaze, ORIGINAL HOUSE COMPOSITION, formulation not locked)",
+  "docs/decisions/DECISIONS.md D-84"
+ ],
+ "estimates_label": "All quantities, yields and shelf-life values are preliminary estimates until tested by a person in a kitchen."
+}

@@ -1,0 +1,227 @@
+{
+ "id": "butter-chicken-quesadilla",
+ "name": "Butter Chicken & Roasted Poblano Quesadilla",
+ "menu_role": "QUESADILLAS — gateway/family item (Core 5)",
+ "cooking_method": "Chill the reduced filling, build with cheese against both tortilla faces, griddle on a dry comal at medium heat with a light press, rest 1-2 min, cut",
+ "portion": {
+  "description": "1 folded 25 cm quesadilla cut in 3 wedges + dip",
+  "targets": {
+   "Oaxaca-style cheese": "45 g",
+   "chicken": "35 g (cooked, about 1 cm dice)",
+   "makhani sauce": "24 g (reduced)",
+   "poblano rajas": "25 g",
+   "flour tortilla": "1 × 25 cm",
+   "raita-crema dip": "30 g"
+  },
+  "construction": "cheese against both tortilla faces as a moisture barrier; filling in the centre; rajas against the cheese"
+ },
+ "components": [
+  {
+   "name": "Chicken",
+   "lines": [
+    {
+     "ingredient": "i-chicken-thigh",
+     "qty": 36,
+     "unit": "g",
+     "prep": "diced ~1 cm after charring"
+    },
+    {
+     "ingredient": "i-yogurt",
+     "qty": 7,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-ginger-garlic-paste",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-kasuri-methi",
+     "qty": 0.3,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 0.4,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 0.4,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 2,
+     "unit": "ml",
+     "prep": "char"
+    }
+   ]
+  },
+  {
+   "name": "Assembly",
+   "lines": [
+    {
+     "ingredient": "i-flour-tortilla-25",
+     "qty": 1,
+     "unit": "each"
+    },
+    {
+     "ingredient": "i-cheese-oaxaca",
+     "qty": 45,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "makhani-rajas-sauce",
+     "qty": 24,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "roasted-poblano-rajas",
+     "qty": 25,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 3,
+     "unit": "ml",
+     "prep": "comal allocation"
+    }
+   ]
+  },
+  {
+   "name": "Finish",
+   "lines": [
+    {
+     "subrecipe": "raita-crema",
+     "qty": 30,
+     "unit": "g",
+     "prep": "dip, separate cup"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 1,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.17,
+     "unit": "each"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "makhani-rajas-sauce",
+  "roasted-poblano-rajas",
+  "raita-crema"
+ ],
+ "method": {
+  "steps": [
+   "Marinate chicken in yogurt-spice 2 h at ≤ 5 °C; char hot (grill, broiler or comal), cook to 74 °C core, cool, dice about 1 cm.",
+   "Fold diced chicken into the reduced, fully chilled makhani sauce (35 g chicken + 25 g sauce is about 60 g filling).",
+   "On a tortilla: cheese across the surface, filling in the centre, rajas against the cheese, cheese again; fold.",
+   "Dry comal at medium heat, light press, until crisp and browned (about 2-3 min per side); rest 1-2 min; cut in 3 wedges; serve with raita-crema and lime."
+  ],
+  "critical_parameters": {
+   "sauce_reduction": "55-60% of raw weight (Session 4 arm A)",
+   "filling": "fully chilled before assembly",
+   "chicken_core_C": "74 (165 °F)"
+  }
+ },
+ "plating": "Three wedges stood up to show the cross-section (cheese fused, filling set, rajas visible), dip in a small cup, cilantro and a lime wedge. Surface a uniformly browned, blistered flour tortilla.",
+ "equipment": [
+  "Comal/flat-top (shared bottleneck)",
+  "Grill/broiler for chicken (tandoor optional)",
+  "Blast chiller or shallow pans for chilling filling",
+  "Press"
+ ],
+ "food_safety": [
+  "Poultry to 74 °C; separate raw-chicken board and hand-washing.",
+  "Cool cooked chicken and sauce rapidly and chill the filling before assembly (also a quality step).",
+  "Hot-hold finished quesadillas only briefly: they steam soft if covered.",
+  "Check cheese rennet source and tortilla for lard (D-54)."
+ ],
+ "workflow": {
+  "stations": [
+   "cold prep",
+   "grill",
+   "comal"
+  ],
+  "day_before": [
+   "Marinate and char chicken, cool and dice",
+   "Make makhani sauce and rajas; chill filling mix"
+  ],
+  "morning": [
+   "Portion filling (60 g) and cheese (45 g)"
+  ],
+  "service": [
+   "Assemble, griddle 4-6 min total, rest, cut"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 2.0,
+   "service": 2.5
+  },
+  "fryer_load": "none",
+  "capacity_note": "comal is the shared bottleneck at peak"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Optional pairing PF-08: carbonation cuts the rich cheese and cream; the existing heuristic top pick.",
+   "risk": "Yeast spice against garam masala.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Juicy fruit contrasts a very rich sauce; hop bitterness cuts fat.",
+   "risk": "Sweet tomato-cream plus fruit-forward beer may read cloying; bitterness plus cream can taste sharp.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Wedges stood up on a board, 30° angle, warm side light, shallow depth of field.",
+  "must_show": [
+   "browned blistered flour tortilla, fused cheese, a clear orange-red makhani filling with charred chicken dice, green-black poblano strips",
+   "a small cup of white raita-crema, lime wedge, cilantro"
+  ],
+  "must_not_show": [
+   "cheese oozing everywhere (the sauce is reduced to stay put)",
+   "burrito or pizza look",
+   "text or logos"
+  ],
+  "realism_notes": "The filling should look set and clingy, not runny.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk",
+  "wheat"
+ ],
+ "allergen_notes": "Milk (butter, cream, cheese, yogurt) and wheat (flour tortilla). Tree nuts only if cashew is added to the gravy (default cashew-free). Check tortilla label for milk/soy and lard. No allergen-free claim.",
+ "evidence": [
+  "food/CORE5-FOOD-MATRIX.csv#butter-chicken-quesadilla",
+  "food/sessions/S4-butter-chicken-quesadilla.md (T4 baseline portions and reduction)",
+  "food/SAUCE-SYSTEM.md"
+ ],
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": false,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "chicken; verify tortilla is lard-free and cheese rennet source"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
+ "menu_category": "main",
+ "menu_status": "approved_core5",
+ "classification_note": "Core 5 main; matches founder candidate 'Butter Chicken Quesadilla'.",
+ "target_gross_margin_pct": 70,
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "research": {
+  "practice": "see evidence list",
+  "nasha_combination": "see cultural/food research files",
+  "note": "Earlier research baseline; not re-sourced in D-87."
+ }
+}

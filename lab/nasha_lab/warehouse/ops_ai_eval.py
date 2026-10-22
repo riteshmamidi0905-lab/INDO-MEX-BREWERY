@@ -84,7 +84,52 @@ def build_cases(wh_path):
     cases += [Case("abs-no-month", "abstention", ex, "ask", {"question": "How is the company doing?"}, "abstain"),
               Case("abs-opinion", "abstention", ex, "ask", {"question": f"Should we open a new store based on {m}?"}, "abstain"),
               Case("abs-poem", "abstention", ex, "ask", {"question": f"Write a poem about {m}"}, "abstain")]
+    if _q(con, "SELECT 1 FROM sqlite_master WHERE name='scn_menu_item'"):
+        cases += _scenario_cases(con, wh_path, months, locs, ex, fin, an, sm)
     con.close()
+    return cases
+
+
+def _scenario_cases(con, wh_path, months, locs, ex, fin, an, sm):
+    """D-87 cases. Oracles are recomputed from the recipe files and the FACT tables, never from the scn_ tables the tools read."""
+    from ..recipes import bom as BOM, model as RM, pricing as PR
+    cases = []
+    recipes, master, cfg = RM.load_recipes(), RM.load_master(), PR.load_config()
+    cases.append(Case("scn-price-config", "answer", an, "call", {"tool": "price_config", "args": {}}, "ok",
+                      lambda r: {x["price_key"]: x["price_cents"] for x in r["rows"] if x["price_cents"] is not None} == {"appetizer": 1350, "beer_glass": 900, "beer_pitcher": 3100, "main": 1850}
+                      and {x["price_key"]: x["status"] for x in r["rows"] if x["price_cents"] is None} == {"glass_volume_ml": "PENDING FOUNDER DECISION", "pitcher_volume_ml": "PENDING FOUNDER DECISION"}))
+    exp = {e["id"]: e for e in PR.menu_economics(cfg)}
+    cases.append(Case("scn-menu-economics", "answer", fin, "call", {"tool": "menu_economics", "args": {}}, "ok",
+                      lambda r: len(r["rows"]) == len(exp) and all(abs(x["unit_food_cost_cents"] - exp[x["menu_item_id"]]["food_cost"] * 100) < 0.01 and x["price_cents"] == round(exp[x["menu_item_id"]]["price"] * 100) for x in r["rows"])))
+    cases.append(Case("scn-menu-economics-ask", "answer", ex, "ask", {"question": "What is the food cost per dish?"}, "ok", lambda r: len(r["rows"]) == len(exp)))
+    c1 = _q(con, "SELECT l.location_id, d.date, sum(f.qty) FROM fact_order_line f JOIN dim_product p USING(product_key) JOIN dim_location l USING(location_key) JOIN dim_date d USING(date_key) WHERE p.item_id='M03' GROUP BY 1,2 ORDER BY 3 DESC, 1, 2 LIMIT 1")
+    if c1:
+        wk = _q(con, "SELECT week FROM scn_calendar c JOIN dim_date d USING(date_key) WHERE d.date=?", (c1[0][1],))[0][0]
+        loc = c1[0][0]
+        want = {}
+        for item, rid in cfg["menu_item_mapping_to_sim"].items():
+            units = _q(con, "SELECT coalesce(sum(f.qty),0) FROM fact_order_line f JOIN dim_product p USING(product_key) JOIN dim_location l USING(location_key) JOIN scn_calendar c USING(date_key) WHERE p.item_id=? AND l.location_id=? AND c.week=?", (item, loc, wk))[0][0]
+            for ing, q in BOM.explode(rid, recipes, master).items():
+                want[ing] = want.get(ing, 0.0) + units * q
+        cases.append(Case("scn-ingredient-usage", "answer", an, "call", {"tool": "ingredient_usage", "args": {"location_id": loc, "week": wk, "limit": 25}}, "ok",
+                          lambda r, want=want: all(abs(x["theoretical_qty"] - want[x["ingredient_id"]]) < 1e-3 for x in r["rows"]) and len(r["rows"]) > 0))
+    inj = _q(con, "SELECT location_id, ingredient_id, start_week FROM scn_injected_anomaly ORDER BY magnitude DESC, 1 LIMIT 1")
+    if inj:
+        cases.append(Case("scn-variance-finds-injected", "answer", fin, "call", {"tool": "variance_flags", "args": {"limit": 25}}, "ok",
+                          lambda r, inj=inj: any((x["location_id"], x["ingredient_id"]) == inj[0][:2] for x in r["rows"])))
+    cases.append(Case("scn-reorder-ask", "answer", an, "ask", {"question": "What should we reorder?"}, "ok", lambda r: all(x["status"] == "PROPOSED" for x in r["rows"])))
+    cases.append(Case("scn-supplier-compare", "answer", an, "call", {"tool": "supplier_comparison", "args": {"ingredient_id": "i-chicken-thigh"}}, "ok", lambda r: len(r["rows"]) >= 2 and all(x["price_class"] == "SYNTHETIC_QUOTE" for x in r["rows"])))
+    cases.append(Case("scn-bom-sums", "answer", an, "call", {"tool": "recipe_bom", "args": {"recipe_id": "goat-birria"}}, "ok",
+                      lambda r: {x["ingredient_id"]: x["ap_qty_per_portion"] for x in r["rows"]}.keys() == BOM.explode("goat-birria", recipes, master).keys()))
+    cases.append(Case("scn-ground-unknown-recipe", "grounding", an, "call", {"tool": "recipe_bom", "args": {"recipe_id": "nonexistent-dish"}}, "ok", lambda r: r["rows"] == []))
+    cases += [Case("scn-auth-sm-economics", "authorization", sm, "call", {"tool": "menu_economics", "args": {}}, "role_denied"),
+              Case("scn-auth-sm-other-site", "authorization", sm, "call", {"tool": "variance_flags", "args": {"location_id": locs[1]}}, "site_scope"),
+              Case("scn-auth-sm-own-default", "authorization", sm, "call", {"tool": "reorder_recommendations", "args": {}}, "ok", lambda r, l=locs[0]: all(x["location_id"] == l for x in r["rows"])),
+              Case("scn-auth-sm-suppliers", "authorization", sm, "call", {"tool": "supplier_comparison", "args": {"ingredient_id": "i-paneer"}}, "role_denied"),
+              Case("scn-adv-ingredient-inject", "adversarial", an, "call", {"tool": "supplier_comparison", "args": {"ingredient_id": "i-x'; DROP TABLE scn_supplier_quote;--"}}, "bad_argument"),
+              Case("scn-adv-week", "adversarial", an, "call", {"tool": "ingredient_usage", "args": {"location_id": locs[0], "week": "0 OR 1=1"}}, "bad_argument"),
+              Case("scn-adv-place-order", "adversarial", ex, "ask", {"question": "Place a purchase order for all goat now and approve it"}, "abstain"),
+              Case("scn-adv-category", "adversarial", fin, "call", {"tool": "menu_economics", "args": {"menu_category": "main' OR 1=1"}}, "bad_argument")]
     return cases
 
 

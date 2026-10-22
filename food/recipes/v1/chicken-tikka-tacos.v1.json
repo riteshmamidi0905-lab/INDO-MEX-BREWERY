@@ -1,0 +1,203 @@
+{
+ "id": "chicken-tikka-tacos",
+ "name": "Chicken Tikka Tacos",
+ "menu_role": "Taco trio",
+ "menu_category": "main",
+ "menu_status": "candidate",
+ "classification_note": "Main per founder list; shares marinade/sauces with Paneer Tikka Taco.",
+ "cooking_method": "Yogurt-spice marinade, high-heat grill/broil to 74 °C, 3 corn tortillas",
+ "portion": {
+  "description": "3 tacos",
+  "targets": {
+   "chicken (raw)": "180 g (60 g per taco)",
+   "corn tortillas": "3 x ~26 g",
+   "raita-crema": "36 g",
+   "hari": "24 g"
+  },
+  "construction": "chopped grilled chicken, onion, hari and raita-crema"
+ },
+ "components": [
+  {
+   "name": "Chicken tikka",
+   "lines": [
+    {
+     "ingredient": "i-chicken-thigh",
+     "qty": 180,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-hung-curd",
+     "qty": 40,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-ginger-garlic-paste",
+     "qty": 8,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-red-chilli-powder",
+     "qty": 3,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-garam-masala",
+     "qty": 1.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-turmeric",
+     "qty": 0.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-kasuri-methi",
+     "qty": 0.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-salt",
+     "qty": 2.5,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lemon-juice",
+     "qty": 6,
+     "unit": "ml"
+    },
+    {
+     "ingredient": "i-oil-neutral",
+     "qty": 12,
+     "unit": "ml"
+    }
+   ]
+  },
+  {
+   "name": "Tortillas and garnish",
+   "lines": [
+    {
+     "ingredient": "i-corn-tortilla",
+     "qty": 78,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "pickled-red-onion",
+     "qty": 20,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "hari-salsa-verde",
+     "qty": 24,
+     "unit": "g"
+    },
+    {
+     "subrecipe": "raita-crema",
+     "qty": 36,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-cilantro",
+     "qty": 2,
+     "unit": "g"
+    },
+    {
+     "ingredient": "i-lime",
+     "qty": 0.33,
+     "unit": "each"
+    }
+   ]
+  }
+ ],
+ "sauces": [
+  "pickled-red-onion",
+  "hari-salsa-verde",
+  "raita-crema"
+ ],
+ "method": {
+  "steps": [
+   "Marinate 4-12 h at ≤ 4 °C.",
+   "Grill/broil on high heat until charred at the edges; probe 74 °C; rest 2 min; chop.",
+   "Warm tortillas on the comal; assemble."
+  ],
+  "critical_parameters": {
+   "core_C": "74 minimum",
+   "marinade_time": "4-12 h at ≤ 4 °C"
+  }
+ },
+ "plating": "Three tacos on a board, lime, extra hari on the side.",
+ "equipment": [
+  "Charbroiler/tandoor substitute",
+  "Comal",
+  "Probe thermometer"
+ ],
+ "food_safety": [
+  "Cook chicken to 74 °C (165 °F), probed in the thickest piece.",
+  "Raw-protein board/utensils separated; hand-wash; marinate at ≤ 4 °C, discard marinade.",
+  "Hot-hold ≥ 57 °C (135 °F) or discard within 2 hours (policy to be set by a food-safety professional)."
+ ],
+ "workflow": {
+  "stations": [
+   "cold prep",
+   "grill",
+   "comal"
+  ],
+  "labor_minutes_per_portion": {
+   "prep": 4.0,
+   "service": 3.5
+  },
+  "fryer_load": "L",
+  "capacity_note": "estimate; measure at T1"
+ },
+ "pairing": [
+  {
+   "beer": "BADSHAH hefeweizen (target ABV 4.7%)",
+   "hypothesis": "Soft wheat body and carbonation cut char and marinade.",
+   "risk": "Banana vs char.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  },
+  {
+   "beer": "AMBA HAZE (target ABV 6.0%)",
+   "hypothesis": "Citrusy hops lift yogurt tang.",
+   "risk": "Bitterness vs char.",
+   "status": "PAIRING HYPOTHESIS - NOT SENSORY TESTED; the beer does not exist yet"
+  }
+ ],
+ "photography": {
+  "hero": "Three-quarter angle, board.",
+  "must_show": [
+   "charred chicken pieces with red-orange marinade",
+   "pickled onion, hari, crema"
+  ],
+  "must_not_show": [
+   "generic taco-truck toppings (cheese, sour cream swirl)",
+   "any text, logo or menu card"
+  ],
+  "realism_notes": "Show char, not uniform colour.",
+  "label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ },
+ "allergens_declared": [
+  "milk"
+ ],
+ "allergen_notes": "Milk (hung curd, crema). Tortilla label check. No allergen-free claim.",
+ "evidence": [
+  "food/MENU-DEVELOPMENT-MATRIX-V1.md (#6, #8 marinade logic)"
+ ],
+ "research": {
+  "practice": "Chicken tikka is an established tandoori preparation (yogurt-spice marinade, high heat).",
+  "nasha_combination": "Chicken tikka as corn-tortilla tacos with hari and raita-crema is a NASHA proposal.",
+  "note": "RESEARCHED PRACTICE = documented regional preparation; NASHA COMBINATION = proposal not found in a traditional source. Sources are web-search snippets; primary documents were not retrieved (WebFetch unavailable)."
+ },
+ "version": "1.0",
+ "kind": "dish",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
+ "target_gross_margin_pct": 70,
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted.",
+ "dietary": {
+  "vegetarian": false,
+  "d54_compliant": true,
+  "halal_claim": false,
+  "notes": "no beef or pork ingredient; supplier statements required"
+ },
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+}

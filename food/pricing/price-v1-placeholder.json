@@ -1,0 +1,77 @@
+{
+ "config_id": "price-v1-placeholder",
+ "status": "FROZEN HISTORICAL RECORD \u2014 placeholder prices of the original synthetic simulation; not NASHA prices; never edited",
+ "source": "nasha_lab/enterprise_sim.py CATALOG (menu v2 catalog)",
+ "items": {
+  "M01": {
+   "name": "Chicken 65 Totopos",
+   "category": "food",
+   "price_cents": 1400
+  },
+  "M02": {
+   "name": "Paneer Tikka Taco",
+   "category": "food",
+   "price_cents": 1300
+  },
+  "M03": {
+   "name": "Goat Birria",
+   "category": "food",
+   "price_cents": 1600
+  },
+  "M04": {
+   "name": "Mango Habanero Gobi",
+   "category": "food",
+   "price_cents": 1200
+  },
+  "M05": {
+   "name": "Butter Chicken Quesadilla",
+   "category": "food",
+   "price_cents": 1500
+  },
+  "B01": {
+   "name": "Signature Hefe",
+   "category": "beer",
+   "price_cents": 800
+  },
+  "B02": {
+   "name": "Lager",
+   "category": "beer",
+   "price_cents": 700
+  },
+  "B03": {
+   "name": "Amber",
+   "category": "beer",
+   "price_cents": 800
+  },
+  "N01": {
+   "name": "Lime zero-proof",
+   "category": "na",
+   "price_cents": 500
+  },
+  "N02": {
+   "name": "Tamarind zero-proof",
+   "category": "na",
+   "price_cents": 550
+  },
+  "B04": {
+   "name": "Amba Haze mango hazy IPA (working name, experimental concept)",
+   "category": "beer",
+   "price_cents": 900
+  },
+  "G01": {
+   "name": "Hoodie 01 The Courtyard (concept)",
+   "category": "merch",
+   "price_cents": 8800
+  },
+  "G02": {
+   "name": "Hoodie 02 Two Worlds (concept)",
+   "category": "merch",
+   "price_cents": 8800
+  },
+  "G03": {
+   "name": "Graphic tee (concept)",
+   "category": "merch",
+   "price_cents": 3200
+  }
+ }
+}

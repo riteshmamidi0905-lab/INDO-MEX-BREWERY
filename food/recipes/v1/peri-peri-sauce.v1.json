@@ -1,0 +1,83 @@
+{
+ "id": "peri-peri-sauce",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Goan-leaning peri-peri sauce (chile, garlic, lemon, vinegar)",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 520,
+ "shelf_life_note": "3 days at ≤ 5 °C (ASSUMPTION: set by a food-safety professional)",
+ "lines": [
+  {
+   "ingredient": "i-chile-arbol",
+   "qty": 30,
+   "unit": "g",
+   "prep": "soaked 15 min in hot water, drained"
+  },
+  {
+   "ingredient": "i-garlic",
+   "qty": 40,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-lemon-juice",
+   "qty": 60,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-cider-vinegar",
+   "qty": 40,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-oil-neutral",
+   "qty": 80,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-tomato-passata",
+   "qty": 150,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 8,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-oregano-mx",
+   "qty": 2,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-jaggery",
+   "qty": 15,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-water",
+   "qty": 0.1,
+   "unit": "l"
+  }
+ ],
+ "method": [
+  "Soak the chiles, drain, blend with garlic, passata, lemon, vinegar and water until smooth.",
+  "Cook in the oil 8-10 min, stirring, until the raw-garlic edge is gone and the sauce coats a spoon; season.",
+  "Cool in a shallow pan (two-stage cooling) and chill."
+ ],
+ "sauce_spec": {
+  "texture": "pourable, clings",
+  "acid": "medium-high",
+  "heat": "2-3",
+  "use": "toss for wings"
+ },
+ "food_safety": [
+  "Two-stage cooling: 57→21 °C within 2 h, then to ≤ 5 °C within a further 4 h.",
+  "Date-mark and discard per policy."
+ ],
+ "allergens_declared": [],
+ "test_variables": [],
+ "evidence": [
+  "Practice: peri-peri (piri-piri) is a chile-garlic-citrus/vinegar sauce associated with Portuguese-influenced cooking including Goa (web-search snippet level only; primary sources not retrieved). NASHA composition is new."
+ ],
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted."
+}

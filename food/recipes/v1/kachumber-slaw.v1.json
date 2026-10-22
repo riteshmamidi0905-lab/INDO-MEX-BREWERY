@@ -1,0 +1,61 @@
+{
+ "id": "kachumber-slaw",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Kachumber-style cabbage slaw",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 220,
+ "shelf_life_note": "same day (ASSUMPTION)",
+ "lines": [
+  {
+   "ingredient": "i-cabbage",
+   "qty": 150,
+   "unit": "g",
+   "prep": "finely shredded"
+  },
+  {
+   "ingredient": "i-onion-red",
+   "qty": 40,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-cilantro",
+   "qty": 10,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-lime-juice",
+   "qty": 20,
+   "unit": "ml"
+  },
+  {
+   "ingredient": "i-chaat-masala",
+   "qty": 2,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 3,
+   "unit": "g"
+  }
+ ],
+ "method": [
+  "Shred the cabbage, toss with salt and rest 10 min, squeeze lightly.",
+  "Add onion, cilantro, lime and chaat masala; make small batches (hold ≤ 4 h for crunch)."
+ ],
+ "sauce_spec": {
+  "texture": "crunchy",
+  "acid": "high",
+  "heat": "0",
+  "use": "fish taco acid and crunch"
+ },
+ "food_safety": [
+  "Wash produce; hold at ≤ 5 °C."
+ ],
+ "allergens_declared": [],
+ "test_variables": [],
+ "evidence": [
+  "Menu matrix item 7 specifies a cabbage-lime acid."
+ ],
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted."
+}

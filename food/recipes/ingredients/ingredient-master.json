@@ -1,0 +1,1182 @@
+{
+ "_comment": "PLANNING-ASSUMPTION ingredient master (D-86). Prices are USD per purchase unit with low/base/high ranges: general-market planning assumptions written on 2026-10-22, NOT supplier quotes, NOT receipts, NOT menu prices. Yields are typical trim/EP factors to be MEASURED. Allergens listed are the ingredient's own; blends and processed items need label checks. vegetarian 'check' = depends on rennet/blend verification.",
+ "price_class": "PLANNING_ASSUMPTION",
+ "ingredients": [
+  {
+   "id": "i-chicken-thigh",
+   "name": "Chicken thigh, boneless skinless",
+   "category": "protein",
+   "unit": "kg",
+   "yield_pct": 92,
+   "allergens": [],
+   "vegetarian": false,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "trim loss ~8% (fat, cartilage)",
+   "price": {
+    "low": 5.5,
+    "base": 7.0,
+    "high": 9.0
+   }
+  },
+  {
+   "id": "i-paneer",
+   "name": "Paneer",
+   "category": "dairy",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "milk"
+   ],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "in-house vs bought is an open test variable; record rennet/acid source",
+   "price": {
+    "low": 9,
+    "base": 12,
+    "high": 16
+   }
+  },
+  {
+   "id": "i-cauliflower",
+   "name": "Cauliflower (florets, stem attached)",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 65,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "price volatile; EP florets ~65% of whole head",
+   "price": {
+    "low": 2.0,
+    "base": 3.0,
+    "high": 4.5
+   }
+  },
+  {
+   "id": "i-goat-bone-in",
+   "name": "Goat, bone-in shoulder/leg",
+   "category": "protein",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": false,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "D-54: goat only; cut and age undecided; supplier availability unverified",
+   "price": {
+    "low": 11,
+    "base": 15,
+    "high": 20
+   }
+  },
+  {
+   "id": "i-yogurt",
+   "name": "Yogurt, plain thick",
+   "category": "dairy",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "milk"
+   ],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 2.5,
+    "base": 3.5,
+    "high": 5.0
+   }
+  },
+  {
+   "id": "i-hung-curd",
+   "name": "Hung curd (yogurt hung to ~50% weight)",
+   "category": "dairy",
+   "unit": "kg",
+   "yield_pct": 50,
+   "allergens": [
+    "milk"
+   ],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "derived from yogurt; price = yogurt / yield",
+   "derived_from": "i-yogurt"
+  },
+  {
+   "id": "i-crema",
+   "name": "Mexican crema",
+   "category": "dairy",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "milk"
+   ],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "house label 'Raita-Crema' is internal only",
+   "price": {
+    "low": 5,
+    "base": 7,
+    "high": 10
+   }
+  },
+  {
+   "id": "i-cheese-oaxaca",
+   "name": "Oaxaca-style cheese",
+   "category": "dairy",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "milk"
+   ],
+   "vegetarian": "check",
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "record rennet source (D-54: bovine rennet acceptable; vegetarian labelling is a separate question)",
+   "price": {
+    "low": 9,
+    "base": 12,
+    "high": 16
+   }
+  },
+  {
+   "id": "i-cotija",
+   "name": "Cotija-style cheese",
+   "category": "dairy",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "milk"
+   ],
+   "vegetarian": "check",
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "record rennet source",
+   "price": {
+    "low": 9,
+    "base": 12,
+    "high": 16
+   }
+  },
+  {
+   "id": "i-butter",
+   "name": "Butter",
+   "category": "dairy",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "milk"
+   ],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 8,
+    "base": 10,
+    "high": 13
+   }
+  },
+  {
+   "id": "i-ghee",
+   "name": "Ghee",
+   "category": "dairy",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "milk"
+   ],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 10,
+    "base": 13,
+    "high": 18
+   }
+  },
+  {
+   "id": "i-cream",
+   "name": "Cream",
+   "category": "dairy",
+   "unit": "l",
+   "yield_pct": 100,
+   "allergens": [
+    "milk"
+   ],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 4.5,
+    "base": 6.0,
+    "high": 8.0
+   }
+  },
+  {
+   "id": "i-corn-tortilla",
+   "name": "Corn tortilla (nixtamal)",
+   "category": "grain",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "D-54: label must show no lard",
+   "price": {
+    "low": 2.8,
+    "base": 4.0,
+    "high": 5.5
+   }
+  },
+  {
+   "id": "i-flour-tortilla-25",
+   "name": "Flour tortilla, 25 cm",
+   "category": "grain",
+   "unit": "each",
+   "yield_pct": 100,
+   "allergens": [
+    "wheat"
+   ],
+   "vegetarian": "check",
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "D-54: lard-free confirmation needed; check label for milk/soy",
+   "price": {
+    "low": 0.3,
+    "base": 0.42,
+    "high": 0.6
+   }
+  },
+  {
+   "id": "i-rice-flour",
+   "name": "Rice flour",
+   "category": "grain",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "check label for cross-contact",
+   "price": {
+    "low": 1.8,
+    "base": 2.5,
+    "high": 3.5
+   }
+  },
+  {
+   "id": "i-cornflour",
+   "name": "Cornflour (corn starch)",
+   "category": "grain",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 1.8,
+    "base": 2.5,
+    "high": 3.5
+   }
+  },
+  {
+   "id": "i-cornstarch",
+   "name": "Corn starch (thickener)",
+   "category": "grain",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 1.6,
+    "base": 2.4,
+    "high": 3.4
+   }
+  },
+  {
+   "id": "i-besan",
+   "name": "Besan (chickpea flour)",
+   "category": "grain",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "chickpea is not a major US allergen; check label for cross-contact (wheat)",
+   "price": {
+    "low": 2.5,
+    "base": 3.5,
+    "high": 5.0
+   }
+  },
+  {
+   "id": "i-sev",
+   "name": "Sev (fried besan noodles)",
+   "category": "grain",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": "check",
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "check label: frying oil, wheat cross-contact",
+   "price": {
+    "low": 6,
+    "base": 9,
+    "high": 13
+   }
+  },
+  {
+   "id": "i-corn-kernels",
+   "name": "Sweet corn kernels (fresh or frozen)",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 2.2,
+    "base": 3.2,
+    "high": 4.5
+   }
+  },
+  {
+   "id": "i-oil-neutral",
+   "name": "Neutral frying oil",
+   "category": "oil",
+   "unit": "l",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "D-54: vegetable oil only, no lard; type to record; allocation = absorbed + degraded oil per portion",
+   "price": {
+    "low": 3.0,
+    "base": 4.0,
+    "high": 5.5
+   }
+  },
+  {
+   "id": "i-ginger-garlic-paste",
+   "name": "Ginger-garlic paste",
+   "category": "aromatic",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "check label for additives",
+   "price": {
+    "low": 3.5,
+    "base": 5.0,
+    "high": 7.5
+   }
+  },
+  {
+   "id": "i-ginger",
+   "name": "Ginger, fresh",
+   "category": "aromatic",
+   "unit": "kg",
+   "yield_pct": 85,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 4,
+    "base": 6,
+    "high": 9
+   }
+  },
+  {
+   "id": "i-garlic",
+   "name": "Garlic, fresh",
+   "category": "aromatic",
+   "unit": "kg",
+   "yield_pct": 88,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 5,
+    "base": 7,
+    "high": 10
+   }
+  },
+  {
+   "id": "i-red-chilli-powder",
+   "name": "Red chilli powder (Kashmiri-type)",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "colour more than heat; chef decides heat",
+   "price": {
+    "low": 7,
+    "base": 11,
+    "high": 16
+   }
+  },
+  {
+   "id": "i-turmeric",
+   "name": "Turmeric, ground",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 7,
+    "base": 10,
+    "high": 15
+   }
+  },
+  {
+   "id": "i-coriander-powder",
+   "name": "Coriander, ground",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 6,
+    "base": 9,
+    "high": 13
+   }
+  },
+  {
+   "id": "i-cumin-ground",
+   "name": "Cumin, ground",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 8,
+    "base": 12,
+    "high": 17
+   }
+  },
+  {
+   "id": "i-kasuri-methi",
+   "name": "Kasuri methi (dried fenugreek leaf)",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 18,
+    "base": 28,
+    "high": 40
+   }
+  },
+  {
+   "id": "i-chaat-masala",
+   "name": "Chaat masala",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": "check",
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "blend label must be checked (mustard, sulfites, anti-caking agents)",
+   "price": {
+    "low": 12,
+    "base": 17,
+    "high": 24
+   }
+  },
+  {
+   "id": "i-garam-masala",
+   "name": "Garam masala",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": "check",
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "blend label must be checked",
+   "price": {
+    "low": 14,
+    "base": 20,
+    "high": 28
+   }
+  },
+  {
+   "id": "i-cinnamon",
+   "name": "Cinnamon (cassia/canela), whole",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 12,
+    "base": 18,
+    "high": 26
+   }
+  },
+  {
+   "id": "i-clove",
+   "name": "Clove, whole",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 25,
+    "base": 38,
+    "high": 55
+   }
+  },
+  {
+   "id": "i-bay",
+   "name": "Bay leaf",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 12,
+    "base": 18,
+    "high": 26
+   }
+  },
+  {
+   "id": "i-oregano-mx",
+   "name": "Mexican oregano",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 18,
+    "base": 28,
+    "high": 40
+   }
+  },
+  {
+   "id": "i-curry-leaf",
+   "name": "Curry leaf, fresh",
+   "category": "herb",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "availability and shelf life are supply risks",
+   "price": {
+    "low": 18,
+    "base": 30,
+    "high": 45
+   }
+  },
+  {
+   "id": "i-green-chile",
+   "name": "Green chile (serrano or similar)",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 90,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 3.5,
+    "base": 5.5,
+    "high": 8.5
+   }
+  },
+  {
+   "id": "i-habanero",
+   "name": "Habanero chile, fresh",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 85,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "heat level is a test variable; gloves; deseeding controls heat",
+   "price": {
+    "low": 7,
+    "base": 11,
+    "high": 16
+   }
+  },
+  {
+   "id": "i-poblano",
+   "name": "Poblano chile (roasted, peeled, seeded)",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 55,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "EP after roasting/peeling/seeding ~55% of AP",
+   "price": {
+    "low": 2.8,
+    "base": 4.2,
+    "high": 6.0
+   }
+  },
+  {
+   "id": "i-guajillo",
+   "name": "Guajillo chile, dried",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 80,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "stems and seeds removed",
+   "price": {
+    "low": 12,
+    "base": 18,
+    "high": 26
+   }
+  },
+  {
+   "id": "i-ancho",
+   "name": "Ancho chile, dried",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 80,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "stems and seeds removed",
+   "price": {
+    "low": 12,
+    "base": 18,
+    "high": 26
+   }
+  },
+  {
+   "id": "i-onion-white",
+   "name": "Onion, white",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 90,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 1.0,
+    "base": 1.5,
+    "high": 2.2
+   }
+  },
+  {
+   "id": "i-onion-red",
+   "name": "Onion, red",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 90,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 1.3,
+    "base": 1.9,
+    "high": 2.6
+   }
+  },
+  {
+   "id": "i-tomatillo",
+   "name": "Tomatillo",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 90,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 2.5,
+    "base": 3.8,
+    "high": 5.5
+   }
+  },
+  {
+   "id": "i-tomato-passata",
+   "name": "Tomato passata / crushed tomato",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "check for added sugar/citric acid; no animal derivatives expected",
+   "price": {
+    "low": 1.6,
+    "base": 2.4,
+    "high": 3.4
+   }
+  },
+  {
+   "id": "i-mango-puree",
+   "name": "Mango puree, single-strength (aseptic or pasteurised)",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "record preservatives (sulfites are declarable); fresh mango is a later variable",
+   "price": {
+    "low": 3.5,
+    "base": 5.0,
+    "high": 7.5
+   }
+  },
+  {
+   "id": "i-jaggery",
+   "name": "Jaggery / piloncillo",
+   "category": "pantry",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 3.5,
+    "base": 5.5,
+    "high": 8.0
+   }
+  },
+  {
+   "id": "i-sugar",
+   "name": "Sugar",
+   "category": "pantry",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 1.0,
+    "base": 1.5,
+    "high": 2.2
+   }
+  },
+  {
+   "id": "i-salt",
+   "name": "Salt",
+   "category": "pantry",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 0.4,
+    "base": 0.7,
+    "high": 1.0
+   }
+  },
+  {
+   "id": "i-cider-vinegar",
+   "name": "Cider vinegar",
+   "category": "pantry",
+   "unit": "l",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "sulfite traces possible: check",
+   "price": {
+    "low": 1.8,
+    "base": 2.6,
+    "high": 3.8
+   }
+  },
+  {
+   "id": "i-lime",
+   "name": "Lime",
+   "category": "produce",
+   "unit": "each",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "1 lime ~ 30 ml juice",
+   "price": {
+    "low": 0.12,
+    "base": 0.2,
+    "high": 0.35
+   }
+  },
+  {
+   "id": "i-lime-juice",
+   "name": "Lime juice, fresh-squeezed",
+   "category": "produce",
+   "unit": "l",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "derived from fruit price / ~30 ml per lime",
+   "price": {
+    "low": 4.0,
+    "base": 6.7,
+    "high": 11.0
+   }
+  },
+  {
+   "id": "i-lemon-juice",
+   "name": "Lemon juice, fresh-squeezed",
+   "category": "produce",
+   "unit": "l",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 5.0,
+    "base": 8.0,
+    "high": 12.0
+   }
+  },
+  {
+   "id": "i-cilantro",
+   "name": "Cilantro",
+   "category": "herb",
+   "unit": "kg",
+   "yield_pct": 70,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 5,
+    "base": 9,
+    "high": 14
+   }
+  },
+  {
+   "id": "i-mint",
+   "name": "Mint",
+   "category": "herb",
+   "unit": "kg",
+   "yield_pct": 60,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 10,
+    "base": 16,
+    "high": 24
+   }
+  },
+  {
+   "id": "i-water",
+   "name": "Water",
+   "category": "pantry",
+   "unit": "l",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "utility cost only",
+   "price": {
+    "low": 0.002,
+    "base": 0.003,
+    "high": 0.005
+   }
+  },
+  {
+   "id": "i-lamb-leg",
+   "name": "Lamb leg, boneless, trimmed",
+   "category": "protein",
+   "unit": "kg",
+   "yield_pct": 75,
+   "allergens": [],
+   "vegetarian": false,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "trim loss ~25% (fat, sinew); supplier statement required",
+   "price": {
+    "low": 13,
+    "base": 15.5,
+    "high": 19
+   }
+  },
+  {
+   "id": "i-white-fish",
+   "name": "Firm white fish fillet, skinless (species TBD: mahi/redfish/cod)",
+   "category": "protein",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "fish"
+   ],
+   "vegetarian": false,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "species and sourcing are open decisions (menu matrix item 7)",
+   "price": {
+    "low": 9.5,
+    "base": 12,
+    "high": 15
+   }
+  },
+  {
+   "id": "i-chicken-wing",
+   "name": "Chicken wing, bone-in, split (as purchased weight)",
+   "category": "protein",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": false,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "cost on purchased weight; cooked yield about 60% by weight (bone and fry loss)",
+   "price": {
+    "low": 3.6,
+    "base": 4.6,
+    "high": 6.2
+   }
+  },
+  {
+   "id": "i-coconut-milk",
+   "name": "Coconut milk, unsweetened",
+   "category": "pantry",
+   "unit": "l",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "coconut is not on the current US FDA major-allergen list; check supplier labelling",
+   "price": {
+    "low": 3.0,
+    "base": 3.8,
+    "high": 4.8
+   }
+  },
+  {
+   "id": "i-potato",
+   "name": "Potato, waxy",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 85,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "peel loss ~15%",
+   "price": {
+    "low": 1.0,
+    "base": 1.4,
+    "high": 1.9
+   }
+  },
+  {
+   "id": "i-wheat-flour",
+   "name": "Wheat flour, bread/high-protein",
+   "category": "grain",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "wheat"
+   ],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 0.8,
+    "base": 1.0,
+    "high": 1.4
+   }
+  },
+  {
+   "id": "i-yeast-dry",
+   "name": "Dry yeast",
+   "category": "pantry",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 7,
+    "base": 9,
+    "high": 12
+   }
+  },
+  {
+   "id": "i-mozzarella",
+   "name": "Low-moisture mozzarella",
+   "category": "dairy",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "milk"
+   ],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "check rennet type for the vegetarian claim",
+   "price": {
+    "low": 6.5,
+    "base": 8.5,
+    "high": 11
+   }
+  },
+  {
+   "id": "i-cashew",
+   "name": "Cashew, raw pieces",
+   "category": "pantry",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [
+    "tree_nut"
+   ],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "tree-nut allergen: Nawaabi sauce only",
+   "price": {
+    "low": 11,
+    "base": 14,
+    "high": 18
+   }
+  },
+  {
+   "id": "i-chile-arbol",
+   "name": "Chile de árbol, dried",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 80,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 18,
+    "base": 22,
+    "high": 28
+   }
+  },
+  {
+   "id": "i-tamarind-paste",
+   "name": "Tamarind paste",
+   "category": "pantry",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 5,
+    "base": 7,
+    "high": 9
+   }
+  },
+  {
+   "id": "i-mustard-seed",
+   "name": "Black mustard seed",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 5,
+    "base": 7,
+    "high": 9
+   }
+  },
+  {
+   "id": "i-black-pepper",
+   "name": "Black pepper, ground",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 14,
+    "base": 18,
+    "high": 24
+   }
+  },
+  {
+   "id": "i-cardamom",
+   "name": "Green cardamom, ground",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "",
+   "price": {
+    "low": 55,
+    "base": 80,
+    "high": 110
+   }
+  },
+  {
+   "id": "i-saffron",
+   "name": "Saffron threads",
+   "category": "spice",
+   "unit": "kg",
+   "yield_pct": 100,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "used in fractions of a gram",
+   "price": {
+    "low": 2500,
+    "base": 3500,
+    "high": 5000
+   }
+  },
+  {
+   "id": "i-cabbage",
+   "name": "Green cabbage",
+   "category": "produce",
+   "unit": "kg",
+   "yield_pct": 85,
+   "allergens": [],
+   "vegetarian": true,
+   "d54": "no beef/pork derivative expected; supplier statement required",
+   "notes": "core/outer-leaf loss ~15%",
+   "price": {
+    "low": 1.0,
+    "base": 1.5,
+    "high": 2.2
+   }
+  }
+ ]
+}

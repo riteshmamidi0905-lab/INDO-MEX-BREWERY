@@ -1,0 +1,78 @@
+{
+ "config_id": "price-v2-2026-10-22",
+ "decision": "D-87",
+ "effective": "2026-10-22",
+ "status": "APPROVED CONCEPT PRICES \u2014 NOT AN OPERATING MENU",
+ "supersedes_for_new_scenarios": "price-v1-placeholder",
+ "disclaimer": "Concept prices from the founder's 2026-10-22 directive. No restaurant is operating and no sale has occurred. Simulated revenue computed from these prices is SYNTHETIC and is not NASHA revenue. Ingredient costs are planning assumptions, not supplier quotes.",
+ "currency": "USD",
+ "prices_usd": {
+  "beer_glass": 9.0,
+  "beer_pitcher": 31.0,
+  "appetizer": 13.5,
+  "main": 18.5
+ },
+ "beers": [
+  {
+   "id": "badshah",
+   "name": "BADSHAH",
+   "style": "Hefeweizen",
+   "target_abv_pct": 4.7,
+   "glass_usd": 9.0,
+   "pitcher_usd": 31.0,
+   "sim_item_id": "B01",
+   "status": "CONCEPT FORMULATION - NOT BREWED OR TESTED; TARGET ABV 4.7% PROVISIONAL"
+  },
+  {
+   "id": "amba-haze",
+   "name": "AMBA HAZE",
+   "style": "Mango-forward juicy IPA",
+   "target_abv_pct": 6.0,
+   "glass_usd": 9.0,
+   "pitcher_usd": 31.0,
+   "sim_item_id": "B04",
+   "status": "CONCEPT FORMULATION - NOT BREWED OR TESTED; TARGET ABV 6.0% PROVISIONAL"
+  }
+ ],
+ "serving_volumes": {
+  "glass": {
+   "value_ml": null,
+   "status": "PENDING FOUNDER DECISION"
+  },
+  "pitcher": {
+   "value_ml": null,
+   "status": "PENDING FOUNDER DECISION"
+  },
+  "note": "Serving sizes are not assumed. Beer unit cost, margin and pitcher-vs-glass economics are NOT COMPUTABLE until volumes and a costed batch exist. Packaging/regulatory statements are not finalized."
+ },
+ "cost_assumptions": {
+  "class": "PLANNING_ASSUMPTION",
+  "waste_pct": 5.0,
+  "consumables_per_portion_usd": 0.12,
+  "consumables_note": "liner, napkin, pick: planning allowance",
+  "loaded_labor_usd_per_hour": 24.0,
+  "labor_note": "loaded kitchen labor planning rate; the synthetic simulation's own wage placeholders are separate",
+  "target_gross_margin_pct": 70
+ },
+ "menu_item_mapping_to_sim": {
+  "M01": "chicken-65-totopos",
+  "M02": "paneer-tikka-taco",
+  "M03": "goat-birria",
+  "M04": "mango-habanero-gobi",
+  "M05": "butter-chicken-quesadilla"
+ },
+ "sim_items_without_v2_price": [
+  "B02",
+  "B03",
+  "N01",
+  "N02",
+  "G01",
+  "G02",
+  "G03"
+ ],
+ "sim_items_note": "Lager (B02), Amber (B03), non-alcoholic drinks and merchandise are not part of the approved concept price list; restated scenarios keep their v1 placeholder price and label them so.",
+ "classification_flags": [
+  "paneer-tikka-taco and goat-birria are not in the founder's appetizer/main candidate lists; priced as mains provisionally",
+  "chaat-elote overlaps the candidate 'Masala Street Corn' and is priced as an appetizer"
+ ]
+}

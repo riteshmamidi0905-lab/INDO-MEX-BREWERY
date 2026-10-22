@@ -1,0 +1,54 @@
+{
+ "id": "pizza-dough",
+ "version": "1.0",
+ "kind": "subrecipe",
+ "name": "Pizza dough (direct, cold-ferment)",
+ "status": "PRELIMINARY ESTIMATE — NOT COOKED OR TASTED",
+ "batch_yield_g": 1020,
+ "shelf_life_note": "72 h at ≤ 5 °C (ASSUMPTION)",
+ "lines": [
+  {
+   "ingredient": "i-wheat-flour",
+   "qty": 600,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-water",
+   "qty": 0.38,
+   "unit": "l"
+  },
+  {
+   "ingredient": "i-yeast-dry",
+   "qty": 4,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-salt",
+   "qty": 12,
+   "unit": "g"
+  },
+  {
+   "ingredient": "i-oil-neutral",
+   "qty": 30,
+   "unit": "ml"
+  }
+ ],
+ "method": [
+  "Mix to a smooth dough, bulk 1 h, divide into 230 g balls, cold-ferment 24 h at ≤ 5 °C, temper 1 h before stretching."
+ ],
+ "sauce_spec": {
+  "texture": "elastic",
+  "use": "pizza base, 230 g per pizza"
+ },
+ "food_safety": [
+  "Keep balls refrigerated; discard after 72 h (ASSUMPTION)."
+ ],
+ "allergens_declared": [
+  "wheat"
+ ],
+ "test_variables": [],
+ "evidence": [
+  "Standard bakery practice; hydration about 63% is an ASSUMPTION to be tested in the NASHA oven."
+ ],
+ "estimates_label": "All quantities, yields, times and costs are preliminary estimates until a person cooks and measures them. Nothing here has been cooked or tasted."
+}
