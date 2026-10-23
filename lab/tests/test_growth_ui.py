@@ -327,3 +327,18 @@ def test_roadmap_status_changes_are_saved_by_owner_and_unavailable_to_a_viewer(s
     pg.select_option(f"[data-ms='{todo['id']}']", "doing"); pg.wait_for_selector(".toast.ok"); pg.wait_for_timeout(500)
     assert next(m for m in _api(base, envs, "tenant-nasha", "ada", "GET", f"/projects/{ms}").json()["milestones"] if m["id"] == todo["id"])["status"] == "doing"
     v = login(browser, base, "vic"); go(v, "#/roadmap", ".track"); assert v.locator("[data-ms]").count() == 0
+
+
+def test_on_a_phone_the_navigation_is_collapsed_behind_a_keyboard_operable_menu_and_content_starts_in_the_first_screen(server, browser):
+    base, _ = server
+    pg = login(browser, base, "ana", vp=(390, 844))
+    btn = pg.locator("#menubtn")
+    assert btn.is_visible() and btn.get_attribute("aria-expanded") == "false" and not pg.locator("#nav").is_visible()
+    assert pg.locator("#main h1").bounding_box()["y"] < 400                      # the page title is on the first screen, not below a full navigation list
+    btn.focus(); pg.keyboard.press("Enter")
+    assert btn.get_attribute("aria-expanded") == "true" and pg.locator("#nav").is_visible() and pg.locator("#nav a[data-k=suppliers]").is_visible()
+    pg.locator("#nav a[data-k=suppliers]").click(); pg.wait_for_selector("#slist .sup")
+    assert btn.get_attribute("aria-expanded") == "false" and not pg.locator("#nav").is_visible()   # choosing a destination closes the menu
+    assert not pg.evaluate("document.documentElement.scrollWidth>innerWidth+1")
+    wide = login(browser, base, "ana", vp=(1280, 900))
+    assert not wide.locator("#menubtn").is_visible() and wide.locator("#nav").is_visible()

@@ -175,6 +175,7 @@ async function settings(){
 const ROUTES={dashboard,crm,pipeline,pricing,workflows,security,settings};
 async function route(){if(!S.token)return;const [k,a]=(location.hash.slice(2)||'dashboard').split('/');const fn=ROUTES[k]||ROUTES.business||dashboard;setNav(ROUTES[k]?k:(ROUTES.business?'business':'dashboard'));try{await fn(a)}catch(e){fail(e)}}
 addEventListener('hashchange',route);
+{const mb=$('#menubtn'),side=$('.side');if(mb)mb.addEventListener('click',()=>{const o=side.classList.toggle('open');mb.setAttribute('aria-expanded',o)});addEventListener('hashchange',()=>{if(side){side.classList.remove('open');if(mb)mb.setAttribute('aria-expanded','false')}})}
 async function boot(){ if(S.token&&!S.display_name){try{const m=await api('GET','/me');S.display_name=m.display_name;S.tenant_name=m.tenant_name;save()}catch(e){}} if(S.token){shell();if(!location.hash)location.hash=ROUTES.business?'#/business':'#/dashboard';route()}else{$('#login').hidden=false;$('#app').hidden=true;pass()} }
 const pass=()=>{$('#l-pass').value=`${$('#l-tenant').value}-${$('#l-user').value}-dev-passcode`};
 $('#l-tenant').onchange=pass;$('#l-user').onchange=pass;

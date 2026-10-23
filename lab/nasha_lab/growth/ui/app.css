@@ -58,3 +58,6 @@ form.mini{display:flex;gap:6px;align-items:center}form.mini input{width:120px;mi
 @media(max-width:700px){.track{grid-template-columns:1fr}}
 
 .side{overflow-y:auto}#nav a{min-height:40px}
+
+#sidebody{display:contents}.menubtn{display:none}
+@media(max-width:860px){.menubtn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;margin-left:auto;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--text);font:inherit;cursor:pointer}#sidebody{display:none;width:100%}.side.open #sidebody{display:block}}
