@@ -1,12 +1,12 @@
 {
- "commit": "cbfeeb0",
+ "commit": "fdeeeea",
  "pushed": false,
  "counts": {
-  "IMPLEMENTED_TESTED": 25,
+  "IMPLEMENTED_TESTED": 26,
   "IMPLEMENTED_UNVERIFIED": 1,
   "DESIGNED_ONLY": 1,
   "BLOCKED": 1,
-  "NOT_STARTED": 3
+  "NOT_STARTED": 2
  },
  "rows": [
   {
@@ -122,7 +122,7 @@
     "lab/tests/test_scenario_d87.py::test_inventory_depletion_matches_an_independent_recomputation",
     "lab/tests/test_scenario_d87.py::test_variance_detector_finds_injected_anomalies_without_reading_them"
    ],
-   "note": "Only 3 injected anomalies; 4 of 5 active dishes have simulated sales."
+   "note": "Injected anomalies are few (11 cells); synthetic sales."
   },
   {
    "objective": "7 Analytics",
@@ -139,11 +139,20 @@
   },
   {
    "objective": "7 Analytics",
-   "capability": "Expand menu simulation to the full current active menu (versioned current-menu definition)",
-   "status": "NOT_STARTED",
-   "code": [],
-   "tests": [],
-   "note": "Requires a founder-approved current-menu definition; Goat Birria retired (D-88)."
+   "capability": "Full active-menu simulation from a versioned definition (6 dishes incl. provisional Tandoori Lamb Tacos; Goat Birria absent; historical scenario preserved)",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/recipes/menu.py",
+    "food/menu/menu-definition.v2-2026-10-23.json",
+    "lab/nasha_lab/enterprise_sim.py",
+    "lab/nasha_lab/warehouse/scenario.py"
+   ],
+   "tests": [
+    "lab/tests/test_menu_d90.py::test_every_active_menu_item_flows_through_the_whole_simulation",
+    "lab/tests/test_menu_d90.py::test_historical_scenario_is_reproducible_and_its_config_has_no_menu_key",
+    "lab/tests/test_menu_d90.py::test_lamb_procurement_is_proposed_held_for_approval_and_ends_as_a_draft_only"
+   ],
+   "note": "Synthetic sales; popularity weights are parameters; the lamb recipe/costing is provisional (not cooked or tested); the five other dishes' costs are planning assumptions."
   },
   {
    "objective": "4 RAG",

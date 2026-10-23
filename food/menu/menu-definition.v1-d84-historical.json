@@ -1,0 +1,13 @@
+{
+  "menu_id": "menu-def-v1-d84-historical",
+  "status": "HISTORICAL — reproduces the synthetic data set generated before D-90. Never edited.",
+  "pricing_config": "price-v3-2026-10-23",
+  "note": "Slot M03 is the retired Goat Birria placeholder; the historical raw tables keep it. In this definition its restated mapping is intentionally empty (D-88), exactly as the pre-D-90 scenario behaved.",
+  "excluded": [{"sim_item_id": "M03", "dish": "goat-birria", "reason": "Retired by founder decision D-88; historical records preserved in food/recipes/retired/."}],
+  "items": [
+    {"sim_item_id": "M01", "menu_item_id": "chicken-65-totopos", "role": "core5"},
+    {"sim_item_id": "M02", "menu_item_id": "paneer-tikka-taco", "role": "core5"},
+    {"sim_item_id": "M04", "menu_item_id": "mango-habanero-gobi", "role": "core5"},
+    {"sim_item_id": "M05", "menu_item_id": "butter-chicken-quesadilla", "role": "core5"}
+  ]
+}

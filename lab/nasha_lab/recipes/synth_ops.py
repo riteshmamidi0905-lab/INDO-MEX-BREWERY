@@ -23,10 +23,24 @@ class Anomaly:
     magnitude: float          # fractional change of actual usage
 
 
+def menu_for(wh_path):
+    """(definition name, {sim slot: recipe id}) for the menu this warehouse was generated with, detected from its item ids (D-90)."""
+    from . import menu
+    con = sqlite3.connect(f"file:{wh_path}?mode=ro", uri=True)
+    ids = [r[0] for r in con.execute("SELECT item_id FROM dim_product")]
+    con.close()
+    name = menu.detect(ids)
+    return name, menu.slot_to_recipe(name)
+
+
+def _in_list(slots):
+    return "(" + ",".join(f"'{x}'" for x in slots) + ")"
+
+
 def first_sales_date(wh_path):
     """First calendar date with a sale of any of the five Core 5 items: defines week 0 for the scenario calendar and the synthetic counts."""
     con = sqlite3.connect(f"file:{wh_path}?mode=ro", uri=True)
-    r = con.execute("""SELECT min(d.date) FROM fact_order_line f JOIN dim_date d USING(date_key) JOIN dim_product p USING(product_key) WHERE p.item_id IN ('M01','M02','M04','M05')""").fetchone()[0]
+    r = con.execute("""SELECT min(d.date) FROM fact_order_line f JOIN dim_date d USING(date_key) JOIN dim_product p USING(product_key) WHERE p.item_id IN """ + _in_list(menu_for(wh_path)[1])).fetchone()[0]
     con.close()
     return r
 
@@ -35,7 +49,7 @@ def weekly_sales(wh_path):
     """(week_index -> {site: {item: units}}) for the five Core 5 sim items, week 0 = first week with sales."""
     con = sqlite3.connect(f"file:{wh_path}?mode=ro", uri=True)
     rows = con.execute("""SELECT d.date, l.location_id, p.item_id, sum(f.qty) FROM fact_order_line f JOIN dim_date d USING(date_key) JOIN dim_location l USING(location_key)
-                          JOIN dim_product p USING(product_key) WHERE p.item_id IN ('M01','M02','M04','M05') GROUP BY 1,2,3""").fetchall()
+                          JOIN dim_product p USING(product_key) WHERE p.item_id IN """ + _in_list(menu_for(wh_path)[1]) + " GROUP BY 1,2,3").fetchall()
     con.close()
     import datetime as dt
     first = min(dt.date.fromisoformat(r[0]) for r in rows)
@@ -56,7 +70,7 @@ def generate(wh_path, seed=7, anomalies=None, baseline_loss=0.04, count_noise=0.
     """Returns dict(rows=[...], anomalies=[...]); each row = site, week, ingredient, theoretical, measured, receipts, opening, closing (purchase units)."""
     recipes = recipes or model.load_recipes()
     master = master or model.load_master()
-    table = BOM.bom_table(recipes, master)
+    table = BOM.bom_table(recipes, master, menu_for(wh_path)[1])
     sales = weekly_sales(wh_path)
     weeks = sorted(sales)
     sites = sorted({s for w in sales.values() for s in w})

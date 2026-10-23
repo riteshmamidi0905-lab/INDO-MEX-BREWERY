@@ -52,6 +52,7 @@ class SimConfig:
     price_scale: float = 1.0                  # placeholder list prices are multiplied by this (calibration)
     waste_scale: float = 1.0                  # multiplies wasted kg per event (calibration)
     name: str = "custom"
+    menu: str = "historical"                  # D-90: "historical" reproduces every earlier data set byte for byte; "current" uses recipes/menu.py's current-state definition (no Goat Birria)
 
 
 PROFILES = {
@@ -69,6 +70,28 @@ CATALOG = [  # item_id, name, category, price_cents, ingredients, status
     ("G02", "Hoodie 02 Two Worlds (concept)", "merch", 8800, "", "concept merchandise, never made or sold; placeholder price"),
     ("G03", "Graphic tee (concept)", "merch", 3200, "", "concept merchandise, never made or sold; placeholder price"),
 ]
+
+
+def menu_catalog(cfg):
+    """(catalog rows, fast-casual popularity, beer-garden popularity) for cfg.menu. The historical menu is the module-level constants, unchanged."""
+    if cfg.menu == "historical":
+        return CATALOG, POP_FAST, POP_GARDEN
+    from .recipes import menu as _menu, pricing as _pricing, model as _model
+    d = _menu.load(cfg.menu); recipes = _model.load_recipes(); pcfg = _pricing.load_config(d["pricing_config"])
+    by_id = {c[0]: c for c in CATALOG}
+    food = []
+    for it in d["items"]:
+        if it["sim_item_id"] in by_id and by_id[it["sim_item_id"]][2] == "food" and by_id[it["sim_item_id"]][1].lower().startswith(it["name"].lower()[:6]):
+            food.append(by_id[it["sim_item_id"]])
+        else:
+            r = recipes[it["menu_item_id"]]
+            food.append((it["sim_item_id"], it["name"], "food", _pricing.price_cents(pcfg, r["menu_category"]), "per recipe " + it["menu_item_id"], "current-state definition " + d["menu_id"] + "; concept price; recipe provisional" if it.get("provisional") else "current-state definition " + d["menu_id"] + "; concept price"))
+    rest = [c for c in CATALOG if c[2] != "food"]
+    pf = {i["sim_item_id"]: i["popularity"]["fast casual"] for i in d["items"]}; pg = {i["sim_item_id"]: i["popularity"]["beer garden"] for i in d["items"]}
+    pf.update({k: v for k, v in POP_FAST.items() if k[0] != "M"}); pg.update({k: v for k, v in POP_GARDEN.items() if k[0] != "M"})
+    return food + rest, pf, pg
+
+
 ITEM_IDS = [c[0] for c in CATALOG]
 ITEM_CAT = np.array([c[2] for c in CATALOG])
 ITEM_PRICE = np.array([c[3] for c in CATALOG], dtype=np.int64)
@@ -166,6 +189,11 @@ def generate(cfg, out, progress=False):
     t0 = time.perf_counter()
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
+    CATALOG, POP_FAST, POP_GARDEN = menu_catalog(cfg)                  # local shadows of the module constants (identical objects for the historical menu)
+    ITEM_IDS = [c[0] for c in CATALOG]
+    ITEM_CAT = np.array([c[2] for c in CATALOG])
+    ITEM_PRICE = np.array([c[3] for c in CATALOG], dtype=np.int64)
+    MERCH_IDX = np.where(ITEM_CAT == "merch")[0]
     start = dt.date.fromisoformat(cfg.start)
     ms = _month_starts(cfg)
     end = (ms[-1].replace(day=28) + dt.timedelta(days=4)).replace(day=1)
@@ -365,7 +393,7 @@ def generate(cfg, out, progress=False):
     secs = time.perf_counter() - t0
     manifest = {
         "synthetic": True, "disclaimer": "SYNTHETIC DATA / SIMULATED OPERATION. No real business, customer, employee, sale or product exists. Prices and wages are placeholders; volumes are UNCALIBRATED.",
-        "sim_version": SIM_VERSION, "config": asdict(cfg), "scenario_start": cfg.start, "scenario_days": n_days, "locations": nl,
+        "sim_version": SIM_VERSION, "config": {k: v for k, v in asdict(cfg).items() if not (k == "menu" and v == "historical")}, "scenario_start": cfg.start, "scenario_days": n_days, "locations": nl,
         "tables": {n: {"rows": t.rows, "bytes": t.bytes, "sha256": t.sha} for n, t in sorted(tables.items())},
         "summary": {"orders": tables["orders"].rows, "order_lines": tables["order_lines"].rows, "revenue_cents_placeholder": totals["revenue_cents"], "discount_cents": totals["discount_cents"],
                     "orders_still_above_site_hourly_capacity_after_queueing": totals["orders_over_capacity"]},

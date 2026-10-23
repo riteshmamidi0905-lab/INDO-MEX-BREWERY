@@ -1,0 +1,160 @@
+{
+ "schema": "menu-sim-d90/1",
+ "commit": "fdeeeea",
+ "synthetic": true,
+ "current_menu": "menu-def-v2-2026-10-23",
+ "historical_menu": "menu-def-v1-d84-historical",
+ "current": {
+  "dishes": [
+   {
+    "dish": "paneer-tikka-taco",
+    "name": "Paneer Tikka Taco",
+    "recipe_status": "approved_core5",
+    "units": 8168,
+    "restated_net_usd": 150584,
+    "food_cost_usd": 19004,
+    "gross_profit_usd": 131580,
+    "gp_pct": 87.4,
+    "menu_class": "star"
+   },
+   {
+    "dish": "butter-chicken-quesadilla",
+    "name": "Butter Chicken & Roasted Poblano Quesadilla",
+    "recipe_status": "approved_core5",
+    "units": 8019,
+    "restated_net_usd": 147795,
+    "food_cost_usd": 16376,
+    "gross_profit_usd": 131419,
+    "gp_pct": 88.9,
+    "menu_class": "star"
+   },
+   {
+    "dish": "chicken-65-totopos",
+    "name": "Chicken 65 Totopos",
+    "recipe_status": "approved_core5",
+    "units": 10063,
+    "restated_net_usd": 135358,
+    "food_cost_usd": 22962,
+    "gross_profit_usd": 112396,
+    "gp_pct": 83.0,
+    "menu_class": "plowhorse"
+   },
+   {
+    "dish": "chaat-elote",
+    "name": "Chaat Elote",
+    "recipe_status": "approved_menu_v1_1",
+    "units": 7413,
+    "restated_net_usd": 99719,
+    "food_cost_usd": 8909,
+    "gross_profit_usd": 90810,
+    "gp_pct": 91.1,
+    "menu_class": "plowhorse"
+   },
+   {
+    "dish": "tandoori-lamb-tacos",
+    "name": "Tandoori Lamb Tacos",
+    "recipe_status": "candidate",
+    "units": 6481,
+    "restated_net_usd": 119465,
+    "food_cost_usd": 36688,
+    "gross_profit_usd": 82777,
+    "gp_pct": 69.3,
+    "menu_class": "plowhorse"
+   },
+   {
+    "dish": "mango-habanero-gobi",
+    "name": "Mango Habanero Gobi",
+    "recipe_status": "approved_core5",
+    "units": 7478,
+    "restated_net_usd": 100584,
+    "food_cost_usd": 19449,
+    "gross_profit_usd": 81135,
+    "gp_pct": 80.7,
+    "menu_class": "plowhorse"
+   }
+  ],
+  "flags": 11,
+  "recos": 183,
+  "forecast_rows": 2744,
+  "ingredients": 49,
+  "orders": 30155,
+  "score": {
+   "injected_cells": 11,
+   "flagged_cells": 11,
+   "true_positive": 11,
+   "recall": 1.0,
+   "precision": 1.0,
+   "false_positive_cells": 0
+  }
+ },
+ "historical": {
+  "dishes": [
+   {
+    "dish": "paneer-tikka-taco",
+    "name": "Paneer Tikka Taco",
+    "recipe_status": "approved_core5",
+    "units": 8879,
+    "restated_net_usd": 163665,
+    "food_cost_usd": 20658,
+    "gross_profit_usd": 143007,
+    "gp_pct": 87.4,
+    "menu_class": "star"
+   },
+   {
+    "dish": "butter-chicken-quesadilla",
+    "name": "Butter Chicken & Roasted Poblano Quesadilla",
+    "recipe_status": "approved_core5",
+    "units": 8693,
+    "restated_net_usd": 160174,
+    "food_cost_usd": 17752,
+    "gross_profit_usd": 142422,
+    "gp_pct": 88.9,
+    "menu_class": "star"
+   },
+   {
+    "dish": "chicken-65-totopos",
+    "name": "Chicken 65 Totopos",
+    "recipe_status": "approved_core5",
+    "units": 11096,
+    "restated_net_usd": 149235,
+    "food_cost_usd": 25319,
+    "gross_profit_usd": 123915,
+    "gp_pct": 83.0,
+    "menu_class": "plowhorse"
+   },
+   {
+    "dish": "mango-habanero-gobi",
+    "name": "Mango Habanero Gobi",
+    "recipe_status": "approved_core5",
+    "units": 8213,
+    "restated_net_usd": 110528,
+    "food_cost_usd": 21361,
+    "gross_profit_usd": 89168,
+    "gp_pct": 80.7,
+    "menu_class": "plowhorse"
+   }
+  ],
+  "flags": 11,
+  "recos": 159,
+  "forecast_rows": 2464,
+  "ingredients": 44,
+  "orders": 30155,
+  "score": {
+   "injected_cells": 11,
+   "flagged_cells": 11,
+   "true_positive": 11,
+   "recall": 1.0,
+   "precision": 1.0,
+   "false_positive_cells": 0
+  }
+ },
+ "profile": {
+  "months": 10,
+  "fast_casual": 3,
+  "beer_gardens": 1,
+  "target_orders": 30000,
+  "loyalty_profiles": 2500,
+  "employees": 60,
+  "open_at_start": 3
+ }
+}

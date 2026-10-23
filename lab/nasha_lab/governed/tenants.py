@@ -101,9 +101,9 @@ def provision(root, tenant_id, cfg, quote_seed=87, people=None, docs=None, drop_
 
 def default_pair(root, clock=None):
     """Two different synthetic enterprises (different seed, size, site mix, supplier quotes, people and private documents)."""
-    a = provision(root, "tenant-a", es.SimConfig(name="tenant-a", seed=11, months=10, fast_casual=3, beer_gardens=1, target_orders=20_000, loyalty_profiles=2_000, employees=60, open_at_start=3),
+    a = provision(root, "tenant-a", es.SimConfig(name="tenant-a", menu="current", seed=11, months=10, fast_casual=3, beer_gardens=1, target_orders=20_000, loyalty_profiles=2_000, employees=60, open_at_start=3),
                   quote_seed=87, docs={"Receiving SOP": "# Receiving SOP (tenant-a)\nAlpha Courtyard private: negotiated chicken floor price is CONFIDENTIAL-ALPHA-4411.",
                                        "Supplier terms": "# Supplier terms\nAlpha terms net 30 with Synthetic Supplier 01."}, clock=clock)
-    b = provision(root, "tenant-b", es.SimConfig(name="tenant-b", seed=23, months=9, fast_casual=2, beer_gardens=2, target_orders=16_000, loyalty_profiles=1_500, employees=45, open_at_start=2),
+    b = provision(root, "tenant-b", es.SimConfig(name="tenant-b", menu="current", seed=23, months=9, fast_casual=2, beer_gardens=2, target_orders=16_000, loyalty_profiles=1_500, employees=45, open_at_start=2),
                   quote_seed=131, docs={"Receiving SOP": "# Receiving SOP (tenant-b)\nBravo Brewhouse private: paneer rebate agreement CONFIDENTIAL-BRAVO-9027."}, clock=clock)
     return a, b

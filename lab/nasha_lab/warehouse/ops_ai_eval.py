@@ -93,6 +93,7 @@ def build_cases(wh_path):
 def _scenario_cases(con, wh_path, months, locs, ex, fin, an, sm):
     """D-87 cases. Oracles are recomputed from the recipe files and the FACT tables, never from the scn_ tables the tools read."""
     from ..recipes import bom as BOM, model as RM, pricing as PR
+    from ..recipes.synth_ops import menu_for as synth_ops_menu_for
     cases = []
     recipes, master, cfg = RM.load_recipes(), RM.load_master(), PR.load_config()
     OZ = cfg["serving_volumes"]["oz_to_ml"]
@@ -120,7 +121,7 @@ def _scenario_cases(con, wh_path, months, locs, ex, fin, an, sm):
         wk = _q(con, "SELECT week FROM scn_calendar c JOIN dim_date d USING(date_key) WHERE d.date=?", (c1[0][1],))[0][0]
         loc = c1[0][0]
         want = {}
-        for item, rid in cfg["menu_item_mapping_to_sim"].items():
+        for item, rid in synth_ops_menu_for(wh_path)[1].items():
             units = _q(con, "SELECT coalesce(sum(f.qty),0) FROM fact_order_line f JOIN dim_product p USING(product_key) JOIN dim_location l USING(location_key) JOIN scn_calendar c USING(date_key) WHERE p.item_id=? AND l.location_id=? AND c.week=?", (item, loc, wk))[0][0]
             for ing, q in BOM.explode(rid, recipes, master).items():
                 want[ing] = want.get(ing, 0.0) + units * q

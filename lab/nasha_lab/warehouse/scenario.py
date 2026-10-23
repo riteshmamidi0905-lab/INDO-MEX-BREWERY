@@ -15,17 +15,18 @@ import numpy as np
 import pandas as pd
 
 from . import analytics, db, forecast
-from ..recipes import beer_costing, bom, model, optimize, pricing, suppliers, synth_ops
+from ..recipes import beer_costing, bom, menu as menu_defs, model, optimize, pricing, suppliers, synth_ops
 
 SQL = Path(__file__).with_name("scenario_models") / "10_scn_derived.sql"
 SCENARIO_ID = "scn-price-v3-menu-d88"
-BASE_TABLES = ["scn_pricing", "scn_sim_item_map", "scn_menu_item", "scn_ingredient", "scn_supplier", "scn_supplier_quote", "scn_recipe_bom", "scn_calendar", "scn_inventory_week", "scn_injected_anomaly", "scn_supplier_note", "scn_serving", "scn_beer_economics", "scn_cost_lever", "scn_supplier_sensitivity"]
+BASE_TABLES = ["scn_pricing", "scn_sim_item_map", "scn_menu_definition", "scn_menu_item", "scn_ingredient", "scn_supplier", "scn_supplier_quote", "scn_recipe_bom", "scn_calendar", "scn_inventory_week", "scn_injected_anomaly", "scn_supplier_note", "scn_serving", "scn_beer_economics", "scn_cost_lever", "scn_supplier_sensitivity"]
 DERIVED_TABLES = ["scn_depletion_day", "scn_depletion_week", "scn_item_month", "scn_menu_profitability_month", "scn_variance_week", "scn_menu_engineering"]
 PY_TABLES = ["scn_variance_flag", "scn_demand_forecast", "scn_forecast_backtest", "scn_procurement_reco", "scn_scenario_run"]
 ALL_TABLES = BASE_TABLES + DERIVED_TABLES + PY_TABLES
 DDL = {
     "scn_pricing": "config_id TEXT, price_key TEXT, kind TEXT, price_cents INTEGER, status TEXT",
     "scn_sim_item_map": "sim_item_id TEXT, menu_item_id TEXT, v1_price_cents INTEGER, effective_price_cents INTEGER, price_basis TEXT",
+    "scn_menu_definition": "menu_id TEXT, sim_item_id TEXT, menu_item_id TEXT, role TEXT, provisional INTEGER, status TEXT",
     "scn_menu_item": "menu_item_id TEXT, name TEXT, menu_category TEXT, recipe_id TEXT, recipe_version TEXT, menu_status TEXT, price_cents INTEGER, unit_food_cost_cents REAL, unit_consumables_cents REAL, price_config TEXT",
     "scn_ingredient": "ingredient_id TEXT, name TEXT, category TEXT, unit TEXT, yield_pct REAL, base_unit_price REAL, price_class TEXT",
     "scn_supplier": "supplier_id TEXT, name TEXT, kind TEXT, synthetic INTEGER",
@@ -85,7 +86,14 @@ def build(wh_path, config_id=None, seed=7, anomalies="default", quotes=None, sup
             [(config_id, f"{g}_volume_ml", "serving_volume", None, cfg["serving_volumes"][g]["status"]) for g in ("glass", "pitcher")] +
             [("price-v1-placeholder", k, "sim_item_price", v["price_cents"], "FROZEN HISTORICAL PLACEHOLDER") for k, v in json.loads((pricing.PRICING / "price-v1-placeholder.json").read_text())["items"].items()])
     v1 = pricing.v1_catalog_snapshot()
-    to_recipe = cfg["menu_item_mapping_to_sim"]
+    menu_name, to_recipe = synth_ops.menu_for(wh_path)               # the definition the warehouse was generated with; "historical" reproduces the pre-D-90 scenario
+    mdef = menu_defs.load(menu_name)
+    if menu_name == "historical":
+        to_recipe = cfg["menu_item_mapping_to_sim"]
+    px = {r[0]: (r[1], r[2]) for r in con.execute("SELECT item_id, list_price_cents, name FROM dim_product")}
+    v1 = {k: v for k, v in v1.items() if k in px}                      # only items that exist in this warehouse (a "current" warehouse has no M03 / Goat Birria)
+    for slot in to_recipe:
+        v1.setdefault(slot, {"name": px[slot][1], "category": "food", "price_cents": int(px[slot][0])})
     beers = {b["sim_item_id"]: b for b in cfg["beers"]}
     rows = []
     for item, v in v1.items():
@@ -97,6 +105,7 @@ def build(wh_path, config_id=None, seed=7, anomalies="default", quotes=None, sup
         else:
             rows.append((item, None, v["price_cents"], v["price_cents"], "v1_placeholder_carried"))
     _insert(con, "scn_sim_item_map", rows)
+    _insert(con, "scn_menu_definition", [(mdef["menu_id"], i["sim_item_id"], i["menu_item_id"], i.get("role", "core5"), int(bool(i.get("provisional"))), "PROVISIONAL: not cooked or tested; costing is a desk estimate" if i.get("provisional") else "active (concept)") for i in mdef["items"]])
     sv = cfg["serving_volumes"]
     _insert(con, "scn_serving", [(k, sv[k]["fl_oz"], sv[k]["fl_oz"] * sv["oz_to_ml"], sv[k]["status"]) for k in ("glass", "pitcher")])
     _insert(con, "scn_beer_economics", [(r["beer"], r["size"], r["scenario"], r["volume_ml"], int(round(r["price"] * 100)), r["cost_ex_labor"] * 100, r["cost_with_brew_labor"] * 100,
@@ -115,7 +124,8 @@ def build(wh_path, config_id=None, seed=7, anomalies="default", quotes=None, sup
         mi.append((r["id"], r["name"], r["menu_category"], r["id"], r["version"], r["menu_status"], pricing.price_cents(cfg, r["menu_category"]), round(e["food_cost"] * 100, 4), round(e["consumables"] * 100, 4), config_id))
     _insert(con, "scn_menu_item", mi)
     _insert(con, "scn_recipe_bom", pricing.bom_rows(cfg, recipes, master))
-    _insert(con, "scn_ingredient", [(i["id"], i["name"], i["category"], i["unit"], i["yield_pct"], (i["price"]["base"] if "price" in i else None), "PLANNING_ASSUMPTION") for i in master.values()])
+    _insert(con, "scn_ingredient", [(i["id"], i["name"], i["category"], i["unit"], i["yield_pct"], (i["price"]["base"] if "price" in i else None), "PLANNING_ASSUMPTION") for i in master.values()
+                                         if menu_name == "historical" or not i.get("retired")])      # D-90: a current-state scenario carries no retired ingredient (the master file keeps it as history)
     notes = supplier_notes if supplier_notes is not None else {s["supplier_id"]: f"Synthetic delivery note for {s['name']}: standard weekly delivery window; minimum order applies to broadline distributors." for s in qfile["suppliers"]}
     _insert(con, "scn_supplier_note", [(sid, note, "untrusted") for sid, note in sorted(notes.items())])
     _insert(con, "scn_supplier", [(s["supplier_id"], s["name"], s["kind"], 1) for s in qfile["suppliers"]])

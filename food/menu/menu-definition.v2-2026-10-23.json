@@ -1,0 +1,21 @@
+{
+  "menu_id": "menu-def-v2-2026-10-23",
+  "status": "CURRENT-STATE DEFINITION (concept). Used for FUTURE simulation scenarios. Not an operating menu; nothing is on sale.",
+  "decision": "D-90 founder decision: Tandoori Lamb Tacos approved as the replacement CANDIDATE for the retired Goat Birria (D-88).",
+  "supersedes": "menu-def-v1-d84-historical (kept; reproduces the earlier scenario)",
+  "pricing_config": "price-v3-2026-10-23",
+  "historical_documents_preserved": ["food/recipes/retired/", "docs/decisions/DECISIONS.md (D-54, D-84, D-87, D-88 records)", "the Core 5 control documents (still list Goat Birria as history)"],
+  "excluded": [{"dish": "goat-birria", "reason": "Retired D-88: absent from the active menu, the recipe set, the ingredient pool, supplier quotes and every simulation that uses this definition. Its raw historical rows are untouched."}],
+  "provisional_notice": "Tandoori Lamb Tacos has NOT been cooked, tasted or tested. Its recipe, yields and costing are desk estimates and stay provisional; the $18.50 price is the founder-approved concept price for mains (D-88). Lamb carries high price risk (69.4% planning margin).",
+  "items": [
+    {"sim_item_id": "M01", "menu_item_id": "chicken-65-totopos", "name": "Chicken 65 Totopos", "role": "core5", "provisional": false, "popularity": {"fast casual": 5, "beer garden": 3}},
+    {"sim_item_id": "M02", "menu_item_id": "paneer-tikka-taco", "name": "Paneer Tikka Taco", "role": "core5", "provisional": false, "popularity": {"fast casual": 4, "beer garden": 2}},
+    {"sim_item_id": "M04", "menu_item_id": "mango-habanero-gobi", "name": "Mango Habanero Gobi", "role": "core5", "provisional": false, "popularity": {"fast casual": 3, "beer garden": 3}},
+    {"sim_item_id": "M05", "menu_item_id": "butter-chicken-quesadilla", "name": "Butter Chicken Quesadilla", "role": "core5", "provisional": false, "popularity": {"fast casual": 4, "beer garden": 2}},
+    {"sim_item_id": "M06", "menu_item_id": "tandoori-lamb-tacos", "name": "Tandoori Lamb Tacos", "role": "replacement_candidate_for_goat_birria", "provisional": true, "popularity": {"fast casual": 3, "beer garden": 2},
+     "note": "Replacement candidate approved by the founder (D-90). Recipe and costing provisional; not cooked or tested."},
+    {"sim_item_id": "M07", "menu_item_id": "chaat-elote", "name": "Chaat Elote", "role": "approved_menu_v1_1", "provisional": false, "popularity": {"fast casual": 3, "beer garden": 3},
+     "note": "Approved test-menu dish; name retained (D-88)."}
+  ],
+  "popularity_note": "Popularity weights are synthetic simulation parameters (not observed demand)."
+}
