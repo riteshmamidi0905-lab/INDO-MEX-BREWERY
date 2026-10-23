@@ -65,6 +65,15 @@ class SupplierIn(Strict):
     verified_on: Optional[date] = None
     source_url: Optional[str] = Field(default=None, max_length=300, pattern=r"^https://")
     notes: Optional[str] = Field(default=None, max_length=300)
+    confirm_distinct: bool = False
+
+
+class SupplierSourceIn(Strict):
+    kind: str = Field(pattern="^(official_site|contact_page|trade_directory|press|investor_profile|partner_listing|government_record)$")
+    url: str = Field(max_length=300, pattern=r"^https://[^ ]+$")
+    claim: str = Field(min_length=8, max_length=400)
+    access: str = Field(pattern="^(page_read|search_snippet)$")
+    observed_on: date
 
 
 class SupplierProductIn(Strict):
@@ -186,6 +195,14 @@ def register(app, h):
     @app.post(P + "/suppliers", status_code=201)
     def add_supplier(tenant: str, body: SupplierIn, request: Request, key: Optional[str] = IDK):
         return guarded(lambda request, tenant, who, s: idem(request, s, tenant, key, body.model_dump(mode="json"), lambda: ok(request, dict(id=s.add_supplier(**body.model_dump())), 201)))(request, tenant)
+
+    @app.get(P + "/supplier-intelligence")
+    def supplier_intelligence(tenant: str, request: Request, project_id: Optional[str] = Query(None, pattern=ID_RE)):
+        return guarded(lambda request, tenant, who, s: ok(request, s.supplier_intelligence(project_id, as_of())))(request, tenant)
+
+    @app.post(P + "/suppliers/{supplier_id}/sources", status_code=201)
+    def add_source(tenant: str, supplier_id: str, body: SupplierSourceIn, request: Request):
+        return guarded(lambda request, tenant, who, s: ok(request, dict(id=s.add_supplier_source(supplier_id, **body.model_dump())), 201))(request, tenant)
 
     @app.post(P + "/suppliers/{supplier_id}/products", status_code=201)
     def add_product(tenant: str, supplier_id: str, body: SupplierProductIn, request: Request):

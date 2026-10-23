@@ -38,6 +38,21 @@ REAL_LEADS = [("Farm to Table LLC", "Produce, eggs and dairy wholesale", "Austin
               ("Hill Country Dairies", "Dairy distribution", "Austin, TX (per the source)", "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html", "Described in a PNC investment profile; official website not verified."),
               ("Brothers Produce", "Produce distribution", "Greater Houston, Dallas/Fort Worth, Austin, San Antonio and other Texas metros (per the source)", "https://www.restaurant365.com/partners/brothers-produce/", "Described in a Restaurant365 partner profile; official website not verified.")]
 
+# Dated public SOURCES for the three real leads, from a public web search run on SEARCHED. Every row is a search-result SNIPPET: the pages themselves could not be opened from this environment, so access='search_snippet'.
+# A directory or press mention is evidence that the business exists and what it is described as doing; it is NOT an official website, a price, or a verification. No official website was found for any of the three.
+REAL_SOURCES = {
+    "Brothers Produce": [("partner_listing", "https://www.restaurant365.com/partners/brothers-produce/", "Listed as a Restaurant365 partner covering Austin among several Texas metros."),
+                         ("trade_directory", "https://www.producemarketguide.com/company/113604/brothers-produce-inc", "Listed in the Produce Market Guide trade directory (headquarters entry)."),
+                         ("press", "https://www.thepacker.com/news/industry/grubmarket-adds-brothers-produce", "Trade press (July 2024) reports that GrubMarket acquired Brothers Produce, a foodservice produce distributor serving Texas.")],
+    "Hill Country Dairies": [("investor_profile", "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html", "Investor portfolio page describes an Austin-headquartered dairy distributor for foodservice customers."),
+                             ("press", "https://www.themiddlemarket.com/latest-news/riverarch-equity-partners-invests-in-hill-country-dairies", "Trade press reports an equity investment in Hill Country Dairies by RiverArch Equity Partners.")],
+    "Farm to Table LLC": [("press", "https://www.austinchronicle.com/food/food-o-file-11764527/", "Austin Chronicle describes an Austin distributor of locally grown produce to restaurants and school districts."),
+                          ("trade_directory", "https://www.producemarketguide.com/company/549852/farm-to-table-llc", "Listed in the Produce Market Guide as an Austin wholesaler of locally grown farm products; contact details are behind a login and were not recorded."),
+                          ("press", "https://refrigeratedfrozenfood.com/articles/91481-farm-to-table-expands-to-houston-market", "Trade press describes an Austin-based produce distributor expanding to Houston (an older article; may be out of date).")]}
+OFFICIAL_SITE_FINDING = ("Supplier verification", "A public search on 2026-10-23 found directory listings, press and investor pages for Farm to Table LLC, Hill Country Dairies and Brothers Produce, but no confirmed official website for any of them. All three stay unverified leads.",
+                         "search_result", 0.6, "Only search-result snippets were seen; the pages could not be opened here. An official website, public contact channel and published prices would need a person to confirm them.",
+                         "https://www.producemarketguide.com/company/549852/farm-to-table-llc")
+
 MERIDIAN_PROJECT = dict(name="Second studio location", industry="Fitness", location="Cedar Park, TX", concept="A second boutique fitness studio for a growing member base, with the same class formats and memberships as the first.",
                         budget_cents=18_000_000, launch_target=date(2027, 6, 1))
 MERIDIAN_ASSUMPTIONS = [("weekly_orders", "New sales per week", 38, "sales", "synthetic_assumption", "Assumed once established."), ("items_per_order", "Items per sale", 1.0, "items", "synthetic_assumption", None), ("avg_discount_pct", "Average discount", 4, "%", "synthetic_assumption", None),
@@ -61,6 +76,7 @@ def seed_nasha_launch(svc, today=None):
             svc.set_milestone_status(m, st)
     for topic, finding, kind, conf, limit, url in NASHA_FINDINGS:
         svc.add_finding(pid, topic, finding, kind, conf, limit, url, SEARCHED if kind == "search_result" else None)
+    svc.add_finding(pid, *OFFICIAL_SITE_FINDING[:5], OFFICIAL_SITE_FINDING[5], SEARCHED)
     master = RM.load_master(); q = SUPQ.load(); sid = {}; kinds = {"goat and lamb": "specialty meats"}
     for s in q["suppliers"]:
         sid[s["supplier_id"]] = svc.add_supplier(f"{s['name']} ({kinds.get(s['kind'], s['kind'])})", kinds.get(s["kind"], s["kind"]).capitalize(), "Synthetic (no real service area)", "synthetic_fixture", "synthetic_fixture", notes="Fictional supplier from the repository's synthetic quote set.")
@@ -71,6 +87,8 @@ def seed_nasha_launch(svc, today=None):
     leads = {}
     for name, cat, area, url, note in REAL_LEADS:
         leads[name] = svc.add_supplier(name, cat, area, "lead_unverified", "search_result", source_url=url, verified_on=None, notes=note)
+        for kind, url2, claim in REAL_SOURCES[name]:
+            svc.add_supplier_source(leads[name], kind, url2, claim, "search_snippet", SEARCHED)
         svc.add_supplier_product(leads[name], "Wholesale catalogue (no published prices)", "n/a", "NONE_PUBLISHED", NO_PRICE, source_url=url)
         svc.set_project_supplier(pid, leads[name], "shortlisted", "Candidate to ask for a quote later. No contact has been made.")
     for fx in ("S03", "S04", "FS01"):

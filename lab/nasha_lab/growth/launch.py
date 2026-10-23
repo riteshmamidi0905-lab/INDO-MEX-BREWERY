@@ -5,7 +5,7 @@ from datetime import date
 
 from psycopg.types.json import Jsonb
 
-from . import financials as FIN
+from . import financials as FIN, supplier_intel as SI
 
 FRESH_DAYS, STALE_DAYS = 90, 180
 
@@ -66,11 +66,27 @@ class LaunchMixin:
             (self.tenant, i, project_id, topic, finding, source_kind, source_url, retrieved_on, confidence, limitation, self.user)).fetchone()[0])
 
     # ------------------------------------------------------------ suppliers
-    def add_supplier(self, name, category, service_area, verification_status, source_kind, website_url=None, contact_channel="none recorded", verified_on=None, source_url=None, notes=None):
+    def add_supplier(self, name, category, service_area, verification_status, source_kind, website_url=None, contact_channel="none recorded", verified_on=None, source_url=None, notes=None, confirm_distinct=False):
+        """Refuses a record that looks like an existing supplier (same official domain, or a near-identical name) unless the caller states it is distinct. The rule is SI.duplicate_score; a person decides."""
+        if not confirm_distinct:
+            self._authorize("read")
+            cand = dict(name=name, website_url=website_url)
+            for r in self.con.execute("SELECT id, name, website_url FROM suppliers WHERE tenant_id=%s", (self.tenant,)).fetchall():
+                score, why = SI.duplicate_score(cand, dict(name=r[1], website_url=r[2]))
+                if score >= SI.DUPLICATE_THRESHOLD:
+                    self._audit("supplier.add", "suppliers", None, "deny", {"why": f"possible duplicate of {r[1]} ({r[0]}): {'; '.join(why)}"})
+                    raise self.Blocked(f"possible duplicate of existing supplier '{r[1]}' ({'; '.join(why)}); confirm it is distinct to add it anyway")
         i = self._id("sup")
         return self._write("supplier.add", "suppliers", lambda: self.con.execute(
             "INSERT INTO suppliers (tenant_id,id,name,category,service_area,website_url,contact_channel,verification_status,verified_on,source_kind,source_url,notes,created_by) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id",
             (self.tenant, i, name, category, service_area, website_url, contact_channel, verification_status, verified_on, source_kind, source_url, notes, self.user)).fetchone()[0])
+
+    def add_supplier_source(self, supplier_id, kind, url, claim, access, observed_on):
+        """A dated public source for a supplier fact. `access` says whether the page was read or only a search snippet was seen; neither contacts anyone."""
+        i = self._id("ssrc")
+        return self._write("supplier.add", "supplier_sources", lambda: self.con.execute(
+            "INSERT INTO supplier_sources (tenant_id,id,supplier_id,kind,url,claim,access,observed_on,created_by) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id",
+            (self.tenant, i, supplier_id, kind, url, claim, access, observed_on, self.user)).fetchone()[0])
 
     def add_supplier_product(self, supplier_id, name, unit, price_class, limitation, unit_price_cents=None, ingredient_ref=None, pack_qty=None, lead_days=None, min_order_cents=None, valid_from=None, valid_to=None, source_url=None):
         i = self._id("sprod")
@@ -96,14 +112,32 @@ class LaunchMixin:
         prods = {}
         for r in self.con.execute("SELECT supplier_id, name, ingredient_ref, unit, unit_price_cents, pack_qty, lead_days, min_order_cents, price_class, valid_from, valid_to, source_url, limitation FROM supplier_products WHERE tenant_id=%s ORDER BY name", (self.tenant,)).fetchall():
             prods.setdefault(r[0], []).append(dict(zip(("name", "ingredient_ref", "unit", "unit_price_cents", "pack_qty", "lead_days", "min_order_cents", "price_class", "valid_from", "valid_to", "source_url", "limitation"), r[1:])))
+        srcs = {}
+        for r in self.con.execute("SELECT supplier_id, kind, url, claim, access, observed_on FROM supplier_sources WHERE tenant_id=%s ORDER BY observed_on, kind, url", (self.tenant,)).fetchall():
+            srcs.setdefault(r[0], []).append(dict(zip(("kind", "url", "claim", "access", "observed_on"), r[1:])))
         out = []
         for r in rows:
             d = dict(zip(("id", "name", "category", "service_area", "website_url", "contact_channel", "verification_status", "verified_on", "source_kind", "source_url", "notes", "shortlist_status"), r))
             d["freshness"] = freshness(d["verified_on"], as_of, d["verification_status"])
             d["products"] = prods.get(d["id"], [])
+            d["sources"] = srcs.get(d["id"], [])
             d["priced_products"] = sum(1 for p in d["products"] if p["price_class"] != "NONE_PUBLISHED")
             out.append(d)
         return out
+
+    def supplier_intelligence(self, project_id=None, as_of=None):
+        """Supplier cards (information category, rule-based class, service-area match to the project's location), candidate duplicates, and the quote matrix grouped by price category. Read-only, derived on demand
+        from stored records; nothing here is stored, so it cannot drift from them."""
+        self._authorize("read")
+        directory = self.supplier_directory(as_of, project_id)
+        loc = None
+        if project_id:
+            r = self.con.execute("SELECT location FROM launch_projects WHERE tenant_id=%s AND id=%s", (self.tenant, project_id)).fetchone()
+            loc = r[0] if r else None
+        asof = as_of or date.today()
+        cards = [dict(SI.supplier_card(s, loc, asof), shortlist_status=s["shortlist_status"], category=s["category"], service_area=s["service_area"]) for s in directory]
+        return dict(project_location=loc, cards=cards, duplicates=SI.find_duplicates(directory), quotes=SI.quote_matrix(directory, asof),
+                    information_categories=SI.INFO_LABEL, price_categories=SI.PRICE_LABEL, duplicate_threshold=SI.DUPLICATE_THRESHOLD)
 
     # ------------------------------------------------------------ project overview and financial scenarios
     def list_projects(self):
