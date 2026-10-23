@@ -214,7 +214,7 @@ def main():
     ver = a.verify_audit(), b.verify_audit()
     out = dict(schema="growth-os-evidence/1", commit=commit, synthetic=True, pushed=False, notice="Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
                postgres=a.con.execute("SHOW server_version").fetchone()[0], tenants=[dict(id="tenant-nasha", vertical="hospitality"), dict(id="tenant-fit", vertical="fitness")],
-               tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, audit_guard=guard, workflow=workflow, launch=launch, audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
+               tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, audit_guard=guard, workflow=workflow, launch=launch, incident=json.loads((LAB / "results/audit-concurrency/incident.json").read_text()), audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
                capabilities=caps["capabilities"], status_rules=caps["rules"], all_expectations_met=ok_all)
     (LAB / "portfolio/growth-os-evidence.json").write_text(json.dumps(out, indent=1, default=str))
     a.close(); b.close(); nosetting.close(); srv.cleanup()

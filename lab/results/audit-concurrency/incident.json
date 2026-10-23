@@ -1,0 +1,141 @@
+{
+  "title": "Preventing Audit-Chain Corruption Under Concurrent Requests",
+  "commit": "ef61899",
+  "dirty_code": false,
+  "selection": "concurrent or storm or lock_is_held or rolls_back",
+  "test_file": "tests/test_growth_audit_guarantee.py",
+  "original_failure": {
+    "observed_in": "full-suite run at engineering commit cb4ae79: suite passed, but pytest reported 3 unhandled thread exceptions",
+    "test": "test_two_concurrent_conversions_of_the_same_lead_produce_exactly_one_opportunity",
+    "postgres_error": "psycopg.errors.UniqueViolation: duplicate key value violates unique constraint \"audit_log_pkey\"",
+    "path": "convert_lead -> _write: Blocked -> self._audit(..., 'deny', ...) -> INSERT INTO audit_log",
+    "threads_failed": 3,
+    "threads_total": 6
+  },
+  "before_fix": {
+    "runs": [
+      {
+        "returncode": 1,
+        "summary": "8 failed, 2 passed, 14 deselected, 2 warnings in 8.35s",
+        "failed_tests": [
+          "test_concurrent_denials_each_get_a_unique_sequence_and_exactly_one_deny_record",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[0]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[1]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[2]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[3]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[4]",
+          "test_the_chain_lock_is_held_from_the_read_of_the_last_row_to_the_insert",
+          "test_two_concurrent_conversions_of_the_same_lead_produce_exactly_one_opportunity"
+        ],
+        "unique_violation_seen": true
+      },
+      {
+        "returncode": 1,
+        "summary": "8 failed, 2 passed, 14 deselected, 2 warnings in 8.49s",
+        "failed_tests": [
+          "test_concurrent_denials_each_get_a_unique_sequence_and_exactly_one_deny_record",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[0]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[1]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[2]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[3]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[4]",
+          "test_the_chain_lock_is_held_from_the_read_of_the_last_row_to_the_insert",
+          "test_two_concurrent_conversions_of_the_same_lead_produce_exactly_one_opportunity"
+        ],
+        "unique_violation_seen": true
+      },
+      {
+        "returncode": 1,
+        "summary": "8 failed, 2 passed, 14 deselected, 2 warnings in 8.24s",
+        "failed_tests": [
+          "test_concurrent_denials_each_get_a_unique_sequence_and_exactly_one_deny_record",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[0]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[1]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[2]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[3]",
+          "test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact[4]",
+          "test_the_chain_lock_is_held_from_the_read_of_the_last_row_to_the_insert",
+          "test_two_concurrent_conversions_of_the_same_lead_produce_exactly_one_opportunity"
+        ],
+        "unique_violation_seen": true
+      }
+    ],
+    "note": "same tests, pre-fix _audit re-installed by tools/legacy_audit_plugin.py"
+  },
+  "after_fix": {
+    "runs": [
+      {
+        "returncode": 0,
+        "summary": "10 passed, 14 deselected, 2 warnings in 3.57s",
+        "failed_tests": [],
+        "unique_violation_seen": false
+      },
+      {
+        "returncode": 0,
+        "summary": "10 passed, 14 deselected, 2 warnings in 3.27s",
+        "failed_tests": [],
+        "unique_violation_seen": false
+      },
+      {
+        "returncode": 0,
+        "summary": "10 passed, 14 deselected, 2 warnings in 3.45s",
+        "failed_tests": [],
+        "unique_violation_seen": false
+      },
+      {
+        "returncode": 0,
+        "summary": "10 passed, 14 deselected, 2 warnings in 3.63s",
+        "failed_tests": [],
+        "unique_violation_seen": false
+      },
+      {
+        "returncode": 0,
+        "summary": "10 passed, 14 deselected, 2 warnings in 3.75s",
+        "failed_tests": [],
+        "unique_violation_seen": false
+      },
+      {
+        "returncode": 0,
+        "summary": "10 passed, 14 deselected, 2 warnings in 3.69s",
+        "failed_tests": [],
+        "unique_violation_seen": false
+      },
+      {
+        "returncode": 0,
+        "summary": "10 passed, 14 deselected, 2 warnings in 3.49s",
+        "failed_tests": [],
+        "unique_violation_seen": false
+      },
+      {
+        "returncode": 0,
+        "summary": "10 passed, 14 deselected, 2 warnings in 3.34s",
+        "failed_tests": [],
+        "unique_violation_seen": false
+      },
+      {
+        "returncode": 0,
+        "summary": "10 passed, 14 deselected, 2 warnings in 3.56s",
+        "failed_tests": [],
+        "unique_violation_seen": false
+      },
+      {
+        "returncode": 0,
+        "summary": "10 passed, 14 deselected, 2 warnings in 3.10s",
+        "failed_tests": [],
+        "unique_violation_seen": false
+      }
+    ],
+    "passed_runs": 10,
+    "repeats": 10
+  },
+  "file_sha256": {
+    "nasha_lab/growth/service.py": "5c2b1935eead990582a54291e2e2bd45cdacf9d11bfef861ba6730e2c547c8e4",
+    "tests/test_growth_audit_guarantee.py": "fb9056c4fa599c7155571c3288d4147c5f36def130a9ea1455079cd2b133e5af",
+    "tools/legacy_audit_plugin.py": "8ce0551f4b12fd44a49c256b43cdc30c9cf48253f11664102c14f22706a9e3e6"
+  },
+  "limitations": [
+    "Intermittent by nature: the pre-fix failure depends on thread timing, so a pass of the old code in any single run proves nothing; the deterministic pause test is the strong evidence.",
+    "Single PostgreSQL instance, one process; no multi-node or failover behaviour is claimed.",
+    "No throughput or latency measurement was made; none is claimed."
+  ]
+}

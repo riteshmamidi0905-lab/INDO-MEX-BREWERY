@@ -1,7 +1,7 @@
 {
  "total": 796,
- "passed": 794,
- "failed": 1,
+ "passed": 795,
+ "failed": 0,
  "skipped": 1,
  "tests": {
   "test_governed_api::test_full_flow_over_http_ends_in_a_draft_po_and_no_transmission": "passed",
@@ -250,8 +250,8 @@
    "skipped": 0
   },
   "test_growth_present": {
-   "passed": 9,
-   "failed": 1,
+   "passed": 10,
+   "failed": 0,
    "skipped": 0
   },
   "test_growth_pricing_segments": {
