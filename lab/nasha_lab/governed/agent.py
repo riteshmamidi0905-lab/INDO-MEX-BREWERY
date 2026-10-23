@@ -155,6 +155,9 @@ class RulePlanner:
             return PlannerOutput(summary="No usable variance evidence for this site and ingredient; nothing to propose.", claims=[], action="NO_ACTION", abstain_reason="NO_VARIANCE_EVIDENCE").model_dump()
         ing = flag["ingredient_id"]
         ue, usage = _row(book, "ingredient_usage", lambda r: r["ingredient_id"] == ing)
+        if usage is not None and usage.get("variance_pct") is not None and abs(usage["variance_pct"] - flag["variance_pct"]) > 0.02:
+            return PlannerOutput(summary=f"The variance flag ({flag['variance_pct']:.3f}) and the usage record ({usage['variance_pct']:.3f}) for {ing} disagree; no purchase is proposed until a person resolves it.",
+                                 claims=[Claim(text="Two sources of evidence disagree about the size of the discrepancy.", evidence=[fe.id, ue.id])], action="ESCALATE", abstain_reason="CONTRADICTORY_EVIDENCE").model_dump()
         de, dishes = _row(book, "dishes_using_ingredient")
         fce, fc = _row(book, "demand_forecast")
         re_, reco = _row(book, "reorder_recommendations", lambda r: r["ingredient_id"] == ing and r["status"] == "PROPOSED")

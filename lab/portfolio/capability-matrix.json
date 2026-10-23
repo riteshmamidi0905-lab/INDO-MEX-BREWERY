@@ -1,0 +1,348 @@
+{
+ "commit": "a9e803d",
+ "pushed": false,
+ "counts": {
+  "IMPLEMENTED_TESTED": 19,
+  "IMPLEMENTED_UNVERIFIED": 1,
+  "DESIGNED_ONLY": 1,
+  "BLOCKED": 1,
+  "NOT_STARTED": 7
+ },
+ "rows": [
+  {
+   "objective": "1 Backend",
+   "capability": "Governed procurement workflow (state machine, idempotent runs, recovery)",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/workflow.py",
+    "lab/nasha_lab/governed/ledger.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_workflow.py::test_end_to_end_inventory_discrepancy_to_audited_draft_po_with_the_network_blocked",
+    "lab/tests/test_governed_workflow.py::test_crash_after_the_proposal_is_stored_leaves_no_order_and_resumes_cleanly"
+   ],
+   "note": "SQLite stores; single process."
+  },
+  {
+   "objective": "12 APIs",
+   "capability": "Versioned HTTP API (auth, tenant boundary, idempotency, pagination, error envelope, OpenAPI)",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/api.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_api.py::test_full_flow_over_http_ends_in_a_draft_po_and_no_transmission",
+    "lab/tests/test_governed_api.py::test_openapi_contract_is_stable_and_has_no_transmit_operation"
+   ],
+   "note": "No TLS, no HTTP-layer rate limit, in-process services."
+  },
+  {
+   "objective": "12 APIs",
+   "capability": "Background-job reliability / async workers",
+   "status": "NOT_STARTED",
+   "code": [],
+   "tests": [],
+   "note": "The workflow is synchronous per request; a crash is recoverable (recover()), but there is no worker queue."
+  },
+  {
+   "objective": "2 PostgreSQL",
+   "capability": "Warehouse models on PostgreSQL, reconciled table by table",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/warehouse/pg_variant.py"
+   ],
+   "tests": [
+    "lab/tests/test_warehouse_pg.py::test_every_table_reconciles_to_sqlite",
+    "lab/tests/test_warehouse_pg.py::test_d87_scenario_tables_reconcile_in_postgresql"
+   ],
+   "note": "Ingestion, contracts and gates are not re-implemented in PostgreSQL."
+  },
+  {
+   "objective": "2 PostgreSQL",
+   "capability": "Rounding-tie defect fixed with regression tests",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/warehouse/models/22_fact_other.sql"
+   ],
+   "tests": [
+    "lab/tests/test_warehouse_pg.py::test_yield_ratio_rounding_ties_are_identical_in_sqlite_and_postgresql"
+   ],
+   "note": ""
+  },
+  {
+   "objective": "8 DB quality",
+   "capability": "Ledger schema constraints (FK, CHECK, UNIQUE), transactions, hash-chained audit",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/ledger.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_workflow.py::test_the_draft_state_column_cannot_hold_a_sent_status",
+    "lab/tests/test_governed_workflow.py::test_audit_trail_is_tamper_evident"
+   ],
+   "note": "SQLite; no PostgreSQL ledger yet."
+  },
+  {
+   "objective": "8 DB quality",
+   "capability": "PostgreSQL constraints/foreign keys on scenario tables, query plans, benchmarks, migration safety",
+   "status": "NOT_STARTED",
+   "code": [],
+   "tests": [],
+   "note": "No query-plan or benchmark evidence exists; no performance claim is made."
+  },
+  {
+   "objective": "3 Data engineering",
+   "capability": "Contracts, incremental partitions, quality gates, publish gate, reproducible rebuild",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/warehouse/pipeline.py",
+    "lab/nasha_lab/warehouse/gates.py",
+    "lab/nasha_lab/warehouse/repro.py"
+   ],
+   "tests": [
+    "lab/tests/test_enterprise_sim.py::test_same_seed_same_bytes_different_seed_different_bytes"
+   ],
+   "note": "SQLite engine; synthetic data."
+  },
+  {
+   "objective": "3 Data engineering",
+   "capability": "Inventory depletion, variance detection scored against injected anomalies, ingredient forecasts",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/warehouse/scenario.py"
+   ],
+   "tests": [
+    "lab/tests/test_scenario_d87.py::test_inventory_depletion_matches_an_independent_recomputation",
+    "lab/tests/test_scenario_d87.py::test_variance_detector_finds_injected_anomalies_without_reading_them"
+   ],
+   "note": "Only 3 injected anomalies; 4 of 5 active dishes have simulated sales."
+  },
+  {
+   "objective": "7 Analytics",
+   "capability": "Menu economics, cost levers with quality floor, supplier sensitivity, menu engineering",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/recipes/pricing.py",
+    "lab/nasha_lab/recipes/optimize.py"
+   ],
+   "tests": [
+    "lab/tests/test_recipes_d87.py::test_tandoori_lamb_levers_keep_the_original_scenario_and_respect_the_quality_floor"
+   ],
+   "note": "Planning assumptions and synthetic quotes, not real costs."
+  },
+  {
+   "objective": "7 Analytics",
+   "capability": "Expand menu simulation to the full current active menu (versioned current-menu definition)",
+   "status": "NOT_STARTED",
+   "code": [],
+   "tests": [],
+   "note": "Requires a founder-approved current-menu definition; Goat Birria retired (D-88)."
+  },
+  {
+   "objective": "4 RAG",
+   "capability": "Status-aware retrieval (BM25, hybrid, dense) and pgvector HNSW",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/knowledge.py",
+    "lab/nasha_lab/embeddings.py"
+   ],
+   "tests": [
+    "lab/tests/test_retrieval_v2.py::test_pgvector_matches_the_exact_scan_and_uses_hnsw_cosine"
+   ],
+   "note": "pgvector test now runs on an embedded PostgreSQL (previously skipped)."
+  },
+  {
+   "objective": "4 RAG",
+   "capability": "Tenant-private retrieval (no cross-tenant results)",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/tenants.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_workflow.py::test_memory_retrieval_approvals_and_audit_do_not_cross_tenants"
+   ],
+   "note": "BM25 over small synthetic documents."
+  },
+  {
+   "objective": "5 Agents",
+   "capability": "Evidence-grounded agent with validation gate (claims, numbers, proposal caps, injection)",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/agent.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_workflow.py::test_a_model_that_obeys_an_injection_is_stopped_by_the_validation_gate",
+    "lab/tests/test_governed_workflow.py::test_a_claim_with_a_number_that_is_not_in_the_cited_evidence_is_dropped"
+   ],
+   "note": "Rule planner; model planner verified only with scripted test doubles."
+  },
+  {
+   "objective": "5 Agents",
+   "capability": "LangGraph human-in-the-loop agent over the legacy inventory world",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/agent.py"
+   ],
+   "tests": [
+    "lab/tests/test_agent.py"
+   ],
+   "note": "Separate, earlier world; not wired to the warehouse scenario."
+  },
+  {
+   "objective": "5 Agents",
+   "capability": "Real language-model planner run",
+   "status": "BLOCKED",
+   "code": [
+    "lab/nasha_lab/llm.py",
+    "lab/nasha_lab/llm_planner.py"
+   ],
+   "tests": [
+    "lab/tests/test_llm_planner.py::test_real_local_model_integration_smoke"
+   ],
+   "note": "BLOCKED: no local model runtime and no network access to ollama.com / huggingface.co (HTTP 403). Test is skipped; status UNVERIFIED."
+  },
+  {
+   "objective": "5 Agents",
+   "capability": "Production AI Agent Platform integration",
+   "status": "DESIGNED_ONLY",
+   "code": [
+    "lab/docs/REUSE-AND-PROVENANCE.md"
+   ],
+   "tests": [],
+   "note": "Separate repository; ideas and adapted code reused, no runtime integration."
+  },
+  {
+   "objective": "6 Authorization",
+   "capability": "THE WEIR per-role default-deny policy, held writes, single-use call-bound approvals (real gateway)",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/weir_bridge.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_workflow.py::test_a_role_that_may_not_start_runs_is_denied_and_a_role_without_the_write_tool_is_blocked_by_the_weir",
+    "lab/tests/test_governed_workflow.py::test_a_proposal_modified_after_approval_is_not_executed"
+   ],
+   "note": "Gateway lives in the separate mcp-weir repository (pinned); one gateway per principal."
+  },
+  {
+   "objective": "7 Approvals",
+   "capability": "Human approval: role check, maker-checker, expiry, replay prevention, scope binding",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/workflow.py",
+    "lab/nasha_lab/identity.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_workflow.py::test_an_expired_approval_cannot_be_resolved_or_consumed_later",
+    "lab/tests/test_governed_workflow.py::test_replayed_approval_creates_nothing_new"
+   ],
+   "note": "Prototype identity (HMAC sessions); not an enterprise identity provider."
+  },
+  {
+   "objective": "8 Multi-tenant",
+   "capability": "Two tenants with separate stores, signing keys, approvals, audit, memory, retrieval",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/tenants.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_workflow.py::test_tenants_have_separate_physical_stores_and_distinct_data",
+    "lab/tests/test_governed_workflow.py::test_a_tenant_workflow_never_opens_another_tenants_files"
+   ],
+   "note": "NOT isolated: one process/code base, shared reference recipe files (asserted by test_recipe_source_files_are_shared_reference_data_not_isolated)."
+  },
+  {
+   "objective": "9 Evaluation",
+   "capability": "Ops AI evaluation harness with independent oracles",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/warehouse/ops_ai_eval.py"
+   ],
+   "tests": [
+    "lab/tests/test_ops_ai_eval.py"
+   ],
+   "note": "56 cases; deterministic tool layer; a perfect score is not evidence of real-world reliability."
+  },
+  {
+   "objective": "9 Evaluation",
+   "capability": "Governed-agent evaluation: contradictory evidence, hallucination, mutation tests, unsafe-proposal and approval-bypass cases, metric tracking",
+   "status": "NOT_STARTED",
+   "code": [],
+   "tests": [],
+   "note": "The 59 workflow tests are regression tests, not a scored evaluation with mutation testing."
+  },
+  {
+   "objective": "10 Observability",
+   "capability": "Correlation ids, per-call latency, failure classes, secret redaction",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/workflow.py",
+    "lab/nasha_lab/trace.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_workflow.py::test_secrets_and_session_tokens_never_appear_in_traces_ledger_or_audit"
+   ],
+   "note": ""
+  },
+  {
+   "objective": "10 Observability",
+   "capability": "Incident investigation tooling (reconstruct who/what/why/side-effects from a correlation id)",
+   "status": "NOT_STARTED",
+   "code": [],
+   "tests": [],
+   "note": "Data exists in traces/ledger/WEIR audit; no investigator tool or report yet."
+  },
+  {
+   "objective": "11 CI/CD",
+   "capability": "Local CI workflow edits, skip report, reproducibility check",
+   "status": "IMPLEMENTED_UNVERIFIED",
+   "code": [
+    ".github/workflows/lab-ci.yml",
+    "lab/Makefile"
+   ],
+   "tests": [],
+   "note": "Never run on GitHub; local equivalents (make test/eval/repro) were run."
+  },
+  {
+   "objective": "11 CI/CD",
+   "capability": "Release-gate runner producing PASS / FAIL / REQUIRES_REVIEW",
+   "status": "NOT_STARTED",
+   "code": [],
+   "tests": [],
+   "note": ""
+  },
+  {
+   "objective": "13 Dashboards",
+   "capability": "Menu economics / inventory / forecast / recommendation dashboard (synthetic)",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/warehouse/dashboards.py"
+   ],
+   "tests": [
+    "lab/tests/test_scenario_d87.py::test_dashboard_has_beer_levers_engineering_and_forecast_sections"
+   ],
+   "note": "AI-reliability and security dashboards not built."
+  },
+  {
+   "objective": "14 Portfolio",
+   "capability": "Replayable evidence export (8 executed scenarios, measured metrics, architecture graph with status)",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/tools/export_portfolio_evidence.py",
+    "lab/portfolio/nasha-governed-evidence.json"
+   ],
+   "tests": [
+    "lab/tests/test_governed_workflow.py::test_end_to_end_inventory_discrepancy_to_audited_draft_po_with_the_network_blocked"
+   ],
+   "note": "Consumed by the website candidate in the portfolio repository (local branch, not deployed)."
+  },
+  {
+   "objective": "15 Career",
+   "capability": "Interview-defense package",
+   "status": "NOT_STARTED",
+   "code": [],
+   "tests": [],
+   "note": ""
+  }
+ ]
+}

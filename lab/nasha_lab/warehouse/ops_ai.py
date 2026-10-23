@@ -290,8 +290,8 @@ AUDIT = """CREATE TABLE IF NOT EXISTS ops_ai_audit (call_id TEXT PRIMARY KEY, ts
 
 class OpsAI:
     def __init__(self, warehouse_path, audit_path):
-        self.wh = sqlite3.connect(f"file:{warehouse_path}?mode=ro", uri=True, timeout=30)
-        self.audit = sqlite3.connect(str(audit_path))
+        self.wh = sqlite3.connect(f"file:{warehouse_path}?mode=ro", uri=True, timeout=30, check_same_thread=False)      # callers serialise access (the governed API holds a per-tenant lock)
+        self.audit = sqlite3.connect(str(audit_path), check_same_thread=False)
         self.audit.execute(AUDIT)
 
     def close(self):
