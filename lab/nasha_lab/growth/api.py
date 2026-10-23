@@ -5,6 +5,7 @@ Authorization layers: (1) the session must verify against the path tenant's auth
 (2) role policy in the service layer, default deny, every denial audited; (3) PostgreSQL row-level security; (4) THE WEIR gates the qualification workflow's CRM write behind a different person's approval.
 There are no debug, export, raw-SQL or admin endpoints. Nothing here can send, publish or purchase."""
 import hashlib
+from datetime import date
 import json
 import re
 import threading
@@ -20,7 +21,7 @@ from psycopg.types.json import Jsonb
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from .. import identity as ID
-from . import pricing as GP, service as SV, workflow as WF
+from . import present as PR, pricing as GP, service as SV, workflow as WF
 
 MAX_PAGE = 50
 BEARER = re.compile(r"^Bearer ([A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+)$")
@@ -41,6 +42,7 @@ class ContactIn(Strict):
     account_id: str = Field(pattern=ID_RE)
     full_name: str = Field(min_length=1, max_length=120)
     email: str = Field(max_length=160, pattern=r"^[A-Za-z0-9._+-]+@example\.invalid$")
+    job_title: Optional[str] = Field(default=None, max_length=80)
 
 
 class ConsentIn(Strict):
@@ -59,6 +61,10 @@ class LeadIn(Strict):
     contact_id: str = Field(pattern=ID_RE)
     source: str = Field(pattern=r"^synthetic[a-z0-9-]{0,40}$")
     signals: Optional[SignalsIn] = None
+    inquiry: Optional[str] = Field(default=None, max_length=600)
+    assigned_to: Optional[str] = Field(default=None, pattern=ID_RE)
+    scenario: Optional[str] = Field(default=None, max_length=80)
+    inquiry_received: Optional[date] = None
 
 
 class ConvertIn(Strict):
@@ -215,6 +221,18 @@ def create_growth_app(envs: dict) -> FastAPI:
         items = [dict(zip(cols, r)) for r in rows[:limit]]
         return dict(items=items, next_cursor=str(off + limit) if len(rows) > limit else None)
 
+    def names(s):
+        return {r[0]: r[1] for r in s.read("SELECT id, display_name FROM users WHERE tenant_id=%s", (s.tenant,))}
+
+    def entity_names(s):
+        t = s.tenant
+        out = {}
+        for sql in ("SELECT l.id, c.full_name || ' (' || a.name || ')' FROM leads l JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id JOIN accounts a ON a.tenant_id=c.tenant_id AND a.id=c.account_id WHERE l.tenant_id=%s",
+                    "SELECT id, full_name FROM contacts WHERE tenant_id=%s", "SELECT id, name FROM accounts WHERE tenant_id=%s", "SELECT id, name FROM opportunities WHERE tenant_id=%s"):
+            out.update({r[0]: r[1] for r in s.read(sql, (t,))})
+        out.update({r[0]: r[0] for r in []})
+        return out
+
     CUR = Query(None, pattern=r"^\d{1,9}$")
     LIM = Query(20, ge=1, le=MAX_PAGE)
 
@@ -256,7 +274,7 @@ def create_growth_app(envs: dict) -> FastAPI:
 
     @app.post("/v1/tenants/{tenant}/contacts", status_code=201)
     def create_contact(tenant: str, body: ContactIn, request: Request, key: Optional[str] = Header(default=None, alias="Idempotency-Key")):
-        return guarded(lambda request, tenant, who, s: idem(request, s, tenant, key, body.model_dump(), lambda: ok(request, dict(id=s.create_contact(body.account_id, body.full_name, body.email)), 201)))(request, tenant)
+        return guarded(lambda request, tenant, who, s: idem(request, s, tenant, key, body.model_dump(), lambda: ok(request, dict(id=s.create_contact(body.account_id, body.full_name, body.email, body.job_title)), 201)))(request, tenant)
 
     @app.get("/v1/tenants/{tenant}/contacts")
     def list_contacts(tenant: str, request: Request, account_id: Optional[str] = Query(None, pattern=ID_RE), limit: int = LIM, cursor: Optional[str] = CUR):
@@ -269,12 +287,20 @@ def create_growth_app(envs: dict) -> FastAPI:
 
     @app.post("/v1/tenants/{tenant}/leads", status_code=201)
     def create_lead(tenant: str, body: LeadIn, request: Request, key: Optional[str] = Header(default=None, alias="Idempotency-Key")):
-        return guarded(lambda request, tenant, who, s: idem(request, s, tenant, key, body.model_dump(), lambda: ok(request, dict(id=s.create_lead(body.contact_id, body.source, body.signals.model_dump() if body.signals else None)), 201)))(request, tenant)
+        return guarded(lambda request, tenant, who, s: idem(request, s, tenant, key, body.model_dump(), lambda: ok(request, dict(id=s.create_lead(body.contact_id, body.source, body.signals.model_dump() if body.signals else None, body.inquiry, body.assigned_to, body.scenario, body.inquiry_received)), 201)))(request, tenant)
 
     @app.get("/v1/tenants/{tenant}/leads")
     def list_leads(tenant: str, request: Request, status: Optional[str] = Query(None, pattern="^(new|qualified|disqualified|converted)$"), limit: int = LIM, cursor: Optional[str] = CUR):
-        sql, params = ("SELECT id, contact_id, source, status, score, version FROM leads WHERE tenant_id=%s" + (" AND status=%s" if status else "") + " ORDER BY created_at, id"), ((tenant, status) if status else (tenant,))
-        return guarded(lambda request, tenant, who, s: ok(request, page(s, sql, params, limit, cursor, ("id", "contact_id", "source", "status", "score", "version"))))(request, tenant)
+        cols = ("lead_id", "contact_id", "source", "status", "score", "version", "prospect", "job_title", "organization", "owner", "scenario", "inquiry", "inquiry_received", "consent_status", "suppressed")
+        sel = "SELECT l.id, c.id, l.source, l.status, l.score, l.version, c.full_name, c.job_title, a.name, u.display_name, l.scenario, l.inquiry, l.inquiry_received, c.consent_status, EXISTS (SELECT 1 FROM suppression_list sp WHERE sp.tenant_id=c.tenant_id AND sp.email=c.email)"
+        frm = " FROM leads l JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id JOIN accounts a ON a.tenant_id=c.tenant_id AND a.id=c.account_id LEFT JOIN users u ON u.tenant_id=l.tenant_id AND u.id=l.assigned_to WHERE l.tenant_id=%s"
+        sql, params = (sel + frm + (" AND l.status=%s" if status else "") + " ORDER BY l.created_at, l.id"), ((tenant, status) if status else (tenant,))
+        def go(request, tenant, who, s):
+            d = page(s, sql, params, limit, cursor, cols)
+            for it in d["items"]:
+                it["id"] = it["lead_id"]
+            return ok(request, d)
+        return guarded(go)(request, tenant)
 
     @app.get("/v1/tenants/{tenant}/leads/{lead_id}")
     def get_lead(tenant: str, lead_id: str, request: Request):
@@ -386,7 +412,20 @@ def create_growth_app(envs: dict) -> FastAPI:
 
     @app.get("/v1/tenants/{tenant}/workflows/runs")
     def runs(tenant: str, request: Request, limit: int = LIM, cursor: Optional[str] = CUR):
-        return guarded(lambda request, tenant, who, s: ok(request, page(s, "SELECT id, lead_id, state, requester, failure, created_at FROM workflow_runs WHERE tenant_id=%s ORDER BY created_at DESC, id", (tenant,), limit, cursor, ("id", "lead_id", "state", "requester", "failure", "created_at"))))(request, tenant)
+        sql = ("SELECT r.id, r.lead_id, r.state, r.requester, r.failure, r.created_at, c.full_name, a.name, l.scenario, u.display_name, r.proposal->>'score', r.proposal->>'proposed_status', "
+               "(SELECT max(e.ts) FROM workflow_events e WHERE e.tenant_id=r.tenant_id AND e.run_id=r.id), r.proposal->>'outreach_allowed' "
+               "FROM workflow_runs r JOIN leads l ON l.tenant_id=r.tenant_id AND l.id=r.lead_id JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id JOIN accounts a ON a.tenant_id=c.tenant_id AND a.id=c.account_id "
+               "LEFT JOIN users u ON u.tenant_id=l.tenant_id AND u.id=l.assigned_to WHERE r.tenant_id=%s ORDER BY r.created_at DESC, r.id")
+        cols = ("id", "lead_id", "state", "requester", "failure", "created_at", "prospect", "organization", "scenario", "owner", "score", "proposed_status", "last_activity", "outreach_allowed")
+        def go(request, tenant, who, s):
+            d = page(s, sql, (tenant,), limit, cursor, cols); nm = names(s)
+            for it in d["items"]:
+                it["status_label"], it["tone"] = PR.state_label(it["state"]), PR.TONE.get(it["state"], "info")
+                it["score"] = int(it["score"]) if it["score"] is not None else None
+                it["requested_by"] = nm.get(it["requester"], it["requester"])
+                it["outcome"] = PR.outcome(it["state"], dict(failure=it["failure"]), dict(proposed_status=it["proposed_status"]), dict(prospect=it["prospect"]))
+            return ok(request, d)
+        return guarded(go)(request, tenant)
 
     @app.get("/v1/tenants/{tenant}/workflows/runs/{corr_id}")
     def run_detail(tenant: str, corr_id: str, request: Request):
@@ -394,7 +433,9 @@ def create_growth_app(envs: dict) -> FastAPI:
             r = flow(tenant).status(corr_id)
             if r is None:
                 return err(request, 404, "not_found", "not found")
-            return ok(request, dict(id=r["id"], lead_id=r["lead_id"], state=r["state"], requester=r["requester"], failure=r["failure"], approval_id=r["approval_id"], proposal=r["proposal"], events=r["events"]))
+            lead = s.lead_view(r["lead_id"])
+            return ok(request, dict(id=r["id"], lead_id=r["lead_id"], state=r["state"], requester=r["requester"], failure=r["failure"], approval_id=r["approval_id"], proposal=r["proposal"], events=r["events"],
+                                    lead=lead, business=PR.run_business(r, r["events"], lead, names(s))))
         return guarded(go)(request, tenant)
 
     @app.post("/v1/tenants/{tenant}/workflows/runs/{corr_id}/decision")
@@ -418,7 +459,12 @@ def create_growth_app(envs: dict) -> FastAPI:
     def approvals(tenant: str, request: Request, state: str = Query("pending", pattern="^(pending|history)$"), limit: int = LIM, cursor: Optional[str] = CUR):
         def go(request, tenant, who, s):
             if state == "pending":
-                d = page(s, "SELECT id, lead_id, requester, approval_id, created_at FROM workflow_runs WHERE tenant_id=%s AND state='AWAITING_APPROVAL' ORDER BY created_at, id", (tenant,), limit, cursor, ("run_id", "lead_id", "requester", "approval_id", "requested_at"))
+                d = page(s, "SELECT r.id, r.lead_id, r.requester, r.approval_id, r.created_at, c.full_name, a.name, r.proposal->>'proposed_status', r.proposal->>'score' FROM workflow_runs r JOIN leads l ON l.tenant_id=r.tenant_id AND l.id=r.lead_id "
+                                 "JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id JOIN accounts a ON a.tenant_id=c.tenant_id AND a.id=c.account_id WHERE r.tenant_id=%s AND r.state='AWAITING_APPROVAL' ORDER BY r.created_at, r.id", (tenant,), limit, cursor,
+                         ("run_id", "lead_id", "requester", "approval_id", "requested_at", "prospect", "organization", "proposed_status", "score"))
+                nm = names(s)
+                for it in d["items"]:
+                    it["requested_by"] = nm.get(it["requester"], it["requester"])
             else:
                 d = page(s, "SELECT run_id, ts, detail FROM workflow_events WHERE tenant_id=%s AND kind='approval_decision' ORDER BY ts DESC, run_id, seq", (tenant,), limit, cursor, ("run_id", "ts", "detail"))
             return ok(request, d)
@@ -426,7 +472,13 @@ def create_growth_app(envs: dict) -> FastAPI:
 
     @app.get("/v1/tenants/{tenant}/audit")
     def audit(tenant: str, request: Request, limit: int = LIM, cursor: Optional[str] = CUR):
-        return guarded(lambda request, tenant, who, s: ok(request, page(s, "SELECT seq, ts, actor, role, action, entity, entity_id, decision, detail FROM audit_log WHERE tenant_id=%s ORDER BY seq DESC", (tenant,), limit, cursor, ("seq", "ts", "actor", "role", "action", "entity", "entity_id", "decision", "detail"))))(request, tenant)
+        def go(request, tenant, who, s):
+            d = page(s, "SELECT seq, ts, actor, role, action, entity, entity_id, decision, detail FROM audit_log WHERE tenant_id=%s ORDER BY seq DESC", (tenant,), limit, cursor, ("seq", "ts", "actor", "role", "action", "entity", "entity_id", "decision", "detail"))
+            nm, en = names(s), entity_names(s)
+            for it in d["items"]:
+                it["summary"] = PR.audit_summary(it, nm, en)
+            return ok(request, d)
+        return guarded(go)(request, tenant)
 
     @app.get("/v1/tenants/{tenant}/audit/verify")
     def audit_verify(tenant: str, request: Request):
@@ -441,7 +493,15 @@ def create_growth_app(envs: dict) -> FastAPI:
             leads = {r[0]: r[1] for r in s.read("SELECT status, count(*) FROM leads WHERE tenant_id=%s GROUP BY status", (tenant,))}
             opp = s.read("SELECT stage, count(*), coalesce(sum(amount_cents),0) FROM opportunities WHERE tenant_id=%s GROUP BY stage ORDER BY stage", (tenant,))
             wfs = {r[0]: r[1] for r in s.read("SELECT state, count(*) FROM workflow_runs WHERE tenant_id=%s GROUP BY state", (tenant,))}
-            recent = [dict(run_id=r[0], ts=r[1].isoformat(), kind=r[2], name=r[3]) for r in s.read("SELECT run_id, ts, kind, detail->>'name' FROM workflow_events WHERE tenant_id=%s ORDER BY ts DESC, seq DESC", (tenant,))[:8]]
+            nm = names(s)
+            recent = []
+            for r in s.read("SELECT e.run_id, e.ts, e.kind, e.detail, e.seq, c.full_name, a.name, w.requester FROM workflow_events e JOIN workflow_runs w ON w.tenant_id=e.tenant_id AND w.id=e.run_id JOIN leads l ON l.tenant_id=w.tenant_id AND l.id=w.lead_id "
+                            "JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id JOIN accounts a ON a.tenant_id=c.tenant_id AND a.id=c.account_id WHERE e.tenant_id=%s ORDER BY e.ts DESC, e.seq DESC", (tenant,)):
+                ent = PR.event_entry(dict(seq=r[4], ts=r[1].isoformat(), kind=r[2], **r[3]), nm, run=dict(requester=r[7]))
+                if ent:
+                    recent.append(dict(run_id=r[0], ts=r[1].isoformat(), kind=r[2], name=r[3].get("name"), title=ent["title"], tone=ent["tone"], prospect=r[5], organization=r[6]))
+                if len(recent) == 8:
+                    break
             return ok(request, dict(leads=leads, lead_total=sum(leads.values()), pipeline=[dict(stage=a, count=b, amount_cents=int(c)) for a, b, c in opp], open_value_cents=sum(int(c) for a, b, c in opp if a not in ("won", "lost")),
                                     qualification_runs=wfs, approvals_pending=wfs.get("AWAITING_APPROVAL", 0), recent_events=recent, synthetic=True))
         return guarded(go)(request, tenant)

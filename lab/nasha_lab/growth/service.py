@@ -101,9 +101,9 @@ class GrowthService:
         i = self._id("acc")
         return self._write("account.create", "accounts", lambda: self.con.execute("INSERT INTO accounts (tenant_id,id,name,kind,segment_id,created_by) VALUES (%s,%s,%s,%s,%s,%s) RETURNING id", (self.tenant, i, name, kind, segment_id, self.user)).fetchone()[0])
 
-    def create_contact(self, account_id, full_name, email):
+    def create_contact(self, account_id, full_name, email, job_title=None):
         i = self._id("con")
-        return self._write("contact.create", "contacts", lambda: self.con.execute("INSERT INTO contacts (tenant_id,id,account_id,full_name,email,created_by) VALUES (%s,%s,%s,%s,%s,%s) RETURNING id", (self.tenant, i, account_id, full_name, email, self.user)).fetchone()[0])
+        return self._write("contact.create", "contacts", lambda: self.con.execute("INSERT INTO contacts (tenant_id,id,account_id,full_name,email,job_title,created_by) VALUES (%s,%s,%s,%s,%s,%s,%s) RETURNING id", (self.tenant, i, account_id, full_name, email, job_title, self.user)).fetchone()[0])
 
     def set_consent(self, contact_id, status):
         def go():
@@ -122,9 +122,21 @@ class GrowthService:
             return email
         return self._write("suppression.add", "suppression_list", go)
 
-    def create_lead(self, contact_id, source, signals=None):
+    def create_lead(self, contact_id, source, signals=None, inquiry=None, assigned_to=None, scenario=None, inquiry_received=None):
         i = self._id("lead")
-        return self._write("lead.create", "leads", lambda: self.con.execute("INSERT INTO leads (tenant_id,id,contact_id,source,signals,created_by) VALUES (%s,%s,%s,%s,%s,%s) RETURNING id", (self.tenant, i, contact_id, source, Jsonb(signals) if signals is not None else None, self.user)).fetchone()[0])
+        return self._write("lead.create", "leads", lambda: self.con.execute("INSERT INTO leads (tenant_id,id,contact_id,source,signals,inquiry,assigned_to,scenario,inquiry_received,created_by) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id",
+                                                                           (self.tenant, i, contact_id, source, Jsonb(signals) if signals is not None else None, inquiry, assigned_to, scenario, inquiry_received, self.user)).fetchone()[0])
+
+    LEAD_VIEW = ("SELECT l.id, l.status, l.score, l.source, l.version, l.inquiry, l.scenario, l.inquiry_received, l.created_at, c.id, c.full_name, c.job_title, c.consent_status, "
+                 "EXISTS (SELECT 1 FROM suppression_list s WHERE s.tenant_id=c.tenant_id AND s.email=c.email), a.id, a.name, a.kind, u.id, u.display_name "
+                 "FROM leads l JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id JOIN accounts a ON a.tenant_id=c.tenant_id AND a.id=c.account_id LEFT JOIN users u ON u.tenant_id=l.tenant_id AND u.id=l.assigned_to")
+    LEAD_VIEW_KEYS = ("lead_id", "status", "score", "source", "version", "inquiry", "scenario", "inquiry_received", "created_at", "contact_id", "prospect", "job_title", "consent_status", "suppressed", "account_id", "organization", "organization_kind", "owner_id", "owner")
+
+    def lead_view(self, lead_id):
+        """Presentation record for one lead (names, organisation, inquiry, owner) in this tenant only. Read-only; the workflow never uses it for decisions."""
+        self._authorize("read")
+        r = self.con.execute(self.LEAD_VIEW + " WHERE l.tenant_id=%s AND l.id=%s", (self.tenant, lead_id)).fetchone()
+        return dict(zip(self.LEAD_VIEW_KEYS, r)) if r else None
 
     def get_lead_context(self, lead_id):
         """Everything the qualification workflow may look at for one lead, in this tenant only: the lead, its contact's consent and suppression status, and the recorded signals."""

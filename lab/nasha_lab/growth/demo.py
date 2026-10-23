@@ -11,7 +11,7 @@ import psycopg
 
 from ..governed import tenants as T
 from ..warehouse import pg_hardening as H
-from . import schema as S, seed as SD, service as SV, workflow as WF
+from . import scenarios as SC, schema as S, seed as SD, service as SV, workflow as WF
 
 SCHEMA = "growth_demo"
 USERS = {"ada": ("Ada Rao (synthetic owner)", "OWNER"), "omar": ("Omar Ellis (synthetic owner)", "OWNER"), "sam": ("Sam Park (synthetic sales)", "SALES"), "mia": ("Mia Chen (synthetic marketing)", "MARKETING"),
@@ -30,36 +30,30 @@ def build(root, dsn, schema=SCHEMA, with_warehouse=True):
             "tenant-fit": WF.provision_env(root, dsn, schema, "tenant-fit", "Meridian Fitness (synthetic studio)", "fitness", USERS)}
     owner = {t: SV.GrowthService(dsn, schema, t, "ada") for t in envs}
     wh = T.default_pair(root / "wh")[0].warehouse if with_warehouse else None
-    nasha = SD.seed_nasha(owner["tenant-nasha"], wh) if wh else None
-    fit = SD.seed_fitness(owner["tenant-fit"])
-    rnd = random.Random(3)
-    by_i = {}
-    for t, svc in owner.items():
+    nasha = SD.seed_nasha(owner["tenant-nasha"], wh, with_accounts=False)
+    fit = SD.seed_fitness(owner["tenant-fit"], with_accounts=False)
+    plans = {"tenant-nasha": (SC.NASHA, SC.NASHA_HISTORY), "tenant-fit": (SC.MERIDIAN, SC.MERIDIAN_HISTORY)}
+    comments = {"executed": "Evidence reviewed; the qualification follows from the recorded facts.", "rejected": "Not enough confirmed information yet; revisit after a budget conversation."}
+    for t, (plan, history) in plans.items():
         sales = SV.GrowthService(dsn, schema, t, "sam")
-        for i in range(10):
-            a = sales.create_account(f"{'Harbor' if t == 'tenant-nasha' else 'Summit'} Group {i}", "business" if t == "tenant-nasha" else "household")
-            c = sales.create_contact(a, f"Synthetic Contact {i}", f"{t[7:]}.contact{i}@example.invalid")
-            if i % 4 != 3:
-                sales.set_consent(c, "opt_in")
-            lead = sales.create_lead(c, rnd.choice(["synthetic-referral", "synthetic-website-form", "synthetic-event-fair"]), SIGNALS[i % len(SIGNALS)])
-            by_i[(t, i)] = lead
-            if i == 7:
-                sales.suppress(f"{t[7:]}.contact{i}@example.invalid", "asked not to be contacted (synthetic)")
-            if i in (0, 1, 2, 3, 5, 6):          # direct qualification + conversion so the pipeline has records beyond the workflow
-                sales.qualify_lead(lead, SIGNALS[0]); opp = sales.convert_lead(lead, f"{'Catering' if t == 'tenant-nasha' else 'Corporate pack'} {i}", 120000 + 35000 * i)
-                for stage in ({1: ["qualified"], 2: ["qualified", "proposal"], 3: ["qualified", "proposal", "negotiation"], 5: ["qualified", "proposal", "negotiation", "won"], 6: ["lost"]}.get(i, [])):
-                    sales.advance(opp, stage)
-        sales.close()
-    # recorded governed qualification runs in four different states (NASHA tenant)
-    env = envs["tenant-nasha"]
-    wf = WF.GovernedLeadQualification(env)
-    tok = lambda u: wf.login(u, f"{env.tenant_id}-{u}-dev-passcode")
-    leads = [by_i[("tenant-nasha", i)] for i in (4, 8, 9, 8)]
-    r1 = wf.run(tok("sam"), leads[0], idempotency_key="demo-run-1"); wf.decide(r1["corr_id"], tok("ada"), True, "evidence reviewed")
-    r2 = wf.run(tok("sam"), leads[1], idempotency_key="demo-run-2"); wf.decide(r2["corr_id"], tok("omar"), False, "decision maker not confirmed")
-    wf.run(tok("sam"), leads[2], idempotency_key="demo-run-3")                                         # left awaiting approval
-    wf.run(tok("mia"), leads[3], idempotency_key="demo-run-4")                                         # denied by THE WEIR (marketing has no write tool)
-    wf.close()
+        ids, prices = SC.seed(sales, owner[t], plan, history)
+        wf = WF.GovernedLeadQualification(envs[t])
+        tok = lambda u, wf=wf, t=t: wf.login(u, f"{t}-{u}-dev-passcode")
+        for sc in plan:
+            lead, disp = ids[sc["key"]], sc["disposition"]
+            requester = sc["owner"] if sc["owner"] in ("sam", "ada") else "sam"
+            approver = "omar" if requester == "ada" else "ada"
+            if disp == "denied":
+                wf.run(tok("mia"), lead, idempotency_key=f"demo-{t}-{sc['key']}")
+            elif disp in ("suppressed", "abstain", "awaiting"):
+                wf.run(tok(requester), lead, idempotency_key=f"demo-{t}-{sc['key']}")
+            elif disp in ("executed", "rejected"):
+                r = wf.run(tok(requester), lead, idempotency_key=f"demo-{t}-{sc['key']}")
+                wf.decide(r["corr_id"], tok(approver), disp == "executed", comments[disp])
+                if disp == "executed" and sc["basket"] and sales.get_lead_context(lead)["status"] == "qualified":
+                    opp = sales.convert_lead(lead, sc["opp"], SC.basket_cents(prices, sc["basket"]))
+                    sales.advance(opp, "qualified")
+        wf.close(); sales.close()
     for s in owner.values():
         s.close()
     return envs

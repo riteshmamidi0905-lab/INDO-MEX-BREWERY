@@ -46,6 +46,13 @@ def recommend(ctx):
                dict(text=f"decision maker: {sig['decision_maker']}", evidence="E4:lead.signals", points=w["decision_maker"] if sig["decision_maker"] else 0),
                dict(text=f"timeline {t} days", evidence="E4:lead.signals", points=w["timeline"] if t is not None and t <= 30 else (w["timeline"] // 2 if t is not None and t <= 90 else 0)),
                dict(text=f"fit {sig['fit']}", evidence="E4:lead.signals", points=round(w["fit"] * sig["fit"])), dict(text=f"engagement {sig['engagement']}", evidence="E4:lead.signals", points=round(w["engagement"] * sig["engagement"]))]
+    labels = [("budget", "Budget", w["budget_confirmed"], "The prospect has confirmed a budget." if sig["budget_confirmed"] else "No budget has been confirmed yet."),
+              ("decision_maker", "Decision maker", w["decision_maker"], "We are talking to the person who decides." if sig["decision_maker"] else "The contact is not the final decision maker."),
+              ("timeline", "Timeline", w["timeline"], "No decision date is known." if t is None else f"A decision is expected in {t} days ({'within 30 days: full points' if t <= 30 else 'within 90 days: half points' if t <= 90 else 'beyond 90 days: no points'})."),
+              ("fit", "Fit with the ideal customer", w["fit"], f"Fit with the ideal customer profile is rated {round(sig['fit'] * 100)}%."),
+              ("engagement", "Engagement", w["engagement"], f"Engagement with our team is rated {round(sig['engagement'] * 100)}%.")]
+    for r, (factor, label, mx, why) in zip(reasons, labels):
+        r.update(factor=factor, label=label, max_points=mx, explanation=why)
     return dict(action="APPLY_QUALIFICATION", lead_id=ctx["lead_id"], proposed_status=status, score=score, expected_lead_version=ctx["lead_version"], reasons=reasons, evidence=evidence,
                 outreach_allowed=(ctx["consent_status"] == "opt_in" and not ctx["suppressed"]),
                 notice="Rule-based score over synthetic signals; not a validated model. Qualifying a lead sends nothing and contacts no one.")

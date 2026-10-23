@@ -107,7 +107,15 @@ V006 = [  # HTTP idempotency records: one stored response per (tenant, key); a d
 ]
 
 
+V007 = [  # business context for the CRM: what the prospect asked for, who owns it, which scenario it belongs to (all synthetic)
+    "ALTER TABLE contacts ADD COLUMN job_title text CHECK (job_title IS NULL OR length(job_title) <= 80)",
+    "ALTER TABLE leads ADD COLUMN inquiry text CHECK (inquiry IS NULL OR length(inquiry) <= 600)", "ALTER TABLE leads ADD COLUMN assigned_to text",
+    "ALTER TABLE leads ADD COLUMN scenario text CHECK (scenario IS NULL OR length(scenario) <= 80)", "ALTER TABLE leads ADD COLUMN inquiry_received date",
+    "ALTER TABLE leads ADD CONSTRAINT leads_assigned_fk FOREIGN KEY (tenant_id, assigned_to) REFERENCES users (tenant_id, id)",
+]
+
+
 def migrations(schema):
     """version -> (apply sql list, preflight list) for pg_hardening.migrate(specs=...). Fresh-schema migrations: no data to pre-flight."""
     v3 = [s.replace("{schema}", schema) for s in V003]
-    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, []), "106": (V006, [])}
+    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, []), "106": (V006, []), "107": (V007, [])}
