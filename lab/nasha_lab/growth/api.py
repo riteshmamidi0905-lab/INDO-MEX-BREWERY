@@ -555,7 +555,7 @@ def create_growth_app(envs: dict, agent_dsn=None, agent_provider="offline", as_o
         return guarded(go)(request, tenant)
 
     from . import api_launch
-    api_launch.register(app, dict(guarded=guarded, ok=ok, err=err, idem=idem, page=page, names=names, LIM=LIM, CUR=CUR, launch_flow=launch_flow, BEARER=BEARER, as_of=lambda: (as_of() if callable(as_of) else as_of) or __import__("datetime").date.today()))
+    api_launch.register(app, dict(guarded=guarded, ok=ok, err=err, idem=idem, page=page, names=names, entity_names=entity_names, LIM=LIM, CUR=CUR, launch_flow=launch_flow, BEARER=BEARER, as_of=lambda: (as_of() if callable(as_of) else as_of) or __import__("datetime").date.today()))
 
     # the product interface: static files from the same origin, no build step (the API stays the only data path)
     from pathlib import Path

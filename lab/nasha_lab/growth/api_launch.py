@@ -163,6 +163,19 @@ def register(app, h):
     def projects(tenant: str, request: Request):
         return guarded(lambda request, tenant, who, s: ok(request, dict(items=s.list_projects())))(request, tenant)
 
+    @app.get(P + "/projects/{project_id}/history")
+    def history(tenant: str, project_id: str, request: Request):
+        def go(request, tenant, who, s):
+            if not s.project_overview(project_id):
+                return missing(request)
+            from . import present as PR
+            nm, en = h["names"](s), h["entity_names"](s)
+            items = s.project_history(project_id)
+            for it in items:
+                it["summary"] = PR.audit_summary(it, nm, en)
+            return ok(request, dict(items=items, note="Exactly what the audit log recorded for this project. Nothing is inferred; no order was placed and no supplier was contacted."))
+        return guarded(go)(request, tenant)
+
     @app.post(P + "/projects", status_code=201)
     def create_project(tenant: str, body: ProjectIn, request: Request, key: Optional[str] = IDK):
         return guarded(lambda request, tenant, who, s: idem(request, s, tenant, key, body.model_dump(), lambda: ok(request, dict(id=s.create_project(**body.model_dump())), 201)))(request, tenant)

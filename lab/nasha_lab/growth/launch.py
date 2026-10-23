@@ -8,6 +8,7 @@ from psycopg.types.json import Jsonb
 from . import financials as FIN, supplier_intel as SI
 
 FRESH_DAYS, STALE_DAYS = 90, 180
+STAGE_ORDER = ["idea", "research", "sourcing", "financial_plan", "roadmap"]
 
 
 def freshness(verified_on, as_of=None, status=None):
@@ -206,8 +207,31 @@ class LaunchMixin:
             if r[0] != "APPROVED":
                 raise self.Blocked(f"recommendation is {r[0]}, not APPROVED")
             self.con.execute("UPDATE procurement_recommendations SET state='EXECUTED', approval_id=%s, decided_by=%s WHERE tenant_id=%s AND id=%s", (approval_id, approved_by, self.tenant, run_id))
-            return run_id, None, {"approval": approval_id, "approved_by": approved_by}
+            # the approved recommendation moves the project forward IN THE SAME TRANSACTION (all or nothing): a completed sourcing milestone, and the project stage advanced (never moved back). The stage is 'roadmap' only
+            # when the project also has a saved financial scenario; otherwise 'financial_plan'. Rule: STAGE_AFTER_APPROVAL. Idempotent: an already-EXECUTED run returned above, so this happens once per run.
+            proj, period = self.con.execute("SELECT project_id, period FROM procurement_recommendations WHERE tenant_id=%s AND id=%s", (self.tenant, run_id)).fetchone()
+            mid = self._id("ms")
+            self.con.execute("INSERT INTO project_milestones (tenant_id,id,project_id,title,phase,status,note,created_by) VALUES (%s,%s,%s,%s,'sourcing','done',%s,%s)",
+                             (self.tenant, mid, proj, f"Procurement recommendation approved ({period})", f"Approved by {approved_by}. A recommendation only: nothing was ordered and no supplier was contacted.", self.user))
+            cur = self.con.execute("SELECT stage FROM launch_projects WHERE tenant_id=%s AND id=%s FOR UPDATE", (self.tenant, proj)).fetchone()[0]
+            has_scn = bool(self.con.execute("SELECT 1 FROM financial_scenarios WHERE tenant_id=%s AND project_id=%s LIMIT 1", (self.tenant, proj)).fetchone())
+            target = "roadmap" if has_scn else "financial_plan"
+            also, stage_to = [f"project_milestones:{mid}"], None
+            if STAGE_ORDER.index(target) > STAGE_ORDER.index(cur):
+                self.con.execute("UPDATE launch_projects SET stage=%s WHERE tenant_id=%s AND id=%s", (target, self.tenant, proj)); also.append(f"launch_projects:{proj}"); stage_to = target
+            return run_id, also, {"approval": approval_id, "approved_by": approved_by, "milestone": mid, "stage_to": stage_to}
         return self._write("procurement.record", "procurement_recommendations", go)
+
+    def project_history(self, project_id):
+        """Everything the audit log recorded about this project and the records that belong to it (assumptions, milestones, findings, shortlist, scenarios, procurement recommendations), oldest first. Read-only; each
+        row is the raw audit row, so the history is exactly what was recorded and nothing is synthesised here."""
+        self._authorize("read")
+        ids = [project_id]
+        for tbl in ("project_assumptions", "project_milestones", "research_findings", "project_suppliers", "financial_scenarios", "procurement_recommendations"):
+            ids += [r[0] for r in self.con.execute(f"SELECT id FROM {tbl} WHERE tenant_id=%s AND project_id=%s", (self.tenant, project_id)).fetchall()]
+        rows = self.con.execute("SELECT seq, ts, actor, role, action, entity, entity_id, decision, detail FROM audit_log WHERE tenant_id=%s AND decision='allow' AND (entity_id = ANY(%s) OR EXISTS "
+                                "(SELECT 1 FROM jsonb_array_elements_text(COALESCE(detail->'also','[]'::jsonb)) x WHERE split_part(x, ':', 2) = ANY(%s))) ORDER BY seq", (self.tenant, ids, ids)).fetchall()
+        return [dict(zip(("seq", "ts", "actor", "role", "action", "entity", "entity_id", "decision", "detail"), r)) for r in rows]
 
     # ------------------------------------------------------------ marketing: offer economics from stored prices and costs
     def offer_economics(self):
