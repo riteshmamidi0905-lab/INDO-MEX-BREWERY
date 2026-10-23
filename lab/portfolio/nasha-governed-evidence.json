@@ -75,7 +75,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.14,
+     "ms": 4.56,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -85,7 +85,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 6.69,
+     "ms": 6.11,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -95,7 +95,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.16,
+     "ms": 4.62,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -105,7 +105,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 3.81,
+     "ms": 4.09,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -115,7 +115,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 3.98,
+     "ms": 3.42,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -125,7 +125,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 3.98,
+     "ms": 3.51,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -135,7 +135,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 3.32,
+     "ms": 3.26,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -172,7 +172,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.23,
+     "ms": 1.1,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -185,7 +185,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_8fce07f1"
+      "approval_id": "ap_5fa09fa9"
      }
     },
     {
@@ -200,7 +200,7 @@
      "kind": "tool",
      "stage": "S14",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 3.76,
+     "ms": 3.67,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [
@@ -249,12 +249,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_8fce07f1"
+     "ref": "ap_5fa09fa9"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_8fce07f1"
+     "ref": "ap_5fa09fa9"
     },
     {
      "action": "state:APPROVED",
@@ -344,7 +344,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 3.56,
+     "ms": 4.04,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -354,7 +354,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 5.52,
+     "ms": 5.62,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -364,7 +364,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 3.48,
+     "ms": 3.97,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -374,7 +374,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 2.97,
+     "ms": 3.35,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -384,7 +384,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 3.19,
+     "ms": 3.43,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -394,7 +394,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 3.15,
+     "ms": 3.4,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -404,7 +404,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 3.87,
+     "ms": 3.15,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -441,7 +441,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 0.66,
+     "ms": 0.71,
      "forwarded": false,
      "held_for_approval": false,
      "codes": [
@@ -567,7 +567,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.27,
+     "ms": 3.75,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -577,7 +577,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 6.16,
+     "ms": 5.32,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -587,7 +587,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 3.93,
+     "ms": 3.44,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -597,7 +597,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 3.49,
+     "ms": 3.19,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -607,7 +607,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 3.73,
+     "ms": 3.12,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -617,7 +617,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.29,
+     "ms": 3.22,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -627,7 +627,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 4.13,
+     "ms": 3.05,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -664,7 +664,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.32,
+     "ms": 0.93,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -677,7 +677,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_4335a7a3"
+      "approval_id": "ap_0afb2367"
      }
     },
     {
@@ -720,12 +720,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_4335a7a3"
+     "ref": "ap_0afb2367"
     },
     {
      "action": "approval_expired",
      "role": "FOUNDER",
-     "ref": "ap_4335a7a3"
+     "ref": "ap_0afb2367"
     },
     {
      "action": "state:FAILED",
@@ -805,7 +805,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.21,
+     "ms": 3.55,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -815,7 +815,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 14.7,
+     "ms": 13.56,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -825,7 +825,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.75,
+     "ms": 3.67,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -835,7 +835,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.34,
+     "ms": 3.54,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -845,7 +845,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 3.86,
+     "ms": 3.63,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -855,7 +855,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 3.49,
+     "ms": 3.14,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -865,7 +865,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 4.57,
+     "ms": 3.29,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -902,7 +902,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.05,
+     "ms": 0.94,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -915,7 +915,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_4e109e20"
+      "approval_id": "ap_b3631771"
      }
     },
     {
@@ -930,7 +930,7 @@
      "kind": "tool",
      "stage": "S14",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 0.82,
+     "ms": 0.78,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -968,12 +968,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_4e109e20"
+     "ref": "ap_b3631771"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_4e109e20"
+     "ref": "ap_b3631771"
     },
     {
      "action": "state:APPROVED",
@@ -983,7 +983,7 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": null,
-     "ref": "ap_3575bfa3"
+     "ref": "ap_a6ab2ac4"
     }
    ]
   },
@@ -1058,7 +1058,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.21,
+     "ms": 4.11,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1068,7 +1068,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 7.26,
+     "ms": 5.68,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1078,7 +1078,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 5.04,
+     "ms": 3.6,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1088,7 +1088,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.03,
+     "ms": 3.48,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1098,7 +1098,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 3.85,
+     "ms": 3.55,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1108,7 +1108,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 3.99,
+     "ms": 4.59,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1118,7 +1118,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 3.6,
+     "ms": 3.45,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1164,7 +1164,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.02,
+     "ms": 0.79,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -1177,7 +1177,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_582cb5e2"
+      "approval_id": "ap_3283a159"
      }
     }
    ],
@@ -1205,7 +1205,7 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_582cb5e2"
+     "ref": "ap_3283a159"
     }
    ]
   },
@@ -1280,7 +1280,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.71,
+     "ms": 3.39,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1290,7 +1290,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 6.97,
+     "ms": 5.41,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1300,7 +1300,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.18,
+     "ms": 3.22,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1310,7 +1310,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 3.66,
+     "ms": 3.03,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1320,7 +1320,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 3.83,
+     "ms": 3.88,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1330,7 +1330,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.21,
+     "ms": 3.02,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1340,7 +1340,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 3.71,
+     "ms": 2.68,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1377,7 +1377,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.12,
+     "ms": 0.83,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -1390,7 +1390,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_56536217"
+      "approval_id": "ap_ee41e4e6"
      }
     },
     {
@@ -1405,7 +1405,7 @@
      "kind": "tool",
      "stage": "S14",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 3.83,
+     "ms": 3.01,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [
@@ -1461,12 +1461,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_56536217"
+     "ref": "ap_ee41e4e6"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_56536217"
+     "ref": "ap_ee41e4e6"
     },
     {
      "action": "state:APPROVED",
@@ -1486,7 +1486,7 @@
     {
      "action": "decision_refused:APPROVAL_REPLAY",
      "role": "FOUNDER",
-     "ref": "ap_56536217"
+     "ref": "ap_ee41e4e6"
     },
     {
      "action": "duplicate_request",
@@ -1566,7 +1566,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.83,
+     "ms": 3.84,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1576,7 +1576,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 6.89,
+     "ms": 5.15,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1586,7 +1586,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.84,
+     "ms": 3.17,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1596,7 +1596,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 3.74,
+     "ms": 2.78,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1606,7 +1606,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 3.96,
+     "ms": 3.14,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1616,7 +1616,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 3.88,
+     "ms": 3.0,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1626,7 +1626,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 3.59,
+     "ms": 2.67,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1722,24 +1722,196 @@
  ],
  "repository": {
   "name": "INDO-MEX-BREWERY",
-  "commit": "a9e803d",
+  "commit": "e82bc70",
+  "uncommitted_changes_at_export": true,
   "pushed": false,
   "note": "local commit; not pushed to the remote at export time"
  },
+ "story": {
+  "note": "Values read from the synthetic warehouse and the executed run; nothing typed in.",
+  "site": "L02",
+  "ingredient": "i-chicken-thigh",
+  "ingredient_name": "Chicken thigh, boneless skinless",
+  "unit": "kg",
+  "week": 22,
+  "orders": {
+   "orders": 19854,
+   "order_lines": 45608,
+   "recipes": 15
+  },
+  "inventory": {
+   "opening": 8.105073299109712,
+   "receipts": 26.4429938142065,
+   "counted_closing": 8.980841098740312,
+   "theoretical_use": 14.65,
+   "measured_use": 25.57
+  },
+  "variance": {
+   "variance_pct": 74.6,
+   "baseline_pct": 3.5,
+   "excess_pct": 71.1,
+   "pattern": "spike",
+   "severity": "high"
+  },
+  "forecast": {
+   "next_horizon_total": 26.7,
+   "days": 14,
+   "method": "holt_winters_weekly",
+   "series": [
+    2.15,
+    2.41,
+    1.88,
+    1.45,
+    1.69,
+    1.62,
+    2.12,
+    2.15,
+    2.41,
+    1.89,
+    1.46,
+    1.7,
+    1.63,
+    2.12
+   ],
+   "first_7_days": 13.3
+  },
+  "planner": {
+   "name": "rules",
+   "claims": [
+    {
+     "text": "i-chicken-thigh usage at L02 in week 22 ran 74.6% above theoretical, 71.1 points above this site's own baseline (spike, severity high).",
+     "evidence": [
+      "E1:variance_flags"
+     ]
+    },
+    {
+     "text": "Measured usage was 25.5672 against 14.6478 expected from recipes and sales.",
+     "evidence": [
+      "E2:ingredient_usage"
+     ]
+    },
+    {
+     "text": "Forecast demand is 13.3283 over the next 7 days (holt_winters_weekly).",
+     "evidence": [
+      "E4:demand_forecast"
+     ]
+    },
+    {
+     "text": "Recommended order: 10.0 kg from FS02 at an estimated $74.0 (SYNTHETIC_QUOTE).",
+     "evidence": [
+      "E5:reorder_recommendations"
+     ]
+    }
+   ],
+   "action": "PROPOSE_REORDER",
+   "proposal": {
+    "reco_id": "R-e2f0b5d69e8b51b9",
+    "ingredient_id": "i-chicken-thigh",
+    "location_id": "L02",
+    "supplier_id": "FS02",
+    "quote_id": "Q-FS02-chicken-thigh",
+    "qty": 10.0,
+    "unit": "kg",
+    "est_cost_usd": 74.0,
+    "price_class": "SYNTHETIC_QUOTE",
+    "inputs_hash": "e2f0b5d69e8b51b9"
+   }
+  },
+  "weir": {
+   "policy_decision": "held for approval (rule R-GATE)",
+   "approvals_created": 1
+  },
+  "approval": {
+   "approver_role": "FOUNDER",
+   "requester_role": "BUYER",
+   "decision": "approve"
+  },
+  "draft": {
+   "po_id": "PO-DRAFT-02daace816",
+   "state": "DRAFT_NOT_SENT",
+   "external_transmissions": 0
+  },
+  "audit": {
+   "ledger_rows": 9
+  }
+ },
  "measured": {
   "happy_path_tool_calls": 9,
-  "tool_ms_max": 6.69,
-  "tool_ms_median": 3.98,
+  "tool_ms_max": 6.11,
+  "tool_ms_median": 3.67,
   "note": "measured on the build machine for this run; not a benchmark"
  },
- "generated_seconds": 14.3,
+ "generated_seconds": 14.0,
  "metrics": {
   "governed_workflow_tests": {
    "passed": 59,
    "failed": 0,
    "skipped": 0,
    "file": "lab/tests/test_governed_workflow.py",
-   "run_in_this_export": true
+   "source": "release-gate junit.xml"
+  },
+  "governed_evaluation": {
+   "cases": 28,
+   "passed": 28,
+   "by_category": {
+    "abstention": {
+     "n": 2,
+     "passed": 2
+    },
+    "approval_bypass": {
+     "n": 5,
+     "passed": 5
+    },
+    "authorization_failure": {
+     "n": 3,
+     "passed": 3
+    },
+    "contradictory_evidence": {
+     "n": 1,
+     "passed": 1
+    },
+    "correct_answer": {
+     "n": 2,
+     "passed": 2
+    },
+    "cross_tenant": {
+     "n": 2,
+     "passed": 2
+    },
+    "hallucination_detection": {
+     "n": 5,
+     "passed": 5
+    },
+    "missing_data": {
+     "n": 1,
+     "passed": 1
+    },
+    "prompt_injection": {
+     "n": 1,
+     "passed": 1
+    },
+    "retrieval_failure": {
+     "n": 1,
+     "passed": 1
+    },
+    "source_attribution": {
+     "n": 1,
+     "passed": 1
+    },
+    "tool_failure": {
+     "n": 1,
+     "passed": 1
+    },
+    "unsafe_proposal": {
+     "n": 3,
+     "passed": 3
+    }
+   },
+   "result_hash": "d2821929ecbdc098",
+   "reproducible": true,
+   "mutants_total": 9,
+   "mutants_killed": 9,
+   "caveat": "small synthetic case set; independent oracles; a perfect score is not evidence of real-world reliability"
   },
   "ops_ai_evaluation": {
    "cases": 56,
@@ -1775,9 +1947,166 @@
    "result_sha256": "0302aafc752a5b3e",
    "caveat": "Small synthetic case set with a deterministic tool layer and rule router; a perfect score is not evidence of real-world reliability."
   },
+  "release_evidence": {
+   "tests_passed": 504,
+   "tests_total": 505,
+   "tests_failed": 0,
+   "tests_skipped": 1,
+   "collected_at_commit": "e82bc70",
+   "model_runtime": "UNVERIFIED: the real-model smoke test is skipped (no local model runtime, no network access to model hosts)",
+   "remote_ci": "NOT_RUN: workflows have not executed on GitHub"
+  },
   "tenants": 2,
   "scenarios_executed": 8
  },
+ "claims": [
+  {
+   "id": "tests.passed",
+   "text": "504 automated tests passed in the full suite run (synthetic data)",
+   "value": 504,
+   "source": {
+    "file": "summary.json",
+    "pointer": "passed"
+   }
+  },
+  {
+   "id": "tests.failed",
+   "text": "0 tests failed",
+   "value": 0,
+   "source": {
+    "file": "summary.json",
+    "pointer": "failed"
+   }
+  },
+  {
+   "id": "tests.skipped",
+   "text": "1 test skipped (model runtime unverified)",
+   "value": 1,
+   "source": {
+    "file": "summary.json",
+    "pointer": "skipped"
+   }
+  },
+  {
+   "id": "governed.tests",
+   "text": "59 governed-workflow tests passed",
+   "value": 59,
+   "source": {
+    "file": "summary.json",
+    "pointer": "by_module.test_governed_workflow.passed"
+   }
+  },
+  {
+   "id": "eval.cases",
+   "text": "28 governed-evaluation cases, scored against independent oracles",
+   "value": 28,
+   "source": {
+    "file": "eval.json",
+    "pointer": "metrics.cases"
+   }
+  },
+  {
+   "id": "eval.passed",
+   "text": "28 of those cases passed",
+   "value": 28,
+   "source": {
+    "file": "eval.json",
+    "pointer": "metrics.passed"
+   }
+  },
+  {
+   "id": "eval.unauthorized",
+   "text": "unauthorized-action rate in the evaluation",
+   "value": 0.0,
+   "source": {
+    "file": "eval.json",
+    "pointer": "metrics.unauthorized_action_rate"
+   }
+  },
+  {
+   "id": "mutation.killed",
+   "text": "9 of 9 deliberately broken variants were detected by the evaluation",
+   "value": 9,
+   "source": {
+    "file": "eval.json",
+    "pointer": "mutants_killed"
+   }
+  },
+  {
+   "id": "mutation.total",
+   "text": "9 mutants were tried",
+   "value": 9,
+   "source": {
+    "file": "eval.json",
+    "pointer": "mutants_total"
+   }
+  },
+  {
+   "id": "repro.eval",
+   "text": "the evaluation result hash was identical on a second independent run",
+   "value": "d2821929ecbdc098",
+   "source": {
+    "file": "repro.json",
+    "pointer": "eval_hash_run1"
+   }
+  },
+  {
+   "id": "repro.warehouse_tables",
+   "text": "47 warehouse tables rebuilt byte-identically",
+   "value": 47,
+   "source": {
+    "file": "repro.json",
+    "pointer": "warehouse.tables"
+   }
+  }
+ ],
+ "mutation_detail": [
+  {
+   "mutant": "validation gate never drops claims",
+   "target_category": "hallucination_detection",
+   "killed": true
+  },
+  {
+   "mutant": "proposal checks removed",
+   "target_category": "unsafe_proposal",
+   "killed": true
+  },
+  {
+   "mutant": "planner inflates numbers by 10%",
+   "target_category": "correct_answer",
+   "killed": true
+  },
+  {
+   "mutant": "quality-lead policy gains the write tool",
+   "target_category": "authorization_failure",
+   "killed": true
+  },
+  {
+   "mutant": "THE WEIR write gate switched off",
+   "target_category": "approval_bypass",
+   "killed": true
+  },
+  {
+   "mutant": "upstream trusts a forged approval context + gate off",
+   "target_category": "approval_bypass",
+   "killed": true
+  },
+  {
+   "mutant": "all tenants share one signing secret",
+   "target_category": "cross_tenant",
+   "killed": true
+  },
+  {
+   "mutant": "approved call no longer binds the amount",
+   "target_category": "approval_bypass",
+   "killed": true
+  },
+  {
+   "mutant": "maker-checker removed",
+   "target_category": "authorization_failure",
+   "killed": true
+  }
+ ],
  "architecture": {
   "nodes": [
    {
@@ -1875,6 +2204,45 @@
      "lab/tests/test_governed_workflow.py"
     ],
     "note": "Rule planner; structured-output model planner exercised only with scripted test doubles."
+   },
+   {
+    "id": "incident",
+    "name": "Incident investigation",
+    "world": "systems",
+    "status": "implemented_and_tested",
+    "evidence": [
+     "lab/nasha_lab/governed/incident.py"
+    ],
+    "tests": [
+     "lab/tests/test_governed_incident.py"
+    ],
+    "note": "Reconstructs who, tenant, tools, evidence, policy decision, block reason and side effects from one correlation id."
+   },
+   {
+    "id": "evaluation",
+    "name": "Evaluation + mutation testing",
+    "world": "ai",
+    "status": "implemented_and_tested",
+    "evidence": [
+     "lab/nasha_lab/governed/evaluation.py"
+    ],
+    "tests": [
+     "lab/tests/test_governed_evaluation.py"
+    ],
+    "note": "Independent oracles; deliberately broken variants must be caught."
+   },
+   {
+    "id": "releasegate",
+    "name": "Release gate",
+    "world": "systems",
+    "status": "implemented_and_tested",
+    "evidence": [
+     "lab/tools/release_gate.py"
+    ],
+    "tests": [
+     "lab/tests/test_release_gate.py"
+    ],
+    "note": "PASS / FAIL / REQUIRES_REVIEW from machine-readable evidence; missing evidence never passes. Not yet run on remote CI."
    },
    {
     "id": "weir",
@@ -2050,6 +2418,18 @@
    [
     "trace",
     "weir"
+   ],
+   [
+    "trace",
+    "incident"
+   ],
+   [
+    "evaluation",
+    "agent"
+   ],
+   [
+    "evaluation",
+    "releasegate"
    ],
    [
     "llm",

@@ -1,0 +1,132 @@
+{
+ "schema": "release-gate-report/1",
+ "overall": "REQUIRES_REVIEW",
+ "head": "e82bc70",
+ "generated_at": 1792724995.8811135,
+ "evidence_commit": "e82bc70",
+ "remote_ci": "NOT_RUN",
+ "remote_ci_note": "GitHub workflows have not run remotely; no remote CI result is claimed.",
+ "gates": {
+  "unit_tests": {
+   "status": "PASS",
+   "detail": "371 passed, 0 failed, 0 skipped (all allowed by policy)",
+   "evidence": [
+    "unit_tests"
+   ]
+  },
+  "integration_tests": {
+   "status": "REQUIRES_REVIEW",
+   "detail": "133 passed, 1 skipped; needs review: test_llm_planner::test_real_local_model_integration_smoke (model runtime not executed: no local model runtime and no network access to model hosts)",
+   "evidence": [
+    "integration_tests"
+   ]
+  },
+  "pg_reconciliation": {
+   "status": "PASS",
+   "detail": "PostgreSQL reconciliation + pgvector: 5/5 required tests executed and passed",
+   "evidence": [
+    "test_warehouse_pg::test_every_table_reconciles_to_sqlite",
+    "test_warehouse_pg::test_d87_scenario_tables_reconcile_in_postgresql",
+    "test_warehouse_pg::test_yield_ratio_rounding_ties_are_identical_in_sqlite_and_postgresql",
+    "test_warehouse_pg::test_every_brew_batch_yield_ratio_matches_row_by_row",
+    "test_retrieval_v2::test_pgvector_matches_the_exact_scan_and_uses_hnsw_cosine"
+   ]
+  },
+  "agent_evaluation": {
+   "status": "PASS",
+   "detail": "28/28 cases passed across 13 categories; 0 unauthorized actions (small synthetic set; not evidence of real-world reliability) | contradiction abstention: 2/2 required tests executed and passed",
+   "evidence": [
+    "eval.json",
+    "test_governed_contradiction::test_planner_abstains_on_contradictory_evidence",
+    "test_governed_contradiction::test_consistent_evidence_still_proposes"
+   ]
+  },
+  "mutation_testing": {
+   "status": "PASS",
+   "detail": "9/9 mutants killed",
+   "evidence": [
+    "eval.json"
+   ]
+  },
+  "security_regression": {
+   "status": "PASS",
+   "detail": "security: 10/10 required tests executed and passed",
+   "evidence": [
+    "test_governed_workflow::test_secrets_and_session_tokens_never_appear_in_traces_ledger_or_audit",
+    "test_governed_workflow::test_audit_trail_is_tamper_evident",
+    "test_governed_workflow::test_input_validation_rejects_malicious_identifiers_without_effects",
+    "test_governed_workflow::test_injection_in_supplier_notes_is_flagged_untrusted_and_cannot_change_the_outcome",
+    "test_governed_workflow::test_a_model_that_obeys_an_injection_is_stopped_by_the_validation_gate",
+    "test_governed_workflow::test_no_module_in_the_governed_package_can_open_a_network_connection",
+    "test_governed_workflow::test_default_deny_every_role_only_has_the_tools_its_policy_lists",
+    "test_governed_workflow::test_unknown_and_egress_tools_are_blocked_by_the_weir_before_any_upstream",
+    "test_governed_workflow::test_rate_limiting_blocks_a_burst_without_side_effects",
+    "test_identity::test_forged_tampered_and_wrong_kind_tokens_are_refused"
+   ]
+  },
+  "tenant_isolation": {
+   "status": "PASS",
+   "detail": "tenant isolation tests: 6/6 required tests executed and passed | evaluation cross-tenant: 2 evaluation cases passed with no purchase order created",
+   "evidence": [
+    "test_governed_workflow::test_tenants_have_separate_physical_stores_and_distinct_data",
+    "test_governed_workflow::test_memory_retrieval_approvals_and_audit_do_not_cross_tenants",
+    "test_governed_workflow::test_tokens_and_ids_from_another_tenant_are_rejected",
+    "test_governed_workflow::test_a_tenant_workflow_never_opens_another_tenants_files",
+    "test_tenancy::test_each_tenant_sees_only_its_own_warehouse",
+    "test_tenancy::test_default_deny_across_tenants_and_override_attempts",
+    "eval.json"
+   ]
+  },
+  "authorization_enforcement": {
+   "status": "PASS",
+   "detail": "authorization tests: 8/8 required tests executed and passed | evaluation authorization/approval: 8 evaluation cases passed with no purchase order created",
+   "evidence": [
+    "test_governed_workflow::test_a_user_who_may_not_approve_cannot_approve",
+    "test_governed_workflow::test_maker_checker_the_requester_cannot_approve_their_own_request",
+    "test_governed_workflow::test_a_proposal_modified_after_approval_is_not_executed",
+    "test_governed_workflow::test_approval_scope_cannot_be_changed_on_any_field",
+    "test_governed_workflow::test_the_procurement_upstream_refuses_a_write_that_did_not_come_through_the_approval_path",
+    "test_governed_workflow::test_replayed_approval_creates_nothing_new",
+    "test_governed_workflow::test_a_role_that_may_not_start_runs_is_denied_and_a_role_without_the_write_tool_is_blocked_by_the_weir",
+    "test_governed_api::test_full_flow_over_http_ends_in_a_draft_po_and_no_transmission",
+    "eval.json"
+   ]
+  },
+  "reproducibility": {
+   "status": "PASS",
+   "detail": "evaluation hash identical across runs (d2821929ecbdc098); 47 warehouse tables rebuilt byte-identically",
+   "evidence": [
+    "repro.json"
+   ]
+  },
+  "data_quality": {
+   "status": "PASS",
+   "detail": "data quality: 6/6 required tests executed and passed",
+   "evidence": [
+    "test_warehouse::test_full_load_publishes_and_reconciles",
+    "test_warehouse::test_contract_violations_are_quarantined_and_duplicates_block_publication",
+    "test_warehouse::test_reconciliation_detects_tampering_in_the_warehouse",
+    "test_warehouse::test_structural_contract_break_rejects_the_file",
+    "test_scenario_d87::test_inventory_depletion_matches_an_independent_recomputation",
+    "test_scenario_d87::test_variance_detector_finds_injected_anomalies_without_reading_them"
+   ]
+  },
+  "evidence_consistency": {
+   "status": "PASS",
+   "detail": "evidence collected at e82bc70 (HEAD e82bc70); no code changed since; counts match junit.xml",
+   "evidence": [
+    "meta.json",
+    "summary.json",
+    "junit.xml"
+   ]
+  },
+  "portfolio_claim_validation": {
+   "status": "PASS",
+   "detail": "11 portfolio claims each resolve to the evidence bundle and match exactly",
+   "evidence": [
+    "nasha-governed-evidence.json"
+   ]
+  }
+ },
+ "notes": []
+}

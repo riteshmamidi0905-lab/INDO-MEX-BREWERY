@@ -1,0 +1,243 @@
+{
+ "total": 505,
+ "passed": 504,
+ "failed": 0,
+ "skipped": 1,
+ "by_module": {
+  "test_agent": {
+   "passed": 45,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_api_mcp": {
+   "passed": 12,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_asset_validation": {
+   "passed": 2,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_baseline_claims": {
+   "passed": 6,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_beer_specs": {
+   "passed": 4,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_brand_v3": {
+   "passed": 3,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_case_study_facts": {
+   "passed": 4,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_claim_consistency": {
+   "passed": 6,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_doc_facts": {
+   "passed": 3,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_enterprise_sim": {
+   "passed": 8,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_ext1": {
+   "passed": 7,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_forecast_labor": {
+   "passed": 5,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_governed_api": {
+   "passed": 6,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_governed_contradiction": {
+   "passed": 2,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_governed_evaluation": {
+   "passed": 4,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_governed_incident": {
+   "passed": 2,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_governed_workflow": {
+   "passed": 59,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_identity": {
+   "passed": 11,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_knowledge": {
+   "passed": 24,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_learning_diagnostic": {
+   "passed": 4,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_learning_explain": {
+   "passed": 4,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_llm_planner": {
+   "passed": 12,
+   "failed": 0,
+   "skipped": 1
+  },
+  "test_menu_direction": {
+   "passed": 8,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_ops_ai_eval": {
+   "passed": 3,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_ops_ai_warehouse": {
+   "passed": 14,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_ops_ai_weir": {
+   "passed": 4,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_planner_units": {
+   "passed": 8,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_plate_detect": {
+   "passed": 3,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_plate_pipeline": {
+   "passed": 7,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_platform": {
+   "passed": 30,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_po_coverage": {
+   "passed": 10,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_portfolio_export": {
+   "passed": 2,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_properties": {
+   "passed": 8,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_recipes_d87": {
+   "passed": 21,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_release_gate": {
+   "passed": 28,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_results_consistency": {
+   "passed": 7,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_retrieval_v2": {
+   "passed": 10,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_scenario_d87": {
+   "passed": 16,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_skip_report": {
+   "passed": 2,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_tenancy": {
+   "passed": 4,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_tools": {
+   "passed": 24,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_trace_and_ts2": {
+   "passed": 4,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_trust": {
+   "passed": 27,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_ui": {
+   "passed": 11,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_warehouse": {
+   "passed": 9,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_warehouse_bi": {
+   "passed": 6,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_warehouse_pg": {
+   "passed": 5,
+   "failed": 0,
+   "skipped": 0
+  }
+ }
+}

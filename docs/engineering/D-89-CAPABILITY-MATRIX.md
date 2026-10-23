@@ -1,14 +1,14 @@
-# D-89 capability matrix (Milestone A)
+# D-89 capability matrix (updated at Milestone E)
 
-Generated from `lab/tools/build_capability_matrix.py` against local commit `a9e803d` (not pushed). Every cited path and test function was checked to exist. **A row says IMPLEMENTED_TESTED only if it cites at least one existing test; it does not claim the test was just re-run** — see the test report for pass counts.
+Generated from `lab/tools/build_capability_matrix.py` against local commit `e82bc70` (not pushed). Every cited path and test function was checked to exist. **A row says IMPLEMENTED_TESTED only if it cites at least one existing test; it does not claim the test was just re-run** — see the test report for pass counts.
 
 | Status | Count |
 |---|---|
-| IMPLEMENTED_TESTED | 19 |
+| IMPLEMENTED_TESTED | 24 |
 | IMPLEMENTED_UNVERIFIED | 1 |
 | DESIGNED_ONLY | 1 |
 | BLOCKED | 1 |
-| NOT_STARTED | 7 |
+| NOT_STARTED | 4 |
 
 | Objective | Capability | Status | Evidence (tests) | Limits |
 |---|---|---|---|---|
@@ -33,21 +33,23 @@ Generated from `lab/tools/build_capability_matrix.py` against local commit `a9e8
 | 7 Approvals | Human approval: role check, maker-checker, expiry, replay prevention, scope binding | **IMPLEMENTED_TESTED** | `test_governed_workflow.py::test_an_expired_approval_cannot_be_resolved_or_consumed_later`<br>`test_governed_workflow.py::test_replayed_approval_creates_nothing_new` | Prototype identity (HMAC sessions); not an enterprise identity provider. |
 | 8 Multi-tenant | Two tenants with separate stores, signing keys, approvals, audit, memory, retrieval | **IMPLEMENTED_TESTED** | `test_governed_workflow.py::test_tenants_have_separate_physical_stores_and_distinct_data`<br>`test_governed_workflow.py::test_a_tenant_workflow_never_opens_another_tenants_files` | NOT isolated: one process/code base, shared reference recipe files (asserted by test_recipe_source_files_are_shared_reference_data_not_isolated). |
 | 9 Evaluation | Ops AI evaluation harness with independent oracles | **IMPLEMENTED_TESTED** | `test_ops_ai_eval.py` | 56 cases; deterministic tool layer; a perfect score is not evidence of real-world reliability. |
-| 9 Evaluation | Governed-agent evaluation: contradictory evidence, hallucination, mutation tests, unsafe-proposal and approval-bypass cases, metric tracking | **NOT_STARTED** | — | The 59 workflow tests are regression tests, not a scored evaluation with mutation testing. |
+| 9 Evaluation | Governed-agent evaluation: 28 cases over 13 categories, independent oracles, metrics, reproducible result hash | **IMPLEMENTED_TESTED** | `test_governed_evaluation.py::test_baseline_cases_pass`<br>`test_governed_evaluation.py::test_reproducible` | Small synthetic set; rule planner; scripted model doubles only. A perfect score is not evidence of real-world reliability. |
+| 9 Evaluation | Mutation testing: 9 deliberately broken variants must be caught by the evaluation | **IMPLEMENTED_TESTED** | `test_governed_evaluation.py::test_all_mutants_killed` | Two initial survivors exposed weak cases (WEIR-layer role widening; forged cross-tenant token); both fixed. Nine mutants is a small, hand-chosen set. |
+| 9 Evaluation | Contradictory-evidence abstention (planner escalates when sources disagree) | **IMPLEMENTED_TESTED** | `test_governed_contradiction.py::test_planner_abstains_on_contradictory_evidence`<br>`test_governed_contradiction.py::test_consistent_evidence_still_proposes` | Detects one disagreement type (flag vs usage variance > 0.02). |
 | 10 Observability | Correlation ids, per-call latency, failure classes, secret redaction | **IMPLEMENTED_TESTED** | `test_governed_workflow.py::test_secrets_and_session_tokens_never_appear_in_traces_ledger_or_audit` |  |
-| 10 Observability | Incident investigation tooling (reconstruct who/what/why/side-effects from a correlation id) | **NOT_STARTED** | — | Data exists in traces/ledger/WEIR audit; no investigator tool or report yet. |
+| 10 Observability | Incident investigation tooling (reconstruct who/what/why/side-effects from a correlation id) | **IMPLEMENTED_TESTED** | `test_governed_incident.py` | Reads the tenant's own trace, ledger and WEIR stores; no secrets in the report. |
 | 11 CI/CD | Local CI workflow edits, skip report, reproducibility check | **IMPLEMENTED_UNVERIFIED** | — | Never run on GitHub; local equivalents (make test/eval/repro) were run. |
-| 11 CI/CD | Release-gate runner producing PASS / FAIL / REQUIRES_REVIEW | **NOT_STARTED** | — |  |
+| 11 CI/CD | Release-gate runner producing PASS / FAIL / REQUIRES_REVIEW over 12 gates (missing evidence never passes) | **IMPLEMENTED_TESTED** | `test_release_gate.py::test_complete_evidence_passes_all_twelve_gates`<br>`test_release_gate.py::test_missing_evaluation_results_fail`<br>`test_release_gate.py::test_stale_evidence_by_age_fails`<br>`test_release_gate.py::test_incorrect_test_counts_fail` | Run locally only. Remote CI: NOT RUN. Overall verdict is REQUIRES_REVIEW while the model-runtime test cannot execute. |
 | 13 Dashboards | Menu economics / inventory / forecast / recommendation dashboard (synthetic) | **IMPLEMENTED_TESTED** | `test_scenario_d87.py::test_dashboard_has_beer_levers_engineering_and_forecast_sections` | AI-reliability and security dashboards not built. |
 | 14 Portfolio | Replayable evidence export (8 executed scenarios, measured metrics, architecture graph with status) | **IMPLEMENTED_TESTED** | `test_governed_workflow.py::test_end_to_end_inventory_discrepancy_to_audited_draft_po_with_the_network_blocked` | Consumed by the website candidate in the portfolio repository (local branch, not deployed). |
 | 15 Career | Interview-defense package | **NOT_STARTED** | — |  |
 
 ## Most important architectural gaps (highest value first)
 
-1. **No scored evaluation of the governed agent** (independent oracles, mutation tests proving the evaluation fails when behaviour is wrong, tracked metrics). Today's evidence is regression tests plus a small Ops AI evaluation.
-2. **No incident-investigation tool** over the correlation-id data that already exists.
-3. **No release-gate runner**: PASS / FAIL / REQUIRES_REVIEW must be computed, and a missing required test must not count as a pass.
-4. **PostgreSQL stops at analytics.** The workflow ledger is SQLite; no PostgreSQL constraints, query plans or benchmarks exist for the scenario tables.
-5. **The real model path is unverified** (no runtime); the model planner is only exercised with scripted clients.
-6. **Isolation is per-store, not per-process**; recipes are shared reference data.
-7. **The simulation covers 4 of the 5 active dishes**; the current-menu definition after the Goat Birria retirement needs a founder decision.
+1. **PostgreSQL stops at analytics.** The workflow ledger is SQLite; no PostgreSQL constraints, query plans or benchmarks exist for the scenario tables (next engineering item).
+2. **The real model path is unverified** (no runtime); the model planner is only exercised with scripted clients. The release gate therefore stays at REQUIRES_REVIEW.
+3. **Remote CI has never run**: the release gate and workflows are validated locally only.
+4. **Isolation is per-store, not per-process**; recipes are shared reference data.
+5. **The simulation covers 4 of the 5 active dishes**; the current-menu definition after the Goat Birria retirement needs a founder decision.
+6. **Evaluation breadth**: 28 cases and 9 mutants on synthetic data with a rule planner; contradiction detection covers one disagreement type.
+7. **No interview-defense package, AI-reliability or security dashboards yet.**

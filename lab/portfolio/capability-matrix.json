@@ -1,12 +1,12 @@
 {
- "commit": "a9e803d",
+ "commit": "e82bc70",
  "pushed": false,
  "counts": {
-  "IMPLEMENTED_TESTED": 19,
+  "IMPLEMENTED_TESTED": 24,
   "IMPLEMENTED_UNVERIFIED": 1,
   "DESIGNED_ONLY": 1,
   "BLOCKED": 1,
-  "NOT_STARTED": 7
+  "NOT_STARTED": 4
  },
  "rows": [
   {
@@ -265,11 +265,41 @@
   },
   {
    "objective": "9 Evaluation",
-   "capability": "Governed-agent evaluation: contradictory evidence, hallucination, mutation tests, unsafe-proposal and approval-bypass cases, metric tracking",
-   "status": "NOT_STARTED",
-   "code": [],
-   "tests": [],
-   "note": "The 59 workflow tests are regression tests, not a scored evaluation with mutation testing."
+   "capability": "Governed-agent evaluation: 28 cases over 13 categories, independent oracles, metrics, reproducible result hash",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/evaluation.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_evaluation.py::test_baseline_cases_pass",
+    "lab/tests/test_governed_evaluation.py::test_reproducible"
+   ],
+   "note": "Small synthetic set; rule planner; scripted model doubles only. A perfect score is not evidence of real-world reliability."
+  },
+  {
+   "objective": "9 Evaluation",
+   "capability": "Mutation testing: 9 deliberately broken variants must be caught by the evaluation",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/evaluation.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_evaluation.py::test_all_mutants_killed"
+   ],
+   "note": "Two initial survivors exposed weak cases (WEIR-layer role widening; forged cross-tenant token); both fixed. Nine mutants is a small, hand-chosen set."
+  },
+  {
+   "objective": "9 Evaluation",
+   "capability": "Contradictory-evidence abstention (planner escalates when sources disagree)",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/agent.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_contradiction.py::test_planner_abstains_on_contradictory_evidence",
+    "lab/tests/test_governed_contradiction.py::test_consistent_evidence_still_proposes"
+   ],
+   "note": "Detects one disagreement type (flag vs usage variance > 0.02)."
   },
   {
    "objective": "10 Observability",
@@ -287,10 +317,14 @@
   {
    "objective": "10 Observability",
    "capability": "Incident investigation tooling (reconstruct who/what/why/side-effects from a correlation id)",
-   "status": "NOT_STARTED",
-   "code": [],
-   "tests": [],
-   "note": "Data exists in traces/ledger/WEIR audit; no investigator tool or report yet."
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/governed/incident.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_incident.py"
+   ],
+   "note": "Reads the tenant's own trace, ledger and WEIR stores; no secrets in the report."
   },
   {
    "objective": "11 CI/CD",
@@ -305,11 +339,19 @@
   },
   {
    "objective": "11 CI/CD",
-   "capability": "Release-gate runner producing PASS / FAIL / REQUIRES_REVIEW",
-   "status": "NOT_STARTED",
-   "code": [],
-   "tests": [],
-   "note": ""
+   "capability": "Release-gate runner producing PASS / FAIL / REQUIRES_REVIEW over 12 gates (missing evidence never passes)",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/tools/release_gate.py",
+    "lab/tools/release-gate.config.json"
+   ],
+   "tests": [
+    "lab/tests/test_release_gate.py::test_complete_evidence_passes_all_twelve_gates",
+    "lab/tests/test_release_gate.py::test_missing_evaluation_results_fail",
+    "lab/tests/test_release_gate.py::test_stale_evidence_by_age_fails",
+    "lab/tests/test_release_gate.py::test_incorrect_test_counts_fail"
+   ],
+   "note": "Run locally only. Remote CI: NOT RUN. Overall verdict is REQUIRES_REVIEW while the model-runtime test cannot execute."
   },
   {
    "objective": "13 Dashboards",
