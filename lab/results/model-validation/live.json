@@ -1,0 +1,10 @@
+{
+ "executed": false,
+ "runtime_base_url": "http://localhost:11434/v1",
+ "runtime_reachable": false,
+ "models": [],
+ "probe_ms": null,
+ "reason": "URLError: <urlopen error [Errno 111] Connection refused>",
+ "live_test": null,
+ "decision_needed": "Founder decision needed to obtain a model run: either (a) allow outbound access to huggingface.co and its CDN hosts in the environment network policy so a small instruct model can be downloaded and served locally, (b) point AP_OLLAMA_BASE_URL at an approved OpenAI-compatible endpoint, or (c) approve a capped paid key via NASHA_ALLOW_PAID_MODEL=1 (not used by default)."
+}
