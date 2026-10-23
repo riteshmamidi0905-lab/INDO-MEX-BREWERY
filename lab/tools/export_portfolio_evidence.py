@@ -154,6 +154,38 @@ def architecture():
                                                           separate_repository_not_integrated="a related repository exists; there is no runtime integration", blocked="cannot run in the current environment", designed_only="specified, not built"))
 
 
+def story(env, loc_ing, held):
+    """Real values behind the eight pipeline stages of the approved-draft-PO run (all read from the synthetic warehouse and the executed run)."""
+    loc, ing = loc_ing
+    c = sqlite3.connect(env.warehouse)
+    one = lambda q, *a: c.execute(q, a).fetchone()
+    fl = one("SELECT week, variance_pct, baseline_pct, excess_pct, pattern, severity FROM scn_variance_flag WHERE location_id=? AND ingredient_id=? ORDER BY excess_pct DESC LIMIT 1", loc, ing)
+    wk = fl[0]
+    inv = one("SELECT opening_qty, receipts_qty, closing_counted_qty FROM scn_inventory_week WHERE location_id=? AND ingredient_id=? AND week=?", loc, ing, wk)
+    dep = one("SELECT theoretical_qty FROM scn_depletion_week WHERE location_id=? AND ingredient_id=? AND week=?", loc, ing, wk)
+    fc = one("SELECT SUM(forecast_qty), MIN(method), COUNT(*) FROM scn_demand_forecast WHERE location_id=? AND ingredient_id=?", loc, ing)
+    series = [round(x[0], 2) for x in c.execute("SELECT forecast_qty FROM scn_demand_forecast WHERE location_id=? AND ingredient_id=? ORDER BY day_ahead", (loc, ing)).fetchall()]
+    unit = one("SELECT unit, name FROM scn_ingredient WHERE ingredient_id=?", ing)
+    n_orders, n_lines = one("SELECT COUNT(*) FROM fact_order")[0], one("SELECT COUNT(*) FROM fact_order_line")[0]
+    n_recipes = one("SELECT COUNT(DISTINCT recipe_id) FROM scn_recipe_bom")[0]
+    r, d = held["run"], held["decision"]
+    ex = r["explanation"]
+    po = d.get("po_id") or next((x for x in [d.get("purchase_order", {}).get("po_id")] if x), None)
+    c.close()
+    return dict(
+        note="Values read from the synthetic warehouse and the executed run; nothing typed in.",
+        site=loc, ingredient=ing, ingredient_name=unit[1], unit=unit[0], week=wk,
+        orders=dict(orders=n_orders, order_lines=n_lines, recipes=n_recipes),
+        inventory=dict(opening=inv[0], receipts=inv[1], counted_closing=inv[2], theoretical_use=round(dep[0], 2), measured_use=round(inv[0] + inv[1] - inv[2], 2)),
+        variance=dict(variance_pct=round(fl[1] * 100, 1), baseline_pct=round(fl[2] * 100, 1), excess_pct=round(fl[3] * 100, 1), pattern=fl[4], severity=fl[5]),
+        forecast=dict(next_horizon_total=round(fc[0], 1), days=fc[2], method=fc[1], series=series, first_7_days=round(sum(series[:7]), 1)),
+        planner=dict(name=ex.get("planner", "rules"), claims=[dict(text=cl["text"], evidence=cl["evidence"]) for cl in ex["claims"]], action=ex.get("action"), proposal=ex.get("proposal")),
+        weir=dict(policy_decision="held for approval (rule R-GATE)", approvals_created=held["approvals"]),
+        approval=dict(approver_role="FOUNDER", requester_role="BUYER", decision="approve"),
+        draft=dict(po_id=po, state="DRAFT_NOT_SENT", external_transmissions=0),
+        audit=dict(ledger_rows=held["audit_rows"]))
+
+
 def main():
     t0 = time.time()
     tmp = Path(tempfile.mkdtemp(prefix="nasha-evidence-"))
@@ -173,9 +205,12 @@ def main():
 
     loc_ing = target(a)
 
+    held = {}
+
     def happy(wf, env):
         r = wf.run(tok(wf, env, "buyer"), *loc_ing, idempotency_key="demo-1")
         d = wf.decide(r["corr_id"], tok(wf, env, "founder"), True, "approved after reviewing the evidence")
+        held.update(run=r, decision=d, audit_rows=len(wf.ledger.con.execute("SELECT 1 FROM audit").fetchall()), approvals=len(wf.weir.list_approvals()))
         return r["corr_id"], d
     run_case("approved_draft_po", "Discrepancy to approved DRAFT purchase order", "A flagged inventory discrepancy becomes a draft purchase order only after a different, authorised human approves the exact call.", fresh(a, tmp / "s1"),
              dict(status="EXECUTED", purchase_orders=1), happy)
@@ -239,12 +274,14 @@ def main():
     finally:
         wa.close(); wb.close()
     assert all(s["matched_expectation"] for s in out["scenarios"]), [s["id"] for s in out["scenarios"] if not s["matched_expectation"]]
+    out["story"] = story(a, loc_ing, held)
     # measured latencies of the happy path
     ms = [s["ms"] for s in out["scenarios"][0]["steps"] if s.get("ms") is not None]
     out["measured"] = dict(happy_path_tool_calls=len(ms), tool_ms_max=max(ms), tool_ms_median=sorted(ms)[len(ms) // 2], note="measured on the build machine for this run; not a benchmark")
     out["generated_seconds"] = round(time.time() - t0, 1)
     out["metrics"] = measured_metrics(a, tmp, EVD)
     out["claims"] = make_claims(out["metrics"], EVD)
+    out["mutation_detail"] = [dict(mutant=m["mutant"], target_category=m["target_category"], killed=m["killed"]) for m in json.loads((EVD / "eval.json").read_text())["mutants"]]
     out["metrics"]["scenarios_executed"] = len(out["scenarios"])
     out["architecture"] = architecture()
     blob = json.dumps(out)

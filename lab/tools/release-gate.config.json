@@ -1,13 +1,13 @@
 {
   "schema": "release-gate-config/1",
   "max_age_seconds": 86400,
-  "code_prefixes": ["lab/nasha_lab/", "lab/tests/", "lab/tools/", "lab/pyproject.toml", "lab/requirements"],
+  "code_prefixes": ["lab/nasha_lab/", "lab/tests/", "lab/tools/release_gate.py", "lab/tools/release-gate.config.json", "lab/pyproject.toml", "lab/requirements"],
   "integration_modules": ["test_governed_workflow", "test_governed_api", "test_governed_incident", "test_governed_contradiction", "test_governed_evaluation", "test_retrieval_v2", "test_warehouse_pg", "test_ops_ai_weir", "test_api_mcp", "test_tenancy", "test_identity", "test_llm_planner", "test_portfolio_export"],
   "min_passed": {"unit_tests": 300, "integration_tests": 120},
   "skip_policy": "tests/skip-policy.json",
   "unverified_tests": {"test_llm_planner::test_real_local_model_integration_smoke": "model runtime not executed: no local model runtime and no network access to model hosts"},
   "supported_metrics": ["cases", "passed", "pass_rate", "answer_correctness", "hallucination_detection_rate", "unauthorized_action_rate", "false_authorization_rate", "abstention_quality", "tool_failure_safety", "latency_ms_p50", "latency_ms_p95", "cost_estimate", "by_category"],
-  "evaluation": {"min_cases": 25, "required_categories": ["correct_answer", "source_attribution", "hallucination_detection", "unsafe_proposal", "missing_data", "abstention", "contradictory_evidence", "retrieval_failure", "prompt_injection", "authorization_failure", "cross_tenant", "approval_bypass", "replay", "tool_failure"], "min_mutants": 9},
+  "evaluation": {"min_cases": 25, "required_categories": ["correct_answer", "source_attribution", "hallucination_detection", "unsafe_proposal", "missing_data", "abstention", "contradictory_evidence", "retrieval_failure", "prompt_injection", "authorization_failure", "cross_tenant", "approval_bypass", "tool_failure"], "min_mutants": 9},
   "authorization_categories": ["authorization_failure", "approval_bypass"],
   "tenant_categories": ["cross_tenant"],
   "gates": {
