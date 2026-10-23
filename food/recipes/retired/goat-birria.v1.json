@@ -174,7 +174,7 @@
  },
  "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
  "menu_category": "main",
- "menu_status": "approved_core5",
+ "menu_status": "retired",
  "classification_note": "Core 5 item; not in the founder's appetizer/main candidate lists: provisionally priced as a main pending founder classification.",
  "target_gross_margin_pct": 70,
  "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
@@ -182,5 +182,6 @@
   "practice": "see evidence list",
   "nasha_combination": "see cultural/food research files",
   "note": "Earlier research baseline; not re-sourced in D-87."
- }
+ },
+ "lifecycle": "RETIRED (D-88): removed from the active menu and the candidate development pool by founder decision 2026-10-23. Historical record preserved. Do not reintroduce without founder approval."
 }

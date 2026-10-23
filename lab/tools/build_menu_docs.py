@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "lab"))
-from nasha_lab.recipes import bom, model, pricing  # noqa: E402
+from nasha_lab.recipes import beer_costing, bom, model, optimize, pricing  # noqa: E402
 
 R, M, CFG = model.load_recipes(), model.load_master(), pricing.load_config()
 D = {k: v for k, v in R.items() if v["kind"] == "dish"}
@@ -36,15 +36,15 @@ def research():
            "| Candidate | Category | Status | Base food cost / portion* | Food cost % | Gross margin % | Allergens (derived) | Relationship / proposed change |", "|---|---|---|---|---|---|---|---|", *rows, "",
            "\\* ingredient cost + 5% waste allowance, at PLANNING-ASSUMPTION base prices (not supplier quotes); gross margin also deducts a $0.12 consumables allowance. Target gross margin 70% is a planning target, not an approved threshold.", "",
            "## Proposed changes (documented, not applied)", "",
-           "1. **Masala Street Corn = Chaat Elote** (approved 12-dish test menu #2). Same dish track; a rename to 'Masala Street Corn' is a founder decision and is not applied.",
-           "2. **Paneer Tikka Taco and Goat Birria** are Core 5 items that are in neither of the founder's candidate lists. They are priced as mains PROVISIONALLY (taco trio / braise plate); the founder should classify them.",
+           "1. **Masala Street Corn = Chaat Elote** (approved 12-dish test menu #2). Same dish track; the name Chaat Elote is retained (D-88).",
+           "2. **D-88 decisions (2026-10-23):** Paneer Tikka Taco is a main at $18.50. **Goat Birria is removed from the active menu and the candidate pool** (archived under `food/recipes/retired/`; historical decision records preserved; not to be reintroduced without founder approval). Chaat Elote keeps its name; 'Masala Street Corn' is an alternate development name only.",
            "3. **Kerala Coconut Fish Tacos** and **Tandoori Lamb Tacos** are the development-pool items #7 (Malabar Fish Taco) and #8 (Tandoori Lamb Taco) under different names/sauce: one development track each.",
            "4. **Goan Peri-Peri Wings** overlaps pool item #4 (Hefe-brined Wings) in format; proposed as a sauce variant, not a replacement.",
-           "5. **Paneer Makhani Pizza** is a variant of pool item #12 (Paneer Tikka Pizza) with a makhani-rajas base; **Hyderabadi Birria-Style Chicken Tacos** is a lower-cost chicken variant of the goat birria technique and is NOT authentic birria.",
+           "5. **Paneer Makhani Pizza** is a variant of pool item #12 (Paneer Tikka Pizza) with a makhani-rajas base; **Hyderabadi Birria-Style Chicken Tacos** is a chicken dish in the birria style (the goat birria it was derived from is retired, D-88) and is NOT authentic birria.",
            "6. **Goan Chicken Vindaloo Pizza** is chicken only: traditional vindaloo is often made with pork, which D-54 excludes.",
-           "7. **Nawaabi Enchiladas** introduce a tree-nut (cashew) allergen into the menu; a founder decision whether to accept that trade-off.", "",
+           "7. **Nawaabi Enchiladas** are approved for continued development with cashews (D-88); tree nut is a declared major allergen and cross-contact precautions are recorded. No allergy-safety guarantee is made without operational validation.", "",
            "## Observations a person should check", "",
-           f"* Tandoori Lamb Tacos is the only dish below the 70% planning margin target at the base scenario; lamb price risk dominates (see inflation table in the pricing scenario document).",
+           "* Tandoori Lamb Tacos is the only dish below the 70% planning margin target at the base scenario (69.4%). D-88 keeps it as a main at $18.50, keeps the original costing for comparison and asks for portion, yield and supplier analysis WITHOUT cutting quality: see `PRICING-SCENARIO-D87.md`.",
            "* All other dishes are well above 70% at planning prices; that is a statement about assumptions, and real supplier prices, yields and waste will change it.",
            "* Mains share a single $18.50 price across very different costs; contribution margins differ by up to about $7 per portion (labor planning rate $24/h, 5% waste, $0.12 consumables).", "",
            "## Food-safety and technique orientation (verify with a food-safety professional)", "",
@@ -62,15 +62,36 @@ def pricing_doc():
     return "\n".join(["# Pricing scenario v2 and how it differs from the placeholder-price simulation (D-87)", "",
         "**Concept prices, not an operating menu.** Simulated revenue computed here is SYNTHETIC and is not NASHA revenue. No restaurant exists.", "",
         "| | Historical simulation (price-v1-placeholder) | Scenario `scn-price-v2-recipes-v1` (price-v2-2026-10-22) |", "|---|---|---|",
-        "| Food items | Placeholders $12.00-$16.00 each (M01 $14.00, M02 $13.00, M03 $16.00, M04 $12.00, M05 $15.00) | Appetizers $13.50, mains $18.50 |",
-        "| Beer | B01 hefe $8.00, B04 Amba Haze $9.00 | BADSHAH and AMBA HAZE glass $9.00; pitcher $31.00 (not simulated) |",
+        "| Food items | Placeholders $12.00-$16.00 each (M01 $14.00, M02 $13.00, M03 $16.00, M04 $12.00, M05 $15.00) | Appetizers $13.50, mains $18.50; M03 (Goat Birria) retired by D-88, so its historical sales keep the v1 placeholder and have no BOM |",
+        "| Beer | B01 hefe $8.00, B04 Amba Haze $9.00 | BADSHAH and AMBA HAZE glass $9.00; pitcher $31.00 (not simulated); provisional serving sizes 16 and 60 US fl oz |",
         "| Other sim items (lager, amber, NA drinks, merch) | v1 placeholder | carried at v1 and labelled `v1_placeholder_carried` |",
         "| Storage | dim_/fact_/mart_ tables, unchanged | `scn_*` tables added beside them; historical tables are never modified (tested by table hash) |",
         "| Revenue basis | simulated quantity x placeholder price | the same simulated quantity x approved price (restatement) |", "",
-        "**Limits.** No price elasticity: volumes do not respond to the new prices. Pitchers and serving sizes are not simulated (volumes pending). Beer unit cost and margin are NOT COMPUTABLE until volumes and a costed batch exist. Food costs are planning assumptions. Inventory counts, receipts and the injected anomalies are synthetic; supplier quotes are SYNTHETIC_QUOTE.", "",
+        "**Limits.** No price elasticity: volumes do not respond to the new prices. Pitchers are not simulated and serving sizes are provisional concept sizes. Beer costs are PRELIMINARY PLANNING ESTIMATES, not verified production costs. Food costs are planning assumptions. Inventory counts, receipts and the injected anomalies are synthetic; supplier quotes are SYNTHETIC_QUOTE.", "",
         "## Per-dish economics (base scenario)", "", "Food cost % shown low / base / high price scenario; last two columns = food cost % if protein prices rise 20% / all ingredients rise 20%.", "",
         "| Dish | Price | Food cost (incl. 5% waste) | Food cost % L/B/H | Gross profit | Contribution (after labor) | +20% protein | +20% all |", "|---|---|---|---|---|---|---|---|", *rows, "",
+        *lever_and_beer_sections(),
         "Definitions: gross profit = price - ingredient cost - waste allowance - consumables ($0.12). Contribution = gross profit - direct labor minutes x $24/h loaded planning rate. Ingredient cost = qty / yield x unit price, with sub-recipes costed by batch yield."]) + "\n"
+
+
+def lever_and_beer_sections():
+    out = ["", "## Tandoori Lamb Tacos: portion, yield and supplier analysis (D-88; analysis only, nothing applied)", "",
+           "The ORIGINAL costing scenario is the first row and is retained. Quality is not traded for margin: portion cuts below 95% of the primary protein are marked as below the quality floor and shown for information only.", "",
+           "| Lever | Setting | Food cost | Gross margin | Change | Quality impact |", "|---|---|---|---|---|---|"]
+    for r in optimize.levers("tandoori-lamb-tacos", CFG):
+        out.append(f"| {r['lever']} | {r['setting']} | ${r['food_cost']:.2f} | {pct(r['gross_margin_pct'])} | {r['margin_delta_pts']:+.1f} pts | {r['quality_impact']} |")
+    g = optimize.protein_grams_for_margin("tandoori-lamb-tacos", 70)
+    out += ["", f"Information only: the planning margin would reach exactly 70% at about {g * 100:.0f}% of the current lamb portion, which is inside the quality floor and therefore inconclusive without tasting. Better first steps are the yield and supplier levers (a pre-trimmed lamb spec is cost-neutral up to a price premium equal to its yield gain) and waste control.", "",
+            "## Beer: preliminary costing and margins at provisional serving sizes (D-88)", "",
+            f"Serving sizes (founder-approved concept sizes): glass 16 US fl oz = {beer_costing.serving_ml(CFG, 'glass'):.3f} mL, pitcher 60 US fl oz = {beer_costing.serving_ml(CFG, 'pitcher'):.3f} mL (stored exactly from fl oz at 29.5735295625 mL per fl oz; the message quoted 1,774.414 mL, a 0.002 mL rounding difference). Real glassware capacity, headspace and fill lines need physical validation.", "",
+            "PLANNING ESTIMATES, NOT VERIFIED PRODUCTION COSTS: nothing has been brewed. Basis: 100 L pilot batch, 92% packaged, 4% service waste, assumed ingredient prices and overheads in `food/pricing/beer-cost-assumptions.v1.json`. Excluded: excise tax, TABC/TTB fees, equipment depreciation, serving labor.", "",
+            "| Beer | Size | Price | Cost ex brew labor | Margin ex labor | Cost incl. pilot brew labor | Margin incl. labor |", "|---|---|---|---|---|---|---|"]
+    for r in beer_costing.all_rows(CFG):
+        if r["scenario"] == "base":
+            out.append(f"| {r['beer']} | {r['size']} | ${r['price']:.2f} | ${r['cost_ex_labor']:.2f} | {pct(r['margin_ex_labor_pct'])} | ${r['cost_with_brew_labor']:.2f} | {pct(r['margin_with_brew_labor_pct'])} |")
+    pg = beer_costing.pitcher_vs_glass(CFG)
+    out += ["", f"A pitcher equals {pg['glasses_per_pitcher']:.2f} glasses; buying that volume as glasses costs ${pg['glass_equivalent_price']:.2f} against ${pg['pitcher_price']:.2f} per pitcher, an implied volume discount of {pct(pg['discount_pct'])}.", ""]
+    return out
 
 
 def cards():

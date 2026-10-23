@@ -223,5 +223,10 @@
   "practice": "see evidence list",
   "nasha_combination": "see cultural/food research files",
   "note": "Earlier research baseline; not re-sourced in D-87."
- }
+ },
+ "cross_contact_precautions": [
+  "MILK: separate utensils for dairy sauces and cheese where practical; clean fryer/comal surfaces between dairy and non-dairy items if a non-dairy request is ever offered; label check on all dairy ingredients.",
+  "WHEAT: flour dusting and dough areas are cross-contact sources; keep wheat flour away from rice-flour/cornflour coatings; separate scoops."
+ ],
+ "allergen_claim": "No allergen-free or allergy-safe guarantee is made. Cross-contact precautions are a design intent that requires operational validation, staff training and professional review."
 }

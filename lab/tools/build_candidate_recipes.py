@@ -251,17 +251,34 @@ DISHES = [
          ["milk"], "Milk. Tortilla label check. No allergen-free claim.", False,
          ["food/MENU-DEVELOPMENT-MATRIX-V1.md (#9 Dum Goat Birria, #13)"],
          {"practice": "Birria is a Jalisco braised-meat dish with guajillo-ancho adobo, typically beef/goat; Hyderabadi cooking uses yogurt-spice marinades and dum braises.", "nasha_combination": "Chicken in a Hyderabadi-guajillo marinade as 'birria-style' tacos is a NASHA proposal and not authentic birria.", "note": R_PRACTICE},
-         "Overlaps approved Goat Birria in technique; chicken variant, lower cost. Not a replacement."),
+         "Chicken dish in the birria style. The goat birria it was derived from is retired (D-88); this dish stands on its own as a candidate and does not reintroduce goat."),
 ]
 
 BACKFILL = {   # earlier dishes: menu metadata
     "chicken-65-totopos": ("appetizer", "approved_core5", "Core 5 anchor appetizer; matches founder candidate 'Chicken 65 Totopos'."),
     "mango-habanero-gobi": ("appetizer", "approved_core5", "Core 5 appetizer; matches founder candidate 'Mango Habanero Gobi' (D-84: not a taco)."),
     "butter-chicken-quesadilla": ("main", "approved_core5", "Core 5 main; matches founder candidate 'Butter Chicken Quesadilla'."),
-    "paneer-tikka-taco": ("main", "approved_core5", "Core 5 item; not in the founder's appetizer/main candidate lists: provisionally priced as a main (taco trio) pending founder classification."),
-    "goat-birria": ("main", "approved_core5", "Core 5 item; not in the founder's appetizer/main candidate lists: provisionally priced as a main pending founder classification."),
-    "chaat-elote": ("appetizer", "approved_menu_v1_1", "Approved 12-dish test menu item #2. Overlaps founder candidate 'Masala Street Corn': treated as the same dish track (rename not applied)."),
+    "paneer-tikka-taco": ("main", "approved_core5", "Main (founder decision D-88, 2026-10-23); its price comes from the pricing config, not this file."),
+    "chaat-elote": ("appetizer", "approved_menu_v1_1", "Approved 12-dish test menu item #2. The name Chaat Elote is retained; 'Masala Street Corn' is an alternate development name, not a separate menu item (D-88)."),
 }
+
+
+PRECAUTION_TEXT = {
+    "milk": "MILK: separate utensils for dairy sauces and cheese where practical; clean fryer/comal surfaces between dairy and non-dairy items if a non-dairy request is ever offered; label check on all dairy ingredients.",
+    "wheat": "WHEAT: flour dusting and dough areas are cross-contact sources; keep wheat flour away from rice-flour/cornflour coatings; separate scoops.",
+    "fish": "FISH: dedicated utensils, board and pan for fish; do not share fryer oil or griddle surface with other items without a validated cleaning step; separate storage below ready-to-eat food.",
+    "tree_nut": "TREE NUT (cashew): store cashews and cashew sauce in sealed, labelled containers away from other ingredients; dedicated blender, sieve, ladle and pot for the nawaabi sauce; wash hands and change gloves after handling; never reuse tools between the nut sauce and other sauces; declare tree nuts on the menu.",
+}
+CLAIM = "No allergen-free or allergy-safe guarantee is made. Cross-contact precautions are a design intent that requires operational validation, staff training and professional review."
+
+
+def add_precautions(r):
+    r["cross_contact_precautions"] = [PRECAUTION_TEXT[a] for a in r["allergens_declared"] if a in PRECAUTION_TEXT]
+    if r.get("kind") == "dish":
+        r["allergen_claim"] = CLAIM
+        if "tree_nut" in r["allergens_declared"]:
+            r["allergen_notes"] = r["allergen_notes"] + " Tree nuts (cashew) are a declared MAJOR allergen in this dish (D-88)."
+    return r
 
 
 def main():
@@ -282,6 +299,11 @@ def main():
                   "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records"})
         r.setdefault("research", {"practice": "see evidence list", "nasha_combination": "see cultural/food research files", "note": "Earlier research baseline; not re-sourced in D-87."})
         p.write_text(json.dumps(r, indent=1, ensure_ascii=False) + "\n")
+    for p in V1.glob("*.v1.json"):
+        r = json.loads(p.read_text())
+        if r.get("kind") == "dish":
+            r.pop("allergen_claim", None)
+            p.write_text(json.dumps(add_precautions(r), indent=1, ensure_ascii=False) + "\n")
     print("ok", len(SUBS), "sub-recipes", len(DISHES), "dishes", len(m["ingredients"]), "ingredients")
 
 

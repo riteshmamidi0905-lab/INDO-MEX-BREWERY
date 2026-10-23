@@ -14,7 +14,7 @@ import tempfile
 from pathlib import Path
 
 from .. import enterprise_sim as es
-from . import ops_ai_eval, pipeline
+from . import ops_ai_eval, pipeline, scenario
 
 KEYS = ("numpy", "pandas", "sqlglot", "psycopg", "pydantic", "fastapi")
 
@@ -38,6 +38,7 @@ def build_once(cfg):
         d = Path(d)
         es.generate(cfg, d / "src")
         pipeline.run(d / "src", d / "w.db")
+        scenario.build(d / "w.db")                     # D-87/D-88 scenario tables are part of the reproducibility check (scn_scenario_run is excluded: it holds no run ids but is metadata)
         hashes = table_hashes(d / "w.db")
         ev = ops_ai_eval.run_eval(d / "w.db", d / "a.db")
     return hashes, ev["result_sha256"]

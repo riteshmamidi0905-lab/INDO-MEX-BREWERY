@@ -1,23 +1,23 @@
 {
  "summary": {
-  "cases": 33,
-  "passed": 33,
+  "cases": 55,
+  "passed": 55,
   "by_category": {
    "answer": {
-    "n": 13,
-    "pass": 13
+    "n": 24,
+    "pass": 24
    },
    "grounding": {
-    "n": 2,
-    "pass": 2
+    "n": 3,
+    "pass": 3
    },
    "authorization": {
-    "n": 6,
-    "pass": 6
+    "n": 11,
+    "pass": 11
    },
    "adversarial": {
-    "n": 9,
-    "pass": 9
+    "n": 14,
+    "pass": 14
    },
    "abstention": {
     "n": 3,
@@ -262,22 +262,176 @@
    "expect": "abstain",
    "got": "abstain",
    "verdict": "pass"
+  },
+  {
+   "id": "scn-price-config",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-beer-economics",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-cost-levers-original-kept",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-supplier-sensitivity",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-menu-engineering",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-auth-sm-beer",
+   "category": "authorization",
+   "expect": "role_denied",
+   "got": "role_denied",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-adv-scenario-arg",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-menu-economics",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-menu-economics-ask",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-ingredient-usage",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-reorder-ask",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-supplier-compare",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-bom-sums",
+   "category": "answer",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-ground-unknown-recipe",
+   "category": "grounding",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-auth-sm-economics",
+   "category": "authorization",
+   "expect": "role_denied",
+   "got": "role_denied",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-auth-sm-other-site",
+   "category": "authorization",
+   "expect": "site_scope",
+   "got": "site_scope",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-auth-sm-own-default",
+   "category": "authorization",
+   "expect": "ok",
+   "got": "ok",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-auth-sm-suppliers",
+   "category": "authorization",
+   "expect": "role_denied",
+   "got": "role_denied",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-adv-ingredient-inject",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-adv-week",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-adv-place-order",
+   "category": "adversarial",
+   "expect": "abstain",
+   "got": "abstain",
+   "verdict": "pass"
+  },
+  {
+   "id": "scn-adv-category",
+   "category": "adversarial",
+   "expect": "bad_argument",
+   "got": "bad_argument",
+   "verdict": "pass"
   }
  ],
- "result_sha256": "77eaf887f12924892b5d7ff218f261a0092673184e9138abb6e2dcdf133dd855",
+ "result_sha256": "7f1f95a074803387841bce314a93cd57b39c9245886750c5f3cc26b6c4d668cb",
  "observability": {
-  "calls": 28,
-  "denied": 12,
+  "calls": 49,
+  "denied": 20,
   "by_code": {
-   "bad_argument": 7,
+   "bad_argument": 11,
    "no_site": 1,
-   "ok": 16,
-   "role_denied": 2,
-   "site_scope": 1,
+   "ok": 29,
+   "role_denied": 5,
+   "site_scope": 2,
    "unknown_tool": 1
   },
-  "latency_ms_p50": 0.09,
-  "latency_ms_p95": 0.9
+  "latency_ms_p50": 0.1,
+  "latency_ms_p95": 0.72
  },
  "scope": "deterministic tool layer + rule router over SYNTHETIC data; no language model involved"
 }

@@ -178,7 +178,7 @@
   "milk",
   "tree_nut"
  ],
- "allergen_notes": "Milk, TREE NUT (cashew). No allergen-free claim.",
+ "allergen_notes": "Milk, TREE NUT (cashew). No allergen-free claim. Tree nuts (cashew) are a declared MAJOR allergen in this dish (D-88).",
  "evidence": [
   "food/SAUCE-SYSTEM.md (makhani-rajas rich-sauce logic)"
  ],
@@ -199,5 +199,10 @@
   "halal_claim": false,
   "notes": "no beef or pork ingredient; supplier statements required"
  },
- "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
+ "cross_contact_precautions": [
+  "MILK: separate utensils for dairy sauces and cheese where practical; clean fryer/comal surfaces between dairy and non-dairy items if a non-dairy request is ever offered; label check on all dairy ingredients.",
+  "TREE NUT (cashew): store cashews and cashew sauce in sealed, labelled containers away from other ingredients; dedicated blender, sieve, ladle and pot for the nawaabi sauce; wash hands and change gloves after handling; never reuse tools between the nut sauce and other sauces; declare tree nuts on the menu."
+ ],
+ "allergen_claim": "No allergen-free or allergy-safe guarantee is made. Cross-contact precautions are a design intent that requires operational validation, staff training and professional review."
 }

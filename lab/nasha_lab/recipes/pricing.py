@@ -12,10 +12,13 @@ from . import bom, costing, model
 
 PRICING = model.ROOT / "food/pricing"
 V2 = "price-v2-2026-10-22"
+V3 = "price-v3-2026-10-23"
+CURRENT = V3
 V1 = "price-v1-placeholder"
 
 
-def load_config(config_id=V2):
+def load_config(config_id=None):
+    config_id = config_id or CURRENT
     return json.loads((PRICING / f"{config_id}.json").read_text())
 
 

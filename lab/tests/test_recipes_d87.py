@@ -5,7 +5,7 @@ import re
 
 import pytest
 
-from nasha_lab.recipes import bom, costing, model, pricing, suppliers
+from nasha_lab.recipes import beer_costing, bom, costing, model, optimize, pricing, suppliers
 
 from nasha_lab.recipes.store import HUMAN_APPROVERS, RecipeStore, WorkflowError
 from nasha_lab.warehouse.procurement import ProcurementError, ProcurementStore
@@ -19,7 +19,7 @@ FOUNDER_MAINS = ["Butter Chicken Quesadilla", "Chicken Tikka Tacos", "Kerala Coc
 
 def test_menu_prices_are_the_approved_concept_prices():
     assert CFG["prices_usd"] == {"beer_glass": 9.00, "beer_pitcher": 31.00, "appetizer": 13.50, "main": 18.50}
-    assert CFG["config_id"] == pricing.V2 and "NOT AN OPERATING MENU" in CFG["status"]
+    assert CFG["config_id"] == pricing.V3 and "NOT AN OPERATING MENU" in CFG["status"]
     for r in DISHES.values():
         assert pricing.dish_price_cents(CFG, r["id"]) == {"appetizer": 1350, "main": 1850}[r["menu_category"]]
     for b in CFG["beers"]:
@@ -34,23 +34,44 @@ def test_beer_target_abvs_match_the_beer_specifications_and_stay_provisional():
     assert all("NOT BREWED OR TESTED" in b["status"] and "PROVISIONAL" in b["status"] for b in CFG["beers"])
 
 
-def test_serving_volumes_are_pending_and_never_assumed():
+def test_serving_volumes_are_exact_provisional_conversions_from_fluid_ounces():
     v = CFG["serving_volumes"]
-    assert v["glass"] == {"value_ml": None, "status": "PENDING FOUNDER DECISION"} and v["pitcher"] == {"value_ml": None, "status": "PENDING FOUNDER DECISION"}
-    assert not re.search(r"\b\d+\s?(oz|ml|pint)\b", json.dumps(CFG["prices_usd"]) + json.dumps(CFG["beers"]), re.I)
+    assert v["oz_to_ml"] == 29.5735295625                                          # exact definition of a US fluid ounce
+    assert (v["glass"]["fl_oz"], v["pitcher"]["fl_oz"]) == (16, 60)
+    assert beer_costing.serving_ml(CFG, "glass") == pytest.approx(473.176473, abs=1e-6)
+    assert beer_costing.serving_ml(CFG, "pitcher") == pytest.approx(1774.41177375, abs=1e-6)
+    assert abs(beer_costing.serving_ml(CFG, "glass") - 473.176) < 1e-3              # matches the founder's figure
+    assert abs(beer_costing.serving_ml(CFG, "pitcher") - 1774.414) < 3e-3          # founder's rounded figure differs by 0.002 mL
+    assert beer_costing.pitcher_vs_glass(CFG)["glasses_per_pitcher"] == pytest.approx(3.75)
+    for k in ("glass", "pitcher"):
+        assert "PROVISIONAL" in v[k]["status"] and "physical validation" in v[k]["status"]
+
+
+def test_beer_costs_are_labelled_preliminary_and_internally_consistent():
+    rows = beer_costing.all_rows(CFG)
+    assert len(rows) == 12 and all("NOT A VERIFIED PRODUCTION COST" in r["status"] for r in rows)
+    for b in ("badshah", "amba-haze"):
+        g, p = (beer_costing.economics(b, s, "base", CFG) for s in ("glass", "pitcher"))
+        assert p["cost_ex_labor"] / g["cost_ex_labor"] == pytest.approx(3.75)             # cost scales with volume
+        assert g["margin_ex_labor_pct"] == pytest.approx(1 - g["cost_ex_labor"] / 9.0) and p["margin_ex_labor_pct"] == pytest.approx(1 - p["cost_ex_labor"] / 31.0)
+        lo, ba, hi = (beer_costing.economics(b, "glass", s, CFG)["cost_ex_labor"] for s in ("low", "base", "high"))
+        assert lo < ba < hi
+        assert g["cost_with_brew_labor"] > g["cost_ex_labor"]
+    assert "excise" in " ".join(beer_costing.assumptions()["excluded"])
 
 
 def test_all_founder_candidates_are_accounted_for_and_classified():
     names = {r["name"]: r for r in DISHES.values()}
     for n in FOUNDER_APPETIZERS + FOUNDER_MAINS:
         if n == "Masala Street Corn":
-            assert names["Chaat Elote"]["menu_category"] == "appetizer" and "Masala Street Corn" in names["Chaat Elote"]["classification_note"]
+            assert "Chaat Elote" in names and "Masala Street Corn" not in names     # name retained; alternate development name only
+            assert names["Chaat Elote"]["menu_category"] == "appetizer" and "alternate development name" in names["Chaat Elote"]["classification_note"]
         elif n == "Butter Chicken Quesadilla":
             assert any(x.startswith("Butter Chicken") for x in names)
         else:
             assert n in names, n
             assert names[n]["menu_category"] == ("appetizer" if n in FOUNDER_APPETIZERS else "main")
-    assert len(DISHES) == 16 and len(RECIPES) - len(DISHES) == 13
+    assert len(DISHES) == 15 and len(RECIPES) - len(DISHES) == 12
 
 
 def test_no_beef_or_pork_anywhere_in_ingredients_or_recipes():
@@ -160,3 +181,52 @@ def test_menu_research_dossier_lists_every_candidate_and_proposed_changes():
     for n in FOUNDER_APPETIZERS + FOUNDER_MAINS:
         assert n in doc, n
     assert "web-search snippet" in doc.lower() and "not additions" in doc.lower() and "No beef or pork" in doc
+
+
+def test_paneer_tikka_taco_is_a_main_at_18_50():
+    r = DISHES["paneer-tikka-taco"]
+    assert r["menu_category"] == "main" and pricing.dish_price_cents(CFG, "paneer-tikka-taco") == 1850
+
+
+def test_goat_birria_is_retired_from_menu_pool_bom_quotes_and_pricing_but_preserved_as_history():
+    assert "goat-birria" not in RECIPES and "goat-birria-braise" not in RECIPES
+    retired = model.load_retired()
+    assert set(retired) == {"goat-birria", "goat-birria-braise"} and all(r["menu_status"] == "retired" and "founder approval" in r["lifecycle"] for r in retired.values())
+    assert "goat-birria" not in bom.SIM_ITEM_TO_RECIPE.values() and "M03" not in CFG["menu_item_mapping_to_sim"]
+    assert CFG["retired_items"][0]["recipe_id"] == "goat-birria" and "M03" in CFG["sim_items_without_v2_price"]
+    assert all(q["ingredient_id"] != "i-goat-bone-in" for q in suppliers.load()["quotes"])
+    used = {ln["ingredient"] for r in RECIPES.values() for ln in model.iter_lines(r) if "ingredient" in ln}
+    assert "i-goat-bone-in" not in used and MASTER["i-goat-bone-in"].get("retired")
+    assert all(e["id"] != "goat-birria" for e in pricing.menu_economics(CFG))
+    decisions = (ROOT / "docs/decisions/DECISIONS.md").read_text()
+    assert "Goat Birria" in decisions and "D-88" in decisions and "not to be reintroduced without founder approval" in decisions.lower().replace("do not reintroduce", "not to be reintroduced")
+
+
+def test_every_dish_with_allergens_has_cross_contact_precautions_and_no_safety_guarantee():
+    for r in DISHES.values():
+        assert not r["allergens_declared"] or r["cross_contact_precautions"], r["id"]
+        assert "No allergen-free or allergy-safe guarantee" in r["allergen_claim"] and "operational validation" in r["allergen_claim"]
+    n = DISHES["nawaabi-enchiladas"]
+    assert "tree_nut" in n["allergens_declared"] and "MAJOR allergen" in n["allergen_notes"]
+    assert any("dedicated blender" in p for p in n["cross_contact_precautions"]) and "i-cashew" in bom.explode("nawaabi-enchiladas", RECIPES, MASTER)
+    assert "tree_nut" in model.derived_allergens("nawaabi-enchiladas", RECIPES, MASTER)
+
+
+def test_tandoori_lamb_levers_keep_the_original_scenario_and_respect_the_quality_floor():
+    rows = optimize.levers("tandoori-lamb-tacos", CFG)
+    base = pricing.economics("tandoori-lamb-tacos", CFG)
+    assert rows[0]["lever"] == "original" and rows[0]["margin_delta_pts"] == 0 and rows[0]["gross_margin_pct"] == pytest.approx(base["gross_margin_pct"]) and round(base["gross_margin_pct"] * 100, 1) == 69.4
+    assert {r["lever"] for r in rows} >= {"portion", "yield", "supplier", "waste"}
+    below = [r for r in rows if r["lever"] == "portion" and "x0.90" in r["setting"]]
+    assert below and "BELOW QUALITY FLOOR" in below[0]["quality_impact"] and "do not apply" in below[0]["quality_impact"]
+    assert any(r["lever"] == "yield" and r["margin_delta_pts"] > 0 for r in rows) and any(r["lever"] == "supplier" for r in rows)
+    assert DISHES["tandoori-lamb-tacos"] == model.load_recipes()["tandoori-lamb-tacos"]            # levers never edit the recipe
+    g = optimize.protein_grams_for_margin("tandoori-lamb-tacos", 70)
+    assert 0.9 < g < 1.0 and pricing.economics("tandoori-lamb-tacos", CFG)["meets_target_margin"] is False
+
+
+def test_supplier_price_shock_never_lowers_cost_and_hits_dependent_dishes():
+    rows = optimize.supplier_sensitivity(0.15, CFG)
+    assert rows and all(r["delta_pct"] >= -1e-12 for r in rows)
+    hit = [r for r in rows if r["delta_pct"] > 0.01]
+    assert hit and all(r["share_of_cost"] > 0 for r in hit)

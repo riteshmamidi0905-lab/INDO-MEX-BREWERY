@@ -1,4 +1,4 @@
-# Recipe-to-analytics integration (D-87) — SYNTHETIC, concept prices
+# Recipe-to-analytics integration (D-87, extended by D-88) — SYNTHETIC, concept prices
 
 Chain: **menu item → recipe (version) → ingredient → supplier quote → inventory → order → cost → analytics**, built inside the existing warehouse, PostgreSQL variant, Ops AI, evaluation suite and THE WEIR. No parallel agent framework was created.
 
@@ -19,9 +19,22 @@ Chain: **menu item → recipe (version) → ingredient → supplier quote → in
 
 ## Data versioning
 * `food/pricing/price-v1-placeholder.json` — FROZEN record of the historical placeholder prices; a test proves it still equals the simulation catalog.
-* `food/pricing/price-v2-2026-10-22.json` — approved concept prices; beer volumes `PENDING FOUNDER DECISION`.
+* `food/pricing/price-v2-2026-10-22.json` — approved concept prices; beer volumes were pending (kept unchanged as history).
+* `food/pricing/price-v3-2026-10-23.json` — CURRENT: same prices plus the provisional serving sizes (16 and 60 US fl oz, stored exactly from fl oz) and the D-88 menu changes (Goat Birria retired).
 * `scn_*` tables are added beside `dim_/fact_/mart_`; historical tables are never modified (table hashes compared before/after). Rebuilding the scenario is deterministic (hash-compared). `scn_scenario_run` records the config, recipe-set hash and quote-set hash.
 * Differences from the previous simulation: see `docs/menu-research/PRICING-SCENARIO-D87.md`.
+
+## D-88 additions
+| Capability | Where | Verified by |
+|---|---|---|
+| Beer production costing and beverage margins (PRELIMINARY, planning assumptions) | `recipes/beer_costing.py`, `food/pricing/beer-cost-assumptions.v1.json`, `scn_beer_economics` | `test_recipes_d87` (exact volumes, scaling, labels), Ops AI `beer_economics` |
+| Recipe-cost levers (portion with quality floor, yield, cheapest synthetic quote, waste); original scenario kept | `recipes/optimize.py`, `scn_cost_lever` | lamb levers test; Ops AI `cost_levers` |
+| Supplier-price sensitivity (+15% per supplier under cheapest-quote sourcing) | `optimize.supplier_sensitivity`, `scn_supplier_sensitivity` | monotonicity test; Ops AI `supplier_sensitivity` |
+| Menu engineering (star / plowhorse / puzzle / dog) | SQL `scn_menu_engineering` | rule-recomputation test; Ops AI `menu_engineering` |
+| Goat Birria retired (history preserved) | `food/recipes/retired/`, ingredient flagged retired, no quotes/BOM | retirement test |
+| Allergen cross-contact precautions + no-guarantee claim on every dish | recipe JSON, validator | allergen test |
+| Reproducibility check includes scenario tables | `warehouse/repro.py`, `make eval`, `make repro` | `make repro`: 46 tables identical |
+| PostgreSQL yield-ratio rounding fix | `models/22_fact_other.sql` | regression tests in `test_warehouse_pg.py` |
 
 ## Commands
 ```
@@ -32,4 +45,4 @@ python3 -m nasha_lab.recipes.suppliers     # regenerate the synthetic quotes
 ```
 
 ## Limits
-No price elasticity; pitchers and serving sizes not simulated; beer cost/margin not computable; ingredient prices are planning assumptions, supplier quotes are synthetic; inventory counts and anomalies are synthetic (three injected anomalies, so detection scores are small-sample); detector thresholds were set once, not tuned on held-out data; nothing was cooked, tasted or purchased. PostgreSQL reconciliation covers the scenario tables, not ingestion or gates.
+No price elasticity; pitchers not simulated; serving sizes are provisional concept sizes and beer costs are preliminary planning estimates (pilot-scale labor dominates; excise, fees and depreciation excluded); only four dishes have simulated sales, so menu engineering covers four items; ingredient prices are planning assumptions, supplier quotes are synthetic; inventory counts and anomalies are synthetic (three injected anomalies, so detection scores are small-sample); detector thresholds were set once, not tuned on held-out data; nothing was cooked, tasted or purchased. PostgreSQL reconciliation covers the scenario tables, not ingestion or gates.

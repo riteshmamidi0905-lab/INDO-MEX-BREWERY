@@ -206,5 +206,9 @@
   "halal_claim": false,
   "notes": "no beef or pork ingredient; supplier statements required"
  },
- "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item."
+ "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
+ "cross_contact_precautions": [
+  "MILK: separate utensils for dairy sauces and cheese where practical; clean fryer/comal surfaces between dairy and non-dairy items if a non-dairy request is ever offered; label check on all dairy ingredients."
+ ],
+ "allergen_claim": "No allergen-free or allergy-safe guarantee is made. Cross-contact precautions are a design intent that requires operational validation, staff training and professional review."
 }

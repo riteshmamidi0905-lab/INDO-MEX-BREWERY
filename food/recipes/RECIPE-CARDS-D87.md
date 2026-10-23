@@ -276,39 +276,6 @@ Generated from `food/recipes/v1/*.json`. Quantities are grams unless stated and 
 
 **Photography brief:** Three-quarter angle, warm side light. Must show: glossy red-orange sauced wings; lime and cilantro; white crema pool. Must not show: blue-cheese dip; celery sticks (not in recipe); any text, logo or menu card. Label: Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.
 
-## Goat Birria, Sealed-Pot Braise  (v1.0, main, approved core5)
-
-*Status:* PRELIMINARY ESTIMATE — NOT COOKED OR TASTED · *Development:* DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records
-
-*Portion:* 2 tacos + a small cup of consommé. *Method:* Sear, coat with chile adobo, seal and braise low, skim; dip tortillas in surface fat and griddle to order.
-
-| Ingredient / sub-recipe | Qty | Prep |
-|---|---|---|
-| Birria: goat-birria-braise | 100 g | 100 g cooked meat from the batch + 90 ml consommé (by-product, allocated at zero) |
-| Birria: Corn tortilla (nixtamal) | 56 g | 2 tortillas, dipped in skimmed braise fat and griddled |
-| Birria: Neutral frying oil | 4 ml | griddle allocation |
-| Garnish: Onion, white | 10 g | raw, finely diced |
-| Garnish: Cilantro | 3 g |  |
-| Garnish: hari-salsa-verde | 15 g |  |
-| Garnish: Lime | 0.17 each |  |
-| Garnish: Salt | 0.5 g | finishing |
-
-**Steps:** 1. Prepare the braise batch (see sub-recipe): adobo, sear, seal, braise low until tender but fibrous; skim and strain. 2. Cool and store in shallow pans following the written cooling process (professional-set). 3. To order: reheat meat and consommé to 74 °C or above; dip tortillas in skimmed fat, griddle until lightly crisp; fill with meat, raw onion, cilantro, hari; serve with the consommé cup and lime.
-
-**Equipment:** Braise kettle or oven (long braise; lead time), Shallow pans and blast-chill or ice bath for cooling, Comal/griddle, Cold storage and hot hold, Small clay or steel cups for consommé
-
-**Prep/service labor estimate:** 6.0 + 3.0 min per portion.
-
-**Cost (planning):** ingredient $4.44, with waste $4.66, food cost 25.2% of $18.50; gross margin 74.2% (target 70%).
-
-**Food safety:** Largest food-safety risk in the Core 5: large-batch braise cooling, storage and reheating; a food-safety professional must write the process before any service. Goat/chicken/vegetable stock only; no beef or pork products, no lard (D-54); no halal claim. Skimmed fat solidifies; label and use within the written shelf life. Hot consommé service: burn risk, correct cup, handle temperature.
-
-**Allergens (derived, not a label):** none declared. No major allergen expected from the baseline. Possible: milk if the yogurt-papaya pre-marinade (arm C) is used; wheat if a dough seal is used; celery depending on stock; check chile blends. No allergen-free claim.
-
-**Beer pairing hypotheses (not sensory tested):** BADSHAH hefeweizen (target ABV 4.7%): Carbonation lifts the consommé fat; existing hypothesis PF-05. AMBA HAZE (target ABV 6.0%): Tropical fruit contrasts the deep chile braise.
-
-**Photography brief:** Tabletop, two tacos and a consommé cup, low warm side light, steam wisp if shown fresh. Must show: deep red-orange adobo colour on tender, fibrous goat (not pulled-beef uniformity); crisped, lightly oiled tortilla edges; consommé in a small cup with fat sheen and chile flecks; raw onion, cilantro, lime. Must not show: melted cheese (none by default); uniform beef-like texture or a quesabirria look; text or logos. Label: Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.
-
 ## Hyderabadi Birria-Style Chicken Tacos  (v1.0, main, candidate)
 
 *Status:* PRELIMINARY ESTIMATE — NOT COOKED OR TASTED · *Development:* DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records
@@ -473,7 +440,7 @@ Generated from `food/recipes/v1/*.json`. Quantities are grams unless stated and 
 
 **Food safety:** Cook filling to 74 °C (165 °F), probed in the thickest piece. Raw-protein board/utensils separated; hand-wash; marinate at ≤ 4 °C, discard marinade. Hot-hold ≥ 57 °C (135 °F) or discard within 2 hours (policy to be set by a food-safety professional). TREE NUT: cashew sauce; allergen label required.
 
-**Allergens (derived, not a label):** milk, tree_nut. Milk, TREE NUT (cashew). No allergen-free claim.
+**Allergens (derived, not a label):** milk, tree_nut. Milk, TREE NUT (cashew). No allergen-free claim. Tree nuts (cashew) are a declared MAJOR allergen in this dish (D-88).
 
 **Beer pairing hypotheses (not sensory tested):** BADSHAH hefeweizen (target ABV 4.7%): Soft body and carbonation relieve rich cream sauce. AMBA HAZE (target ABV 6.0%): Hop aroma cuts cashew cream.
 

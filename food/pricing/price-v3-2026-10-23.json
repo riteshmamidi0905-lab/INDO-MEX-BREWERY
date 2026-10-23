@@ -1,0 +1,98 @@
+{
+ "config_id": "price-v3-2026-10-23",
+ "decision": "D-88",
+ "effective": "2026-10-23",
+ "status": "APPROVED CONCEPT PRICES \u2014 NOT AN OPERATING MENU",
+ "disclaimer": "Concept prices from the founder's 2026-10-22 directive. No restaurant is operating and no sale has occurred. Simulated revenue computed from these prices is SYNTHETIC and is not NASHA revenue. Ingredient costs are planning assumptions, not supplier quotes.",
+ "currency": "USD",
+ "prices_usd": {
+  "beer_glass": 9.0,
+  "beer_pitcher": 31.0,
+  "appetizer": 13.5,
+  "main": 18.5
+ },
+ "beers": [
+  {
+   "id": "badshah",
+   "name": "BADSHAH",
+   "style": "Hefeweizen",
+   "target_abv_pct": 4.7,
+   "glass_usd": 9.0,
+   "pitcher_usd": 31.0,
+   "sim_item_id": "B01",
+   "status": "CONCEPT FORMULATION - NOT BREWED OR TESTED; TARGET ABV 4.7% PROVISIONAL"
+  },
+  {
+   "id": "amba-haze",
+   "name": "AMBA HAZE",
+   "style": "Mango-forward juicy IPA",
+   "target_abv_pct": 6.0,
+   "glass_usd": 9.0,
+   "pitcher_usd": 31.0,
+   "sim_item_id": "B04",
+   "status": "CONCEPT FORMULATION - NOT BREWED OR TESTED; TARGET ABV 6.0% PROVISIONAL"
+  }
+ ],
+ "serving_volumes": {
+  "oz_to_ml": 29.5735295625,
+  "oz_to_ml_note": "1 US fluid ounce = 29.5735295625 mL (exact definition); volumes are stored from fl oz, never from rounded mL",
+  "glass": {
+   "fl_oz": 16,
+   "value_ml": 473.176473,
+   "display_ml": 473.2,
+   "status": "PROVISIONAL CONCEPT SERVING SIZE \u2014 glassware capacity, headspace and fill lines need physical validation"
+  },
+  "pitcher": {
+   "fl_oz": 60,
+   "value_ml": 1774.41177375,
+   "display_ml": 1774.4,
+   "status": "PROVISIONAL CONCEPT SERVING SIZE \u2014 glassware capacity, headspace and fill lines need physical validation"
+  },
+  "note": "Founder-approved 2026-10-23. The founder's message gave the pitcher as 1,774.414 mL; the exact conversion of 60 fl oz is 1,774.412 mL (difference 0.002 mL, immaterial); the exact value is stored."
+ },
+ "cost_assumptions": {
+  "class": "PLANNING_ASSUMPTION",
+  "waste_pct": 5.0,
+  "consumables_per_portion_usd": 0.12,
+  "consumables_note": "liner, napkin, pick: planning allowance",
+  "loaded_labor_usd_per_hour": 24.0,
+  "labor_note": "loaded kitchen labor planning rate; the synthetic simulation's own wage placeholders are separate",
+  "target_gross_margin_pct": 70
+ },
+ "menu_item_mapping_to_sim": {
+  "M01": "chicken-65-totopos",
+  "M02": "paneer-tikka-taco",
+  "M04": "mango-habanero-gobi",
+  "M05": "butter-chicken-quesadilla"
+ },
+ "sim_items_without_v2_price": [
+  "M03",
+  "B02",
+  "B03",
+  "N01",
+  "N02",
+  "G01",
+  "G02",
+  "G03"
+ ],
+ "sim_items_note": "Goat Birria (M03) was retired from the active menu by D-88; the historical simulation still contains its sales at the v1 placeholder price, labelled v1_placeholder_carried. Lager (B02), Amber (B03), NA drinks and merchandise are not part of the approved concept price list and are carried at v1.",
+ "classification_flags": [
+  "paneer-tikka-taco: main, $18.50 (approved D-88)",
+  "chaat-elote: name retained; 'Masala Street Corn' is an alternate development name only (D-88)",
+  "tandoori-lamb-tacos: main, $18.50; modeled planning margin below the 70% planning target is under investigation, original costing scenario retained (D-88)",
+  "nawaabi-enchiladas: approved for continued development with cashews; tree nut is a declared major allergen (D-88)"
+ ],
+ "supersedes": "price-v2-2026-10-22 (prices unchanged; adds provisional serving sizes and the D-88 menu changes)",
+ "lineage": [
+  "price-v1-placeholder (historical simulation)",
+  "price-v2-2026-10-22 (approved concept prices; volumes pending)",
+  "price-v3-2026-10-23 (this file)"
+ ],
+ "retired_items": [
+  {
+   "recipe_id": "goat-birria",
+   "reason": "Founder decision D-88: removed from the active menu and the candidate pool; not to be reintroduced without founder approval",
+   "sim_item_id": "M03"
+  }
+ ]
+}

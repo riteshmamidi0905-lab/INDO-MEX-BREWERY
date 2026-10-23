@@ -220,12 +220,16 @@
  "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
  "menu_category": "main",
  "menu_status": "approved_core5",
- "classification_note": "Core 5 item; not in the founder's appetizer/main candidate lists: provisionally priced as a main (taco trio) pending founder classification.",
+ "classification_note": "Main (founder decision D-88, 2026-10-23); its price comes from the pricing config, not this file.",
  "target_gross_margin_pct": 70,
  "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
  "research": {
   "practice": "see evidence list",
   "nasha_combination": "see cultural/food research files",
   "note": "Earlier research baseline; not re-sourced in D-87."
- }
+ },
+ "cross_contact_precautions": [
+  "MILK: separate utensils for dairy sauces and cheese where practical; clean fryer/comal surfaces between dairy and non-dairy items if a non-dairy request is ever offered; label check on all dairy ingredients."
+ ],
+ "allergen_claim": "No allergen-free or allergy-safe guarantee is made. Cross-contact precautions are a design intent that requires operational validation, staff training and professional review."
 }

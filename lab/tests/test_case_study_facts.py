@@ -39,3 +39,13 @@ def test_every_page_states_its_limits_and_synthetic_status():
     for f in PAGES.glob("*.html"):
         t = f.read_text()
         assert "Limits and what is not claimed" in t and "synthetic" in t.lower() and 'noindex' in t
+
+
+def test_recipe_to_analytics_case_study_numbers(tmp_path):
+    t = page("recipe-to-analytics")
+    n_s, n_r = collected("tests/test_scenario_d87.py"), collected("tests/test_recipes_d87.py")
+    assert f"{n_s + n_r} new tests ({n_r} recipe, pricing and approval; {n_s} warehouse scenario)" in t
+    from nasha_lab.warehouse import scenario
+    d = tmp_path; es.generate(es.SimConfig(name="f2", months=4, fast_casual=3, beer_gardens=1, target_orders=12_000, loyalty_profiles=2_000, employees=60, open_at_start=3), d / "s"); pipeline.run(d / "s", d / "w.db")
+    scenario.build(d / "w.db")
+    assert f"{len(ops_ai_eval.build_cases(d / 'w.db'))} Ops AI evaluation cases" in t

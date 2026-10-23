@@ -48,6 +48,12 @@ def load_recipes(directory=None):
     return out
 
 
+def load_retired(directory=None):
+    """Recipes retired from the active menu (D-88): preserved as history, never loaded by load_recipes, never costed, never in a BOM."""
+    d = Path(directory) if directory else RECIPES / "retired"
+    return {r["id"]: r for r in (json.loads(f.read_text()) for f in sorted(d.glob("*.v1.json")))}
+
+
 def iter_lines(recipe):
     """Yield every ingredient/sub-recipe line of a dish or sub-recipe."""
     if recipe["kind"] == "subrecipe":
@@ -86,18 +92,28 @@ def validate(recipes=None, master=None):
             errs.append(f"ingredient {ing['id']}: price range not ordered")
         if not 0 < ing["yield_pct"] <= 100:
             errs.append(f"ingredient {ing['id']}: yield_pct out of range")
+    retired_ids = {i for i, ing in master.items() if ing.get("retired")}
     for rid, r in recipes.items():
+        used = {ln["ingredient"] for ln in iter_lines(r) if "ingredient" in ln}
+        if used & retired_ids:
+            errs.append(f"{rid}: uses a retired ingredient {sorted(used & retired_ids)}")
+        if r.get("menu_status") == "retired":
+            errs.append(f"{rid}: retired recipe is in the active set")
         if "PRELIMINARY" not in r["status"].upper() or "NOT COOKED OR TASTED" not in r["status"].upper():
             errs.append(f"{rid}: status must say PRELIMINARY and NOT COOKED OR TASTED")
         blob = json.dumps(r, ensure_ascii=False)
         if overclaims(blob):
             errs.append(f"{rid}: wording claims a cook/taste/test result")
         if re.search(r"\$\s?\d|\bprice\b\s*[:=]\s*\d", blob):
-            errs.append(f"{rid}: contains a price (no menu or recipe prices are set, D-86)")
+            errs.append(f"{rid}: contains a price (recipes carry no prices: menu prices live only in food/pricing, D-87)")
         if r["kind"] == "dish":
             for k in DISH_REQUIRED:
                 if k not in r or (k != "allergens_declared" and r[k] in (None, "", [], {})):
                     errs.append(f"{rid}: missing section '{k}'")
+            if r["allergens_declared"] and not r.get("cross_contact_precautions"):
+                errs.append(f"{rid}: declared allergens need cross-contact precautions")
+            if "allergy-safe guarantee" not in r.get("allergen_claim", "") or "operational validation" not in r.get("allergen_claim", ""):
+                errs.append(f"{rid}: allergen_claim must state that no guarantee is made without operational validation")
             if r.get("menu_category") not in ("appetizer", "main"):
                 errs.append(f"{rid}: menu_category must be appetizer or main")
             if not isinstance(r.get("workflow", {}).get("labor_minutes_per_portion"), dict):

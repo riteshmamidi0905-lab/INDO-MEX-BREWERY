@@ -172,12 +172,16 @@
  "photography_label": "Conceptual food visualization — AI-generated concept art, not a photograph and not a tested menu item.",
  "menu_category": "appetizer",
  "menu_status": "approved_menu_v1_1",
- "classification_note": "Approved 12-dish test menu item #2. Overlaps founder candidate 'Masala Street Corn': treated as the same dish track (rename not applied).",
+ "classification_note": "Approved 12-dish test menu item #2. The name Chaat Elote is retained; 'Masala Street Corn' is an alternate development name, not a separate menu item (D-88).",
  "target_gross_margin_pct": 70,
  "development_status": "DRAFT v1.0 — desk estimate; kitchen test not started; no costed purchase records",
  "research": {
   "practice": "see evidence list",
   "nasha_combination": "see cultural/food research files",
   "note": "Earlier research baseline; not re-sourced in D-87."
- }
+ },
+ "cross_contact_precautions": [
+  "MILK: separate utensils for dairy sauces and cheese where practical; clean fryer/comal surfaces between dairy and non-dairy items if a non-dairy request is ever offered; label check on all dairy ingredients."
+ ],
+ "allergen_claim": "No allergen-free or allergy-safe guarantee is made. Cross-contact precautions are a design intent that requires operational validation, staff training and professional review."
 }

@@ -39,7 +39,7 @@ def generate(master=None, seed=87):
     master = master or model.load_master()
     out = []
     for ing in master.values():
-        if ing.get("derived_from"):
+        if ing.get("derived_from") or ing.get("retired"):
             continue
         sups = [primary_for(ing), "FS01", "FS02"]
         for s in dict.fromkeys(sups):

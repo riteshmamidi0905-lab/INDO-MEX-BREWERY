@@ -26,7 +26,7 @@ class Anomaly:
 def first_sales_date(wh_path):
     """First calendar date with a sale of any of the five Core 5 items: defines week 0 for the scenario calendar and the synthetic counts."""
     con = sqlite3.connect(f"file:{wh_path}?mode=ro", uri=True)
-    r = con.execute("""SELECT min(d.date) FROM fact_order_line f JOIN dim_date d USING(date_key) JOIN dim_product p USING(product_key) WHERE p.item_id IN ('M01','M02','M03','M04','M05')""").fetchone()[0]
+    r = con.execute("""SELECT min(d.date) FROM fact_order_line f JOIN dim_date d USING(date_key) JOIN dim_product p USING(product_key) WHERE p.item_id IN ('M01','M02','M04','M05')""").fetchone()[0]
     con.close()
     return r
 
@@ -35,7 +35,7 @@ def weekly_sales(wh_path):
     """(week_index -> {site: {item: units}}) for the five Core 5 sim items, week 0 = first week with sales."""
     con = sqlite3.connect(f"file:{wh_path}?mode=ro", uri=True)
     rows = con.execute("""SELECT d.date, l.location_id, p.item_id, sum(f.qty) FROM fact_order_line f JOIN dim_date d USING(date_key) JOIN dim_location l USING(location_key)
-                          JOIN dim_product p USING(product_key) WHERE p.item_id IN ('M01','M02','M03','M04','M05') GROUP BY 1,2,3""").fetchall()
+                          JOIN dim_product p USING(product_key) WHERE p.item_id IN ('M01','M02','M04','M05') GROUP BY 1,2,3""").fetchall()
     con.close()
     import datetime as dt
     first = min(dt.date.fromisoformat(r[0]) for r in rows)
@@ -97,6 +97,6 @@ def default_anomalies(sites, weeks, table):
     if len(sites) < 3 or len(weeks) < 20:
         return []
     heavy = lambda item: max(table[item], key=table[item].get)               # the dominant ingredient of an item (largest AP quantity)
-    return [Anomaly(sites[0], "i-goat-bone-in", "over_portion", weeks[len(weeks) // 3], 6, 0.20),
+    return [Anomaly(sites[0], "i-cauliflower", "over_portion", weeks[len(weeks) // 3], 6, 0.20),
             Anomaly(sites[1], "i-chicken-thigh", "spike", weeks[len(weeks) // 2], 1, 0.70),
             Anomaly(sites[2], "i-paneer", "unrecorded_transfer", weeks[len(weeks) * 2 // 3], 4, 0.25)]

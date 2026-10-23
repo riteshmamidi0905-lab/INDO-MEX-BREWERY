@@ -1,7 +1,7 @@
 """Bill-of-materials explosion: dish -> raw ingredients in PURCHASE units (kg, l, each), as-purchased (AP) quantities after yield and sub-recipes."""
 from . import costing, model
 
-SIM_ITEM_TO_RECIPE = {"M01": "chicken-65-totopos", "M02": "paneer-tikka-taco", "M03": "goat-birria", "M04": "mango-habanero-gobi", "M05": "butter-chicken-quesadilla"}
+SIM_ITEM_TO_RECIPE = {"M01": "chicken-65-totopos", "M02": "paneer-tikka-taco", "M04": "mango-habanero-gobi", "M05": "butter-chicken-quesadilla"}
 
 
 def explode(rid, recipes=None, master=None):

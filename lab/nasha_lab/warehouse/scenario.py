@@ -15,12 +15,12 @@ import numpy as np
 import pandas as pd
 
 from . import analytics, db, forecast
-from ..recipes import bom, model, pricing, suppliers, synth_ops
+from ..recipes import beer_costing, bom, model, optimize, pricing, suppliers, synth_ops
 
 SQL = Path(__file__).with_name("scenario_models") / "10_scn_derived.sql"
-SCENARIO_ID = "scn-price-v2-recipes-v1"
-BASE_TABLES = ["scn_pricing", "scn_sim_item_map", "scn_menu_item", "scn_ingredient", "scn_supplier", "scn_supplier_quote", "scn_recipe_bom", "scn_calendar", "scn_inventory_week", "scn_injected_anomaly"]
-DERIVED_TABLES = ["scn_depletion_day", "scn_depletion_week", "scn_item_month", "scn_menu_profitability_month", "scn_variance_week"]
+SCENARIO_ID = "scn-price-v3-menu-d88"
+BASE_TABLES = ["scn_pricing", "scn_sim_item_map", "scn_menu_item", "scn_ingredient", "scn_supplier", "scn_supplier_quote", "scn_recipe_bom", "scn_calendar", "scn_inventory_week", "scn_injected_anomaly", "scn_serving", "scn_beer_economics", "scn_cost_lever", "scn_supplier_sensitivity"]
+DERIVED_TABLES = ["scn_depletion_day", "scn_depletion_week", "scn_item_month", "scn_menu_profitability_month", "scn_variance_week", "scn_menu_engineering"]
 PY_TABLES = ["scn_variance_flag", "scn_demand_forecast", "scn_forecast_backtest", "scn_procurement_reco", "scn_scenario_run"]
 ALL_TABLES = BASE_TABLES + DERIVED_TABLES + PY_TABLES
 DDL = {
@@ -34,6 +34,10 @@ DDL = {
     "scn_calendar": "date_key INTEGER, week INTEGER",
     "scn_inventory_week": "location_id TEXT, week INTEGER, ingredient_id TEXT, opening_qty REAL, receipts_qty REAL, closing_counted_qty REAL",
     "scn_injected_anomaly": "location_id TEXT, ingredient_id TEXT, kind TEXT, start_week INTEGER, weeks INTEGER, magnitude REAL",
+    "scn_serving": "size TEXT, fl_oz REAL, volume_ml REAL, status TEXT",
+    "scn_beer_economics": "beer_id TEXT, size TEXT, scenario TEXT, volume_ml REAL, price_cents INTEGER, cost_ex_labor_cents REAL, cost_with_brew_labor_cents REAL, margin_ex_labor_pct REAL, margin_with_brew_labor_pct REAL, status TEXT",
+    "scn_cost_lever": "menu_item_id TEXT, lever TEXT, setting TEXT, food_cost_cents REAL, gross_margin_pct REAL, margin_delta_pts REAL, quality_impact TEXT, note TEXT",
+    "scn_supplier_sensitivity": "supplier_id TEXT, menu_item_id TEXT, base_food_cost_cents REAL, shocked_food_cost_cents REAL, delta_pct REAL, share_of_cost REAL",
     "scn_variance_flag": "location_id TEXT, week INTEGER, ingredient_id TEXT, variance_pct REAL, baseline_pct REAL, excess_pct REAL, pattern TEXT, severity TEXT",
     "scn_demand_forecast": "location_id TEXT, ingredient_id TEXT, day_ahead INTEGER, forecast_qty REAL, method TEXT",
     "scn_forecast_backtest": "location_id TEXT, ingredient_id TEXT, method TEXT, wape REAL, origins INTEGER",
@@ -63,10 +67,11 @@ def run_sql_script(con, sql):
         con.execute(st)
 
 
-def build(wh_path, config_id=pricing.V2, seed=7, anomalies="default"):
+def build(wh_path, config_id=None, seed=7, anomalies="default"):
     """Rebuild every scn_ table from the published warehouse. Idempotent and deterministic for a fixed warehouse, config and seed."""
     con = db.connect(wh_path)
     analytics._require_published(con)
+    config_id = config_id or pricing.CURRENT
     cfg = pricing.load_config(config_id)
     recipes, master = model.load_recipes(), model.load_master()
     qfile = suppliers.load()
@@ -91,6 +96,15 @@ def build(wh_path, config_id=pricing.V2, seed=7, anomalies="default"):
         else:
             rows.append((item, None, v["price_cents"], v["price_cents"], "v1_placeholder_carried"))
     _insert(con, "scn_sim_item_map", rows)
+    sv = cfg["serving_volumes"]
+    _insert(con, "scn_serving", [(k, sv[k]["fl_oz"], sv[k]["fl_oz"] * sv["oz_to_ml"], sv[k]["status"]) for k in ("glass", "pitcher")])
+    _insert(con, "scn_beer_economics", [(r["beer"], r["size"], r["scenario"], r["volume_ml"], int(round(r["price"] * 100)), r["cost_ex_labor"] * 100, r["cost_with_brew_labor"] * 100,
+                                         r["margin_ex_labor_pct"], r["margin_with_brew_labor_pct"], r["status"]) for r in beer_costing.all_rows(cfg)])
+    qf = suppliers.load()
+    _insert(con, "scn_cost_lever", [(r["dish"], r["lever"], r["setting"], r["food_cost"] * 100, r["gross_margin_pct"], r["margin_delta_pts"], r["quality_impact"], r["note"])
+                                    for rid, rr in recipes.items() if rr["kind"] == "dish" for r in optimize.levers(rid, cfg, recipes, master, qf["quotes"])])
+    _insert(con, "scn_supplier_sensitivity", [(r["supplier_id"], r["dish"], r["base_food_cost"] * 100, r["shocked_food_cost"] * 100, r["delta_pct"], r["share_of_cost"])
+                                              for r in optimize.supplier_sensitivity(0.15, cfg, recipes, master, qf["quotes"])])
     # ---- menu items, recipes, BOM, ingredients, suppliers
     mi = []
     for r in recipes.values():
@@ -124,8 +138,8 @@ def build(wh_path, config_id=pricing.V2, seed=7, anomalies="default"):
     _insert(con, "scn_forecast_backtest", bt)
     recos = recommend_procurement(con, qfile["quotes"])
     _insert(con, "scn_procurement_reco", recos)
-    _insert(con, "scn_scenario_run", [(SCENARIO_ID, config_id, "price-v1-placeholder", sha([recipes, master]), sha(qfile), seed,
-                                       "Restatement of the historical simulation at approved concept prices; no demand response; pitchers not simulated; synthetic quotes only; beer margin not computable (volumes pending)")])
+    _insert(con, "scn_scenario_run", [(SCENARIO_ID, config_id, "price-v1-placeholder (historical simulation); lineage v2-2026-10-22", sha([recipes, master]), sha(qfile), seed,
+                                       "Restatement of the historical simulation at approved concept prices; no demand response; pitchers not simulated; synthetic quotes only; beer costs are preliminary planning estimates at provisional serving sizes; Goat Birria retired (D-88) so its historical sales carry the v1 placeholder price and have no BOM")])
     con.commit()
     out = {t: con.execute(f"SELECT count(*) FROM {t}").fetchone()[0] for t in ALL_TABLES}
     con.close()

@@ -1,0 +1,94 @@
+{
+ "config_id": "beer-cost-assumptions-v1",
+ "status": "PLANNING ASSUMPTIONS \u2014 not verified production costs; nothing has been brewed; no supplier quote exists",
+ "class": "PLANNING_ASSUMPTION",
+ "ingredient_prices_usd_per_kg": {
+  "pilsner malt": [
+   1.4,
+   1.8,
+   2.4
+  ],
+  "wheat malt": [
+   1.6,
+   2.1,
+   2.8
+  ],
+  "flaked oats": [
+   1.5,
+   2.0,
+   2.7
+  ],
+  "dextrin malt": [
+   2.2,
+   2.8,
+   3.6
+  ],
+  "bittering hops (noble-type)": [
+   28,
+   38,
+   52
+  ],
+  "aroma/dry hops (IPA-type)": [
+   35,
+   50,
+   70
+  ],
+  "yeast": [
+   250,
+   350,
+   480
+  ],
+  "mango puree": [
+   null,
+   null,
+   null
+  ]
+ },
+ "mango_puree_source": "ingredient master i-mango-puree (low/base/high)",
+ "recipe_assumptions": {
+  "yeast_g_per_100_l": {
+   "badshah": 60,
+   "amba-haze": 50
+  },
+  "amba_haze_dry_hop_g_per_l": 6.0,
+  "amba_haze_dry_hop_note": "hop bill is NOT decided; 6 g/L dry hop is a costing placeholder on top of the computed bittering charge",
+  "amba_haze_bittering_g_per_100_l": 150,
+  "amba_haze_bittering_note": "costing placeholder; the IBU-to-grams solve for AMBA HAZE is not in beer_specs"
+ },
+ "batch": {
+  "pilot_batch_l": 100,
+  "packaged_fraction": 0.92,
+  "packaged_fraction_note": "ASSUMPTION: 8% loss from fermenter-in to packaged beer (trub, transfer, keg dead volume)",
+  "service_waste_pct": 4.0,
+  "service_waste_note": "ASSUMPTION: foam, line purge and spill in service"
+ },
+ "overheads_usd_per_batch": {
+  "energy_and_water": [
+   18,
+   25,
+   35
+  ],
+  "cleaning_and_sanitation": [
+   8,
+   12,
+   18
+  ],
+  "co2_and_misc": [
+   6,
+   10,
+   15
+  ]
+ },
+ "labor": {
+  "brewer_hours_per_batch": 8,
+  "loaded_usd_per_hour": 28,
+  "note": "pilot-scale brewer labor; dominates the pilot cost per litre and would fall with scale (G-6 pilot scale unresolved)"
+ },
+ "excluded": [
+  "excise tax and TABC/TTB fees (regulatory, not finalized)",
+  "keg, tap and glassware capital and depreciation",
+  "serving-labor and glass washing",
+  "rent and brewhouse equipment depreciation",
+  "packaging for cans (volume and format undecided)"
+ ]
+}

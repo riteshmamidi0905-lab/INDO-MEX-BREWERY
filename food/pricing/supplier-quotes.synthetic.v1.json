@@ -180,48 +180,6 @@
    "source": "generated: seeded factor on planning-assumption base price; NOT a supplier document"
   },
   {
-   "quote_id": "Q-S02-goat-bone-in",
-   "supplier_id": "S02",
-   "ingredient_id": "i-goat-bone-in",
-   "unit": "kg",
-   "unit_price": 15.2676,
-   "pack_qty": 5.0,
-   "lead_days": 1,
-   "min_order_usd": 0,
-   "valid_from": "2026-10-22",
-   "valid_to": "2026-11-21",
-   "price_class": "SYNTHETIC_QUOTE",
-   "source": "generated: seeded factor on planning-assumption base price; NOT a supplier document"
-  },
-  {
-   "quote_id": "Q-FS01-goat-bone-in",
-   "supplier_id": "FS01",
-   "ingredient_id": "i-goat-bone-in",
-   "unit": "kg",
-   "unit_price": 15.9672,
-   "pack_qty": 5.0,
-   "lead_days": 1,
-   "min_order_usd": 150,
-   "valid_from": "2026-10-22",
-   "valid_to": "2026-11-21",
-   "price_class": "SYNTHETIC_QUOTE",
-   "source": "generated: seeded factor on planning-assumption base price; NOT a supplier document"
-  },
-  {
-   "quote_id": "Q-FS02-goat-bone-in",
-   "supplier_id": "FS02",
-   "ingredient_id": "i-goat-bone-in",
-   "unit": "kg",
-   "unit_price": 14.1097,
-   "pack_qty": 5.0,
-   "lead_days": 2,
-   "min_order_usd": 150,
-   "valid_from": "2026-10-22",
-   "valid_to": "2026-11-21",
-   "price_class": "SYNTHETIC_QUOTE",
-   "source": "generated: seeded factor on planning-assumption base price; NOT a supplier document"
-  },
-  {
    "quote_id": "Q-S04-yogurt",
    "supplier_id": "S04",
    "ingredient_id": "i-yogurt",

@@ -115,5 +115,7 @@
   "food/SAUCE-SYSTEM.md (#6 Adobo-Dum)"
  ],
  "estimates_label": "All quantities, yields and shelf-life values are preliminary estimates until tested by a person in a kitchen.",
- "costing_basis": "Cost basis = about 1,000 g cooked boneless meat per batch (ASSUMPTION: ~42% of the 2,400 g bone-in goat). The consommé (about 1,250 ml) is a by-product allocated at zero cost, so each portion (100 g meat + 90 ml consommé) carries the full goat cost."
+ "costing_basis": "Cost basis = about 1,000 g cooked boneless meat per batch (ASSUMPTION: ~42% of the 2,400 g bone-in goat). The consommé (about 1,250 ml) is a by-product allocated at zero cost, so each portion (100 g meat + 90 ml consommé) carries the full goat cost.",
+ "lifecycle": "RETIRED (D-88): removed from the active menu and the candidate development pool by founder decision 2026-10-23. Historical record preserved. Do not reintroduce without founder approval.",
+ "menu_status": "retired"
 }

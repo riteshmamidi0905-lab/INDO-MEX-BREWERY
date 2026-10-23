@@ -36,3 +36,13 @@ SELECT i.location_id, i.week, i.ingredient_id, COALESCE(d.theoretical_qty, 0) AS
        CASE WHEN COALESCE(d.theoretical_qty, 0) > 0 THEN round((i.opening_qty + i.receipts_qty - i.closing_counted_qty) / d.theoretical_qty - 1, 4) END AS variance_pct
 FROM scn_inventory_week i
 LEFT JOIN scn_depletion_week d ON d.location_id = i.location_id AND d.week = i.week AND d.ingredient_id = i.ingredient_id;
+CREATE TABLE scn_menu_engineering AS
+WITH t AS (SELECT menu_item_id, menu_category, SUM(units) AS units, SUM(gross_profit_cents) AS gp FROM scn_menu_profitability_month GROUP BY menu_item_id, menu_category),
+     tot AS (SELECT SUM(units) AS u, SUM(gp) AS g, COUNT(*) AS n FROM t)
+SELECT t.menu_item_id, t.menu_category, t.units, round(1.0 * t.units / tot.u, 4) AS mix_pct, round(1.0 * t.gp / t.units, 2) AS gross_profit_per_unit_cents,
+       CASE WHEN 1.0 * t.units / tot.u >= 0.7 / tot.n THEN 1 ELSE 0 END AS high_popularity,
+       CASE WHEN 1.0 * t.gp / t.units >= 1.0 * tot.g / tot.u THEN 1 ELSE 0 END AS high_margin,
+       CASE WHEN 1.0 * t.units / tot.u >= 0.7 / tot.n AND 1.0 * t.gp / t.units >= 1.0 * tot.g / tot.u THEN 'star'
+            WHEN 1.0 * t.units / tot.u >= 0.7 / tot.n THEN 'plowhorse'
+            WHEN 1.0 * t.gp / t.units >= 1.0 * tot.g / tot.u THEN 'puzzle' ELSE 'dog' END AS menu_class
+FROM t CROSS JOIN tot;

@@ -54,3 +54,38 @@ def test_d87_scenario_tables_reconcile_in_postgresql(built):
     rep = V.reconcile(path, dsn)
     scn = [r for r in rep if r["table"].startswith("scn_")]
     assert len(scn) == len(scenario.ALL_TABLES) and [r for r in scn if r["mismatches"]] == []
+
+
+TIES = [(1148.1, 1200.0, 0.9568), (737.8, 800.0, 0.9223), (1016.7, 1000.0, 1.0167), (500.0, 500.0, 1.0), (0.1, 3.0, 0.0333)]
+
+
+def _yield_expr():
+    import re
+    from nasha_lab.warehouse.build import MODELS
+    sql = (MODELS / "22_fact_other.sql").read_text()
+    return re.search(r"(CASE WHEN b\.planned_liters > 0 THEN .*? END) AS yield_ratio", sql).group(1)
+
+
+def test_yield_ratio_rounding_ties_are_identical_in_sqlite_and_postgresql(built):
+    """REGRESSION (D-88): float round() of a decimal tie such as 1148.1/1200 (0.95675 exactly; 0.95674999... in binary) gave 0.9567 in SQLite and 0.9568 in PostgreSQL.
+    The model now computes the ratio in exact integer tenths; both engines must agree on every tie, and a zero plan must give NULL (not an error)."""
+    import psycopg, sqlite3, sqlglot
+    expr = _yield_expr()
+    lite = sqlite3.connect(":memory:")
+    pg_expr = sqlglot.transpile(f"SELECT {expr}", read="sqlite", write="postgres")[0][len("SELECT "):]
+    with psycopg.connect(built[1], autocommit=True) as c:
+        for yl, pl, want in TIES:
+            got_l = lite.execute(f"SELECT {expr.replace('b.yield_liters', str(yl)).replace('b.planned_liters', str(pl))}").fetchone()[0]
+            got_p = c.execute(f"SELECT {pg_expr.replace('b.yield_liters', str(yl) + '::double precision').replace('b.planned_liters', str(pl) + '::double precision')}").fetchone()[0]
+            assert got_l == pytest.approx(want, abs=1e-12) and float(got_p) == pytest.approx(want, abs=1e-12), (yl, pl, got_l, got_p)
+        assert lite.execute(f"SELECT {expr.replace('b.yield_liters', '5.0').replace('b.planned_liters', '0.0')}").fetchone()[0] is None
+
+
+def test_every_brew_batch_yield_ratio_matches_row_by_row(built):
+    import psycopg, sqlite3
+    lite = sqlite3.connect(f"file:{built[0]}?mode=ro", uri=True)
+    a = lite.execute("SELECT batch_id, yield_ratio FROM fact_brew_batch ORDER BY 1").fetchall()
+    with psycopg.connect(built[1], autocommit=True) as c:
+        c.execute('SET search_path TO "nasha_wh", public')
+        b = c.execute("SELECT batch_id, yield_ratio FROM fact_brew_batch ORDER BY 1").fetchall()
+    assert a == [(x, float(y)) for x, y in b] and len(a) > 0

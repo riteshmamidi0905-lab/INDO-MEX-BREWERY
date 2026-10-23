@@ -143,7 +143,10 @@ def _need_scn(con):
 
 def _t_price_config(con, a):
     _need_scn(con)
-    return _rows(con, "SELECT config_id, price_key, kind, price_cents, status FROM scn_pricing WHERE config_id NOT LIKE '%v1%' ORDER BY price_key"), "scn_pricing"
+    rows = _rows(con, "SELECT config_id, price_key, kind, price_cents, status FROM scn_pricing WHERE config_id NOT LIKE '%v1%' AND kind <> 'serving_volume' ORDER BY price_key")
+    rows += [{"config_id": "serving", "price_key": f"{r['size']}_volume_ml", "kind": "serving_volume", "price_cents": None, "volume_ml": round(r["volume_ml"], 3), "fl_oz": r["fl_oz"], "status": r["status"]}
+             for r in _rows(con, "SELECT size, fl_oz, volume_ml, status FROM scn_serving ORDER BY size")]
+    return rows, "scn_pricing+scn_serving"
 
 
 def _t_menu_economics(con, a):
@@ -204,6 +207,34 @@ def _t_recipe_bom(con, a):
     return _rows(con, "SELECT recipe_id, recipe_version, ingredient_id, round(ap_qty_per_portion, 5) ap_qty_per_portion, unit FROM scn_recipe_bom WHERE recipe_id=? ORDER BY ap_qty_per_portion DESC, ingredient_id", (r,)), "scn_recipe_bom"
 
 
+def _t_beer_econ(con, a):
+    _need_scn(con)
+    scen = a.get("scenario", "base")
+    if scen not in ("low", "base", "high"):
+        raise Denied("bad_argument", "scenario must be low, base or high")
+    return _rows(con, "SELECT beer_id, size, scenario, round(volume_ml, 3) volume_ml, price_cents, round(cost_ex_labor_cents, 2) cost_ex_labor_cents, round(cost_with_brew_labor_cents, 2) cost_with_brew_labor_cents, "
+                      "round(margin_ex_labor_pct, 4) margin_ex_labor_pct, round(margin_with_brew_labor_pct, 4) margin_with_brew_labor_pct, status FROM scn_beer_economics WHERE scenario=? ORDER BY beer_id, size", (scen,)), "scn_beer_economics"
+
+
+def _t_cost_levers(con, a):
+    _need_scn(con)
+    r = a.get("recipe_id")
+    if not isinstance(r, str) or not re.match(r"^[a-z0-9-]{3,60}$", r):
+        raise Denied("bad_argument", "recipe_id must look like tandoori-lamb-tacos")
+    return _rows(con, "SELECT menu_item_id, lever, setting, round(food_cost_cents, 2) food_cost_cents, round(gross_margin_pct, 4) gross_margin_pct, round(margin_delta_pts, 2) margin_delta_pts, quality_impact FROM scn_cost_lever WHERE menu_item_id=? ORDER BY rowid", (r,)), "scn_cost_lever"
+
+
+def _t_supplier_sens(con, a):
+    _need_scn(con)
+    lim = _limit(a, 10)
+    return _rows(con, "SELECT supplier_id, menu_item_id, round(delta_pct, 4) delta_pct, round(share_of_cost, 4) share_of_cost FROM scn_supplier_sensitivity ORDER BY delta_pct DESC, supplier_id, menu_item_id LIMIT ?", (lim,)), "scn_supplier_sensitivity"
+
+
+def _t_menu_eng(con, a):
+    _need_scn(con)
+    return _rows(con, "SELECT menu_item_id, menu_category, units, mix_pct, gross_profit_per_unit_cents, menu_class FROM scn_menu_engineering ORDER BY gross_profit_per_unit_cents DESC, menu_item_id"), "scn_menu_engineering"
+
+
 SCN_CORP = frozenset({"exec", "finance", "analyst"})
 TOOLS.update({t.name: t for t in (
     Tool("price_config", "Approved CONCEPT menu prices and pending serving-volume decisions.", ALL, False, _t_price_config),
@@ -213,6 +244,10 @@ TOOLS.update({t.name: t for t in (
     Tool("variance_flags", "Waste/variance flags for unexplained excess usage.", ALL, True, _t_variance_flags),
     Tool("reorder_recommendations", "PROPOSED reorder recommendations (not orders; need human approval).", ALL, True, _t_reorder),
     Tool("supplier_comparison", "Compare SYNTHETIC supplier quotes for an ingredient.", SCN_CORP, False, _t_supplier_compare),
+    Tool("beer_economics", "PRELIMINARY beer cost and margin at the provisional serving sizes (planning estimates, not verified costs).", SCN_CORP, False, _t_beer_econ),
+    Tool("cost_levers", "Recipe-cost levers for a dish with quality impact (analysis only).", SCN_CORP, False, _t_cost_levers),
+    Tool("supplier_sensitivity", "Dish cost sensitivity to a +15% price rise by each SYNTHETIC supplier.", SCN_CORP, False, _t_supplier_sens),
+    Tool("menu_engineering", "Menu engineering classes (star/plowhorse/puzzle/dog) from simulated sales at concept prices.", SCN_CORP, False, _t_menu_eng),
     Tool("recipe_bom", "Bill of materials (as-purchased units per portion) for a dish.", SCN_CORP, False, _t_recipe_bom),
 )})
 SITE_DEFAULT_TOOLS = {"waste", "variance_flags", "reorder_recommendations"}
