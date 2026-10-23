@@ -325,3 +325,34 @@ def test_a_stale_proposal_is_stopped_before_the_write_even_if_the_service_check_
         assert d["failure"] == "STALE_PROPOSAL" and w.status(lead) == "new" and w.applied(lead) == 0
     finally:
         w.close()
+
+
+def test_a_replayed_approval_creates_nothing_new_even_if_THE_WEIR_never_consumes_approvals(dsn, tmp_path):
+    w = World(dsn, "growth_evl_" + uuid.uuid4().hex[:6], tmp_path)
+    try:
+        wf = w.wf["tenant-nasha"]
+        lead, _ = w.lead()
+        r = wf.run(w.tok("sam"), lead)
+        with mock.patch.object(WF.WeirStore, "consume_approval", lax_consume):
+            assert wf.decide(r["corr_id"], w.tok("ada"), True)["status"] == "EXECUTED"
+            again = wf.decide(r["corr_id"], w.tok("ada"), True)                      # workflow state machine stops it
+            direct = wf.execute_approved(r["corr_id"])                                # so does the state check on direct execution
+        assert again["failure"] == "APPROVAL_REPLAY" and direct["failure"] == "NOT_AWAITING_APPROVAL" and w.applied(lead) == 1
+    finally:
+        w.close()
+
+
+def test_a_wrongly_permissive_consent_flag_does_not_make_the_workflow_able_to_send_anything(dsn, tmp_path):
+    w = World(dsn, "growth_evl_" + uuid.uuid4().hex[:6], tmp_path)
+    try:
+        lead, contact = w.lead(consent="none")
+        with mock.patch.object(Q, "recommend", always_outreach(Q.recommend)):
+            r = w.wf["tenant-nasha"].run(w.tok("sam"), lead)
+            w.wf["tenant-nasha"].decide(r["corr_id"], w.tok("ada"), True)
+        assert w.sql("SELECT count(*) FROM activities WHERE contact_id=%s", (contact,))[0][0] == 0      # the flag is advisory; the draft gate (service) is the enforcement
+        s = SV.GrowthService(w.dsn, w.schema, "tenant-nasha", "sam")
+        with pytest.raises(SV.Blocked):
+            s.draft_outreach(contact, "hello")
+        s.close()
+    finally:
+        w.close()
