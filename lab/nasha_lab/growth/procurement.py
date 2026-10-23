@@ -93,13 +93,26 @@ def replenishment(items, period_weeks, safety_pct=20.0):
     return sorted(out, key=lambda r: (r["weeks_covered"] if r["weeks_covered"] is not None else 1e9, r["ingredient"]))
 
 
+def price_effect(items, period_weeks):
+    """What the supplier choice is worth: the planned spend at the cheapest valid quotes versus buying each ingredient from its second-cheapest valid quote (where there is one), and the monthly equivalent.
+    Arithmetic on stored quotes only; the price classes involved are listed so a synthetic comparison cannot pass as a real saving."""
+    chosen = sum(i["chosen"]["cost_cents"] for i in items if i["chosen"])
+    second = sum((i["runner_up"]["cost_cents"] if i["runner_up"] else i["chosen"]["cost_cents"]) for i in items if i["chosen"])
+    single = sum(1 for i in items if i["chosen"] and not i["runner_up"])
+    classes = sorted({i["chosen"]["price_class"] for i in items if i["chosen"]})
+    month = WEEKS_PER_MONTH / period_weeks
+    return dict(chosen_total_cents=chosen, second_choice_total_cents=second, difference_cents=second - chosen, monthly_equivalent_difference_cents=round((second - chosen) * month), items_with_only_one_valid_quote=single,
+                price_classes=classes, is_real_saving=False if "SYNTHETIC_QUOTE" in classes else None,
+                note="Compares the cheapest valid quote with the next cheapest for each ingredient. " + ("Every price used is a synthetic fixture, so this is an illustration, not a saving." if classes == ["SYNTHETIC_QUOTE"] else "Quotes of different price classes are not interchangeable; check each before relying on the difference."))
+
+
 def plan(directory, scenario_results, period_weeks, as_of):
     portions = demand(scenario_results, period_weeks)
     need_map, unmapped = needs(portions)
     items, totals, flags = compare(directory, need_map, as_of)
     if unmapped:
         flags.append(dict(kind="unmapped_products", message="No recipe for: " + ", ".join(unmapped)))
-    return dict(period_weeks=period_weeks, as_of=str(as_of), portions={k: round(v, 1) for k, v in portions.items()}, items=items, replenishment=replenishment(items, period_weeks), replenishment_assumption="safety margin 20% (assumed)", supplier_totals=totals, total_cost_cents=sum(t["cost_cents"] for t in totals), flags=flags,
+    return dict(period_weeks=period_weeks, as_of=str(as_of), portions={k: round(v, 1) for k, v in portions.items()}, items=items, price_effect=price_effect(items, period_weeks), replenishment=replenishment(items, period_weeks), replenishment_assumption="safety margin 20% (assumed)", supplier_totals=totals, total_cost_cents=sum(t["cost_cents"] for t in totals), flags=flags,
                 disclaimer="Recommendation only. No order was placed and no supplier was contacted.")
 
 
@@ -127,6 +140,9 @@ def check_plan(directory, plan, as_of):
         total += ch["cost_cents"]
     if total != plan["total_cost_cents"] or total != sum(t["cost_cents"] for t in plan["supplier_totals"]):
         problems.append("totals do not add up")
+    pe = plan.get("price_effect")
+    if pe is not None and (pe["chosen_total_cents"] != total or pe["difference_cents"] != pe["second_choice_total_cents"] - pe["chosen_total_cents"] or pe["difference_cents"] < 0):
+        problems.append("price effect does not reconcile with the chosen quotes")
     return problems
 
 

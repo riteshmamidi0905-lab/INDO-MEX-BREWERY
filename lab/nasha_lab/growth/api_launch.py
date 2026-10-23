@@ -112,6 +112,20 @@ class OverridesIn(Strict):
     insurance_monthly_cents: Optional[int] = Field(default=None, ge=0)
     other_fixed_monthly_cents: Optional[int] = Field(default=None, ge=0)
     startup_capex_cents: Optional[int] = Field(default=None, ge=0)
+    capex_buildout_cents: Optional[int] = Field(default=None, ge=0)
+    capex_equipment_cents: Optional[int] = Field(default=None, ge=0)
+    capex_furniture_cents: Optional[int] = Field(default=None, ge=0)
+    capex_technology_cents: Optional[int] = Field(default=None, ge=0)
+    capex_other_cents: Optional[int] = Field(default=None, ge=0)
+    preopen_licences_permits_cents: Optional[int] = Field(default=None, ge=0)
+    preopen_deposits_cents: Optional[int] = Field(default=None, ge=0)
+    preopen_professional_fees_cents: Optional[int] = Field(default=None, ge=0)
+    preopen_training_cents: Optional[int] = Field(default=None, ge=0)
+    preopen_launch_marketing_cents: Optional[int] = Field(default=None, ge=0)
+    preopen_other_cents: Optional[int] = Field(default=None, ge=0)
+    working_capital_months: Optional[float] = Field(default=None, ge=0, le=36)
+    opening_inventory_weeks: Optional[float] = Field(default=None, ge=0, le=26)
+    contingency_pct: Optional[float] = Field(default=None, ge=0, le=100)
 
     def clean(self):
         return {k: v for k, v in self.model_dump().items() if v is not None}
