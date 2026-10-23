@@ -113,7 +113,8 @@ def review(report, evidence, directory, tool_calls=(), allowed_tools=ALLOWED_TOO
                 if not _present(n, passages):
                     codes.append("UNSUPPORTED_NUMBER"); break
         if "prices" in R:
-            stored = {round(float(p["unit_price_cents"]) / 100, 2) for s in directory for p in s["products"] if p["unit_price_cents"] is not None}
+            stored = {round(float(p["unit_price_cents"]) / 100, 2) for s in directory for p in s["products"] if p["unit_price_cents"] is not None} \
+                | {round(float(p["min_order_cents"]) / 100, 2) for s in directory for p in s["products"] if p.get("min_order_cents") is not None}       # a stated minimum order is a stored fact too
             for m in re.findall(r"\$\s?(\d[\d,]*(?:\.\d+)?)", text):
                 v = _num(m)
                 if v is not None and round(v, 2) not in stored:

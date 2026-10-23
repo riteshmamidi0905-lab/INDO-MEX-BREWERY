@@ -56,6 +56,8 @@ def verify_claims(report, evidence, directory):
         for p in s["products"]:
             if p["unit_price_cents"] is not None:
                 stored.add(f"{float(p['unit_price_cents']) / 100:,.2f}")
+            if p.get("min_order_cents") is not None:
+                stored.add(f"{float(p['min_order_cents']) / 100:,.2f}")
     problems = []
     if not isinstance(report, dict) or not isinstance(report.get("claims", []), list):
         return ["malformed report: not an object with a list of claims"]

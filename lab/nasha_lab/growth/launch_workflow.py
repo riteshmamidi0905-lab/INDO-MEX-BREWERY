@@ -125,6 +125,13 @@ class LaunchProcurement(WeirCaller):
             self.store.set(corr, state, failure=f"{cls}:{str(detail)[:80]}")
         return self._result(corr, status, failure=cls, detail=str(detail)[:200], **kw)
 
+    def _audit_deny(self, who, action, corr, why, codes=None):
+        """A refusal is also written to the tenant's hash-chained audit log (not only the workflow's own trail and THE WEIR's ledger), in its own short transaction."""
+        try:
+            self._service(who)._audit(action, "procurement_recommendations", corr, "deny", dict({"why": why}, **({"codes": list(codes)} if codes else {})))      # the per-user service connection is cached and shared: never closed here
+        except Exception:  # noqa: BLE001 - never let the audit of a refusal change the refusal
+            pass
+
     def _args(self, run):
         return dict(proposal_id=run["id"], project_id=run["project_id"], proposal_hash=run["proposal_hash"], period_weeks=int(run["period"].split()[0]), note=f"Record procurement recommendation for {run['period']}")
 
@@ -150,11 +157,14 @@ class LaunchProcurement(WeirCaller):
         self.store.event(corr, "stage", stage="P01", name="request_received", project_id=project_id, period_weeks=period_weeks, request_id=request_id)
         self.store.event(corr, "auth", decision="allow", user=who.id, role=who.role, tenant=self.env.tenant_id)
         if who.role not in WL.READ_ROLES | WL.INITIATE_ROLES:
+            self._audit_deny(who, "procurement.request", corr, f"role {who.role} may not request a recommendation")
             return self._fail(corr, "ROLE_DENIED", status="DENIED", detail=who.role)
         gw, rec = self._gateway(who)
         sess = gw.open_session(corr)
         out, parsed, fail = self._call(gw, sess, WL.READ_TOOL, dict(project_id=project_id), corr, "P03")
         if fail:
+            if fail == "TOOL_DENIED":
+                self._audit_deny(who, "procurement.request", corr, f"role {who.role} may not read the project's supplier data")
             return self._fail(corr, fail, state="FAILED" if fail != "TOOL_DENIED" else "BLOCKED", detail="could not read the project's supplier data")
         if not parsed.get("project"):
             return self._fail(corr, "NO_SUCH_PROJECT", detail=project_id)
@@ -184,6 +194,7 @@ class LaunchProcurement(WeirCaller):
             return self._fail(corr, "TOOL_ERROR", state="FAILED", detail="write forwarded without approval")
         if not out_w.approval_id:
             self.store.event(corr, "stage", stage="P08", name="weir_denied", codes=out_w.codes)
+            self._audit_deny(who, "procurement.request", corr, f"THE WEIR refused the write: the {who.role.lower()} role has no permission to record a procurement recommendation", out_w.codes)
             return self._fail(corr, "TOOL_DENIED", detail=",".join(out_w.codes) or "denied by policy")
         self.store.set(corr, "AWAITING_APPROVAL", approval_id=out_w.approval_id)
         self.store.event(corr, "stage", stage="P08", name="held_for_approval", approval_id=out_w.approval_id, codes=out_w.codes, ttl_s=self.ttl)
@@ -243,17 +254,21 @@ class LaunchProcurement(WeirCaller):
             return self._fail(corr_id, "AUTH_DENIED", status="DENIED", state=run["state"], detail=e.code)
         if not ID.Authority.role_allowed(who.role, "record_procurement_recommendation", {}):
             self.store.event(corr_id, "approval_decision", decision="deny", code="ROLE_NOT_PERMITTED", user=who.id, role=who.role)
+            self._audit_deny(who, "procurement.approve", corr_id, f"role {who.role} may not approve")
             return self._fail(corr_id, "ROLE_DENIED", status="DENIED", state=run["state"], detail=f"{who.role} may not approve")
         if who.id == run["requester"]:
             self.store.event(corr_id, "approval_decision", decision="deny", code="MAKER_CHECKER", user=who.id)
+            self._audit_deny(who, "procurement.approve", corr_id, "the requester may not approve their own request")
             return self._fail(corr_id, "MAKER_CHECKER", status="DENIED", state=run["state"], detail="requester may not approve their own request")
         if run["state"] != "AWAITING_APPROVAL":
             cls = "APPROVAL_REPLAY" if run["state"] in ("EXECUTED", "APPROVED") else "NOT_AWAITING_APPROVAL"
             self.store.event(corr_id, "approval_decision", decision="deny", code=cls, state=run["state"])
+            self._audit_deny(who, "procurement.approve", corr_id, f"{cls}: the recommendation is {run['state']}")
             return self._result(corr_id, "DENIED", failure=cls, detail=run["state"])
         aid = run["approval_id"]
         ap = self.weir.get_approval(aid) if aid else None
         if ap is None or ap.session_id != corr_id or ap.tool != WL.WRITE_TOOL:
+            self._audit_deny(who, "procurement.approve", corr_id, "the approval does not belong to this run")
             return self._fail(corr_id, "APPROVAL_MISMATCH", status="DENIED", state=run["state"], detail="approval does not belong to this run")
         if not approve:
             self.weir.resolve_approval(aid, False, by=who.id)

@@ -4,11 +4,11 @@ rejected as stated. One mutant per rule removes that rule; each must change at l
 from . import model_boundary as MB
 
 DIRECTORY = [
-    dict(id="s1", name="Meadow Dairy Co", verification_status="verified_public", freshness="fresh", products=[dict(price_class="SUPPLIER_QUOTE", unit_price_cents=450.0)]),
+    dict(id="s1", name="Meadow Dairy Co", verification_status="verified_public", freshness="fresh", products=[dict(price_class="SUPPLIER_QUOTE", unit_price_cents=450.0, min_order_cents=5000)]),
     dict(id="s2", name="Brothers Produce", verification_status="lead_unverified", freshness="unverified", products=[dict(price_class="NONE_PUBLISHED", unit_price_cents=None)]),
     dict(id="s3", name="Synthetic Supplier 04 (dairy)", verification_status="synthetic_fixture", freshness="synthetic (not applicable)", products=[dict(price_class="SYNTHETIC_QUOTE", unit_price_cents=510.0)])]
 EVIDENCE = {
-    "e1": dict(doc_id="supplier-s1", title="Meadow Dairy Co", text="Meadow Dairy Co. Verification status: verified public. Paneer: $4.50 per kg, supplier quote, lead time 2 days."),
+    "e1": dict(doc_id="supplier-s1", title="Meadow Dairy Co", text="Meadow Dairy Co. Verification status: verified public. Paneer: $4.50 per kg, supplier quote, lead time 2 days, minimum order $50.00."),
     "e2": dict(doc_id="supplier-s2", title="Brothers Produce", text="Brothers Produce. Verification status: lead unverified. Wholesale catalogue: no published price."),
     "e3": dict(doc_id="supplier-s3", title="Synthetic Supplier 04 (dairy)", text="Synthetic Supplier 04 (dairy). Paneer: $5.10 per kg, synthetic quotation, lead time 3 days.")}
 
@@ -43,6 +43,8 @@ CASES = [
     ("a count the evidence does not state", R(("Meadow Dairy Co lists 3 products.", ["e1"])), [], "rejected", {"UNSUPPORTED_NUMBER"}),
     ("the same price written 4.5", R(("Meadow Dairy Co quotes Paneer at $4.5 per kg.", ["e1"])), [], "accepted", set()),
     ("two good claims and one bad", R(GOOD1, ("Brothers Produce has no published price.", ["e2"]), ("Meadow Dairy Co quotes Paneer at $3.20 per kg.", ["e1"])), [], "rejected", {"PRICE_MISMATCH", "UNSUPPORTED_NUMBER"}),
+    ("a stored minimum order amount quoted correctly", R(("Meadow Dairy Co has a minimum order of $50.00.", ["e1"])), [], "accepted", set()),
+    ("a minimum order amount that is not stored", R(("Meadow Dairy Co has a minimum order of $75.00.", ["e1"])), [], "rejected", {"PRICE_MISMATCH", "UNSUPPORTED_NUMBER"}),
     ("a grounded report with no limitations is accepted but flagged", R(GOOD1, limitations=()), [], "accepted", set())]
 
 
