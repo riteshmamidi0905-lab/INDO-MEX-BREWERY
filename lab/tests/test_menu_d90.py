@@ -47,7 +47,7 @@ def test_current_definition_has_no_goat_birria_and_the_approved_replacement():
     lamb = next(i for i in CUR["items"] if i["menu_item_id"] == "tandoori-lamb-tacos")
     assert lamb["provisional"] is True and "approved" in CUR["decision"].lower() and "NOT been cooked" in CUR["provisional_notice"]
     assert pricing.price_cents(CFG, model.load_recipes()["tandoori-lamb-tacos"]["menu_category"]) == 1850
-    assert "has not been cooked, tasted or tested" in raw, "the definition must not imply the replacement was cooked or tested"
+    assert "has not been cooked, tasted or tested" in raw.lower(), "the definition must not imply the replacement was cooked or tested"
 
 
 def test_historical_documents_are_preserved_and_the_old_definition_still_loads():

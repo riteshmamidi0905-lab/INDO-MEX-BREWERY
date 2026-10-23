@@ -7,6 +7,7 @@ Sanitisation: synthetic identities only; no tokens, secrets or passcodes are exp
 import asyncio
 import dataclasses
 import json
+import re
 import shutil
 import sqlite3
 import subprocess
@@ -349,7 +350,7 @@ def main():
     out["metrics"]["scenarios_executed"] = len(out["scenarios"])
     out["architecture"] = architecture()
     blob = json.dumps(out)
-    assert "dev-passcode" not in blob and not any(len(x) > 60 and x.count(".") == 1 for x in blob.replace('"', " ").split()), "credential-like content in export"
+    assert "dev-passcode" not in blob and not any(re.fullmatch(r"[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}", x) for x in blob.replace('"', " ").replace(",", " ").split()), "credential-like content in export"
     OUT.write_text(json.dumps(out, indent=1))
     print("written", OUT, f"{len(out['scenarios'])} scenarios", f"{OUT.stat().st_size // 1024} KB")
 

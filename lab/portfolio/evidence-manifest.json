@@ -1,5 +1,5 @@
 {
- "commit": "cbfeeb0",
+ "commit": "55a3292",
  "pushed": false,
  "synthetic": true,
  "artifacts": [
@@ -10,8 +10,8 @@
   },
   {
    "path": "lab/portfolio/capability-matrix.json",
-   "sha256": "e62a4bd120ba8db2bacfbf1237b9c2dc6657bd4a68fe6923e99955a340c6ac6d",
-   "bytes": 14815
+   "sha256": "1a5443d800dc92c0f6bce659958aa964e7195315da9403ab295bfd7fc54622db",
+   "bytes": 15456
   },
   {
    "path": "lab/portfolio/governed-api.openapi.json",
@@ -20,8 +20,8 @@
   },
   {
    "path": "docs/engineering/D-89-CAPABILITY-MATRIX.md",
-   "sha256": "ed0a811fb73358acd45b7d6bcf761678d137b0aa821f1fedc3adba63379a1c51",
-   "bytes": 11139
+   "sha256": "a588f0f4e7a1a966d57ccdd84425e3c4be7c43205951a4470df6ec867ea3b158",
+   "bytes": 11427
   },
   {
    "path": "docs/portfolio-integration/INTERACTIVE-DEMO-SPECS.md",
@@ -40,7 +40,7 @@
   },
   {
    "path": "docs/portfolio-integration/README.md",
-   "sha256": "15a9eada88570f9771e9a3ad54ac06ed9ad606a20c4520277e3525e08ed2f32d",
+   "sha256": "d8ad437962474831ffb97d8c970aef6a1c5285a1f5d50c3004deea67f3df3b71",
    "bytes": 1569
   },
   {

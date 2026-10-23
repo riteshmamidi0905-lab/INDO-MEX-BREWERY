@@ -1,0 +1,76 @@
+{
+ "schema": "coverage/1",
+ "tool": "coverage.py 7.17.0",
+ "measure": "line coverage",
+ "source": "nasha_lab/governed",
+ "tests": [
+  "tests/test_governed_workflow.py",
+  "tests/test_governed_api.py",
+  "tests/test_governed_incident.py",
+  "tests/test_governed_contradiction.py",
+  "tests/test_governed_evaluation.py",
+  "tests/test_release_gate.py"
+ ],
+ "totals": {
+  "statements": 1408,
+  "covered": 1329,
+  "percent": 94.4
+ },
+ "files": {
+  "__init__": {
+   "path": "nasha_lab/governed/__init__.py",
+   "statements": 0,
+   "covered": 0,
+   "percent": 100.0
+  },
+  "agent": {
+   "path": "nasha_lab/governed/agent.py",
+   "statements": 232,
+   "covered": 220,
+   "percent": 94.8
+  },
+  "api": {
+   "path": "nasha_lab/governed/api.py",
+   "statements": 168,
+   "covered": 149,
+   "percent": 88.7
+  },
+  "evaluation": {
+   "path": "nasha_lab/governed/evaluation.py",
+   "statements": 353,
+   "covered": 348,
+   "percent": 98.6
+  },
+  "incident": {
+   "path": "nasha_lab/governed/incident.py",
+   "statements": 41,
+   "covered": 39,
+   "percent": 95.1
+  },
+  "ledger": {
+   "path": "nasha_lab/governed/ledger.py",
+   "statements": 110,
+   "covered": 102,
+   "percent": 92.7
+  },
+  "tenants": {
+   "path": "nasha_lab/governed/tenants.py",
+   "statements": 73,
+   "covered": 71,
+   "percent": 97.3
+  },
+  "weir_bridge": {
+   "path": "nasha_lab/governed/weir_bridge.py",
+   "statements": 113,
+   "covered": 96,
+   "percent": 85.0
+  },
+  "workflow": {
+   "path": "nasha_lab/governed/workflow.py",
+   "statements": 318,
+   "covered": 304,
+   "percent": 95.6
+  }
+ },
+ "caveat": "Line coverage of the governed package by the governed test files only; it does not measure assertion strength, branch coverage, or the rest of the repository."
+}
