@@ -5,7 +5,9 @@ second, unrelated business, so the platform stays industry-agnostic. Everything 
   * three REAL supplier LEADS found through public web search on 2026-10-23: name/category/area and the page that mentions them ONLY. They are 'lead_unverified': no official website verified, no contact, no price;
   * research findings from those pages are 'search_result' with their URL, retrieval date and limitations.
 No supplier has been contacted and no price from a real supplier is recorded."""
+import json
 from datetime import date, timedelta
+from pathlib import Path
 
 from ..recipes import model as RM, suppliers as SUPQ
 
@@ -41,35 +43,43 @@ NASHA_FINDINGS = [
     ("Specialty dairy", "The search found no Austin-area supplier of fresh paneer; a dairy distributor or specialty wholesaler would need to be asked.", "search_result", 0.3, "Absence in search results is weak evidence, not proof that none exists.",
      "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html"),
     ("Menu economics", "Planning food cost across the 15 menu items is a small share of menu price, so fixed costs and volume dominate profitability in the base scenario.", "synthetic_fixture", 0.6, "Derived from planning-assumption ingredient costs and founder-approved concept prices; not measured.", None)]
-REAL_LEADS = [("Farm to Table LLC", "Produce, eggs and dairy wholesale", "Austin and surrounding areas (per the source)", "https://www.austinchronicle.com/food/food-o-file-11764527/", "Reported by the Austin Chronicle; official website not verified."),
-              ("Hill Country Dairies", "Dairy distribution", "Austin, TX (per the source)", "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html", "Described in a PNC investment profile; official website not verified."),
-              ("Brothers Produce", "Produce distribution", "Greater Houston, Dallas/Fort Worth, Austin, San Antonio and other Texas metros (per the source)", "https://www.restaurant365.com/partners/brothers-produce/", "Described in a Restaurant365 partner profile; official website not verified.")]
-
-# Dated public SOURCES for the three real leads, from a public web search run on SEARCHED. Every row is a search-result SNIPPET: the pages themselves could not be opened from this environment, so access='search_snippet'.
-# A directory or press mention is evidence that the business exists and what it is described as doing; it is NOT an official website, a price, or a verification. No official website was found for any of the three.
-REAL_SOURCES = {
-    "Brothers Produce": [("partner_listing", "https://www.restaurant365.com/partners/brothers-produce/", "Listed as a Restaurant365 partner covering Austin among several Texas metros."),
-                         ("trade_directory", "https://www.producemarketguide.com/company/113604/brothers-produce-inc", "Listed in the Produce Market Guide trade directory (headquarters entry)."),
-                         ("press", "https://www.thepacker.com/news/industry/grubmarket-adds-brothers-produce", "Trade press (July 2024) reports that GrubMarket acquired Brothers Produce, a foodservice produce distributor serving Texas.")],
-    "Hill Country Dairies": [("investor_profile", "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html", "Investor portfolio page describes an Austin-headquartered dairy distributor for foodservice customers."),
-                             ("press", "https://www.themiddlemarket.com/latest-news/riverarch-equity-partners-invests-in-hill-country-dairies", "Trade press reports an equity investment in Hill Country Dairies by RiverArch Equity Partners.")],
-    "Farm to Table LLC": [("press", "https://www.austinchronicle.com/food/food-o-file-11764527/", "Austin Chronicle describes an Austin distributor of locally grown produce to restaurants and school districts."),
-                          ("trade_directory", "https://www.producemarketguide.com/company/549852/farm-to-table-llc", "Listed in the Produce Market Guide as an Austin wholesaler of locally grown farm products; contact details are behind a login and were not recorded."),
-                          ("press", "https://refrigeratedfrozenfood.com/articles/91481-farm-to-table-expands-to-houston-market", "Trade press describes an Austin-based produce distributor expanding to Houston (an older article; may be out of date).")]}
-OFFICIAL_SITE_FINDING = ("Supplier verification", "A public search on 2026-10-23 found directory listings, press and investor pages for Farm to Table LLC, Hill Country Dairies and Brothers Produce, but no confirmed official website for any of them. All three stay unverified leads.",
-                         "search_result", 0.6, "Only search-result snippets were seen; the pages could not be opened here. An official website, public contact channel and published prices would need a person to confirm them.",
-                         "https://www.producemarketguide.com/company/549852/farm-to-table-llc")
+REAL = json.loads((Path(__file__).parent / "data" / "real_suppliers.json").read_text())      # the research record: 12 real businesses, 31 dated public sources, none verified
+_official = [x for x in REAL["suppliers"] if any(k in ("official_site", "contact_page") for k, _, _ in x["sources"])]
+OFFICIAL_SITE_FINDING = ("Supplier verification", f"Of {len(REAL['suppliers'])} real businesses researched on {REAL['researched_on']}, none could be verified. Pages on their own domains appeared in search results for {len(_official)} of them (snippets only); the rest are known only from directories, press, "
+                         "encyclopedia or investor pages. No page could be opened (network policy), no price was seen and nobody was contacted.", "search_result", 0.6,
+                         "Search-result snippets only. A person would need to open each official site, confirm the business, a public contact channel and any published prices, and record the date.", "https://www.producemarketguide.com/company/549852/farm-to-table-llc")
 
 MERIDIAN_PROJECT = dict(name="Second studio location", industry="Fitness", location="Cedar Park, TX", concept="A second boutique fitness studio for a growing member base, with the same class formats and memberships as the first.",
                         budget_cents=18_000_000, launch_target=date(2027, 6, 1))
-MERIDIAN_ASSUMPTIONS = [("weekly_orders", "New sales per week", 38, "sales", "synthetic_assumption", "Assumed once established."), ("items_per_order", "Items per sale", 1.0, "items", "synthetic_assumption", None), ("avg_discount_pct", "Average discount", 4, "%", "synthetic_assumption", None),
-                        ("variable_overhead_pct", "Payment fees", 2.9, "% of price", "synthetic_assumption", None), ("price_elasticity", "Price elasticity of demand", -0.9, "ratio", "synthetic_assumption", "Assumed."),
+MERIDIAN_ASSUMPTIONS = [("weekly_orders", "Billed sales per week (memberships, class packs and sessions)", 100, "sales", "synthetic_assumption", "Assumed once established; not measured."), ("items_per_order", "Items per sale", 1.0, "items", "synthetic_assumption", None),
+                        ("avg_discount_pct", "Average discount", 4, "%", "synthetic_assumption", None), ("variable_overhead_pct", "Payment fees", 2.9, "% of price", "synthetic_assumption", None),
+                        ("price_elasticity", "Price elasticity of demand", -0.9, "ratio", "synthetic_assumption", "Assumed."), ("cost_inflation_pct", "Supply cost inflation", 0, "%", "synthetic_assumption", None),
                         ("rent_monthly_cents", "Rent", 900_000, "cents/month", "synthetic_assumption", None), ("labor_monthly_cents", "Instructors and front desk", 1_400_000, "cents/month", "synthetic_assumption", None),
                         ("utilities_monthly_cents", "Utilities", 150_000, "cents/month", "synthetic_assumption", None), ("marketing_monthly_cents", "Marketing", 200_000, "cents/month", "synthetic_assumption", None),
                         ("insurance_monthly_cents", "Insurance", 90_000, "cents/month", "synthetic_assumption", None), ("other_fixed_monthly_cents", "Other fixed costs", 120_000, "cents/month", "synthetic_assumption", None),
-                        ("startup_capex_cents", "Fit-out and equipment", 9_500_000, "cents", "synthetic_assumption", "Placeholder; no quote exists.")]
-MERIDIAN_MILESTONES = [("Confirm demand from the waiting list", "research", date(2026, 12, 1), "doing"), ("Compare equipment and cleaning-service suppliers", "sourcing", date(2027, 1, 20), "todo"), ("Review the financial plan", "financial_plan", date(2027, 2, 15), "todo"), ("Launch roadmap", "roadmap", date(2027, 4, 1), "todo")]
-MERIDIAN_SUPPLIERS = [("Synthetic Studio Equipment Supplier", "Fitness equipment", [("Spin bike", "each", 98000, 1, 14, 0), ("Rubber flooring (per m2)", "m2", 4200, 10, 7, 30000)]), ("Synthetic Linen and Towel Service", "Laundry service", [("Towel service (per pickup)", "pickup", 25000, 1, 3, 0)])]
+                        ("capex_buildout_cents", "Studio fit-out (walls, mirrors, lighting)", 2_800_000, "cents", "synthetic_assumption", "Placeholder; no contractor quote exists."), ("capex_equipment_cents", "Studio equipment", 3_200_000, "cents", "synthetic_assumption", "Planning figure; the procurement recommendation prices the itemised requirements separately."),
+                        ("capex_furniture_cents", "Reception, lockers and furniture", 800_000, "cents", "synthetic_assumption", None), ("capex_technology_cents", "Booking, access and sound systems", 600_000, "cents", "synthetic_assumption", None),
+                        ("capex_other_cents", "Other capital items", 0, "cents", "synthetic_assumption", "None planned."), ("startup_capex_cents", "Capital expenditure (lump sum)", 0, "cents", "synthetic_assumption", "Not used: capital items are itemised above."),
+                        ("preopen_licences_permits_cents", "Licences, permits and insurance set-up", 200_000, "cents", "synthetic_assumption", "Placeholder; actual fees were not checked."), ("preopen_deposits_cents", "Deposits", 1_800_000, "cents", "synthetic_assumption", "Assumed two months of rent."),
+                        ("preopen_professional_fees_cents", "Professional fees", 350_000, "cents", "synthetic_assumption", None), ("preopen_training_cents", "Instructor training and pre-opening payroll", 450_000, "cents", "synthetic_assumption", None),
+                        ("preopen_launch_marketing_cents", "Launch marketing", 300_000, "cents", "synthetic_assumption", "Planning figure only; no campaign has been run or paid for."), ("preopen_other_cents", "Other pre-opening costs", 0, "cents", "synthetic_assumption", "None planned."),
+                        ("working_capital_months", "Working capital: months of fixed costs held in reserve", 2, "months", "synthetic_assumption", None), ("opening_inventory_weeks", "Opening supplies: weeks of supply cost", 2, "weeks", "synthetic_assumption", None),
+                        ("contingency_pct", "Contingency on the start-up subtotal", 6, "%", "synthetic_assumption", "A planning allowance; not derived from this project's risks.")]
+MERIDIAN_MILESTONES = [("Confirm demand from the waiting list", "research", date(2026, 12, 1), "doing"), ("Compare equipment and cleaning-service suppliers", "sourcing", date(2027, 1, 20), "todo"), ("Review the financial plan", "financial_plan", date(2027, 2, 15), "todo"),
+                       ("Install and test equipment", "roadmap", date(2027, 3, 10), "todo"), ("Launch roadmap", "roadmap", date(2027, 4, 1), "todo")]
+MERIDIAN_FINDINGS = [("Demand", "The first studio has a waiting list of 140 people (synthetic figure).", "synthetic_fixture", 0.4, "Synthetic planning input; not a real waiting list."),
+                     ("Equipment lead time", "Bulk spin-bike orders are assumed to take two to four weeks to arrive, which sets the earliest opening date (synthetic planning figure).", "synthetic_fixture", 0.4, "A planning assumption; no supplier has been asked."),
+                     ("Competition", "Two other boutique studios are assumed to operate within a short drive (synthetic planning figure).", "synthetic_fixture", 0.3, "Not researched; a real study would list and verify them.")]
+# (name, category, [(product, requirement ref, unit, price cents, pack, lead days, minimum order cents)]): two or more synthetic suppliers per need, so the comparison is real
+MERIDIAN_SUPPLIERS = [("Synthetic Studio Equipment Supplier", "Fitness equipment", [("Spin bike", "equip.spin-bike", "each", 98000, 1, 14, 0), ("Rubber flooring", "equip.rubber-floor", "m2", 4200, 10, 7, 30000), ("Dumbbell rack set", "equip.dumbbell-set", "each", 64000, 1, 10, 0)]),
+                      ("Synthetic Fitness Equipment Wholesale", "Fitness equipment", [("Spin bike", "equip.spin-bike", "each", 94500, 1, 28, 200000), ("Rubber flooring", "equip.rubber-floor", "m2", 4650, 10, 5, 0), ("Dumbbell rack set", "equip.dumbbell-set", "each", 61500, 1, 21, 0), ("Studio sound system", "equip.sound-system", "each", 215000, 1, 12, 0)]),
+                      ("Synthetic Linen and Towel Service", "Laundry service", [("Towel service (per pickup)", "svc.towel-service", "pickup", 25000, 1, 3, 0)]),
+                      ("Synthetic Fresh Fold Laundry", "Laundry service", [("Towel service (per pickup)", "svc.towel-service", "pickup", 23500, 1, 5, 0)]),
+                      ("Synthetic Studio Cleaning Co", "Cleaning service", [("Studio cleaning (per visit)", "svc.studio-cleaning", "visit", 8500, 1, 2, 0), ("Surface sanitiser", "sup.sanitiser", "L", 1800, 5, 3, 0)]),
+                      ("Synthetic Facility Supply", "Janitorial supplies", [("Studio cleaning (per visit)", "svc.studio-cleaning", "visit", 9200, 1, 2, 0), ("Surface sanitiser", "sup.sanitiser", "L", 1650, 10, 4, 5000)])]
+MERIDIAN_REQUIREMENTS = [("equip.spin-bike", "Spin bike", "equipment", 20, "each", "one_time"), ("equip.rubber-floor", "Rubber flooring", "equipment", 180, "m2", "one_time"), ("equip.dumbbell-set", "Dumbbell rack set", "equipment", 2, "each", "one_time"),
+                         ("equip.sound-system", "Studio sound system", "equipment", 1, "each", "one_time"), ("svc.towel-service", "Towel service (per pickup)", "service", 2, "pickup", "per_week"),
+                         ("svc.studio-cleaning", "Studio cleaning (per visit)", "service", 3, "visit", "per_week"), ("sup.sanitiser", "Surface sanitiser", "consumable", 6, "L", "per_week")]
 
 
 def seed_nasha_launch(svc, today=None):
@@ -92,12 +102,14 @@ def seed_nasha_launch(svc, today=None):
         svc.add_supplier_product(sid[qt["supplier_id"]], ing["name"], qt["unit"], "SYNTHETIC_QUOTE", SYNTH_LIMIT, unit_price_cents=round(qt["unit_price"] * 100, 4), ingredient_ref=qt["ingredient_id"], pack_qty=qt["pack_qty"],
                                  lead_days=qt["lead_days"], min_order_cents=int(qt["min_order_usd"] * 100), valid_from=today - timedelta(days=1), valid_to=today + timedelta(days=29))
     leads = {}
-    for name, cat, area, url, note in REAL_LEADS:
-        leads[name] = svc.add_supplier(name, cat, area, "lead_unverified", "search_result", source_url=url, verified_on=None, notes=note)
-        for kind, url2, claim in REAL_SOURCES[name]:
+    for r in REAL["suppliers"]:
+        name = r["name"]
+        leads[name] = svc.add_supplier(name, r["category"], r["service_area"], "lead_unverified", "search_result", source_url=r["sources"][0][1], verified_on=None, notes=r["notes"])
+        for kind, url2, claim in r["sources"]:
             svc.add_supplier_source(leads[name], kind, url2, claim, "search_snippet", SEARCHED)
-        svc.add_supplier_product(leads[name], "Wholesale catalogue (no published prices)", "n/a", "NONE_PUBLISHED", NO_PRICE, source_url=url)
-        svc.set_project_supplier(pid, leads[name], "shortlisted", "Candidate to ask for a quote later. No contact has been made.")
+        svc.add_supplier_product(leads[name], "Wholesale catalogue (no published prices seen)", "n/a", "NONE_PUBLISHED", NO_PRICE, source_url=r["sources"][0][1])
+        if r["shortlist"]:
+            svc.set_project_supplier(pid, leads[name], "shortlisted", "Candidate to ask for a quote later. No contact has been made.")
     for fx in ("S03", "S04", "FS01"):
         svc.set_project_supplier(pid, sid[fx], "shortlisted", "Synthetic fixture used to exercise the comparison.")
     econ = {e["name"]: e for e in svc.product_economics()}
@@ -111,6 +123,7 @@ def seed_nasha_launch(svc, today=None):
 
 
 def seed_meridian_launch(svc, today=None):
+    """A complete second-industry launch: the same tables, workflow and authorisation as the flagship; what differs is DATA (requirements, suppliers, assumptions), never code."""
     today = today or date.today()
     pid = svc.create_project(**MERIDIAN_PROJECT, basis="synthetic")
     for k, label, v, unit, basis, note in MERIDIAN_ASSUMPTIONS:
@@ -119,13 +132,16 @@ def seed_meridian_launch(svc, today=None):
         m = svc.add_milestone(pid, title, phase, due)
         if st != "todo":
             svc.set_milestone_status(m, st)
-    svc.add_finding(pid, "Demand", "The first studio has a waiting list of 140 people (synthetic figure).", "synthetic_fixture", 0.4, "Synthetic planning input; not a real waiting list.", None, None)
+    for topic, finding, kind, conf, limit in MERIDIAN_FINDINGS:
+        svc.add_finding(pid, topic, finding, kind, conf, limit, None, None)
+    for ref, name, kind, qty, unit, rec in MERIDIAN_REQUIREMENTS:
+        svc.add_requirement(pid, ref, name, kind, qty, unit, rec, "Synthetic planning requirement")
     sids = {}
     for name, cat, prods in MERIDIAN_SUPPLIERS:
         s = svc.add_supplier(name, cat, "Synthetic (no real service area)", "synthetic_fixture", "synthetic_fixture", notes="Fictional supplier.")
         sids[name] = s
-        for pn, unit, cents, pack, lead, mn in prods:
-            svc.add_supplier_product(s, pn, unit, "SYNTHETIC_QUOTE", SYNTH_LIMIT, unit_price_cents=cents, pack_qty=pack, lead_days=lead, min_order_cents=mn, valid_from=today - timedelta(days=1), valid_to=today + timedelta(days=29))
+        for pn, ref, unit, cents, pack, lead, mn in prods:
+            svc.add_supplier_product(s, pn, unit, "SYNTHETIC_QUOTE", SYNTH_LIMIT, unit_price_cents=cents, ingredient_ref=ref, pack_qty=pack, lead_days=lead, min_order_cents=mn, valid_from=today - timedelta(days=1), valid_to=today + timedelta(days=29))
         svc.set_project_supplier(pid, s, "shortlisted", "Synthetic fixture.")
     svc.set_project_stage(pid, "financial_plan")
     return dict(project=pid, suppliers=sids)

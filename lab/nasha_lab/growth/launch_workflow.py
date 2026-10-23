@@ -168,12 +168,12 @@ class LaunchProcurement(WeirCaller):
             return self._fail(corr, fail, state="FAILED" if fail != "TOOL_DENIED" else "BLOCKED", detail="could not read the project's supplier data")
         if not parsed.get("project"):
             return self._fail(corr, "NO_SUCH_PROJECT", detail=project_id)
-        if not parsed.get("scenario"):
-            return self._fail(corr, "NO_SCENARIO", detail="the project has no products with a price and unit cost")
+        if not parsed.get("requirements") and not (parsed.get("use_recipes") and parsed.get("scenario")):
+            return self._fail(corr, "NO_SCENARIO", detail="the project has no stated requirements and no priced products to derive needs from")
         directory = _dates(parsed["directory"]); scen = parsed["scenario"]
         self.store.event(corr, "stage", stage="P03", name="data_read", suppliers=len(directory), priced_suppliers=sum(1 for s in directory if s["priced_products"]), project=parsed["project"]["name"])
-        plan = PRC.plan(directory, scen, period_weeks, self.as_of)
-        self.store.event(corr, "stage", stage="P04", name="demand_and_needs", ingredients=len(plan["items"]), portions=sum(plan["portions"].values()))
+        plan = PRC.plan(directory, scen, period_weeks, self.as_of, parsed.get("requirements") or [], bool(parsed.get("use_recipes")))
+        self.store.event(corr, "stage", stage="P04", name="demand_and_needs", ingredients=len(plan["items"]), portions=sum(plan["portions"].values()), needs_from=plan["needs_from"], industry=parsed["project"]["industry"])
         if not any(i["chosen"] for i in plan["items"]):
             return self._fail(corr, "NO_VALID_QUOTES", detail="no valid priced quote exists for any needed ingredient")
         # P05: agent-assisted research (read-only), verified independently; deterministic fallback

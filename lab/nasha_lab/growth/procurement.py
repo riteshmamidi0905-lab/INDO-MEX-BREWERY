@@ -19,6 +19,17 @@ def demand(scenario_results, period_weeks):
     return {ln["name"]: ln["units_per_month"] * f for ln in scenario_results["lines"]}
 
 
+def needs_from_requirements(requirements, period_weeks):
+    """Needs stated explicitly by the project (equipment, services, consumables): a one-time requirement is needed once; a per-week requirement is needed every week of the period. Industry-agnostic: this is how a studio or
+    any business without recipes says what it must buy. Returns {ref: need}."""
+    out = {}
+    for r in requirements or []:
+        qty = float(r["qty"]) * (period_weeks if r["recurrence"] == "per_week" else 1)
+        e = out.setdefault(r["ref"], dict(ingredient_ref=r["ref"], ingredient=r["name"], unit=r["unit"], qty=0.0, recurrence=r["recurrence"], kind=r["kind"]))
+        e["qty"] += qty
+    return out
+
+
 def needs(portions, recipes=None, master=None):
     """Ingredient requirements (as-purchased quantities in purchase units) for the demanded portions. Returns (needs, unmapped product names)."""
     recipes = recipes or RM.load_recipes()
@@ -29,7 +40,7 @@ def needs(portions, recipes=None, master=None):
         if rid is None:
             unmapped.append(name); continue
         for ing, qty in bom.explode(rid, recipes, master).items():
-            e = out.setdefault(ing, dict(ingredient_ref=ing, ingredient=master[ing]["name"], unit=master[ing]["unit"], qty=0.0))
+            e = out.setdefault(ing, dict(ingredient_ref=ing, ingredient=master[ing]["name"], unit=master[ing]["unit"], qty=0.0, recurrence="per_week", kind="consumable"))
             e["qty"] += qty * n
     return out, unmapped
 
@@ -84,8 +95,8 @@ def replenishment(items, period_weeks, safety_pct=20.0):
     out = []
     for it in items:
         c = it["chosen"]
-        if not c:
-            continue
+        if not c or it.get("recurrence", "per_week") != "per_week":
+            continue                                   # a one-time purchase (equipment) has no weekly usage to plan a reorder point for
         weekly = it["need_qty"] / period_weeks
         lead = c["lead_days"] or 0
         out.append(dict(ingredient=it["ingredient"], unit=it["unit"], weekly_usage=round(weekly, 3), lead_days=lead, reorder_point=round(weekly * lead / 7 * (1 + safety_pct / 100), 3),
@@ -106,13 +117,26 @@ def price_effect(items, period_weeks):
                 note="Compares the cheapest valid quote with the next cheapest for each ingredient. " + ("Every price used is a synthetic fixture, so this is an illustration, not a saving." if classes == ["SYNTHETIC_QUOTE"] else "Quotes of different price classes are not interchangeable; check each before relying on the difference."))
 
 
-def plan(directory, scenario_results, period_weeks, as_of):
-    portions = demand(scenario_results, period_weeks)
-    need_map, unmapped = needs(portions)
+def plan(directory, scenario_results, period_weeks, as_of, requirements=(), use_recipes=True):
+    """The needs come from the project's explicit requirements and, for an industry that cooks (use_recipes), from the recipe bill of materials for the scenario's demand. Same comparison, same independent re-derivation."""
+    portions, unmapped, need_map, sources = {}, [], {}, []
+    if use_recipes and scenario_results:
+        portions = demand(scenario_results, period_weeks)
+        need_map, unmapped = needs(portions); sources.append("recipes")
+    if requirements:
+        for ref, n in needs_from_requirements(requirements, period_weeks).items():
+            if ref in need_map and need_map[ref]["unit"] == n["unit"]:
+                need_map[ref]["qty"] += n["qty"]
+            else:
+                need_map[ref] = n
+        sources.append("requirements")
     items, totals, flags = compare(directory, need_map, as_of)
+    kinds = {r: (n.get("recurrence", "per_week"), n.get("kind", "consumable")) for r, n in need_map.items()}
+    for it in items:
+        it["recurrence"], it["kind"] = kinds.get(it["ingredient_ref"], ("per_week", "consumable"))
     if unmapped:
         flags.append(dict(kind="unmapped_products", message="No recipe for: " + ", ".join(unmapped)))
-    return dict(period_weeks=period_weeks, as_of=str(as_of), portions={k: round(v, 1) for k, v in portions.items()}, items=items, price_effect=price_effect(items, period_weeks), replenishment=replenishment(items, period_weeks), replenishment_assumption="safety margin 20% (assumed)", supplier_totals=totals, total_cost_cents=sum(t["cost_cents"] for t in totals), flags=flags,
+    return dict(needs_from=sources, period_weeks=period_weeks, as_of=str(as_of), portions={k: round(v, 1) for k, v in portions.items()}, items=items, price_effect=price_effect(items, period_weeks), replenishment=replenishment(items, period_weeks), replenishment_assumption="safety margin 20% (assumed)", supplier_totals=totals, total_cost_cents=sum(t["cost_cents"] for t in totals), flags=flags,
                 disclaimer="Recommendation only. No order was placed and no supplier was contacted.")
 
 

@@ -18,7 +18,7 @@ POLICY = {
     "segment.create": {"OWNER", "MARKETING", "ANALYST"}, "product.create": {"OWNER"}, "price.scenario": {"OWNER", "ANALYST"}, "price.set_current": {"OWNER"}, "offer.create": {"OWNER", "MARKETING"},
     "campaign.create": {"OWNER", "MARKETING"}, "content.draft": {"OWNER", "MARKETING"}, "outreach.draft": {"OWNER", "SALES", "MARKETING"},
     "project.create": {"OWNER"}, "project.stage": {"OWNER"}, "project.assumption": {"OWNER", "ANALYST"}, "milestone.write": {"OWNER"}, "finding.add": {"OWNER", "ANALYST"}, "supplier.add": {"OWNER", "ANALYST"},
-    "supplier.shortlist": {"OWNER", "ANALYST"}, "scenario.save": {"OWNER", "ANALYST"}, "procurement.record": {"OWNER", "ANALYST"},
+    "supplier.shortlist": {"OWNER", "ANALYST"}, "requirement.write": {"OWNER", "ANALYST"}, "scenario.save": {"OWNER", "ANALYST"}, "procurement.record": {"OWNER", "ANALYST"},
     "read": {"OWNER", "SALES", "MARKETING", "ANALYST", "VIEWER"},
 }
 

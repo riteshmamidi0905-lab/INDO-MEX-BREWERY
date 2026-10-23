@@ -71,8 +71,8 @@ class LaunchReadUpstream(_Upstream):
             ov = self.svc.project_overview(pid)
             if ov is None:
                 return _ok({"project": None})
-            scen = self.svc.preview_scenario(pid)
-            return _ok({"project": dict(id=ov["id"], name=ov["name"], industry=ov["industry"], location=ov["location"], stage=ov["stage"]), "scenario": scen["results"] if scen else None,
+            pc = self.svc.procurement_context(pid)
+            return _ok({"project": dict(id=ov["id"], name=ov["name"], industry=ov["industry"], location=ov["location"], stage=ov["stage"]), "scenario": pc["scenario"], "requirements": pc["requirements"], "use_recipes": pc["use_recipes"],
                         "directory": self.svc.supplier_directory(self.as_of, pid), "provenance": {"tenant": self.svc.tenant, "synthetic": True}})
         except Denied as e:
             return _err("DENIED", str(e))
@@ -112,8 +112,8 @@ class ProcureUpstream(_Upstream):
             return _err("PROPOSAL_MISMATCH")
         # re-derive from CURRENT data: quotes that expired or changed since the proposal make it stale
         try:
-            scen = self.svc.preview_scenario(run["project_id"])
-            plan = PRC.plan(self.svc.supplier_directory(self.as_of, run["project_id"]), scen["results"], int(arguments["period_weeks"]), self.as_of)
+            pc = self.svc.procurement_context(run["project_id"])
+            plan = PRC.plan(self.svc.supplier_directory(self.as_of, run["project_id"]), pc["scenario"], int(arguments["period_weeks"]), self.as_of, pc["requirements"], pc["use_recipes"])
         except (ValueError, Denied) as e:
             return _err("STALE_PROPOSAL", str(e))
         if PRC.digest(plan) != run["proposal_hash"]:

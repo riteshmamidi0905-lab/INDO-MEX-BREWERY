@@ -56,7 +56,7 @@ def inputs_hash(inputs):
     return hashlib.sha256(canonical(inputs).encode()).hexdigest()
 
 
-def build_inputs(products, assumptions, overrides=None, budget_cents=0):
+def build_inputs(products, assumptions, overrides=None, budget_cents=0, labels=None):
     """products: [{name, price_cents, unit_cost_cents, mix (optional weight)}] from the stored products and current prices; assumptions: {key: value} from stored project assumptions;
     overrides: {key: value} for a what-if (price_change_pct, cost_change_pct and any assumption key). Returns the full, explicit input document that compute() consumes."""
     a = dict(DEFAULT_ASSUMPTIONS)
@@ -72,7 +72,10 @@ def build_inputs(products, assumptions, overrides=None, budget_cents=0):
                    key=lambda p: p["name"])
     if not prods:
         raise ValueError("a financial scenario needs at least one product with a current price and a unit cost")
-    return {"products": prods, "assumptions": a, "defaulted_assumptions": defaulted, "price_change_pct": price_change, "cost_change_pct": cost_change, "budget_cents": int(budget_cents)}
+    out = {"products": prods, "assumptions": a, "defaulted_assumptions": defaulted, "price_change_pct": price_change, "cost_change_pct": cost_change, "budget_cents": int(budget_cents)}
+    if labels:
+        out["labels"] = labels                           # industry wording for the start-up categories (display only; never changes a number)
+    return out
 
 
 def _mix(prods):
@@ -109,7 +112,7 @@ def compute(inputs):
     available = inputs["budget_cents"] - capex
     payback = capex / operating if operating > 0 and capex else (0.0 if not capex else None)
     runway = None if operating >= 0 else (available / -operating if available > 0 else 0.0)
-    startup = startup_requirement(a, inputs["budget_cents"], variable, fixed)
+    startup = startup_requirement(a, inputs["budget_cents"], variable, fixed, inputs.get("labels"))
     return dict(
         startup=startup, formulas=formulas(a, lines, units, revenue, variable, contribution, fixed, operating, be_units, startup),
         kind="simulated", disclaimer="Simulated projection from stated assumptions; not actual business performance. Demand, mix and elasticity are assumed, not measured.",
@@ -121,9 +124,10 @@ def compute(inputs):
         payback_months=None if payback is None else round(payback, 1), runway_months_if_loss_making=None if runway is None else round(runway, 1), lines=lines)
 
 
-def startup_requirement(a, budget_cents, variable_monthly, fixed_monthly):
+def startup_requirement(a, budget_cents, variable_monthly, fixed_monthly, labels=None):
     """What it takes to open: capital items + pre-opening costs + working capital (months of fixed costs and weeks of opening inventory at the modelled cost of goods) + a contingency percentage of that subtotal,
     compared with the stated budget. Every line is a stored assumption; nothing is estimated here."""
+    cl, pl = ((labels or {}).get("capex") or CAPEX_KEYS), ((labels or {}).get("preopen") or PREOPEN_KEYS)
     capex = {k: a[k] for k in CAPEX_KEYS}
     preopen = {k: a[k] for k in PREOPEN_KEYS}
     wc_fixed = a["working_capital_months"] * fixed_monthly
@@ -132,7 +136,7 @@ def startup_requirement(a, budget_cents, variable_monthly, fixed_monthly):
     subtotal = capex_total + preopen_total + wc_fixed + wc_inventory
     contingency = subtotal * a["contingency_pct"] / 100.0
     total = subtotal + contingency
-    return dict(capex={CAPEX_KEYS[k]: round(v) for k, v in capex.items() if v}, capex_total_cents=round(capex_total), preopening={PREOPEN_KEYS[k]: round(v) for k, v in preopen.items() if v}, preopening_total_cents=round(preopen_total),
+    return dict(capex={cl.get(k, CAPEX_KEYS[k]): round(v) for k, v in capex.items() if v}, capex_total_cents=round(capex_total), preopening={pl.get(k, PREOPEN_KEYS[k]): round(v) for k, v in preopen.items() if v}, preopening_total_cents=round(preopen_total),
                 working_capital=dict(fixed_cost_months=a["working_capital_months"], fixed_cost_cents=round(wc_fixed), opening_inventory_weeks=a["opening_inventory_weeks"], opening_inventory_cents=round(wc_inventory), total_cents=round(wc_fixed + wc_inventory)),
                 subtotal_cents=round(subtotal), contingency_pct=a["contingency_pct"], contingency_cents=round(contingency), total_requirement_cents=round(total), budget_cents=budget_cents,
                 headroom_cents=round(budget_cents - total), funding_gap_cents=round(max(0.0, total - budget_cents)), budget_covers_requirement=budget_cents >= total)

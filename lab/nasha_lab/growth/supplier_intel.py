@@ -132,6 +132,22 @@ def area_match(project_location, service_area):
 
 
 # ------------------------------------------------------------------ freshness and the per-supplier card
+TIER_LABEL = {"primary_page_read": "Official page read", "official_domain_snippet": "Official-domain search snippet (page not opened)", "secondary_only": "Secondary sources only", "synthetic": "Synthetic fixture (no real source)", "none": "No source recorded"}
+
+
+def evidence_tier(s):
+    """How direct the evidence behind a supplier record is, from its recorded sources (never from a claim): an official page that was READ; a snippet of a page on the supplier's own domain; directory, press or reference
+    sources only; or a synthetic fixture. Verified status additionally requires a read official page, a website, a source and a date (enforced by the database), so no tier below the first can verify a supplier."""
+    if s["verification_status"] == "synthetic_fixture":
+        return "synthetic"
+    own = [x for x in s.get("sources", []) if x["kind"] in ("official_site", "contact_page")]
+    if any(x["access"] == "page_read" for x in own):
+        return "primary_page_read"
+    if own:
+        return "official_domain_snippet"
+    return "secondary_only" if s.get("sources") else "none"
+
+
 def supplier_card(s, project_location=None, as_of=None):
     """One supplier with its information category, derived classification, area match and counts by price category. Pure: nothing is stored."""
     info = INFO_CATEGORY.get(s["verification_status"], "unverified_public_lead")
@@ -139,7 +155,8 @@ def supplier_card(s, project_location=None, as_of=None):
     for p in s["products"]:
         c = PRICE_CATEGORY[p["price_class"]]
         cats[c] = cats.get(c, 0) + 1
-    return dict(id=s["id"], name=s["name"], information_category=info, information_label=INFO_LABEL[info], official_website=s.get("website_url"), official_website_verified=s["verification_status"] == "verified_public",
+    tier = evidence_tier(s)
+    return dict(id=s["id"], name=s["name"], evidence_tier=tier, evidence_tier_label=TIER_LABEL[tier], official_domain_seen=sorted({domain(x["url"]) for x in s.get("sources", []) if x["kind"] in ("official_site", "contact_page")}), information_category=info, information_label=INFO_LABEL[info], official_website=s.get("website_url"), official_website_verified=s["verification_status"] == "verified_public",
                 verified_on=s.get("verified_on"), freshness=s.get("freshness"), classification=classify(s["category"], s["name"], [p["name"] for p in s["products"]]),
                 area=area_match(project_location, s["service_area"]) if project_location else None, price_categories=cats, sources=s.get("sources", []), public_channels=[x for x in s.get("sources", []) if x["kind"] in ("official_site", "contact_page")])
 

@@ -5,7 +5,7 @@ from datetime import date
 
 from psycopg.types.json import Jsonb
 
-from . import financials as FIN, supplier_intel as SI
+from . import financials as FIN, industry_profiles as PF, supplier_intel as SI
 
 FRESH_DAYS, STALE_DAYS = 90, 180
 STAGE_ORDER = ["idea", "research", "sourcing", "financial_plan", "roadmap"]
@@ -35,6 +35,28 @@ class LaunchMixin:
                 raise self.Blocked("no such project in this tenant")
             return project_id
         return self._write("project.stage", "launch_projects", go)
+
+    def add_requirement(self, project_id, ref, name, kind, qty, unit, recurrence, note=None):
+        """A physical need of the project (equipment, a recurring service, a consumable) stated by the owner or analyst. Procurement matches it to supplier quotes by `ref` and unit. Authorised and audited like every write."""
+        i = self._id("req")
+        def go():
+            if not self.con.execute("SELECT 1 FROM launch_projects WHERE tenant_id=%s AND id=%s", (self.tenant, project_id)).fetchone():
+                raise self.Blocked("no such project in this tenant")
+            self.con.execute("INSERT INTO project_requirements (tenant_id,id,project_id,ref,name,kind,qty,unit,recurrence,note,created_by) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (self.tenant, i, project_id, ref, name, kind, qty, unit, recurrence, note, self.user))
+            return i
+        return self._write("requirement.write", "project_requirements", go)
+
+    def set_requirement_qty(self, requirement_id, qty):
+        def go():
+            if not self.con.execute("UPDATE project_requirements SET qty=%s WHERE tenant_id=%s AND id=%s RETURNING id", (qty, self.tenant, requirement_id)).fetchone():
+                raise self.Blocked("no such requirement in this tenant")
+            return requirement_id
+        return self._write("requirement.write", "project_requirements", go)
+
+    def requirements(self, project_id):
+        self._authorize("read")
+        return [dict(zip(("id", "ref", "name", "kind", "qty", "unit", "recurrence", "note"), (r[0], r[1], r[2], r[3], float(r[4]), r[5], r[6], r[7])))
+                for r in self.con.execute("SELECT id, ref, name, kind, qty, unit, recurrence, note FROM project_requirements WHERE tenant_id=%s AND project_id=%s ORDER BY kind, name", (self.tenant, project_id)).fetchall()]
 
     def set_assumption(self, project_id, key, label, value, unit, basis, note=None):
         """Create or replace one stated assumption (founder input, synthetic assumption or public reference)."""
@@ -157,6 +179,8 @@ class LaunchMixin:
         p["findings"] = [dict(zip(("id", "topic", "finding", "source_kind", "source_url", "retrieved_on", "confidence", "limitation"), (r[0], r[1], r[2], r[3], r[4], r[5], float(r[6]), r[7])))
                          for r in q("SELECT id, topic, finding, source_kind, source_url, retrieved_on, confidence, limitation FROM research_findings WHERE tenant_id=%s AND project_id=%s ORDER BY topic, created_at")]
         p["shortlist"] = [dict(zip(("supplier_id", "name", "status", "note"), r)) for r in q("SELECT ps.supplier_id, s.name, ps.status, ps.note FROM project_suppliers ps JOIN suppliers s ON s.tenant_id=ps.tenant_id AND s.id=ps.supplier_id WHERE ps.tenant_id=%s AND ps.project_id=%s ORDER BY ps.status, s.name")]
+        p["requirements"] = self.requirements(project_id)
+        p["profile"] = {k: v for k, v in PF.profile_for(p["industry"]).items() if k not in ("capex_labels", "preopen_labels")}
         p["scenarios"] = [dict(zip(("id", "name", "inputs_hash", "created_at"), r)) for r in q("SELECT id, name, inputs_hash, created_at FROM financial_scenarios WHERE tenant_id=%s AND project_id=%s ORDER BY created_at, id")]
         return p
 
@@ -172,7 +196,21 @@ class LaunchMixin:
         if ov is None:
             return None
         prods = [p for p in self.product_economics() if not product_ids or p["id"] in product_ids]
-        return FIN.build_inputs(prods, {a["key"]: a["value"] for a in ov["assumptions"]}, overrides, ov["budget_cents"])
+        pr = PF.profile_for(ov["industry"])
+        return FIN.build_inputs(prods, {a["key"]: a["value"] for a in ov["assumptions"]}, overrides, ov["budget_cents"], labels=dict(capex=pr["capex_labels"], preopen=pr["preopen_labels"]))
+
+    def procurement_context(self, project_id):
+        """Everything procurement planning needs besides supplier quotes, from stored data: the project's industry, its explicit requirements, whether its industry derives needs from recipes, and (if it has priced products) the
+        financial scenario. Used by BOTH the read tool and the re-derivation at the write, so they cannot disagree about what was planned."""
+        self._authorize("read")
+        ov = self.project_overview(project_id)
+        if ov is None:
+            return None
+        try:
+            scen = self.preview_scenario(project_id)
+        except ValueError:
+            scen = None
+        return dict(industry=ov["industry"], requirements=ov["requirements"], use_recipes=PF.uses_recipes(ov["industry"]), scenario=scen["results"] if scen else None)
 
     def preview_scenario(self, project_id, overrides=None, product_ids=None):
         """Compute (do not save) a scenario from stored data: nothing is written, nothing is audited."""
@@ -227,7 +265,7 @@ class LaunchMixin:
         row is the raw audit row, so the history is exactly what was recorded and nothing is synthesised here."""
         self._authorize("read")
         ids = [project_id]
-        for tbl in ("project_assumptions", "project_milestones", "research_findings", "project_suppliers", "financial_scenarios", "procurement_recommendations"):
+        for tbl in ("project_assumptions", "project_milestones", "research_findings", "project_suppliers", "financial_scenarios", "procurement_recommendations", "project_requirements"):
             ids += [r[0] for r in self.con.execute(f"SELECT id FROM {tbl} WHERE tenant_id=%s AND project_id=%s", (self.tenant, project_id)).fetchall()]
         rows = self.con.execute("SELECT seq, ts, actor, role, action, entity, entity_id, decision, detail FROM audit_log WHERE tenant_id=%s AND decision='allow' AND (entity_id = ANY(%s) OR EXISTS "
                                 "(SELECT 1 FROM jsonb_array_elements_text(COALESCE(detail->'also','[]'::jsonb)) x WHERE split_part(x, ':', 2) = ANY(%s))) ORDER BY seq", (self.tenant, ids, ids)).fetchall()

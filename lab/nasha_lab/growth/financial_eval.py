@@ -82,21 +82,21 @@ def _patched(**kv):
 
 def _startup_variant(kind):
     real = F.startup_requirement
-    def f(a, budget, variable_monthly, fixed_monthly):
+    def f(a, budget, variable_monthly, fixed_monthly, labels=None):
         if kind == "contingency_on_capex_only":
-            r = real(dict(a, contingency_pct=0), budget, variable_monthly, fixed_monthly)
+            r = real(dict(a, contingency_pct=0), budget, variable_monthly, fixed_monthly, labels)
             c = round(r["capex_total_cents"] * a["contingency_pct"] / 100.0)
             return dict(r, contingency_cents=c, total_requirement_cents=r["subtotal_cents"] + c, headroom_cents=round(budget - r["subtotal_cents"] - c), funding_gap_cents=round(max(0.0, r["subtotal_cents"] + c - budget)))
         if kind == "working_capital_ignores_months":
-            return real(dict(a, working_capital_months=0), budget, variable_monthly, fixed_monthly)
+            return real(dict(a, working_capital_months=0), budget, variable_monthly, fixed_monthly, labels)
         if kind == "inventory_uses_month_not_week":
-            return real(dict(a, opening_inventory_weeks=a["opening_inventory_weeks"] * F.WEEKS_PER_MONTH), budget, variable_monthly, fixed_monthly)
+            return real(dict(a, opening_inventory_weeks=a["opening_inventory_weeks"] * F.WEEKS_PER_MONTH), budget, variable_monthly, fixed_monthly, labels)
         if kind == "headroom_sign_flipped":
-            r = real(a, budget, variable_monthly, fixed_monthly)
+            r = real(a, budget, variable_monthly, fixed_monthly, labels)
             return dict(r, headroom_cents=-r["headroom_cents"], funding_gap_cents=round(max(0.0, budget - r["total_requirement_cents"])))
         if kind == "preopening_dropped":
-            return real({**a, **{k: 0 for k in F.PREOPEN_KEYS}}, budget, variable_monthly, fixed_monthly)
-        return real(a, budget, variable_monthly, fixed_monthly)
+            return real({**a, **{k: 0 for k in F.PREOPEN_KEYS}}, budget, variable_monthly, fixed_monthly, labels)
+        return real(a, budget, variable_monthly, fixed_monthly, labels)
     return f
 
 

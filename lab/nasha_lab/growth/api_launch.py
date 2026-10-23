@@ -76,6 +76,20 @@ class SupplierSourceIn(Strict):
     observed_on: date
 
 
+class RequirementIn(Strict):
+    ref: str = Field(pattern=r"^[a-z0-9][a-z0-9._-]{1,59}$")
+    name: str = Field(min_length=2, max_length=120)
+    kind: str = Field(pattern="^(equipment|service|consumable)$")
+    qty: float = Field(gt=0, le=1_000_000)
+    unit: str = Field(min_length=1, max_length=20)
+    recurrence: str = Field(pattern="^(one_time|per_week)$")
+    note: Optional[str] = Field(default=None, max_length=200)
+
+
+class RequirementQtyIn(Strict):
+    qty: float = Field(gt=0, le=1_000_000)
+
+
 class SupplierProductIn(Strict):
     name: str = Field(min_length=2, max_length=120)
     unit: str = Field(min_length=1, max_length=20)
@@ -175,6 +189,18 @@ def register(app, h):
                 it["summary"] = PR.audit_summary(it, nm, en)
             return ok(request, dict(items=items, note="Exactly what the audit log recorded for this project. Nothing is inferred; no order was placed and no supplier was contacted."))
         return guarded(go)(request, tenant)
+
+    @app.post(P + "/projects/{project_id}/requirements", status_code=201)
+    def add_requirement(tenant: str, project_id: str, body: RequirementIn, request: Request):
+        def go(request, tenant, who, s):
+            if not s.project_overview(project_id):
+                return missing(request)
+            return ok(request, dict(id=s.add_requirement(project_id, **body.model_dump())), 201)
+        return guarded(go)(request, tenant)
+
+    @app.put(P + "/requirements/{requirement_id}")
+    def set_requirement(tenant: str, requirement_id: str, body: RequirementQtyIn, request: Request):
+        return guarded(lambda request, tenant, who, s: ok(request, dict(id=s.set_requirement_qty(requirement_id, body.qty), qty=body.qty)))(request, tenant)
 
     @app.post(P + "/projects", status_code=201)
     def create_project(tenant: str, body: ProjectIn, request: Request, key: Optional[str] = IDK):

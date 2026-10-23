@@ -69,6 +69,20 @@ def build(root, dsn, schema=SCHEMA, with_warehouse=True):
     lw.run(ltok("ana"), pid, 2, idempotency_key="demo-proc-3")                                         # left awaiting approval
     lw.run(ltok("sam"), pid, 4, idempotency_key="demo-proc-4")                                         # sales: THE WEIR has no write tool for the role
     lw.close()
+    # the second industry on the SAME code: a fitness studio's launch (equipment and service requirements, no recipes), recorded through the same governed workflow
+    agent_fit = None
+    try:
+        import agentplatform  # noqa: F401
+        agent_fit = AR.SupplierResearchAgent(dsn, "tenant-fit", root / "agent-demo-fit")
+    except ImportError:
+        pass
+    lf = LW.LaunchProcurement(envs["tenant-fit"], agent=agent_fit)
+    ftok = lambda u: lf.login(u, f"tenant-fit-{u}-dev-passcode")
+    fpid = launch_ids["tenant-fit"]["project"]
+    owner["tenant-fit"].save_scenario(fpid, "Base plan")
+    f1 = lf.run(ftok("ana"), fpid, 4, idempotency_key="demo-fit-proc-1"); lf.decide(f1["corr_id"], ftok("ada"), True, "Quotes are synthetic fixtures; recorded for the planning exercise.")
+    lf.run(ftok("ana"), fpid, 2, idempotency_key="demo-fit-proc-2")                                    # left awaiting approval
+    lf.close()
     for s in owner.values():
         s.close()
     return envs

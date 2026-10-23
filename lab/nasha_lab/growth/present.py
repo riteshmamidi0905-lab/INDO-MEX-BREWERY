@@ -182,7 +182,7 @@ def audit_summary(row, names, entity_names):
 
 # ---------------------------------------------------------------- launch workspace: procurement recommendation runs
 LAUNCH_TOOL = {"launch__get_supplier_data": "read the project's supplier data", "procure__record_recommendation": "record the procurement recommendation"}
-LAUNCH_WHY = dict(WHY, NO_VALID_QUOTES="No valid priced supplier quote exists for the needed ingredients on the planning date, so no recommendation was made.", NO_SCENARIO="The project has no products with a price and unit cost, so no demand could be planned.",
+LAUNCH_WHY = dict(WHY, NO_VALID_QUOTES="No valid priced supplier quote exists for the needed items on the planning date, so no recommendation was made.", NO_SCENARIO="The project has no stated requirements and no priced products, so nothing could be planned.",
                   NO_SUCH_PROJECT="The project was not found in this workspace.", STALE_PROPOSAL="Supplier quotes or the financial scenario changed after the recommendation was made, so it was not recorded. A new recommendation is needed.",
                   TOOL_DENIED="This user's role does not have permission to record a procurement recommendation. THE WEIR blocked the action. Nothing was recorded.")
 AGENT_LABEL = {"engine_offline_heuristic": "Production AI Agent Platform engine, offline heuristic provider (deterministic; not a language model)", "engine_model": "Production AI Agent Platform engine with a language-model provider",
@@ -212,7 +212,8 @@ def launch_event_entry(e, names, run=None):
     elif n == "data_read":
         title, detail = "Project and supplier data gathered", f"{e.get('suppliers')} suppliers on record, {e.get('priced_suppliers')} with prices."
     elif n == "demand_and_needs":
-        title, detail = "Demand and ingredient needs calculated", f"{e.get('ingredients')} ingredients needed, from the financial scenario and the recipe bill of materials."
+        src = e.get("needs_from") or ["recipes"]; title = "What the project needs was worked out"
+        detail = f"{e.get('ingredients')} items needed, from " + " and ".join({"recipes": "the financial scenario and the recipe bill of materials", "requirements": "the project's stated equipment, service and supply requirements"}.get(x, x) for x in src) + "."
     elif n == "agent_research":
         title = "Supplier research brief prepared by the agent"
         detail = f"{e.get('claims')} cited claims from {e.get('evidence')} supplier passages; " + ("independent check found no problem." if not e.get("independent_problems") else "independent check rejected it: " + "; ".join(e["independent_problems"])[:160])

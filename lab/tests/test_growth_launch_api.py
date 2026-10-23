@@ -45,7 +45,8 @@ def test_projects_are_listed_per_tenant_and_the_overview_carries_the_whole_story
         items = c.get(f"/v1/tenants/{t}/projects", headers=H(envs, t, "vic")).json()["items"]
         assert [p["name"] for p in items] == [name]
         ov = c.get(f"/v1/tenants/{t}/projects/{items[0]['id']}", headers=H(envs, t, "vic")).json()
-        assert ov["assumptions"] and ov["milestones"] and ov["findings"] and ov["shortlist"] and ov["scenarios"] == []
+        assert ov["assumptions"] and ov["milestones"] and ov["findings"] and ov["shortlist"]
+        assert [x["name"] for x in ov["scenarios"]] == ([] if t == A else ["Base plan"]), "the flagship has no saved scenario; the studio's demonstration saved one before its approval"
     assert "fusion" not in c.get(f"/v1/tenants/{A}/projects", headers=H(envs, A, "vic")).text.lower()
     assert c.get(f"/v1/tenants/{B}/projects/{pid(world)}", headers=H(envs, B, "ada")).status_code == 404, "another tenant's project id is not found"
 
