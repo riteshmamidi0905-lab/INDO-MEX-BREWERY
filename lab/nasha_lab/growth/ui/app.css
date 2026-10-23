@@ -35,3 +35,4 @@ form.inline{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr)
 [hidden]{display:none!important}
 .srow{display:grid;grid-template-columns:minmax(110px,1.4fr) repeat(3,minmax(70px,1fr));gap:8px}.srow label{display:grid;gap:3px}.srow input{min-height:40px;padding:0 8px}
 .bar .chip{justify-self:start}
+.col h3{min-height:2.8em;align-content:start}
