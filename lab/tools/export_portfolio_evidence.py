@@ -21,6 +21,7 @@ from nasha_lab import identity as ID, llm  # noqa: E402
 from nasha_lab.governed import agent as AG, tenants as T, weir_bridge as WB, workflow as W  # noqa: E402
 
 OUT = ROOT / "portfolio/nasha-governed-evidence.json"
+EVD = ROOT / "results/release-gate"                        # evidence bundle written by tools/release_gate.py collect
 
 
 class Clock:
@@ -82,21 +83,39 @@ def scenario(sid, title, claim, wf, corr, result, expect):
                 expected=expect, matched_expectation=(result.get("status") == expect["status"] and pos == expect["purchase_orders"]), steps=timeline(wf, corr), audit=audit(wf, corr))
 
 
-def measured_metrics(env, tmp):
-    """Metrics measured IN THIS RUN: the governed workflow tests are executed, and the Ops AI evaluation is run against tenant A's warehouse."""
-    import re
+def measured_metrics(env, tmp, ev_dir):
+    """Metrics come from the release-gate evidence bundle (junit.xml, eval.json, repro.json) plus the Ops AI evaluation run here. Nothing is typed in by hand."""
     from nasha_lab.warehouse import ops_ai_eval
-    r = subprocess.run([sys.executable, "-m", "pytest", "tests/test_governed_workflow.py", "-q", "-p", "no:cacheprovider"], capture_output=True, text=True, cwd=ROOT)
-    m = re.search(r"(\d+) passed", r.stdout); f = re.search(r"(\d+) failed", r.stdout); sk = re.search(r"(\d+) skipped", r.stdout)
-    ev = ops_ai_eval.run_eval(env.warehouse, tmp / "eval-audit.db")
-    return dict(governed_workflow_tests=dict(passed=int(m.group(1)) if m else 0, failed=int(f.group(1)) if f else 0, skipped=int(sk.group(1)) if sk else 0, file="lab/tests/test_governed_workflow.py", run_in_this_export=True),
-                ops_ai_evaluation=dict(cases=ev["summary"]["cases"], passed=ev["summary"]["passed"], by_category=ev["summary"]["by_category"], failure_kinds=ev["summary"]["failure_kinds"], result_sha256=ev["result_sha256"][:16],
+    ev_dir = Path(ev_dir)
+    for n in ("summary.json", "eval.json", "repro.json", "meta.json"):
+        assert (ev_dir / n).exists(), f"evidence bundle incomplete: run `python3 tools/release_gate.py collect` first ({n} missing)"
+    summary, gev = json.loads((ev_dir / "summary.json").read_text()), json.loads((ev_dir / "eval.json").read_text())
+    ops = ops_ai_eval.run_eval(env.warehouse, tmp / "eval-audit.db")
+    return dict(governed_workflow_tests=dict(passed=summary["by_module"]["test_governed_workflow"]["passed"], failed=summary["by_module"]["test_governed_workflow"]["failed"], skipped=summary["by_module"]["test_governed_workflow"]["skipped"], file="lab/tests/test_governed_workflow.py", source="release-gate junit.xml"),
+                governed_evaluation=dict(cases=gev["metrics"]["cases"], passed=gev["metrics"]["passed"], by_category=gev["metrics"]["by_category"], result_hash=gev["result_hash"], reproducible=gev["reproducible"],
+                                         mutants_total=gev["mutants_total"], mutants_killed=gev["mutants_killed"], caveat=gev["scope"]),
+                ops_ai_evaluation=dict(cases=ops["summary"]["cases"], passed=ops["summary"]["passed"], by_category=ops["summary"]["by_category"], failure_kinds=ops["summary"]["failure_kinds"], result_sha256=ops["result_sha256"][:16],
                                        caveat="Small synthetic case set with a deterministic tool layer and rule router; a perfect score is not evidence of real-world reliability."),
-                tenants=2, scenarios_executed=len(out_scenarios_hint()))
+                release_evidence=dict(tests_passed=summary["passed"], tests_total=summary["total"], tests_failed=summary["failed"], tests_skipped=summary["skipped"], collected_at_commit=json.loads((ev_dir / "meta.json").read_text())["commit"],
+                                      model_runtime="UNVERIFIED: the real-model smoke test is skipped (no local model runtime, no network access to model hosts)", remote_ci="NOT_RUN: workflows have not executed on GitHub"),
+                tenants=2)
 
 
-def out_scenarios_hint():
-    return range(8)
+def make_claims(m, ev_dir):
+    """Each claim carries (file, pointer) into the evidence bundle; tools/release_gate.py re-resolves every one and fails on any mismatch."""
+    summary, gev, rep = (json.loads((Path(ev_dir) / n).read_text()) for n in ("summary.json", "eval.json", "repro.json"))
+    C = lambda i, t, v, f, p: dict(id=i, text=t, value=v, source=dict(file=f, pointer=p))
+    return [C("tests.passed", f"{summary['passed']} automated tests passed in the full suite run (synthetic data)", summary["passed"], "summary.json", "passed"),
+            C("tests.failed", f"{summary['failed']} tests failed", summary["failed"], "summary.json", "failed"),
+            C("tests.skipped", f"{summary['skipped']} test skipped (model runtime unverified)", summary["skipped"], "summary.json", "skipped"),
+            C("governed.tests", f"{summary['by_module']['test_governed_workflow']['passed']} governed-workflow tests passed", summary["by_module"]["test_governed_workflow"]["passed"], "summary.json", "by_module.test_governed_workflow.passed"),
+            C("eval.cases", f"{gev['metrics']['cases']} governed-evaluation cases, scored against independent oracles", gev["metrics"]["cases"], "eval.json", "metrics.cases"),
+            C("eval.passed", f"{gev['metrics']['passed']} of those cases passed", gev["metrics"]["passed"], "eval.json", "metrics.passed"),
+            C("eval.unauthorized", "unauthorized-action rate in the evaluation", gev["metrics"]["unauthorized_action_rate"], "eval.json", "metrics.unauthorized_action_rate"),
+            C("mutation.killed", f"{gev['mutants_killed']} of {gev['mutants_total']} deliberately broken variants were detected by the evaluation", gev["mutants_killed"], "eval.json", "mutants_killed"),
+            C("mutation.total", f"{gev['mutants_total']} mutants were tried", gev["mutants_total"], "eval.json", "mutants_total"),
+            C("repro.eval", "the evaluation result hash was identical on a second independent run", rep["eval_hash_run1"], "repro.json", "eval_hash_run1"),
+            C("repro.warehouse_tables", f"{rep['warehouse']['tables']} warehouse tables rebuilt byte-identically", rep["warehouse"]["tables"], "repro.json", "warehouse.tables")]
 
 
 def architecture():
@@ -109,6 +128,9 @@ def architecture():
         ("forecast", "Ingredient demand forecast", "data", "implemented_and_tested", ["lab/nasha_lab/warehouse/forecast.py"], ["lab/tests/test_forecast_labor.py"], "Seasonal baselines and Holt-Winters with rolling-origin backtest."),
         ("opsai", "Ops AI tool layer", "ai", "implemented_and_tested", ["lab/nasha_lab/warehouse/ops_ai.py", "lab/nasha_lab/warehouse/ops_ai_eval.py"], ["lab/tests/test_ops_ai_warehouse.py", "lab/tests/test_ops_ai_eval.py"], "Fixed-SQL read tools, role and site gate, audit rows; no language model."),
         ("agent", "Governed agent (planner + validation gate)", "ai", "implemented_and_tested", ["lab/nasha_lab/governed/agent.py"], ["lab/tests/test_governed_workflow.py"], "Rule planner; structured-output model planner exercised only with scripted test doubles."),
+        ("incident", "Incident investigation", "systems", "implemented_and_tested", ["lab/nasha_lab/governed/incident.py"], ["lab/tests/test_governed_incident.py"], "Reconstructs who, tenant, tools, evidence, policy decision, block reason and side effects from one correlation id."),
+        ("evaluation", "Evaluation + mutation testing", "ai", "implemented_and_tested", ["lab/nasha_lab/governed/evaluation.py"], ["lab/tests/test_governed_evaluation.py"], "Independent oracles; deliberately broken variants must be caught."),
+        ("releasegate", "Release gate", "systems", "implemented_and_tested", ["lab/tools/release_gate.py"], ["lab/tests/test_release_gate.py"], "PASS / FAIL / REQUIRES_REVIEW from machine-readable evidence; missing evidence never passes. Not yet run on remote CI."),
         ("weir", "THE WEIR gateway", "systems", "integrated_real_separate_repository", ["lab/nasha_lab/governed/weir_bridge.py", "lab/nasha_lab/warehouse/ops_ai_weir.py"], ["lab/tests/test_governed_workflow.py", "lab/tests/test_ops_ai_weir.py"], "The real mcp_weir Gateway (separate repository, pinned) enforces per-role default-deny policy and holds writes for single-use, call-bound, expiring approvals."),
         ("approval", "Human approval", "systems", "implemented_and_tested", ["lab/nasha_lab/governed/workflow.py", "lab/nasha_lab/identity.py"], ["lab/tests/test_governed_workflow.py"], "Tenant-scoped identity, role check, maker-checker, approval bound to the exact call."),
         ("ledger", "Procurement ledger (draft POs)", "systems", "implemented_and_tested", ["lab/nasha_lab/governed/ledger.py"], ["lab/tests/test_governed_workflow.py"], "Schema cannot represent a sent order; idempotent writes; hash-chained audit."),
@@ -127,7 +149,7 @@ def architecture():
             assert (ROOT.parent / t).exists(), t
         out.append(dict(id=nid, name=name, world=world, status=status, evidence=paths, tests=tests, note=note))
     edges = [("orders", "pipeline"), ("pipeline", "postgres"), ("pipeline", "scenario"), ("scenario", "forecast"), ("scenario", "opsai"), ("forecast", "opsai"), ("opsai", "agent"), ("retrieval", "agent"), ("agent", "weir"),
-             ("weir", "approval"), ("approval", "ledger"), ("tenants", "ledger"), ("trace", "agent"), ("trace", "weir"), ("llm", "agent"), ("agentplatform", "agent")]
+             ("weir", "approval"), ("approval", "ledger"), ("tenants", "ledger"), ("trace", "agent"), ("trace", "weir"), ("trace", "incident"), ("evaluation", "agent"), ("evaluation", "releasegate"), ("llm", "agent"), ("agentplatform", "agent")]
     return dict(nodes=out, edges=edges, status_legend=dict(implemented_and_tested="code exists and automated tests pass in this repository", integrated_real_separate_repository="the real component from another repository is imported and tested",
                                                           separate_repository_not_integrated="a related repository exists; there is no runtime integration", blocked="cannot run in the current environment", designed_only="specified, not built"))
 
@@ -221,7 +243,9 @@ def main():
     ms = [s["ms"] for s in out["scenarios"][0]["steps"] if s.get("ms") is not None]
     out["measured"] = dict(happy_path_tool_calls=len(ms), tool_ms_max=max(ms), tool_ms_median=sorted(ms)[len(ms) // 2], note="measured on the build machine for this run; not a benchmark")
     out["generated_seconds"] = round(time.time() - t0, 1)
-    out["metrics"] = measured_metrics(a, tmp)
+    out["metrics"] = measured_metrics(a, tmp, EVD)
+    out["claims"] = make_claims(out["metrics"], EVD)
+    out["metrics"]["scenarios_executed"] = len(out["scenarios"])
     out["architecture"] = architecture()
     blob = json.dumps(out)
     assert "dev-passcode" not in blob and not any(len(x) > 60 and x.count(".") == 1 for x in blob.replace('"', " ").split()), "credential-like content in export"
