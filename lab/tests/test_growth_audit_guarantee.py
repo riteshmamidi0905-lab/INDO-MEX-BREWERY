@@ -261,3 +261,137 @@ def test_a_duplicate_http_request_creates_one_record_and_one_audit_row(api, db):
     assert r1.status_code == 201 and r2.status_code == 201 and r1.json() == r2.json()
     assert count(db, "SELECT count(*) FROM accounts WHERE name=%s", (name,)) == 1
     assert count(db, "SELECT count(*) FROM audit_log WHERE action='account.create' AND entity_id=%s", (r1.json()["id"],)) == 1
+
+
+# ---------------------------------------------------------------- audit-chain concurrency (incident: duplicate seq on the refusal path)
+def run_all(fns):
+    """Run callables in threads and return their results; a worker exception is captured and RE-RAISED in the caller, never lost in the thread."""
+    out, errs = [None] * len(fns), []
+    def w(i, f):
+        try:
+            out[i] = f()
+        except Exception as e:  # noqa: BLE001
+            out[i] = e
+            errs.append(repr(e))
+    ts = [threading.Thread(target=w, args=(i, f)) for i, f in enumerate(fns)]
+    [t.start() for t in ts]; [t.join(30) for t in ts]
+    assert not any(t.is_alive() for t in ts), "a worker hung"
+    return out
+
+
+def chain(db, tenant):
+    with psycopg.connect(db, autocommit=True) as c:
+        c.execute(f'SET search_path TO "{SCHEMA}", pg_catalog, public')
+        return c.execute("SELECT seq, prev_hash, hash, action, decision FROM audit_log WHERE tenant_id=%s ORDER BY seq", (tenant,)).fetchall()
+
+
+def assert_chain_intact(db, tenant="tenant-a"):
+    rows = chain(db, tenant)
+    assert [r[0] for r in rows] == list(range(1, len(rows) + 1)), "sequence numbers are not unique and contiguous"
+    assert all(rows[i][1] == rows[i - 1][2] for i in range(1, len(rows))), "prev_hash does not link to the previous row"
+    s = svc(db, tenant); ok, n = s.verify_audit(); s.close()
+    assert ok is True and n == len(rows)
+
+
+def test_concurrent_denials_each_get_a_unique_sequence_and_exactly_one_deny_record(db):
+    before = count(db, "SELECT count(*) FROM audit_log WHERE tenant_id='tenant-a' AND action='account.create' AND decision='deny'")
+    N = 16
+    def denied():
+        s = svc(db, "tenant-a", "ghost")                         # a user that does not exist in the tenant: authorization refuses it
+        try:
+            s.create_account("must not exist")
+        finally:
+            s.close()
+    res = run_all([denied] * N)
+    assert all(isinstance(r, SV.Denied) for r in res), res       # every worker saw a clean refusal, none an IntegrityError from the audit write
+    assert count(db, "SELECT count(*) FROM audit_log WHERE tenant_id='tenant-a' AND action='account.create' AND decision='deny'") - before == N
+    assert count(db, "SELECT count(*) FROM accounts WHERE name='must not exist'") == 0
+    assert_chain_intact(db)
+
+
+@pytest.mark.parametrize("round_", range(5))
+def test_mixed_allow_deny_blocked_storm_keeps_the_chain_intact(db, round_):
+    s0 = svc(db); a, c, lead = lead_fixture(s0); s0.qualify_lead(lead, GOOD); s0.close()
+    tag = uuid.uuid4().hex[:6]
+    def allow(i):
+        def f():
+            s = svc(db, "tenant-a", "ada")
+            try:
+                return s.create_account(f"Storm {tag} {i}")
+            finally:
+                s.close()
+        return f
+    def deny():
+        s = svc(db, "tenant-a", "ghost")
+        try:
+            s.create_account("nope")
+        finally:
+            s.close()
+    def convert(i):
+        def f():
+            s = svc(db, "tenant-a", "ada")
+            try:
+                return s.convert_lead(lead, f"Storm opp {tag} {i}", 100)
+            finally:
+                s.close()
+        return f
+    fns = [allow(i) for i in range(6)] + [deny] * 6 + [convert(i) for i in range(6)]
+    base = len(chain(db, "tenant-a"))
+    res = run_all(fns)
+    allowed, denied, conv = res[:6], res[6:12], res[12:]
+    assert all(isinstance(x, str) for x in allowed), allowed
+    assert all(isinstance(x, SV.Denied) for x in denied), denied
+    assert sum(isinstance(x, str) for x in conv) == 1 and sum(isinstance(x, SV.Blocked) for x in conv) == 5, conv
+    assert not [x for x in res if isinstance(x, Exception) and not isinstance(x, (SV.Denied, SV.Blocked))], res
+    new = chain(db, "tenant-a")[base:]
+    assert len(new) == 6 + 6 + 1 + 5 and sorted(r[4] for r in new).count("deny") == 6 + 5     # one audit row per outcome: no refusal is missing
+    assert_chain_intact(db)
+
+
+def test_a_failed_write_rolls_back_completely_and_its_refusal_is_audited(db):
+    s = svc(db); nm = f"Rollback {uuid.uuid4().hex[:6]}"; base = count(db, "SELECT count(*) FROM audit_log WHERE tenant_id='tenant-a' AND decision='deny' AND action='account.create'")
+    def fn():
+        i = s._id("acc")
+        s.con.execute("INSERT INTO accounts (tenant_id,id,name,kind,created_by) VALUES (%s,%s,%s,%s,%s)", (s.tenant, i, nm, "business", s.user))
+        raise SV.Blocked("simulated failure after the row was written")
+    with pytest.raises(SV.Blocked):
+        s._write("account.create", "accounts", fn)
+    s.close()
+    assert count(db, "SELECT count(*) FROM accounts WHERE name=%s", (nm,)) == 0
+    assert count(db, "SELECT count(*) FROM audit_log WHERE tenant_id='tenant-a' AND decision='deny' AND action='account.create'") == base + 1
+    assert count(db, "SELECT count(*) FROM audit_log WHERE detail::text LIKE %s", (f"%{nm}%",)) == 0
+    assert_chain_intact(db)
+
+
+def test_the_chain_lock_is_held_from_the_read_of_the_last_row_to_the_insert(db, monkeypatch):
+    """Deterministic proof, no timing luck: writer 1 is PAUSED between reading the chain head and inserting. Writer 2 (a refusal, i.e. the autocommit path that was broken) must be blocked on the advisory lock
+    and must not even have read the head. Only after writer 1 finishes may writer 2 proceed, and they must take consecutive sequence numbers."""
+    entered, release, calls = threading.Event(), threading.Event(), []
+    real_hash = SV._hash
+    def paused_hash(*a):
+        calls.append(threading.current_thread().name)
+        if len(calls) == 1:
+            entered.set(); assert release.wait(20)
+        return real_hash(*a)
+    monkeypatch.setattr(SV, "_hash", paused_hash)
+    first = lambda: svc(db, "tenant-a", "ghost").create_account("first")
+    second = lambda: svc(db, "tenant-a", "ghost").create_account("second")
+    base = len(chain(db, "tenant-a"))
+    out = []
+    t1 = threading.Thread(target=lambda: out.append(run_all([first])[0]), name="w1"); t1.start()
+    assert entered.wait(20)
+    t2 = threading.Thread(target=lambda: out.append(run_all([second])[0]), name="w2"); t2.start()
+    with psycopg.connect(db, autocommit=True) as probe:
+        waiting = 0
+        for _ in range(100):                                      # poll for the OBSERVABLE state: a backend waiting on an advisory lock
+            waiting = probe.execute("SELECT count(*) FROM pg_locks WHERE locktype='advisory' AND NOT granted").fetchone()[0]
+            if waiting: break
+            threading.Event().wait(0.05)
+    assert waiting == 1, "writer 2 is not waiting on the chain lock"
+    assert len(calls) == 1, "writer 2 read the chain head while writer 1 was mid-critical-section"
+    release.set(); t1.join(30); t2.join(30)
+    assert not t1.is_alive() and not t2.is_alive() and all(isinstance(x, SV.Denied) for x in out), out
+    monkeypatch.setattr(SV, "_hash", real_hash)
+    new = chain(db, "tenant-a")[base:]
+    assert [r[0] for r in new] == [base + 1, base + 2] and new[1][1] == new[0][2]
+    assert_chain_intact(db)
