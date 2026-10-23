@@ -161,7 +161,17 @@ def main():
     audit = L.sql("SELECT actor, detail FROM audit_log WHERE action='procurement.record' AND entity_id=%s", (r1["corr_id"],))
     s_an = SV.GrowthService(dsn, L.schema, "tenant-nasha", "ana")
     prev = s_an.preview_scenario(L.pid); cmp = F.compare([("Stored assumptions", prev["inputs"]), ("Prices +5%", s_an.scenario_inputs(L.pid, {"price_change_pct": 0.05})), ("Ingredient costs +20%", s_an.scenario_inputs(L.pid, {"cost_change_pct": 0.2}))])
-    directory = s_an.supplier_directory(gle.AS_OF, L.pid); offers = s_an.offer_economics(); s_an.close()
+    directory = s_an.supplier_directory(gle.AS_OF, L.pid); offers = s_an.offer_economics()
+    ov = s_an.project_overview(L.pid)
+    grid = []
+    base_orders = next(a["value"] for a in ov["assumptions"] if a["key"] == "weekly_orders")
+    for pc in (-0.10, -0.05, 0.0, 0.05, 0.10):
+        for cc in (0.0, 0.10, 0.20, 0.30):
+            for oc in (-0.20, -0.10, 0.0, 0.10, 0.20):
+                r_ = F.compute(s_an.scenario_inputs(L.pid, {"price_change_pct": pc, "cost_change_pct": cc, "weekly_orders": base_orders * (1 + oc)}))
+                grid.append(dict(price_change_pct=round(100 * pc), cost_change_pct=round(100 * cc), orders_change_pct=round(100 * oc), weekly_orders=round(base_orders * (1 + oc)), revenue_cents=r_["revenue_cents"], gross_margin=r_["gross_margin"],
+                                 contribution_margin=r_["contribution_margin"], operating_profit_monthly_cents=r_["operating_profit_monthly_cents"], breakeven_orders_per_week=r_["breakeven_orders_per_week"], payback_months=r_["payback_months"]))
+    s_an.close()
     by_status = {}
     for sp in directory:
         by_status[sp["verification_status"]] = by_status.get(sp["verification_status"], 0) + 1

@@ -1,6 +1,6 @@
 {
  "schema": "growth-os-evidence/1",
- "commit": "49720cf",
+ "commit": "f68814f",
  "synthetic": true,
  "pushed": false,
  "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
@@ -430,7 +430,7 @@
  "workflow": {
   "name": "governed_lead_qualification",
   "happy_path": {
-   "corr_id": "wf-6b18000a513e",
+   "corr_id": "wf-424f172d8088",
    "tenant": "tenant-nasha",
    "before": {
     "status": "new",
@@ -438,7 +438,7 @@
    },
    "held": {
     "status": "AWAITING_APPROVAL",
-    "approval_id": "ap_097101ca",
+    "approval_id": "ap_d394041b",
     "recommendation_status": "qualified",
     "score": 95,
     "lead_status_while_held": "new",
@@ -474,18 +474,18 @@
    "trace": [
     {
      "seq": 1,
-     "ts": "2026-10-23T16:31:25.398811+00:00",
+     "ts": "2026-10-23T16:34:49.774771+00:00",
      "kind": "stage",
      "name": "request_received",
      "stage": "G01",
      "tenant": "tenant-nasha",
-     "lead_id": "lead-050579723d",
+     "lead_id": "lead-13dddb886d",
      "request_id": "req-export-1",
      "idempotency_key": true
     },
     {
      "seq": 2,
-     "ts": "2026-10-23T16:31:25.401023+00:00",
+     "ts": "2026-10-23T16:34:49.776812+00:00",
      "kind": "auth",
      "role": "SALES",
      "user": "sam",
@@ -494,20 +494,20 @@
     },
     {
      "seq": 3,
-     "ts": "2026-10-23T16:31:25.407866+00:00",
+     "ts": "2026-10-23T16:34:49.783052+00:00",
      "kind": "tool_call",
-     "ms": 3.32,
+     "ms": 3.1,
      "ok": true,
      "tool": "growth__get_lead_context",
      "codes": [],
      "stage": "G03",
-     "call_hash": "e3134fbbcb4711be",
+     "call_hash": "8bf594846de2d64f",
      "forwarded": true,
      "approval_id": null
     },
     {
      "seq": 4,
-     "ts": "2026-10-23T16:31:25.410273+00:00",
+     "ts": "2026-10-23T16:34:49.784661+00:00",
      "kind": "stage",
      "name": "evidence_collected",
      "stage": "G03",
@@ -521,7 +521,7 @@
     },
     {
      "seq": 5,
-     "ts": "2026-10-23T16:31:25.411864+00:00",
+     "ts": "2026-10-23T16:34:49.785946+00:00",
      "kind": "stage",
      "name": "source_and_consent_validated",
      "stage": "G04",
@@ -530,7 +530,7 @@
     },
     {
      "seq": 6,
-     "ts": "2026-10-23T16:31:25.415256+00:00",
+     "ts": "2026-10-23T16:34:49.788913+00:00",
      "kind": "stage",
      "name": "recommendation",
      "score": 95,
@@ -587,31 +587,31 @@
     },
     {
      "seq": 7,
-     "ts": "2026-10-23T16:31:25.418285+00:00",
+     "ts": "2026-10-23T16:34:49.791167+00:00",
      "kind": "stage",
      "name": "proposal",
      "stage": "G06",
-     "proposal_hash": "c972b04be2be1448"
+     "proposal_hash": "c6158ccd96281d04"
     },
     {
      "seq": 8,
-     "ts": "2026-10-23T16:31:25.421133+00:00",
+     "ts": "2026-10-23T16:34:49.793781+00:00",
      "kind": "tool_call",
-     "ms": 1.29,
+     "ms": 1.33,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G07",
      "failure": null,
-     "call_hash": "27238d2ce7f17f1a",
+     "call_hash": "3e84d647f5f19f87",
      "forwarded": false,
-     "approval_id": "ap_097101ca",
+     "approval_id": "ap_d394041b",
      "held_for_approval": true
     },
     {
      "seq": 9,
-     "ts": "2026-10-23T16:31:25.423326+00:00",
+     "ts": "2026-10-23T16:34:49.795720+00:00",
      "kind": "stage",
      "name": "held_for_approval",
      "codes": [
@@ -619,11 +619,11 @@
      ],
      "stage": "G07",
      "ttl_s": 900,
-     "approval_id": "ap_097101ca"
+     "approval_id": "ap_d394041b"
     },
     {
      "seq": 10,
-     "ts": "2026-10-23T16:31:25.437663+00:00",
+     "ts": "2026-10-23T16:34:49.807630+00:00",
      "kind": "approval_decision",
      "code": "ROLE_NOT_PERMITTED",
      "role": "SALES",
@@ -632,39 +632,39 @@
     },
     {
      "seq": 11,
-     "ts": "2026-10-23T16:31:25.439598+00:00",
+     "ts": "2026-10-23T16:34:49.809008+00:00",
      "kind": "failure",
      "detail": "SALES may not approve",
      "failure_class": "ROLE_DENIED"
     },
     {
      "seq": 12,
-     "ts": "2026-10-23T16:31:25.444488+00:00",
+     "ts": "2026-10-23T16:34:49.813041+00:00",
      "kind": "approval_decision",
      "by": "ada",
      "role": "OWNER",
      "comment": "evidence reviewed",
      "decision": "approve",
-     "approval_id": "ap_097101ca"
+     "approval_id": "ap_d394041b"
     },
     {
      "seq": 13,
-     "ts": "2026-10-23T16:31:25.456078+00:00",
+     "ts": "2026-10-23T16:34:49.823854+00:00",
      "kind": "tool_call",
-     "ms": 8.39,
+     "ms": 7.77,
      "ok": true,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G09",
-     "call_hash": "27238d2ce7f17f1a",
+     "call_hash": "3e84d647f5f19f87",
      "forwarded": true,
-     "approval_id": "ap_097101ca"
+     "approval_id": "ap_d394041b"
     },
     {
      "seq": 14,
-     "ts": "2026-10-23T16:31:25.458250+00:00",
+     "ts": "2026-10-23T16:34:49.825811+00:00",
      "kind": "stage",
      "name": "crm_updated",
      "stage": "G09",
@@ -672,7 +672,7 @@
     },
     {
      "seq": 15,
-     "ts": "2026-10-23T16:31:25.459161+00:00",
+     "ts": "2026-10-23T16:34:49.826602+00:00",
      "kind": "stage",
      "name": "no_external_contact",
      "stage": "G10",
@@ -681,7 +681,7 @@
     },
     {
      "seq": 16,
-     "ts": "2026-10-23T16:31:25.461138+00:00",
+     "ts": "2026-10-23T16:34:49.828594+00:00",
      "kind": "approval_decision",
      "code": "APPROVAL_REPLAY",
      "state": "EXECUTED",
@@ -798,6 +798,1833 @@
  },
  "launch": {
   "name": "governed_procurement_recommendation",
+  "walkthrough": {
+   "project": {
+    "name": "NASHA \u2014 The Courtyard",
+    "industry": "Hospitality",
+    "location": "Austin, TX",
+    "concept": "An independent, premium hospitality venue built around a courtyard: shared plates, house-brewed beer and a calm, craft-led atmosphere. A proposed concept used as the flagship launch case study.",
+    "budget_cents": 60000000,
+    "launch_target": "2027-09-01",
+    "stage": "sourcing",
+    "basis": "synthetic",
+    "assumptions": [
+     {
+      "label": "Average discount",
+      "value": 2.0,
+      "unit": "%",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Ingredient cost inflation",
+      "value": 0.0,
+      "unit": "%",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Insurance",
+      "value": 180000.0,
+      "unit": "cents/month",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Items per order",
+      "value": 2.5,
+      "unit": "items",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Labour",
+      "value": 5200000.0,
+      "unit": "cents/month",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Marketing",
+      "value": 500000.0,
+      "unit": "cents/month",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Other fixed costs",
+      "value": 450000.0,
+      "unit": "cents/month",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Price elasticity of demand",
+      "value": -1.2,
+      "unit": "ratio",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Rent",
+      "value": 1600000.0,
+      "unit": "cents/month",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Start-up capital expenditure",
+      "value": 42000000.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Utilities",
+      "value": 350000.0,
+      "unit": "cents/month",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Payment and platform fees",
+      "value": 3.2,
+      "unit": "% of price",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Guest orders per week",
+      "value": 650.0,
+      "unit": "orders",
+      "basis": "synthetic_assumption"
+     }
+    ],
+    "milestones": [
+     {
+      "title": "Define the concept and positioning",
+      "phase": "idea",
+      "due": "2026-11-15",
+      "status": "done"
+     },
+     {
+      "title": "Research the local market and suppliers",
+      "phase": "research",
+      "due": "2026-12-15",
+      "status": "doing"
+     },
+     {
+      "title": "Shortlist suppliers and request quotes (not yet requested)",
+      "phase": "sourcing",
+      "due": "2027-01-31",
+      "status": "todo"
+     },
+     {
+      "title": "Sign off menu costing and pricing",
+      "phase": "financial_plan",
+      "due": "2027-02-28",
+      "status": "todo"
+     },
+     {
+      "title": "Review the financial plan against the budget",
+      "phase": "financial_plan",
+      "due": "2027-03-31",
+      "status": "todo"
+     },
+     {
+      "title": "Prepare the launch roadmap and permits checklist",
+      "phase": "roadmap",
+      "due": "2027-05-31",
+      "status": "todo"
+     }
+    ]
+   },
+   "findings": [
+    {
+     "topic": "Dairy supply",
+     "finding": "Hill Country Dairies (Austin) is described in a PNC investment profile as a value-added distributor of more than 200 milk, butter, cream and cheese products with vendor-managed inventory.",
+     "source_kind": "search_result",
+     "source_url": "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html",
+     "retrieved_on": "2026-10-23",
+     "confidence": 0.5,
+     "limitation": "An investor profile, not the company's own statement; confirm range, minimums and prices directly (not done)."
+    },
+    {
+     "topic": "Local produce supply",
+     "finding": "Farm to Table LLC (Austin) is described by the Austin Chronicle as serving more than 200 restaurants and seven school districts in Austin and surrounding areas.",
+     "source_kind": "search_result",
+     "source_url": "https://www.austinchronicle.com/food/food-o-file-11764527/",
+     "retrieved_on": "2026-10-23",
+     "confidence": 0.5,
+     "limitation": "A single news article; not confirmed with the company; no prices or terms found."
+    },
+    {
+     "topic": "Menu economics",
+     "finding": "Planning food cost across the 15 menu items is a small share of menu price, so fixed costs and volume dominate profitability in the base scenario.",
+     "source_kind": "synthetic_fixture",
+     "source_url": null,
+     "retrieved_on": null,
+     "confidence": 0.6,
+     "limitation": "Derived from planning-assumption ingredient costs and founder-approved concept prices; not measured."
+    },
+    {
+     "topic": "Regional produce coverage",
+     "finding": "Brothers Produce lists Austin among the Texas metros it covers in a Restaurant365 vendor profile.",
+     "source_kind": "search_result",
+     "source_url": "https://www.restaurant365.com/partners/brothers-produce/",
+     "retrieved_on": "2026-10-23",
+     "confidence": 0.4,
+     "limitation": "A software vendor's partner listing; not verified with the company."
+    },
+    {
+     "topic": "Specialty dairy",
+     "finding": "The search found no Austin-area supplier of fresh paneer; a dairy distributor or specialty wholesaler would need to be asked.",
+     "source_kind": "search_result",
+     "source_url": "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html",
+     "retrieved_on": "2026-10-23",
+     "confidence": 0.3,
+     "limitation": "Absence in search results is weak evidence, not proof that none exists."
+    }
+   ],
+   "suppliers": [
+    {
+     "name": "Brothers Produce",
+     "category": "Produce distribution",
+     "service_area": "Greater Houston, Dallas/Fort Worth, Austin, San Antonio and other Texas metros (per the source)",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://www.restaurant365.com/partners/brothers-produce/",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "Farm to Table LLC",
+     "category": "Produce, eggs and dairy wholesale",
+     "service_area": "Austin and surrounding areas (per the source)",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://www.austinchronicle.com/food/food-o-file-11764527/",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "Hill Country Dairies",
+     "category": "Dairy distribution",
+     "service_area": "Austin, TX (per the source)",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "Synthetic Broadline Distributor A (broadline)",
+     "category": "Broadline",
+     "service_area": "Synthetic (no real service area)",
+     "verification_status": "synthetic_fixture",
+     "freshness": "synthetic (not applicable)",
+     "source_kind": "synthetic_fixture",
+     "source_url": null,
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 70,
+     "price_classes": [
+      "SYNTHETIC_QUOTE"
+     ]
+    },
+    {
+     "name": "Synthetic Broadline Distributor B (broadline)",
+     "category": "Broadline",
+     "service_area": "Synthetic (no real service area)",
+     "verification_status": "synthetic_fixture",
+     "freshness": "synthetic (not applicable)",
+     "source_kind": "synthetic_fixture",
+     "source_url": null,
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 70,
+     "price_classes": [
+      "SYNTHETIC_QUOTE"
+     ]
+    },
+    {
+     "name": "Synthetic Specialty Importer (specialty)",
+     "category": "Specialty",
+     "service_area": "Synthetic (no real service area)",
+     "verification_status": "synthetic_fixture",
+     "freshness": "synthetic (not applicable)",
+     "source_kind": "synthetic_fixture",
+     "source_url": null,
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 2,
+     "price_classes": [
+      "SYNTHETIC_QUOTE"
+     ]
+    },
+    {
+     "name": "Synthetic Supplier 01 (poultry)",
+     "category": "Poultry",
+     "service_area": "Synthetic (no real service area)",
+     "verification_status": "synthetic_fixture",
+     "freshness": "synthetic (not applicable)",
+     "source_kind": "synthetic_fixture",
+     "source_url": null,
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 2,
+     "price_classes": [
+      "SYNTHETIC_QUOTE"
+     ]
+    },
+    {
+     "name": "Synthetic Supplier 02 (specialty meats)",
+     "category": "Specialty meats",
+     "service_area": "Synthetic (no real service area)",
+     "verification_status": "synthetic_fixture",
+     "freshness": "synthetic (not applicable)",
+     "source_kind": "synthetic_fixture",
+     "source_url": null,
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 1,
+     "price_classes": [
+      "SYNTHETIC_QUOTE"
+     ]
+    },
+    {
+     "name": "Synthetic Supplier 03 (produce)",
+     "category": "Produce",
+     "service_area": "Synthetic (no real service area)",
+     "verification_status": "synthetic_fixture",
+     "freshness": "synthetic (not applicable)",
+     "source_kind": "synthetic_fixture",
+     "source_url": null,
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 21,
+     "price_classes": [
+      "SYNTHETIC_QUOTE"
+     ]
+    },
+    {
+     "name": "Synthetic Supplier 04 (dairy)",
+     "category": "Dairy",
+     "service_area": "Synthetic (no real service area)",
+     "verification_status": "synthetic_fixture",
+     "freshness": "synthetic (not applicable)",
+     "source_kind": "synthetic_fixture",
+     "source_url": null,
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 9,
+     "price_classes": [
+      "SYNTHETIC_QUOTE"
+     ]
+    },
+    {
+     "name": "Synthetic Supplier 05 (dry goods)",
+     "category": "Dry goods",
+     "service_area": "Synthetic (no real service area)",
+     "verification_status": "synthetic_fixture",
+     "freshness": "synthetic (not applicable)",
+     "source_kind": "synthetic_fixture",
+     "source_url": null,
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 35,
+     "price_classes": [
+      "SYNTHETIC_QUOTE"
+     ]
+    }
+   ],
+   "financial_grid": [
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 0,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9181973,
+     "gross_margin": 0.8007,
+     "contribution_margin": 0.7687,
+     "operating_profit_monthly_cents": -1221978,
+     "breakeven_orders_per_week": 683.2,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 0,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10329719,
+     "gross_margin": 0.8007,
+     "contribution_margin": 0.7687,
+     "operating_profit_monthly_cents": -339725,
+     "breakeven_orders_per_week": 683.2,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 0,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11477466,
+     "gross_margin": 0.8007,
+     "contribution_margin": 0.7687,
+     "operating_profit_monthly_cents": 542528,
+     "breakeven_orders_per_week": 683.2,
+     "payback_months": 77.4
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 0,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12625213,
+     "gross_margin": 0.8007,
+     "contribution_margin": 0.7687,
+     "operating_profit_monthly_cents": 1424781,
+     "breakeven_orders_per_week": 683.2,
+     "payback_months": 29.5
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 0,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13772959,
+     "gross_margin": 0.8007,
+     "contribution_margin": 0.7687,
+     "operating_profit_monthly_cents": 2307034,
+     "breakeven_orders_per_week": 683.2,
+     "payback_months": 18.2
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 10,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9181973,
+     "gross_margin": 0.7808,
+     "contribution_margin": 0.7488,
+     "operating_profit_monthly_cents": -1404990,
+     "breakeven_orders_per_week": 701.4,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 10,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10329719,
+     "gross_margin": 0.7808,
+     "contribution_margin": 0.7488,
+     "operating_profit_monthly_cents": -545614,
+     "breakeven_orders_per_week": 701.4,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 10,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11477466,
+     "gross_margin": 0.7808,
+     "contribution_margin": 0.7488,
+     "operating_profit_monthly_cents": 313762,
+     "breakeven_orders_per_week": 701.4,
+     "payback_months": 133.9
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 10,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12625213,
+     "gross_margin": 0.7808,
+     "contribution_margin": 0.7488,
+     "operating_profit_monthly_cents": 1173138,
+     "breakeven_orders_per_week": 701.4,
+     "payback_months": 35.8
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 10,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13772959,
+     "gross_margin": 0.7808,
+     "contribution_margin": 0.7488,
+     "operating_profit_monthly_cents": 2032514,
+     "breakeven_orders_per_week": 701.4,
+     "payback_months": 20.7
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 20,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9181973,
+     "gross_margin": 0.7608,
+     "contribution_margin": 0.7288,
+     "operating_profit_monthly_cents": -1588003,
+     "breakeven_orders_per_week": 720.6,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 20,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10329719,
+     "gross_margin": 0.7608,
+     "contribution_margin": 0.7288,
+     "operating_profit_monthly_cents": -751503,
+     "breakeven_orders_per_week": 720.6,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 20,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11477466,
+     "gross_margin": 0.7608,
+     "contribution_margin": 0.7288,
+     "operating_profit_monthly_cents": 84996,
+     "breakeven_orders_per_week": 720.6,
+     "payback_months": 494.1
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 20,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12625213,
+     "gross_margin": 0.7608,
+     "contribution_margin": 0.7288,
+     "operating_profit_monthly_cents": 921496,
+     "breakeven_orders_per_week": 720.6,
+     "payback_months": 45.6
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 20,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13772959,
+     "gross_margin": 0.7608,
+     "contribution_margin": 0.7288,
+     "operating_profit_monthly_cents": 1757995,
+     "breakeven_orders_per_week": 720.6,
+     "payback_months": 23.9
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 30,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9181973,
+     "gross_margin": 0.7409,
+     "contribution_margin": 0.7089,
+     "operating_profit_monthly_cents": -1771016,
+     "breakeven_orders_per_week": 740.9,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 30,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10329719,
+     "gross_margin": 0.7409,
+     "contribution_margin": 0.7089,
+     "operating_profit_monthly_cents": -957393,
+     "breakeven_orders_per_week": 740.9,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 30,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11477466,
+     "gross_margin": 0.7409,
+     "contribution_margin": 0.7089,
+     "operating_profit_monthly_cents": -143770,
+     "breakeven_orders_per_week": 740.9,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 30,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12625213,
+     "gross_margin": 0.7409,
+     "contribution_margin": 0.7089,
+     "operating_profit_monthly_cents": 669853,
+     "breakeven_orders_per_week": 740.9,
+     "payback_months": 62.7
+    },
+    {
+     "price_change_pct": -10,
+     "cost_change_pct": 30,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13772959,
+     "gross_margin": 0.7409,
+     "contribution_margin": 0.7089,
+     "operating_profit_monthly_cents": 1483476,
+     "breakeven_orders_per_week": 740.9,
+     "payback_months": 28.3
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 0,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9172864,
+     "gross_margin": 0.8112,
+     "contribution_margin": 0.7792,
+     "operating_profit_monthly_cents": -1132753,
+     "breakeven_orders_per_week": 638.6,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 0,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10319472,
+     "gross_margin": 0.8112,
+     "contribution_margin": 0.7792,
+     "operating_profit_monthly_cents": -239347,
+     "breakeven_orders_per_week": 638.6,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 0,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11466080,
+     "gross_margin": 0.8112,
+     "contribution_margin": 0.7792,
+     "operating_profit_monthly_cents": 654059,
+     "breakeven_orders_per_week": 638.6,
+     "payback_months": 64.2
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 0,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12612688,
+     "gross_margin": 0.8112,
+     "contribution_margin": 0.7792,
+     "operating_profit_monthly_cents": 1547465,
+     "breakeven_orders_per_week": 638.6,
+     "payback_months": 27.1
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 0,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13759296,
+     "gross_margin": 0.8112,
+     "contribution_margin": 0.7792,
+     "operating_profit_monthly_cents": 2440871,
+     "breakeven_orders_per_week": 638.6,
+     "payback_months": 17.2
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 10,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9172864,
+     "gross_margin": 0.7923,
+     "contribution_margin": 0.7603,
+     "operating_profit_monthly_cents": -1305961,
+     "breakeven_orders_per_week": 654.4,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 10,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10319472,
+     "gross_margin": 0.7923,
+     "contribution_margin": 0.7603,
+     "operating_profit_monthly_cents": -434206,
+     "breakeven_orders_per_week": 654.4,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 10,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11466080,
+     "gross_margin": 0.7923,
+     "contribution_margin": 0.7603,
+     "operating_profit_monthly_cents": 437549,
+     "breakeven_orders_per_week": 654.4,
+     "payback_months": 96.0
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 10,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12612688,
+     "gross_margin": 0.7923,
+     "contribution_margin": 0.7603,
+     "operating_profit_monthly_cents": 1309303,
+     "breakeven_orders_per_week": 654.4,
+     "payback_months": 32.1
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 10,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13759296,
+     "gross_margin": 0.7923,
+     "contribution_margin": 0.7603,
+     "operating_profit_monthly_cents": 2181058,
+     "breakeven_orders_per_week": 654.4,
+     "payback_months": 19.3
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 20,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9172864,
+     "gross_margin": 0.7734,
+     "contribution_margin": 0.7414,
+     "operating_profit_monthly_cents": -1479170,
+     "breakeven_orders_per_week": 671.1,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 20,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10319472,
+     "gross_margin": 0.7734,
+     "contribution_margin": 0.7414,
+     "operating_profit_monthly_cents": -629066,
+     "breakeven_orders_per_week": 671.1,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 20,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11466080,
+     "gross_margin": 0.7734,
+     "contribution_margin": 0.7414,
+     "operating_profit_monthly_cents": 221038,
+     "breakeven_orders_per_week": 671.1,
+     "payback_months": 190.0
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 20,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12612688,
+     "gross_margin": 0.7734,
+     "contribution_margin": 0.7414,
+     "operating_profit_monthly_cents": 1071142,
+     "breakeven_orders_per_week": 671.1,
+     "payback_months": 39.2
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 20,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13759296,
+     "gross_margin": 0.7734,
+     "contribution_margin": 0.7414,
+     "operating_profit_monthly_cents": 1921246,
+     "breakeven_orders_per_week": 671.1,
+     "payback_months": 21.9
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 30,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9172864,
+     "gross_margin": 0.7545,
+     "contribution_margin": 0.7225,
+     "operating_profit_monthly_cents": -1652378,
+     "breakeven_orders_per_week": 688.6,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 30,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10319472,
+     "gross_margin": 0.7545,
+     "contribution_margin": 0.7225,
+     "operating_profit_monthly_cents": -823925,
+     "breakeven_orders_per_week": 688.6,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 30,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11466080,
+     "gross_margin": 0.7545,
+     "contribution_margin": 0.7225,
+     "operating_profit_monthly_cents": 4527,
+     "breakeven_orders_per_week": 688.6,
+     "payback_months": 9277.0
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 30,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12612688,
+     "gross_margin": 0.7545,
+     "contribution_margin": 0.7225,
+     "operating_profit_monthly_cents": 832980,
+     "breakeven_orders_per_week": 688.6,
+     "payback_months": 50.4
+    },
+    {
+     "price_change_pct": -5,
+     "cost_change_pct": 30,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13759296,
+     "gross_margin": 0.7545,
+     "contribution_margin": 0.7225,
+     "operating_profit_monthly_cents": 1661433,
+     "breakeven_orders_per_week": 688.6,
+     "payback_months": 25.3
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 0,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9109100,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": -1096433,
+     "breakeven_orders_per_week": 599.4,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 0,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10247738,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": -198488,
+     "breakeven_orders_per_week": 599.4,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 0,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11386375,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": 699458,
+     "breakeven_orders_per_week": 599.4,
+     "payback_months": 60.0
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 0,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12525013,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": 1597404,
+     "breakeven_orders_per_week": 599.4,
+     "payback_months": 26.3
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 0,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13663650,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": 2495350,
+     "breakeven_orders_per_week": 599.4,
+     "payback_months": 16.8
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 10,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9109100,
+     "gross_margin": 0.8027,
+     "contribution_margin": 0.7707,
+     "operating_profit_monthly_cents": -1259838,
+     "breakeven_orders_per_week": 613.3,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 10,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10247738,
+     "gross_margin": 0.8027,
+     "contribution_margin": 0.7707,
+     "operating_profit_monthly_cents": -382317,
+     "breakeven_orders_per_week": 613.3,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 10,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11386375,
+     "gross_margin": 0.8027,
+     "contribution_margin": 0.7707,
+     "operating_profit_monthly_cents": 495203,
+     "breakeven_orders_per_week": 613.3,
+     "payback_months": 84.8
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 10,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12525013,
+     "gross_margin": 0.8027,
+     "contribution_margin": 0.7707,
+     "operating_profit_monthly_cents": 1372723,
+     "breakeven_orders_per_week": 613.3,
+     "payback_months": 30.6
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 10,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13663650,
+     "gross_margin": 0.8027,
+     "contribution_margin": 0.7707,
+     "operating_profit_monthly_cents": 2250244,
+     "breakeven_orders_per_week": 613.3,
+     "payback_months": 18.7
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 20,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9109100,
+     "gross_margin": 0.7847,
+     "contribution_margin": 0.7527,
+     "operating_profit_monthly_cents": -1423242,
+     "breakeven_orders_per_week": 627.9,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 20,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10247738,
+     "gross_margin": 0.7847,
+     "contribution_margin": 0.7527,
+     "operating_profit_monthly_cents": -566147,
+     "breakeven_orders_per_week": 627.9,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 20,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11386375,
+     "gross_margin": 0.7847,
+     "contribution_margin": 0.7527,
+     "operating_profit_monthly_cents": 290948,
+     "breakeven_orders_per_week": 627.9,
+     "payback_months": 144.4
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 20,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12525013,
+     "gross_margin": 0.7847,
+     "contribution_margin": 0.7527,
+     "operating_profit_monthly_cents": 1148042,
+     "breakeven_orders_per_week": 627.9,
+     "payback_months": 36.6
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 20,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13663650,
+     "gross_margin": 0.7847,
+     "contribution_margin": 0.7527,
+     "operating_profit_monthly_cents": 2005137,
+     "breakeven_orders_per_week": 627.9,
+     "payback_months": 20.9
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 30,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 9109100,
+     "gross_margin": 0.7668,
+     "contribution_margin": 0.7348,
+     "operating_profit_monthly_cents": -1586646,
+     "breakeven_orders_per_week": 643.3,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 30,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10247738,
+     "gross_margin": 0.7668,
+     "contribution_margin": 0.7348,
+     "operating_profit_monthly_cents": -749977,
+     "breakeven_orders_per_week": 643.3,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 30,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11386375,
+     "gross_margin": 0.7668,
+     "contribution_margin": 0.7348,
+     "operating_profit_monthly_cents": 86692,
+     "breakeven_orders_per_week": 643.3,
+     "payback_months": 484.5
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 30,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12525013,
+     "gross_margin": 0.7668,
+     "contribution_margin": 0.7348,
+     "operating_profit_monthly_cents": 923362,
+     "breakeven_orders_per_week": 643.3,
+     "payback_months": 45.5
+    },
+    {
+     "price_change_pct": 0,
+     "cost_change_pct": 30,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13663650,
+     "gross_margin": 0.7668,
+     "contribution_margin": 0.7348,
+     "operating_profit_monthly_cents": 1760031,
+     "breakeven_orders_per_week": 643.3,
+     "payback_months": 23.9
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 0,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 8990682,
+     "gross_margin": 0.8292,
+     "contribution_margin": 0.7972,
+     "operating_profit_monthly_cents": -1113020,
+     "breakeven_orders_per_week": 564.7,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 0,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10114517,
+     "gross_margin": 0.8292,
+     "contribution_margin": 0.7972,
+     "operating_profit_monthly_cents": -217147,
+     "breakeven_orders_per_week": 564.7,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 0,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11238352,
+     "gross_margin": 0.8292,
+     "contribution_margin": 0.7972,
+     "operating_profit_monthly_cents": 678725,
+     "breakeven_orders_per_week": 564.7,
+     "payback_months": 61.9
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 0,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12362187,
+     "gross_margin": 0.8292,
+     "contribution_margin": 0.7972,
+     "operating_profit_monthly_cents": 1574598,
+     "breakeven_orders_per_week": 564.7,
+     "payback_months": 26.7
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 0,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13486023,
+     "gross_margin": 0.8292,
+     "contribution_margin": 0.7972,
+     "operating_profit_monthly_cents": 2470470,
+     "breakeven_orders_per_week": 564.7,
+     "payback_months": 17.0
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 10,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 8990682,
+     "gross_margin": 0.8121,
+     "contribution_margin": 0.7801,
+     "operating_profit_monthly_cents": -1266620,
+     "breakeven_orders_per_week": 577.1,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 10,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10114517,
+     "gross_margin": 0.8121,
+     "contribution_margin": 0.7801,
+     "operating_profit_monthly_cents": -389947,
+     "breakeven_orders_per_week": 577.1,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 10,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11238352,
+     "gross_margin": 0.8121,
+     "contribution_margin": 0.7801,
+     "operating_profit_monthly_cents": 486725,
+     "breakeven_orders_per_week": 577.1,
+     "payback_months": 86.3
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 10,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12362187,
+     "gross_margin": 0.8121,
+     "contribution_margin": 0.7801,
+     "operating_profit_monthly_cents": 1363398,
+     "breakeven_orders_per_week": 577.1,
+     "payback_months": 30.8
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 10,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13486023,
+     "gross_margin": 0.8121,
+     "contribution_margin": 0.7801,
+     "operating_profit_monthly_cents": 2240070,
+     "breakeven_orders_per_week": 577.1,
+     "payback_months": 18.7
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 20,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 8990682,
+     "gross_margin": 0.795,
+     "contribution_margin": 0.763,
+     "operating_profit_monthly_cents": -1420220,
+     "breakeven_orders_per_week": 590.0,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 20,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10114517,
+     "gross_margin": 0.795,
+     "contribution_margin": 0.763,
+     "operating_profit_monthly_cents": -562747,
+     "breakeven_orders_per_week": 590.0,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 20,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11238352,
+     "gross_margin": 0.795,
+     "contribution_margin": 0.763,
+     "operating_profit_monthly_cents": 294725,
+     "breakeven_orders_per_week": 590.0,
+     "payback_months": 142.5
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 20,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12362187,
+     "gross_margin": 0.795,
+     "contribution_margin": 0.763,
+     "operating_profit_monthly_cents": 1152198,
+     "breakeven_orders_per_week": 590.0,
+     "payback_months": 36.5
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 20,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13486023,
+     "gross_margin": 0.795,
+     "contribution_margin": 0.763,
+     "operating_profit_monthly_cents": 2009670,
+     "breakeven_orders_per_week": 590.0,
+     "payback_months": 20.9
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 30,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 8990682,
+     "gross_margin": 0.7779,
+     "contribution_margin": 0.7459,
+     "operating_profit_monthly_cents": -1573820,
+     "breakeven_orders_per_week": 603.5,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 30,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 10114517,
+     "gross_margin": 0.7779,
+     "contribution_margin": 0.7459,
+     "operating_profit_monthly_cents": -735547,
+     "breakeven_orders_per_week": 603.5,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 30,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11238352,
+     "gross_margin": 0.7779,
+     "contribution_margin": 0.7459,
+     "operating_profit_monthly_cents": 102725,
+     "breakeven_orders_per_week": 603.5,
+     "payback_months": 408.9
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 30,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12362187,
+     "gross_margin": 0.7779,
+     "contribution_margin": 0.7459,
+     "operating_profit_monthly_cents": 940998,
+     "breakeven_orders_per_week": 603.5,
+     "payback_months": 44.6
+    },
+    {
+     "price_change_pct": 5,
+     "cost_change_pct": 30,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13486023,
+     "gross_margin": 0.7779,
+     "contribution_margin": 0.7459,
+     "operating_profit_monthly_cents": 1779270,
+     "breakeven_orders_per_week": 603.5,
+     "payback_months": 23.6
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 0,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 8817609,
+     "gross_margin": 0.8369,
+     "contribution_margin": 0.8049,
+     "operating_profit_monthly_cents": -1182512,
+     "breakeven_orders_per_week": 533.8,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 0,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 9919810,
+     "gross_margin": 0.8369,
+     "contribution_margin": 0.8049,
+     "operating_profit_monthly_cents": -295326,
+     "breakeven_orders_per_week": 533.8,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 0,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11022011,
+     "gross_margin": 0.8369,
+     "contribution_margin": 0.8049,
+     "operating_profit_monthly_cents": 591860,
+     "breakeven_orders_per_week": 533.8,
+     "payback_months": 71.0
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 0,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12124212,
+     "gross_margin": 0.8369,
+     "contribution_margin": 0.8049,
+     "operating_profit_monthly_cents": 1479046,
+     "breakeven_orders_per_week": 533.8,
+     "payback_months": 28.4
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 0,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13226413,
+     "gross_margin": 0.8369,
+     "contribution_margin": 0.8049,
+     "operating_profit_monthly_cents": 2366232,
+     "breakeven_orders_per_week": 533.8,
+     "payback_months": 17.7
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 10,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 8817609,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": -1326308,
+     "breakeven_orders_per_week": 544.9,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 10,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 9919810,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": -457096,
+     "breakeven_orders_per_week": 544.9,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 10,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11022011,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": 412116,
+     "breakeven_orders_per_week": 544.9,
+     "payback_months": 101.9
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 10,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12124212,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": 1281327,
+     "breakeven_orders_per_week": 544.9,
+     "payback_months": 32.8
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 10,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13226413,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": 2150539,
+     "breakeven_orders_per_week": 544.9,
+     "payback_months": 19.5
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 20,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 8817609,
+     "gross_margin": 0.8043,
+     "contribution_margin": 0.7723,
+     "operating_profit_monthly_cents": -1470103,
+     "breakeven_orders_per_week": 556.4,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 20,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 9919810,
+     "gross_margin": 0.8043,
+     "contribution_margin": 0.7723,
+     "operating_profit_monthly_cents": -618866,
+     "breakeven_orders_per_week": 556.4,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 20,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11022011,
+     "gross_margin": 0.8043,
+     "contribution_margin": 0.7723,
+     "operating_profit_monthly_cents": 232371,
+     "breakeven_orders_per_week": 556.4,
+     "payback_months": 180.7
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 20,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12124212,
+     "gross_margin": 0.8043,
+     "contribution_margin": 0.7723,
+     "operating_profit_monthly_cents": 1083608,
+     "breakeven_orders_per_week": 556.4,
+     "payback_months": 38.8
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 20,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13226413,
+     "gross_margin": 0.8043,
+     "contribution_margin": 0.7723,
+     "operating_profit_monthly_cents": 1934845,
+     "breakeven_orders_per_week": 556.4,
+     "payback_months": 21.7
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 30,
+     "orders_change_pct": -20,
+     "weekly_orders": 520,
+     "revenue_cents": 8817609,
+     "gross_margin": 0.788,
+     "contribution_margin": 0.756,
+     "operating_profit_monthly_cents": -1613899,
+     "breakeven_orders_per_week": 568.4,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 30,
+     "orders_change_pct": -10,
+     "weekly_orders": 585,
+     "revenue_cents": 9919810,
+     "gross_margin": 0.788,
+     "contribution_margin": 0.756,
+     "operating_profit_monthly_cents": -780636,
+     "breakeven_orders_per_week": 568.4,
+     "payback_months": null
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 30,
+     "orders_change_pct": 0,
+     "weekly_orders": 650,
+     "revenue_cents": 11022011,
+     "gross_margin": 0.788,
+     "contribution_margin": 0.756,
+     "operating_profit_monthly_cents": 52626,
+     "breakeven_orders_per_week": 568.4,
+     "payback_months": 798.1
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 30,
+     "orders_change_pct": 10,
+     "weekly_orders": 715,
+     "revenue_cents": 12124212,
+     "gross_margin": 0.788,
+     "contribution_margin": 0.756,
+     "operating_profit_monthly_cents": 885889,
+     "breakeven_orders_per_week": 568.4,
+     "payback_months": 47.4
+    },
+    {
+     "price_change_pct": 10,
+     "cost_change_pct": 30,
+     "orders_change_pct": 20,
+     "weekly_orders": 780,
+     "revenue_cents": 13226413,
+     "gross_margin": 0.788,
+     "contribution_margin": 0.756,
+     "operating_profit_monthly_cents": 1719152,
+     "breakeven_orders_per_week": 568.4,
+     "payback_months": 24.4
+    }
+   ],
+   "base_weekly_orders": 650.0,
+   "procurement_lines": [
+    {
+     "ingredient": "Saffron threads",
+     "need": 0.0072,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor B (broadline)",
+     "buy_qty": 1.0,
+     "cost_cents": 348502,
+     "lead_days": 3,
+     "next_best": {
+      "supplier": "Synthetic Broadline Distributor A (broadline)",
+      "cost_cents": 354106
+     }
+    },
+    {
+     "ingredient": "Chicken thigh, boneless skinless",
+     "need": 405.5396,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor B (broadline)",
+     "buy_qty": 410.0,
+     "cost_cents": 303400,
+     "lead_days": 2,
+     "next_best": {
+      "supplier": "Synthetic Broadline Distributor A (broadline)",
+      "cost_cents": 305643
+     }
+    },
+    {
+     "ingredient": "Lamb leg, boneless, trimmed",
+     "need": 109.7767,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "buy_qty": 110.0,
+     "cost_cents": 159466,
+     "lead_days": 2,
+     "next_best": {
+      "supplier": "Synthetic Supplier 02 (specialty meats)",
+      "cost_cents": 162219
+     }
+    },
+    {
+     "ingredient": "Paneer",
+     "need": 134.3321,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "buy_qty": 135.0,
+     "cost_cents": 156719,
+     "lead_days": 4,
+     "next_best": {
+      "supplier": "Synthetic Supplier 04 (dairy)",
+      "cost_cents": 166298
+     }
+    },
+    {
+     "ingredient": "Oaxaca-style cheese",
+     "need": 99.6657,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor B (broadline)",
+     "buy_qty": 100.0,
+     "cost_cents": 121617,
+     "lead_days": 3,
+     "next_best": {
+      "supplier": "Synthetic Supplier 04 (dairy)",
+      "cost_cents": 121644
+     }
+    },
+    {
+     "ingredient": "Corn tortilla (nixtamal)",
+     "need": 240.9311,
+     "unit": "kg",
+     "supplier": "Synthetic Supplier 05 (dry goods)",
+     "buy_qty": 245.0,
+     "cost_cents": 101991,
+     "lead_days": 3,
+     "next_best": {
+      "supplier": "Synthetic Broadline Distributor B (broadline)",
+      "cost_cents": 104225
+     }
+    },
+    {
+     "ingredient": "Yogurt, plain thick",
+     "need": 253.1925,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor B (broadline)",
+     "buy_qty": 255.0,
+     "cost_cents": 87687,
+     "lead_days": 1,
+     "next_best": {
+      "supplier": "Synthetic Supplier 04 (dairy)",
+      "cost_cents": 87774
+     }
+    },
+    {
+     "ingredient": "Firm white fish fillet, skinless (species TBD: mahi/redfish/cod)",
+     "need": 73.666,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "buy_qty": 75.0,
+     "cost_cents": 87556,
+     "lead_days": 4,
+     "next_best": {
+      "supplier": "Synthetic Broadline Distributor B (broadline)",
+      "cost_cents": 89184
+     }
+    },
+    {
+     "ingredient": "Low-moisture mozzarella",
+     "need": 75.8326,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor B (broadline)",
+     "buy_qty": 80.0,
+     "cost_cents": 63749,
+     "lead_days": 3,
+     "next_best": {
+      "supplier": "Synthetic Broadline Distributor A (broadline)",
+      "cost_cents": 66689
+     }
+    },
+    {
+     "ingredient": "Cauliflower (florets, stem attached)",
+     "need": 199.9981,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "buy_qty": 200.0,
+     "cost_cents": 59730,
+     "lead_days": 1,
+     "next_best": {
+      "supplier": "Synthetic Supplier 03 (produce)",
+      "cost_cents": 62706
+     }
+    },
+    {
+     "ingredient": "Flour tortilla, 25 cm",
+     "need": 1299.9877,
+     "unit": "each",
+     "supplier": "Synthetic Supplier 05 (dry goods)",
+     "buy_qty": 1320.0,
+     "cost_cents": 59070,
+     "lead_days": 2,
+     "next_best": {
+      "supplier": "Synthetic Broadline Distributor A (broadline)",
+      "cost_cents": 59677
+     }
+    },
+    {
+     "ingredient": "Chicken wing, bone-in, split (as purchased weight)",
+     "need": 129.9988,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "buy_qty": 130.0,
+     "cost_cents": 58558,
+     "lead_days": 4,
+     "next_best": {
+      "supplier": "Synthetic Broadline Distributor B (broadline)",
+      "cost_cents": 58986
+     }
+    },
+    {
+     "ingredient": "Neutral frying oil",
+     "need": 122.3417,
+     "unit": "l",
+     "supplier": "Synthetic Supplier 05 (dry goods)",
+     "buy_qty": 124.0,
+     "cost_cents": 48514,
+     "lead_days": 1,
+     "next_best": {
+      "supplier": "Synthetic Broadline Distributor B (broadline)",
+      "cost_cents": 50239
+     }
+    },
+    {
+     "ingredient": "Mexican crema",
+     "need": 59.4943,
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "buy_qty": 60.0,
+     "cost_cents": 39299,
+     "lead_days": 1,
+     "next_best": {
+      "supplier": "Synthetic Broadline Distributor B (broadline)",
+      "cost_cents": 44307
+     }
+    }
+   ],
+   "agent_claims": [
+    "Wholesale catalogue (no published prices): no published price.",
+    "No public price list was found; a real price requires a supplier quote, which has not been requested.",
+    "Fictional supplier from the repository's synthetic quote set.",
+    "Verification status: lead unverified.",
+    "Verification status: synthetic fixture.",
+    "Data freshness: synthetic (not applicable).",
+    "Synthetic fixture generated from a planning-assumption base price with a seeded factor; not a supplier document and not a real price.",
+    "Butter (i-butter): $9.40 per kg, synthetic quote, lead time 4 days, minimum order $0.00."
+   ],
+   "flags": [
+    "Every price used is a synthetic fixture. No real supplier price exists, so this is a planning exercise, not a purchasing recommendation.",
+    "Not compared (no published prices): Brothers Produce, Farm to Table LLC, Hill Country Dairies. A quote request would be needed; none has been sent."
+   ],
+   "replenishment": [
+    {
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "lead_days": 1,
+     "order_qty": 200.0,
+     "ingredient": "Cauliflower (florets, stem attached)",
+     "weekly_usage": 50.0,
+     "reorder_point": 8.571,
+     "weeks_covered": 4.0
+    },
+    {
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "lead_days": 4,
+     "order_qty": 130.0,
+     "ingredient": "Chicken wing, bone-in, split (as purchased weight)",
+     "weekly_usage": 32.5,
+     "reorder_point": 22.286,
+     "weeks_covered": 4.0
+    },
+    {
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "lead_days": 2,
+     "order_qty": 110.0,
+     "ingredient": "Lamb leg, boneless, trimmed",
+     "weekly_usage": 27.444,
+     "reorder_point": 9.409,
+     "weeks_covered": 4.01
+    },
+    {
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor B (broadline)",
+     "lead_days": 3,
+     "order_qty": 100.0,
+     "ingredient": "Oaxaca-style cheese",
+     "weekly_usage": 24.916,
+     "reorder_point": 12.814,
+     "weeks_covered": 4.01
+    },
+    {
+     "unit": "l",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "lead_days": 1,
+     "order_qty": 152.0,
+     "ingredient": "Water",
+     "weekly_usage": 37.926,
+     "reorder_point": 6.502,
+     "weeks_covered": 4.01
+    },
+    {
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "lead_days": 4,
+     "order_qty": 135.0,
+     "ingredient": "Paneer",
+     "weekly_usage": 33.583,
+     "reorder_point": 23.028,
+     "weeks_covered": 4.02
+    },
+    {
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "lead_days": 1,
+     "order_qty": 60.0,
+     "ingredient": "Mexican crema",
+     "weekly_usage": 14.874,
+     "reorder_point": 2.55,
+     "weeks_covered": 4.03
+    },
+    {
+     "unit": "kg",
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "lead_days": 4,
+     "order_qty": 11.0,
+     "ingredient": "Red chilli powder (Kashmiri-type)",
+     "weekly_usage": 2.728,
+     "reorder_point": 1.871,
+     "weeks_covered": 4.03
+    }
+   ]
+  },
   "agent_mode": "engine_offline_heuristic",
   "model_tested": false,
   "note": "The agent is the Production AI Agent Platform engine with its offline heuristic provider (deterministic; not a language model). No language-model provider was run.",
@@ -864,6 +2691,16 @@
    "total_cost_cents": 2165313,
    "suppliers": [
     {
+     "supplier": "Synthetic Supplier 03 (produce)",
+     "cost_cents": 97283,
+     "items": 7
+    },
+    {
+     "supplier": "Synthetic Supplier 05 (dry goods)",
+     "cost_cents": 264884,
+     "items": 14
+    },
+    {
      "supplier": "Synthetic Supplier 04 (dairy)",
      "cost_cents": 15582,
      "items": 2
@@ -872,16 +2709,6 @@
      "supplier": "Synthetic Broadline Distributor B (broadline)",
      "cost_cents": 1088482,
      "items": 25
-    },
-    {
-     "supplier": "Synthetic Supplier 05 (dry goods)",
-     "cost_cents": 264884,
-     "items": 14
-    },
-    {
-     "supplier": "Synthetic Supplier 03 (produce)",
-     "cost_cents": 97283,
-     "items": 7
     },
     {
      "supplier": "Synthetic Broadline Distributor A (broadline)",
@@ -897,17 +2724,17 @@
   "trace": [
    {
     "seq": 1,
-    "ts": "2026-10-23T16:31:29.083155+00:00",
+    "ts": "2026-10-23T16:34:53.369657+00:00",
     "kind": "stage",
     "name": "request_received",
     "stage": "P01",
-    "project_id": "proj-5bbbe91f80",
+    "project_id": "proj-fdd40d0558",
     "request_id": "req-export-proc",
     "period_weeks": 4
    },
    {
     "seq": 2,
-    "ts": "2026-10-23T16:31:29.085882+00:00",
+    "ts": "2026-10-23T16:34:53.371675+00:00",
     "kind": "auth",
     "role": "ANALYST",
     "user": "ana",
@@ -916,20 +2743,20 @@
    },
    {
     "seq": 3,
-    "ts": "2026-10-23T16:31:29.189360+00:00",
+    "ts": "2026-10-23T16:34:53.476463+00:00",
     "kind": "tool_call",
-    "ms": 99.86,
+    "ms": 101.11,
     "ok": true,
     "tool": "launch__get_supplier_data",
     "codes": [],
     "stage": "P03",
-    "call_hash": "4c154e7924b5be63",
+    "call_hash": "f2d8b01c0dce9ff7",
     "forwarded": true,
     "approval_id": null
    },
    {
     "seq": 4,
-    "ts": "2026-10-23T16:31:29.191682+00:00",
+    "ts": "2026-10-23T16:34:53.478778+00:00",
     "kind": "stage",
     "name": "data_read",
     "stage": "P03",
@@ -939,7 +2766,7 @@
    },
    {
     "seq": 5,
-    "ts": "2026-10-23T16:31:29.205699+00:00",
+    "ts": "2026-10-23T16:34:53.490793+00:00",
     "kind": "stage",
     "name": "demand_and_needs",
     "stage": "P04",
@@ -948,7 +2775,7 @@
    },
    {
     "seq": 6,
-    "ts": "2026-10-23T16:31:30.242383+00:00",
+    "ts": "2026-10-23T16:34:54.466787+00:00",
     "kind": "stage",
     "mode": "engine_offline_heuristic",
     "name": "agent_research",
@@ -956,7 +2783,7 @@
     "claims": 8,
     "evidence": 12,
     "provider": "offline",
-    "agent_run": "run_ce3d018dd6a7",
+    "agent_run": "run_237a03b117c7",
     "independent_problems": [],
     "platform_verification": {
      "ok": true,
@@ -965,7 +2792,7 @@
    },
    {
     "seq": 7,
-    "ts": "2026-10-23T16:31:30.246090+00:00",
+    "ts": "2026-10-23T16:34:54.469952+00:00",
     "kind": "stage",
     "name": "recommendation",
     "flags": [
@@ -978,7 +2805,7 @@
    },
    {
     "seq": 8,
-    "ts": "2026-10-23T16:31:30.247920+00:00",
+    "ts": "2026-10-23T16:34:54.471198+00:00",
     "kind": "stage",
     "name": "independent_check",
     "stage": "P06",
@@ -986,31 +2813,31 @@
    },
    {
     "seq": 9,
-    "ts": "2026-10-23T16:31:30.258119+00:00",
+    "ts": "2026-10-23T16:34:54.479019+00:00",
     "kind": "stage",
     "name": "proposal",
     "stage": "P07",
-    "proposal_hash": "95f62123d859da61"
+    "proposal_hash": "063071149782e920"
    },
    {
     "seq": 10,
-    "ts": "2026-10-23T16:31:30.264145+00:00",
+    "ts": "2026-10-23T16:34:54.483218+00:00",
     "kind": "tool_call",
-    "ms": 1.99,
+    "ms": 1.24,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P08",
     "failure": null,
-    "call_hash": "6e4f6270c997e601",
+    "call_hash": "d8acb419f322525a",
     "forwarded": false,
-    "approval_id": "ap_2d532f85",
+    "approval_id": "ap_185188de",
     "held_for_approval": true
    },
    {
     "seq": 11,
-    "ts": "2026-10-23T16:31:30.269563+00:00",
+    "ts": "2026-10-23T16:34:54.487021+00:00",
     "kind": "stage",
     "name": "held_for_approval",
     "codes": [
@@ -1018,11 +2845,11 @@
     ],
     "stage": "P08",
     "ttl_s": 900,
-    "approval_id": "ap_2d532f85"
+    "approval_id": "ap_185188de"
    },
    {
     "seq": 12,
-    "ts": "2026-10-23T16:31:30.283002+00:00",
+    "ts": "2026-10-23T16:34:54.498318+00:00",
     "kind": "approval_decision",
     "code": "ROLE_NOT_PERMITTED",
     "role": "ANALYST",
@@ -1031,46 +2858,46 @@
    },
    {
     "seq": 13,
-    "ts": "2026-10-23T16:31:30.284745+00:00",
+    "ts": "2026-10-23T16:34:54.499729+00:00",
     "kind": "failure",
     "detail": "ANALYST may not approve",
     "failure_class": "ROLE_DENIED"
    },
    {
     "seq": 14,
-    "ts": "2026-10-23T16:31:30.568632+00:00",
+    "ts": "2026-10-23T16:34:54.741754+00:00",
     "kind": "approval_decision",
     "by": "ada",
     "role": "OWNER",
     "comment": "reviewed",
     "decision": "approve",
-    "approval_id": "ap_2d532f85"
+    "approval_id": "ap_185188de"
    },
    {
     "seq": 15,
-    "ts": "2026-10-23T16:31:30.618200+00:00",
+    "ts": "2026-10-23T16:34:54.782044+00:00",
     "kind": "tool_call",
-    "ms": 35.47,
+    "ms": 29.12,
     "ok": true,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P09",
-    "call_hash": "6e4f6270c997e601",
+    "call_hash": "d8acb419f322525a",
     "forwarded": true,
-    "approval_id": "ap_2d532f85"
+    "approval_id": "ap_185188de"
    },
    {
     "seq": 16,
-    "ts": "2026-10-23T16:31:30.620013+00:00",
+    "ts": "2026-10-23T16:34:54.783670+00:00",
     "kind": "stage",
     "name": "recommendation_recorded",
     "stage": "P09"
    },
    {
     "seq": 17,
-    "ts": "2026-10-23T16:31:30.621520+00:00",
+    "ts": "2026-10-23T16:34:54.784570+00:00",
     "kind": "stage",
     "name": "no_order_no_contact",
     "stage": "P10",
@@ -1079,7 +2906,7 @@
    },
    {
     "seq": 18,
-    "ts": "2026-10-23T16:31:30.627764+00:00",
+    "ts": "2026-10-23T16:34:54.789925+00:00",
     "kind": "approval_decision",
     "code": "APPROVAL_REPLAY",
     "state": "EXECUTED",
