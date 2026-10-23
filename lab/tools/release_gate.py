@@ -59,6 +59,8 @@ def resolve(doc, pointer):
     for part in pointer.split("."):
         if isinstance(cur, dict) and part in cur:
             cur = cur[part]
+        elif isinstance(cur, list) and part.isdigit() and int(part) < len(cur):
+            cur = cur[int(part)]
         else:
             raise KeyError(pointer)
     return cur
@@ -229,6 +231,10 @@ def gate_consistency(meta, summary, tests, ev, export, head, changed, cfg, now):
     for k in ("total", "passed", "failed", "skipped"):
         if summary.get(k) != real[k]:
             return _g(F, f"incorrect test counts: summary.json says {k}={summary.get(k)}, junit.xml has {real[k]}")
+    idx = {f"{t['module']}::{t['name']}": t["outcome"] for t in tests}
+    for k, v in (summary.get("tests") or {}).items():
+        if idx.get(k) != v:
+            return _g(F, f"summary.json records {k} as {v!r} but junit.xml says {idx.get(k)!r}")
     if export is not None:
         claimed = export.get("metrics", {}).get("release_evidence", {})
         if claimed.get("tests_passed") not in (None, real["passed"]):
@@ -239,8 +245,12 @@ def gate_consistency(meta, summary, tests, ev, export, head, changed, cfg, now):
 def gate_claims(export, bundle_docs, cfg):
     if not isinstance(export, dict) or not isinstance(export.get("claims"), list) or not export["claims"]:
         return _g(F, "portfolio evidence export has no claims list to validate")
-    sup = set(cfg["supported_metrics"]) | {"tests_passed", "tests_total", "mutants_killed", "mutants_total", "reproducible", "result_hash", "total", "failed", "skipped", "identical", "tables", "eval_hash_run1"}
-    for c in export["claims"]:
+    bundle_docs = dict(bundle_docs, **{"nasha-governed-evidence.json": export})
+    dm = (export.get("dashboards") or {}).get("metrics")
+    if dm is None or not isinstance(dm, list) or not dm:
+        return _g(F, "dashboard metrics missing: every dashboard number must be a claim that resolves to a recorded source")
+    sup = set(cfg["supported_metrics"]) | {"tests_passed", "tests_total", "mutants_killed", "mutants_total", "reproducible", "result_hash", "total", "failed", "skipped", "identical", "tables", "eval_hash_run1", "n", "percent", "covered", "statements", "tests", "scenarios", "incidents", "dashboards", "by_module", "metrics", "mutants", "results"}
+    for c in list(export["claims"]) + list(dm):
         if not isinstance(c, dict) or not {"id", "text", "value", "source"} <= set(c) or not isinstance(c["source"], dict) or not {"file", "pointer"} <= set(c["source"]):
             return _g(F, f"malformed claim: {str(c)[:80]}")
         if c["source"]["file"] not in bundle_docs:
@@ -260,7 +270,7 @@ def gate_claims(export, bundle_docs, cfg):
     for n in export.get("architecture", {}).get("nodes", []):
         if n.get("status") == "implemented_and_tested" and not n.get("evidence"):
             return _g(F, f"architecture node {n.get('id')} claims implemented_and_tested without evidence")
-    return _g(P, f"{len(export['claims'])} portfolio claims each resolve to the evidence bundle and match exactly", ["nasha-governed-evidence.json"])
+    return _g(P, f"{len(export['claims'])} portfolio claims and {len(dm)} dashboard metrics each resolve to the evidence bundle and match exactly", ["nasha-governed-evidence.json"])
 
 
 # ------------------------------------------------------------------ evaluate
@@ -296,7 +306,7 @@ def evaluate(bundle, cfg, head, changed=(), now=None, policy=None):
         gates["evidence_consistency"] = _g(F, "cannot check consistency without junit.xml")
     else:
         gates["evidence_consistency"] = gate_consistency(meta, summary, tests, ev, bundle.get("export"), head, changed, cfg, now)
-    docs = {"eval.json": ev or {}, "summary.json": summary, "repro.json": bundle.get("repro") or {}, "meta.json": meta or {}}
+    docs = {"eval.json": ev or {}, "summary.json": summary, "repro.json": bundle.get("repro") or {}, "meta.json": meta or {}, "coverage.json": bundle.get("coverage") or {}}
     gates["portfolio_claim_validation"] = gate_claims(bundle.get("export"), docs, cfg)
     statuses = [gates[g]["status"] for g in GATE_ORDER]
     overall = F if F in statuses else (R if R in statuses else P)
@@ -331,12 +341,17 @@ def load_bundle(d, export_path):
             return json.loads(t) if t else None
         except json.JSONDecodeError:
             return {"__malformed__": True}
-    return dict(meta=js("meta.json"), junit=rd("junit.xml"), eval=js("eval.json"), repro=js("repro.json"), summary=js("summary.json"),
+    return dict(coverage=js("coverage.json"), meta=js("meta.json"), junit=rd("junit.xml"), eval=js("eval.json"), repro=js("repro.json"), summary=js("summary.json"),
                 export=_export(export_path))
 
 
 def git(*a):
     return subprocess.run(["git", *a], capture_output=True, text=True, cwd=REPO).stdout.strip()
+
+
+def cfg_tests():
+    cfg = json.loads(CFG_PATH.read_text())
+    return [i for g in list(cfg["gates"].values()) + list(cfg.get("dashboard_tests", {}).values()) for i in g]
 
 
 def collect(out, junit=None):
@@ -359,6 +374,8 @@ def collect(out, junit=None):
     (out / "repro.json").write_text(json.dumps(dict(eval_hash_run1=rep["result_hash"], eval_hash_run2=evaluation.result_hash(rep2), warehouse=dict(tables=wr.get("tables"), identical=wr.get("identical"), eval_hash_equal=wr.get("eval_hash_equal"), differing_tables=wr.get("differing_tables"))), indent=1))
     tests = parse_junit((out / "junit.xml").read_text())
     s = summarize(tests); s.pop("skips")
+    wanted = set(cfg_tests())
+    s["tests"] = {f"{t['module']}::{t['name']}": t["outcome"] for t in tests if f"{t['module']}::{t['name']}" in wanted}
     s["by_module"] = {m: {k: sum(t["outcome"] == k for t in tests if t["module"] == m) for k in ("passed", "failed", "skipped")} for m in sorted({t["module"] for t in tests})}
     (out / "summary.json").write_text(json.dumps(s, indent=1))
     (out / "meta.json").write_text(json.dumps(dict(commit=head, dirty_code=bool(dirty), generated_at=time.time(), remote_ci="NOT_RUN", python=sys.version.split()[0]), indent=1))

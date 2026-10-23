@@ -55,7 +55,10 @@ def bundle(model_executed=True, **kw):
     claims = [dict(id="c1", text="tests passed in the suite", value=s["passed"], source=dict(file="summary.json", pointer="passed")),
               dict(id="c2", text="evaluation cases", value=ev["metrics"]["cases"], source=dict(file="eval.json", pointer="metrics.cases")),
               dict(id="c3", text="mutants killed", value=9, source=dict(file="eval.json", pointer="mutants_killed"))]
-    export = dict(claims=claims, metrics={"release_evidence": {"tests_passed": s["passed"]}}, architecture=dict(nodes=[dict(id="n", status="implemented_and_tested", evidence=["x"])]))
+    dm = [dict(id="d1", text="evaluation pass rate", value=1.0, source=dict(file="eval.json", pointer="metrics.pass_rate")),
+          dict(id="d2", text="first case passed", value=True, source=dict(file="eval.json", pointer="results.0.passed")),
+          dict(id="d3", text="scenario outcome", value="EXECUTED", source=dict(file="nasha-governed-evidence.json", pointer="scenarios.0.outcome"))]
+    export = dict(claims=claims, dashboards=dict(metrics=dm), scenarios=[dict(outcome="EXECUTED")], metrics={"release_evidence": {"tests_passed": s["passed"]}}, architecture=dict(nodes=[dict(id="n", status="implemented_and_tested", evidence=["x"])]))
     return dict(meta=dict(commit="abc1234", dirty_code=False, generated_at=NOW - 60, remote_ci="NOT_RUN"), junit=j, eval=ev, repro=rep, summary=s, export=export)
 
 
@@ -225,3 +228,25 @@ def test_config_requires_real_tests_every_listed_test_exists_in_the_repository()
         for i in ids:
             mod, fn = i.split("::")
             assert re.search(rf"def {fn}\b", (LAB / "tests" / f"{mod}.py").read_text()), i
+
+
+def test_dashboard_metrics_must_resolve_to_recorded_sources():
+    b = bundle(); b["export"]["dashboards"]["metrics"][0]["value"] = 0.5
+    rep = run(b)
+    assert "portfolio_claim_validation" in failing(rep) and "d1" in rep["gates"]["portfolio_claim_validation"]["detail"]
+    b = bundle(); b["export"]["dashboards"]["metrics"][1]["source"]["pointer"] = "results.999.passed"
+    assert "portfolio_claim_validation" in failing(run(b))
+    b = bundle(); b["export"]["dashboards"]["metrics"][2]["value"] = "BLOCKED"          # a scenario outcome that the recorded scenario does not have
+    assert "portfolio_claim_validation" in failing(run(b))
+
+
+def test_missing_dashboard_metrics_fail():
+    b = bundle(); b["export"].pop("dashboards")
+    assert "portfolio_claim_validation" in failing(run(b))
+
+
+def test_summary_test_outcomes_must_match_junit():
+    b = bundle(); victim = CFG["gates"]["security_regression"][0]
+    b["summary"]["tests"] = {victim: "failed"}
+    rep = run(b)
+    assert "evidence_consistency" in failing(rep)

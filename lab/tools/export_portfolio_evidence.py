@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from nasha_lab import identity as ID, llm  # noqa: E402
-from nasha_lab.governed import agent as AG, tenants as T, weir_bridge as WB, workflow as W  # noqa: E402
+from nasha_lab.governed import incident as IN, agent as AG, tenants as T, weir_bridge as WB, workflow as W  # noqa: E402
 
 OUT = ROOT / "portfolio/nasha-governed-evidence.json"
 EVD = ROOT / "results/release-gate"                        # evidence bundle written by tools/release_gate.py collect
@@ -154,6 +154,67 @@ def architecture():
                                                           separate_repository_not_integrated="a related repository exists; there is no runtime integration", blocked="cannot run in the current environment", designed_only="specified, not built"))
 
 
+def make_dashboards(out, ev_dir):
+    """Dashboard content for the website. Every number is a claim (file + pointer) that tools/release_gate.py re-resolves against the evidence; the pages render only these claims."""
+    ev_dir = Path(ev_dir)
+    summary, gev = (json.loads((ev_dir / n).read_text()) for n in ("summary.json", "eval.json"))
+    cov = json.loads((ev_dir / "coverage.json").read_text()) if (ev_dir / "coverage.json").exists() else None
+    M, cfg = [], json.loads((ROOT / "tools/release-gate.config.json").read_text())
+
+    def m(i, label, file, pointer, value):
+        M.append(dict(id=i, text=label, value=value, source=dict(file=file, pointer=pointer)))
+    ge = gev["metrics"]
+    m("eval.cases", "evaluation cases", "eval.json", "metrics.cases", gev["metrics"]["cases"]); m("eval.passed", "evaluation cases passed", "eval.json", "metrics.passed", gev["metrics"]["passed"])
+    m("mut.killed", "mutants caught", "eval.json", "mutants_killed", gev["mutants_killed"]); m("mut.total", "mutants tried", "eval.json", "mutants_total", gev["mutants_total"])
+    m("eval.pass_rate", "evaluation pass rate", "eval.json", "metrics.pass_rate", ge["pass_rate"])
+    for k, v in ge["by_category"].items():
+        m(f"eval.cat.{k}.n", f"{k}: cases", "eval.json", f"metrics.by_category.{k}.n", v["n"]); m(f"eval.cat.{k}.passed", f"{k}: passed", "eval.json", f"metrics.by_category.{k}.passed", v["passed"])
+    for k in ("answer_correctness", "hallucination_detection_rate", "unauthorized_action_rate", "false_authorization_rate", "abstention_quality", "tool_failure_safety", "latency_ms_p50", "latency_ms_p95"):
+        m(f"eval.{k}", k.replace("_", " "), "eval.json", f"metrics.{k}", ge[k])
+    for i, mu in enumerate(gev["mutants"]):
+        m(f"mut.{i}", f"mutant caught: {mu['mutant']}", "eval.json", f"mutants.{i}.killed", mu["killed"])
+    cases = [dict(id=r["id"], category=r["category"], passed=r["passed"], purchase_orders=r["observed_pos"]) for r in gev["results"]]
+    for i, r in enumerate(gev["results"]):
+        m(f"case.{i}", r["id"], "eval.json", f"results.{i}.passed", r["passed"])
+    groups = {}
+    allg = dict(cfg["dashboard_tests"], **{g: cfg["gates"][g] for g in ("tenant_isolation", "authorization_enforcement", "security_regression")})
+    for g, ids in allg.items():
+        groups[g] = [dict(test=t, outcome=summary["tests"][t]) for t in ids]
+        for t in ids:
+            m(f"test.{t}", t, "summary.json", f"tests.{t}", summary["tests"][t])
+    for mod, v in summary["by_module"].items():
+        if v["passed"] + v["failed"] + v["skipped"] and (mod.startswith("test_governed") or mod in ("test_release_gate", "test_pg_hardening", "test_menu_d90", "test_tenancy", "test_identity")):
+            m(f"mod.{mod}", f"{mod}: passed", "summary.json", f"by_module.{mod}.passed", v["passed"])
+    for k in ("passed", "failed", "skipped", "total"):
+        m(f"suite.{k}", f"suite {k}", "summary.json", k, summary[k])
+    if cov:
+        m("cov.percent", "line coverage of the governed package", "coverage.json", "totals.percent", cov["totals"]["percent"])
+        m("cov.statements", "statements measured", "coverage.json", "totals.statements", cov["totals"]["statements"])
+        for i, (f, v) in enumerate(cov["files"].items()):
+            m(f"cov.file.{f}", v["path"], "coverage.json", f"files.{f}.percent", v["percent"])
+    sc = out["scenarios"]
+    for i, s_ in enumerate(sc):
+        for fld in ("outcome", "failure_class", "purchase_orders_created", "external_transmissions", "audit_chain_valid"):
+            m(f"scn.{s_['id']}.{fld}", f"{s_['id']} {fld}", "nasha-governed-evidence.json", f"scenarios.{i}.{fld}", s_[fld])
+    sec = []
+    for i, s_ in enumerate(sc):
+        steps = s_["steps"]
+        sec.append(dict(id=s_["id"], title=s_["title"], index=i, approvals_requested=sum(1 for x in steps if x.get("held_for_approval")), denied=s_["outcome"] in ("BLOCKED", "DENIED"), expired=s_["failure_class"] == "APPROVAL_EXPIRED"))
+    rel = dict(
+        limitations=["Small synthetic case set (28 cases) with a rule planner and scripted model doubles; a perfect score is not evidence of real-world reliability.",
+                     "Nine hand-chosen mutants; surviving-mutant detection only covers those faults.",
+                     "The real language-model path has never executed here (no model runtime); the release gate stays REQUIRES_REVIEW.",
+                     "Line coverage (if shown) covers the governed package only and says nothing about assertion strength or branch coverage.",
+                     "Latency figures are per-case wall times on one build machine, not a benchmark.", "Remote CI has never run."],
+        categories=list(ge["by_category"]), cases=cases, test_groups=groups)
+    seci = {}
+    for sid, inc in out.get("incidents", {}).items():
+        seci[sid] = dict(answers=inc["answers"], why_blocked=inc["why_blocked"], side_effects=inc["side_effects"], tools_called=[dict(tool=t["tool"], forwarded=t["forwarded"], held=t["held_for_approval"]) for t in inc["tools_called"] if t["tool"]],
+                         authorization=inc["authorization"]["events"], audit_rows=inc["audit_rows"])
+    return dict(note="Every number is a claim resolved against recorded evidence by tools/release_gate.py. Events shown are recorded SYNTHETIC test scenarios, not real security incidents.", metrics=M, reliability=rel,
+                security=dict(scenarios=sec, incidents=seci, test_groups={k: groups[k] for k in ("expired_approvals", "audit_completeness", "tenant_isolation", "authorization_enforcement", "security_regression")}), coverage_present=bool(cov))
+
+
 def story(env, loc_ing, held):
     """Real values behind the eight pipeline stages of the approved-draft-PO run (all read from the synthetic warehouse and the executed run)."""
     loc, ing = loc_ing
@@ -200,6 +261,7 @@ def main():
         try:
             corr, res = steps_fn(wf, env)
             out["scenarios"].append(scenario(sid, title, claim, wf, corr, res, expect))
+            out.setdefault("incidents", {})[sid] = IN.investigate(wf, corr)
         finally:
             wf.close()
 
@@ -271,6 +333,7 @@ def main():
         out["scenarios"].append(dict(id="cross_tenant_blocked", title="Tenant B's identity cannot act in tenant A", claim="Each tenant has its own signing secret, warehouse, ledger, approval store and memory; a token from another tenant fails signature verification.",
                                      outcome=r["status"], failure_class=r["failure"], purchase_orders_created=0, external_transmissions=0, audit_chain_valid=wa.ledger.verify_audit()[0], expected=dict(status="DENIED", purchase_orders=0),
                                      matched_expectation=(r["status"] == "DENIED"), steps=timeline(wa, r["corr_id"]), audit=audit(wa, r["corr_id"])))
+        out.setdefault("incidents", {})["cross_tenant_blocked"] = IN.investigate(wa, r["corr_id"])
     finally:
         wa.close(); wb.close()
     assert all(s["matched_expectation"] for s in out["scenarios"]), [s["id"] for s in out["scenarios"] if not s["matched_expectation"]]
@@ -281,6 +344,7 @@ def main():
     out["generated_seconds"] = round(time.time() - t0, 1)
     out["metrics"] = measured_metrics(a, tmp, EVD)
     out["claims"] = make_claims(out["metrics"], EVD)
+    out["dashboards"] = make_dashboards(out, EVD)
     out["mutation_detail"] = [dict(mutant=m["mutant"], target_category=m["target_category"], killed=m["killed"]) for m in json.loads((EVD / "eval.json").read_text())["mutants"]]
     out["metrics"]["scenarios_executed"] = len(out["scenarios"])
     out["architecture"] = architecture()
