@@ -16,7 +16,7 @@ import psycopg
 from psycopg.types.json import Jsonb
 
 from .. import identity as ID
-from . import agent_research as AR, launch as L, procurement as PRC, service as SV, weir_launch as WL
+from . import agent_research as AR, launch as L, model_boundary as MB, procurement as PRC, service as SV, weir_launch as WL
 from .workflow import WeirCaller, WeirStore, Gateway, parse_policy
 
 WORKFLOW = "procurement_recommendation"
@@ -210,16 +210,24 @@ class LaunchProcurement(WeirCaller):
                 why = f"agent error: {type(e).__name__}"
         rejected = None
         if res is not None:
-            idx = {s["id"]: s for s in directory}
             problems = AR.verify_claims(res["report"], res["evidence"], directory)
-            self.store.event(corr, "stage", stage="P05", name="agent_research", mode=res["mode"], provider=res["provider"], agent_run=res["run_id"], claims=len(res["report"]["claims"]), evidence=len(res["evidence"]),
-                             platform_verification=res["verification"] and dict(ok=res["verification"]["ok"], groundedness=res["verification"]["groundedness"]), independent_problems=problems)
-            if problems or (res["verification"] and not res["verification"]["ok"]):
-                rejected = dict(problems=problems, platform_ok=res["verification"] and res["verification"]["ok"]); res = None; why = "agent output failed verification"
+            rv = MB.review(res["report"], res["evidence"], directory, res.get("tool_calls", []))
+            problems = problems + [p for p in rv["problems"] if p not in problems]
+            self.store.event(corr, "stage", stage="P05", name="agent_research", mode=res["mode"], provider=res["provider"], agent_run=res["run_id"], claims=len(res["report"].get("claims", [])) if isinstance(res["report"], dict) and isinstance(res["report"].get("claims", []), list) else 0, evidence=len(res["evidence"]),
+                             platform_verification=res["verification"] and dict(ok=res["verification"]["ok"], groundedness=res["verification"]["groundedness"]), independent_problems=problems,
+                             boundary=dict(status=rv["status"], accepted=len(rv["claims_accepted"]), rejected=[dict(codes=r["codes"]) for r in rv["claims_rejected"]], report_codes=rv["report_codes"], flags=rv["flags"]))
+            if rv["status"] == "abstained":
+                rejected = None; why = "agent abstained: the records do not support a conclusion"; res = None
+            elif problems or rv["status"] != "accepted" or (res["verification"] and not res["verification"]["ok"]):
+                rejected = dict(problems=problems, platform_ok=res["verification"] and res["verification"]["ok"], codes=sorted({c for r in rv["claims_rejected"] for c in r["codes"]} | set(rv["report_codes"]))); res = None; why = "agent output failed verification"
+            else:
+                res["boundary"] = dict(status=rv["status"], uncertainty=rv["uncertainty"], flags=rv["flags"], claims_accepted=len(rv["claims_accepted"]))
         if res is None:
             res = AR.deterministic_summary(directory, names)
             self.store.event(corr, "stage", stage="P05", name="agent_fallback", reason=why, mode=res["mode"])
         res["fallback_reason"] = why; res["rejected_agent_output"] = rejected
+        if "boundary" not in res:
+            res["boundary"] = dict(status="not_applicable", uncertainty=MB.computed_uncertainty(directory, {s["id"] for s in directory if s["priced_products"]}), flags=[], claims_accepted=0)
         return res
 
     # ---------------------------------------------------------------- the human decision and execution

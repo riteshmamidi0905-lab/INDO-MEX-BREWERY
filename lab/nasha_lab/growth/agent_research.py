@@ -8,11 +8,14 @@ Isolation: one agent database PER TENANT (physically separate corpora), created 
 Honesty about models: the default provider is the platform's OFFLINE HEURISTIC (deterministic, extractive, NOT a language model). A real model provider is selectable by configuration but has NOT been exercised
 in this repository's tests; the result's `mode` says which one ran. If the engine is unavailable or fails, callers fall back to a deterministic stored-data summary and the mode says so."""
 import asyncio
+import os
 import re
 from pathlib import Path
 
 import psycopg
 from psycopg.conninfo import conninfo_to_dict, make_conninfo
+
+from . import model_boundary as MB
 
 MODE_OFFLINE, MODE_MODEL, MODE_FALLBACK = "engine_offline_heuristic", "engine_model", "deterministic_fallback"
 DOLLAR = re.compile(r"\$\s?(\d[\d,]*(?:\.\d+)?)")
@@ -54,7 +57,11 @@ def verify_claims(report, evidence, directory):
             if p["unit_price_cents"] is not None:
                 stored.add(f"{float(p['unit_price_cents']) / 100:,.2f}")
     problems = []
+    if not isinstance(report, dict) or not isinstance(report.get("claims", []), list):
+        return ["malformed report: not an object with a list of claims"]
     for c in report.get("claims", []):
+        if not isinstance(c, dict) or not isinstance(c.get("text"), str) or not isinstance(c.get("evidence_ids", []), list):
+            problems.append("malformed claim: not {text, evidence_ids[]}"); continue
         cited = [evidence[e]["text"] for e in c.get("evidence_ids", []) if e in evidence]
         if len(cited) != len(c.get("evidence_ids", [])):
             problems.append(f"claim cites an evidence id that does not exist: {c['text'][:60]}")
@@ -85,6 +92,9 @@ class SupplierResearchAgent:
 
     async def _container(self):
         if self._c is None:
+            allowed, why = MB.provider_permitted(self.provider, os.environ)
+            if not allowed:
+                raise AgentUnavailable(why, "provider_not_permitted")        # refused before any settings, container or network call exists
             try:
                 from agentplatform.config import Settings
                 from agentplatform.container import Container

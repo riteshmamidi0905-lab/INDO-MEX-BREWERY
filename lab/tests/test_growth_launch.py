@@ -84,6 +84,18 @@ class FakeAgent:
     async def close(self): return None
 
 
+class GroundedFake:
+    """Scripted double (NOT a model) that returns one claim copied verbatim from the corpus it is given, with the passage it came from as evidence: what a well-behaved agent's output looks like to the boundary."""
+    def __init__(self): self.calls = 0
+    async def research(self, docs, query, version):
+        self.calls += 1
+        doc_id, (name, text) = next((k, v) for k, v in sorted(docs.items()) if "$" in v[1])
+        line = next(l for l in text.splitlines() if "$" in l).lstrip("- ").strip()
+        return dict(mode=AR.MODE_OFFLINE, provider="offline", run_id="fake", report=dict(title="t", answer="Summary of the cited supplier record.", claims=[dict(text=line, evidence_ids=["e1"])], limitations=["Prices are as stored."]),
+                    verification=dict(ok=True, groundedness=1.0, citation_validity=1.0), evidence={"e1": dict(doc_id=doc_id, title=name, text=text)}, tool_calls=[dict(tool="search_corpus", status="ok")])
+    async def close(self): return None
+
+
 def good_result(directory_claims=None, claims=None):
     return dict(mode=AR.MODE_OFFLINE, provider="offline", run_id="fake", report=dict(title="t", answer="a", claims=claims or [], limitations=[]), verification=dict(ok=True, groundedness=1.0, citation_validity=1.0), evidence={}, tool_calls=[])
 
@@ -174,7 +186,7 @@ def test_end_to_end_with_the_real_engine_research_verification_weir_hold_human_a
 
 def test_the_agent_never_changes_the_numbers_the_same_recommendation_results_with_the_agent_a_scripted_agent_or_none(world):
     hashes = []
-    for agent in (None, FakeAgent(good_result()), FakeAgent(exc=AR.AgentUnavailable("engine down"))):
+    for agent in (None, GroundedFake(), FakeAgent(exc=AR.AgentUnavailable("engine down"))):
         wf = make(world, agent=agent)
         r = wf.run(tok(wf, "ana"), project(world), 4)
         hashes.append((wf.status(r["corr_id"])["proposal_hash"], r["total_cost_cents"], r["agent_mode"]))

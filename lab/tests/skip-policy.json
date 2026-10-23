@@ -2,7 +2,7 @@
   "_comment": "Every skip in CI must match one of these. `max` is the most skips of that kind CI should show; a new reason or a higher count is reported (and fails with --strict). Update deliberately, with the reason.",
   "allowed": [
     {"name": "private answer keys", "match": "NASHA_PRIVATE_KEYS not set", "max": 12, "why": "answer keys are private by design"},
-    {"name": "model runtime", "match": "no local model runtime reachable", "max": 1, "why": "needs a local LLM; run via model-eval.yml"},
+    {"name": "model runtime", "match": "no local model runtime reachable", "max": 2, "why": "needs a local LLM; run via model-eval.yml"},
     {"name": "hadolint", "match": "hadolint not installed", "max": 1, "why": "p5-service-ci runs hadolint"},
     {"name": "pgvector not reachable", "match": "PostgreSQL \\+ pgvector not reachable", "max": 0, "why": "CI provides pgvector; any skip here is a regression"},
     {"name": "postgres unavailable", "match": "PostgreSQL unavailable|no PostgreSQL", "max": 0, "why": "CI provides PostgreSQL; any skip here is a regression"},

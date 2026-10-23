@@ -11,7 +11,7 @@ import pytest
 pytest.importorskip("mcp_weir", reason="INTEGRATION UNAVAILABLE: THE WEIR (mcp_weir) not installed")
 psycopg = pytest.importorskip("psycopg", reason="INTEGRATION UNAVAILABLE: psycopg not installed")
 
-from nasha_lab.growth import agent_research as AR, launch_seed as LS, launch_workflow as LW, procurement as PRC, schema as S, seed as SD, service as SV, testing as TT, weir_launch as WL, workflow as WF
+from nasha_lab.growth import agent_research as AR, launch_seed as LS, launch_workflow as LW, model_boundary as MB, procurement as PRC, schema as S, seed as SD, service as SV, testing as TT, weir_launch as WL, workflow as WF
 from nasha_lab.warehouse import pg_hardening as H
 
 AS_OF = date(2026, 10, 23)
@@ -157,6 +157,14 @@ def no_claim_check(report, evidence, directory):
     return []
 
 
+def no_claim_checks():
+    """Both independent layers off: the dollar/evidence check AND the model-output boundary (defence in depth: either alone still rejects a fabricated claim, see test_growth_model_boundary)."""
+    st = contextlib.ExitStack()
+    st.enter_context(mock.patch.object(AR, "verify_claims", no_claim_check))
+    st.enter_context(mock.patch.object(MB, "review", lambda *a, **k: dict(status="accepted", claims_accepted=[], claims_rejected=[], report_codes=[], tool_codes=[], uncertainty=[], flags=[], problems=[])))
+    return st
+
+
 def drop_record_audit(orig):
     def f(self, action, entity, entity_id, decision, detail=None):
         return None if action == "procurement.record" else orig(self, action, entity, entity_id, decision, detail)
@@ -211,7 +219,7 @@ def no_check_and_costly():
 
 
 MUTANTS = [
-    ("agent claim verification removed", p_claim_verification, None, lambda: mock.patch.object(AR, "verify_claims", no_claim_check)),
+    ("agent claim verification removed (number check and model-output boundary)", p_claim_verification, None, no_claim_checks),
     ("most expensive quote chosen and independent re-derivation removed", p_cheapest_quote, None, no_check_and_costly),
     ("quote validity dates ignored", p_expired_quotes, None, lambda: mock.patch.object(PRC, "_valid", lax_valid)),
     ("stale-proposal check removed (proposal fingerprint ignored)", p_stale_proposal, None, lambda: mock.patch.object(PRC, "digest", skip_digest(PRC.digest))),

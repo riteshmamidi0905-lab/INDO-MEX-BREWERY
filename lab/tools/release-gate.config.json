@@ -47,7 +47,8 @@
   },
   "skip_policy": "tests/skip-policy.json",
   "unverified_tests": {
-    "test_llm_planner::test_real_local_model_integration_smoke": "model runtime not executed: no local model runtime and no network access to model hosts"
+    "test_llm_planner::test_real_local_model_integration_smoke": "model runtime not executed: no local model runtime and no network access to model hosts",
+    "test_growth_model_live::test_a_real_local_model_runs_the_supplier_research_workflow_through_the_boundary": "model runtime not executed: no local model runtime (Ollama) reachable and no permission to use a paid hosted model"
   },
   "supported_metrics": [
     "cases",
