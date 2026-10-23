@@ -10,7 +10,7 @@ APP_ROLE = "growth_app"
 TENANT_TABLES = ["tenants", "users", "segments", "accounts", "contacts", "suppression_list", "leads", "opportunities", "stage_transitions", "activities", "products", "prices", "offers", "campaigns", "content_items",
                  "audit_log", "entity_versions"]
 APPEND_ONLY = ["audit_log", "stage_transitions", "entity_versions"]
-WORKFLOW_TABLES = ["workflow_runs", "workflow_events"]          # created by migration 105 (which carries its own RLS and grants)
+WORKFLOW_TABLES = ["workflow_runs", "workflow_events", "idempotency_keys"]          # created by migration 105 (which carries its own RLS and grants)
 VERSIONED = ["segments", "accounts", "contacts", "leads", "opportunities", "products", "prices", "offers", "campaigns", "content_items"]
 ALL_TENANT_TABLES = TENANT_TABLES + WORKFLOW_TABLES
 STAGES = ["new", "qualified", "proposal", "negotiation", "won", "lost"]
@@ -99,7 +99,15 @@ V005 = [  # D-90 Phase B: lead evidence, governed workflow state and its append-
 ]
 
 
+V006 = [  # HTTP idempotency records: one stored response per (tenant, key); a different request body under the same key is a conflict
+    "CREATE TABLE idempotency_keys (tenant_id text NOT NULL, key text NOT NULL, request_hash text NOT NULL, status_code integer NOT NULL, response jsonb NOT NULL, created_at timestamptz NOT NULL DEFAULT now(), PRIMARY KEY (tenant_id, key))",
+    "ALTER TABLE idempotency_keys ENABLE ROW LEVEL SECURITY", "ALTER TABLE idempotency_keys FORCE ROW LEVEL SECURITY",
+    "CREATE POLICY tenant_isolation ON idempotency_keys USING (tenant_id = current_setting('app.tenant_id', true)) WITH CHECK (tenant_id = current_setting('app.tenant_id', true))",
+    f"GRANT SELECT, INSERT ON idempotency_keys TO {APP_ROLE}",
+]
+
+
 def migrations(schema):
     """version -> (apply sql list, preflight list) for pg_hardening.migrate(specs=...). Fresh-schema migrations: no data to pre-flight."""
     v3 = [s.replace("{schema}", schema) for s in V003]
-    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, [])}
+    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, []), "106": (V006, [])}
