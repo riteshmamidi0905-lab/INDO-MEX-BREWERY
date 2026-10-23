@@ -19,7 +19,8 @@ ROLES = ("BUYER", "QUALITY_LEAD", "FOUNDER")
 ROLE_POLICY = {
     ("release_draft", None): {"BUYER", "FOUNDER"},
     ("create_draft_purchase_order", None): {"BUYER", "FOUNDER"},          # D-89: a draft PO from the governed procurement workflow
-    ("apply_lead_qualification", None): {"OWNER"},                         # D-90: Growth OS lead qualification (a different person from the requester approves)
+    ("apply_lead_qualification", None): {"OWNER"},
+    ("record_procurement_recommendation", None): {"OWNER"},                # D-90 M3: Growth OS launch workspace (a different person from the requester approves)                         # D-90: Growth OS lead qualification (a different person from the requester approves)
     ("adjust_inventory_record", None): {"BUYER", "QUALITY_LEAD", "FOUNDER"},
     ("flag_record_for_review", "inventory_counts"): {"QUALITY_LEAD", "BUYER", "FOUNDER"},
     ("flag_record_for_review", "orders"): {"QUALITY_LEAD", "FOUNDER"},

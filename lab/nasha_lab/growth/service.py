@@ -9,6 +9,7 @@ import psycopg
 from psycopg.types.json import Jsonb
 
 from . import schema as S
+from .launch import LaunchMixin
 
 # default-deny action -> roles. An action missing here is denied for everyone.
 POLICY = {
@@ -16,6 +17,8 @@ POLICY = {
     "lead.create": {"OWNER", "SALES", "MARKETING"}, "lead.qualify": {"OWNER", "SALES"}, "lead.convert": {"OWNER", "SALES"}, "opportunity.advance": {"OWNER", "SALES"}, "activity.log": {"OWNER", "SALES", "MARKETING"},
     "segment.create": {"OWNER", "MARKETING", "ANALYST"}, "product.create": {"OWNER"}, "price.scenario": {"OWNER", "ANALYST"}, "price.set_current": {"OWNER"}, "offer.create": {"OWNER", "MARKETING"},
     "campaign.create": {"OWNER", "MARKETING"}, "content.draft": {"OWNER", "MARKETING"}, "outreach.draft": {"OWNER", "SALES", "MARKETING"},
+    "project.create": {"OWNER"}, "project.stage": {"OWNER"}, "project.assumption": {"OWNER", "ANALYST"}, "milestone.write": {"OWNER"}, "finding.add": {"OWNER", "ANALYST"}, "supplier.add": {"OWNER", "ANALYST"},
+    "supplier.shortlist": {"OWNER", "ANALYST"}, "scenario.save": {"OWNER", "ANALYST"}, "procurement.record": {"OWNER", "ANALYST"},
     "read": {"OWNER", "SALES", "MARKETING", "ANALYST", "VIEWER"},
 }
 
@@ -50,7 +53,7 @@ def app_dsn(admin_dsn):
     return admin_dsn.replace("postgresql://postgres:", f"postgresql://{S.APP_ROLE}:", 1)
 
 
-class GrowthService:
+class GrowthService(LaunchMixin):
     def __init__(self, dsn, schema, tenant_id, user_id):
         self.tenant, self.user, self.schema = tenant_id, user_id, schema
         self.con = psycopg.connect(app_dsn(dsn), autocommit=True)
@@ -84,10 +87,11 @@ class GrowthService:
         try:
             with self.con.transaction():
                 entity_id = fn()
-                also = None
-                if isinstance(entity_id, tuple):               # a write that touches more than one row names the others, so each carries evidence
-                    entity_id, also = entity_id
-                self._audit(action, entity, entity_id, "allow", {"also": also} if also else None)
+                also, extra = None, {}
+                if isinstance(entity_id, tuple):               # a write that touches more than one row names the others, so each carries evidence; a third element adds audit detail
+                    entity_id, also, *rest = entity_id
+                    extra = rest[0] if rest else {}
+                self._audit(action, entity, entity_id, "allow", ({"also": also} if also else {}) | extra or None)
         except Blocked as e:                       # the write rolled back; the refusal itself is still on the record
             self._audit(action, entity, None, "deny", {"why": str(e)})
             raise
@@ -270,3 +274,6 @@ class GrowthService:
                 return False, seq
             prev = h
         return True, len(rows)
+
+
+GrowthService.Blocked = Blocked

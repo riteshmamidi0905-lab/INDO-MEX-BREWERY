@@ -12,7 +12,9 @@ TENANT_TABLES = ["tenants", "users", "segments", "accounts", "contacts", "suppre
 APPEND_ONLY = ["audit_log", "stage_transitions", "entity_versions"]
 WORKFLOW_TABLES = ["workflow_runs", "workflow_events", "idempotency_keys"]          # created by migration 105 (which carries its own RLS and grants)
 VERSIONED = ["segments", "accounts", "contacts", "leads", "opportunities", "products", "prices", "offers", "campaigns", "content_items"]
-ALL_TENANT_TABLES = TENANT_TABLES + WORKFLOW_TABLES
+LAUNCH_TABLES = ["launch_projects", "project_assumptions", "project_milestones", "research_findings", "suppliers", "supplier_products", "project_suppliers", "financial_scenarios", "procurement_recommendations"]
+LAUNCH_APPEND_ONLY = ["launch_events"]
+ALL_TENANT_TABLES = TENANT_TABLES + WORKFLOW_TABLES + LAUNCH_TABLES + LAUNCH_APPEND_ONLY
 STAGES = ["new", "qualified", "proposal", "negotiation", "won", "lost"]
 STAGE_RULES = [("new", "qualified"), ("new", "lost"), ("qualified", "proposal"), ("qualified", "lost"), ("proposal", "negotiation"), ("proposal", "lost"), ("negotiation", "won"), ("negotiation", "lost"), ("negotiation", "proposal")]
 ROLES = ["OWNER", "SALES", "MARKETING", "ANALYST", "VIEWER"]
@@ -128,7 +130,55 @@ V008 = [  # D-90 Milestone 3: no CRM mutation commits without audit evidence fro
 ] + [f"CREATE CONSTRAINT TRIGGER crm_audit_guard AFTER INSERT OR UPDATE OR DELETE ON {t} DEFERRABLE INITIALLY DEFERRED FOR EACH ROW EXECUTE FUNCTION require_audit('{k}')" for t, k in GUARDED.items()]
 
 
+VERIFICATION = ("synthetic_fixture", "lead_unverified", "verified_public", "stale")
+_fkp = lambda: _fk("project_id", "launch_projects")
+V009 = [  # D-90 Milestone 3: persistent business-launch projects, supplier intelligence, financial scenarios and governed procurement recommendations (all tenant-scoped, RLS, audited by the same guard)
+    f"CREATE TABLE launch_projects ({_COMMON}, name text NOT NULL, industry text NOT NULL, location text NOT NULL, concept text NOT NULL, budget_cents bigint NOT NULL CHECK (budget_cents >= 0), launch_target date, "
+    "stage text NOT NULL DEFAULT 'idea' CHECK (stage IN ('idea','research','sourcing','financial_plan','roadmap')), basis text NOT NULL DEFAULT 'synthetic' CHECK (basis IN ('synthetic','founder_input')), "
+    "PRIMARY KEY (tenant_id, id), UNIQUE (tenant_id, name))",
+    f"CREATE TABLE project_assumptions ({_COMMON}, project_id text NOT NULL, key text NOT NULL, label text NOT NULL, value numeric NOT NULL, unit text NOT NULL, "
+    f"basis text NOT NULL CHECK (basis IN ('founder','synthetic_assumption','public_reference')), note text, PRIMARY KEY (tenant_id, id), UNIQUE (tenant_id, project_id, key), {_fkp()})",
+    f"CREATE TABLE project_milestones ({_COMMON}, project_id text NOT NULL, title text NOT NULL, phase text NOT NULL CHECK (phase IN ('idea','research','sourcing','financial_plan','roadmap')), due date, "
+    f"status text NOT NULL DEFAULT 'todo' CHECK (status IN ('todo','doing','done')), note text, PRIMARY KEY (tenant_id, id), {_fkp()})",
+    f"CREATE TABLE research_findings ({_COMMON}, project_id text NOT NULL, topic text NOT NULL, finding text NOT NULL, source_kind text NOT NULL CHECK (source_kind IN ('founder_note','synthetic_fixture','search_result','public_source')), "
+    "source_url text, retrieved_on date, confidence numeric NOT NULL CHECK (confidence BETWEEN 0 AND 1), limitation text NOT NULL, "
+    f"CHECK (source_kind NOT IN ('search_result','public_source') OR (source_url IS NOT NULL AND retrieved_on IS NOT NULL)), PRIMARY KEY (tenant_id, id), {_fkp()})",
+    # supplier facts: a public business channel is described in words (no personal contact details can be stored: no e-mail addresses or phone numbers)
+    f"CREATE TABLE suppliers ({_COMMON}, name text NOT NULL, category text NOT NULL, service_area text NOT NULL, website_url text, contact_channel text NOT NULL DEFAULT 'none recorded', "
+    f"verification_status text NOT NULL CHECK (verification_status IN {VERIFICATION}), verified_on date, source_kind text NOT NULL CHECK (source_kind IN ('synthetic_fixture','search_result','official_site')), source_url text, notes text, "
+    r"CHECK (contact_channel !~ '@' AND contact_channel !~ '[0-9]{3}[-. ]?[0-9]{3,4}'), "
+    "CHECK (verification_status <> 'verified_public' OR (website_url IS NOT NULL AND source_url IS NOT NULL AND verified_on IS NOT NULL)), "
+    "CHECK (source_kind <> 'search_result' OR source_url IS NOT NULL), CHECK (verification_status <> 'synthetic_fixture' OR source_kind = 'synthetic_fixture'), PRIMARY KEY (tenant_id, id), UNIQUE (tenant_id, name))",
+    f"CREATE TABLE supplier_products ({_COMMON}, supplier_id text NOT NULL, name text NOT NULL, ingredient_ref text, unit text NOT NULL, unit_price_cents numeric CHECK (unit_price_cents >= 0), pack_qty numeric CHECK (pack_qty > 0), "
+    "lead_days integer CHECK (lead_days >= 0), min_order_cents bigint CHECK (min_order_cents >= 0), price_class text NOT NULL CHECK (price_class IN ('SYNTHETIC_QUOTE','PUBLIC_REFERENCE','SUPPLIER_QUOTE','NONE_PUBLISHED')), "
+    "valid_from date, valid_to date, source_url text, limitation text NOT NULL, CHECK (price_class = 'NONE_PUBLISHED' OR unit_price_cents IS NOT NULL), CHECK (price_class <> 'NONE_PUBLISHED' OR unit_price_cents IS NULL), "
+    f"CHECK (price_class NOT IN ('PUBLIC_REFERENCE','SUPPLIER_QUOTE') OR (source_url IS NOT NULL AND valid_from IS NOT NULL)), PRIMARY KEY (tenant_id, id), {_fk('supplier_id', 'suppliers')})",
+    f"CREATE TABLE project_suppliers ({_COMMON}, project_id text NOT NULL, supplier_id text NOT NULL, status text NOT NULL CHECK (status IN ('shortlisted','preferred','rejected')), note text, "
+    f"PRIMARY KEY (tenant_id, id), UNIQUE (tenant_id, project_id, supplier_id), {_fkp()}, {_fk('supplier_id', 'suppliers')})",
+    f"CREATE TABLE financial_scenarios ({_COMMON}, project_id text NOT NULL, name text NOT NULL, kind text NOT NULL DEFAULT 'simulated' CHECK (kind = 'simulated'), inputs jsonb NOT NULL, inputs_hash text NOT NULL, results jsonb NOT NULL, "
+    f"PRIMARY KEY (tenant_id, id), UNIQUE (tenant_id, project_id, name), {_fkp()})",
+    f"CREATE TABLE procurement_recommendations ({_COMMON}, project_id text NOT NULL, requester text NOT NULL, role text NOT NULL, idem_key text, period text NOT NULL, "
+    "state text NOT NULL CHECK (state IN ('STARTED','PROPOSED','AWAITING_APPROVAL','APPROVED','EXECUTED','REJECTED','BLOCKED','FAILED')), agent_mode text CHECK (agent_mode IN ('engine_offline_heuristic','engine_model','deterministic_fallback')), "
+    "items jsonb, totals jsonb, research jsonb, proposal_hash text, approval_id text, failure text, decided_by text, "
+    f"PRIMARY KEY (tenant_id, id), UNIQUE (tenant_id, idem_key), {_fkp()})",
+    "CREATE TABLE launch_events (tenant_id text NOT NULL, run_id text NOT NULL, seq integer NOT NULL, ts timestamptz NOT NULL DEFAULT now(), kind text NOT NULL, detail jsonb NOT NULL DEFAULT '{}', "
+    "PRIMARY KEY (tenant_id, run_id, seq), FOREIGN KEY (tenant_id, run_id) REFERENCES procurement_recommendations (tenant_id, id))",
+    "CREATE FUNCTION procurement_guard() RETURNS trigger LANGUAGE plpgsql AS $f$ BEGIN IF OLD.state IN ('EXECUTED','REJECTED') THEN RAISE EXCEPTION 'finished procurement recommendation cannot change' USING ERRCODE = 'check_violation'; END IF; "
+    "NEW.version := OLD.version + 1; NEW.updated_at := now(); RETURN NEW; END $f$",
+    "CREATE TRIGGER procurement_recommendations_guard BEFORE UPDATE ON procurement_recommendations FOR EACH ROW EXECUTE FUNCTION procurement_guard()",
+] + [s for t in LAUNCH_TABLES + LAUNCH_APPEND_ONLY for s in (f"ALTER TABLE {t} ENABLE ROW LEVEL SECURITY", f"ALTER TABLE {t} FORCE ROW LEVEL SECURITY",
+                                                           f"CREATE POLICY tenant_isolation ON {t} USING (tenant_id = current_setting('app.tenant_id', true)) WITH CHECK (tenant_id = current_setting('app.tenant_id', true))")] \
+  + [f"GRANT SELECT, INSERT, UPDATE ON {t} TO {APP_ROLE}" for t in LAUNCH_TABLES] + [f"GRANT SELECT, INSERT ON launch_events TO {APP_ROLE}"] \
+  + [s for t in LAUNCH_TABLES if t != "procurement_recommendations" for s in (f"CREATE TRIGGER {t}_bump BEFORE UPDATE ON {t} FOR EACH ROW EXECUTE FUNCTION bump_version()", f"CREATE TRIGGER {t}_snap AFTER INSERT OR UPDATE ON {t} FOR EACH ROW EXECUTE FUNCTION snapshot_version()")] \
+  + [f"CREATE TRIGGER procurement_recommendations_snap AFTER INSERT OR UPDATE ON procurement_recommendations FOR EACH ROW EXECUTE FUNCTION snapshot_version()"] \
+  + [f"CREATE CONSTRAINT TRIGGER crm_audit_guard AFTER INSERT OR UPDATE OR DELETE ON {t} DEFERRABLE INITIALLY DEFERRED FOR EACH ROW EXECUTE FUNCTION require_audit('id')" for t in LAUNCH_TABLES if t != "procurement_recommendations"] \
+  + ["CREATE FUNCTION require_audit_on_execute() RETURNS trigger LANGUAGE plpgsql AS $f$ BEGIN IF NEW.state = 'EXECUTED' AND OLD.state IS DISTINCT FROM 'EXECUTED' AND NOT EXISTS (SELECT 1 FROM audit_log a WHERE a.tenant_id = NEW.tenant_id AND a.txid = txid_current() "
+     "AND a.decision = 'allow' AND a.entity = 'procurement_recommendations' AND a.entity_id = NEW.id) THEN RAISE EXCEPTION 'recording procurement recommendation % has no audit evidence in this transaction', NEW.id USING ERRCODE = 'integrity_constraint_violation'; END IF; RETURN NULL; END $f$",
+     "CREATE CONSTRAINT TRIGGER procurement_audit_guard AFTER UPDATE ON procurement_recommendations DEFERRABLE INITIALLY DEFERRED FOR EACH ROW EXECUTE FUNCTION require_audit_on_execute()"] \
+  + ["CREATE INDEX ix_launch_findings ON research_findings (tenant_id, project_id)", "CREATE INDEX ix_supplier_products ON supplier_products (tenant_id, supplier_id)", "CREATE INDEX ix_procurement_project ON procurement_recommendations (tenant_id, project_id, state)"]
+
+
 def migrations(schema):
     """version -> (apply sql list, preflight list) for pg_hardening.migrate(specs=...). Fresh-schema migrations: no data to pre-flight."""
     v3 = [s.replace("{schema}", schema) for s in V003]
-    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, []), "106": (V006, []), "107": (V007, []), "108": (V008, [])}
+    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, []), "106": (V006, []), "107": (V007, []), "108": (V008, []), "109": (V009, [])}

@@ -90,39 +90,8 @@ class Store:
         return self.con.execute("SELECT id, lead_id, state, requester, failure, created_at FROM workflow_runs WHERE tenant_id=%s ORDER BY created_at DESC, id LIMIT %s OFFSET %s", (self.tenant, limit, offset)).fetchall()
 
 
-class GovernedLeadQualification:
-    def __init__(self, env, clock=time.time, ttl=900, fault=None, crm_fault=None, tool_timeout=TOOL_TIMEOUT_S):
-        self.env, self.clock, self.ttl, self.fault, self.crm_fault, self.tool_timeout = env, clock, ttl, fault, crm_fault, tool_timeout
-        self.store = Store(env)
-        self.weir = WeirStore(str(env.weir_db), clock)
-        self.loop = asyncio.new_event_loop()
-        self._gw, self._svc = {}, {}
-
-    def close(self):
-        for s in self._svc.values():
-            s.close()
-        self.store.close(); self.loop.close()
-
-    # ---------------------------------------------------------------- infrastructure
-    def _service(self, identity):
-        if identity.id not in self._svc:
-            self._svc[identity.id] = SV.GrowthService(self.env.dsn, self.env.schema, self.env.tenant_id, identity.id)
-        return self._svc[identity.id]
-
-    def _gateway(self, identity):
-        key = (identity.role, identity.id)
-        if key not in self._gw:
-            svc = self._service(identity)
-            ups = {}
-            crm = None
-            if identity.role in WG.READ_ROLES:
-                ups["growth"] = WG.GrowthReadUpstream(svc, self.fault)
-            if identity.role in WG.INITIATE_ROLES:
-                crm = WG.CrmUpstream(svc, self.store, self.crm_fault); ups["crm"] = crm
-            gw = Gateway(parse_policy(WG.policy_for(identity.role, self.ttl)), self.weir, ups, clock=self.clock)
-            self.loop.run_until_complete(gw.start())
-            self._gw[key] = (gw, crm)
-        return self._gw[key]
+class WeirCaller:
+    """One tool call through THE WEIR with classified failures and a recorded event; shared by every governed Growth OS workflow (needs self.store.event, self.loop, self.tool_timeout)."""
 
     def _call(self, gw, sess, tool, args, corr, stage):
         t0 = time.perf_counter()
@@ -156,6 +125,41 @@ class GovernedLeadQualification:
             return out, None, "TOOL_BAD_RESPONSE"
         self.store.event(corr, "tool_call", ok=True, **base)
         return out, parsed, None
+
+
+class GovernedLeadQualification(WeirCaller):
+    def __init__(self, env, clock=time.time, ttl=900, fault=None, crm_fault=None, tool_timeout=TOOL_TIMEOUT_S):
+        self.env, self.clock, self.ttl, self.fault, self.crm_fault, self.tool_timeout = env, clock, ttl, fault, crm_fault, tool_timeout
+        self.store = Store(env)
+        self.weir = WeirStore(str(env.weir_db), clock)
+        self.loop = asyncio.new_event_loop()
+        self._gw, self._svc = {}, {}
+
+    def close(self):
+        for s in self._svc.values():
+            s.close()
+        self.store.close(); self.loop.close()
+
+    # ---------------------------------------------------------------- infrastructure
+    def _service(self, identity):
+        if identity.id not in self._svc:
+            self._svc[identity.id] = SV.GrowthService(self.env.dsn, self.env.schema, self.env.tenant_id, identity.id)
+        return self._svc[identity.id]
+
+    def _gateway(self, identity):
+        key = (identity.role, identity.id)
+        if key not in self._gw:
+            svc = self._service(identity)
+            ups = {}
+            crm = None
+            if identity.role in WG.READ_ROLES:
+                ups["growth"] = WG.GrowthReadUpstream(svc, self.fault)
+            if identity.role in WG.INITIATE_ROLES:
+                crm = WG.CrmUpstream(svc, self.store, self.crm_fault); ups["crm"] = crm
+            gw = Gateway(parse_policy(WG.policy_for(identity.role, self.ttl)), self.weir, ups, clock=self.clock)
+            self.loop.run_until_complete(gw.start())
+            self._gw[key] = (gw, crm)
+        return self._gw[key]
 
     def _result(self, corr, status, **kw):
         run = self.store.run(corr) or {}
