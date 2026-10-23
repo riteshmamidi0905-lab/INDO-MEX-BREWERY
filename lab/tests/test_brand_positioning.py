@@ -6,8 +6,8 @@ from pathlib import Path
 LAB = Path(__file__).resolve().parents[1]
 PF = LAB.parents[1] / "pf"
 FORBIDDEN = re.compile(r"indo[\s‑-]?mex|fusion|indian|mexican|tex-mex|desi\b", re.I)
-PUBLIC = [*(LAB / "nasha_lab/growth/ui").glob("*"), LAB / "nasha_lab/growth/scenarios.py"] + [p for n in ("index", "nasha", "nasha-lab", "growthos", "reliability", "security", "projects", "recruiter") for p in [PF / f"{n}.html"]] \
-    + [PF / "js" / f for f in ("growth.js", "pipeline.js", "trace.js", "arch.js", "dash.js", "verify.js", "hero.js")]
+PUBLIC = [*(LAB / "nasha_lab/growth/ui").glob("*"), LAB / "nasha_lab/growth/scenarios.py"] + [p for n in ("index", "nasha", "nasha-lab", "growthos", "launch", "reliability", "security", "projects", "recruiter") for p in [PF / f"{n}.html"]] \
+    + [PF / "js" / f for f in ("growth.js", "launch.js", "pipeline.js", "trace.js", "arch.js", "dash.js", "verify.js", "hero.js")]
 
 
 def test_public_facing_copy_has_no_geographic_or_cultural_fusion_labels():
