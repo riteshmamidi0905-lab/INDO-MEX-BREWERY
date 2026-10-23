@@ -1,6 +1,6 @@
 {
- "total": 804,
- "passed": 803,
+ "total": 805,
+ "passed": 804,
  "failed": 0,
  "skipped": 1,
  "tests": {
@@ -263,7 +263,7 @@
    "skipped": 0
   },
   "test_growth_ui": {
-   "passed": 18,
+   "passed": 19,
    "failed": 0,
    "skipped": 0
   },
