@@ -88,16 +88,56 @@ def main():
             held = probe(dsn, sc)
         mutants.append(dict(mutant=name, probe=probe.__name__, killed=(held is False)))
         ok_all &= held is False
+    # ---- governed lead-qualification workflow: recorded runs on the real THE WEIR gateway, hand-oracle evaluation and the 8 workflow-level mutants
+    spec = importlib.util.spec_from_file_location("gwe", LAB / "tests/test_growth_workflow_eval.py")
+    gwe = importlib.util.module_from_spec(spec); sys.modules["gwe"] = gwe; spec.loader.exec_module(gwe)
+    W = gwe.World(dsn, "growth_exp_wf", tmp / "wfroot"); wf = W.wf["tenant-nasha"]
+    lead, contact = W.lead()
+    before = dict(status=W.status(lead), qualification_audit_rows=W.applied(lead))
+    r = wf.run(W.tok("sam"), lead, idempotency_key="export-happy", request_id="req-export-1")
+    held = dict(status=r["status"], approval_id=r["approval_id"], recommendation_status=r["recommendation"]["proposed_status"], score=r["recommendation"]["score"], lead_status_while_held=W.status(lead), qualification_audit_rows=W.applied(lead))
+    self_approve = wf.decide(r["corr_id"], W.tok("sam"), True)
+    d = wf.decide(r["corr_id"], W.tok("ada"), True, "evidence reviewed")
+    replay = wf.decide(r["corr_id"], W.tok("ada"), True)
+    arow = W.sql("SELECT actor, detail FROM audit_log WHERE action='lead.qualification_applied' AND entity_id=%s", (lead,))
+    happy = dict(corr_id=r["corr_id"], tenant="tenant-nasha", before=before, held=held, requester_self_approval=dict(status=self_approve["status"], failure=self_approve.get("failure")),
+                 approved=dict(status=d["status"], side_effects=d["side_effects"]), replay_after_execution=dict(status=replay["status"], failure=replay.get("failure")),
+                 lead_after=dict(status=W.status(lead), score=W.sql("SELECT score FROM leads WHERE id=%s", (lead,))[0][0]), audit=dict(actor=arow[0][0], approved_by=arow[0][1]["approved_by"], approval_matches=arow[0][1]["approval"] == r["approval_id"], rows=len(arow)),
+                 emails_or_messages_created=W.sql("SELECT count(*) FROM activities WHERE contact_id=%s", (contact,))[0][0], trace=wf.trace(r["corr_id"]))
+    ok_all &= happy["lead_after"]["status"] == "qualified" and happy["audit"]["rows"] == 1 and happy["emails_or_messages_created"] == 0 and happy["approved"]["status"] == "EXECUTED" and happy["held"]["lead_status_while_held"] == "new"
+    viewer = wf.run(W.tok("vic"), W.lead()[0]); sup, _ = W.lead(suppress_directly=True); supp = wf.run(W.tok("sam"), sup)
+    l2, _ = W.lead(); r2 = wf.run(W.tok("sam"), l2); rej = wf.decide(r2["corr_id"], W.tok("ada"), False, "not convinced")
+    other, _ = W.lead(tenant="tenant-meridian"); xt = wf.run(W.tok("sam"), other)
+    refusals = [dict(case="viewer starts a qualification", status=viewer["status"], failure=viewer.get("failure")), dict(case="suppressed contact", status=supp["status"], failure=supp.get("failure")),
+                dict(case="human rejects the proposal", status=rej["status"], lead_status=W.status(l2)), dict(case="lead id from another tenant", status=xt["status"], failure=xt.get("failure"))]
+    ok_all &= viewer["status"] != "AWAITING_APPROVAL" and supp.get("failure") == "SUPPRESSED_CONTACT" and rej["status"] == "REJECTED" and W.status(l2) == "new" and xt["status"] == "DENIED"
+    oracle_rows = []
+    for name, sg, score, status in gwe.ORACLE:
+        lx, _ = W.lead(sg); rec = wf.run(W.tok("sam"), lx)["recommendation"]
+        oracle_rows.append(dict(case=name, expected_score=score, expected_status=status, proposed_score=rec["score"], proposed_status=rec["proposed_status"], match=(rec["score"], rec["proposed_status"]) == (score, status)))
+        ok_all &= oracle_rows[-1]["match"]
+    W.close()
+    wf_mutants = []
+    for i, (name, probe, sql, patch) in enumerate(gwe.MUTANTS):
+        Wm = gwe.World(dsn, f"growth_exp_wm{i}", tmp / f"wm{i}")
+        for st in (sql.split("; ") if sql else []):
+            Wm.sql(st)
+        with patch():
+            held_m = probe(Wm)
+        Wm.close()
+        wf_mutants.append(dict(mutant=name, probe=probe.__name__, killed=(held_m is False)))
+        ok_all &= held_m is False
+    workflow = dict(name="governed_lead_qualification", happy_path=happy, refusals=refusals, oracle_evaluation=oracle_rows, mutants=wf_mutants)
     caps = json.loads((LAB / "nasha_lab/growth/capabilities.json").read_text())
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, cwd=LAB).stdout.strip()
     ver = a.verify_audit(), b.verify_audit()
     out = dict(schema="growth-os-evidence/1", commit=commit, synthetic=True, pushed=False, notice="Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
                postgres=a.con.execute("SHOW server_version").fetchone()[0], tenants=[dict(id="tenant-nasha", vertical="restaurant"), dict(id="tenant-fit", vertical="fitness")],
-               tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
+               tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, workflow=workflow, audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
                capabilities=caps["capabilities"], status_rules=caps["rules"], all_expectations_met=ok_all)
     (LAB / "portfolio/growth-os-evidence.json").write_text(json.dumps(out, indent=1, default=str))
     a.close(); b.close(); nosetting.close(); srv.cleanup()
-    print("written; all expectations met:", ok_all, f"{len(matrix)} stage pairs, {len(probes)} tables probed, {sum(m['killed'] for m in mutants)}/{len(mutants)} mutants killed")
+    print("written; all expectations met:", ok_all, f"{len(matrix)} stage pairs, {len(probes)} tables probed, {sum(m['killed'] for m in mutants)}/{len(mutants)} control mutants and {sum(m['killed'] for m in wf_mutants)}/{len(wf_mutants)} workflow mutants killed")
     sys.exit(0 if ok_all else 1)
 
 

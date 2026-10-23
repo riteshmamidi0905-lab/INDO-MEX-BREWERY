@@ -1,6 +1,6 @@
 {
  "schema": "growth-os-evidence/1",
- "commit": "b0e7255",
+ "commit": "53f5f5f",
  "synthetic": true,
  "pushed": false,
  "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
@@ -32,7 +32,10 @@
   "campaigns",
   "content_items",
   "audit_log",
-  "entity_versions"
+  "entity_versions",
+  "workflow_runs",
+  "workflow_events",
+  "idempotency_keys"
  ],
  "stage_matrix": [
   {
@@ -382,6 +385,355 @@
    "killed": true
   }
  ],
+ "workflow": {
+  "name": "governed_lead_qualification",
+  "happy_path": {
+   "corr_id": "wf-4ecc0cbf7b98",
+   "tenant": "tenant-nasha",
+   "before": {
+    "status": "new",
+    "qualification_audit_rows": 0
+   },
+   "held": {
+    "status": "AWAITING_APPROVAL",
+    "approval_id": "ap_b80e30d1",
+    "recommendation_status": "qualified",
+    "score": 95,
+    "lead_status_while_held": "new",
+    "qualification_audit_rows": 0
+   },
+   "requester_self_approval": {
+    "status": "DENIED",
+    "failure": "ROLE_DENIED"
+   },
+   "approved": {
+    "status": "EXECUTED",
+    "side_effects": {
+     "crm_updates": 1,
+     "emails_sent": 0,
+     "external_contacts": 0
+    }
+   },
+   "replay_after_execution": {
+    "status": "DENIED",
+    "failure": "APPROVAL_REPLAY"
+   },
+   "lead_after": {
+    "status": "qualified",
+    "score": 95
+   },
+   "audit": {
+    "actor": "sam",
+    "approved_by": "ada",
+    "approval_matches": true,
+    "rows": 1
+   },
+   "emails_or_messages_created": 0,
+   "trace": [
+    {
+     "seq": 1,
+     "ts": "2026-10-23T14:33:29.241302+00:00",
+     "kind": "stage",
+     "name": "request_received",
+     "stage": "G01",
+     "tenant": "tenant-nasha",
+     "lead_id": "lead-8e9ba9ebc3",
+     "request_id": "req-export-1",
+     "idempotency_key": true
+    },
+    {
+     "seq": 2,
+     "ts": "2026-10-23T14:33:29.243360+00:00",
+     "kind": "auth",
+     "role": "SALES",
+     "user": "sam",
+     "tenant": "tenant-nasha",
+     "decision": "allow"
+    },
+    {
+     "seq": 3,
+     "ts": "2026-10-23T14:33:29.251152+00:00",
+     "kind": "tool_call",
+     "ms": 4.64,
+     "ok": true,
+     "tool": "growth__get_lead_context",
+     "codes": [],
+     "stage": "G03",
+     "call_hash": "4cdd1f6ca8f7bf20",
+     "forwarded": true,
+     "approval_id": null
+    },
+    {
+     "seq": 4,
+     "ts": "2026-10-23T14:33:29.252966+00:00",
+     "kind": "stage",
+     "name": "evidence_collected",
+     "stage": "G03",
+     "evidence": {
+      "source": "synthetic-referral",
+      "suppressed": false,
+      "has_signals": true,
+      "lead_version": 1,
+      "consent_status": "opt_in"
+     }
+    },
+    {
+     "seq": 5,
+     "ts": "2026-10-23T14:33:29.254413+00:00",
+     "kind": "stage",
+     "name": "source_and_consent_validated",
+     "stage": "G04",
+     "consent_status": "opt_in",
+     "outreach_allowed": true
+    },
+    {
+     "seq": 6,
+     "ts": "2026-10-23T14:33:29.256799+00:00",
+     "kind": "stage",
+     "name": "recommendation",
+     "score": 95,
+     "stage": "G05",
+     "notice": "Rule-based score over synthetic signals; not a validated model. Qualifying a lead sends nothing and contacts no one.",
+     "reasons": [
+      {
+       "text": "budget confirmed: True",
+       "points": 25,
+       "evidence": "E4:lead.signals"
+      },
+      {
+       "text": "decision maker: True",
+       "points": 20,
+       "evidence": "E4:lead.signals"
+      },
+      {
+       "text": "timeline 20 days",
+       "points": 20,
+       "evidence": "E4:lead.signals"
+      },
+      {
+       "text": "fit 0.9",
+       "points": 18,
+       "evidence": "E4:lead.signals"
+      },
+      {
+       "text": "engagement 0.8",
+       "points": 12,
+       "evidence": "E4:lead.signals"
+      }
+     ],
+     "proposed_status": "qualified"
+    },
+    {
+     "seq": 7,
+     "ts": "2026-10-23T14:33:29.258980+00:00",
+     "kind": "stage",
+     "name": "proposal",
+     "stage": "G06",
+     "proposal_hash": "2faa7ceecc3695c5"
+    },
+    {
+     "seq": 8,
+     "ts": "2026-10-23T14:33:29.261590+00:00",
+     "kind": "tool_call",
+     "ms": 1.34,
+     "tool": "crm__apply_lead_qualification",
+     "codes": [
+      "R-GATE"
+     ],
+     "stage": "G07",
+     "failure": null,
+     "call_hash": "a6b166a82b852cbd",
+     "forwarded": false,
+     "approval_id": "ap_b80e30d1",
+     "held_for_approval": true
+    },
+    {
+     "seq": 9,
+     "ts": "2026-10-23T14:33:29.263251+00:00",
+     "kind": "stage",
+     "name": "held_for_approval",
+     "codes": [
+      "R-GATE"
+     ],
+     "stage": "G07",
+     "ttl_s": 900,
+     "approval_id": "ap_b80e30d1"
+    },
+    {
+     "seq": 10,
+     "ts": "2026-10-23T14:33:29.274483+00:00",
+     "kind": "approval_decision",
+     "code": "ROLE_NOT_PERMITTED",
+     "role": "SALES",
+     "user": "sam",
+     "decision": "deny"
+    },
+    {
+     "seq": 11,
+     "ts": "2026-10-23T14:33:29.276635+00:00",
+     "kind": "failure",
+     "detail": "SALES may not approve",
+     "failure_class": "ROLE_DENIED"
+    },
+    {
+     "seq": 12,
+     "ts": "2026-10-23T14:33:29.283058+00:00",
+     "kind": "approval_decision",
+     "by": "ada",
+     "role": "OWNER",
+     "comment": "evidence reviewed",
+     "decision": "approve",
+     "approval_id": "ap_b80e30d1"
+    },
+    {
+     "seq": 13,
+     "ts": "2026-10-23T14:33:29.294184+00:00",
+     "kind": "tool_call",
+     "ms": 7.11,
+     "ok": true,
+     "tool": "crm__apply_lead_qualification",
+     "codes": [
+      "R-GATE"
+     ],
+     "stage": "G09",
+     "call_hash": "a6b166a82b852cbd",
+     "forwarded": true,
+     "approval_id": "ap_b80e30d1"
+    },
+    {
+     "seq": 14,
+     "ts": "2026-10-23T14:33:29.296387+00:00",
+     "kind": "stage",
+     "name": "crm_updated",
+     "stage": "G09",
+     "lead_status": "qualified"
+    },
+    {
+     "seq": 15,
+     "ts": "2026-10-23T14:33:29.297427+00:00",
+     "kind": "stage",
+     "name": "no_external_contact",
+     "stage": "G10",
+     "emails_sent": 0,
+     "external_contacts": 0
+    },
+    {
+     "seq": 16,
+     "ts": "2026-10-23T14:33:29.299398+00:00",
+     "kind": "approval_decision",
+     "code": "APPROVAL_REPLAY",
+     "state": "EXECUTED",
+     "decision": "deny"
+    }
+   ]
+  },
+  "refusals": [
+   {
+    "case": "viewer starts a qualification",
+    "status": "DENIED",
+    "failure": "ROLE_DENIED"
+   },
+   {
+    "case": "suppressed contact",
+    "status": "BLOCKED",
+    "failure": "SUPPRESSED_CONTACT"
+   },
+   {
+    "case": "human rejects the proposal",
+    "status": "REJECTED",
+    "lead_status": "new"
+   },
+   {
+    "case": "lead id from another tenant",
+    "status": "DENIED",
+    "failure": "NO_SUCH_LEAD"
+   }
+  ],
+  "oracle_evaluation": [
+   {
+    "case": "strong",
+    "expected_score": 95,
+    "expected_status": "qualified",
+    "proposed_score": 95,
+    "proposed_status": "qualified",
+    "match": true
+   },
+   {
+    "case": "weak",
+    "expected_score": 6,
+    "expected_status": "disqualified",
+    "proposed_score": 6,
+    "proposed_status": "disqualified",
+    "match": true
+   },
+   {
+    "case": "boundary-60",
+    "expected_score": 60,
+    "expected_status": "qualified",
+    "proposed_score": 60,
+    "proposed_status": "qualified",
+    "match": true
+   },
+   {
+    "case": "just-below-58",
+    "expected_score": 58,
+    "expected_status": "disqualified",
+    "proposed_score": 58,
+    "proposed_status": "disqualified",
+    "match": true
+   },
+   {
+    "case": "no-decision-maker-45",
+    "expected_score": 45,
+    "expected_status": "disqualified",
+    "proposed_score": 45,
+    "proposed_status": "disqualified",
+    "match": true
+   }
+  ],
+  "mutants": [
+   {
+    "mutant": "authorization bypass: VIEWER allowed at THE WEIR and in the service",
+    "probe": "p_authorization",
+    "killed": true
+   },
+   {
+    "mutant": "tenant leakage: RLS off and tenant filter removed",
+    "probe": "p_tenant_isolation",
+    "killed": true
+   },
+   {
+    "mutant": "incorrect lead qualification: threshold lowered and independent validator removed",
+    "probe": "p_qualification_threshold",
+    "killed": true
+   },
+   {
+    "mutant": "suppression bypass: suppression list ignored",
+    "probe": "p_suppression",
+    "killed": true
+   },
+   {
+    "mutant": "consent bypass: outreach always allowed",
+    "probe": "p_consent",
+    "killed": true
+   },
+   {
+    "mutant": "approval replay: approvals never consumed",
+    "probe": "p_approval_replay",
+    "killed": true
+   },
+   {
+    "mutant": "incorrect CRM transition: stale/converted check removed",
+    "probe": "p_crm_state",
+    "killed": true
+   },
+   {
+    "mutant": "missing audit records: qualification not audited",
+    "probe": "p_audit",
+    "killed": true
+   }
+  ]
+ },
  "audit_chains_valid": {
   "nasha": true,
   "fit": true
@@ -479,14 +831,18 @@
    "n": 8,
    "capability": "Find potential customers",
    "implementation": "Prospect discovery and qualification",
-   "status": "DESIGNED",
-   "done": "Transparent rule-based lead qualification.",
-   "missing": "No prospect discovery by design (no scraping); qualification score is an unvalidated rule set.",
+   "status": "TESTED",
+   "done": "Rule-based lead qualification (hand-computed oracle), run through the governed workflow: evidence-backed recommendation, source/consent/suppression validation, THE WEIR hold, human approval, audited CRM update.",
+   "missing": "No prospect discovery by design (no scraping); the score is an unvalidated rule set, not a learned model; synthetic leads only.",
    "code": [
-    "lab/nasha_lab/growth/scoring.py"
+    "lab/nasha_lab/growth/scoring.py",
+    "lab/nasha_lab/growth/qualification.py",
+    "lab/nasha_lab/growth/workflow.py"
    ],
    "tests": [
-    "lab/tests/test_growth_foundation.py::test_lead_scoring_matches_hand_computed_scores"
+    "lab/tests/test_growth_foundation.py::test_lead_scoring_matches_hand_computed_scores",
+    "lab/tests/test_growth_workflow_eval.py::test_workflow_proposal_and_crm_outcome_match_the_hand_computed_oracle",
+    "lab/tests/test_growth_workflow.py::test_a_replayed_approval_creates_nothing_new"
    ]
   },
   {
@@ -550,30 +906,46 @@
    "n": 14,
    "capability": "CRM automation",
    "implementation": "Contact, account, opportunity and activity workflows",
-   "status": "TESTED",
-   "done": "Accounts, contacts, leads, opportunities, activities; DB-enforced stage rules; audited, versioned writes; role policy; tenant isolation via RLS.",
-   "missing": "CRUD-level CRM only: no automation triggers, reminders or UI.",
+   "status": "INTEGRATED",
+   "done": "Accounts, contacts, leads, opportunities, activities; DB-enforced stage rules; audited, versioned writes; role policy; RLS tenant isolation; HTTP API; web screens (CRM, pipeline, AI workflow center); governed lead-qualification workflow whose only CRM write passes THE WEIR and a human approval; mutation-tested.",
+   "missing": "No reminders, scheduled triggers or event-driven automation; synthetic data only; local demo, not a deployed service.",
    "code": [
     "lab/nasha_lab/growth/service.py",
-    "lab/nasha_lab/growth/schema.py"
+    "lab/nasha_lab/growth/schema.py",
+    "lab/nasha_lab/growth/workflow.py",
+    "lab/nasha_lab/growth/weir_growth.py",
+    "lab/nasha_lab/growth/api.py"
    ],
    "tests": [
     "lab/tests/test_growth_foundation.py::test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair",
     "lab/tests/test_growth_foundation.py::test_tenant_a_cannot_read_write_or_reference_tenant_b",
-    "lab/tests/test_growth_foundation.py::test_every_successful_write_has_exactly_one_audit_row"
+    "lab/tests/test_growth_foundation.py::test_every_successful_write_has_exactly_one_audit_row",
+    "lab/tests/test_growth_workflow.py::test_end_to_end_lead_qualification_with_human_approval_updates_the_crm_and_contacts_no_one",
+    "lab/tests/test_growth_workflow.py::test_cross_tenant_sessions_leads_runs_and_approvals_do_not_cross",
+    "lab/tests/test_growth_api.py::test_lead_qualification_over_http_denied_held_approved_updated_and_audited",
+    "lab/tests/test_growth_ui.py::test_qualification_flow_in_the_browser_requester_cannot_approve_owner_can_and_the_crm_changes",
+    "lab/tests/test_growth_workflow_eval.py::test_each_mutant_is_detected_by_its_probe"
+   ],
+   "ui": [
+    "lab/nasha_lab/growth/ui/index.html",
+    "lab/nasha_lab/growth/ui/app.js"
    ]
   },
   {
    "n": 15,
    "capability": "Build a sales funnel",
    "implementation": "Funnel and pipeline management",
-   "status": "IMPLEMENTED",
-   "done": "Stage pipeline with transition log.",
-   "missing": "No funnel analytics, pipeline forecast or UI (stage rules themselves are tested under 14).",
+   "status": "TESTED",
+   "done": "Stage pipeline with a DB-enforced transition graph and append-only transition log, a Sales Pipeline screen whose moves are validated by the backend.",
+   "missing": "No funnel analytics or pipeline forecast.",
    "code": [
-    "lab/nasha_lab/growth/service.py"
+    "lab/nasha_lab/growth/service.py",
+    "lab/nasha_lab/growth/ui/app.js"
    ],
-   "tests": []
+   "tests": [
+    "lab/tests/test_growth_foundation.py::test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair",
+    "lab/tests/test_growth_ui.py::test_pipeline_illegal_move_is_refused_by_the_backend_and_a_legal_move_is_applied"
+   ]
   },
   {
    "n": 16,
@@ -661,13 +1033,18 @@
    "n": 24,
    "capability": "Track performance",
    "implementation": "Unified KPI and analytics dashboards",
-   "status": "DESIGNED",
-   "done": "Existing NASHA operations, AI-reliability and security dashboards with sourced metrics (portfolio site).",
-   "missing": "No unified Growth OS KPI layer or product UI.",
+   "status": "TESTED",
+   "done": "Growth OS Executive Dashboard whose numbers are computed from tenant data and checked against the database; plus the existing sourced NASHA operations, reliability and security dashboards (portfolio).",
+   "missing": "Narrow KPI set; no experiments or attribution; synthetic data.",
    "code": [
+    "lab/nasha_lab/growth/api.py",
+    "lab/nasha_lab/growth/ui/app.js",
     "lab/tools/export_portfolio_evidence.py"
    ],
-   "tests": []
+   "tests": [
+    "lab/tests/test_growth_api.py::test_dashboard_numbers_match_the_database_and_are_tenant_scoped",
+    "lab/tests/test_growth_ui.py::test_dashboard_numbers_equal_the_api"
+   ]
   },
   {
    "n": 25,
