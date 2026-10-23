@@ -63,6 +63,15 @@ spacy = pytest.importorskip("spacy", reason="INTEGRATION UNAVAILABLE: spaCy not 
 try: spacy.load("en_core_web_md"); HAVE_MD = True
 except Exception: HAVE_MD = False
 PG = os.environ.get("NASHA_PG_DSN") or ("postgresql://nasha:nasha@127.0.0.1/nasha" if os.environ.get("NASHA_PG") else None)
+if not PG:       # no server configured: use the embedded PostgreSQL (pixeltable-pgserver, which ships pgvector) when it is installed, exactly as test_warehouse_pg does
+    try:
+        import atexit, tempfile
+        import pixeltable_pgserver as _pgs
+        _srv = _pgs.get_server(tempfile.mkdtemp(prefix="nasha-pgv-"), cleanup_mode="stop")
+        atexit.register(_srv.cleanup)
+        PG = _srv.get_uri()
+    except Exception:      # noqa: BLE001  (stays unavailable -> the test skips loudly below)
+        PG = None
 
 
 @pytest.mark.skipif(not HAVE_MD, reason="INTEGRATION UNAVAILABLE: spaCy model en_core_web_md missing")

@@ -113,6 +113,10 @@ class _Table:
         self.rows += len(df)
 
     def close(self):
+        if self.first:                      # zero rows (e.g. no returns for some seeds): still write the contract header, or the file violates its own source contract (found by D-89 tenant provisioning, seed 11)
+            from .warehouse.contracts import CONTRACTS
+            if self.name in CONTRACTS:
+                self.txt.write(",".join(CONTRACTS[self.name]["cols"]) + "\n")
         self.txt.close()
         self.raw.close()
         self.sha = hashlib.sha256(self.path.read_bytes()).hexdigest()

@@ -19,7 +19,7 @@ from ..recipes import beer_costing, bom, model, optimize, pricing, suppliers, sy
 
 SQL = Path(__file__).with_name("scenario_models") / "10_scn_derived.sql"
 SCENARIO_ID = "scn-price-v3-menu-d88"
-BASE_TABLES = ["scn_pricing", "scn_sim_item_map", "scn_menu_item", "scn_ingredient", "scn_supplier", "scn_supplier_quote", "scn_recipe_bom", "scn_calendar", "scn_inventory_week", "scn_injected_anomaly", "scn_serving", "scn_beer_economics", "scn_cost_lever", "scn_supplier_sensitivity"]
+BASE_TABLES = ["scn_pricing", "scn_sim_item_map", "scn_menu_item", "scn_ingredient", "scn_supplier", "scn_supplier_quote", "scn_recipe_bom", "scn_calendar", "scn_inventory_week", "scn_injected_anomaly", "scn_supplier_note", "scn_serving", "scn_beer_economics", "scn_cost_lever", "scn_supplier_sensitivity"]
 DERIVED_TABLES = ["scn_depletion_day", "scn_depletion_week", "scn_item_month", "scn_menu_profitability_month", "scn_variance_week", "scn_menu_engineering"]
 PY_TABLES = ["scn_variance_flag", "scn_demand_forecast", "scn_forecast_backtest", "scn_procurement_reco", "scn_scenario_run"]
 ALL_TABLES = BASE_TABLES + DERIVED_TABLES + PY_TABLES
@@ -34,6 +34,7 @@ DDL = {
     "scn_calendar": "date_key INTEGER, week INTEGER",
     "scn_inventory_week": "location_id TEXT, week INTEGER, ingredient_id TEXT, opening_qty REAL, receipts_qty REAL, closing_counted_qty REAL",
     "scn_injected_anomaly": "location_id TEXT, ingredient_id TEXT, kind TEXT, start_week INTEGER, weeks INTEGER, magnitude REAL",
+    "scn_supplier_note": "supplier_id TEXT, note TEXT, trust TEXT",
     "scn_serving": "size TEXT, fl_oz REAL, volume_ml REAL, status TEXT",
     "scn_beer_economics": "beer_id TEXT, size TEXT, scenario TEXT, volume_ml REAL, price_cents INTEGER, cost_ex_labor_cents REAL, cost_with_brew_labor_cents REAL, margin_ex_labor_pct REAL, margin_with_brew_labor_pct REAL, status TEXT",
     "scn_cost_lever": "menu_item_id TEXT, lever TEXT, setting TEXT, food_cost_cents REAL, gross_margin_pct REAL, margin_delta_pts REAL, quality_impact TEXT, note TEXT",
@@ -67,14 +68,14 @@ def run_sql_script(con, sql):
         con.execute(st)
 
 
-def build(wh_path, config_id=None, seed=7, anomalies="default"):
+def build(wh_path, config_id=None, seed=7, anomalies="default", quotes=None, supplier_notes=None):
     """Rebuild every scn_ table from the published warehouse. Idempotent and deterministic for a fixed warehouse, config and seed."""
     con = db.connect(wh_path)
     analytics._require_published(con)
     config_id = config_id or pricing.CURRENT
     cfg = pricing.load_config(config_id)
     recipes, master = model.load_recipes(), model.load_master()
-    qfile = suppliers.load()
+    qfile = quotes or suppliers.load()                 # a tenant may supply its own SYNTHETIC quote set (different seed / missing suppliers)
     for t in ALL_TABLES:
         con.execute(f"DROP TABLE IF EXISTS {t}")
     for t in BASE_TABLES + PY_TABLES:
@@ -100,7 +101,7 @@ def build(wh_path, config_id=None, seed=7, anomalies="default"):
     _insert(con, "scn_serving", [(k, sv[k]["fl_oz"], sv[k]["fl_oz"] * sv["oz_to_ml"], sv[k]["status"]) for k in ("glass", "pitcher")])
     _insert(con, "scn_beer_economics", [(r["beer"], r["size"], r["scenario"], r["volume_ml"], int(round(r["price"] * 100)), r["cost_ex_labor"] * 100, r["cost_with_brew_labor"] * 100,
                                          r["margin_ex_labor_pct"], r["margin_with_brew_labor_pct"], r["status"]) for r in beer_costing.all_rows(cfg)])
-    qf = suppliers.load()
+    qf = qfile
     _insert(con, "scn_cost_lever", [(r["dish"], r["lever"], r["setting"], r["food_cost"] * 100, r["gross_margin_pct"], r["margin_delta_pts"], r["quality_impact"], r["note"])
                                     for rid, rr in recipes.items() if rr["kind"] == "dish" for r in optimize.levers(rid, cfg, recipes, master, qf["quotes"])])
     _insert(con, "scn_supplier_sensitivity", [(r["supplier_id"], r["dish"], r["base_food_cost"] * 100, r["shocked_food_cost"] * 100, r["delta_pct"], r["share_of_cost"])
@@ -115,6 +116,8 @@ def build(wh_path, config_id=None, seed=7, anomalies="default"):
     _insert(con, "scn_menu_item", mi)
     _insert(con, "scn_recipe_bom", pricing.bom_rows(cfg, recipes, master))
     _insert(con, "scn_ingredient", [(i["id"], i["name"], i["category"], i["unit"], i["yield_pct"], (i["price"]["base"] if "price" in i else None), "PLANNING_ASSUMPTION") for i in master.values()])
+    notes = supplier_notes if supplier_notes is not None else {s["supplier_id"]: f"Synthetic delivery note for {s['name']}: standard weekly delivery window; minimum order applies to broadline distributors." for s in qfile["suppliers"]}
+    _insert(con, "scn_supplier_note", [(sid, note, "untrusted") for sid, note in sorted(notes.items())])
     _insert(con, "scn_supplier", [(s["supplier_id"], s["name"], s["kind"], 1) for s in qfile["suppliers"]])
     _insert(con, "scn_supplier_quote", [(q["quote_id"], q["supplier_id"], q["ingredient_id"], q["unit_price"], q["pack_qty"], q["lead_days"], q["min_order_usd"], q["valid_from"], q["valid_to"], q["price_class"]) for q in qfile["quotes"]])
     # ---- calendar (week index consistent with synth_ops.weekly_sales) and synthetic inventory counts

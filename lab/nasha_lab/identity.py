@@ -18,6 +18,7 @@ ROLES = ("BUYER", "QUALITY_LEAD", "FOUNDER")
 # which roles may approve which simulated mutation (tool, target-table or None)
 ROLE_POLICY = {
     ("release_draft", None): {"BUYER", "FOUNDER"},
+    ("create_draft_purchase_order", None): {"BUYER", "FOUNDER"},          # D-89: a draft PO from the governed procurement workflow
     ("adjust_inventory_record", None): {"BUYER", "QUALITY_LEAD", "FOUNDER"},
     ("flag_record_for_review", "inventory_counts"): {"QUALITY_LEAD", "BUYER", "FOUNDER"},
     ("flag_record_for_review", "orders"): {"QUALITY_LEAD", "FOUNDER"},
