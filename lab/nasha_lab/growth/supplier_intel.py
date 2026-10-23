@@ -84,7 +84,9 @@ def find_duplicates(directory, threshold=DUPLICATE_THRESHOLD):
 CLASSES = [("produce", ("produce", "vegetable", "fruit", "greens", "herb", "farm")), ("dairy", ("dairy", "milk", "butter", "cream", "cheese", "paneer", "yogurt", "egg")),
            ("meat_and_seafood", ("meat", "lamb", "goat", "chicken", "poultry", "turkey", "sausage", "beef", "pork", "seafood", "fish", "butcher")), ("dry_goods_and_grocery", ("grocery", "dry goods", "flour", "masa", "rice", "spice", "pantry", "grain", "dry")),
            ("beverage_ingredients", ("hops", "malt", "grain", "yeast", "beverage", "brewing")), ("packaging_and_disposables", ("packaging", "disposable", "container", "bag", "box")),
-           ("equipment", ("equipment", "bike", "machine", "fit-out", "furniture")), ("services", ("service", "laundry", "cleaning", "linen", "towel", "maintenance"))]
+           ("fitness_equipment", ("fitness", "treadmill", "rower", "dumbbell", "kettlebell", "barbell", "squat", "weights", "bike", "bikes", "spin", "reformer")), ("flooring_and_fitout", ("flooring", "floor", "rubber", "mirror", "mirrors", "fit-out", "fitout", "construction", "acoustic")),
+           ("equipment", ("equipment", "machine", "furniture", "locker", "lockers")), ("software_and_systems", ("software", "booking", "access", "sound", "audio", "pos", "system", "systems")),
+           ("laundry_and_linen", ("laundry", "linen", "towel", "towels")), ("cleaning_and_facility_services", ("cleaning", "janitorial", "sanitation", "pest", "maintenance")), ("broadline_distribution", ("broadline", "cash and carry", "cash-and-carry", "foodservice distribution", "wholesale club")), ("services", ("service", "services"))]
 
 
 def classify(category, name="", product_names=()):
@@ -97,7 +99,8 @@ def classify(category, name="", product_names=()):
             scores[cls] = s
     if not scores:
         return dict(primary="unclassified", matches=[], rule="no keyword matched the category, name or products", method="rule_based_keywords")
-    ranked = sorted(scores, key=lambda c: (-scores[c], c))
+    order = {c: i for i, (c, _) in enumerate(CLASSES)}
+    ranked = sorted(scores, key=lambda c: (-scores[c], order[c]))               # ties go to the class listed first (the more specific one)
     return dict(primary=ranked[0], matches=[dict(cls=c, score=scores[c]) for c in ranked], rule="keyword hits weighted category x3, name x2, product x1", method="rule_based_keywords")
 
 

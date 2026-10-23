@@ -35,7 +35,7 @@ def db(dsn):
     with psycopg.connect(dsn, autocommit=True) as c:
         c.execute(f'DROP SCHEMA IF EXISTS "{SCHEMA}" CASCADE'); c.execute(f'CREATE SCHEMA "{SCHEMA}"')
     rep = H.migrate(dsn, SCHEMA, specs=S.migrations(SCHEMA))
-    assert [r["status"] for r in rep] == ["applied"] * 10
+    assert [r["status"] for r in rep] == ["applied"] * 11
     users = [("ada", "Ada (synthetic owner)", "OWNER"), ("sam", "Sam (synthetic sales)", "SALES"), ("mia", "Mia (synthetic marketing)", "MARKETING"), ("vic", "Vic (synthetic viewer)", "VIEWER"), ("ana", "Ana (synthetic analyst)", "ANALYST")]
     SV.provision(dsn, SCHEMA, "tenant-nasha", "NASHA — The Courtyard (synthetic hospitality brand)", "restaurant", users)
     SV.provision(dsn, SCHEMA, "tenant-fit", "Meridian Fitness (synthetic studio)", "fitness", users)
@@ -55,7 +55,7 @@ def seed(s, tag):
 
 # ---------------------------------------------------------------- schema and migrations
 def test_migrations_are_idempotent_and_checksummed(db):
-    assert [r["status"] for r in H.migrate(db, SCHEMA, specs=S.migrations(SCHEMA))] == ["already_applied"] * 10
+    assert [r["status"] for r in H.migrate(db, SCHEMA, specs=S.migrations(SCHEMA))] == ["already_applied"] * 11
     edited = S.migrations(SCHEMA); edited["104"] = (edited["104"][0] + ["CREATE INDEX ix_x ON accounts (name)"], [])
     with pytest.raises(H.MigrationChanged):
         H.migrate(db, SCHEMA, specs=edited)

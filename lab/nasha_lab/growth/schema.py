@@ -15,7 +15,8 @@ VERSIONED = ["segments", "accounts", "contacts", "leads", "opportunities", "prod
 LAUNCH_TABLES = ["launch_projects", "project_assumptions", "project_milestones", "research_findings", "suppliers", "supplier_products", "project_suppliers", "financial_scenarios", "procurement_recommendations"]
 LAUNCH_APPEND_ONLY = ["launch_events"]
 LAUNCH_TABLES_V10 = ["supplier_sources"]                      # migration 110 (Milestone 4)
-ALL_TENANT_TABLES = TENANT_TABLES + WORKFLOW_TABLES + LAUNCH_TABLES + LAUNCH_APPEND_ONLY + LAUNCH_TABLES_V10
+LAUNCH_TABLES_V11 = ["project_requirements"]                  # migration 111 (Milestone 5)
+ALL_TENANT_TABLES = TENANT_TABLES + WORKFLOW_TABLES + LAUNCH_TABLES + LAUNCH_APPEND_ONLY + LAUNCH_TABLES_V10 + LAUNCH_TABLES_V11
 STAGES = ["new", "qualified", "proposal", "negotiation", "won", "lost"]
 STAGE_RULES = [("new", "qualified"), ("new", "lost"), ("qualified", "proposal"), ("qualified", "lost"), ("proposal", "negotiation"), ("proposal", "lost"), ("negotiation", "won"), ("negotiation", "lost"), ("negotiation", "proposal")]
 ROLES = ["OWNER", "SALES", "MARKETING", "ANALYST", "VIEWER"]
@@ -179,9 +180,10 @@ V009 = [  # D-90 Milestone 3: persistent business-launch projects, supplier inte
   + ["CREATE INDEX ix_launch_findings ON research_findings (tenant_id, project_id)", "CREATE INDEX ix_supplier_products ON supplier_products (tenant_id, supplier_id)", "CREATE INDEX ix_procurement_project ON procurement_recommendations (tenant_id, project_id, state)"]
 
 
-SOURCE_KINDS = ("official_site", "contact_page", "trade_directory", "press", "investor_profile", "partner_listing", "government_record")
+SOURCE_KINDS_V10 = ("official_site", "contact_page", "trade_directory", "press", "investor_profile", "partner_listing", "government_record")      # frozen: migration 110 is checksummed
+SOURCE_KINDS = SOURCE_KINDS_V10 + ("encyclopedia",)
 V010 = [  # D-90 Milestone 4: structured, dated provenance for supplier facts. One row per public source: what kind of page, its URL, the claim it supports, whether the PAGE WAS READ or only a search snippet was seen, and when.
-    f"CREATE TABLE supplier_sources ({_COMMON}, supplier_id text NOT NULL, kind text NOT NULL CHECK (kind IN {SOURCE_KINDS}), url text NOT NULL CHECK (url ~ '^https://[^ ]+$'), claim text NOT NULL CHECK (length(claim) BETWEEN 8 AND 400), "
+    f"CREATE TABLE supplier_sources ({_COMMON}, supplier_id text NOT NULL, kind text NOT NULL CHECK (kind IN {SOURCE_KINDS_V10}), url text NOT NULL CHECK (url ~ '^https://[^ ]+$'), claim text NOT NULL CHECK (length(claim) BETWEEN 8 AND 400), "
     "access text NOT NULL CHECK (access IN ('page_read','search_snippet')), observed_on date NOT NULL, "
     f"CHECK (claim !~ '@' AND claim !~ '[0-9]{{3}}[-. ]?[0-9]{{3,4}}'), PRIMARY KEY (tenant_id, id), UNIQUE (tenant_id, supplier_id, url, claim), {_fk('supplier_id', 'suppliers')})",
 ] + [s for t in LAUNCH_TABLES_V10 for s in (f"ALTER TABLE {t} ENABLE ROW LEVEL SECURITY", f"ALTER TABLE {t} FORCE ROW LEVEL SECURITY",
@@ -192,7 +194,21 @@ V010 = [  # D-90 Milestone 4: structured, dated provenance for supplier facts. O
   + ["CREATE INDEX ix_supplier_sources ON supplier_sources (tenant_id, supplier_id)"]
 
 
+V011 = [  # D-90 Milestone 5: industry-agnostic requirements (equipment, services, consumables a project needs) so procurement does not depend on recipes; one more source kind for encyclopedic references
+    "ALTER TABLE supplier_sources DROP CONSTRAINT supplier_sources_kind_check",
+    f"ALTER TABLE supplier_sources ADD CONSTRAINT supplier_sources_kind_check CHECK (kind IN {SOURCE_KINDS})",
+    f"CREATE TABLE project_requirements ({_COMMON}, project_id text NOT NULL, ref text NOT NULL CHECK (ref ~ '^[a-z0-9][a-z0-9._-]{{1,59}}$'), name text NOT NULL, kind text NOT NULL CHECK (kind IN ('equipment','service','consumable')), "
+    "qty numeric NOT NULL CHECK (qty > 0), unit text NOT NULL, recurrence text NOT NULL CHECK (recurrence IN ('one_time','per_week')), note text, "
+    f"PRIMARY KEY (tenant_id, id), UNIQUE (tenant_id, project_id, ref), {_fkp()})",
+] + [s for t in LAUNCH_TABLES_V11 for s in (f"ALTER TABLE {t} ENABLE ROW LEVEL SECURITY", f"ALTER TABLE {t} FORCE ROW LEVEL SECURITY",
+                                            f"CREATE POLICY tenant_isolation ON {t} USING (tenant_id = current_setting('app.tenant_id', true)) WITH CHECK (tenant_id = current_setting('app.tenant_id', true))",
+                                            f"GRANT SELECT, INSERT, UPDATE ON {t} TO {APP_ROLE}", f"CREATE TRIGGER {t}_bump BEFORE UPDATE ON {t} FOR EACH ROW EXECUTE FUNCTION bump_version()",
+                                            f"CREATE TRIGGER {t}_snap AFTER INSERT OR UPDATE ON {t} FOR EACH ROW EXECUTE FUNCTION snapshot_version()",
+                                            f"CREATE CONSTRAINT TRIGGER crm_audit_guard AFTER INSERT OR UPDATE OR DELETE ON {t} DEFERRABLE INITIALLY DEFERRED FOR EACH ROW EXECUTE FUNCTION require_audit('id')")] \
+  + ["CREATE INDEX ix_project_requirements ON project_requirements (tenant_id, project_id)"]
+
+
 def migrations(schema):
     """version -> (apply sql list, preflight list) for pg_hardening.migrate(specs=...). Fresh-schema migrations: no data to pre-flight."""
     v3 = [s.replace("{schema}", schema) for s in V003]
-    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, []), "106": (V006, []), "107": (V007, []), "108": (V008, []), "109": (V009, []), "110": (V010, [])}
+    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, []), "106": (V006, []), "107": (V007, []), "108": (V008, []), "109": (V009, []), "110": (V010, []), "111": (V011, [])}

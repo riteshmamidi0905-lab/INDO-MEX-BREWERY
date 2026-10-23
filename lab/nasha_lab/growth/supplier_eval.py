@@ -20,11 +20,11 @@ DEDUPE = [
 # (category, name, products, classes that must be among the matches, expected primary or None when the record legitimately spans classes)
 CLASSIFY = [
     ("Produce distribution", "Brothers Produce", [], ["produce"], "produce"), ("Dairy distribution", "Hill Country Dairies", [], ["dairy"], "dairy"), ("Produce, eggs and dairy wholesale", "Farm to Table LLC", [], ["produce", "dairy"], None),
-    ("Fitness equipment", "Studio Equipment Supplier", ["Spin bike"], ["equipment"], "equipment"), ("Laundry service", "Linen and Towel Service", [], ["services"], "services"),
+    ("Fitness equipment", "Studio Equipment Supplier", ["Spin bike"], ["fitness_equipment"], "fitness_equipment"), ("Laundry service", "Linen and Towel Service", [], ["laundry_and_linen"], "laundry_and_linen"),
     ("Specialty meats", "Prime Cuts", [], ["meat_and_seafood"], "meat_and_seafood"), ("Poultry", "Supplier 01", ["Chicken thigh"], ["meat_and_seafood"], "meat_and_seafood"),
     ("Dry goods", "Pantry Supply", ["Masa harina", "Rice"], ["dry_goods_and_grocery"], "dry_goods_and_grocery"), ("Packaging", "Box Co", ["Takeout container"], ["packaging_and_disposables"], "packaging_and_disposables"),
     ("Brewing ingredients", "Malt House", ["Malt", "Hops"], ["beverage_ingredients"], None), ("Wholesale cheese importer", "Fromage Imports", [], ["dairy"], "dairy"), ("Seafood", "Gulf Catch", ["Shrimp"], ["meat_and_seafood"], "meat_and_seafood"),
-    ("Catering consulting", "Advisory Partners", [], [], "unclassified"), ("Cleaning service", "Shine Co", [], ["services"], "services"), ("Fresh vegetables", "Green Acres", [], ["produce"], "produce"),
+    ("Catering consulting", "Advisory Partners", [], [], "unclassified"), ("Cleaning service", "Shine Co", [], ["cleaning_and_facility_services"], "cleaning_and_facility_services"), ("Fresh vegetables", "Green Acres", [], ["produce"], "produce"),
     ("Grocery", "Corner Grocer", [], ["dry_goods_and_grocery"], "dry_goods_and_grocery")]
 
 # (project location, stated service area, expected level)
