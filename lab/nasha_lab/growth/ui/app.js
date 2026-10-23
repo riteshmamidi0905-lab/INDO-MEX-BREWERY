@@ -30,9 +30,10 @@ async function act(fn,okmsg){try{const r=await fn();if(okmsg)toast(okmsg,'ok');r
 const can={write:()=>['OWNER','SALES'].includes(S.role),owner:()=>S.role==='OWNER',pricing:()=>['OWNER','ANALYST'].includes(S.role),content:()=>['OWNER','SALES','MARKETING'].includes(S.role)};
 
 /* ---------------- shell ---------------- */
-const NAV=[['dashboard','Executive dashboard'],['crm','CRM'],['pipeline','Sales pipeline'],['pricing','Pricing studio'],['workflows','AI workflow center'],['security','Security and audit'],['settings','Settings']];
+const NAV=[['business','My Business','Launch journey'],['research','Market Research','Launch journey'],['suppliers','Suppliers','Launch journey'],['financial','Financial Plan','Launch journey'],['procurement','Procurement','Launch journey'],['roadmap','Launch Roadmap','Launch journey'],
+  ['dashboard','Executive dashboard','Growth OS'],['crm','CRM','Growth OS'],['pipeline','Sales pipeline','Growth OS'],['pricing','Pricing studio','Growth OS'],['marketing','Offers and campaigns','Growth OS'],['workflows','AI workflow center','Growth OS'],['security','Security and audit','Account'],['settings','Settings','Account']];
 function shell(){ $('#login').hidden=true;$('#app').hidden=false;
-  $('#nav').innerHTML=NAV.map(([k,l])=>`<a href="#/${k}" data-k="${k}">${l}</a>`).join('');
+  let lastG='';$('#nav').innerHTML=NAV.map(([k,l,g])=>`${g!==lastG?(lastG=g,`<p class="navh mono">${g}</p>`):''}<a href="#/${k}" data-k="${k}">${l}</a>`).join('');
   $('#who').innerHTML=`<span class="mono">Workspace</span><b>${esc(S.tenant_name||S.tenant)}</b><span class="mono">Signed in</span><b>${esc(S.display_name||S.user)} · ${esc(S.role.charAt(0)+S.role.slice(1).toLowerCase())}</b>
     <div class="vt" role="group" aria-label="Presentation"><span class="mono">View</span><button type="button" data-v="business" aria-pressed="${!eng()}">Business</button><button type="button" data-v="engineering" aria-pressed="${eng()}">Engineering</button></div>
     <button class="btn sm" id="signout">Sign out</button>`;
@@ -172,14 +173,16 @@ async function settings(){
 
 /* ---------------- router and login ---------------- */
 const ROUTES={dashboard,crm,pipeline,pricing,workflows,security,settings};
-async function route(){if(!S.token)return;const [k,a]=(location.hash.slice(2)||'dashboard').split('/');const fn=ROUTES[k]||dashboard;setNav(ROUTES[k]?k:'dashboard');try{await fn(a)}catch(e){fail(e)}}
+async function route(){if(!S.token)return;const [k,a]=(location.hash.slice(2)||'dashboard').split('/');const fn=ROUTES[k]||ROUTES.business||dashboard;setNav(ROUTES[k]?k:(ROUTES.business?'business':'dashboard'));try{await fn(a)}catch(e){fail(e)}}
 addEventListener('hashchange',route);
-async function boot(){ if(S.token&&!S.display_name){try{const m=await api('GET','/me');S.display_name=m.display_name;S.tenant_name=m.tenant_name;save()}catch(e){}} if(S.token){shell();if(!location.hash)location.hash='#/dashboard';route()}else{$('#login').hidden=false;$('#app').hidden=true;pass()} }
+async function boot(){ if(S.token&&!S.display_name){try{const m=await api('GET','/me');S.display_name=m.display_name;S.tenant_name=m.tenant_name;save()}catch(e){}} if(S.token){shell();if(!location.hash)location.hash=ROUTES.business?'#/business':'#/dashboard';route()}else{$('#login').hidden=false;$('#app').hidden=true;pass()} }
 const pass=()=>{$('#l-pass').value=`${$('#l-tenant').value}-${$('#l-user').value}-dev-passcode`};
 $('#l-tenant').onchange=pass;$('#l-user').onchange=pass;
 $('#login-form').onsubmit=async e=>{e.preventDefault();$('#l-err').textContent='';const t=$('#l-tenant').value;
   try{const r=await fetch(`/v1/tenants/${t}/session`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user:$('#l-user').value,passcode:$('#l-pass').value})});const j=await r.json();
     if(!r.ok){$('#l-err').textContent='Sign-in failed: '+(j.error?j.error.message:'error');return}
-    S={tenant:t,user:j.user,role:j.role,token:j.token};save();location.hash='#/dashboard';boot()}catch(x){$('#l-err').textContent='Could not reach the API.'}};
-boot();
+    S={tenant:t,user:j.user,role:j.role,token:j.token};save();location.hash=ROUTES.business?'#/business':'#/dashboard';boot()}catch(x){$('#l-err').textContent='Could not reach the API.'}};
+new MutationObserver(()=>$$('.tablewrap:not([role])').forEach(t=>{t.tabIndex=0;t.setAttribute('role','region');t.setAttribute('aria-label','Data table (scrollable)')})).observe($('#main'),{childList:true,subtree:true});
+window.GOS={api,act,page,esc,money,pct,chip,stateChip,fmtTime,fmtDate,eng:()=>eng(),tech,can,S:()=>S,$,$$,toast,fail,route,ROUTES,signOut,boot,uid};
+if(!document.querySelector('script[src$="launch.js"]'))boot();
 })();

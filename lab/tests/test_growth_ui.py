@@ -83,7 +83,7 @@ def test_login_screen_hides_the_app_and_a_wrong_passcode_is_refused(server, brow
 
 def test_dashboard_numbers_equal_the_api(server, browser):
     base, envs = server
-    pg = login(browser, base, "sam")
+    pg = login(browser, base, "sam"); go(pg, "#/dashboard", ".kpi")
     d = get(base, envs, "tenant-nasha", "sam", "/dashboard")
     kpis = [x.inner_text() for x in pg.query_selector_all(".kpi b")]
     assert kpis[0] == str(d["lead_total"]) and kpis[3] == str(d["approvals_pending"])
@@ -180,8 +180,8 @@ def test_every_screen_is_keyboard_reachable_and_has_no_serious_axe_violations(se
     for _ in range(2):
         pg.keyboard.press("Tab")
     assert pg.evaluate("document.activeElement.closest('#nav') !== null"), "the sidebar navigation is reachable and ordered by keyboard"
-    pg.keyboard.press("Enter"); pg.wait_for_timeout(400); assert pg.evaluate("location.hash") in ("#/crm", "#/pipeline", "#/dashboard")
-    for h in ("#/dashboard", "#/crm/leads", "#/pipeline", "#/pricing", "#/workflows", "#/security", "#/settings"):
+    pg.keyboard.press("Enter"); pg.wait_for_timeout(400); assert pg.evaluate("location.hash") in ("#/business", "#/research", "#/suppliers", "#/crm", "#/pipeline", "#/dashboard")
+    for h in ("#/business", "#/research", "#/suppliers", "#/financial", "#/procurement", "#/roadmap", "#/marketing", "#/dashboard", "#/crm/leads", "#/pipeline", "#/pricing", "#/workflows", "#/security", "#/settings"):
         go(pg, h); pg.wait_for_timeout(500)
         assert pg.evaluate("document.querySelectorAll('#main h1').length") == 1
         assert pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), h
@@ -243,3 +243,87 @@ def test_lead_search_and_status_filter_narrow_the_list_without_new_requests(serv
     n = pg.locator("#tbl tbody tr").count()
     assert 0 < n < total and all("converted" in r.lower() for r in pg.locator("#tbl tbody tr").all_inner_texts())
     assert f"{n} of {total}" in pg.inner_text("#cnt")
+
+
+# ---------------------------------------------------------------- the launch journey screens
+def _api(base, envs, tenant, user, method, path, **kw):
+    return _rq.request(method, f"{base}/v1/tenants/{tenant}{path}", headers=token(envs, tenant, user), **kw)
+
+
+def test_my_business_shows_the_project_the_stage_tracker_and_labelled_assumptions_and_no_ids_in_business_view(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ada"); go(pg, "#/business", ".track")
+    txt = pg.inner_text("#main")
+    assert "NASHA — The Courtyard" in txt and "synthetic assumption" in txt.lower() and "synthetic case study" in txt.lower() and "fusion" not in txt.lower()
+    proj = _api(base, envs, "tenant-nasha", "ada", "GET", "/projects").json()["items"][0]
+    assert proj["id"] not in txt
+    pg.click(".vt [data-v=engineering]"); pg.wait_for_selector("text=Engineering record"); assert proj["id"] in pg.inner_text("#main")
+    pg.click(".vt [data-v=business]")
+    b = login(browser, base, "ada", tenant="tenant-fit"); go(b, "#/business", ".track")
+    assert "Second studio location" in b.inner_text("#main") and "Courtyard" not in b.inner_text("#main")
+
+
+def test_suppliers_screen_labels_leads_fixtures_and_missing_prices_and_the_shortlist_is_saved_through_the_api(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ana"); go(pg, "#/suppliers", "#slist .sup")
+    t = pg.inner_text("#main")
+    tl = t.lower(); assert "Farm to Table LLC" in t and "lead, not verified" in tl and "no published prices" in tl and "synthetic fixture" in tl and "no supplier has been contacted" in tl and "official website: not verified" in tl
+    assert "@" not in t.replace("@example", ""), "no e-mail addresses are displayed"
+    pg.select_option("#sver", "lead_unverified"); assert pg.locator("#slist .sup").count() == 3
+    sup = next(s for s in _api(base, envs, "tenant-nasha", "ana", "GET", "/suppliers").json()["items"] if s["name"] == "Brothers Produce")
+    pid = _api(base, envs, "tenant-nasha", "ana", "GET", "/projects").json()["items"][0]["id"]
+    pg.select_option(f"[data-sl='{sup['id']}']", "preferred"); pg.wait_for_selector(".toast.ok")
+    ov = _api(base, envs, "tenant-nasha", "ana", "GET", f"/projects/{pid}").json()
+    assert next(s for s in ov["shortlist"] if s["supplier_id"] == sup["id"])["status"] == "preferred"
+    v = login(browser, base, "vic"); go(v, "#/suppliers", "#slist .sup")
+    assert v.locator("[data-sl]").count() == 0, "a viewer cannot change the shortlist"
+
+
+def test_financial_plan_calculates_on_the_server_from_stored_data_and_labels_everything_as_simulated(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ana"); go(pg, "#/financial", "#fres .kpi")
+    assert "not actual business performance" in pg.inner_text("#main").lower()
+    pid = _api(base, envs, "tenant-nasha", "ana", "GET", "/projects").json()["items"][0]["id"]
+    api0 = _api(base, envs, "tenant-nasha", "ana", "POST", f"/projects/{pid}/scenarios/preview", json={}).json()["results"]
+    assert pg.inner_text("#fres .kpi b").replace(",", "") == f"${api0['revenue_cents'] / 100:.2f}"
+    pg.fill("#ctl input[name=price_change_pct]", "10"); pg.click("#ctl button.pri"); pg.wait_for_timeout(700)
+    api1 = _api(base, envs, "tenant-nasha", "ana", "POST", f"/projects/{pid}/scenarios/preview", json={"price_change_pct": 0.1}).json()["results"]
+    assert pg.inner_text("#fres .kpi b").replace(",", "") == f"${api1['revenue_cents'] / 100:.2f}" and api1["revenue_cents"] != api0["revenue_cents"]
+    t = pg.inner_text("#fres")
+    assert "Break-even" in t and "Price sensitivity" in t and "Scenario comparison" in t and "Unit economics by product" in t
+    pg.once("dialog", lambda d: d.accept("UI saved scenario")); pg.click("#svs"); pg.wait_for_selector(".toast.ok"); pg.wait_for_timeout(500)
+    assert any(s["name"] == "UI saved scenario" for s in _api(base, envs, "tenant-nasha", "ana", "GET", f"/projects/{pid}").json()["scenarios"])
+    v = login(browser, base, "vic"); go(v, "#/financial", "#fres .kpi"); assert v.query_selector("#svs") is None and v.query_selector("form.mini") is None
+
+
+def test_procurement_screens_show_agent_research_two_person_approval_and_no_action_on_blocked_runs(server, browser):
+    base, envs = server
+    runs = _api(base, envs, "tenant-nasha", "ada", "GET", "/procurement/runs?limit=50").json()["items"]
+    by = {r["state"]: r for r in runs}
+    assert {"EXECUTED", "REJECTED", "AWAITING_APPROVAL", "BLOCKED"} <= set(by)
+    pg = login(browser, base, "ada"); go(pg, "#/procurement", ".tablewrap")
+    low = pg.inner_text("#main").lower(); assert "completed" in low and "rejected" in low and "blocked" in low
+    go(pg, f"#/procurement/{by['AWAITING_APPROVAL']['id']}", "#main .timeline")
+    t = pg.inner_text("#main")
+    assert "Research brief" in t and "Recommended quotes by supplier" in t and "Inventory planning" in t and "No order" in t and by["AWAITING_APPROVAL"]["id"] not in t
+    assert pg.query_selector("#ap") is not None and pg.query_selector("#rj") is not None, "an owner other than the requester may decide"
+    ana = login(browser, base, "ana"); go(ana, f"#/procurement/{by['AWAITING_APPROVAL']['id']}", "#main .timeline")
+    assert ana.query_selector("#ap") is None and "Only an owner may approve" in ana.inner_text("#main")
+    go(pg, f"#/procurement/{by['BLOCKED']['id']}", "#main .timeline")
+    assert pg.query_selector("#ap") is None and pg.query_selector("#rj") is None and "Nothing was recorded" in pg.inner_text("#main")
+    go(pg, f"#/procurement/{by['EXECUTED']['id']}", "#main .timeline")
+    assert pg.query_selector("#ap") is None and "Recommendation recorded" in pg.inner_text("#main")
+    pg.click(".vt [data-v=engineering]"); pg.wait_for_selector("text=Engineering record")
+    assert by["EXECUTED"]["id"] in pg.inner_text("#main") and "engine" in pg.inner_text("#main").lower()
+    pg.click(".vt [data-v=business]")
+
+
+def test_roadmap_status_changes_are_saved_by_owner_and_unavailable_to_a_viewer(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ada"); go(pg, "#/roadmap", "[data-ms]")
+    ms = _api(base, envs, "tenant-nasha", "ada", "GET", "/projects").json()["items"][0]["id"]
+    ov = _api(base, envs, "tenant-nasha", "ada", "GET", f"/projects/{ms}").json()
+    todo = next(m for m in ov["milestones"] if m["status"] == "todo")
+    pg.select_option(f"[data-ms='{todo['id']}']", "doing"); pg.wait_for_selector(".toast.ok"); pg.wait_for_timeout(500)
+    assert next(m for m in _api(base, envs, "tenant-nasha", "ada", "GET", f"/projects/{ms}").json()["milestones"] if m["id"] == todo["id"])["status"] == "doing"
+    v = login(browser, base, "vic"); go(v, "#/roadmap", ".track"); assert v.locator("[data-ms]").count() == 0
