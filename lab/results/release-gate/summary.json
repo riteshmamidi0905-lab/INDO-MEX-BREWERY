@@ -1,6 +1,6 @@
 {
- "total": 891,
- "passed": 889,
+ "total": 892,
+ "passed": 890,
  "failed": 0,
  "skipped": 2,
  "tests": {
@@ -281,7 +281,7 @@
    "skipped": 0
   },
   "test_growth_model_boundary": {
-   "passed": 15,
+   "passed": 16,
    "failed": 0,
    "skipped": 0
   },

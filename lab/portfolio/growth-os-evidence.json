@@ -1,6 +1,6 @@
 {
  "schema": "growth-os-evidence/1",
- "commit": "1e2c661",
+ "commit": "ff239d7",
  "synthetic": true,
  "pushed": false,
  "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
@@ -431,7 +431,7 @@
  "workflow": {
   "name": "governed_lead_qualification",
   "happy_path": {
-   "corr_id": "wf-d292b4807455",
+   "corr_id": "wf-2b09c5e8f127",
    "tenant": "tenant-nasha",
    "before": {
     "status": "new",
@@ -439,7 +439,7 @@
    },
    "held": {
     "status": "AWAITING_APPROVAL",
-    "approval_id": "ap_f215b3c4",
+    "approval_id": "ap_329f6667",
     "recommendation_status": "qualified",
     "score": 95,
     "lead_status_while_held": "new",
@@ -475,18 +475,18 @@
    "trace": [
     {
      "seq": 1,
-     "ts": "2026-10-23T21:01:00.886051+00:00",
+     "ts": "2026-10-23T21:27:48.845220+00:00",
      "kind": "stage",
      "name": "request_received",
      "stage": "G01",
      "tenant": "tenant-nasha",
-     "lead_id": "lead-e397be95b4",
+     "lead_id": "lead-8cc660fb9e",
      "request_id": "req-export-1",
      "idempotency_key": true
     },
     {
      "seq": 2,
-     "ts": "2026-10-23T21:01:00.888135+00:00",
+     "ts": "2026-10-23T21:27:48.847606+00:00",
      "kind": "auth",
      "role": "SALES",
      "user": "sam",
@@ -495,20 +495,20 @@
     },
     {
      "seq": 3,
-     "ts": "2026-10-23T21:01:00.893847+00:00",
+     "ts": "2026-10-23T21:27:48.853710+00:00",
      "kind": "tool_call",
-     "ms": 3.11,
+     "ms": 3.17,
      "ok": true,
      "tool": "growth__get_lead_context",
      "codes": [],
      "stage": "G03",
-     "call_hash": "a23f979991aad8b3",
+     "call_hash": "fa37d03079933699",
      "forwarded": true,
      "approval_id": null
     },
     {
      "seq": 4,
-     "ts": "2026-10-23T21:01:00.895369+00:00",
+     "ts": "2026-10-23T21:27:48.855109+00:00",
      "kind": "stage",
      "name": "evidence_collected",
      "stage": "G03",
@@ -522,7 +522,7 @@
     },
     {
      "seq": 5,
-     "ts": "2026-10-23T21:01:00.897315+00:00",
+     "ts": "2026-10-23T21:27:48.856212+00:00",
      "kind": "stage",
      "name": "source_and_consent_validated",
      "stage": "G04",
@@ -531,7 +531,7 @@
     },
     {
      "seq": 6,
-     "ts": "2026-10-23T21:01:00.900607+00:00",
+     "ts": "2026-10-23T21:27:48.858862+00:00",
      "kind": "stage",
      "name": "recommendation",
      "score": 95,
@@ -588,31 +588,31 @@
     },
     {
      "seq": 7,
-     "ts": "2026-10-23T21:01:00.902865+00:00",
+     "ts": "2026-10-23T21:27:48.860929+00:00",
      "kind": "stage",
      "name": "proposal",
      "stage": "G06",
-     "proposal_hash": "147b6d5f3c4f5773"
+     "proposal_hash": "832d97cb85990e85"
     },
     {
      "seq": 8,
-     "ts": "2026-10-23T21:01:00.905507+00:00",
+     "ts": "2026-10-23T21:27:48.863476+00:00",
      "kind": "tool_call",
-     "ms": 1.16,
+     "ms": 1.36,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G07",
      "failure": null,
-     "call_hash": "41212a5d4fe301e1",
+     "call_hash": "d2450a7da8dd3b63",
      "forwarded": false,
-     "approval_id": "ap_f215b3c4",
+     "approval_id": "ap_329f6667",
      "held_for_approval": true
     },
     {
      "seq": 9,
-     "ts": "2026-10-23T21:01:00.907316+00:00",
+     "ts": "2026-10-23T21:27:48.865451+00:00",
      "kind": "stage",
      "name": "held_for_approval",
      "codes": [
@@ -620,11 +620,11 @@
      ],
      "stage": "G07",
      "ttl_s": 900,
-     "approval_id": "ap_f215b3c4"
+     "approval_id": "ap_329f6667"
     },
     {
      "seq": 10,
-     "ts": "2026-10-23T21:01:00.917481+00:00",
+     "ts": "2026-10-23T21:27:48.876942+00:00",
      "kind": "approval_decision",
      "code": "ROLE_NOT_PERMITTED",
      "role": "SALES",
@@ -633,39 +633,39 @@
     },
     {
      "seq": 11,
-     "ts": "2026-10-23T21:01:00.918874+00:00",
+     "ts": "2026-10-23T21:27:48.878895+00:00",
      "kind": "failure",
      "detail": "SALES may not approve",
      "failure_class": "ROLE_DENIED"
     },
     {
      "seq": 12,
-     "ts": "2026-10-23T21:01:00.922321+00:00",
+     "ts": "2026-10-23T21:27:48.883138+00:00",
      "kind": "approval_decision",
      "by": "ada",
      "role": "OWNER",
      "comment": "evidence reviewed",
      "decision": "approve",
-     "approval_id": "ap_f215b3c4"
+     "approval_id": "ap_329f6667"
     },
     {
      "seq": 13,
-     "ts": "2026-10-23T21:01:00.933593+00:00",
+     "ts": "2026-10-23T21:27:48.894442+00:00",
      "kind": "tool_call",
-     "ms": 8.06,
+     "ms": 8.41,
      "ok": true,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G09",
-     "call_hash": "41212a5d4fe301e1",
+     "call_hash": "d2450a7da8dd3b63",
      "forwarded": true,
-     "approval_id": "ap_f215b3c4"
+     "approval_id": "ap_329f6667"
     },
     {
      "seq": 14,
-     "ts": "2026-10-23T21:01:00.935636+00:00",
+     "ts": "2026-10-23T21:27:48.896309+00:00",
      "kind": "stage",
      "name": "crm_updated",
      "stage": "G09",
@@ -673,7 +673,7 @@
     },
     {
      "seq": 15,
-     "ts": "2026-10-23T21:01:00.936452+00:00",
+     "ts": "2026-10-23T21:27:48.897092+00:00",
      "kind": "stage",
      "name": "no_external_contact",
      "stage": "G10",
@@ -682,7 +682,7 @@
     },
     {
      "seq": 16,
-     "ts": "2026-10-23T21:01:00.938116+00:00",
+     "ts": "2026-10-23T21:27:48.898856+00:00",
      "kind": "approval_decision",
      "code": "APPROVAL_REPLAY",
      "state": "EXECUTED",
@@ -2791,9 +2791,19 @@
    "total_cost_cents": 2165313,
    "suppliers": [
     {
+     "supplier": "Synthetic Supplier 03 (produce)",
+     "cost_cents": 97283,
+     "items": 7
+    },
+    {
      "supplier": "Synthetic Broadline Distributor B (broadline)",
      "cost_cents": 1088482,
      "items": 25
+    },
+    {
+     "supplier": "Synthetic Supplier 05 (dry goods)",
+     "cost_cents": 264884,
+     "items": 14
     },
     {
      "supplier": "Synthetic Supplier 04 (dairy)",
@@ -2804,16 +2814,6 @@
      "supplier": "Synthetic Broadline Distributor A (broadline)",
      "cost_cents": 699082,
      "items": 22
-    },
-    {
-     "supplier": "Synthetic Supplier 03 (produce)",
-     "cost_cents": 97283,
-     "items": 7
-    },
-    {
-     "supplier": "Synthetic Supplier 05 (dry goods)",
-     "cost_cents": 264884,
-     "items": 14
     }
    ],
    "flags": [
@@ -2824,17 +2824,17 @@
   "trace": [
    {
     "seq": 1,
-    "ts": "2026-10-23T21:01:04.186815+00:00",
+    "ts": "2026-10-23T21:27:52.077096+00:00",
     "kind": "stage",
     "name": "request_received",
     "stage": "P01",
-    "project_id": "proj-41ed968b84",
+    "project_id": "proj-978cfade90",
     "request_id": "req-export-proc",
     "period_weeks": 4
    },
    {
     "seq": 2,
-    "ts": "2026-10-23T21:01:04.189239+00:00",
+    "ts": "2026-10-23T21:27:52.079156+00:00",
     "kind": "auth",
     "role": "ANALYST",
     "user": "ana",
@@ -2843,20 +2843,20 @@
    },
    {
     "seq": 3,
-    "ts": "2026-10-23T21:01:04.276639+00:00",
+    "ts": "2026-10-23T21:27:52.170882+00:00",
     "kind": "tool_call",
-    "ms": 84.1,
+    "ms": 88.43,
     "ok": true,
     "tool": "launch__get_supplier_data",
     "codes": [],
     "stage": "P03",
-    "call_hash": "cbb36c8251d05d6f",
+    "call_hash": "29e90e21b89ebedd",
     "forwarded": true,
     "approval_id": null
    },
    {
     "seq": 4,
-    "ts": "2026-10-23T21:01:04.279013+00:00",
+    "ts": "2026-10-23T21:27:52.173142+00:00",
     "kind": "stage",
     "name": "data_read",
     "stage": "P03",
@@ -2866,7 +2866,7 @@
    },
    {
     "seq": 5,
-    "ts": "2026-10-23T21:01:04.331346+00:00",
+    "ts": "2026-10-23T21:27:52.236829+00:00",
     "kind": "stage",
     "name": "demand_and_needs",
     "stage": "P04",
@@ -2875,7 +2875,7 @@
    },
    {
     "seq": 6,
-    "ts": "2026-10-23T21:01:05.127094+00:00",
+    "ts": "2026-10-23T21:27:53.096682+00:00",
     "kind": "stage",
     "mode": "engine_offline_heuristic",
     "name": "agent_research",
@@ -2892,7 +2892,7 @@
     },
     "evidence": 12,
     "provider": "offline",
-    "agent_run": "run_cecf5a48c601",
+    "agent_run": "run_897e7b8b13b1",
     "independent_problems": [],
     "platform_verification": {
      "ok": true,
@@ -2901,7 +2901,7 @@
    },
    {
     "seq": 7,
-    "ts": "2026-10-23T21:01:05.130245+00:00",
+    "ts": "2026-10-23T21:27:53.100112+00:00",
     "kind": "stage",
     "name": "recommendation",
     "flags": [
@@ -2914,7 +2914,7 @@
    },
    {
     "seq": 8,
-    "ts": "2026-10-23T21:01:05.131339+00:00",
+    "ts": "2026-10-23T21:27:53.101339+00:00",
     "kind": "stage",
     "name": "independent_check",
     "stage": "P06",
@@ -2922,31 +2922,31 @@
    },
    {
     "seq": 9,
-    "ts": "2026-10-23T21:01:05.139942+00:00",
+    "ts": "2026-10-23T21:27:53.111128+00:00",
     "kind": "stage",
     "name": "proposal",
     "stage": "P07",
-    "proposal_hash": "69b63bd53014d5c3"
+    "proposal_hash": "b7fb766f87f144e3"
    },
    {
     "seq": 10,
-    "ts": "2026-10-23T21:01:05.143741+00:00",
+    "ts": "2026-10-23T21:27:53.115264+00:00",
     "kind": "tool_call",
-    "ms": 1.25,
+    "ms": 1.34,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P08",
     "failure": null,
-    "call_hash": "5020b31fd3ede6b5",
+    "call_hash": "8b6b3626124cb964",
     "forwarded": false,
-    "approval_id": "ap_831f5587",
+    "approval_id": "ap_f3127eb1",
     "held_for_approval": true
    },
    {
     "seq": 11,
-    "ts": "2026-10-23T21:01:05.147364+00:00",
+    "ts": "2026-10-23T21:27:53.118632+00:00",
     "kind": "stage",
     "name": "held_for_approval",
     "codes": [
@@ -2954,11 +2954,11 @@
     ],
     "stage": "P08",
     "ttl_s": 900,
-    "approval_id": "ap_831f5587"
+    "approval_id": "ap_f3127eb1"
    },
    {
     "seq": 12,
-    "ts": "2026-10-23T21:01:05.156336+00:00",
+    "ts": "2026-10-23T21:27:53.130879+00:00",
     "kind": "approval_decision",
     "code": "ROLE_NOT_PERMITTED",
     "role": "ANALYST",
@@ -2967,46 +2967,46 @@
    },
    {
     "seq": 13,
-    "ts": "2026-10-23T21:01:05.160765+00:00",
+    "ts": "2026-10-23T21:27:53.136848+00:00",
     "kind": "failure",
     "detail": "ANALYST may not approve",
     "failure_class": "ROLE_DENIED"
    },
    {
     "seq": 14,
-    "ts": "2026-10-23T21:01:05.371110+00:00",
+    "ts": "2026-10-23T21:27:53.405571+00:00",
     "kind": "approval_decision",
     "by": "ada",
     "role": "OWNER",
     "comment": "reviewed",
     "decision": "approve",
-    "approval_id": "ap_831f5587"
+    "approval_id": "ap_f3127eb1"
    },
    {
     "seq": 15,
-    "ts": "2026-10-23T21:01:05.414851+00:00",
+    "ts": "2026-10-23T21:27:53.466558+00:00",
     "kind": "tool_call",
-    "ms": 33.84,
+    "ms": 42.14,
     "ok": true,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P09",
-    "call_hash": "5020b31fd3ede6b5",
+    "call_hash": "8b6b3626124cb964",
     "forwarded": true,
-    "approval_id": "ap_831f5587"
+    "approval_id": "ap_f3127eb1"
    },
    {
     "seq": 16,
-    "ts": "2026-10-23T21:01:05.416143+00:00",
+    "ts": "2026-10-23T21:27:53.468027+00:00",
     "kind": "stage",
     "name": "recommendation_recorded",
     "stage": "P09"
    },
    {
     "seq": 17,
-    "ts": "2026-10-23T21:01:05.417203+00:00",
+    "ts": "2026-10-23T21:27:53.468934+00:00",
     "kind": "stage",
     "name": "no_order_no_contact",
     "stage": "P10",
@@ -3015,7 +3015,7 @@
    },
    {
     "seq": 18,
-    "ts": "2026-10-23T21:01:05.422291+00:00",
+    "ts": "2026-10-23T21:27:53.473668+00:00",
     "kind": "approval_decision",
     "code": "APPROVAL_REPLAY",
     "state": "EXECUTED",
@@ -3818,10 +3818,8 @@
      "model_backed": false,
      "boundary": "accepted",
      "uncertainty": [
-      "3 of 3 cited supplier records are not verified from an official source: Synthetic Supplier 03 (produce), Farm to Table LLC, Synthetic Supplier 04 (dairy).",
-      "Prices cited for 2 supplier(s) are synthetic quotations, not real prices.",
-      "No published price exists for: Farm to Table LLC; they cannot be ranked.",
-      "Data freshness is not 'fresh' for: Farm to Table LLC.",
+      "5 of 5 cited supplier records are not verified from an official source: Synthetic Supplier 01 (poultry), Synthetic Supplier 02 (specialty meats), Synthetic Supplier 03 (produce), Synthetic Supplier 04 (dairy), Synthetic Supplier 05 (dry goods).",
+      "Prices cited for 5 supplier(s) are synthetic quotations, not real prices.",
       "Nothing here has been confirmed with any supplier; a price applies only within its stated validity dates."
      ],
      "price_effect": 21904,
