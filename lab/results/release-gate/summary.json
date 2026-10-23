@@ -1,7 +1,7 @@
 {
- "total": 541,
- "passed": 539,
- "failed": 1,
+ "total": 596,
+ "passed": 595,
+ "failed": 0,
  "skipped": 1,
  "tests": {
   "test_governed_api::test_full_flow_over_http_ends_in_a_draft_po_and_no_transmission": "passed",
@@ -44,7 +44,19 @@
   "test_governed_workflow::test_an_expired_approval_cannot_be_resolved_or_consumed_later": "passed",
   "test_governed_workflow::test_the_procurement_upstream_refuses_a_write_that_did_not_come_through_the_approval_path": "passed",
   "test_governed_workflow::test_no_module_in_the_governed_package_can_open_a_network_connection": "passed",
+  "test_growth_foundation::test_a_session_without_a_tenant_setting_sees_nothing": "passed",
+  "test_growth_foundation::test_tenant_a_cannot_read_write_or_reference_tenant_b": "passed",
+  "test_growth_foundation::test_the_application_role_cannot_turn_row_security_off_or_change_tenants_data_it_does_not_own": "passed",
+  "test_growth_foundation::test_default_deny_and_every_denial_is_audited": "passed",
+  "test_growth_foundation::test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair": "passed",
+  "test_growth_foundation::test_there_is_no_way_to_send_publish_or_spend": "passed",
+  "test_growth_foundation::test_audit_is_hash_chained_complete_and_tamper_evident": "passed",
+  "test_growth_foundation::test_cross_tenant_probes_across_every_table_return_nothing": "passed",
+  "test_growth_mutations::test_every_probe_passes_on_the_unmutated_system": "passed",
+  "test_growth_mutations::test_each_mutant_is_detected_by_its_probe": "passed",
+  "test_growth_pricing_segments::test_segments_match_an_independent_pure_python_recomputation": "passed",
   "test_identity::test_forged_tampered_and_wrong_kind_tokens_are_refused": "passed",
+  "test_menu_d90::test_every_active_menu_item_flows_through_the_whole_simulation": "passed",
   "test_pg_hardening::test_migrations_apply_and_PostgreSQL_reports_the_constraints": "passed",
   "test_pg_hardening::test_preflight_blocks_a_migration_when_data_would_violate_it_and_changes_nothing": "passed",
   "test_pg_hardening::test_a_failure_in_the_middle_of_a_migration_rolls_the_whole_migration_back": "passed",
@@ -149,6 +161,26 @@
    "failed": 0,
    "skipped": 0
   },
+  "test_growth_capabilities": {
+   "passed": 3,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_foundation": {
+   "passed": 29,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_mutations": {
+   "passed": 11,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_pricing_segments": {
+   "passed": 12,
+   "failed": 0,
+   "skipped": 0
+  },
   "test_identity": {
    "passed": 11,
    "failed": 0,
@@ -180,8 +212,8 @@
    "skipped": 1
   },
   "test_menu_d90": {
-   "passed": 16,
-   "failed": 1,
+   "passed": 17,
+   "failed": 0,
    "skipped": 0
   },
   "test_menu_direction": {

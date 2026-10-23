@@ -1,5 +1,5 @@
 # NASHA portfolio integration package (D-89)
-For the portfolio team. **Everything here is derived from executed code; nothing is hand-written marketing.** Generated against local NASHA commit `55a3292` (not pushed). Synthetic data throughout; NASHA is a concept, not an operating business.
+For the portfolio team. **Everything here is derived from executed code; nothing is hand-written marketing.** Generated against local NASHA commit `9222bbd` (not pushed). Synthetic data throughout; NASHA is a concept, not an operating business.
 
 | File | Use |
 |---|---|

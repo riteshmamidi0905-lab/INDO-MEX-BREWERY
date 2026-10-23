@@ -1,6 +1,6 @@
 # D-89 capability matrix (updated at Milestone E)
 
-Generated from `lab/tools/build_capability_matrix.py` against local commit `55a3292` (not pushed). Every cited path and test function was checked to exist. **A row says IMPLEMENTED_TESTED only if it cites at least one existing test; it does not claim the test was just re-run** — see the test report for pass counts.
+Generated from `lab/tools/build_capability_matrix.py` against local commit `9222bbd` (not pushed). Every cited path and test function was checked to exist. **A row says IMPLEMENTED_TESTED only if it cites at least one existing test; it does not claim the test was just re-run** — see the test report for pass counts.
 
 | Status | Count |
 |---|---|

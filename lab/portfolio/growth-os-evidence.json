@@ -1,0 +1,694 @@
+{
+ "schema": "growth-os-evidence/1",
+ "commit": "9222bbd",
+ "synthetic": true,
+ "pushed": false,
+ "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
+ "postgres": "18.4",
+ "tenants": [
+  {
+   "id": "tenant-nasha",
+   "vertical": "restaurant"
+  },
+  {
+   "id": "tenant-fit",
+   "vertical": "fitness"
+  }
+ ],
+ "tables": [
+  "tenants",
+  "users",
+  "segments",
+  "accounts",
+  "contacts",
+  "suppression_list",
+  "leads",
+  "opportunities",
+  "stage_transitions",
+  "activities",
+  "products",
+  "prices",
+  "offers",
+  "campaigns",
+  "content_items",
+  "audit_log",
+  "entity_versions"
+ ],
+ "stage_matrix": [
+  {
+   "frm": "new",
+   "to": "qualified",
+   "allowed": true,
+   "database_message": "",
+   "oracle_allowed": true
+  },
+  {
+   "frm": "new",
+   "to": "proposal",
+   "allowed": false,
+   "database_message": "illegal stage transition new -> proposal",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "new",
+   "to": "negotiation",
+   "allowed": false,
+   "database_message": "illegal stage transition new -> negotiation",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "new",
+   "to": "won",
+   "allowed": false,
+   "database_message": "illegal stage transition new -> won",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "new",
+   "to": "lost",
+   "allowed": true,
+   "database_message": "",
+   "oracle_allowed": true
+  },
+  {
+   "frm": "qualified",
+   "to": "new",
+   "allowed": false,
+   "database_message": "illegal stage transition qualified -> new",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "qualified",
+   "to": "proposal",
+   "allowed": true,
+   "database_message": "",
+   "oracle_allowed": true
+  },
+  {
+   "frm": "qualified",
+   "to": "negotiation",
+   "allowed": false,
+   "database_message": "illegal stage transition qualified -> negotiation",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "qualified",
+   "to": "won",
+   "allowed": false,
+   "database_message": "illegal stage transition qualified -> won",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "qualified",
+   "to": "lost",
+   "allowed": true,
+   "database_message": "",
+   "oracle_allowed": true
+  },
+  {
+   "frm": "proposal",
+   "to": "new",
+   "allowed": false,
+   "database_message": "illegal stage transition proposal -> new",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "proposal",
+   "to": "qualified",
+   "allowed": false,
+   "database_message": "illegal stage transition proposal -> qualified",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "proposal",
+   "to": "negotiation",
+   "allowed": true,
+   "database_message": "",
+   "oracle_allowed": true
+  },
+  {
+   "frm": "proposal",
+   "to": "won",
+   "allowed": false,
+   "database_message": "illegal stage transition proposal -> won",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "proposal",
+   "to": "lost",
+   "allowed": true,
+   "database_message": "",
+   "oracle_allowed": true
+  },
+  {
+   "frm": "negotiation",
+   "to": "new",
+   "allowed": false,
+   "database_message": "illegal stage transition negotiation -> new",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "negotiation",
+   "to": "qualified",
+   "allowed": false,
+   "database_message": "illegal stage transition negotiation -> qualified",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "negotiation",
+   "to": "proposal",
+   "allowed": true,
+   "database_message": "",
+   "oracle_allowed": true
+  },
+  {
+   "frm": "negotiation",
+   "to": "won",
+   "allowed": true,
+   "database_message": "",
+   "oracle_allowed": true
+  },
+  {
+   "frm": "negotiation",
+   "to": "lost",
+   "allowed": true,
+   "database_message": "",
+   "oracle_allowed": true
+  },
+  {
+   "frm": "won",
+   "to": "new",
+   "allowed": false,
+   "database_message": "closed opportunity cannot change",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "won",
+   "to": "qualified",
+   "allowed": false,
+   "database_message": "closed opportunity cannot change",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "won",
+   "to": "proposal",
+   "allowed": false,
+   "database_message": "closed opportunity cannot change",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "won",
+   "to": "negotiation",
+   "allowed": false,
+   "database_message": "closed opportunity cannot change",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "won",
+   "to": "lost",
+   "allowed": false,
+   "database_message": "closed opportunity cannot change",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "lost",
+   "to": "new",
+   "allowed": false,
+   "database_message": "closed opportunity cannot change",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "lost",
+   "to": "qualified",
+   "allowed": false,
+   "database_message": "closed opportunity cannot change",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "lost",
+   "to": "proposal",
+   "allowed": false,
+   "database_message": "closed opportunity cannot change",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "lost",
+   "to": "negotiation",
+   "allowed": false,
+   "database_message": "closed opportunity cannot change",
+   "oracle_allowed": false
+  },
+  {
+   "frm": "lost",
+   "to": "won",
+   "allowed": false,
+   "database_message": "closed opportunity cannot change",
+   "oracle_allowed": false
+  }
+ ],
+ "isolation_probes": [
+  {
+   "table": "accounts",
+   "tenant_a_rows": 8,
+   "tenant_b_rows": 6,
+   "a_sees_b_rows": 0,
+   "a_sees_b_by_id": 0,
+   "no_tenant_setting_rows": 0
+  },
+  {
+   "table": "contacts",
+   "tenant_a_rows": 8,
+   "tenant_b_rows": 6,
+   "a_sees_b_rows": 0,
+   "a_sees_b_by_id": 0,
+   "no_tenant_setting_rows": 0
+  },
+  {
+   "table": "leads",
+   "tenant_a_rows": 8,
+   "tenant_b_rows": 6,
+   "a_sees_b_rows": 0,
+   "a_sees_b_by_id": 0,
+   "no_tenant_setting_rows": 0
+  },
+  {
+   "table": "segments",
+   "tenant_a_rows": 7,
+   "tenant_b_rows": 1,
+   "a_sees_b_rows": 0,
+   "a_sees_b_by_id": 0,
+   "no_tenant_setting_rows": 0
+  },
+  {
+   "table": "products",
+   "tenant_a_rows": 15,
+   "tenant_b_rows": 3,
+   "a_sees_b_rows": 0,
+   "a_sees_b_by_id": 0,
+   "no_tenant_setting_rows": 0
+  },
+  {
+   "table": "prices",
+   "tenant_a_rows": 15,
+   "tenant_b_rows": 3,
+   "a_sees_b_rows": 0,
+   "a_sees_b_by_id": 0,
+   "no_tenant_setting_rows": 0
+  },
+  {
+   "table": "audit_log",
+   "tenant_a_rows": 61,
+   "tenant_b_rows": 25,
+   "a_sees_b_rows": 0,
+   "a_sees_b_by_id": 0,
+   "no_tenant_setting_rows": 0
+  },
+  {
+   "table": "entity_versions",
+   "tenant_a_rows": 100,
+   "tenant_b_rows": 25,
+   "a_sees_b_rows": 0,
+   "a_sees_b_by_id": 0,
+   "no_tenant_setting_rows": 0
+  }
+ ],
+ "privilege_attempts": [
+  {
+   "attempt": "insert a row for the other tenant",
+   "result": "refused: InsufficientPrivilege"
+  },
+  {
+   "attempt": "reference the other tenant's account in a contact",
+   "result": "refused: ForeignKeyViolation"
+  },
+  {
+   "attempt": "create a tenant from the application role",
+   "result": "refused: InsufficientPrivilege"
+  },
+  {
+   "attempt": "delete from the audit log",
+   "result": "refused: InsufficientPrivilege"
+  }
+ ],
+ "mutants": [
+  {
+   "mutant": "RLS disabled on accounts",
+   "probe": "p_rls",
+   "killed": true
+  },
+  {
+   "mutant": "cross-tenant foreign key dropped",
+   "probe": "p_cross_fk",
+   "killed": true
+  },
+  {
+   "mutant": "stage-rule trigger dropped",
+   "probe": "p_stage",
+   "killed": true
+  },
+  {
+   "mutant": "viewer may create accounts",
+   "probe": "p_policy",
+   "killed": true
+  },
+  {
+   "mutant": "consent check removed",
+   "probe": "p_consent",
+   "killed": true
+  },
+  {
+   "mutant": "suppression check removed",
+   "probe": "p_suppression",
+   "killed": true
+  },
+  {
+   "mutant": "denials no longer audited",
+   "probe": "p_deny_audited",
+   "killed": true
+  },
+  {
+   "mutant": "campaign gains a 'sent' state",
+   "probe": "p_no_sent_state",
+   "killed": true
+  },
+  {
+   "mutant": "real email addresses allowed",
+   "probe": "p_synthetic_email",
+   "killed": true
+  },
+  {
+   "mutant": "audit log becomes deletable",
+   "probe": "p_append_only",
+   "killed": true
+  }
+ ],
+ "audit_chains_valid": {
+  "nasha": true,
+  "fit": true
+ },
+ "capabilities": [
+  {
+   "n": 1,
+   "capability": "Identify ideal customers",
+   "implementation": "Customer segmentation and ICP modelling",
+   "status": "TESTED",
+   "done": "RFM behavioural segmentation over the synthetic order history, persisted as tenant segments with evidence basis and size-based confidence; an assumption-labelled ICP segment.",
+   "missing": "No firmographic/demographic ICP modelling, no profitability-per-segment model, no UI.",
+   "code": [
+    "lab/nasha_lab/growth/segments.py",
+    "lab/nasha_lab/growth/seed.py"
+   ],
+   "tests": [
+    "lab/tests/test_growth_pricing_segments.py::test_segments_match_an_independent_pure_python_recomputation",
+    "lab/tests/test_growth_foundation.py::test_segment_rows_are_labelled_synthetic_and_never_fully_confident"
+   ]
+  },
+  {
+   "n": 2,
+   "capability": "Research competition",
+   "implementation": "Competitor intelligence and evidence tracking",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "Needs a researched-public vs synthetic-assumption evidence model with source timestamps; no competitor facts exist or may be invented.",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 3,
+   "capability": "Find a profitable niche",
+   "implementation": "Market opportunity and unit-economics analysis",
+   "status": "DESIGNED",
+   "done": "Unit-economics primitives exist in the pricing engine (margin, break-even, scenarios).",
+   "missing": "No niche scoring model, no CAC/LTV assumptions model, no market-size claims.",
+   "code": [
+    "lab/nasha_lab/growth/pricing.py"
+   ],
+   "tests": []
+  },
+  {
+   "n": 4,
+   "capability": "Build a website",
+   "implementation": "Website configuration and publishing workflow",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "Local preview from structured data not built; publishing must stay a separate, explicitly authorised mechanism.",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 5,
+   "capability": "Set my pricing",
+   "implementation": "Pricing engine and scenario analysis",
+   "status": "TESTED",
+   "done": "Margin, discount break-even, bundles, inflation, break-even units, assumption-labelled elasticity grid and revenue scenarios; NASHA costs from the existing recipe-costing module; versioned prices per tenant.",
+   "missing": "No UI; no measured willingness to pay (elasticity is an assumption).",
+   "code": [
+    "lab/nasha_lab/growth/pricing.py"
+   ],
+   "tests": [
+    "lab/tests/test_growth_pricing_segments.py::test_discount_breakeven_uplift_actually_recovers_gross_profit",
+    "lab/tests/test_growth_pricing_segments.py::test_nasha_dish_economics_come_from_the_existing_costing_module_and_lamb_stays_below_target"
+   ]
+  },
+  {
+   "n": 6,
+   "capability": "Create my offers",
+   "implementation": "Offer and promotion management",
+   "status": "IMPLEMENTED",
+   "done": "Offer table (discount 0-100, date range, draft/approved/expired) and create_offer service method.",
+   "missing": "No dedicated test, no approval flow, no redemption tracking.",
+   "code": [
+    "lab/nasha_lab/growth/service.py",
+    "lab/nasha_lab/growth/schema.py"
+   ],
+   "tests": []
+  },
+  {
+   "n": 7,
+   "capability": "Generate leads",
+   "implementation": "Lead-generation workflow and attribution",
+   "status": "DESIGNED",
+   "done": "Lead table with source; creation audited.",
+   "missing": "No attribution model, no campaign-to-lead linkage, no workflow.",
+   "code": [
+    "lab/nasha_lab/growth/schema.py"
+   ],
+   "tests": []
+  },
+  {
+   "n": 8,
+   "capability": "Find potential customers",
+   "implementation": "Prospect discovery and qualification",
+   "status": "DESIGNED",
+   "done": "Transparent rule-based lead qualification.",
+   "missing": "No prospect discovery by design (no scraping); qualification score is an unvalidated rule set.",
+   "code": [
+    "lab/nasha_lab/growth/scoring.py"
+   ],
+   "tests": [
+    "lab/tests/test_growth_foundation.py::test_lead_scoring_matches_hand_computed_scores"
+   ]
+  },
+  {
+   "n": 9,
+   "capability": "Build a landing page",
+   "implementation": "Landing-page builder and conversion tracking",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 10,
+   "capability": "Sales proposals",
+   "implementation": "Proposal generation and approval",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "Needs the governed approval workflow (THE WEIR) and a proposal entity.",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 11,
+   "capability": "Personalize outreach",
+   "implementation": "Context-aware outreach drafting",
+   "status": "NOT STARTED",
+   "done": "Consent/suppression gate for drafts exists (see 12).",
+   "missing": "No drafting model or templates; no fabricated customer claims policy check yet.",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 12,
+   "capability": "Cold email sequences",
+   "implementation": "Permission-aware email sequence management",
+   "status": "DESIGNED",
+   "done": "Consent and suppression enforcement for email DRAFTS; no send path exists by construction.",
+   "missing": "No sequence entity, scheduling or sending (sending is intentionally not implemented).",
+   "code": [
+    "lab/nasha_lab/growth/service.py"
+   ],
+   "tests": [
+    "lab/tests/test_growth_foundation.py::test_outreach_drafts_require_opt_in_and_respect_suppression",
+    "lab/tests/test_growth_foundation.py::test_there_is_no_way_to_send_publish_or_spend"
+   ]
+  },
+  {
+   "n": 13,
+   "capability": "Marketing content",
+   "implementation": "AI-assisted content creation",
+   "status": "DESIGNED",
+   "done": "content_items table with draft/in_review/approved/rejected states and a claims_checked flag.",
+   "missing": "No generation, no claim checker, no approval flow, no UI.",
+   "code": [
+    "lab/nasha_lab/growth/schema.py"
+   ],
+   "tests": []
+  },
+  {
+   "n": 14,
+   "capability": "CRM automation",
+   "implementation": "Contact, account, opportunity and activity workflows",
+   "status": "TESTED",
+   "done": "Accounts, contacts, leads, opportunities, activities; DB-enforced stage rules; audited, versioned writes; role policy; tenant isolation via RLS.",
+   "missing": "CRUD-level CRM only: no automation triggers, reminders or UI.",
+   "code": [
+    "lab/nasha_lab/growth/service.py",
+    "lab/nasha_lab/growth/schema.py"
+   ],
+   "tests": [
+    "lab/tests/test_growth_foundation.py::test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair",
+    "lab/tests/test_growth_foundation.py::test_tenant_a_cannot_read_write_or_reference_tenant_b",
+    "lab/tests/test_growth_foundation.py::test_every_successful_write_has_exactly_one_audit_row"
+   ]
+  },
+  {
+   "n": 15,
+   "capability": "Build a sales funnel",
+   "implementation": "Funnel and pipeline management",
+   "status": "IMPLEMENTED",
+   "done": "Stage pipeline with transition log.",
+   "missing": "No funnel analytics, pipeline forecast or UI (stage rules themselves are tested under 14).",
+   "code": [
+    "lab/nasha_lab/growth/service.py"
+   ],
+   "tests": []
+  },
+  {
+   "n": 16,
+   "capability": "Design ad creatives",
+   "implementation": "Creative asset management and generation workflows",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "No spend or generation is authorised; Runway remains unpurchased.",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 17,
+   "capability": "Follow-up sequences",
+   "implementation": "Event-driven follow-up automation",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "Needs the workflow registry (see 25).",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 18,
+   "capability": "Customer onboarding",
+   "implementation": "Onboarding workflows and progress tracking",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 19,
+   "capability": "Create case studies",
+   "implementation": "Evidence-backed case-study generation",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 20,
+   "capability": "Handle objections",
+   "implementation": "Sales knowledge base and objection-response assistance",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "Would reuse the existing status-aware retrieval stack.",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 21,
+   "capability": "Sales call scripts",
+   "implementation": "Contextual call-script generation",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 22,
+   "capability": "Retain customers",
+   "implementation": "Retention analytics and lifecycle workflows",
+   "status": "DESIGNED",
+   "done": "RFM segments include at-risk and lapsed groups.",
+   "missing": "No churn model, no retention workflow; any churn score would be simulated, not validated.",
+   "code": [
+    "lab/nasha_lab/growth/segments.py"
+   ],
+   "tests": []
+  },
+  {
+   "n": 23,
+   "capability": "Improve conversion rate",
+   "implementation": "Funnel analysis and experimentation",
+   "status": "NOT STARTED",
+   "done": "",
+   "missing": "The separate experimentation-toolkit repository exists but is not integrated.",
+   "code": [],
+   "tests": []
+  },
+  {
+   "n": 24,
+   "capability": "Track performance",
+   "implementation": "Unified KPI and analytics dashboards",
+   "status": "DESIGNED",
+   "done": "Existing NASHA operations, AI-reliability and security dashboards with sourced metrics (portfolio site).",
+   "missing": "No unified Growth OS KPI layer or product UI.",
+   "code": [
+    "lab/tools/export_portfolio_evidence.py"
+   ],
+   "tests": []
+  },
+  {
+   "n": 25,
+   "capability": "Automate repetitive tasks",
+   "implementation": "Governed workflow orchestration",
+   "status": "DESIGNED",
+   "done": "The governed procurement workflow (state machine, THE WEIR approval, idempotency, recovery) is the reusable pattern; the Production AI Agent Platform provides a tool/risk abstraction.",
+   "missing": "No generic workflow registry yet; no Growth OS workflow runs through THE WEIR yet.",
+   "code": [
+    "lab/nasha_lab/governed/workflow.py"
+   ],
+   "tests": [
+    "lab/tests/test_governed_workflow.py::test_end_to_end_inventory_discrepancy_to_audited_draft_po_with_the_network_blocked"
+   ]
+  }
+ ],
+ "status_rules": {
+  "TESTED": "needs >=1 existing test; no UI is implied",
+  "INTEGRATED": "needs tests AND a working UI AND enforced authorization and audit end to end",
+  "IMPLEMENTED": "needs existing code",
+  "DESIGNED": "design or partial building blocks only"
+ },
+ "all_expectations_met": true
+}
