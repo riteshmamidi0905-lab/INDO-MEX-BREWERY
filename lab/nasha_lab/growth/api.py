@@ -21,8 +21,10 @@ from psycopg.types.json import Jsonb
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from .. import identity as ID
+from pathlib import Path as _P
 from . import present as PR, pricing as GP, service as SV, workflow as WF
 
+EVIDENCE_DIR = _P(__file__).resolve().parents[2] / "results" / "release-gate"
 MAX_PAGE = 50
 BEARER = re.compile(r"^Bearer ([A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+)$")
 ID_RE = r"^[a-z]{2,6}-[a-f0-9]{8,12}$|^wf-[a-f0-9]{12}$"
@@ -495,6 +497,31 @@ def create_growth_app(envs: dict) -> FastAPI:
         def go(request, tenant, who, s):
             okk, n = s.verify_audit()
             return ok(request, dict(chain_valid=okk, rows=n if okk else None, first_bad_seq=None if okk else n))
+        return guarded(go)(request, tenant)
+
+    @app.get("/v1/tenants/{tenant}/provenance")
+    def provenance(tenant: str, request: Request):
+        """Where every kind of number in this workspace comes from. Counts are calculated from the stored records; the verified-real section reads the recorded engineering evidence file if it exists (never a typed value)."""
+        def go(request, tenant, who, s):
+            one = lambda sql: s.read(sql, (tenant,))[0][0]
+            priced = s.read("SELECT p.name, pr.amount_cents, pr.basis FROM prices pr JOIN products p ON p.tenant_id=pr.tenant_id AND p.id=pr.product_id WHERE pr.tenant_id=%s AND pr.status='current' ORDER BY p.name", (tenant,))
+            founder = [dict(product=n, price_cents=int(c), basis=b) for n, c, b in priced if str(b).startswith("founder-approved")]
+            costs = {r[0]: r[1] for r in s.read("SELECT cost_basis, count(*) FROM products WHERE tenant_id=%s GROUP BY cost_basis", (tenant,))}
+            synthetic = dict(accounts=one("SELECT count(*) FROM accounts WHERE tenant_id=%s"), contacts=one("SELECT count(*) FROM contacts WHERE tenant_id=%s"), leads=one("SELECT count(*) FROM leads WHERE tenant_id=%s"),
+                             opportunities=one("SELECT count(*) FROM opportunities WHERE tenant_id=%s"), workflow_runs=one("SELECT count(*) FROM workflow_runs WHERE tenant_id=%s"),
+                             real_looking_emails=one("SELECT count(*) FROM contacts WHERE tenant_id=%s AND email NOT LIKE '%%@example.invalid'"), cost_assumptions=costs)
+            verified = dict(available=False, note="No recorded engineering evidence file is available to this server.")
+            d = EVIDENCE_DIR
+            try:
+                meta, summ, rep = (json.loads((d / f).read_text()) for f in ("meta.json", "summary.json", "release-gate-report.json"))
+                verified = dict(available=True, source="lab/results/release-gate/", tested_commit=meta["commit"], tests_passed=summ["passed"], tests_failed=summ["failed"], tests_skipped=summ["skipped"], release_gate=rep["overall"], remote_ci=rep["remote_ci"],
+                                limitation="Measured by running the repository test suite locally; the real-model test was not executed, so the overall verdict is not PASS. Remote CI has not run.")
+            except (OSError, ValueError, KeyError):
+                pass
+            return ok(request, dict(tenant=tenant, categories=dict(
+                verified_real=verified,
+                realistic_synthetic=dict(label="Simulated: fictional organisations, people, inquiries, opportunities and workflow runs. Not real customers, sales or partnerships.", **synthetic),
+                founder_approved=dict(label="Founder-approved NASHA concept pricing (a proposed concept, not an operating business)", prices=founder))))
         return guarded(go)(request, tenant)
 
     @app.get("/v1/tenants/{tenant}/dashboard")

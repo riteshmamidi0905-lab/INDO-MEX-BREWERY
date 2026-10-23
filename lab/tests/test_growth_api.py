@@ -76,7 +76,7 @@ def test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_
                 "POST /v1/tenants/{tenant}/leads/{lead_id}/convert", "GET /v1/tenants/{tenant}/opportunities", "POST /v1/tenants/{tenant}/opportunities/{opp_id}/stage", "GET /v1/tenants/{tenant}/pipeline",
                 "POST /v1/tenants/{tenant}/activities", "GET /v1/tenants/{tenant}/activities", "GET /v1/tenants/{tenant}/products", "POST /v1/tenants/{tenant}/products/{product_id}/prices", "POST /v1/tenants/{tenant}/pricing/scenarios",
                 "POST /v1/tenants/{tenant}/workflows/lead-qualification", "GET /v1/tenants/{tenant}/workflows/runs", "GET /v1/tenants/{tenant}/workflows/runs/{corr_id}", "POST /v1/tenants/{tenant}/workflows/runs/{corr_id}/decision",
-                "GET /v1/tenants/{tenant}/approvals", "GET /v1/tenants/{tenant}/audit", "GET /v1/tenants/{tenant}/audit/verify", "GET /v1/tenants/{tenant}/dashboard"]
+                "GET /v1/tenants/{tenant}/approvals", "GET /v1/tenants/{tenant}/audit", "GET /v1/tenants/{tenant}/audit/verify", "GET /v1/tenants/{tenant}/dashboard", "GET /v1/tenants/{tenant}/provenance"]
     assert ops == sorted(expected), set(ops) ^ set(expected)
     for p in paths.values():
         for op in p.values():
@@ -111,7 +111,7 @@ def test_unknown_tenants_and_bad_sessions_are_indistinguishable_and_cross_tenant
 def test_tenant_context_cannot_be_changed_by_untrusted_parameters(api):
     c, envs = api
     h = hdr(envs, "tenant-nasha", "sam", **{"X-Tenant-Id": "tenant-fit", "X-Tenant": "tenant-fit"})
-    assert c.get("/v1/tenants/tenant-nasha/me?tenant=tenant-fit&tenant_id=tenant-fit", headers=h).json() == {"tenant": "tenant-nasha", "user": "sam", "role": "SALES", "display_name": "Sam (synthetic sales)", "tenant_name": "NASHA (synthetic)"}
+    assert c.get("/v1/tenants/tenant-nasha/me?tenant=tenant-fit&tenant_id=tenant-fit", headers=h).json() == {"tenant": "tenant-nasha", "user": "sam", "role": "SALES", "display_name": "Sam", "tenant_name": "NASHA (synthetic)"}
     r = c.post("/v1/tenants/tenant-nasha/accounts", json={"name": "Forged", "tenant_id": "tenant-fit"}, headers=h)
     assert r.status_code == 422, "an unknown body field such as tenant_id is rejected, not ignored"
     r = c.post("/v1/tenants/tenant-nasha/accounts?tenant_id=tenant-fit", json={"name": "Param Forged"}, headers=h)

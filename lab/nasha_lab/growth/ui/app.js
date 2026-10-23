@@ -1,4 +1,4 @@
-/* NASHA Growth OS web interface. Every number and control is backed by the Growth OS HTTP API (/v1/tenants/{tenant}/...); there is no client-side data. SYNTHETIC demo: nothing can be sent, published or purchased. */
+/* Growth OS web interface. Every number and control is backed by the Growth OS HTTP API (/v1/tenants/{tenant}/...); there is no client-side data. SYNTHETIC demo: nothing can be sent, published or purchased. */
 (()=>{'use strict';
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'—':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -40,7 +40,7 @@ function shell(){ $('#login').hidden=true;$('#app').hidden=false;
   $$('.vt button').forEach(b=>b.onclick=()=>{VIEW=b.dataset.v;try{localStorage.setItem('growth.view',VIEW)}catch(e){}$$('.vt button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));route()})}
 function signOut(expired){S.token=null;save();$('#app').hidden=true;$('#login').hidden=false;if(expired)$('#l-err').textContent='Your session ended. Sign in again.'}
 function setNav(k){$$('#nav a').forEach(a=>a.toggleAttribute('aria-current',a.dataset.k===k)); $$('#nav a').forEach(a=>{if(a.dataset.k===k)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
-function page(title,lede,html){$('#main').innerHTML=`<div class="head"><div><h1>${title}</h1></div><p class="muted">${lede}</p></div>${html}`;$('#main').focus({preventScroll:true});document.title=title.replace(/<[^>]+>/g,'')+' · NASHA Growth OS (synthetic demo)'}
+function page(title,lede,html){$('#main').innerHTML=`<div class="head"><div><h1>${title}</h1></div><p class="muted">${lede}</p></div>${html}`;$('#main').focus({preventScroll:true});document.title=title.replace(/<[^>]+>/g,'')+' · Growth OS (synthetic demo)'}
 
 /* ---------------- dashboard ---------------- */
 async function dashboard(){
@@ -163,10 +163,15 @@ async function security(){
   <h2 style="margin-top:20px">Audit log (latest ${Math.min(au.items.length,50)} shown)</h2><div class="tablewrap"><table><thead><tr>${cols.map(c=>`<th>${c[0]}</th>`).join('')}</tr></thead><tbody>${au.items.slice(0,50).map(a=>`<tr>${cols.map(c=>`<td>${c[1](a)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
   $('#vrf').onclick=async()=>{const r=await act(()=>api('GET','/audit/verify'));if(r)$('#vout').textContent=r.chain_valid?`Chain valid across ${r.rows} entries.`:`Chain broken at entry ${r.first_bad_seq}.`}}
 
-function settings(){page('<em>Settings</em>','Session and tenant information.',`<div class="card"><dl class="kv"><dt>Tenant</dt><dd>${esc(S.tenant)}</dd><dt>User</dt><dd>${esc(S.user)}</dd><dt>Role</dt><dd>${esc(S.role)}</dd><dt>Data</dt><dd>Synthetic. No real customers, contacts, transactions or campaigns exist in this application.</dd><dt>Outbound actions</dt><dd>Disabled by construction: the API and database have no send, publish or purchase operation.</dd><dt>Workflow engine</dt><dd>Deterministic lead qualification on THE WEIR; not run on the Production AI Agent Platform.</dd></dl><p><button class="btn" id="so2">Sign out</button></p></div>`);$('#so2').onclick=()=>signOut(false)}
+async function settings(){
+  const pv=await act(()=>api('GET','/provenance'));const c=pv&&pv.categories,v=c&&c.verified_real,s=c&&c.realistic_synthetic,f=c&&c.founder_approved;
+  page('<em>Settings</em> and data provenance','Session information and where each kind of number in this workspace comes from.',`<div class="card"><dl class="kv"><dt>Workspace</dt><dd>${esc(S.tenant_name||S.tenant)}</dd><dt>Signed in as</dt><dd>${esc(S.display_name||S.user)} (${esc(S.role.charAt(0)+S.role.slice(1).toLowerCase())})</dd><dt>Outbound actions</dt><dd>Disabled by construction: the API and database have no send, publish or purchase operation.</dd><dt>Workflow engine</dt><dd>Deterministic lead qualification governed by THE WEIR; not run on the Production AI Agent Platform.</dd></dl><p><button class="btn" id="so2">Sign out</button></p></div>
+  ${c?`<div class="grid g2" style="margin-top:14px"><div class="card"><h2>Verified real data</h2>${v.available?`<dl class="kv"><dt>Source</dt><dd>${esc(v.source)}</dd><dt>Tested commit</dt><dd><code>${esc(v.tested_commit)}</code></dd><dt>Tests</dt><dd>${v.tests_passed} passed · ${v.tests_failed} failed · ${v.tests_skipped} skipped</dd><dt>Release gate</dt><dd>${esc(v.release_gate)}</dd><dt>Remote CI</dt><dd>${esc(v.remote_ci)}</dd></dl><p class="note">${esc(v.limitation)}</p>`:`<p class="note">${esc(v.note)}</p>`}</div>
+  <div class="card"><h2>Realistic synthetic data</h2><p class="muted">${esc(s.label)}</p><dl class="kv"><dt>Organisations</dt><dd>${s.accounts}</dd><dt>Contacts</dt><dd>${s.contacts}</dd><dt>Leads</dt><dd>${s.leads}</dd><dt>Opportunities</dt><dd>${s.opportunities}</dd><dt>Workflow runs</dt><dd>${s.workflow_runs}</dd><dt>Real-looking email addresses</dt><dd>${s.real_looking_emails}</dd></dl></div></div>
+  <div class="card" style="margin-top:14px"><h2>Founder-approved data</h2><p class="muted">${esc(f.label)}</p>${f.prices.length?`<div class="tablewrap"><table><thead><tr><th>Product</th><th>Concept price</th><th>Basis</th></tr></thead><tbody>${f.prices.map(p=>`<tr><td>${esc(p.product)}</td><td>${money(p.price_cents)}</td><td>${esc(p.basis)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="note">None recorded for this workspace: everything here is synthetic.</p>'}</div>`:''}`);$('#so2').onclick=()=>signOut(false)}
 
 /* ---------------- router and login ---------------- */
-const ROUTES={dashboard,crm,pipeline,pricing,workflows,security,settings:()=>settings()};
+const ROUTES={dashboard,crm,pipeline,pricing,workflows,security,settings};
 async function route(){if(!S.token)return;const [k,a]=(location.hash.slice(2)||'dashboard').split('/');const fn=ROUTES[k]||dashboard;setNav(ROUTES[k]?k:'dashboard');try{await fn(a)}catch(e){fail(e)}}
 addEventListener('hashchange',route);
 async function boot(){ if(S.token&&!S.display_name){try{const m=await api('GET','/me');S.display_name=m.display_name;S.tenant_name=m.tenant_name;save()}catch(e){}} if(S.token){shell();if(!location.hash)location.hash='#/dashboard';route()}else{$('#login').hidden=false;$('#app').hidden=true;pass()} }

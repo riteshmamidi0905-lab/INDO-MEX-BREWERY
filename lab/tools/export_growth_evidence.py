@@ -28,7 +28,7 @@ def main():
         c.execute(f'CREATE SCHEMA "{SCHEMA}"')
     H.migrate(dsn, SCHEMA, specs=S.migrations(SCHEMA))
     users = [("ada", "Ada (synthetic owner)", "OWNER"), ("sam", "Sam (synthetic sales)", "SALES"), ("mia", "Mia (synthetic marketing)", "MARKETING"), ("vic", "Vic (synthetic viewer)", "VIEWER")]
-    SV.provision(dsn, SCHEMA, "tenant-nasha", "NASHA (synthetic restaurant and brewery concept)", "restaurant", users)
+    SV.provision(dsn, SCHEMA, "tenant-nasha", "NASHA — The Courtyard (synthetic hospitality brand)", "hospitality", users)
     SV.provision(dsn, SCHEMA, "tenant-fit", "Meridian Fitness (synthetic studio)", "fitness", users)
     a_env, _ = T.default_pair(tmp / "wh")
     a, b = SV.GrowthService(dsn, SCHEMA, "tenant-nasha", "ada"), SV.GrowthService(dsn, SCHEMA, "tenant-fit", "ada")
@@ -132,7 +132,7 @@ def main():
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, cwd=LAB).stdout.strip()
     ver = a.verify_audit(), b.verify_audit()
     out = dict(schema="growth-os-evidence/1", commit=commit, synthetic=True, pushed=False, notice="Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
-               postgres=a.con.execute("SHOW server_version").fetchone()[0], tenants=[dict(id="tenant-nasha", vertical="restaurant"), dict(id="tenant-fit", vertical="fitness")],
+               postgres=a.con.execute("SHOW server_version").fetchone()[0], tenants=[dict(id="tenant-nasha", vertical="hospitality"), dict(id="tenant-fit", vertical="fitness")],
                tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, workflow=workflow, audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
                capabilities=caps["capabilities"], status_rules=caps["rules"], all_expectations_met=ok_all)
     (LAB / "portfolio/growth-os-evidence.json").write_text(json.dumps(out, indent=1, default=str))

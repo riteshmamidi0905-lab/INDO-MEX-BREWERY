@@ -4,7 +4,7 @@ Pipeline values are computed from the tenant's own stored concept prices (produc
 who owns it) and signals consistent with that story, so qualification explanations read as business reasoning."""
 from datetime import date
 
-# --- NASHA (restaurant and brewery concept) -------------------------------------------------------------------------------------------------------------------------------------------------------
+# --- NASHA — The Courtyard (flagship hospitality launch case study) -------------------------------------------------------------------------------------------------------------------------------------------------------
 # disposition: what the demo does with the lead (executed / awaiting / rejected / denied / suppressed / abstain / none)
 NASHA = [
     dict(key="catering", scenario="Corporate catering inquiry", org="Larkspur Analytics", kind="business", person="Dana Whitfield", title="Office Manager", slug="dana.whitfield", source="synthetic-website-form",
@@ -35,7 +35,7 @@ NASHA = [
          received=date(2026, 10, 18), owner="sam", consent="opt_in", disposition="abstain",
          inquiry="Referral from a past guest; the practice owner mentioned a staff lunch. No qualification details were captured yet, so the system should abstain rather than guess.",
          signals=None, basket=[], opp=None),
-    dict(key="retention", scenario="Restaurant customer retention", org="Moreno Household", kind="household", person="Sofia Moreno", title=None, slug="sofia.moreno", source="synthetic-referral",
+    dict(key="retention", scenario="Guest retention", org="Moreno Household", kind="household", person="Sofia Moreno", title=None, slug="sofia.moreno", source="synthetic-referral",
          received=date(2026, 10, 19), owner="sam", consent="opt_in", disposition="denied",
          inquiry="Regular guest in the simulated order history who has not visited in 70 days. Candidate for a win-back conversation after consent is confirmed.",
          signals=dict(budget_confirmed=True, decision_maker=True, timeline_days=14, fit=0.7, engagement=0.4), basket=[], opp=None),

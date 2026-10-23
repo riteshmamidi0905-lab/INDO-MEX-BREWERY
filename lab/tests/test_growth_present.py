@@ -177,3 +177,18 @@ def test_scenarios_are_fictional_labelled_and_self_consistent():
             if s["disposition"] == "suppressed":
                 assert s["suppress_reason"]
     assert {s["disposition"] for s in SC.NASHA} >= {"executed", "rejected", "awaiting", "denied", "suppressed", "abstain"}
+
+
+def test_provenance_separates_verified_real_synthetic_and_founder_approved_data_from_stored_records(world):
+    c, envs, dsn = world
+    j = c.get("/v1/tenants/tenant-nasha/provenance", headers=hdr(envs, "tenant-nasha", "ana")).json()["categories"]
+    with psycopg.connect(dsn, autocommit=True) as con:
+        con.execute('SET search_path TO "growth_present", pg_catalog, public')
+        n = lambda t: con.execute(f"SELECT count(*) FROM {t} WHERE tenant_id='tenant-nasha'").fetchone()[0]
+        assert j["realistic_synthetic"]["accounts"] == n("accounts") and j["realistic_synthetic"]["leads"] == n("leads") and j["realistic_synthetic"]["opportunities"] == n("opportunities")
+    assert j["realistic_synthetic"]["real_looking_emails"] == 0 and "Not real customers" in j["realistic_synthetic"]["label"]
+    assert j["founder_approved"]["prices"] and all(p["basis"].startswith("founder-approved") for p in j["founder_approved"]["prices"])
+    f = c.get("/v1/tenants/tenant-fit/provenance", headers=hdr(envs, "tenant-fit", "ana")).json()["categories"]
+    assert f["founder_approved"]["prices"] == [], "the second tenant has no founder-approved data; nothing is implied"
+    v = j["verified_real"]
+    assert v["available"] is False or (v["tested_commit"] and v["tests_failed"] == 0 and v["release_gate"] in ("PASS", "FAIL", "REQUIRES_REVIEW") and v["remote_ci"] == "NOT_RUN" and "Remote CI has not run" in v["limitation"])

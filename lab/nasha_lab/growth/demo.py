@@ -1,4 +1,4 @@
-"""Builds the local Growth OS demo: two SYNTHETIC tenants (NASHA, a restaurant/brewery concept, and Meridian Fitness, a studio) in PostgreSQL, seeded through the same services the API uses, plus a few recorded
+"""Builds the local Growth OS demo: two SYNTHETIC tenants (NASHA — The Courtyard, the flagship hospitality launch case study, and Meridian Fitness, a studio) in PostgreSQL, seeded through the same services the API uses, plus a few recorded
 qualification runs in different states. Serves the API and the web interface on localhost only.
     python3 -m nasha_lab.growth.demo --port 8765          (embedded PostgreSQL; synthetic dev passcodes `{tenant}-{user}-dev-passcode`)"""
 import argparse
@@ -26,7 +26,7 @@ def build(root, dsn, schema=SCHEMA, with_warehouse=True):
     with psycopg.connect(dsn, autocommit=True) as c:
         c.execute(f'DROP SCHEMA IF EXISTS "{schema}" CASCADE'); c.execute(f'CREATE SCHEMA "{schema}"')
     H.migrate(dsn, schema, specs=S.migrations(schema))
-    envs = {"tenant-nasha": WF.provision_env(root, dsn, schema, "tenant-nasha", "NASHA (synthetic restaurant and brewery concept)", "restaurant", USERS),
+    envs = {"tenant-nasha": WF.provision_env(root, dsn, schema, "tenant-nasha", "NASHA — The Courtyard (synthetic hospitality brand)", "hospitality", USERS),
             "tenant-fit": WF.provision_env(root, dsn, schema, "tenant-fit", "Meridian Fitness (synthetic studio)", "fitness", USERS)}
     owner = {t: SV.GrowthService(dsn, schema, t, "ada") for t in envs}
     wh = T.default_pair(root / "wh")[0].warehouse if with_warehouse else None

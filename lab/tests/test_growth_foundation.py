@@ -37,7 +37,7 @@ def db(dsn):
     rep = H.migrate(dsn, SCHEMA, specs=S.migrations(SCHEMA))
     assert [r["status"] for r in rep] == ["applied"] * 7
     users = [("ada", "Ada (synthetic owner)", "OWNER"), ("sam", "Sam (synthetic sales)", "SALES"), ("mia", "Mia (synthetic marketing)", "MARKETING"), ("vic", "Vic (synthetic viewer)", "VIEWER"), ("ana", "Ana (synthetic analyst)", "ANALYST")]
-    SV.provision(dsn, SCHEMA, "tenant-nasha", "NASHA (synthetic restaurant and brewery concept)", "restaurant", users)
+    SV.provision(dsn, SCHEMA, "tenant-nasha", "NASHA — The Courtyard (synthetic hospitality brand)", "restaurant", users)
     SV.provision(dsn, SCHEMA, "tenant-fit", "Meridian Fitness (synthetic studio)", "fitness", users)
     return dsn
 
