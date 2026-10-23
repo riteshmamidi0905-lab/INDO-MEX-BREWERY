@@ -78,13 +78,28 @@ def compare(directory, need_map, as_of):
     return items, out, flags
 
 
+def replenishment(items, period_weeks, safety_pct=20.0):
+    """Inventory planning from the same stored data: weekly usage, the chosen supplier's lead time, a reorder point (usage over the lead time plus a stated safety margin) and the number of weeks one order covers.
+    The safety margin is an ASSUMPTION (default 20%), not a measured service level."""
+    out = []
+    for it in items:
+        c = it["chosen"]
+        if not c:
+            continue
+        weekly = it["need_qty"] / period_weeks
+        lead = c["lead_days"] or 0
+        out.append(dict(ingredient=it["ingredient"], unit=it["unit"], weekly_usage=round(weekly, 3), lead_days=lead, reorder_point=round(weekly * lead / 7 * (1 + safety_pct / 100), 3),
+                        order_qty=c["buy_qty"], weeks_covered=round(c["buy_qty"] / weekly, 2) if weekly else None, supplier=c["supplier"]))
+    return sorted(out, key=lambda r: (r["weeks_covered"] if r["weeks_covered"] is not None else 1e9, r["ingredient"]))
+
+
 def plan(directory, scenario_results, period_weeks, as_of):
     portions = demand(scenario_results, period_weeks)
     need_map, unmapped = needs(portions)
     items, totals, flags = compare(directory, need_map, as_of)
     if unmapped:
         flags.append(dict(kind="unmapped_products", message="No recipe for: " + ", ".join(unmapped)))
-    return dict(period_weeks=period_weeks, as_of=str(as_of), portions={k: round(v, 1) for k, v in portions.items()}, items=items, supplier_totals=totals, total_cost_cents=sum(t["cost_cents"] for t in totals), flags=flags,
+    return dict(period_weeks=period_weeks, as_of=str(as_of), portions={k: round(v, 1) for k, v in portions.items()}, items=items, replenishment=replenishment(items, period_weeks), replenishment_assumption="safety margin 20% (assumed)", supplier_totals=totals, total_cost_cents=sum(t["cost_cents"] for t in totals), flags=flags,
                 disclaimer="Recommendation only. No order was placed and no supplier was contacted.")
 
 

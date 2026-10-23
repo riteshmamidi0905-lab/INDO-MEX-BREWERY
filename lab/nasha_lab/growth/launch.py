@@ -174,3 +174,24 @@ class LaunchMixin:
             self.con.execute("UPDATE procurement_recommendations SET state='EXECUTED', approval_id=%s, decided_by=%s WHERE tenant_id=%s AND id=%s", (approval_id, approved_by, self.tenant, run_id))
             return run_id, None, {"approval": approval_id, "approved_by": approved_by}
         return self._write("procurement.record", "procurement_recommendations", go)
+
+    # ------------------------------------------------------------ marketing: offer economics from stored prices and costs
+    def offer_economics(self):
+        """Every stored offer with its product's current price and unit cost: margin before and after the discount and the volume uplift needed to hold gross profit (pricing engine). Read-only."""
+        from . import pricing as GP
+        self._authorize("read")
+        out = []
+        for oid, name, pname, disc, starts, ends, status, price, cost in self.con.execute(
+                "SELECT o.id, o.name, p.name, o.discount_pct, o.starts, o.ends, o.status, pr.amount_cents, p.unit_cost_cents FROM offers o JOIN products p ON p.tenant_id=o.tenant_id AND p.id=o.product_id "
+                "JOIN prices pr ON pr.tenant_id=p.tenant_id AND pr.product_id=p.id AND pr.status='current' WHERE o.tenant_id=%s ORDER BY o.starts, o.name", (self.tenant,)).fetchall():
+            if cost is None:
+                continue
+            a = GP.discount_analysis(int(price), float(cost), float(disc))
+            out.append(dict(id=oid, name=name, product=pname, discount_pct=float(disc), starts=starts, ends=ends, status=status, price_cents=int(price), unit_cost_cents=float(cost), margin_before=round(a["margin_before"], 4),
+                            margin_after=None if a["margin_after"] is None else round(a["margin_after"], 4), breakeven_volume_uplift=None if a["breakeven_volume_uplift"] is None else round(a["breakeven_volume_uplift"], 4), assumption=a["assumption"]))
+        return out
+
+    def campaigns(self):
+        self._authorize("read")
+        return [dict(zip(("id", "name", "status", "offer", "segment"), r)) for r in self.con.execute(
+            "SELECT c.id, c.name, c.status, o.name, s.name FROM campaigns c LEFT JOIN offers o ON o.tenant_id=c.tenant_id AND o.id=c.offer_id LEFT JOIN segments s ON s.tenant_id=c.tenant_id AND s.id=c.segment_id WHERE c.tenant_id=%s ORDER BY c.created_at", (self.tenant,)).fetchall()]

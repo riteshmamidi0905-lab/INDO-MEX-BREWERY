@@ -142,3 +142,30 @@ def test_procurement_over_http_denied_held_approved_recorded_replay_refused_and_
     assert any(x["id"] == run and x["status_label"] == "Completed" for x in runs) and all(x["project"] and x["requested_by"] for x in runs)
     assert not [x for x in c.get(f"/v1/tenants/{B}/procurement/runs", headers=H(envs, B, "vic")).json()["items"] if x["id"] == run]
     assert c.get(f"/v1/tenants/{A}/audit/verify", headers=H(envs, A, "ada")).json()["chain_valid"] is True
+
+
+def test_offer_economics_equal_the_pricing_engine_over_stored_prices_and_costs_and_nothing_is_published(world):
+    c, envs, _ = world
+    from nasha_lab.growth import pricing as GP
+    j = c.get(f"/v1/tenants/{A}/marketing/offers", headers=H(envs, A, "mia")).json()
+    assert j["offers"] and j["campaigns"] and all(x["status"] in ("draft", "approved", "expired") for x in j["campaigns"] + j["offers"]) and "nothing is published" in j["note"].lower()
+    for o in j["offers"]:
+        a = GP.discount_analysis(o["price_cents"], o["unit_cost_cents"], o["discount_pct"])
+        assert o["margin_before"] == round(a["margin_before"], 4) and o["margin_after"] == round(a["margin_after"], 4) and o["breakeven_volume_uplift"] == round(a["breakeven_volume_uplift"], 4)
+        assert o["margin_after"] < o["margin_before"]
+    assert c.get(f"/v1/tenants/{B}/marketing/offers", headers=H(envs, B, "mia")).json()["offers"] == []
+
+
+def test_inventory_planning_in_the_recommendation_is_derived_from_the_plan(world):
+    c, envs, _ = world
+    runs = c.get(f"/v1/tenants/{A}/procurement/runs", headers=H(envs, A, "vic")).json()["items"]
+    run = next(r for r in runs if r["state"] == "EXECUTED")
+    d = c.get(f"/v1/tenants/{A}/procurement/runs/{run['id']}", headers=H(envs, A, "vic")).json()
+    rep, plan = d["business"]["recommendation"]["replenishment"], d["plan"]
+    assert rep and len(rep) == len([i for i in plan["items"] if i["chosen"]])
+    it = {i["ingredient"]: i for i in plan["items"] if i["chosen"]}
+    for r in rep[:10]:
+        src = it[r["ingredient"]]
+        assert abs(r["weekly_usage"] - src["need_qty"] / plan["period_weeks"]) < 0.002 and r["order_qty"] == src["chosen"]["buy_qty"] and r["lead_days"] == src["chosen"]["lead_days"]
+        assert abs(r["reorder_point"] - r["weekly_usage"] * r["lead_days"] / 7 * 1.2) < 0.002
+    assert d["business"]["recommendation"]["replenishment_assumption"].endswith("(assumed)")

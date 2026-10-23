@@ -237,6 +237,10 @@ def register(app, h):
             return ok(request, sc) if sc and sc["project_id"] == project_id else missing(request)
         return guarded(go)(request, tenant)
 
+    @app.get(P + "/marketing/offers")
+    def offers(tenant: str, request: Request):
+        return guarded(lambda request, tenant, who, s: ok(request, dict(offers=s.offer_economics(), campaigns=s.campaigns(), note="Drafts only: nothing is published, sent or paid for. Uplift needed is arithmetic; whether it occurs is not estimated.")))(request, tenant)
+
     # ---------------------------------------------------------------- governed procurement recommendation
     def out(r):
         return {k: r.get(k) for k in ("corr_id", "tenant", "workflow", "status", "state", "project_id", "failure", "detail", "approval_id", "duplicate_of", "side_effects", "agent_mode", "total_cost_cents")}

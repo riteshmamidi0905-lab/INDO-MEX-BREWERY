@@ -75,6 +75,12 @@ def seed_nasha_launch(svc, today=None):
         svc.set_project_supplier(pid, leads[name], "shortlisted", "Candidate to ask for a quote later. No contact has been made.")
     for fx in ("S03", "S04", "FS01"):
         svc.set_project_supplier(pid, sid[fx], "shortlisted", "Synthetic fixture used to exercise the comparison.")
+    econ = {e["name"]: e for e in svc.product_economics()}
+    seg = svc.create_segment("courtyard-launch-neighbours", "icp", {"description": "residents and workers within a short walk of the proposed venue", "basis": "assumption"}, "synthetic_assumption", 0.3)
+    for nm, pname, disc in (("Opening week appetizer offer", "Chaat Elote", 15), ("Weekday lunch main offer", "Paneer Tikka Taco", 10)):
+        if pname in econ:
+            off = svc.create_offer(nm, econ[pname]["id"], disc, today + timedelta(days=60), today + timedelta(days=67))
+            svc.create_campaign(f"{nm} — planning draft", off, seg)
     svc.set_project_stage(pid, "sourcing")
     return dict(project=pid, suppliers=sid, leads=leads)
 

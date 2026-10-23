@@ -270,7 +270,7 @@ def launch_run_business(run, events, project, names):
                 by.setdefault(c["supplier"], []).append(dict(ingredient=it["ingredient"], need=it["need_qty"], unit=it["unit"], buy_qty=c["buy_qty"], cost_cents=c["cost_cents"], lead_days=c["lead_days"], price_class=c["price_class"],
                                                              runner_up=it["runner_up"]))
         rec = dict(period_weeks=plan["period_weeks"], total_cost_cents=plan["total_cost_cents"], suppliers=[dict(supplier=t["supplier"], cost_cents=t["cost_cents"], items=t["items"], below_minimum_order=t["below_minimum_order"], price_classes=t["price_classes"],
-                   lines=sorted(by.get(t["supplier"], []), key=lambda x: -x["cost_cents"])) for t in plan["supplier_totals"]], flags=plan["flags"], portions=plan["portions"], disclaimer=plan["disclaimer"])
+                   lines=sorted(by.get(t["supplier"], []), key=lambda x: -x["cost_cents"])) for t in plan["supplier_totals"]], flags=plan["flags"], portions=plan["portions"], replenishment=plan.get("replenishment", []), replenishment_assumption=plan.get("replenishment_assumption"), disclaimer=plan["disclaimer"])
     brief = None
     if research:
         brief = dict(mode=research["mode"], mode_label=AGENT_LABEL.get(research["mode"], research["mode"]), title=research["report"]["title"], answer=research["report"]["answer"], claims=[c["text"] for c in research["report"]["claims"]],
