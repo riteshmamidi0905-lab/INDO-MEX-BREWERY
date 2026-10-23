@@ -1,6 +1,6 @@
 {
  "schema": "growth-os-evidence/1",
- "commit": "ef73ccc",
+ "commit": "49720cf",
  "synthetic": true,
  "pushed": false,
  "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
@@ -35,7 +35,17 @@
   "entity_versions",
   "workflow_runs",
   "workflow_events",
-  "idempotency_keys"
+  "idempotency_keys",
+  "launch_projects",
+  "project_assumptions",
+  "project_milestones",
+  "research_findings",
+  "suppliers",
+  "supplier_products",
+  "project_suppliers",
+  "financial_scenarios",
+  "procurement_recommendations",
+  "launch_events"
  ],
  "stage_matrix": [
   {
@@ -394,33 +404,33 @@
   {
    "table": "accounts",
    "statement_kind": "INSERT",
-   "result": "refused: change to accounts.id"
+   "result": "refused: no audit evidence in this transaction"
   },
   {
    "table": "products",
    "statement_kind": "INSERT",
-   "result": "refused: change to products.id"
+   "result": "refused: no audit evidence in this transaction"
   },
   {
    "table": "leads",
    "statement_kind": "UPDATE",
-   "result": "refused: change to leads.id"
+   "result": "refused: no audit evidence in this transaction"
   },
   {
    "table": "contacts",
    "statement_kind": "UPDATE",
-   "result": "refused: change to contacts.id"
+   "result": "refused: no audit evidence in this transaction"
   },
   {
    "table": "opportunities",
    "statement_kind": "UPDATE",
-   "result": "refused: change to opportunities.id"
+   "result": "refused: no audit evidence in this transaction"
   }
  ],
  "workflow": {
   "name": "governed_lead_qualification",
   "happy_path": {
-   "corr_id": "wf-59db2574a516",
+   "corr_id": "wf-6b18000a513e",
    "tenant": "tenant-nasha",
    "before": {
     "status": "new",
@@ -428,7 +438,7 @@
    },
    "held": {
     "status": "AWAITING_APPROVAL",
-    "approval_id": "ap_b96d4aad",
+    "approval_id": "ap_097101ca",
     "recommendation_status": "qualified",
     "score": 95,
     "lead_status_while_held": "new",
@@ -464,18 +474,18 @@
    "trace": [
     {
      "seq": 1,
-     "ts": "2026-10-23T16:02:42.579080+00:00",
+     "ts": "2026-10-23T16:31:25.398811+00:00",
      "kind": "stage",
      "name": "request_received",
      "stage": "G01",
      "tenant": "tenant-nasha",
-     "lead_id": "lead-1369fd66d9",
+     "lead_id": "lead-050579723d",
      "request_id": "req-export-1",
      "idempotency_key": true
     },
     {
      "seq": 2,
-     "ts": "2026-10-23T16:02:42.581823+00:00",
+     "ts": "2026-10-23T16:31:25.401023+00:00",
      "kind": "auth",
      "role": "SALES",
      "user": "sam",
@@ -484,20 +494,20 @@
     },
     {
      "seq": 3,
-     "ts": "2026-10-23T16:02:42.594874+00:00",
+     "ts": "2026-10-23T16:31:25.407866+00:00",
      "kind": "tool_call",
-     "ms": 5.89,
+     "ms": 3.32,
      "ok": true,
      "tool": "growth__get_lead_context",
      "codes": [],
      "stage": "G03",
-     "call_hash": "ca3cad8d5c17f888",
+     "call_hash": "e3134fbbcb4711be",
      "forwarded": true,
      "approval_id": null
     },
     {
      "seq": 4,
-     "ts": "2026-10-23T16:02:42.597163+00:00",
+     "ts": "2026-10-23T16:31:25.410273+00:00",
      "kind": "stage",
      "name": "evidence_collected",
      "stage": "G03",
@@ -511,7 +521,7 @@
     },
     {
      "seq": 5,
-     "ts": "2026-10-23T16:02:42.599074+00:00",
+     "ts": "2026-10-23T16:31:25.411864+00:00",
      "kind": "stage",
      "name": "source_and_consent_validated",
      "stage": "G04",
@@ -520,7 +530,7 @@
     },
     {
      "seq": 6,
-     "ts": "2026-10-23T16:02:42.603354+00:00",
+     "ts": "2026-10-23T16:31:25.415256+00:00",
      "kind": "stage",
      "name": "recommendation",
      "score": 95,
@@ -577,31 +587,31 @@
     },
     {
      "seq": 7,
-     "ts": "2026-10-23T16:02:42.606340+00:00",
+     "ts": "2026-10-23T16:31:25.418285+00:00",
      "kind": "stage",
      "name": "proposal",
      "stage": "G06",
-     "proposal_hash": "ec6510d52129c2b3"
+     "proposal_hash": "c972b04be2be1448"
     },
     {
      "seq": 8,
-     "ts": "2026-10-23T16:02:42.609191+00:00",
+     "ts": "2026-10-23T16:31:25.421133+00:00",
      "kind": "tool_call",
-     "ms": 1.27,
+     "ms": 1.29,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G07",
      "failure": null,
-     "call_hash": "252515fa8fab11ce",
+     "call_hash": "27238d2ce7f17f1a",
      "forwarded": false,
-     "approval_id": "ap_b96d4aad",
+     "approval_id": "ap_097101ca",
      "held_for_approval": true
     },
     {
      "seq": 9,
-     "ts": "2026-10-23T16:02:42.611664+00:00",
+     "ts": "2026-10-23T16:31:25.423326+00:00",
      "kind": "stage",
      "name": "held_for_approval",
      "codes": [
@@ -609,11 +619,11 @@
      ],
      "stage": "G07",
      "ttl_s": 900,
-     "approval_id": "ap_b96d4aad"
+     "approval_id": "ap_097101ca"
     },
     {
      "seq": 10,
-     "ts": "2026-10-23T16:02:42.629786+00:00",
+     "ts": "2026-10-23T16:31:25.437663+00:00",
      "kind": "approval_decision",
      "code": "ROLE_NOT_PERMITTED",
      "role": "SALES",
@@ -622,39 +632,39 @@
     },
     {
      "seq": 11,
-     "ts": "2026-10-23T16:02:42.631664+00:00",
+     "ts": "2026-10-23T16:31:25.439598+00:00",
      "kind": "failure",
      "detail": "SALES may not approve",
      "failure_class": "ROLE_DENIED"
     },
     {
      "seq": 12,
-     "ts": "2026-10-23T16:02:42.641162+00:00",
+     "ts": "2026-10-23T16:31:25.444488+00:00",
      "kind": "approval_decision",
      "by": "ada",
      "role": "OWNER",
      "comment": "evidence reviewed",
      "decision": "approve",
-     "approval_id": "ap_b96d4aad"
+     "approval_id": "ap_097101ca"
     },
     {
      "seq": 13,
-     "ts": "2026-10-23T16:02:42.660136+00:00",
+     "ts": "2026-10-23T16:31:25.456078+00:00",
      "kind": "tool_call",
-     "ms": 14.29,
+     "ms": 8.39,
      "ok": true,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G09",
-     "call_hash": "252515fa8fab11ce",
+     "call_hash": "27238d2ce7f17f1a",
      "forwarded": true,
-     "approval_id": "ap_b96d4aad"
+     "approval_id": "ap_097101ca"
     },
     {
      "seq": 14,
-     "ts": "2026-10-23T16:02:42.663275+00:00",
+     "ts": "2026-10-23T16:31:25.458250+00:00",
      "kind": "stage",
      "name": "crm_updated",
      "stage": "G09",
@@ -662,7 +672,7 @@
     },
     {
      "seq": 15,
-     "ts": "2026-10-23T16:02:42.664396+00:00",
+     "ts": "2026-10-23T16:31:25.459161+00:00",
      "kind": "stage",
      "name": "no_external_contact",
      "stage": "G10",
@@ -671,7 +681,7 @@
     },
     {
      "seq": 16,
-     "ts": "2026-10-23T16:02:42.667026+00:00",
+     "ts": "2026-10-23T16:31:25.461138+00:00",
      "kind": "approval_decision",
      "code": "APPROVAL_REPLAY",
      "state": "EXECUTED",
@@ -786,6 +796,475 @@
    }
   ]
  },
+ "launch": {
+  "name": "governed_procurement_recommendation",
+  "agent_mode": "engine_offline_heuristic",
+  "model_tested": false,
+  "note": "The agent is the Production AI Agent Platform engine with its offline heuristic provider (deterministic; not a language model). No language-model provider was run.",
+  "held": {
+   "status": "AWAITING_APPROVAL",
+   "agent_mode": "engine_offline_heuristic",
+   "total_cost_cents": 2165313,
+   "recorded_while_held": 0
+  },
+  "refusals": [
+   {
+    "case": "analyst tries to approve",
+    "failure": "ROLE_DENIED"
+   },
+   {
+    "case": "owner tries to approve their own request",
+    "failure": "MAKER_CHECKER"
+   },
+   {
+    "case": "sales requests a recommendation",
+    "status": "BLOCKED",
+    "failure": "TOOL_DENIED"
+   },
+   {
+    "case": "viewer requests a recommendation",
+    "status": "DENIED",
+    "failure": "ROLE_DENIED"
+   },
+   {
+    "case": "approval used a second time",
+    "failure": "APPROVAL_REPLAY"
+   }
+  ],
+  "approved": {
+   "status": "EXECUTED",
+   "side_effects": {
+    "orders_placed": 0,
+    "suppliers_contacted": 0,
+    "emails_sent": 0
+   }
+  },
+  "audit": {
+   "actor": "ana",
+   "approved_by": "ada",
+   "approval_matches": true,
+   "rows": 1
+  },
+  "research": {
+   "mode": "engine_offline_heuristic",
+   "claims": 8,
+   "rejected": false,
+   "platform_verification": {
+    "ok": true,
+    "notes": [],
+    "repaired": false,
+    "groundedness": 1.0,
+    "citation_validity": 1.0,
+    "invalid_citations": [],
+    "unsupported_claims": []
+   }
+  },
+  "recommendation": {
+   "period_weeks": 4,
+   "total_cost_cents": 2165313,
+   "suppliers": [
+    {
+     "supplier": "Synthetic Supplier 04 (dairy)",
+     "cost_cents": 15582,
+     "items": 2
+    },
+    {
+     "supplier": "Synthetic Broadline Distributor B (broadline)",
+     "cost_cents": 1088482,
+     "items": 25
+    },
+    {
+     "supplier": "Synthetic Supplier 05 (dry goods)",
+     "cost_cents": 264884,
+     "items": 14
+    },
+    {
+     "supplier": "Synthetic Supplier 03 (produce)",
+     "cost_cents": 97283,
+     "items": 7
+    },
+    {
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "cost_cents": 699082,
+     "items": 22
+    }
+   ],
+   "flags": [
+    "synthetic_prices",
+    "unpriced_suppliers"
+   ]
+  },
+  "trace": [
+   {
+    "seq": 1,
+    "ts": "2026-10-23T16:31:29.083155+00:00",
+    "kind": "stage",
+    "name": "request_received",
+    "stage": "P01",
+    "project_id": "proj-5bbbe91f80",
+    "request_id": "req-export-proc",
+    "period_weeks": 4
+   },
+   {
+    "seq": 2,
+    "ts": "2026-10-23T16:31:29.085882+00:00",
+    "kind": "auth",
+    "role": "ANALYST",
+    "user": "ana",
+    "tenant": "tenant-nasha",
+    "decision": "allow"
+   },
+   {
+    "seq": 3,
+    "ts": "2026-10-23T16:31:29.189360+00:00",
+    "kind": "tool_call",
+    "ms": 99.86,
+    "ok": true,
+    "tool": "launch__get_supplier_data",
+    "codes": [],
+    "stage": "P03",
+    "call_hash": "4c154e7924b5be63",
+    "forwarded": true,
+    "approval_id": null
+   },
+   {
+    "seq": 4,
+    "ts": "2026-10-23T16:31:29.191682+00:00",
+    "kind": "stage",
+    "name": "data_read",
+    "stage": "P03",
+    "project": "NASHA \u2014 The Courtyard",
+    "suppliers": 11,
+    "priced_suppliers": 8
+   },
+   {
+    "seq": 5,
+    "ts": "2026-10-23T16:31:29.205699+00:00",
+    "kind": "stage",
+    "name": "demand_and_needs",
+    "stage": "P04",
+    "portions": 6499.5,
+    "ingredients": 70
+   },
+   {
+    "seq": 6,
+    "ts": "2026-10-23T16:31:30.242383+00:00",
+    "kind": "stage",
+    "mode": "engine_offline_heuristic",
+    "name": "agent_research",
+    "stage": "P05",
+    "claims": 8,
+    "evidence": 12,
+    "provider": "offline",
+    "agent_run": "run_ce3d018dd6a7",
+    "independent_problems": [],
+    "platform_verification": {
+     "ok": true,
+     "groundedness": 1.0
+    }
+   },
+   {
+    "seq": 7,
+    "ts": "2026-10-23T16:31:30.246090+00:00",
+    "kind": "stage",
+    "name": "recommendation",
+    "flags": [
+     "synthetic_prices",
+     "unpriced_suppliers"
+    ],
+    "stage": "P06",
+    "suppliers": 5,
+    "total_cost_cents": 2165313
+   },
+   {
+    "seq": 8,
+    "ts": "2026-10-23T16:31:30.247920+00:00",
+    "kind": "stage",
+    "name": "independent_check",
+    "stage": "P06",
+    "result": "every chosen quote is the cheapest valid whole-pack option and all totals add up"
+   },
+   {
+    "seq": 9,
+    "ts": "2026-10-23T16:31:30.258119+00:00",
+    "kind": "stage",
+    "name": "proposal",
+    "stage": "P07",
+    "proposal_hash": "95f62123d859da61"
+   },
+   {
+    "seq": 10,
+    "ts": "2026-10-23T16:31:30.264145+00:00",
+    "kind": "tool_call",
+    "ms": 1.99,
+    "tool": "procure__record_recommendation",
+    "codes": [
+     "R-GATE"
+    ],
+    "stage": "P08",
+    "failure": null,
+    "call_hash": "6e4f6270c997e601",
+    "forwarded": false,
+    "approval_id": "ap_2d532f85",
+    "held_for_approval": true
+   },
+   {
+    "seq": 11,
+    "ts": "2026-10-23T16:31:30.269563+00:00",
+    "kind": "stage",
+    "name": "held_for_approval",
+    "codes": [
+     "R-GATE"
+    ],
+    "stage": "P08",
+    "ttl_s": 900,
+    "approval_id": "ap_2d532f85"
+   },
+   {
+    "seq": 12,
+    "ts": "2026-10-23T16:31:30.283002+00:00",
+    "kind": "approval_decision",
+    "code": "ROLE_NOT_PERMITTED",
+    "role": "ANALYST",
+    "user": "ana",
+    "decision": "deny"
+   },
+   {
+    "seq": 13,
+    "ts": "2026-10-23T16:31:30.284745+00:00",
+    "kind": "failure",
+    "detail": "ANALYST may not approve",
+    "failure_class": "ROLE_DENIED"
+   },
+   {
+    "seq": 14,
+    "ts": "2026-10-23T16:31:30.568632+00:00",
+    "kind": "approval_decision",
+    "by": "ada",
+    "role": "OWNER",
+    "comment": "reviewed",
+    "decision": "approve",
+    "approval_id": "ap_2d532f85"
+   },
+   {
+    "seq": 15,
+    "ts": "2026-10-23T16:31:30.618200+00:00",
+    "kind": "tool_call",
+    "ms": 35.47,
+    "ok": true,
+    "tool": "procure__record_recommendation",
+    "codes": [
+     "R-GATE"
+    ],
+    "stage": "P09",
+    "call_hash": "6e4f6270c997e601",
+    "forwarded": true,
+    "approval_id": "ap_2d532f85"
+   },
+   {
+    "seq": 16,
+    "ts": "2026-10-23T16:31:30.620013+00:00",
+    "kind": "stage",
+    "name": "recommendation_recorded",
+    "stage": "P09"
+   },
+   {
+    "seq": 17,
+    "ts": "2026-10-23T16:31:30.621520+00:00",
+    "kind": "stage",
+    "name": "no_order_no_contact",
+    "stage": "P10",
+    "orders_placed": 0,
+    "suppliers_contacted": 0
+   },
+   {
+    "seq": 18,
+    "ts": "2026-10-23T16:31:30.627764+00:00",
+    "kind": "approval_decision",
+    "code": "APPROVAL_REPLAY",
+    "state": "EXECUTED",
+    "decision": "deny"
+   }
+  ],
+  "financial": {
+   "kind": "simulated",
+   "results": {
+    "units_per_month": 7041.67,
+    "revenue_cents": 11386375,
+    "gross_margin": 0.8206,
+    "contribution_margin": 0.7886,
+    "fixed_costs_monthly_cents": 8280000,
+    "operating_profit_monthly_cents": 699458,
+    "breakeven_units_per_month": 6493.2,
+    "payback_months": 60.0
+   },
+   "sensitivity_price": [
+    {
+     "price_change_pct": -10.0,
+     "units_per_month": 7886.67,
+     "revenue_cents": 11477466,
+     "operating_profit_monthly_cents": 542528,
+     "gross_margin": 0.8007
+    },
+    {
+     "price_change_pct": -5.0,
+     "units_per_month": 7464.17,
+     "revenue_cents": 11466080,
+     "operating_profit_monthly_cents": 654059,
+     "gross_margin": 0.8112
+    },
+    {
+     "price_change_pct": 0.0,
+     "units_per_month": 7041.67,
+     "revenue_cents": 11386375,
+     "operating_profit_monthly_cents": 699458,
+     "gross_margin": 0.8206
+    },
+    {
+     "price_change_pct": 5.0,
+     "units_per_month": 6619.17,
+     "revenue_cents": 11238352,
+     "operating_profit_monthly_cents": 678725,
+     "gross_margin": 0.8292
+    },
+    {
+     "price_change_pct": 10.0,
+     "units_per_month": 6196.67,
+     "revenue_cents": 11022011,
+     "operating_profit_monthly_cents": 591860,
+     "gross_margin": 0.8369
+    }
+   ],
+   "compare": [
+    {
+     "name": "Stored assumptions",
+     "units_per_month": 7041.67,
+     "revenue_cents": 11386375,
+     "gross_margin": 0.8206,
+     "contribution_margin": 0.7886,
+     "operating_profit_monthly_cents": 699458,
+     "breakeven_units_per_month": 6493.2,
+     "payback_months": 60.0,
+     "profit_vs_base_cents": 0
+    },
+    {
+     "name": "Prices +5%",
+     "units_per_month": 6619.17,
+     "revenue_cents": 11238352,
+     "gross_margin": 0.8292,
+     "contribution_margin": 0.7972,
+     "operating_profit_monthly_cents": 678725,
+     "breakeven_units_per_month": 6117.7,
+     "payback_months": 61.9,
+     "profit_vs_base_cents": -20733
+    },
+    {
+     "name": "Ingredient costs +20%",
+     "units_per_month": 7041.67,
+     "revenue_cents": 11386375,
+     "gross_margin": 0.7847,
+     "contribution_margin": 0.7527,
+     "operating_profit_monthly_cents": 290948,
+     "breakeven_units_per_month": 6802.6,
+     "payback_months": 144.4,
+     "profit_vs_base_cents": -408510
+    }
+   ],
+   "inputs_hash": "47979d81ec349712be3ba1ed666ba4b51f1537e60ada6fe30ed3eb05a1ef052e",
+   "defaulted_assumptions": []
+  },
+  "suppliers": {
+   "by_verification_status": {
+    "lead_unverified": 3,
+    "synthetic_fixture": 8
+   },
+   "real_leads": [
+    {
+     "name": "Brothers Produce",
+     "status": "lead_unverified",
+     "source_url": "https://www.restaurant365.com/partners/brothers-produce/",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
+    {
+     "name": "Farm to Table LLC",
+     "status": "lead_unverified",
+     "source_url": "https://www.austinchronicle.com/food/food-o-file-11764527/",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
+    {
+     "name": "Hill Country Dairies",
+     "status": "lead_unverified",
+     "source_url": "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    }
+   ],
+   "external_verification": "INCOMPLETE"
+  },
+  "offers": [
+   {
+    "name": "Opening week appetizer offer",
+    "discount_pct": 15.0,
+    "margin_before": 0.9111,
+    "margin_after": 0.8954,
+    "uplift": 0.1971
+   },
+   {
+    "name": "Weekday lunch main offer",
+    "discount_pct": 10.0,
+    "margin_before": 0.8741,
+    "margin_after": 0.8601,
+    "uplift": 0.1292
+   }
+  ],
+  "mutants": [
+   {
+    "mutant": "agent claim verification removed",
+    "probe": "p_claim_verification",
+    "killed": true
+   },
+   {
+    "mutant": "most expensive quote chosen and independent re-derivation removed",
+    "probe": "p_cheapest_quote",
+    "killed": true
+   },
+   {
+    "mutant": "quote validity dates ignored",
+    "probe": "p_expired_quotes",
+    "killed": true
+   },
+   {
+    "mutant": "stale-proposal check removed (proposal fingerprint ignored)",
+    "probe": "p_stale_proposal",
+    "killed": true
+   },
+   {
+    "mutant": "audit row for the recorded recommendation dropped",
+    "probe": "p_audit_on_record",
+    "killed": true
+   },
+   {
+    "mutant": "approval never consumed",
+    "probe": "p_approval_single_use",
+    "killed": true
+   },
+   {
+    "mutant": "SALES role allowed to record recommendations at THE WEIR and in the service",
+    "probe": "p_role_policy",
+    "killed": true
+   },
+   {
+    "mutant": "supplier contact rule dropped",
+    "probe": "p_no_invented_contacts",
+    "killed": true
+   }
+  ]
+ },
  "audit_chains_valid": {
   "nasha": true,
   "fit": true
@@ -811,10 +1290,13 @@
    "n": 2,
    "capability": "Research competition",
    "implementation": "Competitor intelligence and evidence tracking",
-   "status": "NOT STARTED",
-   "done": "",
-   "missing": "Needs a researched-public vs synthetic-assumption evidence model with source timestamps; no competitor facts exist or may be invented.",
-   "code": [],
+   "status": "DESIGNED",
+   "done": "A research-findings store with source kind, URL, retrieval date, confidence and a mandatory limitation (search results are leads, not facts); three supplier leads and their source pages recorded with dates.",
+   "missing": "No competitor dataset, no competitor comparison and no automated research; findings are entered by people or seeded.",
+   "code": [
+    "lab/nasha_lab/growth/launch.py",
+    "lab/nasha_lab/growth/launch_seed.py"
+   ],
    "tests": []
   },
   {
@@ -822,12 +1304,15 @@
    "capability": "Find a profitable niche",
    "implementation": "Market opportunity and unit-economics analysis",
    "status": "DESIGNED",
-   "done": "Unit-economics primitives exist in the pricing engine (margin, break-even, scenarios).",
-   "missing": "No niche scoring model, no CAC/LTV assumptions model, no market-size claims.",
+   "done": "Unit-economics primitives plus a stored-data financial model: gross and contribution margin, fixed costs, break-even, payback, price sensitivity and scenario comparison, shown in the Financial Plan.",
+   "missing": "No niche scoring model, no CAC/LTV model, no market-size claims; scenarios describe one project, they do not rank niches.",
    "code": [
-    "lab/nasha_lab/growth/pricing.py"
+    "lab/nasha_lab/growth/pricing.py",
+    "lab/nasha_lab/growth/financials.py"
    ],
-   "tests": []
+   "tests": [
+    "lab/tests/test_growth_financials.py::test_unit_economics_and_break_even_match_a_hand_calculation"
+   ]
   },
   {
    "n": 4,
@@ -858,14 +1343,17 @@
    "n": 6,
    "capability": "Create my offers",
    "implementation": "Offer and promotion management",
-   "status": "IMPLEMENTED",
-   "done": "Offer table (discount 0-100, date range, draft/approved/expired) and create_offer service method.",
-   "missing": "No dedicated test, no approval flow, no redemption tracking.",
+   "status": "TESTED",
+   "done": "Offer table with its economics computed from stored prices and unit costs through the pricing engine (margin before and after, volume uplift needed to hold profit), shown on the Offers and campaigns screen; campaign drafts linked to an offer and audience.",
+   "missing": "Offers are seeded drafts: no create/edit screen, no approval flow, no redemption tracking, nothing is published.",
    "code": [
-    "lab/nasha_lab/growth/service.py",
-    "lab/nasha_lab/growth/schema.py"
+    "lab/nasha_lab/growth/launch.py",
+    "lab/nasha_lab/growth/api_launch.py",
+    "lab/nasha_lab/growth/ui/launch.js"
    ],
-   "tests": []
+   "tests": [
+    "lab/tests/test_growth_launch_api.py::test_offer_economics_equal_the_pricing_engine_over_stored_prices_and_costs_and_nothing_is_published"
+   ]
   },
   {
    "n": 7,
@@ -1102,13 +1590,19 @@
    "n": 25,
    "capability": "Automate repetitive tasks",
    "implementation": "Governed workflow orchestration",
-   "status": "DESIGNED",
-   "done": "The governed procurement workflow (state machine, THE WEIR approval, idempotency, recovery) is the reusable pattern; the Production AI Agent Platform provides a tool/risk abstraction.",
-   "missing": "No generic workflow registry yet; no Growth OS workflow runs through THE WEIR yet.",
+   "status": "TESTED",
+   "done": "Two governed workflows run through THE WEIR with a human decision: lead qualification and, new, an agent-assisted procurement recommendation (research brief on the Production AI Agent Platform engine with read-only tools, independent claim verification, deterministic recommendation re-derived independently, deterministic fallback, audited recording). Both have API, interface, failure-path and mutation tests.",
+   "missing": "Two hard-coded workflows, not a generic workflow registry or scheduler; the agent provider is an offline heuristic (a real model provider has not been exercised); no triggers or reminders.",
    "code": [
-    "lab/nasha_lab/governed/workflow.py"
+    "lab/nasha_lab/growth/launch_workflow.py",
+    "lab/nasha_lab/growth/agent_research.py",
+    "lab/nasha_lab/growth/weir_launch.py",
+    "lab/nasha_lab/growth/procurement.py"
    ],
    "tests": [
+    "lab/tests/test_growth_launch.py::test_end_to_end_with_the_real_engine_research_verification_weir_hold_human_approval_record_and_audit",
+    "lab/tests/test_growth_launch.py::test_replay_modified_proposal_expiry_and_duplicates",
+    "lab/tests/test_growth_launch_eval.py::test_each_mutant_is_detected_by_its_probe",
     "lab/tests/test_governed_workflow.py::test_end_to_end_inventory_discrepancy_to_audited_draft_po_with_the_network_blocked"
    ]
   }

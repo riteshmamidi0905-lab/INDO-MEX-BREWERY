@@ -13,7 +13,7 @@ LAB = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(LAB))
 import psycopg  # noqa: E402
 from nasha_lab.governed import tenants as T  # noqa: E402
-from nasha_lab.growth import schema as S, seed as SD, service as SV, testing as TT  # noqa: E402
+from nasha_lab.growth import financials as F, schema as S, seed as SD, service as SV, testing as TT  # noqa: E402
 from nasha_lab.warehouse import pg_hardening as H  # noqa: E402
 
 SCHEMA = "growth_export"
@@ -140,16 +140,75 @@ def main():
         wf_mutants.append(dict(mutant=name, probe=probe.__name__, killed=(held_m is False)))
         ok_all &= held_m is False
     workflow = dict(name="governed_lead_qualification", happy_path=happy, refusals=refusals, oracle_evaluation=oracle_rows, mutants=wf_mutants)
+    # ---- launch workspace: recorded agent-assisted procurement run, refusals, financial scenario, supplier honesty, launch mutants
+    spec = importlib.util.spec_from_file_location("gle", LAB / "tests/test_growth_launch_eval.py")
+    gle = importlib.util.module_from_spec(spec); sys.modules["gle"] = gle; spec.loader.exec_module(gle)
+    from nasha_lab.growth import agent_research as AR  # noqa: E402
+    try:
+        import agentplatform  # noqa: F401
+        agent = AR.SupplierResearchAgent(dsn, "tenant-nasha", tmp / "lab-agent")
+    except ImportError:
+        agent = None
+    L = gle.Lab(dsn, tmp / "launchroot", agent=agent)
+    lw = L.wf
+    r1 = lw.run(L.tok("ana"), L.pid, 4, idempotency_key="export-proc-1", request_id="req-export-proc")
+    held = dict(status=r1["status"], agent_mode=r1["agent_mode"], total_cost_cents=r1["total_cost_cents"], recorded_while_held=L.recorded(r1["corr_id"]))
+    analyst_try = lw.decide(r1["corr_id"], L.tok("ana"), True); maker = None
+    own = lw.run(L.tok("ada"), L.pid, 2); maker = lw.decide(own["corr_id"], L.tok("ada"), True)
+    done = lw.decide(r1["corr_id"], L.tok("ada"), True, "reviewed")
+    replay = lw.decide(r1["corr_id"], L.tok("omar"), True)
+    run1 = lw.status(r1["corr_id"]); sales = lw.run(L.tok("sam"), L.pid, 2); vic = lw.run(L.tok("vic"), L.pid, 2)
+    audit = L.sql("SELECT actor, detail FROM audit_log WHERE action='procurement.record' AND entity_id=%s", (r1["corr_id"],))
+    s_an = SV.GrowthService(dsn, L.schema, "tenant-nasha", "ana")
+    prev = s_an.preview_scenario(L.pid); cmp = F.compare([("Stored assumptions", prev["inputs"]), ("Prices +5%", s_an.scenario_inputs(L.pid, {"price_change_pct": 0.05})), ("Ingredient costs +20%", s_an.scenario_inputs(L.pid, {"cost_change_pct": 0.2}))])
+    directory = s_an.supplier_directory(gle.AS_OF, L.pid); offers = s_an.offer_economics(); s_an.close()
+    by_status = {}
+    for sp in directory:
+        by_status[sp["verification_status"]] = by_status.get(sp["verification_status"], 0) + 1
+    launch_mut = []
+    for name, probe, sql, patch in gle.MUTANTS:
+        lab_m = gle.Lab(dsn, tmp / "lm", agent=None)
+        try:
+            if sql:
+                for (cn,) in lab_m.sql("SELECT conname FROM pg_constraint WHERE conrelid = %s::regclass AND contype='c' AND pg_get_constraintdef(oid) LIKE %s", (f'"{lab_m.schema}".suppliers', "%contact_channel%")):
+                    lab_m.sql(f'ALTER TABLE "{lab_m.schema}".suppliers DROP CONSTRAINT "{cn}"')
+            with (patch() if patch else __import__("contextlib").nullcontext()):
+                killed = probe(lab_m) is False
+        finally:
+            lab_m.close()
+        launch_mut.append(dict(mutant=name, probe=probe.__name__, killed=killed)); ok_all &= killed
+    ok_all &= held["status"] == "AWAITING_APPROVAL" and held["recorded_while_held"] == 0 and done["status"] == "EXECUTED" and len(audit) == 1 and replay["failure"] == "APPROVAL_REPLAY" and analyst_try["failure"] == "ROLE_DENIED" and maker["failure"] == "MAKER_CHECKER" and sales["status"] == "BLOCKED"
+    ok_all &= all(sp["verification_status"] in ("synthetic_fixture", "lead_unverified") for sp in directory) and not any(sp["verified_on"] for sp in directory)
+    items_ = sorted([i for i in run1["items"]["items"] if i["chosen"]], key=lambda i: -i["chosen"]["cost_cents"])[:14]
+    walk = dict(project=dict(name=ov["name"], industry=ov["industry"], location=ov["location"], concept=ov["concept"], budget_cents=ov["budget_cents"], launch_target=ov["launch_target"], stage=ov["stage"], basis=ov["basis"],
+                             assumptions=[dict(label=a["label"], value=a["value"], unit=a["unit"], basis=a["basis"]) for a in ov["assumptions"]], milestones=[dict(title=m["title"], phase=m["phase"], due=m["due"], status=m["status"]) for m in ov["milestones"]]),
+                findings=[dict(topic=f["topic"], finding=f["finding"], source_kind=f["source_kind"], source_url=f["source_url"], retrieved_on=f["retrieved_on"], confidence=f["confidence"], limitation=f["limitation"]) for f in ov["findings"]],
+                suppliers=[dict(name=sp["name"], category=sp["category"], service_area=sp["service_area"], verification_status=sp["verification_status"], freshness=sp["freshness"], source_kind=sp["source_kind"], source_url=sp["source_url"], website_verified=bool(sp["website_url"]),
+                                contact=sp["contact_channel"], priced_items=sp["priced_products"], price_classes=sorted({p["price_class"] for p in sp["products"]})) for sp in directory],
+                financial_grid=grid, base_weekly_orders=base_orders,
+                procurement_lines=[dict(ingredient=i["ingredient"], need=i["need_qty"], unit=i["unit"], supplier=i["chosen"]["supplier"], buy_qty=i["chosen"]["buy_qty"], cost_cents=i["chosen"]["cost_cents"], lead_days=i["chosen"]["lead_days"], next_best=i["runner_up"]) for i in items_],
+                agent_claims=[c["text"] for c in run1["research"]["report"]["claims"]], flags=[f["message"] for f in run1["items"]["flags"]], replenishment=run1["items"]["replenishment"][:8])
+    launch = dict(name="governed_procurement_recommendation", walkthrough=walk, agent_mode=run1["agent_mode"], model_tested=False, note="The agent is the Production AI Agent Platform engine with its offline heuristic provider (deterministic; not a language model). No language-model provider was run.",
+                  held=held, refusals=[dict(case="analyst tries to approve", failure=analyst_try.get("failure")), dict(case="owner tries to approve their own request", failure=maker.get("failure")), dict(case="sales requests a recommendation", status=sales["status"], failure=sales.get("failure")),
+                                       dict(case="viewer requests a recommendation", status=vic["status"], failure=vic.get("failure")), dict(case="approval used a second time", failure=replay.get("failure"))],
+                  approved=dict(status=done["status"], side_effects=done["side_effects"]), audit=dict(actor=audit[0][0], approved_by=audit[0][1]["approved_by"], approval_matches=audit[0][1]["approval"] == r1["approval_id"], rows=len(audit)),
+                  research=dict(mode=run1["research"]["mode"], claims=len(run1["research"]["report"]["claims"]), rejected=bool(run1["research"]["rejected_agent_output"]), platform_verification=run1["research"].get("verification")),
+                  recommendation=dict(period_weeks=run1["items"]["period_weeks"], total_cost_cents=run1["items"]["total_cost_cents"], suppliers=[dict(supplier=t["supplier"], cost_cents=t["cost_cents"], items=t["items"]) for t in run1["items"]["supplier_totals"]], flags=[f["kind"] for f in run1["items"]["flags"]]),
+                  trace=lw.trace(r1["corr_id"]), financial=dict(kind="simulated", results={k: prev["results"][k] for k in ("units_per_month", "revenue_cents", "gross_margin", "contribution_margin", "fixed_costs_monthly_cents", "operating_profit_monthly_cents", "breakeven_units_per_month", "payback_months")},
+                  sensitivity_price=prev["sensitivity"]["price"], compare=cmp, inputs_hash=prev["inputs_hash"], defaulted_assumptions=prev["inputs"]["defaulted_assumptions"]),
+                  suppliers=dict(by_verification_status=by_status, real_leads=[dict(name=sp["name"], status=sp["verification_status"], source_url=sp["source_url"], prices_published=sp["priced_products"], contact=sp["contact_channel"], verified_on=sp["verified_on"]) for sp in directory if sp["source_kind"] == "search_result"], external_verification="INCOMPLETE"),
+                  offers=[dict(name=o["name"], discount_pct=o["discount_pct"], margin_before=o["margin_before"], margin_after=o["margin_after"], uplift=o["breakeven_volume_uplift"]) for o in offers], mutants=launch_mut)
+    L.close()
     caps = json.loads((LAB / "nasha_lab/growth/capabilities.json").read_text())
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, cwd=LAB).stdout.strip()
     ver = a.verify_audit(), b.verify_audit()
     out = dict(schema="growth-os-evidence/1", commit=commit, synthetic=True, pushed=False, notice="Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
                postgres=a.con.execute("SHOW server_version").fetchone()[0], tenants=[dict(id="tenant-nasha", vertical="hospitality"), dict(id="tenant-fit", vertical="fitness")],
-               tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, audit_guard=guard, workflow=workflow, audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
+               tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, audit_guard=guard, workflow=workflow, launch=launch, audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
                capabilities=caps["capabilities"], status_rules=caps["rules"], all_expectations_met=ok_all)
     (LAB / "portfolio/growth-os-evidence.json").write_text(json.dumps(out, indent=1, default=str))
     a.close(); b.close(); nosetting.close(); srv.cleanup()
-    print("written; all expectations met:", ok_all, f"{len(matrix)} stage pairs, {len(probes)} tables probed, {sum(m['killed'] for m in mutants)}/{len(mutants)} control mutants and {sum(m['killed'] for m in wf_mutants)}/{len(wf_mutants)} workflow mutants killed")
+    print("written; all expectations met:", ok_all, f"{len(matrix)} stage pairs, {len(probes)} tables probed, {sum(m['killed'] for m in mutants)}/{len(mutants)} control mutants and {sum(m['killed'] for m in wf_mutants)}/{len(wf_mutants)} workflow mutants and {sum(m['killed'] for m in launch_mut)}/{len(launch_mut)} launch mutants killed")
     sys.exit(0 if ok_all else 1)
 
 
