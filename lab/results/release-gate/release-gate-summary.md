@@ -1,6 +1,6 @@
-# Release gate: **FAIL**
+# Release gate: **REQUIRES_REVIEW**
 
-HEAD `9222bbd`, evidence collected at `9222bbd`. Remote CI: **NOT_RUN** — GitHub workflows have not run remotely; no remote CI result is claimed.
+HEAD `b0e7255`, evidence collected at `b0e7255`. Remote CI: **NOT_RUN** — GitHub workflows have not run remotely; no remote CI result is claimed.
 
 | # | Gate | Result | Detail |
 |---|---|---|---|
@@ -14,7 +14,7 @@ HEAD `9222bbd`, evidence collected at `9222bbd`. Remote CI: **NOT_RUN** — GitH
 | 8 | authorization_enforcement | **PASS** | authorization tests: 10/10 required tests executed and passed / evaluation authorization/approval: 8 evaluation cases passed with no purchase order created |
 | 9 | reproducibility | **PASS** | evaluation hash identical across runs (d2821929ecbdc098); 48 warehouse tables rebuilt byte-identically |
 | 10 | data_quality | **PASS** | data quality: 8/8 required tests executed and passed |
-| 11 | evidence_consistency | **FAIL** | evidence was collected from a working tree with uncommitted code changes |
+| 11 | evidence_consistency | **PASS** | evidence collected at b0e7255 (HEAD b0e7255); no code changed since; counts match junit.xml |
 | 12 | portfolio_claim_validation | **PASS** | 11 portfolio claims and 194 dashboard metrics each resolve to the evidence bundle and match exactly |
 
 A missing or malformed required item is a FAIL, never a pass. REQUIRES_REVIEW means nothing failed but something required could not be verified in this environment.

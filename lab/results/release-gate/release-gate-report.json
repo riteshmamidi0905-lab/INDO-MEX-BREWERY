@@ -1,9 +1,9 @@
 {
  "schema": "release-gate-report/1",
- "overall": "FAIL",
- "head": "9222bbd",
- "generated_at": 1792731047.5002072,
- "evidence_commit": "9222bbd",
+ "overall": "REQUIRES_REVIEW",
+ "head": "b0e7255",
+ "generated_at": 1792731710.9319885,
+ "evidence_commit": "b0e7255",
  "remote_ci": "NOT_RUN",
  "remote_ci_note": "GitHub workflows have not run remotely; no remote CI result is claimed.",
  "gates": {
@@ -128,9 +128,13 @@
    ]
   },
   "evidence_consistency": {
-   "status": "FAIL",
-   "detail": "evidence was collected from a working tree with uncommitted code changes",
-   "evidence": []
+   "status": "PASS",
+   "detail": "evidence collected at b0e7255 (HEAD b0e7255); no code changed since; counts match junit.xml",
+   "evidence": [
+    "meta.json",
+    "summary.json",
+    "junit.xml"
+   ]
   },
   "portfolio_claim_validation": {
    "status": "PASS",

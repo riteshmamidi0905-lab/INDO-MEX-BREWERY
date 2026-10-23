@@ -1,16 +1,16 @@
 {
- "commit": "9222bbd",
+ "commit": "b0e7255",
  "pushed": false,
  "synthetic": true,
  "artifacts": [
   {
    "path": "lab/portfolio/nasha-governed-evidence.json",
-   "sha256": "1f391b89f6c9dbbafecd122bc16de2f0658924c31b8452bfcea56d43aeb5a73e",
-   "bytes": 206053
+   "sha256": "ded9b3b51a6b3fbdd0ffbf444aa2924ab08cb5eb6b210f9d2f720b5ad589ba23",
+   "bytes": 206065
   },
   {
    "path": "lab/portfolio/capability-matrix.json",
-   "sha256": "fff5108edb90306d489801f55504059c86057657bcc3db42ff9cbdfa5b59e177",
+   "sha256": "0035feb53114dc964711c2c728537edb2ee535d740c60a8e4759c5a0bd01b4eb",
    "bytes": 15456
   },
   {
@@ -20,7 +20,7 @@
   },
   {
    "path": "docs/engineering/D-89-CAPABILITY-MATRIX.md",
-   "sha256": "8b64bf889c4b13657a4792f339984b21250b6e7ca4593ece5be1198619c649a2",
+   "sha256": "748c64357fff21ce3e6e10e1e6861bef0375fa7535f2b5fc1be6c03f90395293",
    "bytes": 11427
   },
   {
@@ -40,7 +40,7 @@
   },
   {
    "path": "docs/portfolio-integration/README.md",
-   "sha256": "126309f2d5afde9b5f1bfe508a3b0857302fba67a8f6bc7dcb2ddb32157352a7",
+   "sha256": "82e1bc88d96fb5bbb27a998c6737c259c8b1e080a687330905c40b24f7be7426",
    "bytes": 1569
   },
   {

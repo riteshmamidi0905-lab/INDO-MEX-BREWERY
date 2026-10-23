@@ -1,7 +1,7 @@
 {
- "commit": "9222bbd",
- "dirty_code": true,
- "generated_at": 1792731023.5415938,
+ "commit": "b0e7255",
+ "dirty_code": false,
+ "generated_at": 1792731661.5230923,
  "remote_ci": "NOT_RUN",
  "python": "3.13.16"
 }
