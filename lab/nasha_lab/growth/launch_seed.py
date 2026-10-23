@@ -5,7 +5,7 @@ second, unrelated business, so the platform stays industry-agnostic. Everything 
   * three REAL supplier LEADS found through public web search on 2026-10-23: name/category/area and the page that mentions them ONLY. They are 'lead_unverified': no official website verified, no contact, no price;
   * research findings from those pages are 'search_result' with their URL, retrieval date and limitations.
 No supplier has been contacted and no price from a real supplier is recorded."""
-from datetime import date
+from datetime import date, timedelta
 
 from ..recipes import model as RM, suppliers as SUPQ
 
@@ -50,7 +50,8 @@ MERIDIAN_MILESTONES = [("Confirm demand from the waiting list", "research", date
 MERIDIAN_SUPPLIERS = [("Synthetic Studio Equipment Supplier", "Fitness equipment", [("Spin bike", "each", 98000, 1, 14, 0), ("Rubber flooring (per m2)", "m2", 4200, 10, 7, 30000)]), ("Synthetic Linen and Towel Service", "Laundry service", [("Towel service (per pickup)", "pickup", 25000, 1, 3, 0)])]
 
 
-def seed_nasha_launch(svc):
+def seed_nasha_launch(svc, today=None):
+    today = today or date.today()          # synthetic quotes are valid for 30 days from the seeding date (the fixture's own window is fixed in the past)
     pid = svc.create_project(**NASHA_PROJECT, basis="synthetic")
     for k, label, v, unit, basis, note in NASHA_ASSUMPTIONS:
         svc.set_assumption(pid, k, label, v, unit, basis, note)
@@ -66,7 +67,7 @@ def seed_nasha_launch(svc):
     for qt in q["quotes"]:
         ing = master[qt["ingredient_id"]]
         svc.add_supplier_product(sid[qt["supplier_id"]], ing["name"], qt["unit"], "SYNTHETIC_QUOTE", SYNTH_LIMIT, unit_price_cents=round(qt["unit_price"] * 100, 4), ingredient_ref=qt["ingredient_id"], pack_qty=qt["pack_qty"],
-                                 lead_days=qt["lead_days"], min_order_cents=int(qt["min_order_usd"] * 100), valid_from=date.fromisoformat(qt["valid_from"]), valid_to=date.fromisoformat(qt["valid_to"]))
+                                 lead_days=qt["lead_days"], min_order_cents=int(qt["min_order_usd"] * 100), valid_from=today - timedelta(days=1), valid_to=today + timedelta(days=29))
     leads = {}
     for name, cat, area, url, note in REAL_LEADS:
         leads[name] = svc.add_supplier(name, cat, area, "lead_unverified", "search_result", source_url=url, verified_on=None, notes=note)
@@ -78,7 +79,8 @@ def seed_nasha_launch(svc):
     return dict(project=pid, suppliers=sid, leads=leads)
 
 
-def seed_meridian_launch(svc):
+def seed_meridian_launch(svc, today=None):
+    today = today or date.today()
     pid = svc.create_project(**MERIDIAN_PROJECT, basis="synthetic")
     for k, label, v, unit, basis, note in MERIDIAN_ASSUMPTIONS:
         svc.set_assumption(pid, k, label, v, unit, basis, note)
@@ -92,7 +94,7 @@ def seed_meridian_launch(svc):
         s = svc.add_supplier(name, cat, "Synthetic (no real service area)", "synthetic_fixture", "synthetic_fixture", notes="Fictional supplier.")
         sids[name] = s
         for pn, unit, cents, pack, lead, mn in prods:
-            svc.add_supplier_product(s, pn, unit, "SYNTHETIC_QUOTE", SYNTH_LIMIT, unit_price_cents=cents, pack_qty=pack, lead_days=lead, min_order_cents=mn, valid_from=date(2026, 10, 22), valid_to=date(2026, 11, 21))
+            svc.add_supplier_product(s, pn, unit, "SYNTHETIC_QUOTE", SYNTH_LIMIT, unit_price_cents=cents, pack_qty=pack, lead_days=lead, min_order_cents=mn, valid_from=today - timedelta(days=1), valid_to=today + timedelta(days=29))
         svc.set_project_supplier(pid, s, "shortlisted", "Synthetic fixture.")
     svc.set_project_stage(pid, "financial_plan")
     return dict(project=pid, suppliers=sids)

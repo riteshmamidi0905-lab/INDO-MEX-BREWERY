@@ -76,7 +76,12 @@ def test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_
                 "POST /v1/tenants/{tenant}/leads/{lead_id}/convert", "GET /v1/tenants/{tenant}/opportunities", "POST /v1/tenants/{tenant}/opportunities/{opp_id}/stage", "GET /v1/tenants/{tenant}/pipeline",
                 "POST /v1/tenants/{tenant}/activities", "GET /v1/tenants/{tenant}/activities", "GET /v1/tenants/{tenant}/products", "POST /v1/tenants/{tenant}/products/{product_id}/prices", "POST /v1/tenants/{tenant}/pricing/scenarios",
                 "POST /v1/tenants/{tenant}/workflows/lead-qualification", "GET /v1/tenants/{tenant}/workflows/runs", "GET /v1/tenants/{tenant}/workflows/runs/{corr_id}", "POST /v1/tenants/{tenant}/workflows/runs/{corr_id}/decision",
-                "GET /v1/tenants/{tenant}/approvals", "GET /v1/tenants/{tenant}/audit", "GET /v1/tenants/{tenant}/audit/verify", "GET /v1/tenants/{tenant}/dashboard", "GET /v1/tenants/{tenant}/provenance"]
+                "GET /v1/tenants/{tenant}/approvals", "GET /v1/tenants/{tenant}/audit", "GET /v1/tenants/{tenant}/audit/verify", "GET /v1/tenants/{tenant}/dashboard", "GET /v1/tenants/{tenant}/provenance",
+                "GET /v1/tenants/{tenant}/projects", "POST /v1/tenants/{tenant}/projects", "GET /v1/tenants/{tenant}/projects/{project_id}", "PUT /v1/tenants/{tenant}/projects/{project_id}/assumptions/{key}",
+                "POST /v1/tenants/{tenant}/projects/{project_id}/milestones", "PUT /v1/tenants/{tenant}/milestones/{milestone_id}/status", "POST /v1/tenants/{tenant}/projects/{project_id}/findings", "GET /v1/tenants/{tenant}/suppliers",
+                "POST /v1/tenants/{tenant}/suppliers", "POST /v1/tenants/{tenant}/suppliers/{supplier_id}/products", "PUT /v1/tenants/{tenant}/projects/{project_id}/suppliers/{supplier_id}", "POST /v1/tenants/{tenant}/projects/{project_id}/scenarios/preview",
+                "POST /v1/tenants/{tenant}/projects/{project_id}/scenarios/compare", "POST /v1/tenants/{tenant}/projects/{project_id}/scenarios", "GET /v1/tenants/{tenant}/projects/{project_id}/scenarios/{scenario_id}",
+                "POST /v1/tenants/{tenant}/projects/{project_id}/procurement", "GET /v1/tenants/{tenant}/procurement/runs", "GET /v1/tenants/{tenant}/procurement/runs/{run_id}", "POST /v1/tenants/{tenant}/procurement/runs/{run_id}/decision"]
     assert ops == sorted(expected), set(ops) ^ set(expected)
     for p in paths.values():
         for op in p.values():

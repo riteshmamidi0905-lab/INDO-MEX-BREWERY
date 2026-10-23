@@ -164,7 +164,9 @@ def run_business(run, events, lead, names):
 
 AUDIT = {"lead.qualification_applied": "marked {entity} {status} (score {score}) after approval by {approved_by}", "lead.create": "created lead {entity}", "contact.create": "added contact {entity}", "account.create": "added organisation {entity}",
          "contact.consent": "updated consent for {entity}", "suppression.add": "added {entity} to the suppression list", "lead.convert": "converted {entity} into an opportunity", "opportunity.advance": "moved {entity} to a new pipeline stage",
-         "lead.qualify": "qualified {entity} directly", "activity.log": "logged an activity on {entity}", "price.set": "set a price", "product.create": "added a product"}
+         "lead.qualify": "qualified {entity} directly", "activity.log": "logged an activity on {entity}", "price.set": "set a price", "product.create": "added a product",
+         "project.create": "created the launch project {entity}", "project.stage": "moved {entity} to a new stage", "project.assumption": "set a planning assumption", "milestone.write": "updated the milestone {entity}", "finding.add": "added a research finding",
+         "supplier.add": "added supplier information for {entity}", "supplier.shortlist": "updated the supplier shortlist", "scenario.save": "saved the financial scenario {entity}", "procurement.record": "recorded the {entity} after approval by {approved_by}"}
 
 
 def audit_summary(row, names, entity_names):
@@ -176,3 +178,106 @@ def audit_summary(row, names, entity_names):
     tpl = AUDIT.get(row["action"])
     text = tpl.format(entity=ent, status=d.get("status", ""), score=d.get("score", ""), approved_by=name(names, d.get("approved_by"))) if tpl else row["action"].replace(".", " ")
     return f"{who} {text}"
+
+
+# ---------------------------------------------------------------- launch workspace: procurement recommendation runs
+LAUNCH_TOOL = {"launch__get_supplier_data": "read the project's supplier data", "procure__record_recommendation": "record the procurement recommendation"}
+LAUNCH_WHY = dict(WHY, NO_VALID_QUOTES="No valid priced supplier quote exists for the needed ingredients on the planning date, so no recommendation was made.", NO_SCENARIO="The project has no products with a price and unit cost, so no demand could be planned.",
+                  NO_SUCH_PROJECT="The project was not found in this workspace.", STALE_PROPOSAL="Supplier quotes or the financial scenario changed after the recommendation was made, so it was not recorded. A new recommendation is needed.",
+                  TOOL_DENIED="This user's role does not have permission to record a procurement recommendation. THE WEIR blocked the action. Nothing was recorded.")
+AGENT_LABEL = {"engine_offline_heuristic": "Production AI Agent Platform engine, offline heuristic provider (deterministic; not a language model)", "engine_model": "Production AI Agent Platform engine with a language-model provider",
+               "deterministic_fallback": "No agent ran: a deterministic read of stored supplier data was used"}
+
+
+def launch_event_entry(e, names, run=None):
+    k, n = e.get("kind"), e.get("name")
+    who = lambda: name(names, e.get("by") or e.get("user"))
+    title = detail = None; tone = "info"
+    if n == "request_received":
+        title = f"Procurement recommendation requested by {name(names, (run or {}).get('requester'))}"; detail = f"Planning period: {e.get('period_weeks')} weeks."
+    elif k == "auth":
+        title, detail = f"Identity confirmed: {who()} ({str(e.get('role', '')).title()})", "Signed in to this workspace only."
+    elif k == "tool_call":
+        tool = LAUNCH_TOOL.get(e.get("tool"), e.get("tool"))
+        if e.get("held_for_approval"):
+            title, detail, tone = f"Action held: {tool}", "THE WEIR does not run this kind of change until a different, authorised person approves it.", "wait"
+        elif e.get("failure") == "TOOL_DENIED":
+            title, detail, tone = f"Action blocked: {tool}", "This user's role does not have permission to do that. Nothing was recorded.", "no"
+        elif e.get("forwarded") and e.get("ok") and e.get("stage") == "P03":
+            title, detail, tone = "Supplier data read through THE WEIR", "Read-only access was allowed for this role.", "ok"
+        elif e.get("forwarded") and e.get("ok"):
+            title, detail, tone = f"Approved action released: {tool}", "THE WEIR forwarded the identical approved call once.", "ok"
+        elif e.get("failure"):
+            title, tone, detail = f"Tool problem while trying to {tool}", "no", LAUNCH_WHY.get(e["failure"])
+    elif n == "data_read":
+        title, detail = "Project and supplier data gathered", f"{e.get('suppliers')} suppliers on record, {e.get('priced_suppliers')} with prices."
+    elif n == "demand_and_needs":
+        title, detail = "Demand and ingredient needs calculated", f"{e.get('ingredients')} ingredients needed, from the financial scenario and the recipe bill of materials."
+    elif n == "agent_research":
+        title = "Supplier research brief prepared by the agent"
+        detail = f"{e.get('claims')} cited claims from {e.get('evidence')} supplier passages; " + ("independent check found no problem." if not e.get("independent_problems") else "independent check rejected it: " + "; ".join(e["independent_problems"])[:160])
+        tone = "ok" if not e.get("independent_problems") else "no"
+    elif n == "agent_fallback":
+        title, detail, tone = "No agent research used", f"{e.get('reason') or 'unavailable'}. A deterministic read of stored supplier data was used instead; the recommendation itself is unaffected.", "wait"
+    elif n == "recommendation":
+        title, detail = "Recommendation calculated", f"Planned spend {AR_money(e.get('total_cost_cents'))} across {e.get('suppliers')} suppliers, cheapest valid quote per ingredient."
+    elif n == "independent_check":
+        title, detail, tone = "Independent check passed", e.get("result"), "ok"
+    elif n == "proposal":
+        title, detail = "Proposed record prepared", "The exact recommendation was fingerprinted so only this one can be approved."
+    elif n == "held_for_approval":
+        title, detail, tone = "Waiting for a human decision", "Nothing has been recorded.", "wait"
+    elif n == "weir_denied":
+        title, tone = "Blocked by THE WEIR", "no"
+    elif k == "approval_decision":
+        d = e.get("decision")
+        if d == "approve":
+            title, detail, tone = f"Approved by {who()}", e.get("comment") or None, "ok"
+        elif d == "reject":
+            title, detail, tone = f"Rejected by {who()}", e.get("comment") or None, "no"
+        else:
+            title, detail, tone = "Approval refused", LAUNCH_WHY.get(e.get("code")) or {"ROLE_NOT_PERMITTED": "That role cannot approve this action."}.get(e.get("code")), "no"
+    elif n == "recommendation_recorded":
+        title, detail, tone = "Recommendation recorded", "Recorded once, under the approval above.", "ok"
+    elif n == "no_order_no_contact":
+        title, detail, tone = "No order was placed and no supplier was contacted", "Recording a recommendation never buys or contacts anything.", "ok"
+    elif k == "failure":
+        title, detail, tone = "Stopped", LAUNCH_WHY.get(e.get("failure_class")) or e.get("detail"), "no"
+    if title is None:
+        return None
+    return dict(seq=e["seq"], ts=e["ts"], title=title, detail=detail, tone=tone, technical=e)
+
+
+def AR_money(c):
+    return "—" if c is None else f"${c / 100:,.2f}"
+
+
+def launch_run_business(run, events, project, names):
+    state, plan, research = run["state"], run.get("items"), run.get("research")
+    ents = [x for x in (launch_event_entry(e, names, run) for e in events) if x]
+    decisions = [e for e in events if e["kind"] == "approval_decision"]
+    approved = [e for e in decisions if e.get("decision") == "approve"]
+    last = decisions[-1] if decisions else None
+    approval = dict(label=state_label(state), tone=TONE.get(state, "info"), can_decide=(state == "AWAITING_APPROVAL"), requested_by=name(names, run.get("requester")),
+                    decided_by=name(names, approved[-1].get("by")) if approved else (name(names, last.get("by")) if last and last.get("by") else None),
+                    comment=(last or {}).get("comment") if last and last.get("decision") in ("approve", "reject") else None)
+    rec = None
+    if plan:
+        by = {}
+        for it in plan["items"]:
+            c = it["chosen"]
+            if c:
+                by.setdefault(c["supplier"], []).append(dict(ingredient=it["ingredient"], need=it["need_qty"], unit=it["unit"], buy_qty=c["buy_qty"], cost_cents=c["cost_cents"], lead_days=c["lead_days"], price_class=c["price_class"],
+                                                             runner_up=it["runner_up"]))
+        rec = dict(period_weeks=plan["period_weeks"], total_cost_cents=plan["total_cost_cents"], suppliers=[dict(supplier=t["supplier"], cost_cents=t["cost_cents"], items=t["items"], below_minimum_order=t["below_minimum_order"], price_classes=t["price_classes"],
+                   lines=sorted(by.get(t["supplier"], []), key=lambda x: -x["cost_cents"])) for t in plan["supplier_totals"]], flags=plan["flags"], portions=plan["portions"], disclaimer=plan["disclaimer"])
+    brief = None
+    if research:
+        brief = dict(mode=research["mode"], mode_label=AGENT_LABEL.get(research["mode"], research["mode"]), title=research["report"]["title"], answer=research["report"]["answer"], claims=[c["text"] for c in research["report"]["claims"]],
+                     limitations=research["report"]["limitations"], fallback_reason=research.get("fallback_reason"), rejected=bool(research.get("rejected_agent_output")))
+    outcome = {"EXECUTED": f"The recommendation for {run['period']} was recorded after approval. No order was placed and no supplier was contacted.", "AWAITING_APPROVAL": "A person must decide whether to record this recommendation. Nothing has been recorded or ordered.",
+               "REJECTED": "The recommendation was rejected. Nothing was recorded."}.get(state) or ((LAUNCH_WHY.get(str(run.get("failure") or "").split(":")[0]) or "The run stopped.") + " Nothing was recorded.")
+    return dict(summary=dict(workflow="Procurement recommendation", objective=f"Recommend the cheapest valid supplier quotes for {project['name'] if project else 'the project'} over {run['period']}", project=(project or {}).get("name"),
+                             industry=(project or {}).get("industry"), period=run["period"], requested_by=name(names, run.get("requester")), status=state, status_label=state_label(state), tone=TONE.get(state, "info"),
+                             last_activity=events[-1]["ts"] if events else None, outcome=outcome, agent=AGENT_LABEL.get(run.get("agent_mode"), None)),
+                recommendation=rec, research=brief, authorization=[x for x in ents if x["technical"]["kind"] in ("auth", "tool_call", "approval_decision") or x["technical"].get("name") == "weir_denied"], approval=approval, timeline=ents)

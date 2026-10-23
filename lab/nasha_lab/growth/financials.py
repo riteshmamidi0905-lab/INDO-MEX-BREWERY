@@ -81,7 +81,7 @@ def compute(inputs):
         contribution_cents=round(contribution), contribution_margin=round(contribution / revenue, 4) if revenue else None, fixed_costs_monthly_cents=round(fixed), operating_profit_monthly_cents=round(operating),
         blended_contribution_per_unit_cents=round(blended_contrib, 2), breakeven_units_per_month=None if be_units is None else round(be_units, 1),
         breakeven_orders_per_week=None if be_units is None or not a["items_per_order"] else round(be_units / WEEKS_PER_MONTH / a["items_per_order"], 1),
-        breakeven_vs_plan=None if be_units is None or not units else round(units / be_units, 3), startup_capex_cents=capex, budget_cents=inputs["budget_cents"], budget_after_capex_cents=available,
+        breakeven_vs_plan=None if not be_units or not units else round(units / be_units, 3), startup_capex_cents=capex, budget_cents=inputs["budget_cents"], budget_after_capex_cents=available,
         payback_months=None if payback is None else round(payback, 1), runway_months_if_loss_making=None if runway is None else round(runway, 1), lines=lines)
 
 

@@ -11,7 +11,7 @@ import psycopg
 
 from ..governed import tenants as T
 from ..warehouse import pg_hardening as H
-from . import scenarios as SC, schema as S, seed as SD, service as SV, workflow as WF
+from . import agent_research as AR, launch_seed as LS, launch_workflow as LW, scenarios as SC, schema as S, seed as SD, service as SV, workflow as WF
 
 SCHEMA = "growth_demo"
 USERS = {"ada": ("Ada Rao (synthetic owner)", "OWNER"), "omar": ("Omar Ellis (synthetic owner)", "OWNER"), "sam": ("Sam Park (synthetic sales)", "SALES"), "mia": ("Mia Chen (synthetic marketing)", "MARKETING"),
@@ -53,6 +53,22 @@ def build(root, dsn, schema=SCHEMA, with_warehouse=True):
                 if disp == "executed" and sc["basket"] and sales.get_lead_context(lead)["status"] == "qualified":
                     sales.convert_lead(lead, sc["opp"], SC.basket_cents(prices, sc["basket"]))      # a new opportunity starts in the 'new' stage
         wf.close(); sales.close()
+    # business-launch workspace: a project per tenant (stored assumptions, milestones, research, suppliers) and recorded procurement runs for the flagship case study
+    launch_ids = {"tenant-nasha": LS.seed_nasha_launch(owner["tenant-nasha"]), "tenant-fit": LS.seed_meridian_launch(owner["tenant-fit"])}
+    agent = None
+    try:
+        import agentplatform  # noqa: F401
+        agent = AR.SupplierResearchAgent(dsn, "tenant-nasha", root / "agent-demo")
+    except ImportError:
+        pass                                           # without the platform package the runs below use the deterministic fallback and say so
+    lw = LW.LaunchProcurement(envs["tenant-nasha"], agent=agent)
+    ltok = lambda u: lw.login(u, f"tenant-nasha-{u}-dev-passcode")
+    pid = launch_ids["tenant-nasha"]["project"]
+    r1 = lw.run(ltok("ana"), pid, 4, idempotency_key="demo-proc-1"); lw.decide(r1["corr_id"], ltok("ada"), True, "Quotes are synthetic fixtures; recorded for the planning exercise.")
+    r2 = lw.run(ltok("ana"), pid, 1, idempotency_key="demo-proc-2"); lw.decide(r2["corr_id"], ltok("omar"), False, "Wait for real supplier quotes before recording anything.")
+    lw.run(ltok("ana"), pid, 2, idempotency_key="demo-proc-3")                                         # left awaiting approval
+    lw.run(ltok("sam"), pid, 4, idempotency_key="demo-proc-4")                                         # sales: THE WEIR has no write tool for the role
+    lw.close()
     for s in owner.values():
         s.close()
     return envs
@@ -68,7 +84,7 @@ def main(argv=None):
     srv = pg.get_server(str(root / "pg"), cleanup_mode="stop")
     envs = build(root / "data", srv.get_uri())
     print(f"Growth OS demo (SYNTHETIC data) on http://{a.host}:{a.port}/app   users: ada/omar (owner), sam (sales), mia (marketing), ana (analyst), vic (viewer); passcode = <tenant>-<user>-dev-passcode")
-    uvicorn.run(create_growth_app(envs), host=a.host, port=a.port, log_level="warning")
+    uvicorn.run(create_growth_app(envs, agent_dsn=srv.get_uri()), host=a.host, port=a.port, log_level="warning")
 
 
 if __name__ == "__main__":

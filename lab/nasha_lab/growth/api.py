@@ -22,7 +22,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from .. import identity as ID
 from pathlib import Path as _P
-from . import present as PR, pricing as GP, service as SV, workflow as WF
+from . import launch_workflow as LW, present as PR, pricing as GP, service as SV, workflow as WF
 
 EVIDENCE_DIR = _P(__file__).resolve().parents[2] / "results" / "release-gate"
 MAX_PAGE = 50
@@ -120,11 +120,11 @@ class DecisionIn(Strict):
     comment: str = Field(default="", max_length=300)
 
 
-def create_growth_app(envs: dict) -> FastAPI:
+def create_growth_app(envs: dict, agent_dsn=None, agent_provider="offline", as_of=None) -> FastAPI:
     """envs: {tenant_id: GrowthEnv}. One lock per tenant: services and the workflow own psycopg connections and an event loop."""
     app = FastAPI(title="NASHA Growth OS API", version="1.0.0", description="SYNTHETIC DATA. Tenant-aware CRM, pricing scenarios and a governed workflow. The API has no operation that sends, publishes or purchases anything.")
     locks = {t: threading.RLock() for t in envs}
-    flows, svcs = {}, {}
+    flows, svcs, launch_flows = {}, {}, {}
     app.state.envs = envs
 
     def err(request, status, code, message):
@@ -157,6 +157,15 @@ def create_growth_app(envs: dict) -> FastAPI:
         if tenant not in flows:
             flows[tenant] = WF.GovernedLeadQualification(envs[tenant])
         return flows[tenant]
+
+    def launch_flow(tenant):
+        if tenant not in launch_flows:
+            agent = None
+            if agent_dsn:
+                from .agent_research import SupplierResearchAgent
+                agent = SupplierResearchAgent(agent_dsn, tenant, envs[tenant].root / "agent", provider=agent_provider)
+            launch_flows[tenant] = LW.LaunchProcurement(envs[tenant], agent=agent, as_of=as_of() if callable(as_of) else as_of)
+        return launch_flows[tenant]
 
     def service(tenant, who):
         key = (tenant, who.id)
@@ -230,7 +239,9 @@ def create_growth_app(envs: dict) -> FastAPI:
         t = s.tenant
         out = {}
         for sql in ("SELECT l.id, c.full_name || ' (' || a.name || ')' FROM leads l JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id JOIN accounts a ON a.tenant_id=c.tenant_id AND a.id=c.account_id WHERE l.tenant_id=%s",
-                    "SELECT id, full_name FROM contacts WHERE tenant_id=%s", "SELECT id, name FROM accounts WHERE tenant_id=%s", "SELECT id, name FROM opportunities WHERE tenant_id=%s"):
+                    "SELECT id, full_name FROM contacts WHERE tenant_id=%s", "SELECT id, name FROM accounts WHERE tenant_id=%s", "SELECT id, name FROM opportunities WHERE tenant_id=%s",
+                    "SELECT id, name FROM launch_projects WHERE tenant_id=%s", "SELECT id, name FROM suppliers WHERE tenant_id=%s", "SELECT id, name FROM financial_scenarios WHERE tenant_id=%s", "SELECT id, title FROM project_milestones WHERE tenant_id=%s",
+                    "SELECT r.id, 'procurement recommendation for ' || p.name FROM procurement_recommendations r JOIN launch_projects p ON p.tenant_id=r.tenant_id AND p.id=r.project_id WHERE r.tenant_id=%s"):
             out.update({r[0]: r[1] for r in s.read(sql, (t,))})
         out.update({r[0]: r[0] for r in []})
         return out
@@ -542,6 +553,9 @@ def create_growth_app(envs: dict) -> FastAPI:
             return ok(request, dict(leads=leads, lead_total=sum(leads.values()), pipeline=[dict(stage=a, count=b, amount_cents=int(c)) for a, b, c in opp], open_value_cents=sum(int(c) for a, b, c in opp if a not in ("won", "lost")),
                                     qualification_runs=wfs, approvals_pending=wfs.get("AWAITING_APPROVAL", 0), recent_events=recent, synthetic=True))
         return guarded(go)(request, tenant)
+
+    from . import api_launch
+    api_launch.register(app, dict(guarded=guarded, ok=ok, err=err, idem=idem, page=page, names=names, LIM=LIM, CUR=CUR, launch_flow=launch_flow, BEARER=BEARER, as_of=lambda: (as_of() if callable(as_of) else as_of) or __import__("datetime").date.today()))
 
     # the product interface: static files from the same origin, no build step (the API stays the only data path)
     from pathlib import Path

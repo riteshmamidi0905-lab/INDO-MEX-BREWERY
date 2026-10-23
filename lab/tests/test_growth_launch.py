@@ -49,7 +49,7 @@ def world(dsn, tmp_path_factory):
         env = WF.provision_env(root, dsn, SCHEMA, t, t, "hospitality", USERS)
         s = SV.GrowthService(dsn, SCHEMA, t, "ada")
         (SD.seed_nasha(s, None, with_accounts=False) if t == "tenant-nasha" else SD.seed_fitness(s, with_accounts=False))
-        ids = LS.seed_nasha_launch(s) if t == "tenant-nasha" else LS.seed_meridian_launch(s)
+        ids = LS.seed_nasha_launch(s, today=AS_OF) if t == "tenant-nasha" else LS.seed_meridian_launch(s, today=AS_OF)
         out[t] = dict(env=env, ids=ids); s.close()
     return out
 
