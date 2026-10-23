@@ -75,7 +75,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 5.38,
+     "ms": 7.15,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -85,7 +85,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 12.16,
+     "ms": 12.19,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -95,7 +95,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 6.15,
+     "ms": 7.62,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -105,7 +105,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 5.21,
+     "ms": 6.8,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -115,7 +115,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 5.37,
+     "ms": 7.25,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -125,7 +125,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 5.41,
+     "ms": 6.14,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -135,7 +135,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 5.1,
+     "ms": 5.28,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -172,7 +172,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.9,
+     "ms": 3.12,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -185,7 +185,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_f099b9ec"
+      "approval_id": "ap_f7642a0a"
      }
     },
     {
@@ -200,7 +200,7 @@
      "kind": "tool",
      "stage": "S14",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 5.06,
+     "ms": 7.96,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [
@@ -249,12 +249,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_f099b9ec"
+     "ref": "ap_f7642a0a"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_f099b9ec"
+     "ref": "ap_f7642a0a"
     },
     {
      "action": "state:APPROVED",
@@ -344,7 +344,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 6.35,
+     "ms": 7.9,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -354,7 +354,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 7.13,
+     "ms": 13.19,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -364,7 +364,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.38,
+     "ms": 6.76,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -374,7 +374,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 3.95,
+     "ms": 7.01,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -384,7 +384,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 3.89,
+     "ms": 6.82,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -394,7 +394,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.29,
+     "ms": 6.52,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -404,7 +404,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 3.83,
+     "ms": 6.3,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -441,7 +441,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.14,
+     "ms": 1.68,
      "forwarded": false,
      "held_for_approval": false,
      "codes": [
@@ -567,7 +567,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.66,
+     "ms": 5.0,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -577,7 +577,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 13.22,
+     "ms": 15.99,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -587,7 +587,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.59,
+     "ms": 4.78,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -597,7 +597,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.07,
+     "ms": 4.52,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -607,7 +607,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 4.37,
+     "ms": 4.32,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -617,7 +617,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.03,
+     "ms": 7.0,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -627,7 +627,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 4.55,
+     "ms": 4.76,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -664,7 +664,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.46,
+     "ms": 1.71,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -677,7 +677,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_51f897fa"
+      "approval_id": "ap_588cb2b3"
      }
     },
     {
@@ -720,12 +720,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_51f897fa"
+     "ref": "ap_588cb2b3"
     },
     {
      "action": "approval_expired",
      "role": "FOUNDER",
-     "ref": "ap_51f897fa"
+     "ref": "ap_588cb2b3"
     },
     {
      "action": "state:FAILED",
@@ -805,7 +805,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 5.92,
+     "ms": 5.74,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -815,7 +815,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 8.06,
+     "ms": 9.29,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -825,7 +825,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 5.08,
+     "ms": 5.67,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -835,7 +835,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.49,
+     "ms": 5.77,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -845,7 +845,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 5.13,
+     "ms": 5.37,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -855,7 +855,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.91,
+     "ms": 5.7,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -865,7 +865,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 4.41,
+     "ms": 5.72,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -902,7 +902,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.32,
+     "ms": 1.85,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -915,7 +915,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_8e7ed2d4"
+      "approval_id": "ap_27c1d5f6"
      }
     },
     {
@@ -968,12 +968,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_8e7ed2d4"
+     "ref": "ap_27c1d5f6"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_8e7ed2d4"
+     "ref": "ap_27c1d5f6"
     },
     {
      "action": "state:APPROVED",
@@ -983,7 +983,7 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": null,
-     "ref": "ap_1692c046"
+     "ref": "ap_ee7f626d"
     }
    ]
   },
@@ -1058,7 +1058,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 7.29,
+     "ms": 7.73,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1068,7 +1068,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 13.32,
+     "ms": 12.78,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1078,7 +1078,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 6.38,
+     "ms": 8.15,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1088,7 +1088,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 19.33,
+     "ms": 7.01,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1098,7 +1098,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 5.75,
+     "ms": 6.69,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1108,7 +1108,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 5.5,
+     "ms": 7.11,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1118,7 +1118,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 4.69,
+     "ms": 6.25,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1164,7 +1164,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 2.0,
+     "ms": 2.19,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -1177,7 +1177,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_79a77f99"
+      "approval_id": "ap_4281acc1"
      }
     }
    ],
@@ -1205,7 +1205,7 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_79a77f99"
+     "ref": "ap_4281acc1"
     }
    ]
   },
@@ -1280,7 +1280,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.59,
+     "ms": 7.83,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1290,7 +1290,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 8.51,
+     "ms": 12.3,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1300,7 +1300,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.87,
+     "ms": 8.08,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1310,7 +1310,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.0,
+     "ms": 6.92,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1320,7 +1320,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 4.56,
+     "ms": 5.74,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1330,7 +1330,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.07,
+     "ms": 6.1,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1340,7 +1340,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 3.81,
+     "ms": 4.85,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1377,7 +1377,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.43,
+     "ms": 1.44,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -1390,7 +1390,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_851dea1d"
+      "approval_id": "ap_121ec9f1"
      }
     },
     {
@@ -1405,7 +1405,7 @@
      "kind": "tool",
      "stage": "S14",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 3.59,
+     "ms": 5.36,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [
@@ -1461,12 +1461,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_851dea1d"
+     "ref": "ap_121ec9f1"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_851dea1d"
+     "ref": "ap_121ec9f1"
     },
     {
      "action": "state:APPROVED",
@@ -1486,7 +1486,7 @@
     {
      "action": "decision_refused:APPROVAL_REPLAY",
      "role": "FOUNDER",
-     "ref": "ap_851dea1d"
+     "ref": "ap_121ec9f1"
     },
     {
      "action": "duplicate_request",
@@ -1566,7 +1566,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 5.46,
+     "ms": 7.82,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1576,7 +1576,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 7.67,
+     "ms": 9.06,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1586,7 +1586,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.67,
+     "ms": 6.01,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1596,7 +1596,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.19,
+     "ms": 5.05,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1606,7 +1606,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 6.12,
+     "ms": 7.19,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1616,7 +1616,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.27,
+     "ms": 5.28,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1626,7 +1626,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 4.11,
+     "ms": 5.75,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1722,14 +1722,14 @@
  ],
  "repository": {
   "name": "INDO-MEX-BREWERY",
-  "commit": "b0e7255",
+  "commit": "dacc1dc",
   "uncommitted_changes_at_export": true,
   "pushed": false,
   "note": "local commit; not pushed to the remote at export time"
  },
  "incidents": {
   "approved_draft_po": {
-   "corr_id": "run-3d5042bf8b",
+   "corr_id": "run-ff54b0fe1d",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -1751,7 +1751,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.38
+     "ms": 7.15
     },
     {
      "stage": "S08",
@@ -1760,7 +1760,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 12.16
+     "ms": 12.19
     },
     {
      "stage": "S08",
@@ -1769,7 +1769,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 6.15
+     "ms": 7.62
     },
     {
      "stage": "S08",
@@ -1778,7 +1778,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.21
+     "ms": 6.8
     },
     {
      "stage": "S08",
@@ -1787,7 +1787,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.37
+     "ms": 7.25
     },
     {
      "stage": "S08",
@@ -1796,7 +1796,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.41
+     "ms": 6.14
     },
     {
      "stage": "S08",
@@ -1805,7 +1805,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.1
+     "ms": 5.28
     },
     {
      "stage": "S11",
@@ -1816,7 +1816,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 1.9
+     "ms": 3.12
     },
     {
      "stage": "S14",
@@ -1827,7 +1827,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 5.06
+     "ms": 7.96
     }
    ],
    "evidence_retrieved": [
@@ -1924,14 +1924,14 @@
     },
     "approvals": [
      {
-      "id": "ap_f099b9ec",
+      "id": "ap_f7642a0a",
       "state": "consumed",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": "tenant-a-founder",
       "rules": [
        "R-GATE"
       ],
-      "expires": 1792732609.426412
+      "expires": 1792769085.6302643
      }
     ]
    },
@@ -1975,12 +1975,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_f099b9ec"
+     "ref": "ap_f7642a0a"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_f099b9ec"
+     "ref": "ap_f7642a0a"
     },
     {
      "action": "state:APPROVED",
@@ -2030,7 +2030,7 @@
    }
   },
   "unauthorised_role_blocked": {
-   "corr_id": "run-26d66405f7",
+   "corr_id": "run-2db8b0b3cb",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -2052,7 +2052,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 6.35
+     "ms": 7.9
     },
     {
      "stage": "S08",
@@ -2061,7 +2061,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 7.13
+     "ms": 13.19
     },
     {
      "stage": "S08",
@@ -2070,7 +2070,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.38
+     "ms": 6.76
     },
     {
      "stage": "S08",
@@ -2079,7 +2079,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 3.95
+     "ms": 7.01
     },
     {
      "stage": "S08",
@@ -2088,7 +2088,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 3.89
+     "ms": 6.82
     },
     {
      "stage": "S08",
@@ -2097,7 +2097,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.29
+     "ms": 6.52
     },
     {
      "stage": "S08",
@@ -2106,7 +2106,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 3.83
+     "ms": 6.3
     },
     {
      "stage": "S11",
@@ -2117,7 +2117,7 @@
       "R-UNKNOWN"
      ],
      "failure": "TOOL_DENIED",
-     "ms": 1.14
+     "ms": 1.68
     }
    ],
    "evidence_retrieved": [
@@ -2348,7 +2348,7 @@
    }
   },
   "expired_approval": {
-   "corr_id": "run-be63b34547",
+   "corr_id": "run-166fabf90e",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -2370,7 +2370,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.66
+     "ms": 5.0
     },
     {
      "stage": "S08",
@@ -2379,7 +2379,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 13.22
+     "ms": 15.99
     },
     {
      "stage": "S08",
@@ -2388,7 +2388,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.59
+     "ms": 4.78
     },
     {
      "stage": "S08",
@@ -2397,7 +2397,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.07
+     "ms": 4.52
     },
     {
      "stage": "S08",
@@ -2406,7 +2406,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.37
+     "ms": 4.32
     },
     {
      "stage": "S08",
@@ -2415,7 +2415,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.03
+     "ms": 7.0
     },
     {
      "stage": "S08",
@@ -2424,7 +2424,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.55
+     "ms": 4.76
     },
     {
      "stage": "S11",
@@ -2435,7 +2435,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 1.46
+     "ms": 1.71
     }
    ],
    "evidence_retrieved": [
@@ -2532,7 +2532,7 @@
     },
     "approvals": [
      {
-      "id": "ap_51f897fa",
+      "id": "ap_588cb2b3",
       "state": "expired",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": null,
@@ -2585,12 +2585,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_51f897fa"
+     "ref": "ap_588cb2b3"
     },
     {
      "action": "approval_expired",
      "role": "FOUNDER",
-     "ref": "ap_51f897fa"
+     "ref": "ap_588cb2b3"
     },
     {
      "action": "state:FAILED",
@@ -2633,7 +2633,7 @@
    }
   },
   "modified_after_approval": {
-   "corr_id": "run-e16a7beb04",
+   "corr_id": "run-e25b73edb6",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -2655,7 +2655,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.92
+     "ms": 5.74
     },
     {
      "stage": "S08",
@@ -2664,7 +2664,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 8.06
+     "ms": 9.29
     },
     {
      "stage": "S08",
@@ -2673,7 +2673,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.08
+     "ms": 5.67
     },
     {
      "stage": "S08",
@@ -2682,7 +2682,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.49
+     "ms": 5.77
     },
     {
      "stage": "S08",
@@ -2691,7 +2691,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.13
+     "ms": 5.37
     },
     {
      "stage": "S08",
@@ -2700,7 +2700,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.91
+     "ms": 5.7
     },
     {
      "stage": "S08",
@@ -2709,7 +2709,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.41
+     "ms": 5.72
     },
     {
      "stage": "S11",
@@ -2720,7 +2720,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 1.32
+     "ms": 1.85
     },
     {
      "stage": "S14",
@@ -2828,24 +2828,24 @@
     },
     "approvals": [
      {
-      "id": "ap_8e7ed2d4",
+      "id": "ap_27c1d5f6",
       "state": "approved",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": "tenant-a-founder",
       "rules": [
        "R-GATE"
       ],
-      "expires": 1792732609.7649112
+      "expires": 1792769086.0813255
      },
      {
-      "id": "ap_1692c046",
+      "id": "ap_ee7f626d",
       "state": "pending",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": null,
       "rules": [
        "R-GATE"
       ],
-      "expires": 1792732609.7827237
+      "expires": 1792769086.102449
      }
     ]
    },
@@ -2891,12 +2891,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_8e7ed2d4"
+     "ref": "ap_27c1d5f6"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_8e7ed2d4"
+     "ref": "ap_27c1d5f6"
     },
     {
      "action": "state:APPROVED",
@@ -2906,7 +2906,7 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": null,
-     "ref": "ap_1692c046"
+     "ref": "ap_ee7f626d"
     }
    ],
    "answers": {
@@ -2945,7 +2945,7 @@
    }
   },
   "prompt_injection_in_supplier_note": {
-   "corr_id": "run-3d52c7518e",
+   "corr_id": "run-121fe2b2a9",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -2967,7 +2967,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 7.29
+     "ms": 7.73
     },
     {
      "stage": "S08",
@@ -2976,7 +2976,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 13.32
+     "ms": 12.78
     },
     {
      "stage": "S08",
@@ -2985,7 +2985,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 6.38
+     "ms": 8.15
     },
     {
      "stage": "S08",
@@ -2994,7 +2994,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 19.33
+     "ms": 7.01
     },
     {
      "stage": "S08",
@@ -3003,7 +3003,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.75
+     "ms": 6.69
     },
     {
      "stage": "S08",
@@ -3012,7 +3012,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.5
+     "ms": 7.11
     },
     {
      "stage": "S08",
@@ -3021,7 +3021,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.69
+     "ms": 6.25
     },
     {
      "stage": "S11",
@@ -3032,7 +3032,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 2.0
+     "ms": 2.19
     }
    ],
    "evidence_retrieved": [
@@ -3124,14 +3124,14 @@
     },
     "approvals": [
      {
-      "id": "ap_79a77f99",
+      "id": "ap_4281acc1",
       "state": "pending",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": null,
       "rules": [
        "R-GATE"
       ],
-      "expires": 1792732609.9505477
+      "expires": 1792769086.287194
      }
     ]
    },
@@ -3168,7 +3168,7 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_79a77f99"
+     "ref": "ap_4281acc1"
     }
    ],
    "answers": {
@@ -3202,7 +3202,7 @@
    }
   },
   "replayed_approval_and_duplicate_request": {
-   "corr_id": "run-8d303211e9",
+   "corr_id": "run-22f7bc9027",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -3224,7 +3224,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.59
+     "ms": 7.83
     },
     {
      "stage": "S08",
@@ -3233,7 +3233,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 8.51
+     "ms": 12.3
     },
     {
      "stage": "S08",
@@ -3242,7 +3242,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.87
+     "ms": 8.08
     },
     {
      "stage": "S08",
@@ -3251,7 +3251,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.0
+     "ms": 6.92
     },
     {
      "stage": "S08",
@@ -3260,7 +3260,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.56
+     "ms": 5.74
     },
     {
      "stage": "S08",
@@ -3269,7 +3269,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.07
+     "ms": 6.1
     },
     {
      "stage": "S08",
@@ -3278,7 +3278,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 3.81
+     "ms": 4.85
     },
     {
      "stage": "S11",
@@ -3289,7 +3289,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 1.43
+     "ms": 1.44
     },
     {
      "stage": "S14",
@@ -3300,7 +3300,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 3.59
+     "ms": 5.36
     }
    ],
    "evidence_retrieved": [
@@ -3402,14 +3402,14 @@
     },
     "approvals": [
      {
-      "id": "ap_851dea1d",
+      "id": "ap_121ec9f1",
       "state": "consumed",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": "tenant-a-founder",
       "rules": [
        "R-GATE"
       ],
-      "expires": 1792732610.0457063
+      "expires": 1792769086.430609
      }
     ]
    },
@@ -3453,12 +3453,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_851dea1d"
+     "ref": "ap_121ec9f1"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_851dea1d"
+     "ref": "ap_121ec9f1"
     },
     {
      "action": "state:APPROVED",
@@ -3478,7 +3478,7 @@
     {
      "action": "decision_refused:APPROVAL_REPLAY",
      "role": "FOUNDER",
-     "ref": "ap_851dea1d"
+     "ref": "ap_121ec9f1"
     },
     {
      "action": "duplicate_request",
@@ -3518,7 +3518,7 @@
    }
   },
   "malformed_agent_output": {
-   "corr_id": "run-b35a9b5fb0",
+   "corr_id": "run-959a18f976",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -3540,7 +3540,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.46
+     "ms": 7.82
     },
     {
      "stage": "S08",
@@ -3549,7 +3549,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 7.67
+     "ms": 9.06
     },
     {
      "stage": "S08",
@@ -3558,7 +3558,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.67
+     "ms": 6.01
     },
     {
      "stage": "S08",
@@ -3567,7 +3567,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.19
+     "ms": 5.05
     },
     {
      "stage": "S08",
@@ -3576,7 +3576,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 6.12
+     "ms": 7.19
     },
     {
      "stage": "S08",
@@ -3585,7 +3585,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.27
+     "ms": 5.28
     },
     {
      "stage": "S08",
@@ -3594,7 +3594,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.11
+     "ms": 5.75
     }
    ],
    "evidence_retrieved": [
@@ -3755,7 +3755,7 @@
    }
   },
   "cross_tenant_blocked": {
-   "corr_id": "run-cc01e7aa49",
+   "corr_id": "run-1ea53e1096",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -3940,11 +3940,11 @@
  },
  "measured": {
   "happy_path_tool_calls": 9,
-  "tool_ms_max": 12.16,
-  "tool_ms_median": 5.37,
+  "tool_ms_max": 12.19,
+  "tool_ms_median": 7.15,
   "note": "measured on the build machine for this run; not a benchmark"
  },
- "generated_seconds": 23.4,
+ "generated_seconds": 27.5,
  "metrics": {
   "governed_workflow_tests": {
    "passed": 59,
@@ -4051,11 +4051,11 @@
    "caveat": "Small synthetic case set with a deterministic tool layer and rule router; a perfect score is not evidence of real-world reliability."
   },
   "release_evidence": {
-   "tests_passed": 595,
-   "tests_total": 596,
+   "tests_passed": 695,
+   "tests_total": 696,
    "tests_failed": 0,
    "tests_skipped": 1,
-   "collected_at_commit": "b0e7255",
+   "collected_at_commit": "dacc1dc",
    "model_runtime": "UNVERIFIED: the real-model smoke test is skipped (no local model runtime, no network access to model hosts)",
    "remote_ci": "NOT_RUN: workflows have not executed on GitHub"
   },
@@ -4065,8 +4065,8 @@
  "claims": [
   {
    "id": "tests.passed",
-   "text": "595 automated tests passed in the full suite run (synthetic data)",
-   "value": 595,
+   "text": "695 automated tests passed in the full suite run (synthetic data)",
+   "value": 695,
    "source": {
     "file": "summary.json",
     "pointer": "passed"
@@ -4502,7 +4502,7 @@
    {
     "id": "eval.latency_ms_p50",
     "text": "latency ms p50",
-    "value": 105.3,
+    "value": 134.6,
     "source": {
      "file": "eval.json",
      "pointer": "metrics.latency_ms_p50"
@@ -4511,7 +4511,7 @@
    {
     "id": "eval.latency_ms_p95",
     "text": "latency ms p95",
-    "value": 276.6,
+    "value": 291.4,
     "source": {
      "file": "eval.json",
      "pointer": "metrics.latency_ms_p95"
@@ -5103,6 +5103,33 @@
     }
    },
    {
+    "id": "test.test_growth_workflow::test_cross_tenant_sessions_leads_runs_and_approvals_do_not_cross",
+    "text": "test_growth_workflow::test_cross_tenant_sessions_leads_runs_and_approvals_do_not_cross",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_workflow::test_cross_tenant_sessions_leads_runs_and_approvals_do_not_cross"
+    }
+   },
+   {
+    "id": "test.test_growth_api::test_cross_tenant_reads_by_id_find_nothing_and_cross_tenant_references_are_refused",
+    "text": "test_growth_api::test_cross_tenant_reads_by_id_find_nothing_and_cross_tenant_references_are_refused",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_api::test_cross_tenant_reads_by_id_find_nothing_and_cross_tenant_references_are_refused"
+    }
+   },
+   {
+    "id": "test.test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters",
+    "text": "test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters"
+    }
+   },
+   {
     "id": "test.test_governed_workflow::test_a_user_who_may_not_approve_cannot_approve",
     "text": "test_governed_workflow::test_a_user_who_may_not_approve_cannot_approve",
     "value": "passed",
@@ -5190,6 +5217,51 @@
     "source": {
      "file": "summary.json",
      "pointer": "tests.test_growth_foundation::test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair"
+    }
+   },
+   {
+    "id": "test.test_growth_workflow::test_direct_crm_writes_by_unauthorised_roles_are_denied_and_audited",
+    "text": "test_growth_workflow::test_direct_crm_writes_by_unauthorised_roles_are_denied_and_audited",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_workflow::test_direct_crm_writes_by_unauthorised_roles_are_denied_and_audited"
+    }
+   },
+   {
+    "id": "test.test_growth_workflow::test_maker_checker_and_role_rules_for_the_approver",
+    "text": "test_growth_workflow::test_maker_checker_and_role_rules_for_the_approver",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_workflow::test_maker_checker_and_role_rules_for_the_approver"
+    }
+   },
+   {
+    "id": "test.test_growth_workflow::test_a_replayed_approval_creates_nothing_new",
+    "text": "test_growth_workflow::test_a_replayed_approval_creates_nothing_new",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_workflow::test_a_replayed_approval_creates_nothing_new"
+    }
+   },
+   {
+    "id": "test.test_growth_workflow::test_a_proposal_modified_after_approval_is_not_applied",
+    "text": "test_growth_workflow::test_a_proposal_modified_after_approval_is_not_applied",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_workflow::test_a_proposal_modified_after_approval_is_not_applied"
+    }
+   },
+   {
+    "id": "test.test_growth_api::test_lead_qualification_over_http_denied_held_approved_updated_and_audited",
+    "text": "test_growth_api::test_lead_qualification_over_http_denied_held_approved_updated_and_audited",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_api::test_lead_qualification_over_http_denied_held_approved_updated_and_audited"
     }
    },
    {
@@ -5328,6 +5400,33 @@
     }
    },
    {
+    "id": "test.test_growth_workflow_eval::test_each_mutant_is_detected_by_its_probe",
+    "text": "test_growth_workflow_eval::test_each_mutant_is_detected_by_its_probe",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_workflow_eval::test_each_mutant_is_detected_by_its_probe"
+    }
+   },
+   {
+    "id": "test.test_growth_workflow_eval::test_every_probe_passes_on_the_unmutated_system",
+    "text": "test_growth_workflow_eval::test_every_probe_passes_on_the_unmutated_system",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_workflow_eval::test_every_probe_passes_on_the_unmutated_system"
+    }
+   },
+   {
+    "id": "test.test_growth_api::test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_sends_or_debugs",
+    "text": "test_growth_api::test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_sends_or_debugs",
+    "value": "passed",
+    "source": {
+     "file": "summary.json",
+     "pointer": "tests.test_growth_api::test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_sends_or_debugs"
+    }
+   },
+   {
     "id": "mod.test_governed_api",
     "text": "test_governed_api: passed",
     "value": 6,
@@ -5420,7 +5519,7 @@
    {
     "id": "suite.passed",
     "text": "suite passed",
-    "value": 595,
+    "value": 695,
     "source": {
      "file": "summary.json",
      "pointer": "passed"
@@ -5447,7 +5546,7 @@
    {
     "id": "suite.total",
     "text": "suite total",
-    "value": 596,
+    "value": 696,
     "source": {
      "file": "summary.json",
      "pointer": "total"
@@ -6230,6 +6329,18 @@
      {
       "test": "test_growth_foundation::test_cross_tenant_probes_across_every_table_return_nothing",
       "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow::test_cross_tenant_sessions_leads_runs_and_approvals_do_not_cross",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_api::test_cross_tenant_reads_by_id_find_nothing_and_cross_tenant_references_are_refused",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters",
+      "outcome": "passed"
      }
     ],
     "authorization_enforcement": [
@@ -6271,6 +6382,26 @@
      },
      {
       "test": "test_growth_foundation::test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow::test_direct_crm_writes_by_unauthorised_roles_are_denied_and_audited",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow::test_maker_checker_and_role_rules_for_the_approver",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow::test_a_replayed_approval_creates_nothing_new",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow::test_a_proposal_modified_after_approval_is_not_applied",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_api::test_lead_qualification_over_http_denied_held_approved_updated_and_audited",
       "outcome": "passed"
      }
     ],
@@ -6333,6 +6464,18 @@
      },
      {
       "test": "test_growth_mutations::test_every_probe_passes_on_the_unmutated_system",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow_eval::test_each_mutant_is_detected_by_its_probe",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow_eval::test_every_probe_passes_on_the_unmutated_system",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_api::test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_sends_or_debugs",
       "outcome": "passed"
      }
     ]
@@ -6535,12 +6678,12 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": "BUYER",
-       "ref": "ap_f099b9ec"
+       "ref": "ap_f7642a0a"
       },
       {
        "action": "approval_approved",
        "role": "FOUNDER",
-       "ref": "ap_f099b9ec"
+       "ref": "ap_f7642a0a"
       },
       {
        "action": "state:APPROVED",
@@ -6865,12 +7008,12 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": "BUYER",
-       "ref": "ap_51f897fa"
+       "ref": "ap_588cb2b3"
       },
       {
        "action": "approval_expired",
        "role": "FOUNDER",
-       "ref": "ap_51f897fa"
+       "ref": "ap_588cb2b3"
       },
       {
        "action": "state:FAILED",
@@ -7009,12 +7152,12 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": "BUYER",
-       "ref": "ap_8e7ed2d4"
+       "ref": "ap_27c1d5f6"
       },
       {
        "action": "approval_approved",
        "role": "FOUNDER",
-       "ref": "ap_8e7ed2d4"
+       "ref": "ap_27c1d5f6"
       },
       {
        "action": "state:APPROVED",
@@ -7024,7 +7167,7 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": null,
-       "ref": "ap_1692c046"
+       "ref": "ap_ee7f626d"
       }
      ]
     },
@@ -7139,7 +7282,7 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": "BUYER",
-       "ref": "ap_79a77f99"
+       "ref": "ap_4281acc1"
       }
      ]
     },
@@ -7277,12 +7420,12 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": "BUYER",
-       "ref": "ap_851dea1d"
+       "ref": "ap_121ec9f1"
       },
       {
        "action": "approval_approved",
        "role": "FOUNDER",
-       "ref": "ap_851dea1d"
+       "ref": "ap_121ec9f1"
       },
       {
        "action": "state:APPROVED",
@@ -7302,7 +7445,7 @@
       {
        "action": "decision_refused:APPROVAL_REPLAY",
        "role": "FOUNDER",
-       "ref": "ap_851dea1d"
+       "ref": "ap_121ec9f1"
       },
       {
        "action": "duplicate_request",
@@ -7527,6 +7670,18 @@
      {
       "test": "test_growth_foundation::test_cross_tenant_probes_across_every_table_return_nothing",
       "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow::test_cross_tenant_sessions_leads_runs_and_approvals_do_not_cross",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_api::test_cross_tenant_reads_by_id_find_nothing_and_cross_tenant_references_are_refused",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters",
+      "outcome": "passed"
      }
     ],
     "authorization_enforcement": [
@@ -7568,6 +7723,26 @@
      },
      {
       "test": "test_growth_foundation::test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow::test_direct_crm_writes_by_unauthorised_roles_are_denied_and_audited",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow::test_maker_checker_and_role_rules_for_the_approver",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow::test_a_replayed_approval_creates_nothing_new",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow::test_a_proposal_modified_after_approval_is_not_applied",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_api::test_lead_qualification_over_http_denied_held_approved_updated_and_audited",
       "outcome": "passed"
      }
     ],
@@ -7630,6 +7805,18 @@
      },
      {
       "test": "test_growth_mutations::test_every_probe_passes_on_the_unmutated_system",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow_eval::test_each_mutant_is_detected_by_its_probe",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_workflow_eval::test_every_probe_passes_on_the_unmutated_system",
+      "outcome": "passed"
+     },
+     {
+      "test": "test_growth_api::test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_sends_or_debugs",
       "outcome": "passed"
      }
     ]

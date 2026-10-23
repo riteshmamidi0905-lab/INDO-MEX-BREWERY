@@ -1,6 +1,6 @@
 {
- "total": 596,
- "passed": 595,
+ "total": 696,
+ "passed": 695,
  "failed": 0,
  "skipped": 1,
  "tests": {
@@ -44,6 +44,10 @@
   "test_governed_workflow::test_an_expired_approval_cannot_be_resolved_or_consumed_later": "passed",
   "test_governed_workflow::test_the_procurement_upstream_refuses_a_write_that_did_not_come_through_the_approval_path": "passed",
   "test_governed_workflow::test_no_module_in_the_governed_package_can_open_a_network_connection": "passed",
+  "test_growth_api::test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_sends_or_debugs": "passed",
+  "test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters": "passed",
+  "test_growth_api::test_cross_tenant_reads_by_id_find_nothing_and_cross_tenant_references_are_refused": "passed",
+  "test_growth_api::test_lead_qualification_over_http_denied_held_approved_updated_and_audited": "passed",
   "test_growth_foundation::test_a_session_without_a_tenant_setting_sees_nothing": "passed",
   "test_growth_foundation::test_tenant_a_cannot_read_write_or_reference_tenant_b": "passed",
   "test_growth_foundation::test_the_application_role_cannot_turn_row_security_off_or_change_tenants_data_it_does_not_own": "passed",
@@ -55,6 +59,13 @@
   "test_growth_mutations::test_every_probe_passes_on_the_unmutated_system": "passed",
   "test_growth_mutations::test_each_mutant_is_detected_by_its_probe": "passed",
   "test_growth_pricing_segments::test_segments_match_an_independent_pure_python_recomputation": "passed",
+  "test_growth_workflow::test_direct_crm_writes_by_unauthorised_roles_are_denied_and_audited": "passed",
+  "test_growth_workflow::test_cross_tenant_sessions_leads_runs_and_approvals_do_not_cross": "passed",
+  "test_growth_workflow::test_maker_checker_and_role_rules_for_the_approver": "passed",
+  "test_growth_workflow::test_a_replayed_approval_creates_nothing_new": "passed",
+  "test_growth_workflow::test_a_proposal_modified_after_approval_is_not_applied": "passed",
+  "test_growth_workflow_eval::test_every_probe_passes_on_the_unmutated_system": "passed",
+  "test_growth_workflow_eval::test_each_mutant_is_detected_by_its_probe": "passed",
   "test_identity::test_forged_tampered_and_wrong_kind_tokens_are_refused": "passed",
   "test_menu_d90::test_every_active_menu_item_flows_through_the_whole_simulation": "passed",
   "test_pg_hardening::test_migrations_apply_and_PostgreSQL_reports_the_constraints": "passed",
@@ -161,6 +172,16 @@
    "failed": 0,
    "skipped": 0
   },
+  "test_growth_agent_tools": {
+   "passed": 6,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_api": {
+   "passed": 26,
+   "failed": 0,
+   "skipped": 0
+  },
   "test_growth_capabilities": {
    "passed": 3,
    "failed": 0,
@@ -178,6 +199,21 @@
   },
   "test_growth_pricing_segments": {
    "passed": 12,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_ui": {
+   "passed": 9,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_workflow": {
+   "passed": 33,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_workflow_eval": {
+   "passed": 26,
    "failed": 0,
    "skipped": 0
   },

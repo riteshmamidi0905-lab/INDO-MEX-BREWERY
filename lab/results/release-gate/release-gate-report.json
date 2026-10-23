@@ -1,22 +1,22 @@
 {
  "schema": "release-gate-report/1",
  "overall": "REQUIRES_REVIEW",
- "head": "b0e7255",
- "generated_at": 1792731710.9319885,
- "evidence_commit": "b0e7255",
+ "head": "dacc1dc",
+ "generated_at": 1792768219.7107913,
+ "evidence_commit": "dacc1dc",
  "remote_ci": "NOT_RUN",
  "remote_ci_note": "GitHub workflows have not run remotely; no remote CI result is claimed.",
  "gates": {
   "unit_tests": {
    "status": "PASS",
-   "detail": "380 passed, 0 failed, 0 skipped (all allowed by policy)",
+   "detail": "389 passed, 0 failed, 0 skipped (all allowed by policy)",
    "evidence": [
     "unit_tests"
    ]
   },
   "integration_tests": {
    "status": "REQUIRES_REVIEW",
-   "detail": "215 passed, 1 skipped; needs review: test_llm_planner::test_real_local_model_integration_smoke (model runtime not executed: no local model runtime and no network access to model hosts)",
+   "detail": "306 passed, 1 skipped; needs review: test_llm_planner::test_real_local_model_integration_smoke (model runtime not executed: no local model runtime and no network access to model hosts)",
    "evidence": [
     "integration_tests"
    ]
@@ -54,7 +54,7 @@
   },
   "security_regression": {
    "status": "PASS",
-   "detail": "security: 15/15 required tests executed and passed",
+   "detail": "security: 18/18 required tests executed and passed",
    "evidence": [
     "test_governed_workflow::test_secrets_and_session_tokens_never_appear_in_traces_ledger_or_audit",
     "test_governed_workflow::test_audit_trail_is_tamper_evident",
@@ -70,12 +70,15 @@
     "test_growth_foundation::test_the_application_role_cannot_turn_row_security_off_or_change_tenants_data_it_does_not_own",
     "test_growth_foundation::test_audit_is_hash_chained_complete_and_tamper_evident",
     "test_growth_mutations::test_each_mutant_is_detected_by_its_probe",
-    "test_growth_mutations::test_every_probe_passes_on_the_unmutated_system"
+    "test_growth_mutations::test_every_probe_passes_on_the_unmutated_system",
+    "test_growth_workflow_eval::test_each_mutant_is_detected_by_its_probe",
+    "test_growth_workflow_eval::test_every_probe_passes_on_the_unmutated_system",
+    "test_growth_api::test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_sends_or_debugs"
    ]
   },
   "tenant_isolation": {
    "status": "PASS",
-   "detail": "tenant isolation tests: 9/9 required tests executed and passed | evaluation cross-tenant: 2 evaluation cases passed with no purchase order created",
+   "detail": "tenant isolation tests: 12/12 required tests executed and passed | evaluation cross-tenant: 2 evaluation cases passed with no purchase order created",
    "evidence": [
     "test_governed_workflow::test_tenants_have_separate_physical_stores_and_distinct_data",
     "test_governed_workflow::test_memory_retrieval_approvals_and_audit_do_not_cross_tenants",
@@ -86,12 +89,15 @@
     "test_growth_foundation::test_tenant_a_cannot_read_write_or_reference_tenant_b",
     "test_growth_foundation::test_a_session_without_a_tenant_setting_sees_nothing",
     "test_growth_foundation::test_cross_tenant_probes_across_every_table_return_nothing",
+    "test_growth_workflow::test_cross_tenant_sessions_leads_runs_and_approvals_do_not_cross",
+    "test_growth_api::test_cross_tenant_reads_by_id_find_nothing_and_cross_tenant_references_are_refused",
+    "test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters",
     "eval.json"
    ]
   },
   "authorization_enforcement": {
    "status": "PASS",
-   "detail": "authorization tests: 10/10 required tests executed and passed | evaluation authorization/approval: 8 evaluation cases passed with no purchase order created",
+   "detail": "authorization tests: 15/15 required tests executed and passed | evaluation authorization/approval: 8 evaluation cases passed with no purchase order created",
    "evidence": [
     "test_governed_workflow::test_a_user_who_may_not_approve_cannot_approve",
     "test_governed_workflow::test_maker_checker_the_requester_cannot_approve_their_own_request",
@@ -103,6 +109,11 @@
     "test_governed_api::test_full_flow_over_http_ends_in_a_draft_po_and_no_transmission",
     "test_growth_foundation::test_default_deny_and_every_denial_is_audited",
     "test_growth_foundation::test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair",
+    "test_growth_workflow::test_direct_crm_writes_by_unauthorised_roles_are_denied_and_audited",
+    "test_growth_workflow::test_maker_checker_and_role_rules_for_the_approver",
+    "test_growth_workflow::test_a_replayed_approval_creates_nothing_new",
+    "test_growth_workflow::test_a_proposal_modified_after_approval_is_not_applied",
+    "test_growth_api::test_lead_qualification_over_http_denied_held_approved_updated_and_audited",
     "eval.json"
    ]
   },
@@ -129,7 +140,7 @@
   },
   "evidence_consistency": {
    "status": "PASS",
-   "detail": "evidence collected at b0e7255 (HEAD b0e7255); no code changed since; counts match junit.xml",
+   "detail": "evidence collected at dacc1dc (HEAD dacc1dc); no code changed since; counts match junit.xml",
    "evidence": [
     "meta.json",
     "summary.json",
@@ -138,7 +149,7 @@
   },
   "portfolio_claim_validation": {
    "status": "PASS",
-   "detail": "11 portfolio claims and 194 dashboard metrics each resolve to the evidence bundle and match exactly",
+   "detail": "11 portfolio claims and 205 dashboard metrics each resolve to the evidence bundle and match exactly",
    "evidence": [
     "nasha-governed-evidence.json"
    ]
