@@ -15,9 +15,9 @@ def test_committed_tracker_validates_and_has_all_25():
     assert B.problems(DOC) == [] and len(DOC["capabilities"]) == 25
 
 
-def test_nothing_is_integrated_yet_and_no_capability_beyond_what_exists_is_marked_tested():
-    assert not [c["n"] for c in DOC["capabilities"] if c["status"] == "INTEGRATED"]
-    assert {c["n"] for c in DOC["capabilities"] if c["status"] == "TESTED"} == {1, 5, 14}
+def test_only_crm_automation_is_integrated_and_no_capability_beyond_what_exists_is_marked_tested():
+    assert [c["n"] for c in DOC["capabilities"] if c["status"] == "INTEGRATED"] == [14]
+    assert {c["n"] for c in DOC["capabilities"] if c["status"] == "TESTED"} == {1, 5, 8, 15, 24}
 
 
 def test_validator_rejects_overclaims():
@@ -25,8 +25,10 @@ def test_validator_rejects_overclaims():
     assert any("without a test" in p for p in B.problems(d))
     d = copy.deepcopy(DOC); d["capabilities"][0]["tests"] = ["lab/tests/test_growth_foundation.py::test_that_does_not_exist"]
     assert any("test missing" in p for p in B.problems(d))
-    d = copy.deepcopy(DOC); d["capabilities"][13]["status"] = "INTEGRATED"
-    assert any("INTEGRATED" in p for p in B.problems(d))
+    d = copy.deepcopy(DOC); d["capabilities"][4]["status"] = "INTEGRATED"              # #5 has no UI and no workflow/api/ui tests
+    assert any("INTEGRATED needs" in p for p in B.problems(d))
+    d = copy.deepcopy(DOC); d["capabilities"][13]["tests"] = [x for x in d["capabilities"][13]["tests"] if "test_growth_ui" not in x]
+    assert any("needs a ui test" in p for p in B.problems(d))
     d = copy.deepcopy(DOC); d["capabilities"][5]["code"] = []
     assert any("without code" in p for p in B.problems(d))
     d = copy.deepcopy(DOC); d["capabilities"].pop()

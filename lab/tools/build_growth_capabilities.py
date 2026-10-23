@@ -34,7 +34,12 @@ def problems(doc):
         if st in ("IMPLEMENTED", "TESTED", "INTEGRATED") and not c["code"]:
             bad.append(f"#{c['n']}: {st} without code")
         if st == "INTEGRATED":
-            bad.append(f"#{c['n']}: INTEGRATED needs a working UI, enforced authorization and audit end to end; none exists yet")
+            kinds = {"workflow": "test_growth_workflow", "api": "test_growth_api", "ui": "test_growth_ui"}
+            if not c.get("ui") or any(not (REPO / p).exists() for p in c["ui"]):
+                bad.append(f"#{c['n']}: INTEGRATED needs an existing UI path")
+            for k, f in kinds.items():
+                if not any(f"{f}.py::" in x for x in c["tests"]):
+                    bad.append(f"#{c['n']}: INTEGRATED needs a {k} test ({f})")
         if st != "NOT STARTED" and not c["done"]:
             bad.append(f"#{c['n']}: {st} must say what exists")
         if not c["missing"] and st != "INTEGRATED" and st != "NOT STARTED":
