@@ -1,12 +1,12 @@
 {
- "commit": "e82bc70",
+ "commit": "cbfeeb0",
  "pushed": false,
  "counts": {
-  "IMPLEMENTED_TESTED": 24,
+  "IMPLEMENTED_TESTED": 25,
   "IMPLEMENTED_UNVERIFIED": 1,
   "DESIGNED_ONLY": 1,
   "BLOCKED": 1,
-  "NOT_STARTED": 4
+  "NOT_STARTED": 3
  },
  "rows": [
   {
@@ -84,11 +84,18 @@
   },
   {
    "objective": "8 DB quality",
-   "capability": "PostgreSQL constraints/foreign keys on scenario tables, query plans, benchmarks, migration safety",
-   "status": "NOT_STARTED",
-   "code": [],
-   "tests": [],
-   "note": "No query-plan or benchmark evidence exists; no performance claim is made."
+   "capability": "PostgreSQL constraints (12 PK, 9 FK, 8 CHECK), safe migration runner (pre-flight, atomic, idempotent, checksummed), index/query-plan evidence",
+   "status": "IMPLEMENTED_TESTED",
+   "code": [
+    "lab/nasha_lab/warehouse/pg_hardening.py",
+    "lab/tools/pg_benchmark.py"
+   ],
+   "tests": [
+    "lab/tests/test_pg_hardening.py::test_the_database_itself_rejects_violations",
+    "lab/tests/test_pg_hardening.py::test_preflight_blocks_a_migration_when_data_would_violate_it_and_changes_nothing",
+    "lab/tests/test_pg_hardening.py::test_a_failure_in_the_middle_of_a_migration_rolls_the_whole_migration_back"
+   ],
+   "note": "Scenario tables only; tables are small so timings are within noise and no speed-up is claimed (see docs/engineering/D-89-POSTGRES-HARDENING.md)."
   },
   {
    "objective": "3 Data engineering",

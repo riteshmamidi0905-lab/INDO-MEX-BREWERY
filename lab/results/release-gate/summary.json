@@ -1,6 +1,6 @@
 {
- "total": 505,
- "passed": 504,
+ "total": 518,
+ "passed": 517,
  "failed": 0,
  "skipped": 1,
  "by_module": {
@@ -131,6 +131,11 @@
   },
   "test_ops_ai_weir": {
    "passed": 4,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_pg_hardening": {
+   "passed": 13,
    "failed": 0,
    "skipped": 0
   },

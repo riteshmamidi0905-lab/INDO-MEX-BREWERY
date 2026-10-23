@@ -1,9 +1,9 @@
 {
  "schema": "release-gate-report/1",
  "overall": "REQUIRES_REVIEW",
- "head": "a7140a2",
- "generated_at": 1792725001.5543444,
- "evidence_commit": "e82bc70",
+ "head": "cbfeeb0",
+ "generated_at": 1792726052.6781714,
+ "evidence_commit": "cbfeeb0",
  "remote_ci": "NOT_RUN",
  "remote_ci_note": "GitHub workflows have not run remotely; no remote CI result is claimed.",
  "gates": {
@@ -16,20 +16,24 @@
   },
   "integration_tests": {
    "status": "REQUIRES_REVIEW",
-   "detail": "133 passed, 1 skipped; needs review: test_llm_planner::test_real_local_model_integration_smoke (model runtime not executed: no local model runtime and no network access to model hosts)",
+   "detail": "146 passed, 1 skipped; needs review: test_llm_planner::test_real_local_model_integration_smoke (model runtime not executed: no local model runtime and no network access to model hosts)",
    "evidence": [
     "integration_tests"
    ]
   },
   "pg_reconciliation": {
    "status": "PASS",
-   "detail": "PostgreSQL reconciliation + pgvector: 5/5 required tests executed and passed",
+   "detail": "PostgreSQL reconciliation + pgvector: 9/9 required tests executed and passed",
    "evidence": [
     "test_warehouse_pg::test_every_table_reconciles_to_sqlite",
     "test_warehouse_pg::test_d87_scenario_tables_reconcile_in_postgresql",
     "test_warehouse_pg::test_yield_ratio_rounding_ties_are_identical_in_sqlite_and_postgresql",
     "test_warehouse_pg::test_every_brew_batch_yield_ratio_matches_row_by_row",
-    "test_retrieval_v2::test_pgvector_matches_the_exact_scan_and_uses_hnsw_cosine"
+    "test_retrieval_v2::test_pgvector_matches_the_exact_scan_and_uses_hnsw_cosine",
+    "test_pg_hardening::test_migrations_apply_and_PostgreSQL_reports_the_constraints",
+    "test_pg_hardening::test_a_failure_in_the_middle_of_a_migration_rolls_the_whole_migration_back",
+    "test_pg_hardening::test_preflight_blocks_a_migration_when_data_would_violate_it_and_changes_nothing",
+    "test_pg_hardening::test_indexes_change_the_query_plans_and_the_benchmark_is_recorded"
    ]
   },
   "agent_evaluation": {
@@ -113,7 +117,7 @@
   },
   "evidence_consistency": {
    "status": "PASS",
-   "detail": "evidence collected at e82bc70 (HEAD a7140a2); no code changed since; counts match junit.xml",
+   "detail": "evidence collected at cbfeeb0 (HEAD cbfeeb0); no code changed since; counts match junit.xml",
    "evidence": [
     "meta.json",
     "summary.json",

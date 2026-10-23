@@ -1,17 +1,17 @@
 {
- "commit": "e82bc70",
+ "commit": "cbfeeb0",
  "pushed": false,
  "synthetic": true,
  "artifacts": [
   {
    "path": "lab/portfolio/nasha-governed-evidence.json",
-   "sha256": "1ce10fcdc57d02bf8b21730372b76988cd0a6384a690a99e33705ff1396e9d42",
-   "bytes": 52606
+   "sha256": "38ca77a81a041f60365ca323c8275e0850d9fbda9646d7050bcbe637b95f2b1c",
+   "bytes": 52603
   },
   {
    "path": "lab/portfolio/capability-matrix.json",
-   "sha256": "74ba620cbe750346c4b32ce429a041914cda03166c8722e0f18f90844b8ddb7b",
-   "bytes": 14290
+   "sha256": "e62a4bd120ba8db2bacfbf1237b9c2dc6657bd4a68fe6923e99955a340c6ac6d",
+   "bytes": 14815
   },
   {
    "path": "lab/portfolio/governed-api.openapi.json",
@@ -20,8 +20,8 @@
   },
   {
    "path": "docs/engineering/D-89-CAPABILITY-MATRIX.md",
-   "sha256": "5105bb8d747533114422175ff45a7a7ef5a2dac8d3f4711c501b8dd26296f99e",
-   "bytes": 10612
+   "sha256": "ed0a811fb73358acd45b7d6bcf761678d137b0aa821f1fedc3adba63379a1c51",
+   "bytes": 11139
   },
   {
    "path": "docs/portfolio-integration/INTERACTIVE-DEMO-SPECS.md",
@@ -40,7 +40,7 @@
   },
   {
    "path": "docs/portfolio-integration/README.md",
-   "sha256": "922a519258eae4ef138890a9e6c4097da0ea0abc576af3d72843a84da3d1509c",
+   "sha256": "15a9eada88570f9771e9a3ad54ac06ed9ad606a20c4520277e3525e08ed2f32d",
    "bytes": 1569
   },
   {

@@ -1,14 +1,14 @@
 # D-89 capability matrix (updated at Milestone E)
 
-Generated from `lab/tools/build_capability_matrix.py` against local commit `e82bc70` (not pushed). Every cited path and test function was checked to exist. **A row says IMPLEMENTED_TESTED only if it cites at least one existing test; it does not claim the test was just re-run** — see the test report for pass counts.
+Generated from `lab/tools/build_capability_matrix.py` against local commit `cbfeeb0` (not pushed). Every cited path and test function was checked to exist. **A row says IMPLEMENTED_TESTED only if it cites at least one existing test; it does not claim the test was just re-run** — see the test report for pass counts.
 
 | Status | Count |
 |---|---|
-| IMPLEMENTED_TESTED | 24 |
+| IMPLEMENTED_TESTED | 25 |
 | IMPLEMENTED_UNVERIFIED | 1 |
 | DESIGNED_ONLY | 1 |
 | BLOCKED | 1 |
-| NOT_STARTED | 4 |
+| NOT_STARTED | 3 |
 
 | Objective | Capability | Status | Evidence (tests) | Limits |
 |---|---|---|---|---|
@@ -18,7 +18,7 @@ Generated from `lab/tools/build_capability_matrix.py` against local commit `e82b
 | 2 PostgreSQL | Warehouse models on PostgreSQL, reconciled table by table | **IMPLEMENTED_TESTED** | `test_warehouse_pg.py::test_every_table_reconciles_to_sqlite`<br>`test_warehouse_pg.py::test_d87_scenario_tables_reconcile_in_postgresql` | Ingestion, contracts and gates are not re-implemented in PostgreSQL. |
 | 2 PostgreSQL | Rounding-tie defect fixed with regression tests | **IMPLEMENTED_TESTED** | `test_warehouse_pg.py::test_yield_ratio_rounding_ties_are_identical_in_sqlite_and_postgresql` |  |
 | 8 DB quality | Ledger schema constraints (FK, CHECK, UNIQUE), transactions, hash-chained audit | **IMPLEMENTED_TESTED** | `test_governed_workflow.py::test_the_draft_state_column_cannot_hold_a_sent_status`<br>`test_governed_workflow.py::test_audit_trail_is_tamper_evident` | SQLite; no PostgreSQL ledger yet. |
-| 8 DB quality | PostgreSQL constraints/foreign keys on scenario tables, query plans, benchmarks, migration safety | **NOT_STARTED** | — | No query-plan or benchmark evidence exists; no performance claim is made. |
+| 8 DB quality | PostgreSQL constraints (12 PK, 9 FK, 8 CHECK), safe migration runner (pre-flight, atomic, idempotent, checksummed), index/query-plan evidence | **IMPLEMENTED_TESTED** | `test_pg_hardening.py::test_the_database_itself_rejects_violations`<br>`test_pg_hardening.py::test_preflight_blocks_a_migration_when_data_would_violate_it_and_changes_nothing`<br>`test_pg_hardening.py::test_a_failure_in_the_middle_of_a_migration_rolls_the_whole_migration_back` | Scenario tables only; tables are small so timings are within noise and no speed-up is claimed (see docs/engineering/D-89-POSTGRES-HARDENING.md). |
 | 3 Data engineering | Contracts, incremental partitions, quality gates, publish gate, reproducible rebuild | **IMPLEMENTED_TESTED** | `test_enterprise_sim.py::test_same_seed_same_bytes_different_seed_different_bytes` | SQLite engine; synthetic data. |
 | 3 Data engineering | Inventory depletion, variance detection scored against injected anomalies, ingredient forecasts | **IMPLEMENTED_TESTED** | `test_scenario_d87.py::test_inventory_depletion_matches_an_independent_recomputation`<br>`test_scenario_d87.py::test_variance_detector_finds_injected_anomalies_without_reading_them` | Only 3 injected anomalies; 4 of 5 active dishes have simulated sales. |
 | 7 Analytics | Menu economics, cost levers with quality floor, supplier sensitivity, menu engineering | **IMPLEMENTED_TESTED** | `test_recipes_d87.py::test_tandoori_lamb_levers_keep_the_original_scenario_and_respect_the_quality_floor` | Planning assumptions and synthetic quotes, not real costs. |
@@ -46,10 +46,10 @@ Generated from `lab/tools/build_capability_matrix.py` against local commit `e82b
 
 ## Most important architectural gaps (highest value first)
 
-1. **PostgreSQL stops at analytics.** The workflow ledger is SQLite; no PostgreSQL constraints, query plans or benchmarks exist for the scenario tables (next engineering item).
+1. **The workflow ledger is SQLite**; PostgreSQL hardening covers the scenario tables only.
 2. **The real model path is unverified** (no runtime); the model planner is only exercised with scripted clients. The release gate therefore stays at REQUIRES_REVIEW.
 3. **Remote CI has never run**: the release gate and workflows are validated locally only.
 4. **Isolation is per-store, not per-process**; recipes are shared reference data.
 5. **The simulation covers 4 of the 5 active dishes**; the current-menu definition after the Goat Birria retirement needs a founder decision.
 6. **Evaluation breadth**: 28 cases and 9 mutants on synthetic data with a rule planner; contradiction detection covers one disagreement type.
-7. **No interview-defense package, AI-reliability or security dashboards yet.**
+7. **No interview-defense package, AI-reliability or security dashboards yet; full active-menu simulation not implemented** (synth_ops and the BOM mapping hard-code the four mapped dishes; replacing the retired Goat Birria slot M03 needs a founder-approved menu definition and mapping plumbing).
