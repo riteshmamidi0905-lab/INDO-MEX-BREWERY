@@ -178,4 +178,4 @@ def quote_matrix(directory, as_of=None, baseline=None):
         if baseline and ref in baseline:
             r["planning_assumption_unit_price_cents"] = baseline[ref]
         out.append(r)
-    return dict(as_of=str(as_of), rows=out, rule="cheapest is reported within one price category only; categories are never compared with each other")
+    return dict(as_of=str(as_of), rows=out, rule="The cheapest is reported within one price category only; categories are never compared with each other")
