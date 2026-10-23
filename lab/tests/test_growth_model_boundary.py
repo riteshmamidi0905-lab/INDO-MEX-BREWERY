@@ -132,3 +132,10 @@ def test_even_with_paid_approval_a_missing_key_fails_closed_without_contacting_a
     run = wf.status(r["corr_id"])
     assert r["status"] == "AWAITING_APPROVAL" and run["agent_mode"] == "deterministic_fallback"
     wf.close()
+
+
+def test_computed_uncertainty_does_not_depend_on_the_order_or_ids_of_the_records():
+    d = [dict(s, name=n) for s, n in zip(ME.DIRECTORY, ("Zeta Dairy", "Alpha Produce", "Mid Supply (dairy)"))]
+    a = MB.computed_uncertainty(d, {"s1", "s2", "s3"}); b = MB.computed_uncertainty(list(reversed(d)), {"s3", "s1", "s2"})
+    assert a == b, "the same records must always give the same sentences (names are sorted, not in id order)"
+    assert any("Alpha Produce" in x and x.index("Alpha Produce") < x.index("Mid") for x in a if "not verified" in x)

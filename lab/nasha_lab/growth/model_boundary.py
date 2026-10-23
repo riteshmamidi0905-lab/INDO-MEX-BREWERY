@@ -43,16 +43,16 @@ def computed_uncertainty(directory, cited_supplier_ids):
     by = {s["id"]: s for s in directory}
     cited = [by[i] for i in sorted(cited_supplier_ids) if i in by]
     out = []
-    unv = [s["name"] for s in cited if s["verification_status"] != "verified_public"]
+    unv = sorted(s["name"] for s in cited if s["verification_status"] != "verified_public")
     if unv:
         out.append(f"{len(unv)} of {len(cited)} cited supplier records are not verified from an official source: {', '.join(unv)}.")
-    syn = [s["name"] for s in cited if any(p["price_class"] == "SYNTHETIC_QUOTE" for p in s["products"])]
+    syn = sorted(s["name"] for s in cited if any(p["price_class"] == "SYNTHETIC_QUOTE" for p in s["products"]))
     if syn:
         out.append(f"Prices cited for {len(syn)} supplier(s) are synthetic quotations, not real prices.")
-    nop = [s["name"] for s in cited if s["products"] and all(p["price_class"] == "NONE_PUBLISHED" for p in s["products"])]
+    nop = sorted(s["name"] for s in cited if s["products"] and all(p["price_class"] == "NONE_PUBLISHED" for p in s["products"]))
     if nop:
         out.append(f"No published price exists for: {', '.join(nop)}; they cannot be ranked.")
-    stale = [s["name"] for s in cited if str(s.get("freshness", "")).startswith(("stale", "aging", "unverified"))]
+    stale = sorted(s["name"] for s in cited if str(s.get("freshness", "")).startswith(("stale", "aging", "unverified")))
     if stale:
         out.append(f"Data freshness is not 'fresh' for: {', '.join(stale)}.")
     if not cited:
