@@ -1,6 +1,6 @@
 {
  "schema": "growth-os-evidence/1",
- "commit": "702a9fe",
+ "commit": "53b8869",
  "synthetic": true,
  "pushed": false,
  "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
@@ -45,7 +45,8 @@
   "project_suppliers",
   "financial_scenarios",
   "procurement_recommendations",
-  "launch_events"
+  "launch_events",
+  "supplier_sources"
  ],
  "stage_matrix": [
   {
@@ -430,7 +431,7 @@
  "workflow": {
   "name": "governed_lead_qualification",
   "happy_path": {
-   "corr_id": "wf-34d22feedc6c",
+   "corr_id": "wf-59338b933abb",
    "tenant": "tenant-nasha",
    "before": {
     "status": "new",
@@ -438,7 +439,7 @@
    },
    "held": {
     "status": "AWAITING_APPROVAL",
-    "approval_id": "ap_e9e87054",
+    "approval_id": "ap_b28e6dd3",
     "recommendation_status": "qualified",
     "score": 95,
     "lead_status_while_held": "new",
@@ -474,18 +475,18 @@
    "trace": [
     {
      "seq": 1,
-     "ts": "2026-10-23T18:07:21.205658+00:00",
+     "ts": "2026-10-23T20:43:03.462124+00:00",
      "kind": "stage",
      "name": "request_received",
      "stage": "G01",
      "tenant": "tenant-nasha",
-     "lead_id": "lead-24635bb46f",
+     "lead_id": "lead-a8f6e9fd33",
      "request_id": "req-export-1",
      "idempotency_key": true
     },
     {
      "seq": 2,
-     "ts": "2026-10-23T18:07:21.208212+00:00",
+     "ts": "2026-10-23T20:43:03.465371+00:00",
      "kind": "auth",
      "role": "SALES",
      "user": "sam",
@@ -494,20 +495,20 @@
     },
     {
      "seq": 3,
-     "ts": "2026-10-23T18:07:21.215567+00:00",
+     "ts": "2026-10-23T20:43:03.473373+00:00",
      "kind": "tool_call",
-     "ms": 4.1,
+     "ms": 3.89,
      "ok": true,
      "tool": "growth__get_lead_context",
      "codes": [],
      "stage": "G03",
-     "call_hash": "e61fd4deba9ed46f",
+     "call_hash": "42db6349af98aff2",
      "forwarded": true,
      "approval_id": null
     },
     {
      "seq": 4,
-     "ts": "2026-10-23T18:07:21.217445+00:00",
+     "ts": "2026-10-23T20:43:03.475226+00:00",
      "kind": "stage",
      "name": "evidence_collected",
      "stage": "G03",
@@ -521,7 +522,7 @@
     },
     {
      "seq": 5,
-     "ts": "2026-10-23T18:07:21.218929+00:00",
+     "ts": "2026-10-23T20:43:03.476639+00:00",
      "kind": "stage",
      "name": "source_and_consent_validated",
      "stage": "G04",
@@ -530,7 +531,7 @@
     },
     {
      "seq": 6,
-     "ts": "2026-10-23T18:07:21.223055+00:00",
+     "ts": "2026-10-23T20:43:03.480216+00:00",
      "kind": "stage",
      "name": "recommendation",
      "score": 95,
@@ -587,31 +588,31 @@
     },
     {
      "seq": 7,
-     "ts": "2026-10-23T18:07:21.226234+00:00",
+     "ts": "2026-10-23T20:43:03.483478+00:00",
      "kind": "stage",
      "name": "proposal",
      "stage": "G06",
-     "proposal_hash": "860609cc7af5d560"
+     "proposal_hash": "148874311f4f463a"
     },
     {
      "seq": 8,
-     "ts": "2026-10-23T18:07:21.229344+00:00",
+     "ts": "2026-10-23T20:43:03.486041+00:00",
      "kind": "tool_call",
-     "ms": 1.34,
+     "ms": 1.25,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G07",
      "failure": null,
-     "call_hash": "e81533f01a281625",
+     "call_hash": "f099930f364359a8",
      "forwarded": false,
-     "approval_id": "ap_e9e87054",
+     "approval_id": "ap_b28e6dd3",
      "held_for_approval": true
     },
     {
      "seq": 9,
-     "ts": "2026-10-23T18:07:21.231572+00:00",
+     "ts": "2026-10-23T20:43:03.489757+00:00",
      "kind": "stage",
      "name": "held_for_approval",
      "codes": [
@@ -619,11 +620,11 @@
      ],
      "stage": "G07",
      "ttl_s": 900,
-     "approval_id": "ap_e9e87054"
+     "approval_id": "ap_b28e6dd3"
     },
     {
      "seq": 10,
-     "ts": "2026-10-23T18:07:21.245677+00:00",
+     "ts": "2026-10-23T20:43:03.501243+00:00",
      "kind": "approval_decision",
      "code": "ROLE_NOT_PERMITTED",
      "role": "SALES",
@@ -632,39 +633,39 @@
     },
     {
      "seq": 11,
-     "ts": "2026-10-23T18:07:21.247296+00:00",
+     "ts": "2026-10-23T20:43:03.502599+00:00",
      "kind": "failure",
      "detail": "SALES may not approve",
      "failure_class": "ROLE_DENIED"
     },
     {
      "seq": 12,
-     "ts": "2026-10-23T18:07:21.251268+00:00",
+     "ts": "2026-10-23T20:43:03.506191+00:00",
      "kind": "approval_decision",
      "by": "ada",
      "role": "OWNER",
      "comment": "evidence reviewed",
      "decision": "approve",
-     "approval_id": "ap_e9e87054"
+     "approval_id": "ap_b28e6dd3"
     },
     {
      "seq": 13,
-     "ts": "2026-10-23T18:07:21.264040+00:00",
+     "ts": "2026-10-23T20:43:03.516614+00:00",
      "kind": "tool_call",
-     "ms": 9.35,
+     "ms": 7.52,
      "ok": true,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G09",
-     "call_hash": "e81533f01a281625",
+     "call_hash": "f099930f364359a8",
      "forwarded": true,
-     "approval_id": "ap_e9e87054"
+     "approval_id": "ap_b28e6dd3"
     },
     {
      "seq": 14,
-     "ts": "2026-10-23T18:07:21.266200+00:00",
+     "ts": "2026-10-23T20:43:03.518237+00:00",
      "kind": "stage",
      "name": "crm_updated",
      "stage": "G09",
@@ -672,7 +673,7 @@
     },
     {
      "seq": 15,
-     "ts": "2026-10-23T18:07:21.267419+00:00",
+     "ts": "2026-10-23T20:43:03.519097+00:00",
      "kind": "stage",
      "name": "no_external_contact",
      "stage": "G10",
@@ -681,7 +682,7 @@
     },
     {
      "seq": 16,
-     "ts": "2026-10-23T18:07:21.269922+00:00",
+     "ts": "2026-10-23T20:43:03.521087+00:00",
      "kind": "approval_decision",
      "code": "APPROVAL_REPLAY",
      "state": "EXECUTED",
@@ -806,12 +807,48 @@
     "concept": "An independent, premium hospitality venue built around a courtyard: shared plates, house-brewed beer and a calm, craft-led atmosphere. A proposed concept used as the flagship launch case study.",
     "budget_cents": 60000000,
     "launch_target": "2027-09-01",
-    "stage": "sourcing",
+    "stage": "financial_plan",
     "basis": "synthetic",
     "assumptions": [
      {
       "label": "Average discount",
       "value": 2.0,
+      "unit": "%",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Build-out and construction",
+      "value": 22000000.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Kitchen, brewing and service equipment",
+      "value": 14000000.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Furniture and fixtures",
+      "value": 4000000.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Other capital items",
+      "value": 0.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Technology and point of sale",
+      "value": 2000000.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Contingency on the start-up subtotal",
+      "value": 10.0,
       "unit": "%",
       "basis": "synthetic_assumption"
      },
@@ -846,9 +883,51 @@
       "basis": "synthetic_assumption"
      },
      {
+      "label": "Opening inventory: weeks of ingredient cost",
+      "value": 2.0,
+      "unit": "weeks",
+      "basis": "synthetic_assumption"
+     },
+     {
       "label": "Other fixed costs",
       "value": 450000.0,
       "unit": "cents/month",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Deposits",
+      "value": 3200000.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Launch marketing",
+      "value": 1500000.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Licences and permits",
+      "value": 600000.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Other pre-opening costs",
+      "value": 0.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Professional fees",
+      "value": 1200000.0,
+      "unit": "cents",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Pre-opening training and payroll",
+      "value": 1800000.0,
+      "unit": "cents",
       "basis": "synthetic_assumption"
      },
      {
@@ -864,8 +943,8 @@
       "basis": "synthetic_assumption"
      },
      {
-      "label": "Start-up capital expenditure",
-      "value": 42000000.0,
+      "label": "Capital expenditure (lump sum)",
+      "value": 0.0,
       "unit": "cents",
       "basis": "synthetic_assumption"
      },
@@ -885,6 +964,12 @@
       "label": "Guest orders per week",
       "value": 650.0,
       "unit": "orders",
+      "basis": "synthetic_assumption"
+     },
+     {
+      "label": "Working capital: months of fixed costs held in reserve",
+      "value": 2.0,
+      "unit": "months",
       "basis": "synthetic_assumption"
      }
     ],
@@ -924,6 +1009,12 @@
       "phase": "roadmap",
       "due": "2027-05-31",
       "status": "todo"
+     },
+     {
+      "title": "Procurement recommendation approved (4 weeks)",
+      "phase": "sourcing",
+      "due": null,
+      "status": "done"
      }
     ]
    },
@@ -972,6 +1063,15 @@
      "retrieved_on": "2026-10-23",
      "confidence": 0.3,
      "limitation": "Absence in search results is weak evidence, not proof that none exists."
+    },
+    {
+     "topic": "Supplier verification",
+     "finding": "A public search on 2026-10-23 found directory listings, press and investor pages for Farm to Table LLC, Hill Country Dairies and Brothers Produce, but no confirmed official website for any of them. All three stay unverified leads.",
+     "source_kind": "search_result",
+     "source_url": "https://www.producemarketguide.com/company/549852/farm-to-table-llc",
+     "retrieved_on": "2026-10-23",
+     "confidence": 0.6,
+     "limitation": "Only search-result snippets were seen; the pages could not be opened here. An official website, public contact channel and published prices would need a person to confirm them."
     }
    ],
    "suppliers": [
@@ -2691,11 +2791,6 @@
    "total_cost_cents": 2165313,
    "suppliers": [
     {
-     "supplier": "Synthetic Broadline Distributor A (broadline)",
-     "cost_cents": 699082,
-     "items": 22
-    },
-    {
      "supplier": "Synthetic Supplier 05 (dry goods)",
      "cost_cents": 264884,
      "items": 14
@@ -2714,6 +2809,11 @@
      "supplier": "Synthetic Supplier 03 (produce)",
      "cost_cents": 97283,
      "items": 7
+    },
+    {
+     "supplier": "Synthetic Broadline Distributor A (broadline)",
+     "cost_cents": 699082,
+     "items": 22
     }
    ],
    "flags": [
@@ -2724,17 +2824,17 @@
   "trace": [
    {
     "seq": 1,
-    "ts": "2026-10-23T18:07:24.542455+00:00",
+    "ts": "2026-10-23T20:43:06.759042+00:00",
     "kind": "stage",
     "name": "request_received",
     "stage": "P01",
-    "project_id": "proj-7f4cd60920",
+    "project_id": "proj-6a6bf916da",
     "request_id": "req-export-proc",
     "period_weeks": 4
    },
    {
     "seq": 2,
-    "ts": "2026-10-23T18:07:24.545291+00:00",
+    "ts": "2026-10-23T20:43:06.762484+00:00",
     "kind": "auth",
     "role": "ANALYST",
     "user": "ana",
@@ -2743,20 +2843,20 @@
    },
    {
     "seq": 3,
-    "ts": "2026-10-23T18:07:24.658972+00:00",
+    "ts": "2026-10-23T20:43:06.852189+00:00",
     "kind": "tool_call",
-    "ms": 108.84,
+    "ms": 85.52,
     "ok": true,
     "tool": "launch__get_supplier_data",
     "codes": [],
     "stage": "P03",
-    "call_hash": "1d6da21cafb34f90",
+    "call_hash": "00dc8e1f7f53f28e",
     "forwarded": true,
     "approval_id": null
    },
    {
     "seq": 4,
-    "ts": "2026-10-23T18:07:24.661546+00:00",
+    "ts": "2026-10-23T20:43:06.854582+00:00",
     "kind": "stage",
     "name": "data_read",
     "stage": "P03",
@@ -2766,7 +2866,7 @@
    },
    {
     "seq": 5,
-    "ts": "2026-10-23T18:07:24.678816+00:00",
+    "ts": "2026-10-23T20:43:06.933493+00:00",
     "kind": "stage",
     "name": "demand_and_needs",
     "stage": "P04",
@@ -2775,15 +2875,24 @@
    },
    {
     "seq": 6,
-    "ts": "2026-10-23T18:07:25.586132+00:00",
+    "ts": "2026-10-23T20:43:07.768283+00:00",
     "kind": "stage",
     "mode": "engine_offline_heuristic",
     "name": "agent_research",
     "stage": "P05",
     "claims": 8,
-    "evidence": 11,
+    "boundary": {
+     "flags": [
+      "MODEL_OMITTED_LIMITATIONS"
+     ],
+     "status": "accepted",
+     "accepted": 8,
+     "rejected": [],
+     "report_codes": []
+    },
+    "evidence": 12,
     "provider": "offline",
-    "agent_run": "run_b261f307c560",
+    "agent_run": "run_5a06a049ac23",
     "independent_problems": [],
     "platform_verification": {
      "ok": true,
@@ -2792,7 +2901,7 @@
    },
    {
     "seq": 7,
-    "ts": "2026-10-23T18:07:25.589408+00:00",
+    "ts": "2026-10-23T20:43:07.773548+00:00",
     "kind": "stage",
     "name": "recommendation",
     "flags": [
@@ -2805,7 +2914,7 @@
    },
    {
     "seq": 8,
-    "ts": "2026-10-23T18:07:25.590466+00:00",
+    "ts": "2026-10-23T20:43:07.776280+00:00",
     "kind": "stage",
     "name": "independent_check",
     "stage": "P06",
@@ -2813,31 +2922,31 @@
    },
    {
     "seq": 9,
-    "ts": "2026-10-23T18:07:25.601038+00:00",
+    "ts": "2026-10-23T20:43:07.786168+00:00",
     "kind": "stage",
     "name": "proposal",
     "stage": "P07",
-    "proposal_hash": "b6b5eb9288a121d5"
+    "proposal_hash": "c07a9a73e5334c46"
    },
    {
     "seq": 10,
-    "ts": "2026-10-23T18:07:25.605662+00:00",
+    "ts": "2026-10-23T20:43:07.792217+00:00",
     "kind": "tool_call",
-    "ms": 1.37,
+    "ms": 1.9,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P08",
     "failure": null,
-    "call_hash": "61e283aadb7d01f6",
+    "call_hash": "2a245b0f7aa9008b",
     "forwarded": false,
-    "approval_id": "ap_67be91d2",
+    "approval_id": "ap_5a6c7d91",
     "held_for_approval": true
    },
    {
     "seq": 11,
-    "ts": "2026-10-23T18:07:25.609930+00:00",
+    "ts": "2026-10-23T20:43:07.796594+00:00",
     "kind": "stage",
     "name": "held_for_approval",
     "codes": [
@@ -2845,11 +2954,11 @@
     ],
     "stage": "P08",
     "ttl_s": 900,
-    "approval_id": "ap_67be91d2"
+    "approval_id": "ap_5a6c7d91"
    },
    {
     "seq": 12,
-    "ts": "2026-10-23T18:07:25.621833+00:00",
+    "ts": "2026-10-23T20:43:07.807101+00:00",
     "kind": "approval_decision",
     "code": "ROLE_NOT_PERMITTED",
     "role": "ANALYST",
@@ -2858,46 +2967,46 @@
    },
    {
     "seq": 13,
-    "ts": "2026-10-23T18:07:25.623487+00:00",
+    "ts": "2026-10-23T20:43:07.812323+00:00",
     "kind": "failure",
     "detail": "ANALYST may not approve",
     "failure_class": "ROLE_DENIED"
    },
    {
     "seq": 14,
-    "ts": "2026-10-23T18:07:25.838536+00:00",
+    "ts": "2026-10-23T20:43:08.067785+00:00",
     "kind": "approval_decision",
     "by": "ada",
     "role": "OWNER",
     "comment": "reviewed",
     "decision": "approve",
-    "approval_id": "ap_67be91d2"
+    "approval_id": "ap_5a6c7d91"
    },
    {
     "seq": 15,
-    "ts": "2026-10-23T18:07:25.872531+00:00",
+    "ts": "2026-10-23T20:43:08.131174+00:00",
     "kind": "tool_call",
-    "ms": 24.33,
+    "ms": 46.07,
     "ok": true,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P09",
-    "call_hash": "61e283aadb7d01f6",
+    "call_hash": "2a245b0f7aa9008b",
     "forwarded": true,
-    "approval_id": "ap_67be91d2"
+    "approval_id": "ap_5a6c7d91"
    },
    {
     "seq": 16,
-    "ts": "2026-10-23T18:07:25.873767+00:00",
+    "ts": "2026-10-23T20:43:08.132603+00:00",
     "kind": "stage",
     "name": "recommendation_recorded",
     "stage": "P09"
    },
    {
     "seq": 17,
-    "ts": "2026-10-23T18:07:25.874847+00:00",
+    "ts": "2026-10-23T20:43:08.133536+00:00",
     "kind": "stage",
     "name": "no_order_no_contact",
     "stage": "P10",
@@ -2906,7 +3015,7 @@
    },
    {
     "seq": 18,
-    "ts": "2026-10-23T18:07:25.879275+00:00",
+    "ts": "2026-10-23T20:43:08.138116+00:00",
     "kind": "approval_decision",
     "code": "APPROVAL_REPLAY",
     "state": "EXECUTED",
@@ -2997,7 +3106,7 @@
      "profit_vs_base_cents": -408510
     }
    ],
-   "inputs_hash": "47979d81ec349712be3ba1ed666ba4b51f1537e60ada6fe30ed3eb05a1ef052e",
+   "inputs_hash": "6d488b3f8edaa2b6fac592bbc518d8398445c5287813fece1cfdeb6d23377cd1",
    "defaulted_assumptions": []
   },
   "suppliers": {
@@ -3051,7 +3160,7 @@
   ],
   "mutants": [
    {
-    "mutant": "agent claim verification removed",
+    "mutant": "agent claim verification removed (number check and model-output boundary)",
     "probe": "p_claim_verification",
     "killed": true
    },
@@ -3091,6 +3200,832 @@
     "killed": true
    }
   ]
+ },
+ "m4": {
+  "runtime": {
+   "local_runtime_checked": "Ollama at localhost:11434",
+   "local_runtime_reachable": false,
+   "paid_provider_permitted": false,
+   "paid_provider_rule": "provider 'openai' is a paid hosted service; it needs explicit approval (NASHA_ALLOW_PAID_MODEL=1) and none was given",
+   "model_backed_run_recorded": false,
+   "providers_selectable": [
+    "offline (heuristic, not a language model)",
+    "ollama (local)",
+    "openai-compatible (paid; needs approval)",
+    "anthropic (paid; needs approval)"
+   ],
+   "live_test": "tests/test_growth_model_live.py is skipped here and reported as unverified by the release gate",
+   "what_would_change_this": "serve a local model with Ollama and run: NASHA_LIVE_MODEL_PROVIDER=ollama python -m pytest tests/test_growth_model_live.py; the output still crosses the same boundary and cannot change the recommendation"
+  },
+  "boundary": {
+   "metrics": {
+    "cases": 28,
+    "status_correct": 28,
+    "exact": 28,
+    "false_accepts": 0,
+    "false_rejects": 0,
+    "abstentions_correct": 1
+   },
+   "failures": [],
+   "rules": [
+    "grounding",
+    "instruction",
+    "numbers",
+    "prices",
+    "recommendation",
+    "shape",
+    "source",
+    "supplier_names",
+    "tools",
+    "verification"
+   ],
+   "cases": [
+    {
+     "name": "grounded price claim",
+     "expected": "accepted",
+     "got": "accepted",
+     "codes": [],
+     "ok": true
+    },
+    {
+     "name": "grounded no-price claim",
+     "expected": "accepted",
+     "got": "accepted",
+     "codes": [],
+     "ok": true
+    },
+    {
+     "name": "grounded synthetic claim",
+     "expected": "accepted",
+     "got": "accepted",
+     "codes": [],
+     "ok": true
+    },
+    {
+     "name": "fabricated price",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "PRICE_MISMATCH",
+      "UNSUPPORTED_NUMBER"
+     ],
+     "ok": true
+    },
+    {
+     "name": "a real price from a different supplier's record",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "UNSUPPORTED_NUMBER"
+     ],
+     "ok": true
+    },
+    {
+     "name": "invented evidence id",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "UNKNOWN_EVIDENCE",
+      "WRONG_SOURCE"
+     ],
+     "ok": true
+    },
+    {
+     "name": "claim without any evidence",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "NO_EVIDENCE"
+     ],
+     "ok": true
+    },
+    {
+     "name": "a supplier that is not in the directory",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "UNKNOWN_SUPPLIER"
+     ],
+     "ok": true
+    },
+    {
+     "name": "an unverified lead called verified",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "UNSUPPORTED_VERIFICATION"
+     ],
+     "ok": true
+    },
+    {
+     "name": "a verified supplier called verified",
+     "expected": "accepted",
+     "got": "accepted",
+     "codes": [],
+     "ok": true
+    },
+    {
+     "name": "the model recommends a supplier",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "UNSUPPORTED_RECOMMENDATION"
+     ],
+     "ok": true
+    },
+    {
+     "name": "an injected instruction inside a claim",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "INSTRUCTION_TEXT"
+     ],
+     "ok": true
+    },
+    {
+     "name": "an injected instruction inside the answer",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "INSTRUCTION_TEXT"
+     ],
+     "ok": true
+    },
+    {
+     "name": "a tool outside the read-only allowlist",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "TOOL_NOT_ALLOWED"
+     ],
+     "ok": true
+    },
+    {
+     "name": "an allowed tool",
+     "expected": "accepted",
+     "got": "accepted",
+     "codes": [],
+     "ok": true
+    },
+    {
+     "name": "the report is not an object",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "MALFORMED"
+     ],
+     "ok": true
+    },
+    {
+     "name": "claims is not a list",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "MALFORMED"
+     ],
+     "ok": true
+    },
+    {
+     "name": "evidence_ids is not a list",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "MALFORMED"
+     ],
+     "ok": true
+    },
+    {
+     "name": "an oversized claim",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "MALFORMED"
+     ],
+     "ok": true
+    },
+    {
+     "name": "an honest abstention",
+     "expected": "abstained",
+     "got": "abstained",
+     "codes": [],
+     "ok": true
+    },
+    {
+     "name": "a price cited from the wrong supplier's record",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "WRONG_SOURCE"
+     ],
+     "ok": true
+    },
+    {
+     "name": "too many claims",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "MALFORMED"
+     ],
+     "ok": true
+    },
+    {
+     "name": "a count the evidence does not state",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "UNSUPPORTED_NUMBER"
+     ],
+     "ok": true
+    },
+    {
+     "name": "the same price written 4.5",
+     "expected": "accepted",
+     "got": "accepted",
+     "codes": [],
+     "ok": true
+    },
+    {
+     "name": "two good claims and one bad",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "PRICE_MISMATCH",
+      "UNSUPPORTED_NUMBER"
+     ],
+     "ok": true
+    },
+    {
+     "name": "a stored minimum order amount quoted correctly",
+     "expected": "accepted",
+     "got": "accepted",
+     "codes": [],
+     "ok": true
+    },
+    {
+     "name": "a minimum order amount that is not stored",
+     "expected": "rejected",
+     "got": "rejected",
+     "codes": [
+      "PRICE_MISMATCH",
+      "UNSUPPORTED_NUMBER"
+     ],
+     "ok": true
+    },
+    {
+     "name": "a grounded report with no limitations is accepted but flagged",
+     "expected": "accepted",
+     "got": "accepted",
+     "codes": [],
+     "ok": true
+    }
+   ],
+   "mutants": [
+    {
+     "name": "no_shape_rule",
+     "removes": "structured-output shape and size limits",
+     "killed": true
+    },
+    {
+     "name": "no_tools_rule",
+     "removes": "tool-call allowlist",
+     "killed": true
+    },
+    {
+     "name": "no_instruction_rule",
+     "removes": "instruction-like text is refused",
+     "killed": true
+    },
+    {
+     "name": "no_grounding_rule",
+     "removes": "every claim must cite existing evidence",
+     "killed": true
+    },
+    {
+     "name": "no_numbers_rule",
+     "removes": "every number must appear in the cited passage",
+     "killed": true
+    },
+    {
+     "name": "no_prices_rule",
+     "removes": "every dollar amount must equal a stored price",
+     "killed": true
+    },
+    {
+     "name": "no_source_rule",
+     "removes": "a named supplier must be cited from its own record",
+     "killed": true
+    },
+    {
+     "name": "no_supplier_names_rule",
+     "removes": "a supplier not in the directory is refused",
+     "killed": true
+    },
+    {
+     "name": "no_verification_rule",
+     "removes": "'verified' only for verified records",
+     "killed": true
+    },
+    {
+     "name": "no_recommendation_rule",
+     "removes": "the model may not recommend",
+     "killed": true
+    }
+   ],
+   "note": "Scripted outputs, not produced by a language model. They show what the boundary does with any output of these shapes, not how a model behaves."
+  },
+  "supplier": {
+   "metrics": {
+    "dedupe": {
+     "cases": 22,
+     "true_positive": 11,
+     "false_positive": 0,
+     "false_negative": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    "classification": {
+     "cases": 16,
+     "correct": 16,
+     "accuracy": 1.0
+    },
+    "service_area": {
+     "cases": 14,
+     "correct": 14,
+     "accuracy": 1.0
+    },
+    "quote_provenance": {
+     "checks": 5,
+     "passed": 5,
+     "failed": []
+    }
+   },
+   "mutants": [
+    {
+     "name": "no_domain_match",
+     "removes": "same official domain is treated as the same business",
+     "killed": true
+    },
+    {
+     "name": "no_plural_and_typo_handling",
+     "removes": "'Farm' / 'Farms' and 'Sunrise' / 'Sunrize' are the same word (plural handling and typo tolerance overlap, so they are removed together; either alone is covered by the other)",
+     "killed": true
+    },
+    {
+     "name": "no_typo_tolerance",
+     "removes": "near-identical words (typos) still match",
+     "killed": true
+    },
+    {
+     "name": "no_generic_word_guard",
+     "removes": "sharing only generic words is not evidence of identity",
+     "killed": true
+    },
+    {
+     "name": "threshold_too_low",
+     "removes": "the duplicate threshold",
+     "killed": true
+    },
+    {
+     "name": "no_legal_suffix_removal",
+     "removes": "'LLC', 'Inc' and similar are ignored in names",
+     "killed": true
+    },
+    {
+     "name": "classification_ignores_category",
+     "removes": "the stated category is the strongest classification signal",
+     "killed": true
+    },
+    {
+     "name": "area_ignores_project_location",
+     "removes": "a service area must name the project's own metro",
+     "killed": true
+    },
+    {
+     "name": "synthetic_area_treated_as_real",
+     "removes": "synthetic fixtures have no real service area",
+     "killed": true
+    },
+    {
+     "name": "quotes_ranked_across_categories",
+     "removes": "price categories are never ranked against each other",
+     "killed": true
+    },
+    {
+     "name": "expired_quotes_compared",
+     "removes": "expired quotes are excluded from comparison",
+     "killed": true
+    }
+   ],
+   "note": "Labelled by the author before the rules were run; the dedupe set was extended after a first run exposed two false positives (see docs/growth-os). Small sets: they test the stated rules, not the real supplier market."
+  },
+  "finance": {
+   "cases": [
+    {
+     "name": "base with startup costs",
+     "fields": 12,
+     "ok": true
+    },
+    {
+     "name": "fees, labour and a funding gap",
+     "fields": 9,
+     "ok": true
+    },
+    {
+     "name": "a price rise with elasticity -1",
+     "fields": 6,
+     "ok": true
+    },
+    {
+     "name": "a 10 percent discount",
+     "fields": 4,
+     "ok": true
+    },
+    {
+     "name": "ingredient costs up 30 percent",
+     "fields": 4,
+     "ok": true
+    }
+   ],
+   "invariants": {
+    "total = subtotal + contingency": true,
+    "headroom = budget - total": true,
+    "subtotal = capital + pre-opening + working capital": true,
+    "same inputs give the same results and hash": true
+   },
+   "mutants": [
+    {
+     "name": "contingency_on_capex_only",
+     "removes": "contingency applies to the whole start-up subtotal",
+     "killed": true
+    },
+    {
+     "name": "working_capital_ignores_months",
+     "removes": "working capital holds months of fixed costs",
+     "killed": true
+    },
+    {
+     "name": "inventory_uses_month_not_week",
+     "removes": "opening inventory is weeks of cost of goods",
+     "killed": true
+    },
+    {
+     "name": "headroom_sign_flipped",
+     "removes": "headroom is budget minus requirement",
+     "killed": true
+    },
+    {
+     "name": "preopening_dropped",
+     "removes": "pre-opening costs are part of the requirement",
+     "killed": true
+    },
+    {
+     "name": "elasticity_ignored",
+     "removes": "a price change moves demand by the stated elasticity",
+     "killed": true
+    },
+    {
+     "name": "discount_ignored",
+     "removes": "the average discount lowers the price received",
+     "killed": true
+    },
+    {
+     "name": "fixed_costs_ignored",
+     "removes": "fixed costs reduce operating profit and set break-even",
+     "killed": true
+    },
+    {
+     "name": "fees_ignored",
+     "removes": "payment and platform fees are variable costs",
+     "killed": true
+    }
+   ],
+   "note": "Expected numbers were worked by hand before the code was run against them."
+  },
+  "journey": {
+   "project": "Courtyard pilot kitchen (a pilot kitchen created for this walkthrough in the flagship tenant)",
+   "steps": [
+    {
+     "n": 1,
+     "label": "Create a business-launch project with a start-up budget",
+     "role": "OWNER",
+     "ok": true,
+     "result": "project created at stage 'idea'; an analyst's attempt to create one is refused (403)"
+    },
+    {
+     "n": 2,
+     "label": "Record market research with its limitation",
+     "role": "ANALYST",
+     "ok": true,
+     "result": "finding stored as a founder note with confidence 0.4 and a stated limitation"
+    },
+    {
+     "n": 3,
+     "label": "Build a supplier shortlist",
+     "role": "ANALYST",
+     "ok": true,
+     "result": "two synthetic fixtures and one unverified public-search lead shortlisted"
+    },
+    {
+     "n": 4,
+     "label": "Compare supplier information with explicit data categories",
+     "role": "ANALYST",
+     "ok": true,
+     "result": "70 ingredients compared inside one category (synthetic quotation); the lead has no published price and is never ranked; the duplicate guard refused 'Brothers Produce, Inc.' (409)"
+    },
+    {
+     "n": 5,
+     "label": "Update a financial assumption",
+     "role": "OWNER",
+     "ok": true,
+     "result": "build-out changed from $240,000 to $200,000 (a founder input)"
+    },
+    {
+     "n": 6,
+     "label": "Recalculate start-up costs from stored data",
+     "role": "ANALYST",
+     "ok": true,
+     "result": "requirement $440,000.00 -> $396,000.00; the difference is the cut plus its 10% contingency",
+     "requirement_before_cents": 44000000,
+     "requirement_after_cents": 39600000,
+     "budget_cents": 45000000,
+     "funding_gap_after_cents": 0,
+     "formulas": [
+      {
+       "name": "Monthly revenue",
+       "formula": "sum over products of (units per month x price after discount)",
+       "worked": "3,250.0 units per month in total -> $53,625.00"
+      },
+      {
+       "name": "Monthly variable cost",
+       "formula": "sum over products of units x (unit cost x (1 + inflation) x (1 + cost change) + payment and platform fee)",
+       "worked": "$9,427.17"
+      },
+      {
+       "name": "Contribution",
+       "formula": "revenue - variable cost",
+       "worked": "$53,625.00 - $9,427.17 = $44,197.83"
+      },
+      {
+       "name": "Operating profit per month",
+       "formula": "contribution - fixed costs",
+       "worked": "$44,197.83 - $35,000.00 = $9,197.83"
+      },
+      {
+       "name": "Break-even units per month",
+       "formula": "fixed costs / contribution per unit",
+       "worked": "$35,000.00 / $13.60 = 2,573.7"
+      },
+      {
+       "name": "Capital expenditure",
+       "formula": "sum of the capital items",
+       "worked": "$290,000.00"
+      },
+      {
+       "name": "Pre-opening costs",
+       "formula": "sum of the pre-opening items",
+       "worked": "$0.00"
+      },
+      {
+       "name": "Working capital",
+       "formula": "months of fixed costs x monthly fixed costs + weeks of opening inventory x weekly variable cost",
+       "worked": "2.0 x $35,000.00 + 0 weeks of inventory = $70,000.00"
+      },
+      {
+       "name": "Contingency",
+       "formula": "contingency % x (capital + pre-opening + working capital)",
+       "worked": "10.0% x $360,000.00 = $36,000.00"
+      },
+      {
+       "name": "Total start-up requirement",
+       "formula": "capital + pre-opening + working capital + contingency",
+       "worked": "$396,000.00"
+      },
+      {
+       "name": "Budget headroom",
+       "formula": "budget - total start-up requirement",
+       "worked": "$450,000.00 - $396,000.00 = $54,000.00"
+      }
+     ],
+     "breakeven_orders_per_week": 237.6,
+     "kind": "simulated"
+    },
+    {
+     "n": 7,
+     "label": "Generate a procurement recommendation",
+     "role": "ANALYST",
+     "ok": true,
+     "result": "planned spend $8,863.11 over 2 weeks at synthetic prices; research mode: Production AI Agent Platform engine, offline heuristic provider (deterministic; not a language model)",
+     "model_backed": false,
+     "boundary": "accepted",
+     "uncertainty": [
+      "5 of 5 cited supplier records are not verified from an official source: Synthetic Supplier 03 (produce), Synthetic Supplier 02 (specialty meats), Synthetic Supplier 04 (dairy), Synthetic Supplier 05 (dry goods), Synthetic Supplier 01 (poultry).",
+      "Prices cited for 5 supplier(s) are synthetic quotations, not real prices.",
+      "Nothing here has been confirmed with any supplier; a price applies only within its stated validity dates."
+     ],
+     "price_effect": 21904,
+     "agent_text_changes_numbers": false
+    },
+    {
+     "n": 8,
+     "label": "Hold the recommendation for a different person's approval",
+     "role": "THE WEIR",
+     "ok": true,
+     "result": "held; the project stage has not moved; the analyst who asked cannot approve (403)",
+     "requester_refused": 403
+    },
+    {
+     "n": 9,
+     "label": "Record the authorisation decision",
+     "role": "OWNER",
+     "ok": true,
+     "result": "approved once and recorded; a second approval is refused (409); nothing was ordered",
+     "side_effects": {
+      "orders_placed": 0,
+      "suppliers_contacted": 0,
+      "emails_sent": 0
+     }
+    },
+    {
+     "n": 10,
+     "label": "Update the project state in the same transaction",
+     "role": "system",
+     "ok": true,
+     "result": "stage is now 'roadmap'; one completed sourcing milestone was added",
+     "stage": "roadmap"
+    },
+    {
+     "n": 11,
+     "label": "Preserve an auditable execution history",
+     "role": "any role",
+     "ok": true,
+     "result": "16 recorded changes in order; the tenant's audit hash chain verifies",
+     "history_actions": [
+      "finding.add",
+      "procurement.record",
+      "project.assumption",
+      "project.create",
+      "scenario.save",
+      "supplier.shortlist"
+     ],
+     "history_entries": 16,
+     "chain_valid": true
+    },
+    {
+     "n": 12,
+     "label": "Keep the journey invisible to another tenant",
+     "role": "other tenant",
+     "ok": true,
+     "result": "another tenant's request for this project's history returns 404"
+    }
+   ],
+   "supplier_cards": [
+    {
+     "name": "Brothers Produce",
+     "information": "Unverified public-search lead",
+     "classification": "produce",
+     "area": null,
+     "sources": 3,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Farm to Table LLC",
+     "information": "Unverified public-search lead",
+     "classification": "dairy",
+     "area": null,
+     "sources": 3,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Hill Country Dairies",
+     "information": "Unverified public-search lead",
+     "classification": "dairy",
+     "area": null,
+     "sources": 2,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Synthetic Broadline Distributor A (broadline)",
+     "information": "Synthetic fixture",
+     "classification": "dry_goods_and_grocery",
+     "area": null,
+     "sources": 0,
+     "source_access": [],
+     "price_categories": {
+      "synthetic_quotation": 70
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Synthetic Broadline Distributor B (broadline)",
+     "information": "Synthetic fixture",
+     "classification": "dry_goods_and_grocery",
+     "area": null,
+     "sources": 0,
+     "source_access": [],
+     "price_categories": {
+      "synthetic_quotation": 70
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Synthetic Specialty Importer (specialty)",
+     "information": "Synthetic fixture",
+     "classification": "meat_and_seafood",
+     "area": null,
+     "sources": 0,
+     "source_access": [],
+     "price_categories": {
+      "synthetic_quotation": 2
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Synthetic Supplier 01 (poultry)",
+     "information": "Synthetic fixture",
+     "classification": "meat_and_seafood",
+     "area": null,
+     "sources": 0,
+     "source_access": [],
+     "price_categories": {
+      "synthetic_quotation": 2
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Synthetic Supplier 02 (specialty meats)",
+     "information": "Synthetic fixture",
+     "classification": "meat_and_seafood",
+     "area": null,
+     "sources": 0,
+     "source_access": [],
+     "price_categories": {
+      "synthetic_quotation": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Synthetic Supplier 03 (produce)",
+     "information": "Synthetic fixture",
+     "classification": "produce",
+     "area": null,
+     "sources": 0,
+     "source_access": [],
+     "price_categories": {
+      "synthetic_quotation": 21
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Synthetic Supplier 04 (dairy)",
+     "information": "Synthetic fixture",
+     "classification": "dairy",
+     "area": null,
+     "sources": 0,
+     "source_access": [],
+     "price_categories": {
+      "synthetic_quotation": 9
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Synthetic Supplier 05 (dry goods)",
+     "information": "Synthetic fixture",
+     "classification": "dry_goods_and_grocery",
+     "area": null,
+     "sources": 0,
+     "source_access": [],
+     "price_categories": {
+      "synthetic_quotation": 35
+     },
+     "official_website_verified": false
+    }
+   ],
+   "duplicate_guard": {
+    "attempt": "Brothers Produce, Inc.",
+    "http_status": 409,
+    "refused": true
+   },
+   "all_steps_ok": true,
+   "disclaimer": "Synthetic tenants and data. A recorded recommendation places no order and contacts no supplier; the figures are simulated projections on stated assumptions."
+  }
  },
  "incident": {
   "title": "Preventing Audit-Chain Corruption Under Concurrent Requests",
@@ -3272,14 +4207,16 @@
    "capability": "Find a profitable niche",
    "implementation": "Market opportunity and unit-economics analysis",
    "status": "DESIGNED",
-   "done": "Unit-economics primitives plus a stored-data financial model: gross and contribution margin, fixed costs, break-even, payback, price sensitivity and scenario comparison, shown in the Financial Plan.",
+   "done": "Unit-economics primitives plus a stored-data financial model: gross and contribution margin, fixed costs, break-even, payback, price sensitivity and scenario comparison, shown in the Financial Plan. Milestone 4 adds start-up cost categories, working capital, contingency, a break-even grid over price and cost changes, and formulas with the stored numbers substituted; every expected number was worked by hand before the code was run.",
    "missing": "No niche scoring model, no CAC/LTV model, no market-size claims; scenarios describe one project, they do not rank niches.",
    "code": [
     "lab/nasha_lab/growth/pricing.py",
     "lab/nasha_lab/growth/financials.py"
    ],
    "tests": [
-    "lab/tests/test_growth_financials.py::test_unit_economics_and_break_even_match_a_hand_calculation"
+    "lab/tests/test_growth_financials.py::test_unit_economics_and_break_even_match_a_hand_calculation",
+    "lab/tests/test_growth_financials_m4.py::test_every_hand_calculated_case_matches_to_the_cent",
+    "lab/tests/test_growth_financials_m4.py::test_break_even_grid_moves_the_right_way_and_shows_unreachable_cells_as_none"
    ]
   },
   {
@@ -3297,14 +4234,15 @@
    "capability": "Set my pricing",
    "implementation": "Pricing engine and scenario analysis",
    "status": "TESTED",
-   "done": "Margin, discount break-even, bundles, inflation, break-even units, assumption-labelled elasticity grid and revenue scenarios; NASHA costs from the existing recipe-costing module; versioned prices per tenant.",
+   "done": "Margin, discount break-even, bundles, inflation, break-even units, assumption-labelled elasticity grid and revenue scenarios; NASHA costs from the existing recipe-costing module; versioned prices per tenant. Milestone 4: a supplier price effect (cheapest valid quote against the next cheapest, labelled as an illustration when prices are synthetic).",
    "missing": "No UI; no measured willingness to pay (elasticity is an assumption).",
    "code": [
     "lab/nasha_lab/growth/pricing.py"
    ],
    "tests": [
     "lab/tests/test_growth_pricing_segments.py::test_discount_breakeven_uplift_actually_recovers_gross_profit",
-    "lab/tests/test_growth_pricing_segments.py::test_nasha_dish_economics_come_from_the_existing_costing_module_and_lamb_stays_below_target"
+    "lab/tests/test_growth_pricing_segments.py::test_nasha_dish_economics_come_from_the_existing_costing_module_and_lamb_stays_below_target",
+    "lab/tests/test_growth_financials_m4.py::test_supplier_price_effect_is_arithmetic_on_stored_quotes_and_never_a_real_saving_when_synthetic"
    ]
   },
   {
@@ -3559,8 +4497,8 @@
    "capability": "Automate repetitive tasks",
    "implementation": "Governed workflow orchestration",
    "status": "TESTED",
-   "done": "Two governed workflows run through THE WEIR with a human decision: lead qualification and, new, an agent-assisted procurement recommendation (research brief on the Production AI Agent Platform engine with read-only tools, independent claim verification, deterministic recommendation re-derived independently, deterministic fallback, audited recording). Both have API, interface, failure-path and mutation tests.",
-   "missing": "Two hard-coded workflows, not a generic workflow registry or scheduler; the agent provider is an offline heuristic (a real model provider has not been exercised); no triggers or reminders.",
+   "done": "Two governed workflows run through THE WEIR with a human decision: lead qualification and, new, an agent-assisted procurement recommendation (research brief on the Production AI Agent Platform engine with read-only tools, independent claim verification, deterministic recommendation re-derived independently, deterministic fallback, audited recording). Both have API, interface, failure-path and mutation tests. Milestone 4: every agent or model output crosses a strict boundary (structure, grounding, number and price checks, injection and overreach refusal, read-only tool allowlist, computed uncertainty, paid providers refused without approval) with a 28-output evaluation and one mutant per rule; the approval now advances the project in the same transaction; a 12-step journey test runs over HTTP across roles.",
+   "missing": "Two hard-coded workflows, not a generic workflow registry or scheduler; the agent provider is an offline heuristic (a real model provider has still not been exercised (no local runtime, no weights, hosted providers need approval); the live-model test is skipped and reported unverified); no triggers or reminders.",
    "code": [
     "lab/nasha_lab/growth/launch_workflow.py",
     "lab/nasha_lab/growth/agent_research.py",
@@ -3571,7 +4509,10 @@
     "lab/tests/test_growth_launch.py::test_end_to_end_with_the_real_engine_research_verification_weir_hold_human_approval_record_and_audit",
     "lab/tests/test_growth_launch.py::test_replay_modified_proposal_expiry_and_duplicates",
     "lab/tests/test_growth_launch_eval.py::test_each_mutant_is_detected_by_its_probe",
-    "lab/tests/test_governed_workflow.py::test_end_to_end_inventory_discrepancy_to_audited_draft_po_with_the_network_blocked"
+    "lab/tests/test_governed_workflow.py::test_end_to_end_inventory_discrepancy_to_audited_draft_po_with_the_network_blocked",
+    "lab/tests/test_growth_model_boundary.py::test_the_labelled_outputs_get_exactly_the_expected_verdicts_and_nothing_hostile_is_accepted",
+    "lab/tests/test_growth_journey.py::test_the_whole_journey_from_a_new_idea_to_an_approved_recommendation_and_an_auditable_history",
+    "lab/tests/test_growth_m4_security.py::test_two_people_approving_the_same_recommendation_at_once_record_it_exactly_once"
    ]
   }
  ],

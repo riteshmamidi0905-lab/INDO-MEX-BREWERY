@@ -569,4 +569,15 @@ def create_growth_app(envs: dict, agent_dsn=None, agent_provider="offline", as_o
         def app_page():
             return FileResponse(ui / "index.html")
 
+    def _close_everything():
+        """Release workflow connections and agent pools when the server stops (they are created lazily per tenant). Runs in a worker thread: closing the agent needs its own event loop, and this hook runs inside the server's."""
+        import threading
+        def work():
+            for f in list(flows.values()) + list(launch_flows.values()) + list(svcs.values()):
+                try:
+                    f.close()
+                except Exception:  # noqa: BLE001 - shutting down: never let one failure leave the others open
+                    pass
+        t = threading.Thread(target=work); t.start(); t.join(30)
+    app.router.add_event_handler("shutdown", _close_everything)
     return app

@@ -49,14 +49,16 @@
    "capability": "Find a profitable niche",
    "implementation": "Market opportunity and unit-economics analysis",
    "status": "DESIGNED",
-   "done": "Unit-economics primitives plus a stored-data financial model: gross and contribution margin, fixed costs, break-even, payback, price sensitivity and scenario comparison, shown in the Financial Plan.",
+   "done": "Unit-economics primitives plus a stored-data financial model: gross and contribution margin, fixed costs, break-even, payback, price sensitivity and scenario comparison, shown in the Financial Plan. Milestone 4 adds start-up cost categories, working capital, contingency, a break-even grid over price and cost changes, and formulas with the stored numbers substituted; every expected number was worked by hand before the code was run.",
    "missing": "No niche scoring model, no CAC/LTV model, no market-size claims; scenarios describe one project, they do not rank niches.",
    "code": [
     "lab/nasha_lab/growth/pricing.py",
     "lab/nasha_lab/growth/financials.py"
    ],
    "tests": [
-    "lab/tests/test_growth_financials.py::test_unit_economics_and_break_even_match_a_hand_calculation"
+    "lab/tests/test_growth_financials.py::test_unit_economics_and_break_even_match_a_hand_calculation",
+    "lab/tests/test_growth_financials_m4.py::test_every_hand_calculated_case_matches_to_the_cent",
+    "lab/tests/test_growth_financials_m4.py::test_break_even_grid_moves_the_right_way_and_shows_unreachable_cells_as_none"
    ]
   },
   {
@@ -74,14 +76,15 @@
    "capability": "Set my pricing",
    "implementation": "Pricing engine and scenario analysis",
    "status": "TESTED",
-   "done": "Margin, discount break-even, bundles, inflation, break-even units, assumption-labelled elasticity grid and revenue scenarios; NASHA costs from the existing recipe-costing module; versioned prices per tenant.",
+   "done": "Margin, discount break-even, bundles, inflation, break-even units, assumption-labelled elasticity grid and revenue scenarios; NASHA costs from the existing recipe-costing module; versioned prices per tenant. Milestone 4: a supplier price effect (cheapest valid quote against the next cheapest, labelled as an illustration when prices are synthetic).",
    "missing": "No UI; no measured willingness to pay (elasticity is an assumption).",
    "code": [
     "lab/nasha_lab/growth/pricing.py"
    ],
    "tests": [
     "lab/tests/test_growth_pricing_segments.py::test_discount_breakeven_uplift_actually_recovers_gross_profit",
-    "lab/tests/test_growth_pricing_segments.py::test_nasha_dish_economics_come_from_the_existing_costing_module_and_lamb_stays_below_target"
+    "lab/tests/test_growth_pricing_segments.py::test_nasha_dish_economics_come_from_the_existing_costing_module_and_lamb_stays_below_target",
+    "lab/tests/test_growth_financials_m4.py::test_supplier_price_effect_is_arithmetic_on_stored_quotes_and_never_a_real_saving_when_synthetic"
    ]
   },
   {
@@ -336,8 +339,8 @@
    "capability": "Automate repetitive tasks",
    "implementation": "Governed workflow orchestration",
    "status": "TESTED",
-   "done": "Two governed workflows run through THE WEIR with a human decision: lead qualification and, new, an agent-assisted procurement recommendation (research brief on the Production AI Agent Platform engine with read-only tools, independent claim verification, deterministic recommendation re-derived independently, deterministic fallback, audited recording). Both have API, interface, failure-path and mutation tests.",
-   "missing": "Two hard-coded workflows, not a generic workflow registry or scheduler; the agent provider is an offline heuristic (a real model provider has not been exercised); no triggers or reminders.",
+   "done": "Two governed workflows run through THE WEIR with a human decision: lead qualification and, new, an agent-assisted procurement recommendation (research brief on the Production AI Agent Platform engine with read-only tools, independent claim verification, deterministic recommendation re-derived independently, deterministic fallback, audited recording). Both have API, interface, failure-path and mutation tests. Milestone 4: every agent or model output crosses a strict boundary (structure, grounding, number and price checks, injection and overreach refusal, read-only tool allowlist, computed uncertainty, paid providers refused without approval) with a 28-output evaluation and one mutant per rule; the approval now advances the project in the same transaction; a 12-step journey test runs over HTTP across roles.",
+   "missing": "Two hard-coded workflows, not a generic workflow registry or scheduler; the agent provider is an offline heuristic (a real model provider has still not been exercised (no local runtime, no weights, hosted providers need approval); the live-model test is skipped and reported unverified); no triggers or reminders.",
    "code": [
     "lab/nasha_lab/growth/launch_workflow.py",
     "lab/nasha_lab/growth/agent_research.py",
@@ -348,7 +351,10 @@
     "lab/tests/test_growth_launch.py::test_end_to_end_with_the_real_engine_research_verification_weir_hold_human_approval_record_and_audit",
     "lab/tests/test_growth_launch.py::test_replay_modified_proposal_expiry_and_duplicates",
     "lab/tests/test_growth_launch_eval.py::test_each_mutant_is_detected_by_its_probe",
-    "lab/tests/test_governed_workflow.py::test_end_to_end_inventory_discrepancy_to_audited_draft_po_with_the_network_blocked"
+    "lab/tests/test_governed_workflow.py::test_end_to_end_inventory_discrepancy_to_audited_draft_po_with_the_network_blocked",
+    "lab/tests/test_growth_model_boundary.py::test_the_labelled_outputs_get_exactly_the_expected_verdicts_and_nothing_hostile_is_accepted",
+    "lab/tests/test_growth_journey.py::test_the_whole_journey_from_a_new_idea_to_an_approved_recommendation_and_an_auditable_history",
+    "lab/tests/test_growth_m4_security.py::test_two_people_approving_the_same_recommendation_at_once_record_it_exactly_once"
    ]
   }
  ]
