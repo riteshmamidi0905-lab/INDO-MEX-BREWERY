@@ -10,7 +10,9 @@ APP_ROLE = "growth_app"
 TENANT_TABLES = ["tenants", "users", "segments", "accounts", "contacts", "suppression_list", "leads", "opportunities", "stage_transitions", "activities", "products", "prices", "offers", "campaigns", "content_items",
                  "audit_log", "entity_versions"]
 APPEND_ONLY = ["audit_log", "stage_transitions", "entity_versions"]
+WORKFLOW_TABLES = ["workflow_runs", "workflow_events"]          # created by migration 105 (which carries its own RLS and grants)
 VERSIONED = ["segments", "accounts", "contacts", "leads", "opportunities", "products", "prices", "offers", "campaigns", "content_items"]
+ALL_TENANT_TABLES = TENANT_TABLES + WORKFLOW_TABLES
 STAGES = ["new", "qualified", "proposal", "negotiation", "won", "lost"]
 STAGE_RULES = [("new", "qualified"), ("new", "lost"), ("qualified", "proposal"), ("qualified", "lost"), ("proposal", "negotiation"), ("proposal", "lost"), ("negotiation", "won"), ("negotiation", "lost"), ("negotiation", "proposal")]
 ROLES = ["OWNER", "SALES", "MARKETING", "ANALYST", "VIEWER"]
@@ -78,7 +80,26 @@ V004 = [  # indexes for the hot read paths (all lead with tenant_id, the RLS pre
     "CREATE INDEX ix_audit_entity ON audit_log (tenant_id, entity, entity_id)"]
 
 
+V005 = [  # D-90 Phase B: lead evidence, governed workflow state and its append-only trace (RLS, grants and indexes included: this migration is self-contained)
+    "ALTER TABLE leads ADD COLUMN signals jsonb, ADD COLUMN qualified_by_run text, ADD CONSTRAINT leads_source_synthetic CHECK (source LIKE 'synthetic%')",
+    f"CREATE TABLE workflow_runs (tenant_id text NOT NULL, id text NOT NULL, version integer NOT NULL DEFAULT 1, created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now(), "
+    "workflow text NOT NULL, requester text NOT NULL, role text NOT NULL, lead_id text NOT NULL, idem_key text, "
+    "state text NOT NULL CHECK (state IN ('STARTED','EVIDENCE_COLLECTED','PROPOSED','AWAITING_APPROVAL','APPROVED','EXECUTED','REJECTED','ABSTAINED','BLOCKED','FAILED')), "
+    "proposal jsonb, proposal_hash text, lead_version integer, approval_id text, failure text, result jsonb, PRIMARY KEY (tenant_id, id), UNIQUE (tenant_id, idem_key), FOREIGN KEY (tenant_id, lead_id) REFERENCES leads (tenant_id, id))",
+    "CREATE TABLE workflow_events (tenant_id text NOT NULL, run_id text NOT NULL, seq integer NOT NULL, ts timestamptz NOT NULL DEFAULT now(), kind text NOT NULL, detail jsonb NOT NULL DEFAULT '{}', "
+    "PRIMARY KEY (tenant_id, run_id, seq), FOREIGN KEY (tenant_id, run_id) REFERENCES workflow_runs (tenant_id, id))",
+    "ALTER TABLE workflow_runs ENABLE ROW LEVEL SECURITY", "ALTER TABLE workflow_runs FORCE ROW LEVEL SECURITY", "ALTER TABLE workflow_events ENABLE ROW LEVEL SECURITY", "ALTER TABLE workflow_events FORCE ROW LEVEL SECURITY",
+    "CREATE POLICY tenant_isolation ON workflow_runs USING (tenant_id = current_setting('app.tenant_id', true)) WITH CHECK (tenant_id = current_setting('app.tenant_id', true))",
+    "CREATE POLICY tenant_isolation ON workflow_events USING (tenant_id = current_setting('app.tenant_id', true)) WITH CHECK (tenant_id = current_setting('app.tenant_id', true))",
+    f"GRANT SELECT, INSERT, UPDATE ON workflow_runs TO {APP_ROLE}", f"GRANT SELECT, INSERT ON workflow_events TO {APP_ROLE}",
+    "CREATE FUNCTION workflow_run_guard() RETURNS trigger LANGUAGE plpgsql AS $f$ BEGIN IF OLD.state IN ('EXECUTED','REJECTED') THEN RAISE EXCEPTION 'finished workflow run cannot change' USING ERRCODE = 'check_violation'; END IF; "
+    "NEW.version := OLD.version + 1; NEW.updated_at := now(); RETURN NEW; END $f$",
+    "CREATE TRIGGER workflow_runs_guard BEFORE UPDATE ON workflow_runs FOR EACH ROW EXECUTE FUNCTION workflow_run_guard()",
+    "CREATE INDEX ix_wfruns_lead ON workflow_runs (tenant_id, lead_id)", "CREATE INDEX ix_wfruns_state ON workflow_runs (tenant_id, state)",
+]
+
+
 def migrations(schema):
     """version -> (apply sql list, preflight list) for pg_hardening.migrate(specs=...). Fresh-schema migrations: no data to pre-flight."""
     v3 = [s.replace("{schema}", schema) for s in V003]
-    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, [])}
+    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, [])}

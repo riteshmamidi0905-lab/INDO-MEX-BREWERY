@@ -122,9 +122,49 @@ class GrowthService:
             return email
         return self._write("suppression.add", "suppression_list", go)
 
-    def create_lead(self, contact_id, source):
+    def create_lead(self, contact_id, source, signals=None):
         i = self._id("lead")
-        return self._write("lead.create", "leads", lambda: self.con.execute("INSERT INTO leads (tenant_id,id,contact_id,source,created_by) VALUES (%s,%s,%s,%s,%s) RETURNING id", (self.tenant, i, contact_id, source, self.user)).fetchone()[0])
+        return self._write("lead.create", "leads", lambda: self.con.execute("INSERT INTO leads (tenant_id,id,contact_id,source,signals,created_by) VALUES (%s,%s,%s,%s,%s,%s) RETURNING id", (self.tenant, i, contact_id, source, Jsonb(signals) if signals is not None else None, self.user)).fetchone()[0])
+
+    def get_lead_context(self, lead_id):
+        """Everything the qualification workflow may look at for one lead, in this tenant only: the lead, its contact's consent and suppression status, and the recorded signals."""
+        self._authorize("read")
+        r = self.con.execute("SELECT l.id, l.status, l.score, l.source, l.signals, l.version, c.id, c.email, c.consent_status, EXISTS (SELECT 1 FROM suppression_list s WHERE s.tenant_id=c.tenant_id AND s.email=c.email), a.id, a.name "
+                             "FROM leads l JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id JOIN accounts a ON a.tenant_id=c.tenant_id AND a.id=c.account_id WHERE l.tenant_id=%s AND l.id=%s", (self.tenant, lead_id)).fetchone()
+        if not r:
+            return None
+        return dict(lead_id=r[0], status=r[1], score=r[2], source=r[3], signals=r[4], lead_version=r[5], contact_id=r[6], consent_status=r[8], suppressed=bool(r[9]), account_id=r[10], account_name=r[11])
+
+    def qualified_by(self, lead_id):
+        self._authorize("read")
+        r = self.con.execute("SELECT qualified_by_run FROM leads WHERE tenant_id=%s AND id=%s", (self.tenant, lead_id)).fetchone()
+        return r[0] if r else None
+
+    def apply_qualification(self, lead_id, status, score, expected_version, run_id, approval_id, approved_by):
+        """The CRM update a human approved: authorized as lead.qualify, optimistic on the lead version, idempotent per run, recorded in the append-only audit with the approval that allowed it."""
+        if status not in ("qualified", "disqualified"):
+            raise Blocked("qualification status must be qualified or disqualified")
+        def go():
+            cur = self.con.execute("SELECT status, version, qualified_by_run FROM leads WHERE tenant_id=%s AND id=%s FOR UPDATE", (self.tenant, lead_id)).fetchone()
+            if not cur:
+                raise Blocked("no such lead in this tenant")
+            if cur[2] == run_id:
+                return lead_id                                              # this run already applied it (idempotent)
+            if cur[1] != expected_version:
+                raise Blocked("lead changed since the proposal was made")
+            if cur[0] == "converted":
+                raise Blocked("lead already converted")
+            self.con.execute("UPDATE leads SET status=%s, score=%s, qualified_by_run=%s WHERE tenant_id=%s AND id=%s", (status, score, run_id, self.tenant, lead_id))
+            self._audit("lead.qualification_applied", "leads", lead_id, "allow", {"run": run_id, "approval": approval_id, "approved_by": approved_by, "status": status, "score": score})
+            return lead_id
+        self._authorize("lead.qualify", "leads", lead_id)
+        try:
+            with self.con.transaction():
+                go()
+        except Blocked as e:
+            self._audit("lead.qualification_applied", "leads", lead_id, "deny", {"why": str(e), "run": run_id})
+            raise
+        return lead_id
 
     def qualify_lead(self, lead_id, signals):
         """Rule-based lead score (documented in growth/scoring.py); a person reviews it. Sets qualified / disqualified."""

@@ -35,7 +35,7 @@ def db(dsn):
     with psycopg.connect(dsn, autocommit=True) as c:
         c.execute(f'DROP SCHEMA IF EXISTS "{SCHEMA}" CASCADE'); c.execute(f'CREATE SCHEMA "{SCHEMA}"')
     rep = H.migrate(dsn, SCHEMA, specs=S.migrations(SCHEMA))
-    assert [r["status"] for r in rep] == ["applied"] * 4
+    assert [r["status"] for r in rep] == ["applied"] * 5
     users = [("ada", "Ada (synthetic owner)", "OWNER"), ("sam", "Sam (synthetic sales)", "SALES"), ("mia", "Mia (synthetic marketing)", "MARKETING"), ("vic", "Vic (synthetic viewer)", "VIEWER"), ("ana", "Ana (synthetic analyst)", "ANALYST")]
     SV.provision(dsn, SCHEMA, "tenant-nasha", "NASHA (synthetic restaurant and brewery concept)", "restaurant", users)
     SV.provision(dsn, SCHEMA, "tenant-fit", "Meridian Fitness (synthetic studio)", "fitness", users)
@@ -55,7 +55,7 @@ def seed(s, tag):
 
 # ---------------------------------------------------------------- schema and migrations
 def test_migrations_are_idempotent_and_checksummed(db):
-    assert [r["status"] for r in H.migrate(db, SCHEMA, specs=S.migrations(SCHEMA))] == ["already_applied"] * 4
+    assert [r["status"] for r in H.migrate(db, SCHEMA, specs=S.migrations(SCHEMA))] == ["already_applied"] * 5
     edited = S.migrations(SCHEMA); edited["104"] = (edited["104"][0] + ["CREATE INDEX ix_x ON accounts (name)"], [])
     with pytest.raises(H.MigrationChanged):
         H.migrate(db, SCHEMA, specs=edited)
@@ -65,9 +65,9 @@ def test_every_business_table_has_rls_enabled_and_forced_and_a_composite_primary
     with psycopg.connect(db, autocommit=True) as c:
         c.execute(f'SET search_path TO "{SCHEMA}", pg_catalog, public')
         rls = {t: (e, f) for t, e, f in c.execute("SELECT relname, relrowsecurity, relforcerowsecurity FROM pg_class WHERE relnamespace = %s::regnamespace AND relkind='r'", (SCHEMA,))}
-        for t in S.TENANT_TABLES:
+        for t in S.ALL_TENANT_TABLES:
             assert rls[t] == (True, True), t
-        for t in S.TENANT_TABLES:
+        for t in S.ALL_TENANT_TABLES:
             if t in ("tenants",):
                 continue
             cols = [r[0] for r in c.execute("SELECT a.attname FROM pg_index i JOIN pg_attribute a ON a.attrelid=i.indrelid AND a.attnum = ANY(i.indkey) WHERE i.indrelid=%s::regclass AND i.indisprimary ORDER BY a.attnum", (t,))]
