@@ -35,10 +35,13 @@
    "n": 2,
    "capability": "Research competition",
    "implementation": "Competitor intelligence and evidence tracking",
-   "status": "NOT STARTED",
-   "done": "",
-   "missing": "Needs a researched-public vs synthetic-assumption evidence model with source timestamps; no competitor facts exist or may be invented.",
-   "code": [],
+   "status": "DESIGNED",
+   "done": "A research-findings store with source kind, URL, retrieval date, confidence and a mandatory limitation (search results are leads, not facts); three supplier leads and their source pages recorded with dates.",
+   "missing": "No competitor dataset, no competitor comparison and no automated research; findings are entered by people or seeded.",
+   "code": [
+    "lab/nasha_lab/growth/launch.py",
+    "lab/nasha_lab/growth/launch_seed.py"
+   ],
    "tests": []
   },
   {
@@ -46,12 +49,15 @@
    "capability": "Find a profitable niche",
    "implementation": "Market opportunity and unit-economics analysis",
    "status": "DESIGNED",
-   "done": "Unit-economics primitives exist in the pricing engine (margin, break-even, scenarios).",
-   "missing": "No niche scoring model, no CAC/LTV assumptions model, no market-size claims.",
+   "done": "Unit-economics primitives plus a stored-data financial model: gross and contribution margin, fixed costs, break-even, payback, price sensitivity and scenario comparison, shown in the Financial Plan.",
+   "missing": "No niche scoring model, no CAC/LTV model, no market-size claims; scenarios describe one project, they do not rank niches.",
    "code": [
-    "lab/nasha_lab/growth/pricing.py"
+    "lab/nasha_lab/growth/pricing.py",
+    "lab/nasha_lab/growth/financials.py"
    ],
-   "tests": []
+   "tests": [
+    "lab/tests/test_growth_financials.py::test_unit_economics_and_break_even_match_a_hand_calculation"
+   ]
   },
   {
    "n": 4,
@@ -82,14 +88,17 @@
    "n": 6,
    "capability": "Create my offers",
    "implementation": "Offer and promotion management",
-   "status": "IMPLEMENTED",
-   "done": "Offer table (discount 0-100, date range, draft/approved/expired) and create_offer service method.",
-   "missing": "No dedicated test, no approval flow, no redemption tracking.",
+   "status": "TESTED",
+   "done": "Offer table with its economics computed from stored prices and unit costs through the pricing engine (margin before and after, volume uplift needed to hold profit), shown on the Offers and campaigns screen; campaign drafts linked to an offer and audience.",
+   "missing": "Offers are seeded drafts: no create/edit screen, no approval flow, no redemption tracking, nothing is published.",
    "code": [
-    "lab/nasha_lab/growth/service.py",
-    "lab/nasha_lab/growth/schema.py"
+    "lab/nasha_lab/growth/launch.py",
+    "lab/nasha_lab/growth/api_launch.py",
+    "lab/nasha_lab/growth/ui/launch.js"
    ],
-   "tests": []
+   "tests": [
+    "lab/tests/test_growth_launch_api.py::test_offer_economics_equal_the_pricing_engine_over_stored_prices_and_costs_and_nothing_is_published"
+   ]
   },
   {
    "n": 7,
@@ -326,13 +335,19 @@
    "n": 25,
    "capability": "Automate repetitive tasks",
    "implementation": "Governed workflow orchestration",
-   "status": "DESIGNED",
-   "done": "The governed procurement workflow (state machine, THE WEIR approval, idempotency, recovery) is the reusable pattern; the Production AI Agent Platform provides a tool/risk abstraction.",
-   "missing": "No generic workflow registry yet; no Growth OS workflow runs through THE WEIR yet.",
+   "status": "TESTED",
+   "done": "Two governed workflows run through THE WEIR with a human decision: lead qualification and, new, an agent-assisted procurement recommendation (research brief on the Production AI Agent Platform engine with read-only tools, independent claim verification, deterministic recommendation re-derived independently, deterministic fallback, audited recording). Both have API, interface, failure-path and mutation tests.",
+   "missing": "Two hard-coded workflows, not a generic workflow registry or scheduler; the agent provider is an offline heuristic (a real model provider has not been exercised); no triggers or reminders.",
    "code": [
-    "lab/nasha_lab/governed/workflow.py"
+    "lab/nasha_lab/growth/launch_workflow.py",
+    "lab/nasha_lab/growth/agent_research.py",
+    "lab/nasha_lab/growth/weir_launch.py",
+    "lab/nasha_lab/growth/procurement.py"
    ],
    "tests": [
+    "lab/tests/test_growth_launch.py::test_end_to_end_with_the_real_engine_research_verification_weir_hold_human_approval_record_and_audit",
+    "lab/tests/test_growth_launch.py::test_replay_modified_proposal_expiry_and_duplicates",
+    "lab/tests/test_growth_launch_eval.py::test_each_mutant_is_detected_by_its_probe",
     "lab/tests/test_governed_workflow.py::test_end_to_end_inventory_discrepancy_to_audited_draft_po_with_the_network_blocked"
    ]
   }

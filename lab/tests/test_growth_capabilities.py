@@ -17,7 +17,7 @@ def test_committed_tracker_validates_and_has_all_25():
 
 def test_only_crm_automation_is_integrated_and_no_capability_beyond_what_exists_is_marked_tested():
     assert [c["n"] for c in DOC["capabilities"] if c["status"] == "INTEGRATED"] == [14]
-    assert {c["n"] for c in DOC["capabilities"] if c["status"] == "TESTED"} == {1, 5, 8, 15, 24}
+    assert {c["n"] for c in DOC["capabilities"] if c["status"] == "TESTED"} == {1, 5, 6, 8, 15, 24, 25}
 
 
 def test_validator_rejects_overclaims():
