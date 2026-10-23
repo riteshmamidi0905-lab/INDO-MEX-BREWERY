@@ -1,6 +1,7 @@
 """Business view vs Engineering view of Growth OS: both are derived from the SAME stored records. These tests check that the business language is complete, contains no raw identifiers,
 never invents a stage that did not occur, and agrees with the engineering records. Also: realistic scenario seed data is internally consistent and its pipeline values are real calculations.
 SYNTHETIC data only."""
+import json
 import re
 import socket
 import tempfile
@@ -197,4 +198,8 @@ def test_provenance_separates_verified_real_synthetic_and_founder_approved_data_
     f = c.get("/v1/tenants/tenant-fit/provenance", headers=hdr(envs, "tenant-fit", "ana")).json()["categories"]
     assert f["founder_approved"]["prices"] == [], "the second tenant has no founder-approved data; nothing is implied"
     v = j["verified_real"]
-    assert v["available"] is False or (v["tested_commit"] and v["tests_failed"] == 0 and v["release_gate"] in ("PASS", "FAIL", "REQUIRES_REVIEW") and v["remote_ci"] == "NOT_RUN" and "Remote CI has not run" in v["limitation"])
+    if v["available"]:                                                      # the section reports the recorded evidence exactly as it is (it never shows a typed or rounded value)
+        d = Path(__file__).resolve().parents[1] / "results" / "release-gate"
+        meta, summ = json.loads((d / "meta.json").read_text()), json.loads((d / "summary.json").read_text())
+        assert v["tested_commit"] == meta["commit"] and (v["tests_passed"], v["tests_failed"], v["tests_skipped"]) == (summ["passed"], summ["failed"], summ["skipped"])
+        assert v["release_gate"] in ("PASS", "FAIL", "REQUIRES_REVIEW") and v["remote_ci"] == "NOT_RUN" and "Remote CI has not run" in v["limitation"]
