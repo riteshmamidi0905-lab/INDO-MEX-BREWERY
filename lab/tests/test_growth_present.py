@@ -128,11 +128,17 @@ def test_approval_states_are_distinct_and_only_an_awaiting_run_can_be_decided(wo
 
 def test_audit_events_have_human_readable_summaries_and_keep_the_raw_record(world):
     c, envs, _ = world
-    items = c.get("/v1/tenants/tenant-nasha/audit?limit=50", headers=hdr(envs, "tenant-nasha", "ada")).json()["items"]
+    items, cur = [], None
+    for _ in range(12):                                                     # the log is long (seeded launch data): page through it
+        j = c.get("/v1/tenants/tenant-nasha/audit?limit=50" + (f"&cursor={cur}" if cur else ""), headers=hdr(envs, "tenant-nasha", "ada")).json()
+        items += j["items"]; cur = j["next_cursor"]
+        if not cur:
+            break
     assert items and all(i["summary"] and i["action"] and i["seq"] for i in items)
     assert not any(RAW_ID.search(i["summary"]) for i in items), [i["summary"] for i in items if RAW_ID.search(i["summary"])][:2]
     q = [i for i in items if i["action"] == "lead.qualification_applied"]
     assert q and all("after approval by" in i["summary"] for i in q)
+    assert [i for i in items if i["action"] == "procurement.record" and "after approval by" in i["summary"]]
 
 
 def test_the_two_tenants_have_distinct_people_products_prices_and_pipelines(world):

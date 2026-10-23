@@ -1,7 +1,7 @@
 {
- "total": 712,
- "passed": 711,
- "failed": 0,
+ "total": 796,
+ "passed": 794,
+ "failed": 1,
  "skipped": 1,
  "tests": {
   "test_governed_api::test_full_flow_over_http_ends_in_a_draft_po_and_no_transmission": "passed",
@@ -48,6 +48,11 @@
   "test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters": "passed",
   "test_growth_api::test_cross_tenant_reads_by_id_find_nothing_and_cross_tenant_references_are_refused": "passed",
   "test_growth_api::test_lead_qualification_over_http_denied_held_approved_updated_and_audited": "passed",
+  "test_growth_audit_guarantee::test_the_application_role_cannot_disable_the_guard": "passed",
+  "test_growth_audit_guarantee::test_a_failure_after_the_mutation_but_before_the_audit_row_rolls_the_mutation_back": "passed",
+  "test_growth_audit_guarantee::test_two_concurrent_conversions_of_the_same_lead_produce_exactly_one_opportunity": "passed",
+  "test_growth_financials::test_unit_economics_and_break_even_match_a_hand_calculation": "passed",
+  "test_growth_financials::test_scenarios_are_computed_from_stored_products_prices_and_assumptions_and_a_saved_scenario_recomputes_identically": "passed",
   "test_growth_foundation::test_a_session_without_a_tenant_setting_sees_nothing": "passed",
   "test_growth_foundation::test_tenant_a_cannot_read_write_or_reference_tenant_b": "passed",
   "test_growth_foundation::test_the_application_role_cannot_turn_row_security_off_or_change_tenants_data_it_does_not_own": "passed",
@@ -56,6 +61,18 @@
   "test_growth_foundation::test_there_is_no_way_to_send_publish_or_spend": "passed",
   "test_growth_foundation::test_audit_is_hash_chained_complete_and_tamper_evident": "passed",
   "test_growth_foundation::test_cross_tenant_probes_across_every_table_return_nothing": "passed",
+  "test_growth_isolation_matrix::test_every_by_id_read_and_write_endpoint_treats_the_other_tenants_identifiers_as_not_found": "passed",
+  "test_growth_isolation_matrix::test_row_level_security_is_forced_on_every_tenant_table_and_an_unset_tenant_sees_nothing": "passed",
+  "test_growth_isolation_matrix::test_workflow_state_approvals_and_audit_are_per_tenant": "passed",
+  "test_growth_launch::test_the_schema_refuses_invented_contacts_unverified_claims_and_fake_prices": "passed",
+  "test_growth_launch::test_the_recommendation_equals_an_independent_recomputation_from_the_raw_tables": "passed",
+  "test_growth_launch::test_who_may_start_and_who_may_approve": "passed",
+  "test_growth_launch::test_replay_modified_proposal_expiry_and_duplicates": "passed",
+  "test_growth_launch::test_tenants_are_isolated_in_projects_runs_approvals_and_suppliers": "passed",
+  "test_growth_launch::test_the_database_refuses_an_executed_recommendation_without_audit_evidence": "passed",
+  "test_growth_launch_api::test_projects_are_listed_per_tenant_and_the_overview_carries_the_whole_story": "passed",
+  "test_growth_launch_eval::test_every_probe_passes_on_the_unmutated_system": "passed",
+  "test_growth_launch_eval::test_each_mutant_is_detected_by_its_probe": "passed",
   "test_growth_mutations::test_every_probe_passes_on_the_unmutated_system": "passed",
   "test_growth_mutations::test_each_mutant_is_detected_by_its_probe": "passed",
   "test_growth_pricing_segments::test_segments_match_an_independent_pure_python_recomputation": "passed",
@@ -187,8 +204,18 @@
    "failed": 0,
    "skipped": 0
   },
+  "test_growth_audit_guarantee": {
+   "passed": 16,
+   "failed": 0,
+   "skipped": 0
+  },
   "test_growth_capabilities": {
    "passed": 3,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_financials": {
+   "passed": 10,
    "failed": 0,
    "skipped": 0
   },
@@ -197,14 +224,34 @@
    "failed": 0,
    "skipped": 0
   },
+  "test_growth_isolation_matrix": {
+   "passed": 9,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_launch": {
+   "passed": 19,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_launch_api": {
+   "passed": 8,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_launch_eval": {
+   "passed": 16,
+   "failed": 0,
+   "skipped": 0
+  },
   "test_growth_mutations": {
-   "passed": 11,
+   "passed": 12,
    "failed": 0,
    "skipped": 0
   },
   "test_growth_present": {
-   "passed": 10,
-   "failed": 0,
+   "passed": 9,
+   "failed": 1,
    "skipped": 0
   },
   "test_growth_pricing_segments": {
@@ -213,7 +260,7 @@
    "skipped": 0
   },
   "test_growth_ui": {
-   "passed": 13,
+   "passed": 18,
    "failed": 0,
    "skipped": 0
   },
