@@ -160,3 +160,41 @@ def test_each_generalisation_mutant_is_caught():
     from nasha_lab.growth import industry_eval as E
     m = E.run_mutants()
     assert m["baseline_failures"] == 0 and len(m["mutants"]) == 5 and all(x["killed"] for x in m["mutants"]), [x["name"] for x in m["mutants"] if not x["killed"]]
+
+
+# ---------------------------------------------------------------- held-out financial cases and concurrency in the second business
+def test_held_out_financial_cases_match_their_hand_calculations():
+    from nasha_lab.growth import financial_heldout as HO
+    rs = HO.run()
+    assert len(rs) == 4 and all(r["ok"] for r in rs), [(r["name"], r["mismatches"]) for r in rs if not r["ok"]]
+
+
+def _run_all(fns):
+    import threading
+    out, errs = [None] * len(fns), []
+    def w(i, f):
+        try:
+            out[i] = f()
+        except Exception as e:  # noqa: BLE001
+            out[i] = e; errs.append(repr(e))
+    ts = [threading.Thread(target=w, args=(i, f)) for i, f in enumerate(fns)]
+    [t.start() for t in ts]; [t.join(60) for t in ts]
+    assert not any(t.is_alive() for t in ts) and not errs, errs[:2]
+    return out
+
+
+def test_the_studios_concurrent_requests_and_approvals_behave_exactly_like_the_flagships(world):
+    import uuid
+    c, envs, _ = world
+    pid = seeded_project(world, FIT, B)
+    key = "fit-conc-" + uuid.uuid4().hex[:8]
+    res = _run_all([lambda: c.post(f"{FIT}/projects/{pid}/procurement", json={"period_weeks": 1}, headers=H(envs, "ana", B, **{"Idempotency-Key": key})) for _ in range(5)])
+    codes = sorted(r.status_code for r in res)
+    assert set(codes) <= {200, 202, 409} and codes.count(202) == 1, codes
+    assert sql(world, "SELECT count(*) FROM procurement_recommendations WHERE tenant_id=%s AND idem_key=%s", (B, key))[0][0] == 1
+    rid = next(r.json()["corr_id"] for r in res if r.status_code == 202)
+    dec = _run_all([lambda u=u: c.post(f"{FIT}/procurement/runs/{rid}/decision", json={"approve": True}, headers=H(envs, u, B)) for u in ("ada", "omar")])
+    assert sorted(r.status_code for r in dec) == [200, 409]
+    assert sql(world, "SELECT count(*) FROM audit_log WHERE tenant_id=%s AND action='procurement.record' AND decision='allow' AND entity_id=%s", (B, rid))[0][0] == 1
+    assert c.get(f"{FIT}/audit/verify", headers=H(envs, "ada", B)).json()["chain_valid"] is True
+    assert sql(world, "SELECT count(*) FROM audit_log WHERE tenant_id=%s AND action='procurement.record' AND entity_id=%s", (A, rid))[0][0] == 0
