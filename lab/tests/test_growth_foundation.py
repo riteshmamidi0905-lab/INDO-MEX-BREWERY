@@ -9,7 +9,7 @@ import pytest
 
 psycopg = pytest.importorskip("psycopg", reason="INTEGRATION UNAVAILABLE: psycopg not installed")
 
-from nasha_lab.growth import schema as S, service as SV, scoring
+from nasha_lab.growth import schema as S, service as SV, scoring, testing as TT
 from nasha_lab.warehouse import pg_hardening as H
 
 SCHEMA = "growth_t"
@@ -35,7 +35,7 @@ def db(dsn):
     with psycopg.connect(dsn, autocommit=True) as c:
         c.execute(f'DROP SCHEMA IF EXISTS "{SCHEMA}" CASCADE'); c.execute(f'CREATE SCHEMA "{SCHEMA}"')
     rep = H.migrate(dsn, SCHEMA, specs=S.migrations(SCHEMA))
-    assert [r["status"] for r in rep] == ["applied"] * 7
+    assert [r["status"] for r in rep] == ["applied"] * 8
     users = [("ada", "Ada (synthetic owner)", "OWNER"), ("sam", "Sam (synthetic sales)", "SALES"), ("mia", "Mia (synthetic marketing)", "MARKETING"), ("vic", "Vic (synthetic viewer)", "VIEWER"), ("ana", "Ana (synthetic analyst)", "ANALYST")]
     SV.provision(dsn, SCHEMA, "tenant-nasha", "NASHA — The Courtyard (synthetic hospitality brand)", "restaurant", users)
     SV.provision(dsn, SCHEMA, "tenant-fit", "Meridian Fitness (synthetic studio)", "fitness", users)
@@ -55,7 +55,7 @@ def seed(s, tag):
 
 # ---------------------------------------------------------------- schema and migrations
 def test_migrations_are_idempotent_and_checksummed(db):
-    assert [r["status"] for r in H.migrate(db, SCHEMA, specs=S.migrations(SCHEMA))] == ["already_applied"] * 7
+    assert [r["status"] for r in H.migrate(db, SCHEMA, specs=S.migrations(SCHEMA))] == ["already_applied"] * 8
     edited = S.migrations(SCHEMA); edited["104"] = (edited["104"][0] + ["CREATE INDEX ix_x ON accounts (name)"], [])
     with pytest.raises(H.MigrationChanged):
         H.migrate(db, SCHEMA, specs=edited)
@@ -150,12 +150,9 @@ def test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair(db):
         if frm == to or frm in ("won", "lost"):
             continue
         opp = s._id("opp")
-        s.con.execute("INSERT INTO opportunities (tenant_id,id,account_id,name,stage,amount_cents) VALUES (%s,%s,%s,'t',%s,100)", (s.tenant, opp, acc, frm))
-        ok = True
-        try:
-            s.con.execute("UPDATE opportunities SET stage=%s WHERE tenant_id=%s AND id=%s", (to, s.tenant, opp))
-        except psycopg.errors.CheckViolation:
-            ok = False
+        with TT.audited(s, "opportunities", opp):
+            s.con.execute("INSERT INTO opportunities (tenant_id,id,account_id,name,stage,amount_cents) VALUES (%s,%s,%s,'t',%s,100)", (s.tenant, opp, acc, frm))
+        ok = not TT.attempt(s, "opportunities", opp, "UPDATE opportunities SET stage=%s WHERE tenant_id=%s AND id=%s", (to, s.tenant, opp), psycopg.errors.CheckViolation)
         assert ok == ((frm, to) in ORACLE_EDGES), (frm, to)
     s.close()
 

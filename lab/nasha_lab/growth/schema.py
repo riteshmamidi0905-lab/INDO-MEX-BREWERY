@@ -115,7 +115,20 @@ V007 = [  # business context for the CRM: what the prospect asked for, who owns 
 ]
 
 
+GUARDED = {"accounts": "id", "contacts": "id", "leads": "id", "opportunities": "id", "activities": "id", "suppression_list": "email", "segments": "id", "products": "id", "prices": "id", "offers": "id", "campaigns": "id", "content_items": "id"}
+V008 = [  # D-90 Milestone 3: no CRM mutation commits without audit evidence from the SAME transaction (deferred constraint triggers; the audit row's transaction id is stamped by the database, not supplied by the caller)
+    "ALTER TABLE audit_log ADD COLUMN txid bigint",
+    "CREATE FUNCTION audit_stamp() RETURNS trigger LANGUAGE plpgsql AS $f$ BEGIN NEW.txid := txid_current(); RETURN NEW; END $f$",
+    "CREATE TRIGGER audit_log_stamp BEFORE INSERT ON audit_log FOR EACH ROW EXECUTE FUNCTION audit_stamp()",
+    # TG_ARGV[0] is the key column. Evidence = an 'allow' audit row in this transaction for this tenant that names this row (entity + id) or lists it in detail.also.
+    "CREATE FUNCTION require_audit() RETURNS trigger LANGUAGE plpgsql AS $f$ DECLARE r jsonb; k text; BEGIN "
+    "IF TG_OP = 'DELETE' THEN r := to_jsonb(OLD); ELSE r := to_jsonb(NEW); END IF; k := r ->> TG_ARGV[0]; "
+    "IF NOT EXISTS (SELECT 1 FROM audit_log a WHERE a.tenant_id = r ->> 'tenant_id' AND a.txid = txid_current() AND a.decision = 'allow' AND ((a.entity = TG_TABLE_NAME AND a.entity_id = k) OR (a.detail -> 'also') ? (TG_TABLE_NAME || ':' || k))) THEN "
+    "RAISE EXCEPTION 'change to %.% (%) has no audit evidence in this transaction', TG_TABLE_NAME, TG_ARGV[0], k USING ERRCODE = 'integrity_constraint_violation'; END IF; RETURN NULL; END $f$",
+] + [f"CREATE CONSTRAINT TRIGGER crm_audit_guard AFTER INSERT OR UPDATE OR DELETE ON {t} DEFERRABLE INITIALLY DEFERRED FOR EACH ROW EXECUTE FUNCTION require_audit('{k}')" for t, k in GUARDED.items()]
+
+
 def migrations(schema):
     """version -> (apply sql list, preflight list) for pg_hardening.migrate(specs=...). Fresh-schema migrations: no data to pre-flight."""
     v3 = [s.replace("{schema}", schema) for s in V003]
-    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, []), "106": (V006, []), "107": (V007, [])}
+    return {"101": (V001, []), "102": (V002, []), "103": (v3, []), "104": (V004, []), "105": (V005, []), "106": (V006, []), "107": (V007, []), "108": (V008, [])}

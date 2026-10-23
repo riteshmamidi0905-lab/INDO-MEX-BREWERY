@@ -65,6 +65,7 @@ class GrowthService:
     # ------------------------------------------------------------ plumbing
     def _audit(self, action, entity, entity_id, decision, detail=None):
         detail = detail or {}
+        self.con.execute("SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))", ("audit:" + self.tenant,))          # one writer extends a tenant's chain at a time (released at commit/rollback)
         last = self.con.execute("SELECT seq, hash FROM audit_log WHERE tenant_id=%s ORDER BY seq DESC LIMIT 1", (self.tenant,)).fetchone()
         seq, prev = (last[0] + 1, last[1]) if last else (1, "genesis")
         h = _hash(prev, self.tenant, seq, self.user, self.role or "NONE", action, entity, entity_id, decision, detail)
@@ -83,7 +84,10 @@ class GrowthService:
         try:
             with self.con.transaction():
                 entity_id = fn()
-                self._audit(action, entity, entity_id, "allow")
+                also = None
+                if isinstance(entity_id, tuple):               # a write that touches more than one row names the others, so each carries evidence
+                    entity_id, also = entity_id
+                self._audit(action, entity, entity_id, "allow", {"also": also} if also else None)
         except Blocked as e:                       # the write rolled back; the refusal itself is still on the record
             self._audit(action, entity, None, "deny", {"why": str(e)})
             raise
@@ -118,8 +122,8 @@ class GrowthService:
     def suppress(self, email, reason):
         def go():
             self.con.execute("INSERT INTO suppression_list (tenant_id,email,reason) VALUES (%s,%s,%s) ON CONFLICT DO NOTHING", (self.tenant, email, reason))
-            self.con.execute("UPDATE contacts SET consent_status='opt_out' WHERE tenant_id=%s AND email=%s", (self.tenant, email))
-            return email
+            ids = [r[0] for r in self.con.execute("UPDATE contacts SET consent_status='opt_out' WHERE tenant_id=%s AND email=%s RETURNING id", (self.tenant, email)).fetchall()]
+            return email, [f"contacts:{i}" for i in ids]
         return self._write("suppression.add", "suppression_list", go)
 
     def create_lead(self, contact_id, source, signals=None, inquiry=None, assigned_to=None, scenario=None, inquiry_received=None):
@@ -192,13 +196,13 @@ class GrowthService:
 
     def convert_lead(self, lead_id, opportunity_name, amount_cents, expected_close=None):
         def go():
-            row = self.con.execute("SELECT l.status, c.account_id FROM leads l JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id WHERE l.tenant_id=%s AND l.id=%s", (self.tenant, lead_id)).fetchone()
+            row = self.con.execute("SELECT l.status, c.account_id FROM leads l JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id WHERE l.tenant_id=%s AND l.id=%s FOR UPDATE OF l", (self.tenant, lead_id)).fetchone()
             if not row or row[0] != "qualified":
                 raise Blocked("only a qualified lead can be converted")
             oid = self._id("opp")
             self.con.execute("INSERT INTO opportunities (tenant_id,id,account_id,lead_id,name,amount_cents,expected_close,created_by) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (self.tenant, oid, row[1], lead_id, opportunity_name, amount_cents, expected_close, self.user))
             self.con.execute("UPDATE leads SET status='converted' WHERE tenant_id=%s AND id=%s", (self.tenant, lead_id))
-            return oid
+            return oid, [f"leads:{lead_id}"]
         return self._write("lead.convert", "opportunities", go)
 
     def advance(self, opportunity_id, to_stage):

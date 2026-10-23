@@ -11,7 +11,7 @@ import pytest
 pytest.importorskip("mcp_weir", reason="INTEGRATION UNAVAILABLE: THE WEIR (mcp_weir) not installed")
 psycopg = pytest.importorskip("psycopg", reason="INTEGRATION UNAVAILABLE: psycopg not installed")
 
-from nasha_lab.growth import schema as S, service as SV, workflow as WF
+from nasha_lab.growth import schema as S, service as SV, testing as TT, workflow as WF
 from nasha_lab.warehouse import pg_hardening as H
 
 SCHEMA = "growth_wf"
@@ -332,7 +332,11 @@ def test_a_lead_changed_after_the_proposal_makes_it_stale(wf_pair):
     lead, contact = seed_lead(env)
     r = wf.run(tok(wf, "sam"), lead)
     s = SV.GrowthService(env.dsn, SCHEMA, env.tenant_id, "sam"); s.set_consent(contact, "opt_in"); s.close()
-    q(env, "UPDATE leads SET source='synthetic-event-fair' WHERE tenant_id=%s AND id=%s", (env.tenant_id, lead))      # any change bumps the lead version
+    # set_consent above already updated the contact; now change the lead row itself (any change bumps the lead version), with audit evidence like every CRM write
+    s = SV.GrowthService(env.dsn, SCHEMA, env.tenant_id, "sam")
+    with TT.audited(s, "leads", lead):
+        s.con.execute("UPDATE leads SET source='synthetic-event-fair' WHERE tenant_id=%s AND id=%s", (env.tenant_id, lead))
+    s.close()
     d = wf.decide(r["corr_id"], tok(wf, "ada"), True)
     assert d["failure"] == "STALE_PROPOSAL" and crm_updates(env, lead) == 0
 

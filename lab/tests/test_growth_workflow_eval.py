@@ -13,7 +13,7 @@ import pytest
 pytest.importorskip("mcp_weir", reason="INTEGRATION UNAVAILABLE: THE WEIR (mcp_weir) not installed")
 psycopg = pytest.importorskip("psycopg", reason="INTEGRATION UNAVAILABLE: psycopg not installed")
 
-from nasha_lab.growth import qualification as Q, schema as S, scoring, service as SV, weir_growth as WG, workflow as WF
+from nasha_lab.growth import qualification as Q, schema as S, scoring, service as SV, testing as TT, weir_growth as WG, workflow as WF
 from nasha_lab.warehouse import pg_hardening as H
 
 USERS = {"ada": ("Ada (synthetic owner)", "OWNER"), "omar": ("Omar (synthetic second owner)", "OWNER"), "sam": ("Sam (synthetic sales)", "SALES"), "vic": ("Vic (synthetic viewer)", "VIEWER")}
@@ -79,8 +79,18 @@ class World:
         lead = s.create_lead(c, "synthetic-referral", signals or sig(True, True, 20, 0.9, 0.8))
         s.close()
         if suppress_directly:                                                     # list updated independently of the consent flag
-            self.sql("INSERT INTO suppression_list (tenant_id,email,reason) VALUES (%s,%s,'planted by test')", (tenant, email))
+            s2 = SV.GrowthService(self.dsn, self.schema, tenant, "ada")
+            with TT.audited(s2, "suppression_list", email):
+                s2.con.execute("INSERT INTO suppression_list (tenant_id,email,reason) VALUES (%s,%s,'planted by test')", (tenant, email))
+            s2.close()
         return lead, c
+
+    def raw_lead(self, lead, assignment, tenant="tenant-nasha"):
+        """Change the lead row directly (version bump, planted state), with audit evidence like every CRM write."""
+        s2 = SV.GrowthService(self.dsn, self.schema, tenant, "ada")
+        with TT.audited(s2, "leads", lead):
+            s2.con.execute(f"UPDATE leads SET {assignment} WHERE tenant_id=%s AND id=%s", (tenant, lead))
+        s2.close()
 
     def status(self, lead):
         return self.sql("SELECT status FROM leads WHERE id=%s", (lead,))[0][0]
@@ -167,12 +177,12 @@ def p_crm_state(w):                                                             
     lead, _ = w.lead()
     s = SV.GrowthService(w.dsn, w.schema, "tenant-nasha", "sam")
     try:
-        w.sql("UPDATE leads SET source='synthetic-event-fair' WHERE id=%s", (lead,))     # version bump after the proposal
+        w.raw_lead(lead, "source='synthetic-event-fair'")     # version bump after the proposal
         try:
             s.apply_qualification(lead, "qualified", 95, 1, "wf-x", "appr-x", "ada"); return False
         except SV.Blocked:
             pass
-        w.sql("UPDATE leads SET status='converted' WHERE id=%s", (lead,))
+        w.raw_lead(lead, "status='converted'")
         try:
             s.apply_qualification(lead, "qualified", 95, 2, "wf-y", "appr-y", "ada"); return False
         except (SV.Blocked, psycopg.Error):
@@ -222,8 +232,9 @@ def lax_consume(self, session_id, call_hash):                                   
 
 
 def lax_apply(self, lead_id, status, score, expected_version, run_id, approval_id, approved_by):     # mutant: no version / converted check
-    self.con.execute("UPDATE leads SET status=%s, score=%s, qualified_by_run=%s WHERE tenant_id=%s AND id=%s", (status, score, run_id, self.tenant, lead_id))
-    self._audit("lead.qualification_applied", "leads", lead_id, "allow", {"run": run_id, "approval": approval_id, "approved_by": approved_by, "status": status, "score": score})
+    with self.con.transaction():
+        self.con.execute("UPDATE leads SET status=%s, score=%s, qualified_by_run=%s WHERE tenant_id=%s AND id=%s", (status, score, run_id, self.tenant, lead_id))
+        self._audit("lead.qualification_applied", "leads", lead_id, "allow", {"run": run_id, "approval": approval_id, "approved_by": approved_by, "status": status, "score": score})
     return lead_id
 
 
@@ -319,7 +330,7 @@ def test_a_stale_proposal_is_stopped_before_the_write_even_if_the_service_check_
         wf = w.wf["tenant-nasha"]
         lead, _ = w.lead()
         r = wf.run(w.tok("sam"), lead)
-        w.sql("UPDATE leads SET source='synthetic-event-fair' WHERE id=%s", (lead,))
+        w.raw_lead(lead, "source='synthetic-event-fair'")
         with mock.patch.object(SV.GrowthService, "apply_qualification", lax_apply):
             d = wf.decide(r["corr_id"], w.tok("ada"), True)
         assert d["failure"] == "STALE_PROPOSAL" and w.status(lead) == "new" and w.applied(lead) == 0

@@ -7,7 +7,7 @@ import pytest
 
 psycopg = pytest.importorskip("psycopg", reason="INTEGRATION UNAVAILABLE: psycopg not installed")
 
-from nasha_lab.growth import schema as S, service as SV
+from nasha_lab.growth import schema as S, service as SV, testing as TT
 from nasha_lab.warehouse import pg_hardening as H
 
 USERS = [("ada", "Ada", "OWNER"), ("sam", "Sam", "SALES"), ("vic", "Vic", "VIEWER")]
@@ -49,22 +49,16 @@ def p_rls(dsn, sc):
 def p_cross_fk(dsn, sc):
     a, b = SV.GrowthService(dsn, sc, "tenant-ta", "ada"), SV.GrowthService(dsn, sc, "tenant-tb", "ada")
     acc_b = b.create_account("B acct")
-    try:
-        a.con.execute("INSERT INTO contacts (tenant_id,id,account_id,full_name,email) VALUES ('tenant-ta','c1',%s,'x','x@example.invalid')", (acc_b,)); ok = False
-    except psycopg.errors.ForeignKeyViolation:
-        ok = True
-    except psycopg.errors.InsufficientPrivilege:
-        ok = True
+    ok = TT.attempt(a, "contacts", "c1", "INSERT INTO contacts (tenant_id,id,account_id,full_name,email) VALUES ('tenant-ta','c1',%s,'x','x@example.invalid')", (acc_b,), (psycopg.errors.ForeignKeyViolation, psycopg.errors.InsufficientPrivilege))
     a.close(); b.close(); return ok
 
 
 def p_stage(dsn, sc):
     s = SV.GrowthService(dsn, sc, "tenant-ta", "ada")
-    acc = s.create_account("S"); s.con.execute("INSERT INTO opportunities (tenant_id,id,account_id,name,amount_cents) VALUES ('tenant-ta','o1',%s,'o',1)", (acc,))
-    try:
-        s.con.execute("UPDATE opportunities SET stage='won' WHERE id='o1'"); ok = False          # new -> won is not allowed
-    except psycopg.errors.CheckViolation:
-        ok = True
+    acc = s.create_account("S")
+    with TT.audited(s, "opportunities", "o1"):
+        s.con.execute("INSERT INTO opportunities (tenant_id,id,account_id,name,amount_cents) VALUES ('tenant-ta','o1',%s,'o',1)", (acc,))
+    ok = TT.attempt(s, "opportunities", "o1", "UPDATE opportunities SET stage='won' WHERE id='o1'", (), psycopg.errors.CheckViolation)          # new -> won is not allowed
     s.close(); return ok
 
 
@@ -111,19 +105,13 @@ def p_deny_audited(dsn, sc):
 
 def p_no_sent_state(dsn, sc):
     s = SV.GrowthService(dsn, sc, "tenant-ta", "ada"); camp = s.create_campaign("c")
-    try:
-        s.con.execute("UPDATE campaigns SET status='sent' WHERE id=%s", (camp,)); ok = False
-    except psycopg.errors.CheckViolation:
-        ok = True
+    ok = TT.attempt(s, "campaigns", camp, "UPDATE campaigns SET status='sent' WHERE id=%s", (camp,), psycopg.errors.CheckViolation)
     s.close(); return ok
 
 
 def p_synthetic_email(dsn, sc):
     s = SV.GrowthService(dsn, sc, "tenant-ta", "ada"); a = s.create_account("E")
-    try:
-        s.con.execute("INSERT INTO contacts (tenant_id,id,account_id,full_name,email) VALUES ('tenant-ta','ce',%s,'r','real@gmail.com')", (a,)); ok = False
-    except psycopg.errors.CheckViolation:
-        ok = True
+    ok = TT.attempt(s, "contacts", "ce", "INSERT INTO contacts (tenant_id,id,account_id,full_name,email) VALUES ('tenant-ta','ce',%s,'r','real@gmail.com')", (a,), psycopg.errors.CheckViolation)
     s.close(); return ok
 
 
@@ -136,13 +124,24 @@ def p_append_only(dsn, sc):
     s.close(); return ok
 
 
-PROBES = [p_rls, p_cross_fk, p_stage, p_policy, p_consent, p_suppression, p_deny_audited, p_no_sent_state, p_synthetic_email, p_append_only]
+def p_audit_guard(dsn, sc):
+    s = SV.GrowthService(dsn, sc, "tenant-ta", "ada")
+    try:
+        s.con.execute("INSERT INTO accounts (tenant_id,id,name,kind) VALUES ('tenant-ta','raw-unaudited','Raw','business')"); ok = False        # a CRM row with no audit evidence must not commit
+    except psycopg.errors.IntegrityConstraintViolation:
+        ok = True
+    s.close(); return ok
 
 
-def lax_draft(self, contact_id, body):                          # mutant: outreach with no consent/suppression checks
-    aid = self._id("act")
-    self.con.execute("INSERT INTO activities (tenant_id,id,contact_id,kind,body,actor) VALUES (%s,%s,%s,'email_draft',%s,%s)", (self.tenant, aid, contact_id, body, self.user))
-    return aid
+PROBES = [p_rls, p_cross_fk, p_stage, p_policy, p_consent, p_suppression, p_deny_audited, p_no_sent_state, p_synthetic_email, p_append_only, p_audit_guard]
+
+
+def lax_draft(self, contact_id, body):                          # mutant: outreach with no consent/suppression checks (still audited like every write: the audit guard is a separate control)
+    def go():
+        aid = self._id("act")
+        self.con.execute("INSERT INTO activities (tenant_id,id,contact_id,kind,body,actor) VALUES (%s,%s,%s,'email_draft',%s,%s)", (self.tenant, aid, contact_id, body, self.user))
+        return aid
+    return self._write("outreach.draft", "activities", go)
 
 
 def no_deny_audit(orig):
@@ -161,7 +160,8 @@ MUTANTS = [  # (name, probe that must fail, db sql or None, python patch context
     ("denials no longer audited", p_deny_audited, None, lambda: mock.patch.object(SV.GrowthService, "_audit", no_deny_audit(SV.GrowthService._audit))),
     ("campaign gains a 'sent' state", p_no_sent_state, "ALTER TABLE campaigns DROP CONSTRAINT campaigns_status_check", None),
     ("real email addresses allowed", p_synthetic_email, "ALTER TABLE contacts DROP CONSTRAINT contacts_email_check", None),
-    ("audit log becomes deletable", p_append_only, f"GRANT DELETE ON audit_log TO {S.APP_ROLE}", None)]
+    ("audit log becomes deletable", p_append_only, f"GRANT DELETE ON audit_log TO {S.APP_ROLE}", None),
+    ("audit guard dropped from accounts", p_audit_guard, "DROP TRIGGER crm_audit_guard ON accounts", None)]
 
 
 def test_every_probe_passes_on_the_unmutated_system(dsn):

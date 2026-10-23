@@ -31,6 +31,10 @@
     "test_growth_workflow_eval",
     "test_growth_api",
     "test_growth_agent_tools",
+    "test_growth_present",
+    "test_growth_audit_guarantee",
+    "test_growth_isolation_matrix",
+    "test_brand_positioning",
     "test_menu_d90"
   ],
   "min_passed": {
@@ -112,7 +116,9 @@
       "test_growth_mutations::test_every_probe_passes_on_the_unmutated_system",
       "test_growth_workflow_eval::test_each_mutant_is_detected_by_its_probe",
       "test_growth_workflow_eval::test_every_probe_passes_on_the_unmutated_system",
-      "test_growth_api::test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_sends_or_debugs"
+      "test_growth_api::test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_sends_or_debugs",
+      "test_growth_audit_guarantee::test_the_application_role_cannot_disable_the_guard",
+      "test_growth_audit_guarantee::test_a_failure_after_the_mutation_but_before_the_audit_row_rolls_the_mutation_back"
     ],
     "tenant_isolation": [
       "test_governed_workflow::test_tenants_have_separate_physical_stores_and_distinct_data",
@@ -126,7 +132,10 @@
       "test_growth_foundation::test_cross_tenant_probes_across_every_table_return_nothing",
       "test_growth_workflow::test_cross_tenant_sessions_leads_runs_and_approvals_do_not_cross",
       "test_growth_api::test_cross_tenant_reads_by_id_find_nothing_and_cross_tenant_references_are_refused",
-      "test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters"
+      "test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters",
+      "test_growth_isolation_matrix::test_every_by_id_read_and_write_endpoint_treats_the_other_tenants_identifiers_as_not_found",
+      "test_growth_isolation_matrix::test_row_level_security_is_forced_on_every_tenant_table_and_an_unset_tenant_sees_nothing",
+      "test_growth_isolation_matrix::test_workflow_state_approvals_and_audit_are_per_tenant"
     ],
     "authorization_enforcement": [
       "test_governed_workflow::test_a_user_who_may_not_approve_cannot_approve",
@@ -143,6 +152,7 @@
       "test_growth_workflow::test_maker_checker_and_role_rules_for_the_approver",
       "test_growth_workflow::test_a_replayed_approval_creates_nothing_new",
       "test_growth_workflow::test_a_proposal_modified_after_approval_is_not_applied",
+      "test_growth_audit_guarantee::test_two_concurrent_conversions_of_the_same_lead_produce_exactly_one_opportunity",
       "test_growth_api::test_lead_qualification_over_http_denied_held_approved_updated_and_audited"
     ],
     "data_quality": [

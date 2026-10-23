@@ -13,7 +13,7 @@ LAB = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(LAB))
 import psycopg  # noqa: E402
 from nasha_lab.governed import tenants as T  # noqa: E402
-from nasha_lab.growth import schema as S, seed as SD, service as SV  # noqa: E402
+from nasha_lab.growth import schema as S, seed as SD, service as SV, testing as TT  # noqa: E402
 from nasha_lab.warehouse import pg_hardening as H  # noqa: E402
 
 SCHEMA = "growth_export"
@@ -41,9 +41,12 @@ def main():
         if frm == to:
             continue
         oid = a._id("opp")
-        a.con.execute("INSERT INTO opportunities (tenant_id,id,account_id,name,stage,amount_cents) VALUES (%s,%s,%s,'probe',%s,1)", (a.tenant, oid, acc, frm))
+        with TT.audited(a, "opportunities", oid):
+            a.con.execute("INSERT INTO opportunities (tenant_id,id,account_id,name,stage,amount_cents) VALUES (%s,%s,%s,'probe',%s,1)", (a.tenant, oid, acc, frm))
         try:
-            a.con.execute("UPDATE opportunities SET stage=%s WHERE tenant_id=%s AND id=%s", (to, a.tenant, oid)); allowed, msg = True, ""
+            with TT.audited(a, "opportunities", oid):
+                a.con.execute("UPDATE opportunities SET stage=%s WHERE tenant_id=%s AND id=%s", (to, a.tenant, oid))
+            allowed, msg = True, ""
         except psycopg.errors.CheckViolation as e:
             allowed, msg = False, str(e).splitlines()[0]
         matrix.append(dict(frm=frm, to=to, allowed=allowed, database_message=msg, oracle_allowed=((frm, to) in ORACLE)))
@@ -73,6 +76,15 @@ def main():
         except exc as e:
             res = f"refused: {type(e).__name__}"
         attempts.append(dict(attempt=label, result=res))
+    # ---- audit guard: a raw, unaudited mutation of every guarded table is refused by the database
+    guard = []
+    for tbl, sql in [("accounts", "INSERT INTO accounts (tenant_id,id,name,kind) VALUES ('tenant-nasha','raw-1','Raw','business')"), ("products", "INSERT INTO products (tenant_id,id,name,kind,unit_cost_cents) VALUES ('tenant-nasha','raw-2','Raw','dish',1)"),
+                     ("leads", "UPDATE leads SET score=1 WHERE tenant_id='tenant-nasha'"), ("contacts", "UPDATE contacts SET job_title='x' WHERE tenant_id='tenant-nasha'"), ("opportunities", "UPDATE opportunities SET amount_cents=amount_cents+1 WHERE tenant_id='tenant-nasha' AND stage='new'")]:
+        try:
+            a.con.execute(sql); res = "ACCEPTED (failure)"; ok_all = False
+        except psycopg.errors.IntegrityConstraintViolation as e:
+            res = "refused: no audit evidence in this transaction" if "no audit evidence" in str(e) else "refused: " + str(e).splitlines()[0]
+        guard.append(dict(table=tbl, statement_kind=sql.split()[0], result=res))
     # ---- control mutants (the same probes/mutants the test suite runs)
     spec = importlib.util.spec_from_file_location("gmut", LAB / "tests/test_growth_mutations.py")
     gm = importlib.util.module_from_spec(spec); sys.modules["gmut"] = gm; spec.loader.exec_module(gm)
@@ -133,7 +145,7 @@ def main():
     ver = a.verify_audit(), b.verify_audit()
     out = dict(schema="growth-os-evidence/1", commit=commit, synthetic=True, pushed=False, notice="Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
                postgres=a.con.execute("SHOW server_version").fetchone()[0], tenants=[dict(id="tenant-nasha", vertical="hospitality"), dict(id="tenant-fit", vertical="fitness")],
-               tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, workflow=workflow, audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
+               tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, audit_guard=guard, workflow=workflow, audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
                capabilities=caps["capabilities"], status_rules=caps["rules"], all_expectations_met=ok_all)
     (LAB / "portfolio/growth-os-evidence.json").write_text(json.dumps(out, indent=1, default=str))
     a.close(); b.close(); nosetting.close(); srv.cleanup()
