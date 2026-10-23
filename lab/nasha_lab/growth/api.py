@@ -98,6 +98,11 @@ class PriceIn(Strict):
     basis: str = Field(min_length=3, max_length=120)
 
 
+class LoginIn(Strict):
+    user: str = Field(pattern=r"^[a-z][a-z0-9_-]{1,30}$")
+    passcode: str = Field(min_length=1, max_length=80)
+
+
 class QualifyIn(Strict):
     lead_id: str = Field(pattern=ID_RE)
 
@@ -216,6 +221,18 @@ def create_growth_app(envs: dict) -> FastAPI:
     @app.get("/v1/health")
     def health():
         return {"status": "ok"}
+
+    @app.post("/v1/tenants/{tenant}/session")
+    def login(tenant: str, body: LoginIn, request: Request):
+        """Issue a bearer session from the TENANT's own authority. Unknown tenants and wrong credentials answer identically. (Synthetic demo passcodes only.)"""
+        env = envs.get(tenant)
+        try:
+            if env is None:
+                raise ID.AuthError("BAD_CREDENTIALS")
+            tok = env.authority.login(body.user, body.passcode)
+        except ID.AuthError:
+            return err(request, 401, "unauthenticated", "a valid bearer session for this tenant is required")
+        return ok(request, dict(token=tok, tenant=tenant, user=body.user, role=env.people[body.user][0], expires_in_seconds=env.authority.session_ttl))
 
     @app.get("/v1/tenants/{tenant}/me")
     def me(tenant: str, request: Request):
@@ -428,5 +445,17 @@ def create_growth_app(envs: dict) -> FastAPI:
             return ok(request, dict(leads=leads, lead_total=sum(leads.values()), pipeline=[dict(stage=a, count=b, amount_cents=int(c)) for a, b, c in opp], open_value_cents=sum(int(c) for a, b, c in opp if a not in ("won", "lost")),
                                     qualification_runs=wfs, approvals_pending=wfs.get("AWAITING_APPROVAL", 0), recent_events=recent, synthetic=True))
         return guarded(go)(request, tenant)
+
+    # the product interface: static files from the same origin, no build step (the API stays the only data path)
+    from pathlib import Path
+    from fastapi.responses import FileResponse
+    from fastapi.staticfiles import StaticFiles
+    ui = Path(__file__).with_name("ui")
+    if ui.is_dir():
+        app.mount("/app/static", StaticFiles(directory=ui), name="ui-static")
+
+        @app.get("/app", include_in_schema=False)
+        def app_page():
+            return FileResponse(ui / "index.html")
 
     return app

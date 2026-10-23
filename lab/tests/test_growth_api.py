@@ -71,7 +71,7 @@ def test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_
     words = ("debug", "admin", "sql", "dump", "export", "send", "publish", "deploy", "purchase", "email", "launch", "exec")
     assert not [p for p in paths if any(w in p.lower() for w in words)]
     ops = sorted(f"{m.upper()} {p}" for p, v in paths.items() for m in v)
-    expected = ["GET /v1/health", "GET /v1/tenants/{tenant}/me", "POST /v1/tenants/{tenant}/accounts", "GET /v1/tenants/{tenant}/accounts", "GET /v1/tenants/{tenant}/accounts/{account_id}", "POST /v1/tenants/{tenant}/contacts",
+    expected = ["GET /v1/health", "POST /v1/tenants/{tenant}/session", "GET /v1/tenants/{tenant}/me", "POST /v1/tenants/{tenant}/accounts", "GET /v1/tenants/{tenant}/accounts", "GET /v1/tenants/{tenant}/accounts/{account_id}", "POST /v1/tenants/{tenant}/contacts",
                 "GET /v1/tenants/{tenant}/contacts", "PUT /v1/tenants/{tenant}/contacts/{contact_id}/consent", "POST /v1/tenants/{tenant}/leads", "GET /v1/tenants/{tenant}/leads", "GET /v1/tenants/{tenant}/leads/{lead_id}",
                 "POST /v1/tenants/{tenant}/leads/{lead_id}/convert", "GET /v1/tenants/{tenant}/opportunities", "POST /v1/tenants/{tenant}/opportunities/{opp_id}/stage", "GET /v1/tenants/{tenant}/pipeline",
                 "POST /v1/tenants/{tenant}/activities", "GET /v1/tenants/{tenant}/activities", "GET /v1/tenants/{tenant}/products", "POST /v1/tenants/{tenant}/products/{product_id}/prices", "POST /v1/tenants/{tenant}/pricing/scenarios",
@@ -275,3 +275,13 @@ def test_dashboard_numbers_match_the_database_and_are_tenant_scoped(api):
     assert d["lead_total"] >= len(items["items"]) and all(e["run_id"].startswith("wf-") for e in d["recent_events"])
     db = c.get("/v1/tenants/tenant-fit/dashboard", headers=hdr(envs, "tenant-fit", "ada")).json()
     assert db["lead_total"] != d["lead_total"] or db["recent_events"] != d["recent_events"]
+
+
+def test_login_issues_a_tenant_bound_session_and_fails_identically_for_unknown_tenants_and_bad_passcodes(api):
+    c, envs = api
+    ok = c.post("/v1/tenants/tenant-nasha/session", json={"user": "sam", "passcode": "tenant-nasha-sam-dev-passcode"})
+    assert ok.status_code == 200 and ok.json()["role"] == "SALES" and c.get("/v1/tenants/tenant-nasha/me", headers={"Authorization": "Bearer " + ok.json()["token"]}).status_code == 200
+    assert c.get("/v1/tenants/tenant-fit/me", headers={"Authorization": "Bearer " + ok.json()["token"]}).status_code == 401
+    bad = [c.post("/v1/tenants/tenant-nasha/session", json={"user": "sam", "passcode": "wrong"}), c.post("/v1/tenants/tenant-ghost/session", json={"user": "sam", "passcode": "x"}),
+           c.post("/v1/tenants/tenant-nasha/session", json={"user": "nobody", "passcode": "x"})]
+    assert {r.status_code for r in bad} == {401} and len({r.json()["error"]["message"] for r in bad}) == 1 and "token" not in bad[0].text

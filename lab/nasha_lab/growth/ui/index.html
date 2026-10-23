@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NASHA Growth OS (synthetic demo)</title>
+<meta name="color-scheme" content="dark"><link rel="icon" href="data:,">
+<link rel="stylesheet" href="/app/static/app.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="login" class="login" hidden>
+  <form class="login-card" id="login-form" autocomplete="off">
+    <p class="mono eyebrow">NASHA GROWTH OS · working name</p>
+    <h1>Sign in to a <em>synthetic</em> tenant</h1>
+    <p class="muted">Local demo. Every tenant, person and number is synthetic; nothing can be sent, published or purchased from this application.</p>
+    <label for="l-tenant">Tenant</label>
+    <select id="l-tenant"><option value="tenant-nasha">NASHA (restaurant and brewery concept)</option><option value="tenant-fit">Meridian Fitness (studio)</option></select>
+    <label for="l-user">User</label>
+    <select id="l-user"><option value="sam">Sam Park · sales</option><option value="ada">Ada Rao · owner</option><option value="omar">Omar Ellis · owner</option><option value="mia">Mia Chen · marketing</option><option value="ana">Ana Ruiz · analyst</option><option value="vic">Vic Stone · viewer</option></select>
+    <label for="l-pass">Passcode <span class="muted">(synthetic demo convention)</span></label>
+    <input id="l-pass" type="text" autocomplete="off" spellcheck="false">
+    <button class="btn pri" type="submit">Sign in</button>
+    <p class="err" id="l-err" role="alert"></p>
+  </form>
+</div>
+<div id="app" class="app" hidden>
+  <aside class="side" aria-label="Primary">
+    <div class="brand"><b>growth<i>os</i></b><span class="mono">SYNTHETIC DEMO</span></div>
+    <nav id="nav"></nav>
+    <div class="who" id="who"></div>
+  </aside>
+  <main id="main" tabindex="-1"></main>
+</div>
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<script src="/app/static/app.js" defer></script>
+</body></html>
