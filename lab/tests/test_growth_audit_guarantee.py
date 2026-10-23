@@ -228,11 +228,18 @@ def test_two_concurrent_conversions_of_the_same_lead_produce_exactly_one_opportu
             res.append(("ok", s.convert_lead(lead, f"Race {i}", 100)))
         except SV.Blocked as e:
             res.append(("blocked", str(e)))
+        except Exception as e:                      # a refusal must never fail inside the audit write itself
+            res.append(("error", repr(e)))
         finally:
             s.close()
     ts = [threading.Thread(target=conv, args=(i,)) for i in range(6)]
     [t.start() for t in ts]; [t.join() for t in ts]
-    assert [r[0] for r in res].count("ok") == 1 and count(db, "SELECT count(*) FROM opportunities WHERE lead_id=%s", (lead,)) == 1
+    kinds = [r[0] for r in res]
+    assert kinds.count("error") == 0, res
+    assert kinds.count("ok") == 1 and kinds.count("blocked") == 5 and count(db, "SELECT count(*) FROM opportunities WHERE lead_id=%s", (lead,)) == 1
+    s = svc(db); ok, _ = s.verify_audit(); s.close()
+    assert ok is True                               # the refusals were audited without breaking or duplicating the chain
+    assert count(db, "SELECT count(*) FROM audit_log WHERE action='lead.convert' AND decision='deny' AND detail->>'why' LIKE %s", ("%qualified lead%",)) >= 5
 
 
 @pytest.fixture(scope="module")
