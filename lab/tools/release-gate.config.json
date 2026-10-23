@@ -27,6 +27,10 @@
     "test_growth_foundation",
     "test_growth_mutations",
     "test_growth_pricing_segments",
+    "test_growth_workflow",
+    "test_growth_workflow_eval",
+    "test_growth_api",
+    "test_growth_agent_tools",
     "test_menu_d90"
   ],
   "min_passed": {
@@ -105,7 +109,10 @@
       "test_growth_foundation::test_the_application_role_cannot_turn_row_security_off_or_change_tenants_data_it_does_not_own",
       "test_growth_foundation::test_audit_is_hash_chained_complete_and_tamper_evident",
       "test_growth_mutations::test_each_mutant_is_detected_by_its_probe",
-      "test_growth_mutations::test_every_probe_passes_on_the_unmutated_system"
+      "test_growth_mutations::test_every_probe_passes_on_the_unmutated_system",
+      "test_growth_workflow_eval::test_each_mutant_is_detected_by_its_probe",
+      "test_growth_workflow_eval::test_every_probe_passes_on_the_unmutated_system",
+      "test_growth_api::test_openapi_contract_has_only_tenant_scoped_v1_operations_and_nothing_that_sends_or_debugs"
     ],
     "tenant_isolation": [
       "test_governed_workflow::test_tenants_have_separate_physical_stores_and_distinct_data",
@@ -116,7 +123,10 @@
       "test_tenancy::test_default_deny_across_tenants_and_override_attempts",
       "test_growth_foundation::test_tenant_a_cannot_read_write_or_reference_tenant_b",
       "test_growth_foundation::test_a_session_without_a_tenant_setting_sees_nothing",
-      "test_growth_foundation::test_cross_tenant_probes_across_every_table_return_nothing"
+      "test_growth_foundation::test_cross_tenant_probes_across_every_table_return_nothing",
+      "test_growth_workflow::test_cross_tenant_sessions_leads_runs_and_approvals_do_not_cross",
+      "test_growth_api::test_cross_tenant_reads_by_id_find_nothing_and_cross_tenant_references_are_refused",
+      "test_growth_api::test_tenant_context_cannot_be_changed_by_untrusted_parameters"
     ],
     "authorization_enforcement": [
       "test_governed_workflow::test_a_user_who_may_not_approve_cannot_approve",
@@ -128,7 +138,12 @@
       "test_governed_workflow::test_a_role_that_may_not_start_runs_is_denied_and_a_role_without_the_write_tool_is_blocked_by_the_weir",
       "test_governed_api::test_full_flow_over_http_ends_in_a_draft_po_and_no_transmission",
       "test_growth_foundation::test_default_deny_and_every_denial_is_audited",
-      "test_growth_foundation::test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair"
+      "test_growth_foundation::test_database_enforces_exactly_the_oracle_stage_graph_for_every_pair",
+      "test_growth_workflow::test_direct_crm_writes_by_unauthorised_roles_are_denied_and_audited",
+      "test_growth_workflow::test_maker_checker_and_role_rules_for_the_approver",
+      "test_growth_workflow::test_a_replayed_approval_creates_nothing_new",
+      "test_growth_workflow::test_a_proposal_modified_after_approval_is_not_applied",
+      "test_growth_api::test_lead_qualification_over_http_denied_held_approved_updated_and_audited"
     ],
     "data_quality": [
       "test_warehouse::test_full_load_publishes_and_reconciles",
