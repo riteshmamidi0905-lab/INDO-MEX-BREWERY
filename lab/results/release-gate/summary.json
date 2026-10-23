@@ -1,6 +1,6 @@
 {
- "total": 696,
- "passed": 695,
+ "total": 712,
+ "passed": 711,
  "failed": 0,
  "skipped": 1,
  "tests": {
@@ -112,6 +112,11 @@
    "failed": 0,
    "skipped": 0
   },
+  "test_brand_positioning": {
+   "passed": 2,
+   "failed": 0,
+   "skipped": 0
+  },
   "test_brand_v3": {
    "passed": 3,
    "failed": 0,
@@ -197,13 +202,18 @@
    "failed": 0,
    "skipped": 0
   },
+  "test_growth_present": {
+   "passed": 10,
+   "failed": 0,
+   "skipped": 0
+  },
   "test_growth_pricing_segments": {
    "passed": 12,
    "failed": 0,
    "skipped": 0
   },
   "test_growth_ui": {
-   "passed": 9,
+   "passed": 13,
    "failed": 0,
    "skipped": 0
   },

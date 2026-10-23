@@ -1,15 +1,15 @@
 {
  "schema": "release-gate-report/1",
  "overall": "REQUIRES_REVIEW",
- "head": "dacc1dc",
- "generated_at": 1792768219.7107913,
- "evidence_commit": "dacc1dc",
+ "head": "28e859f",
+ "generated_at": 1792770516.9619884,
+ "evidence_commit": "28e859f",
  "remote_ci": "NOT_RUN",
  "remote_ci_note": "GitHub workflows have not run remotely; no remote CI result is claimed.",
  "gates": {
   "unit_tests": {
    "status": "PASS",
-   "detail": "389 passed, 0 failed, 0 skipped (all allowed by policy)",
+   "detail": "405 passed, 0 failed, 0 skipped (all allowed by policy)",
    "evidence": [
     "unit_tests"
    ]
@@ -140,7 +140,7 @@
   },
   "evidence_consistency": {
    "status": "PASS",
-   "detail": "evidence collected at dacc1dc (HEAD dacc1dc); no code changed since; counts match junit.xml",
+   "detail": "evidence collected at 28e859f (HEAD 28e859f); no code changed since; counts match junit.xml",
    "evidence": [
     "meta.json",
     "summary.json",

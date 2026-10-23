@@ -1,10 +1,10 @@
 # Release gate: **REQUIRES_REVIEW**
 
-HEAD `dacc1dc`, evidence collected at `dacc1dc`. Remote CI: **NOT_RUN** — GitHub workflows have not run remotely; no remote CI result is claimed.
+HEAD `28e859f`, evidence collected at `28e859f`. Remote CI: **NOT_RUN** — GitHub workflows have not run remotely; no remote CI result is claimed.
 
 | # | Gate | Result | Detail |
 |---|---|---|---|
-| 1 | unit_tests | **PASS** | 389 passed, 0 failed, 0 skipped (all allowed by policy) |
+| 1 | unit_tests | **PASS** | 405 passed, 0 failed, 0 skipped (all allowed by policy) |
 | 2 | integration_tests | **REVIEW** | 306 passed, 1 skipped; needs review: test_llm_planner::test_real_local_model_integration_smoke (model runtime not executed: no local model runtime and no network access to model hosts) |
 | 3 | pg_reconciliation | **PASS** | PostgreSQL reconciliation + pgvector: 9/9 required tests executed and passed |
 | 4 | agent_evaluation | **PASS** | 28/28 cases passed across 13 categories; 0 unauthorized actions (small synthetic set; not evidence of real-world reliability) / contradiction abstention: 2/2 required tests executed and passed |
@@ -14,7 +14,7 @@ HEAD `dacc1dc`, evidence collected at `dacc1dc`. Remote CI: **NOT_RUN** — GitH
 | 8 | authorization_enforcement | **PASS** | authorization tests: 15/15 required tests executed and passed / evaluation authorization/approval: 8 evaluation cases passed with no purchase order created |
 | 9 | reproducibility | **PASS** | evaluation hash identical across runs (d2821929ecbdc098); 48 warehouse tables rebuilt byte-identically |
 | 10 | data_quality | **PASS** | data quality: 8/8 required tests executed and passed |
-| 11 | evidence_consistency | **PASS** | evidence collected at dacc1dc (HEAD dacc1dc); no code changed since; counts match junit.xml |
+| 11 | evidence_consistency | **PASS** | evidence collected at 28e859f (HEAD 28e859f); no code changed since; counts match junit.xml |
 | 12 | portfolio_claim_validation | **PASS** | 11 portfolio claims and 205 dashboard metrics each resolve to the evidence bundle and match exactly |
 
 A missing or malformed required item is a FAIL, never a pass. REQUIRES_REVIEW means nothing failed but something required could not be verified in this environment.

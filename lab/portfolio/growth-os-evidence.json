@@ -1,6 +1,6 @@
 {
  "schema": "growth-os-evidence/1",
- "commit": "dacc1dc",
+ "commit": "28e859f",
  "synthetic": true,
  "pushed": false,
  "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
@@ -8,7 +8,7 @@
  "tenants": [
   {
    "id": "tenant-nasha",
-   "vertical": "restaurant"
+   "vertical": "hospitality"
   },
   {
    "id": "tenant-fit",
@@ -388,7 +388,7 @@
  "workflow": {
   "name": "governed_lead_qualification",
   "happy_path": {
-   "corr_id": "wf-bee90ab7e0b1",
+   "corr_id": "wf-ad2ac3c9e5b1",
    "tenant": "tenant-nasha",
    "before": {
     "status": "new",
@@ -396,7 +396,7 @@
    },
    "held": {
     "status": "AWAITING_APPROVAL",
-    "approval_id": "ap_af5b07dd",
+    "approval_id": "ap_3ba637b4",
     "recommendation_status": "qualified",
     "score": 95,
     "lead_status_while_held": "new",
@@ -432,18 +432,18 @@
    "trace": [
     {
      "seq": 1,
-     "ts": "2026-10-23T15:10:16.092157+00:00",
+     "ts": "2026-10-23T15:48:33.817676+00:00",
      "kind": "stage",
      "name": "request_received",
      "stage": "G01",
      "tenant": "tenant-nasha",
-     "lead_id": "lead-b87fecdc22",
+     "lead_id": "lead-fc3b639a5f",
      "request_id": "req-export-1",
      "idempotency_key": true
     },
     {
      "seq": 2,
-     "ts": "2026-10-23T15:10:16.094689+00:00",
+     "ts": "2026-10-23T15:48:33.820021+00:00",
      "kind": "auth",
      "role": "SALES",
      "user": "sam",
@@ -452,20 +452,20 @@
     },
     {
      "seq": 3,
-     "ts": "2026-10-23T15:10:16.101466+00:00",
+     "ts": "2026-10-23T15:48:33.826766+00:00",
      "kind": "tool_call",
-     "ms": 3.35,
+     "ms": 3.61,
      "ok": true,
      "tool": "growth__get_lead_context",
      "codes": [],
      "stage": "G03",
-     "call_hash": "8092f8c34df310af",
+     "call_hash": "13322c2f0fa9112f",
      "forwarded": true,
      "approval_id": null
     },
     {
      "seq": 4,
-     "ts": "2026-10-23T15:10:16.103093+00:00",
+     "ts": "2026-10-23T15:48:33.829213+00:00",
      "kind": "stage",
      "name": "evidence_collected",
      "stage": "G03",
@@ -479,7 +479,7 @@
     },
     {
      "seq": 5,
-     "ts": "2026-10-23T15:10:16.104118+00:00",
+     "ts": "2026-10-23T15:48:33.830596+00:00",
      "kind": "stage",
      "name": "source_and_consent_validated",
      "stage": "G04",
@@ -488,7 +488,7 @@
     },
     {
      "seq": 6,
-     "ts": "2026-10-23T15:10:16.107046+00:00",
+     "ts": "2026-10-23T15:48:33.833497+00:00",
      "kind": "stage",
      "name": "recommendation",
      "score": 95,
@@ -497,59 +497,79 @@
      "reasons": [
       {
        "text": "budget confirmed: True",
+       "label": "Budget",
+       "factor": "budget",
        "points": 25,
-       "evidence": "E4:lead.signals"
+       "evidence": "E4:lead.signals",
+       "max_points": 25,
+       "explanation": "The prospect has confirmed a budget."
       },
       {
        "text": "decision maker: True",
+       "label": "Decision maker",
+       "factor": "decision_maker",
        "points": 20,
-       "evidence": "E4:lead.signals"
+       "evidence": "E4:lead.signals",
+       "max_points": 20,
+       "explanation": "We are talking to the person who decides."
       },
       {
        "text": "timeline 20 days",
+       "label": "Timeline",
+       "factor": "timeline",
        "points": 20,
-       "evidence": "E4:lead.signals"
+       "evidence": "E4:lead.signals",
+       "max_points": 20,
+       "explanation": "A decision is expected in 20 days (within 30 days: full points)."
       },
       {
        "text": "fit 0.9",
+       "label": "Fit with the ideal customer",
+       "factor": "fit",
        "points": 18,
-       "evidence": "E4:lead.signals"
+       "evidence": "E4:lead.signals",
+       "max_points": 20,
+       "explanation": "Fit with the ideal customer profile is rated 90%."
       },
       {
        "text": "engagement 0.8",
+       "label": "Engagement",
+       "factor": "engagement",
        "points": 12,
-       "evidence": "E4:lead.signals"
+       "evidence": "E4:lead.signals",
+       "max_points": 15,
+       "explanation": "Engagement with our team is rated 80%."
       }
      ],
      "proposed_status": "qualified"
     },
     {
      "seq": 7,
-     "ts": "2026-10-23T15:10:16.109473+00:00",
+     "ts": "2026-10-23T15:48:33.835878+00:00",
      "kind": "stage",
      "name": "proposal",
      "stage": "G06",
-     "proposal_hash": "fcfbb601f9da7e90"
+     "proposal_hash": "839f54ad88254692"
     },
     {
      "seq": 8,
-     "ts": "2026-10-23T15:10:16.112386+00:00",
+     "ts": "2026-10-23T15:48:33.839138+00:00",
      "kind": "tool_call",
-     "ms": 1.4,
+     "ms": 1.46,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G07",
      "failure": null,
-     "call_hash": "0992ddb661de9f5c",
+     "call_hash": "c323ff8014eb5e4b",
      "forwarded": false,
-     "approval_id": "ap_af5b07dd",
+     "approval_id": "ap_3ba637b4",
      "held_for_approval": true
     },
     {
      "seq": 9,
-     "ts": "2026-10-23T15:10:16.114235+00:00",
+     "ts": "2026-10-23T15:48:33.841436+00:00",
      "kind": "stage",
      "name": "held_for_approval",
      "codes": [
@@ -557,11 +577,11 @@
      ],
      "stage": "G07",
      "ttl_s": 900,
-     "approval_id": "ap_af5b07dd"
+     "approval_id": "ap_3ba637b4"
     },
     {
      "seq": 10,
-     "ts": "2026-10-23T15:10:16.125905+00:00",
+     "ts": "2026-10-23T15:48:33.860064+00:00",
      "kind": "approval_decision",
      "code": "ROLE_NOT_PERMITTED",
      "role": "SALES",
@@ -570,39 +590,39 @@
     },
     {
      "seq": 11,
-     "ts": "2026-10-23T15:10:16.127533+00:00",
+     "ts": "2026-10-23T15:48:33.861747+00:00",
      "kind": "failure",
      "detail": "SALES may not approve",
      "failure_class": "ROLE_DENIED"
     },
     {
      "seq": 12,
-     "ts": "2026-10-23T15:10:16.131429+00:00",
+     "ts": "2026-10-23T15:48:33.865890+00:00",
      "kind": "approval_decision",
      "by": "ada",
      "role": "OWNER",
      "comment": "evidence reviewed",
      "decision": "approve",
-     "approval_id": "ap_af5b07dd"
+     "approval_id": "ap_3ba637b4"
     },
     {
      "seq": 13,
-     "ts": "2026-10-23T15:10:16.142810+00:00",
+     "ts": "2026-10-23T15:48:33.877204+00:00",
      "kind": "tool_call",
-     "ms": 8.1,
+     "ms": 7.47,
      "ok": true,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G09",
-     "call_hash": "0992ddb661de9f5c",
+     "call_hash": "c323ff8014eb5e4b",
      "forwarded": true,
-     "approval_id": "ap_af5b07dd"
+     "approval_id": "ap_3ba637b4"
     },
     {
      "seq": 14,
-     "ts": "2026-10-23T15:10:16.145182+00:00",
+     "ts": "2026-10-23T15:48:33.879420+00:00",
      "kind": "stage",
      "name": "crm_updated",
      "stage": "G09",
@@ -610,7 +630,7 @@
     },
     {
      "seq": 15,
-     "ts": "2026-10-23T15:10:16.146795+00:00",
+     "ts": "2026-10-23T15:48:33.880466+00:00",
      "kind": "stage",
      "name": "no_external_contact",
      "stage": "G10",
@@ -619,7 +639,7 @@
     },
     {
      "seq": 16,
-     "ts": "2026-10-23T15:10:16.149474+00:00",
+     "ts": "2026-10-23T15:48:33.883066+00:00",
      "kind": "approval_decision",
      "code": "APPROVAL_REPLAY",
      "state": "EXECUTED",
