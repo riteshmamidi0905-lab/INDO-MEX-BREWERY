@@ -252,6 +252,12 @@ def AR_money(c):
     return "—" if c is None else f"${c / 100:,.2f}"
 
 
+BOUNDARY_TEXT = {"MALFORMED": "the output was not in the required structure", "NO_EVIDENCE": "a claim cited no source", "UNKNOWN_EVIDENCE": "a claim cited a source that does not exist", "UNSUPPORTED_NUMBER": "a claim contained a number its cited source does not contain",
+                 "PRICE_MISMATCH": "a claim stated a price that does not match any stored price", "UNKNOWN_SUPPLIER": "a claim named a supplier that is not in the directory", "WRONG_SOURCE": "a claim about a supplier cited another supplier's record",
+                 "UNSUPPORTED_VERIFICATION": "a claim called an unverified supplier verified", "UNSUPPORTED_RECOMMENDATION": "the agent tried to make the recommendation, which only the calculation may do",
+                 "INSTRUCTION_TEXT": "the output contained instruction-like text", "TOOL_NOT_ALLOWED": "the agent used a tool outside the read-only list"}
+
+
 def launch_run_business(run, events, project, names):
     state, plan, research = run["state"], run.get("items"), run.get("research")
     ents = [x for x in (launch_event_entry(e, names, run) for e in events) if x]
@@ -270,11 +276,13 @@ def launch_run_business(run, events, project, names):
                 by.setdefault(c["supplier"], []).append(dict(ingredient=it["ingredient"], need=it["need_qty"], unit=it["unit"], buy_qty=c["buy_qty"], cost_cents=c["cost_cents"], lead_days=c["lead_days"], price_class=c["price_class"],
                                                              runner_up=it["runner_up"]))
         rec = dict(period_weeks=plan["period_weeks"], total_cost_cents=plan["total_cost_cents"], suppliers=[dict(supplier=t["supplier"], cost_cents=t["cost_cents"], items=t["items"], below_minimum_order=t["below_minimum_order"], price_classes=t["price_classes"],
-                   lines=sorted(by.get(t["supplier"], []), key=lambda x: -x["cost_cents"])) for t in plan["supplier_totals"]], flags=plan["flags"], portions=plan["portions"], replenishment=plan.get("replenishment", []), replenishment_assumption=plan.get("replenishment_assumption"), disclaimer=plan["disclaimer"])
+                   lines=sorted(by.get(t["supplier"], []), key=lambda x: -x["cost_cents"])) for t in plan["supplier_totals"]], flags=plan["flags"], portions=plan["portions"], replenishment=plan.get("replenishment", []), replenishment_assumption=plan.get("replenishment_assumption"), price_effect=plan.get("price_effect"), disclaimer=plan["disclaimer"])
     brief = None
     if research:
         brief = dict(mode=research["mode"], mode_label=AGENT_LABEL.get(research["mode"], research["mode"]), title=research["report"]["title"], answer=research["report"]["answer"], claims=[c["text"] for c in research["report"]["claims"]],
-                     limitations=research["report"]["limitations"], fallback_reason=research.get("fallback_reason"), rejected=bool(research.get("rejected_agent_output")))
+                     limitations=research["report"]["limitations"], fallback_reason=research.get("fallback_reason"), rejected=bool(research.get("rejected_agent_output")),
+                     rejected_reasons=[BOUNDARY_TEXT.get(c, c) for c in ((research.get("rejected_agent_output") or {}).get("codes") or [])], uncertainty=(research.get("boundary") or {}).get("uncertainty", []),
+                     boundary=(research.get("boundary") or {}).get("status"), model_backed=research["mode"] == "engine_model")
     outcome = {"EXECUTED": f"The recommendation for {run['period']} was recorded after approval. No order was placed and no supplier was contacted.", "AWAITING_APPROVAL": "A person must decide whether to record this recommendation. Nothing has been recorded or ordered.",
                "REJECTED": "The recommendation was rejected. Nothing was recorded."}.get(state) or ((LAUNCH_WHY.get(str(run.get("failure") or "").split(":")[0]) or "The run stopped.") + " Nothing was recorded.")
     return dict(summary=dict(workflow="Procurement recommendation", objective=f"Recommend the cheapest valid supplier quotes for {project['name'] if project else 'the project'} over {run['period']}", project=(project or {}).get("name"),

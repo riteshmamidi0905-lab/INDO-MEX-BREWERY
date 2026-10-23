@@ -19,14 +19,17 @@ let VIEW='business';try{if(localStorage.getItem('growth.view')==='engineering')V
 const eng=()=>VIEW==='engineering';
 const tech=o=>`<details class="tech" ${eng()?'open':''}><summary>Technical details</summary><pre>${esc(JSON.stringify(o,null,1))}</pre></details>`;
 function toast(msg,kind='ok',sub=''){const t=document.createElement('div');t.className='toast '+kind;t.innerHTML=esc(msg)+(sub?`<small>${esc(sub)}</small>`:'');$('#toasts').appendChild(t);setTimeout(()=>t.remove(),6000)}
+let RSEQ=0;                                                  // bumped on every navigation: a READ that returns after navigation is discarded, so a slow screen can never render over the one now shown
 async function api(method,path,body,opts={}){
+  const t0=RSEQ;
   const h={'X-Request-Id':'ui-'+uid()};if(S.token)h.Authorization='Bearer '+S.token;if(body!==undefined)h['Content-Type']='application/json';if(method!=='GET'&&opts.idem!==false)h['Idempotency-Key']=opts.key||uid()+uid();
   const r=await fetch(`/v1/tenants/${S.tenant}${path}`,{method,headers:h,body:body===undefined?undefined:JSON.stringify(body)});
   let j=null;try{j=await r.json()}catch(e){}
+  if(method==='GET'&&path!=='/me'&&t0!==RSEQ){const st=new Error('superseded by navigation');st.stale=true;throw st}
   if(!r.ok){const e=(j&&j.error)||{code:'error',message:'request failed',request_id:'-'};if(r.status===401&&S.token&&path!=='/session'){signOut(true)}const err=new Error(e.message);err.code=e.code;err.status=r.status;err.rid=e.request_id;throw err}
   return j}
-const fail=e=>toast(`${e.message}`,'bad',e.status?`HTTP ${e.status} · ${e.code} · request ${e.rid}`:'');
-async function act(fn,okmsg){try{const r=await fn();if(okmsg)toast(okmsg,'ok');return r}catch(e){fail(e);return null}}
+const fail=e=>e.stale?0:toast(`${e.message}`,'bad',e.status?`HTTP ${e.status} · ${e.code} · request ${e.rid}`:'');
+async function act(fn,okmsg){try{const r=await fn();if(okmsg)toast(okmsg,'ok');return r}catch(e){if(e.stale)throw e;fail(e);return null}}
 const can={write:()=>['OWNER','SALES'].includes(S.role),owner:()=>S.role==='OWNER',pricing:()=>['OWNER','ANALYST'].includes(S.role),content:()=>['OWNER','SALES','MARKETING'].includes(S.role)};
 
 /* ---------------- shell ---------------- */
@@ -173,7 +176,7 @@ async function settings(){
 
 /* ---------------- router and login ---------------- */
 const ROUTES={dashboard,crm,pipeline,pricing,workflows,security,settings};
-async function route(){if(!S.token)return;const [k,a]=(location.hash.slice(2)||'dashboard').split('/');const fn=ROUTES[k]||ROUTES.business||dashboard;setNav(ROUTES[k]?k:(ROUTES.business?'business':'dashboard'));try{await fn(a)}catch(e){fail(e)}}
+async function route(){if(!S.token)return;RSEQ++;const [k,a]=(location.hash.slice(2)||'dashboard').split('/');const fn=ROUTES[k]||ROUTES.business||dashboard;setNav(ROUTES[k]?k:(ROUTES.business?'business':'dashboard'));try{await fn(a)}catch(e){fail(e)}}
 addEventListener('hashchange',route);
 {const mb=$('#menubtn'),side=$('.side');if(mb)mb.addEventListener('click',()=>{const o=side.classList.toggle('open');mb.setAttribute('aria-expanded',o)});addEventListener('hashchange',()=>{if(side){side.classList.remove('open');if(mb)mb.setAttribute('aria-expanded','false')}})}
 async function boot(){ if(S.token&&!S.display_name){try{const m=await api('GET','/me');S.display_name=m.display_name;S.tenant_name=m.tenant_name;save()}catch(e){}} if(S.token){shell();if(!location.hash)location.hash=ROUTES.business?'#/business':'#/dashboard';route()}else{$('#login').hidden=false;$('#app').hidden=true;pass()} }
@@ -183,7 +186,7 @@ $('#login-form').onsubmit=async e=>{e.preventDefault();$('#l-err').textContent='
   try{const r=await fetch(`/v1/tenants/${t}/session`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user:$('#l-user').value,passcode:$('#l-pass').value})});const j=await r.json();
     if(!r.ok){$('#l-err').textContent='Sign-in failed: '+(j.error?j.error.message:'error');return}
     S={tenant:t,user:j.user,role:j.role,token:j.token};save();location.hash=ROUTES.business?'#/business':'#/dashboard';boot()}catch(x){$('#l-err').textContent='Could not reach the API.'}};
-new MutationObserver(()=>$$('.tablewrap:not([role])').forEach(t=>{t.tabIndex=0;t.setAttribute('role','region');t.setAttribute('aria-label','Data table (scrollable)')})).observe($('#main'),{childList:true,subtree:true});
+new MutationObserver(()=>{$$('.tablewrap:not([role])').forEach(t=>{t.tabIndex=0;t.setAttribute('role','region');t.setAttribute('aria-label','Data table (scrollable)')});$$('details.tech pre:not([role])').forEach(t=>{t.tabIndex=0;t.setAttribute('role','region');t.setAttribute('aria-label','Raw technical record (scrollable)')})}).observe($('#main'),{childList:true,subtree:true});
 window.GOS={api,act,page,esc,money,pct,chip,stateChip,fmtTime,fmtDate,eng:()=>eng(),tech,can,S:()=>S,$,$$,toast,fail,route,ROUTES,signOut,boot,uid};
 if(!document.querySelector('script[src$="launch.js"]'))boot();
 })();

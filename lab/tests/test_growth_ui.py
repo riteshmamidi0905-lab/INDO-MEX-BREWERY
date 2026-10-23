@@ -342,3 +342,91 @@ def test_on_a_phone_the_navigation_is_collapsed_behind_a_keyboard_operable_menu_
     assert not pg.evaluate("document.documentElement.scrollWidth>innerWidth+1")
     wide = login(browser, base, "ana", vp=(1280, 900))
     assert not wide.locator("#menubtn").is_visible() and wide.locator("#nav").is_visible()
+
+
+def test_supplier_comparison_shows_data_categories_sources_and_never_ranks_across_them(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ana"); go(pg, "#/suppliers", "#cmp table")
+    t = pg.inner_text("#cmp").lower()
+    assert "compare quotes" in t and "never compared with each other" in t and "synthetic quotation" in t and "lowest in category" in t and "no published price" in t
+    assert pg.locator("#cmp tbody tr").count() == 8 and pg.locator("#cmpall").count() == 1
+    pg.click("#cmpall"); assert pg.locator("#cmp tbody tr").count() > 8
+    card = pg.locator("#slist .sup", has_text="Brothers Produce")
+    assert "rule-based" in card.inner_text().lower() and "names the project area" in card.inner_text().lower()
+    card.locator("summary", has_text="Public sources").click()
+    txt = card.inner_text().lower()
+    assert "search-result snippet only (page not opened)" in txt and "not an official website, a price or a verification" in txt and "restaurant365" in txt
+    assert "official website: not verified" in txt
+
+
+def test_adding_a_public_source_and_the_duplicate_warning_work_through_the_real_api(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ana"); go(pg, "#/suppliers", "#slist .sup")
+    card = pg.locator("#slist .sup", has_text="Hill Country Dairies")
+    card.locator("summary", has_text="Add a public source").click()
+    f = card.locator("form.srcf")
+    f.locator("[name=url]").fill("https://example.test/ui-added-source"); f.locator("[name=observed_on]").fill("2026-10-23"); f.locator("[name=claim]").fill("Listed in a trade directory as a dairy distributor.")
+    f.locator("button").click(); pg.wait_for_selector(".toast", timeout=8000); assert "source added" in pg.inner_text(".toast").lower(), pg.inner_text(".toast"); pg.wait_for_selector("#slist .sup")
+    sup = next(s for s in _api(base, envs, "tenant-nasha", "ana", "GET", "/suppliers").json()["items"] if s["name"] == "Hill Country Dairies")
+    assert any(s["url"] == "https://example.test/ui-added-source" and s["access"] == "search_snippet" for s in sup["sources"])
+    pg.locator("summary", has_text="Add a supplier record").click()
+    ns = pg.locator("#ns")
+    ns.locator("[name=name]").fill("Brothers Produce Inc."); ns.locator("[name=category]").fill("Produce"); ns.locator("[name=service_area]").fill("Texas"); ns.locator("[name=source_url]").fill("https://example.test/dup")
+    ns.locator("button").click()
+    pg.wait_for_function("[...document.querySelectorAll('.toast')].some(t=>t.innerText.toLowerCase().includes('duplicate'))", timeout=8000)
+    assert not [s for s in _api(base, envs, "tenant-nasha", "ana", "GET", "/suppliers").json()["items"] if s["name"] == "Brothers Produce Inc."]
+    v = login(browser, base, "vic"); go(v, "#/suppliers", "#slist .sup"); assert v.locator("form.srcf").count() == 0, "a viewer cannot add a source"
+
+
+def test_financial_plan_shows_startup_costs_formulas_break_even_grid_and_limitations_from_stored_data(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ana"); go(pg, "#/financial", "#fres .kpi")
+    pid = _api(base, envs, "tenant-nasha", "ana", "GET", "/projects").json()["items"][0]["id"]
+    st = _api(base, envs, "tenant-nasha", "ana", "POST", f"/projects/{pid}/scenarios/preview", json={}).json()["results"]["startup"]
+    t = pg.inner_text("#fres")
+    assert "Start-up costs" in t and "budget does not cover the plan" in t.lower() and f"${st['total_requirement_cents'] / 100:,.2f}" in t and "Contingency" in t and "Working capital" in t
+    assert "Break-even orders per week" in t and "not reachable" in t or "Break-even orders per week" in t
+    assert "What this model does not know" in t and "assumptions, not measurements" in t
+    pg.locator("summary", has_text="Formulas").click(); ft = pg.inner_text("#fres details").lower()
+    assert "contribution" in ft and "fixed costs / contribution per unit" in ft and "contingency %" in ft
+    pg.fill("#ctl input[name=capex_buildout_cents]", "170000"); pg.click("#ctl button.pri"); pg.wait_for_timeout(700)
+    st2 = _api(base, envs, "tenant-nasha", "ana", "POST", f"/projects/{pid}/scenarios/preview", json={"capex_buildout_cents": 17_000_000}).json()["results"]["startup"]
+    assert st2["total_requirement_cents"] < st["total_requirement_cents"] and f"${st2['total_requirement_cents'] / 100:,.2f}" in pg.inner_text("#fres")
+
+
+def test_my_business_shows_the_journey_from_records_and_a_readable_audit_history(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ada"); go(pg, "#/business", ".journey")
+    t = pg.inner_text("#main")
+    assert "The launch journey" in t and "Market research" in t and "Human approval" in t and "Project history" in t and "Approved and recorded" in t
+    assert pg.locator(".journey li").count() == 7 and "done" in pg.inner_text(".journey").lower()
+    assert "audit #" not in t, "the business view carries no engineering identifiers"
+    assert not __import__("re").search(r"\b(proj|sup|asm|ms|scn|pr)-[0-9a-f]{6,}\b", t)
+    pg.click(".vt [data-v=engineering]"); pg.wait_for_selector("text=audit #")
+    pg.click(".vt [data-v=business]")
+
+
+def test_procurement_detail_states_that_no_language_model_ran_and_lists_what_remains_uncertain(server, browser):
+    base, envs = server
+    runs = _api(base, envs, "tenant-nasha", "ada", "GET", "/procurement/runs?limit=50").json()["items"]
+    rid = next(r["id"] for r in runs if r["state"] == "AWAITING_APPROVAL")
+    pg = login(browser, base, "ada"); go(pg, f"#/procurement/{rid}", "#main .timeline")
+    t = pg.inner_text("#main")
+    assert "No language model was used for this brief" in t and "What remains uncertain" in t and "Effect of the supplier choice" in t and "synthetic" in t.lower()
+    assert "not a language model" in t.lower() or "offline heuristic" in t.lower()
+
+
+def test_new_screens_have_no_serious_axe_violations_at_phone_width_with_every_section_expanded(server, browser):
+    if not AXE:
+        pytest.skip("INTEGRATION UNAVAILABLE: axe-core not installed")
+    base, envs = server
+    pg = login(browser, base, "ada", vp=(390, 844))
+    rid = next(r["id"] for r in get(base, envs, "tenant-nasha", "ada", "/procurement/runs?limit=50")["items"] if r["state"] == "AWAITING_APPROVAL")
+    for h in ("#/business", "#/suppliers", "#/financial", f"#/procurement/{rid}"):
+        go(pg, h, "#main h1"); pg.wait_for_timeout(900)
+        pg.evaluate("document.querySelectorAll('#main details').forEach(d=>d.open=true)")
+        assert pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), ("horizontal overflow", h)
+        pg.add_script_tag(path=AXE)
+        res = pg.evaluate("axe.run(document,{runOnly:['wcag2a','wcag2aa','wcag21aa']}).then(r=>r.violations.map(v=>({id:v.id,impact:v.impact,n:v.nodes.length,t:v.nodes.slice(0,2).map(n=>n.target.join(' '))})))")
+        bad = [v for v in res if v["impact"] in ("serious", "critical")]
+        assert not bad, (h, bad)
