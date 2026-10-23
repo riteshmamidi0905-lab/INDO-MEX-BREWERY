@@ -700,3 +700,98 @@ def test_a_tenant_workflow_never_opens_another_tenants_files(pair, tmp_path, mon
     finally:
         wf.close()
     assert opened and not [p for p in opened if str(eb.root) in p]
+
+
+# ============================================================ regression tests for controls found missing or under-tested (D-89 priority 1)
+def audit_count(wf):
+    return wf.ledger.con.execute("SELECT count(*) FROM audit").fetchone()[0]
+
+
+def test_every_meaningful_operation_leaves_an_audit_record_including_refusals(pair, tmp_path):
+    clk = Clock()
+    env = fresh(pair[0], tmp_path, clock=clk)
+    wf = W.GovernedProcurement(env, clock=clk, rate_limit=(4, 60))
+    try:
+        loc, ing = target(env)
+        steps = []
+        def op(name, fn):
+            before = audit_count(wf)
+            out = fn()
+            steps.append((name, audit_count(wf) - before))
+            return out
+        op("auth_denied", lambda: wf.run("garbage", loc, ing))
+        op("role_denied", lambda: wf.run(tok(wf, env, "viewer"), loc, ing))
+        r = op("run", lambda: wf.run(tok(wf, env, "buyer"), loc, ing, idempotency_key="a1"))
+        op("duplicate", lambda: wf.run(tok(wf, env, "buyer"), loc, ing, idempotency_key="a1"))
+        op("rate_limited", lambda: [wf.run(tok(wf, env, "buyer"), loc, ing, idempotency_key=f"z{i}") for i in range(4)][-1])
+        op("approver_role_denied", lambda: wf.decide(r["corr_id"], tok(wf, env, "quality"), True, "x"))
+        op("maker_checker", lambda: wf.decide(r["corr_id"], tok(wf, env, "buyer"), True, "x"))
+        op("approve_execute", lambda: wf.decide(r["corr_id"], tok(wf, env, "founder"), True, "ok"))
+        op("replay", lambda: wf.decide(r["corr_id"], tok(wf, env, "founder"), True, "ok"))
+        missing = [n for n, d in steps if d < 1]
+        assert not missing, (missing, steps)
+        assert wf.ledger.verify_audit()[0]
+    finally:
+        wf.close()
+
+
+@pytest.mark.parametrize("column,value", [("qty", 9999.0), ("supplier_id", "S01"), ("quote_id", "Q-OTHER"), ("reco_id", "R-0000000000000000"), ("inputs_hash", "f" * 16), ("est_cost_usd", 1.0)])
+def test_approval_scope_cannot_be_changed_on_any_field(A, column, value):
+    env, wf = A
+    r = start(wf, env)
+    wf.decide(r["corr_id"], tok(wf, env, "founder"), True, "ok", execute=False)
+    p0 = wf.ledger.proposal(r["proposal_id"])
+    if p0[column] == value:
+        pytest.skip("value coincides with the original")
+    wf.ledger.con.execute(f"UPDATE proposals SET {column}=? WHERE proposal_id=?", (value, r["proposal_id"]))
+    e = wf.execute_approved(r["corr_id"])
+    assert pos(wf) == 0 and (e["status"] == "REAPPROVAL_REQUIRED" or e["status"] == "FAILED"), e
+    if column in ("qty", "supplier_id", "quote_id", "reco_id", "inputs_hash", "est_cost_usd"):
+        assert e["status"] == "REAPPROVAL_REQUIRED"          # these are in the call hash: THE WEIR itself refuses to reuse the approval
+
+
+def test_an_expired_approval_cannot_be_resolved_or_consumed_later(pair, tmp_path):
+    clk = Clock()
+    env = fresh(pair[0], tmp_path, clock=clk)
+    wf = W.GovernedProcurement(env, clock=clk, ttl=60)
+    try:
+        r = start(wf, env)
+        clk.advance(61)
+        assert wf.weir.resolve_approval(r["approval_id"], True, by="late-human") == "expired"
+        assert wf.weir.latest_approval_state(r["corr_id"], __import__("nasha_lab.governed.workflow", fromlist=["x"]).call_hash(WB.PROC_TOOL, wf._po_args(r["proposal_id"]))) == "expired"
+        assert pos(wf) == 0
+    finally:
+        wf.close()
+
+
+def test_concurrent_executions_of_the_same_approval_create_exactly_one_draft(A):
+    import threading
+    env, wf = A
+    r = start(wf, env)
+    wf.decide(r["corr_id"], tok(wf, env, "founder"), True, "ok", execute=False)
+    p = wf.ledger.proposal(r["proposal_id"])
+    results = []
+    def go(i):
+        try:
+            results.append(wf.ledger.create_po_draft(p["proposal_id"], r["approval_id"], "tenant-a-founder", f"po-tenant-a-{p['proposal_id']}", r["corr_id"]))
+        except Exception as e:                                          # noqa: BLE001
+            results.append(e)
+    ts = [threading.Thread(target=go, args=(i,)) for i in range(8)]
+    [t.start() for t in ts]; [t.join() for t in ts]
+    assert pos(wf) == 1 and sum(1 for x in results if isinstance(x, tuple) and not x[1]) == 1       # one creator, the rest see the existing draft
+    assert wf.execute_approved(r["corr_id"])["status"] in ("EXECUTED", "DENIED") and pos(wf) == 1
+
+
+def test_the_procurement_upstream_refuses_a_write_that_did_not_come_through_the_approval_path(A):
+    env, wf = A
+    r = start(wf, env)
+    gw, proc, ops = wf._gateway(__import__("nasha_lab.identity", fromlist=["Identity"]).Identity(f"{env.tenant_id}-buyer", "BUYER"))
+    res = wf.loop.run_until_complete(proc.call_tool("create_draft_purchase_order", wf._po_args(r["proposal_id"]), 5))        # bypassing THE WEIR entirely
+    assert res["isError"] and "NO_APPROVAL_CONTEXT" in res["content"][0]["text"] and pos(wf) == 0
+
+
+def test_no_module_in_the_governed_package_can_open_a_network_connection():
+    import pathlib, re
+    src = "".join(p.read_text() for p in pathlib.Path(__file__).parents[1].joinpath("nasha_lab/governed").glob("*.py"))
+    assert not re.search(r"^\s*(import|from)\s+(requests|urllib\.request|httpx|smtplib|http\.client|aiohttp|ftplib|socket)\b", src, re.M), "the governed package must have no outbound network imports"
+    assert "create_connection" not in src and "urlopen" not in src

@@ -259,7 +259,7 @@ class GovernedProcurement:
 
     def _po_args(self, proposal_id):
         p = self.ledger.proposal(proposal_id)
-        return dict(proposal_id=p["proposal_id"], reco_id=p["reco_id"], inputs_hash=p["inputs_hash"], qty=p["qty"], supplier_id=p["supplier_id"], quote_id=p["quote_id"],
+        return dict(proposal_id=p["proposal_id"], reco_id=p["reco_id"], inputs_hash=p["inputs_hash"], qty=p["qty"], est_cost_usd=p["est_cost_usd"], supplier_id=p["supplier_id"], quote_id=p["quote_id"],
                     idempotency_key=f"po-{self.env.tenant_id}-{p['proposal_id']}", note=f"Draft PO for {p['ingredient_id']} at {p['location_id']} (proposal {p['proposal_id']})")
 
     # ------------------------------------------------------------------ the human decision (S13) and execution (S14)

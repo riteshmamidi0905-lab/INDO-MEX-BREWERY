@@ -80,7 +80,7 @@ class ProcurementUpstream:
         if not ctx or not ctx.get("approval_id") or not ctx.get("approved_by"):
             return self._reject("NO_APPROVAL_CONTEXT", "the write was not reached through the approval path")
         a = arguments
-        for k in ("proposal_id", "reco_id", "inputs_hash", "qty", "supplier_id", "quote_id", "idempotency_key"):
+        for k in ("proposal_id", "reco_id", "inputs_hash", "qty", "est_cost_usd", "supplier_id", "quote_id", "idempotency_key"):
             if k not in a:
                 return self._reject("MISSING_ARGUMENT", k)
         p = self.ledger.proposal(a["proposal_id"])
@@ -96,6 +96,8 @@ class ProcurementUpstream:
                 return self._reject("PROPOSAL_MISMATCH", k_a)
         if abs(float(a["qty"]) - p["qty"]) > 1e-9:
             return self._reject("PROPOSAL_MISMATCH", "qty")
+        if abs(float(a["est_cost_usd"]) - p["est_cost_usd"]) > 1e-9:
+            return self._reject("PROPOSAL_MISMATCH", "est_cost_usd")
         if not p["evidence_ids"]:
             return self._reject("MISSING_EVIDENCE")
         con = sqlite3.connect(f"file:{self.wh}?mode=ro", uri=True)
@@ -111,6 +113,8 @@ class ProcurementUpstream:
             return self._reject("SUPPLIER_DATA_MISSING")
         if p["qty"] > reco[0] * MAX_QTY_FACTOR + 1e-9:
             return self._reject("UNSAFE_QUANTITY")
+        if abs(p["est_cost_usd"] - reco[1] * p["qty"] / max(reco[0], 1e-9)) > 0.02:       # the amount must still be what the recommendation implies for this quantity (a tampered cost is not approvable)
+            return self._reject("PROPOSAL_MISMATCH", "est_cost_usd_vs_recommendation")
         if p["est_cost_usd"] > MAX_PO_USD:
             return self._reject("UNSAFE_AMOUNT")
         try:
