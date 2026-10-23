@@ -222,7 +222,7 @@ def create_growth_app(envs: dict) -> FastAPI:
         return dict(items=items, next_cursor=str(off + limit) if len(rows) > limit else None)
 
     def names(s):
-        return {r[0]: r[1] for r in s.read("SELECT id, display_name FROM users WHERE tenant_id=%s", (s.tenant,))}
+        return {r[0]: PR.short(r[1]) for r in s.read("SELECT id, display_name FROM users WHERE tenant_id=%s", (s.tenant,))}
 
     def entity_names(s):
         t = s.tenant
@@ -254,7 +254,7 @@ def create_growth_app(envs: dict) -> FastAPI:
 
     @app.get("/v1/tenants/{tenant}/me")
     def me(tenant: str, request: Request):
-        return guarded(lambda request, tenant, who, s: ok(request, dict(tenant=tenant, user=who.id, role=who.role)))(request, tenant)
+        return guarded(lambda request, tenant, who, s: ok(request, dict(tenant=tenant, user=who.id, role=who.role, display_name=names(s).get(who.id, who.id), tenant_name=(s.read("SELECT name FROM tenants WHERE tenant_id=%s", (tenant,)) or [[tenant]])[0][0])))(request, tenant)
 
     # ---------------------------------------------------------------- CRM
     @app.post("/v1/tenants/{tenant}/accounts", status_code=201)
@@ -278,8 +278,10 @@ def create_growth_app(envs: dict) -> FastAPI:
 
     @app.get("/v1/tenants/{tenant}/contacts")
     def list_contacts(tenant: str, request: Request, account_id: Optional[str] = Query(None, pattern=ID_RE), limit: int = LIM, cursor: Optional[str] = CUR):
-        sql, params = ("SELECT id, account_id, full_name, email, consent_status, version FROM contacts WHERE tenant_id=%s" + (" AND account_id=%s" if account_id else "") + " ORDER BY created_at, id"), ((tenant, account_id) if account_id else (tenant,))
-        return guarded(lambda request, tenant, who, s: ok(request, page(s, sql, params, limit, cursor, ("id", "account_id", "full_name", "email", "consent_status", "version"))))(request, tenant)
+        sql = ("SELECT c.id, c.account_id, c.full_name, c.email, c.consent_status, c.version, c.job_title, a.name, EXISTS (SELECT 1 FROM suppression_list sp WHERE sp.tenant_id=c.tenant_id AND sp.email=c.email) "
+               "FROM contacts c JOIN accounts a ON a.tenant_id=c.tenant_id AND a.id=c.account_id WHERE c.tenant_id=%s" + (" AND c.account_id=%s" if account_id else "") + " ORDER BY c.created_at, c.id")
+        params = (tenant, account_id) if account_id else (tenant,)
+        return guarded(lambda request, tenant, who, s: ok(request, page(s, sql, params, limit, cursor, ("id", "account_id", "full_name", "email", "consent_status", "version", "job_title", "organization", "suppressed"))))(request, tenant)
 
     @app.put("/v1/tenants/{tenant}/contacts/{contact_id}/consent")
     def set_consent(tenant: str, contact_id: str, body: ConsentIn, request: Request):
@@ -298,7 +300,7 @@ def create_growth_app(envs: dict) -> FastAPI:
         def go(request, tenant, who, s):
             d = page(s, sql, params, limit, cursor, cols)
             for it in d["items"]:
-                it["id"] = it["lead_id"]
+                it["id"] = it["lead_id"]; it["owner"] = PR.short(it["owner"])
             return ok(request, d)
         return guarded(go)(request, tenant)
 
@@ -420,6 +422,7 @@ def create_growth_app(envs: dict) -> FastAPI:
         def go(request, tenant, who, s):
             d = page(s, sql, (tenant,), limit, cursor, cols); nm = names(s)
             for it in d["items"]:
+                it["owner"] = PR.short(it["owner"])
                 it["status_label"], it["tone"] = PR.state_label(it["state"]), PR.TONE.get(it["state"], "info")
                 it["score"] = int(it["score"]) if it["score"] is not None else None
                 it["requested_by"] = nm.get(it["requester"], it["requester"])
@@ -466,7 +469,14 @@ def create_growth_app(envs: dict) -> FastAPI:
                 for it in d["items"]:
                     it["requested_by"] = nm.get(it["requester"], it["requester"])
             else:
-                d = page(s, "SELECT run_id, ts, detail FROM workflow_events WHERE tenant_id=%s AND kind='approval_decision' ORDER BY ts DESC, run_id, seq", (tenant,), limit, cursor, ("run_id", "ts", "detail"))
+                d = page(s, "SELECT e.run_id, e.ts, e.detail, c.full_name, a.name FROM workflow_events e JOIN workflow_runs w ON w.tenant_id=e.tenant_id AND w.id=e.run_id JOIN leads l ON l.tenant_id=w.tenant_id AND l.id=w.lead_id "
+                                 "JOIN contacts c ON c.tenant_id=l.tenant_id AND c.id=l.contact_id JOIN accounts a ON a.tenant_id=c.tenant_id AND a.id=c.account_id WHERE e.tenant_id=%s AND e.kind='approval_decision' ORDER BY e.ts DESC, e.run_id, e.seq", (tenant,), limit, cursor,
+                         ("run_id", "ts", "detail", "prospect", "organization"))
+                nm = names(s)
+                for it in d["items"]:
+                    who_id = it["detail"].get("by") or it["detail"].get("user")
+                    it["by_name"] = nm.get(who_id, who_id)
+                    it["summary"] = PR.event_entry(dict(seq=0, ts=str(it["ts"]), kind="approval_decision", **it["detail"]), nm)["title"]
             return ok(request, d)
         return guarded(go)(request, tenant)
 

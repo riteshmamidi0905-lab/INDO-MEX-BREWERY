@@ -111,7 +111,7 @@ def test_unknown_tenants_and_bad_sessions_are_indistinguishable_and_cross_tenant
 def test_tenant_context_cannot_be_changed_by_untrusted_parameters(api):
     c, envs = api
     h = hdr(envs, "tenant-nasha", "sam", **{"X-Tenant-Id": "tenant-fit", "X-Tenant": "tenant-fit"})
-    assert c.get("/v1/tenants/tenant-nasha/me?tenant=tenant-fit&tenant_id=tenant-fit", headers=h).json() == {"tenant": "tenant-nasha", "user": "sam", "role": "SALES"}
+    assert c.get("/v1/tenants/tenant-nasha/me?tenant=tenant-fit&tenant_id=tenant-fit", headers=h).json() == {"tenant": "tenant-nasha", "user": "sam", "role": "SALES", "display_name": "Sam (synthetic sales)", "tenant_name": "NASHA (synthetic)"}
     r = c.post("/v1/tenants/tenant-nasha/accounts", json={"name": "Forged", "tenant_id": "tenant-fit"}, headers=h)
     assert r.status_code == 422, "an unknown body field such as tenant_id is rejected, not ignored"
     r = c.post("/v1/tenants/tenant-nasha/accounts?tenant_id=tenant-fit", json={"name": "Param Forged"}, headers=h)

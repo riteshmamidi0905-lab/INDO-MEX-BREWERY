@@ -36,3 +36,14 @@ form.inline{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr)
 .srow{display:grid;grid-template-columns:minmax(110px,1.4fr) repeat(3,minmax(70px,1fr));gap:8px}.srow label{display:grid;gap:3px}.srow input{min-height:40px;padding:0 8px}
 .bar .chip{justify-self:start}
 .col h3{min-height:2.8em;align-content:start}
+
+.vt{display:flex;flex-wrap:wrap;gap:4px;align-items:center}.vt .mono{flex-basis:100%;color:var(--dim)}.vt button{flex:1;min-height:36px;padding:0 8px;border:1px solid var(--line2);border-radius:var(--r);background:transparent;color:var(--muted);font-size:13px}.vt button[aria-pressed=true]{background:var(--surface2);border-color:var(--accent);color:var(--text)}
+.clamp,.clamp3{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:2;max-width:46ch}.clamp3{-webkit-line-clamp:3;max-width:40ch}
+.verdict{font-size:20px;margin:0 0 8px}.verdict b:first-child{text-transform:capitalize}.verdict b:first-child{color:var(--accent)}
+.gauge{position:relative;height:12px;border-radius:6px;background:var(--surface2);margin:4px 0 8px}.gauge i{display:block;height:100%;border-radius:6px;background:var(--accent)}.gauge u{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--text);text-decoration:none}
+.meter{display:inline-block;width:74px;height:8px;border-radius:4px;background:var(--surface2);vertical-align:middle;overflow:hidden}.meter i{display:block;height:100%;background:var(--ok)}.pts{white-space:nowrap}
+.limits{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+details.tech{margin-top:6px}details.tech summary{cursor:pointer;font:500 11px ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);min-height:24px}details.tech pre{margin:6px 0 0;padding:10px;background:var(--bg);border:1px solid var(--line);border-radius:6px;overflow:auto;font-size:12px;max-height:260px;white-space:pre-wrap;overflow-wrap:anywhere}
+.timeline li{grid-template-columns:136px minmax(0,1fr)}.timeline .mono{white-space:nowrap}
+
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}.filters input[type=search]{max-width:320px}.filters select{max-width:200px}

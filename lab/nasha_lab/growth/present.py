@@ -1,6 +1,14 @@
 """Presentation layer for Growth OS: turns the SAME stored records (workflow run, recorded events, proposal, lead, audit rows) into plain business language.
 Nothing here decides anything or invents anything: every sentence is derived from a recorded value, and every timeline entry carries the sequence number of the recorded event it came from, plus the raw
 event for the Engineering view. If a record is missing the sentence says so rather than filling a gap."""
+import re
+
+
+def short(n):
+    """Display name without the '(synthetic ...)' tag; the application as a whole already says the data is synthetic."""
+    return re.sub(r"\s*\(synthetic[^)]*\)\s*$", "", n) if isinstance(n, str) else n
+
+
 STATE_LABEL = {"STARTED": "In progress", "EVIDENCE_COLLECTED": "In progress", "PROPOSED": "In progress", "AWAITING_APPROVAL": "Awaiting approval", "APPROVED": "Approved",
                "EXECUTED": "Completed", "REJECTED": "Rejected", "ABSTAINED": "Needs more information", "BLOCKED": "Blocked", "FAILED": "Failed"}
 TONE = {"AWAITING_APPROVAL": "wait", "APPROVED": "ok", "EXECUTED": "ok", "REJECTED": "no", "BLOCKED": "no", "FAILED": "no", "ABSTAINED": "wait"}
@@ -149,7 +157,7 @@ def run_business(run, events, lead, names):
                     limitations=["This is a transparent rule-based score over the recorded facts, not a validated model of buying behaviour.", "All people and organisations are synthetic."])
     return dict(summary=dict(workflow="Lead qualification", objective=f"Decide whether {(lead or {}).get('prospect', 'this prospect')} at {(lead or {}).get('organization', 'this organisation')} is a qualified sales lead",
                              prospect=(lead or {}).get("prospect"), job_title=(lead or {}).get("job_title"), organization=(lead or {}).get("organization"), inquiry=(lead or {}).get("inquiry"),
-                             scenario=(lead or {}).get("scenario"), owner=(lead or {}).get("owner"), requested_by=name(names, run.get("requester")), status=state, status_label=state_label(state), tone=TONE.get(state, "info"),
+                             scenario=(lead or {}).get("scenario"), owner=short((lead or {}).get("owner")), requested_by=name(names, run.get("requester")), status=state, status_label=state_label(state), tone=TONE.get(state, "info"),
                              last_activity=events[-1]["ts"] if events else None, outcome=outcome(state, run, proposal, lead, approval['decided_by']), next_action=next_action(state, run, proposal, lead)),
                 qualification=qual, authorization=auth, approval=approval, timeline=ents)
 

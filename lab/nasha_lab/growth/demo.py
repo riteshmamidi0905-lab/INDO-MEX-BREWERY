@@ -51,8 +51,7 @@ def build(root, dsn, schema=SCHEMA, with_warehouse=True):
                 r = wf.run(tok(requester), lead, idempotency_key=f"demo-{t}-{sc['key']}")
                 wf.decide(r["corr_id"], tok(approver), disp == "executed", comments[disp])
                 if disp == "executed" and sc["basket"] and sales.get_lead_context(lead)["status"] == "qualified":
-                    opp = sales.convert_lead(lead, sc["opp"], SC.basket_cents(prices, sc["basket"]))
-                    sales.advance(opp, "qualified")
+                    sales.convert_lead(lead, sc["opp"], SC.basket_cents(prices, sc["basket"]))      # a new opportunity starts in the 'new' stage
         wf.close(); sales.close()
     for s in owner.values():
         s.close()

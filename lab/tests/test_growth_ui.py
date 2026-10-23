@@ -30,11 +30,6 @@ def server(tmp_path_factory):
     except Exception as e:  # noqa: BLE001
         pytest.skip(f"INTEGRATION UNAVAILABLE: no PostgreSQL ({type(e).__name__})")
     envs = DM.build(tmp_path_factory.mktemp("ui"), srv.get_uri(), schema="growth_ui", with_warehouse=False)
-    owner = SV.GrowthService(srv.get_uri(), "growth_ui", "tenant-nasha", "ada")
-    from datetime import date
-    for name, cost, price in (("Tandoori Lamb Tacos", 555, 1850), ("Chaat Elote", 190, 1350)):
-        pid = owner.create_product(name, "dish", cost); owner.set_price(pid, price, date(2026, 10, 23), "current", "founder-approved concept price")
-    owner.close()
     s = socket.socket(); s.bind(("127.0.0.1", 0)); port = s.getsockname()[1]; s.close()
     server = uvicorn.Server(uvicorn.Config(GA.create_growth_app(envs), host="127.0.0.1", port=port, log_level="error"))
     th = threading.Thread(target=server.run, daemon=True); th.start()
@@ -127,8 +122,8 @@ def test_qualification_flow_in_the_browser_requester_cannot_approve_owner_can_an
     pick = _rq.post(u + "/leads", json={"contact_id": con, "source": "synthetic-referral", "signals": {"budget_confirmed": True, "decision_maker": True, "timeline_days": 20, "fit": 0.9, "engagement": 0.8}}, headers=h).json()["id"]
     pg = login(browser, base, "sam"); go(pg, "#/workflows", "#q"); pg.select_option("#q select", pick)
     runs_before = len(get(base, envs, "tenant-nasha", "sam", "/workflows/runs?limit=50")["items"])
-    pg.click("#q button"); pg.wait_for_selector("#main h1 em"); pg.wait_for_selector("#ap")
-    assert "AWAITING" in pg.inner_text("#main").upper() and pg.is_disabled("#ap") and "Only an owner may approve" in pg.inner_text("#main")
+    pg.click("#q button"); pg.wait_for_selector("#main h1 em"); pg.wait_for_selector("#main .timeline")
+    assert "AWAITING" in pg.inner_text("#main").upper() and pg.query_selector("#ap") is None and "Only an owner may approve" in pg.inner_text("#main")
     run = pg.evaluate("location.hash.split('/')[2]")
     lead = get(base, envs, "tenant-nasha", "sam", f"/workflows/runs/{run}")["lead_id"]
     assert len(get(base, envs, "tenant-nasha", "sam", "/workflows/runs?limit=50")["items"]) == runs_before + 1
@@ -139,8 +134,8 @@ def test_qualification_flow_in_the_browser_requester_cannot_approve_owner_can_an
     ow.click("#ap"); ow.wait_for_selector(".toast.ok"); ow.wait_for_timeout(800)
     assert get(base, envs, "tenant-nasha", "ada", f"/workflows/runs/{run}")["state"] == "EXECUTED"
     assert next(l for l in get(base, envs, "tenant-nasha", "ada", "/leads?limit=50")["items"] if l["id"] == lead)["status"] in ("qualified", "disqualified")
-    assert "crm updated" in ow.inner_text(".timeline").lower() or "crm_updated" in ow.inner_text(".timeline")
-    assert ow.is_disabled("#ap"), "an executed run cannot be approved again"
+    ow.wait_for_selector("text=CRM updated")
+    assert "CRM updated" in ow.inner_text("#main") and ow.query_selector("#ap") is None, "an executed run exposes no approval action"
 
 
 def test_marketing_cannot_start_qualification_and_the_denial_is_audited_and_visible(server, browser):
@@ -161,7 +156,7 @@ def test_pricing_studio_computes_scenarios_through_the_engine_and_a_viewer_canno
     pg.select_option("#p-prod", label=next(o for o in pg.eval_on_selector_all("#p-prod option", "els=>els.map(e=>e.textContent)") if o.startswith("Tandoori Lamb Tacos")))
     pg.click("#p-form button.pri"); pg.wait_for_selector("#p-out table"); text = pg.inner_text("#p-out")
     assert "10% discount" in text and "cost +20%" in text and "planning assumptions" in text and "assumed value" in text
-    assert "70.0%" in text, "(1850-555)/1850 = 70.0%: the base row must show the engine's margin"
+    assert "69.4%" in text, "(1850-566.08)/1850 = 69.4%: the base row must show the engine's margin from the stored cost"
     v = login(browser, base, "vic"); go(v, "#/pricing", "#p-form")
     assert v.is_disabled("#p-form button.pri") and "may view products but not run" in v.inner_text("#main")
 
@@ -172,8 +167,8 @@ def test_the_two_tenants_do_not_leak_into_each_other_in_the_ui(server, browser):
     names_a = a.inner_text("#tbl")
     b = login(browser, base, "sam", tenant="tenant-fit"); go(b, "#/crm/accounts", "#tbl")
     names_b = b.inner_text("#tbl")
-    assert "Harbor" in names_a and "Summit" in names_b and "Summit" not in names_a and "Harbor" not in names_b and "UI Test Catering" not in names_b
-    assert "tenant-fit" in b.inner_text("#who")
+    assert "Larkspur Analytics" in names_a and "Kestrel Logistics" in names_b and "Kestrel" not in names_a and "Larkspur" not in names_b and "UI Test Catering" not in names_b
+    assert "Meridian Fitness" in b.inner_text("#who")
 
 
 def test_every_screen_is_keyboard_reachable_and_has_no_serious_axe_violations(server, browser):
@@ -196,3 +191,55 @@ def test_every_screen_is_keyboard_reachable_and_has_no_serious_axe_violations(se
             bad = [v for v in res if v["impact"] in ("serious", "critical")]
             assert not bad, (h, bad)
     pg.click("#signout"); assert pg.is_visible("#login") and pg.is_hidden("#app")
+
+
+def test_business_and_engineering_views_use_the_same_records_and_a_blocked_run_has_no_approval_action(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ada")
+    runs = get(base, envs, "tenant-nasha", "ada", "/workflows/runs?limit=50")["items"]
+    blocked = next(r for r in runs if r["state"] == "BLOCKED" and r["failure"].startswith("TOOL_DENIED"))
+    go(pg, f"#/workflows/{blocked['id']}", "#main .timeline")
+    biz = pg.inner_text("#main")
+    assert blocked["prospect"] in biz and blocked["organization"] in biz and "does not have permission" in biz and "No CRM changes were made" in biz
+    assert blocked["id"] not in biz and blocked["lead_id"] not in biz and "TOOL_DENIED" not in biz and "E4:lead.signals" not in biz, "no raw identifiers in the business view"
+    assert pg.query_selector("#ap") is None and pg.query_selector("#rj") is None, "a blocked workflow exposes no approval action"
+    assert pg.evaluate("document.querySelector('.vt [data-v=business]').getAttribute('aria-pressed')") == "true"
+    pg.click(".vt [data-v=engineering]"); pg.wait_for_selector("text=Engineering record")
+    eng = pg.inner_text("#main")
+    assert blocked["id"] in eng and blocked["lead_id"] in eng and "TOOL_DENIED" in eng and "E4:lead.signals" in eng, "engineering view shows the same record with ids and evidence keys"
+    assert pg.evaluate("localStorage.getItem('growth.view')") == "engineering"
+    pg.click(".vt [data-v=business]")
+
+
+def test_workflow_center_lists_business_language_not_identifiers(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ada"); go(pg, "#/workflows", ".tablewrap")
+    txt = pg.inner_text("#main")
+    for needle in ("Dana Whitfield", "Larkspur Analytics", "Awaiting approval", "Completed", "Blocked", "Rejected", "Needs more information", "Corporate catering inquiry"):
+        assert needle.lower() in txt.lower(), needle
+    import re
+    assert not re.search(r"\b(wf-[0-9a-f]{6,}|lead-[0-9a-f]{6,}|ap_[0-9a-f]+)\b", txt)
+    go(pg, "#/security", ".tablewrap"); sec = pg.inner_text("#main")
+    assert "after approval by" in sec and not re.search(r"\b(wf-[0-9a-f]{6,}|lead-[0-9a-f]{6,})\b", sec)
+
+
+def test_awaiting_run_shows_scoring_factors_and_an_owner_other_than_the_requester_can_decide(server, browser):
+    base, envs = server
+    runs = get(base, envs, "tenant-nasha", "ada", "/workflows/runs?limit=50")["items"]
+    aw = next(r for r in runs if r["state"] == "AWAITING_APPROVAL" and r["prospect"] == "Dana Whitfield")
+    sam = login(browser, base, "sam"); go(sam, f"#/workflows/{aw['id']}", "#main .timeline")
+    t = sam.inner_text("#main")
+    assert "Budget" in t and "Decision maker" in t and "Timeline" in t and "75" in t and "Only an owner may approve" in t and sam.query_selector("#ap") is None
+    ada = login(browser, base, "ada"); go(ada, f"#/workflows/{aw['id']}", "#main .timeline")
+    assert ada.query_selector("#ap") is not None and ada.query_selector("#rj") is not None
+
+
+def test_lead_search_and_status_filter_narrow_the_list_without_new_requests(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ada"); go(pg, "#/crm/leads", "#srch"); pg.wait_for_selector("#tbl tbody tr")
+    total = pg.locator("#tbl tbody tr").count()
+    pg.fill("#srch", "Larkspur"); assert pg.locator("#tbl tbody tr").count() == 1 and "Dana Whitfield" in pg.inner_text("#tbl")
+    pg.fill("#srch", ""); pg.select_option("#stf", "converted")
+    n = pg.locator("#tbl tbody tr").count()
+    assert 0 < n < total and all("converted" in r.lower() for r in pg.locator("#tbl tbody tr").all_inner_texts())
+    assert f"{n} of {total}" in pg.inner_text("#cnt")
