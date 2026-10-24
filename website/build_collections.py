@@ -4,7 +4,7 @@
 Static HTML, standard library + Pillow. Separate from website/dist/ (the audited concept site is not modified). Every page is noindex, carries the
 concept/synthetic disclosure, and takes its numbers from committed result files (lab/results/*.json), never from typed text.
 The product name NASHA is a WORKING name (D-79/D-80): it comes from the single WORKING_NAME constant, and nothing here is for publication.
-    python3 website/collections.py
+    python3 website/build_collections.py
 """
 import html
 import json
