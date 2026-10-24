@@ -1,0 +1,10 @@
+# Milestone 5 readiness assessment
+
+Assessed 2026-10-24 on engineering `48402e6`. No code under `lab/nasha_lab`, `lab/tests` or the gate was changed by this assessment.
+
+1. **Evidence vs tested source.** The gate evidence (`meta.json`) is for `a61049d` (917 passed, 2 skipped in the run; 919 tests collected, 0 failed). The tree object listing of `lab/nasha_lab`, `lab/tests`, the gate script, its config and `pyproject.toml` hashes identically at `a61049d`, `1c45d6a` and `48402e6` (`8ae734966e984f58263095418892243f9f8c33c2`). Commits after `a61049d` changed only evidence files and `tools/m5_evidence.py` (not a gated code prefix; it only records where the studio's needs came from). The `commit` field inside `growth-os-evidence.json` (`1c45d6a`) is the HEAD at export time. The portfolio copies of both evidence files and the gate report are byte-identical to the engineering files. Conclusion: no stale evidence; none was regenerated.
+2. **Model route.** See `MODEL-VALIDATION-PLAN.md`. No endpoint exists in the sandbox; model hosts are refused; no session credential or paid service was touched.
+3. **Supplier verification.** See `SUPPLIER-VERIFICATION-CHECKLIST.md`. All 12 leads remain unverified (5 official-domain snippet, 7 secondary only).
+4. **Held-out evaluation preserved.** `supplier_heldout.py` is unchanged since its first commit `9e4b04b` (after the rules were frozen at `168fdb5`). Since the freeze, `supplier_intel.py` changed only by adding the evidence-tier fields (`TIER_LABEL`, `evidence_tier`, card fields); the dedupe, classification and area rules are untouched. Recall stays 0.67 (4 misses), classification 23/24, service area 12/12; the misses are pinned by tests.
+5. **One architecture, synthetic businesses.** 27 tables are used by both tenants; only the industry-profile fields (`needs`, labels, terms, examples) and seed data differ. Both projects are created with basis `synthetic`; the UI, portfolio and docs label both as synthetic case studies. Neither is represented as an operating business, customer, partnership or revenue.
+6. **Verdicts unchanged.** Release gate `REQUIRES_REVIEW`; remote CI `NOT_RUN`.
