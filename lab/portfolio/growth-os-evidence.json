@@ -1,6 +1,6 @@
 {
  "schema": "growth-os-evidence/1",
- "commit": "ff239d7",
+ "commit": "a61049d",
  "synthetic": true,
  "pushed": false,
  "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
@@ -46,7 +46,8 @@
   "financial_scenarios",
   "procurement_recommendations",
   "launch_events",
-  "supplier_sources"
+  "supplier_sources",
+  "project_requirements"
  ],
  "stage_matrix": [
   {
@@ -431,7 +432,7 @@
  "workflow": {
   "name": "governed_lead_qualification",
   "happy_path": {
-   "corr_id": "wf-2b09c5e8f127",
+   "corr_id": "wf-b06d6ed6bada",
    "tenant": "tenant-nasha",
    "before": {
     "status": "new",
@@ -439,7 +440,7 @@
    },
    "held": {
     "status": "AWAITING_APPROVAL",
-    "approval_id": "ap_329f6667",
+    "approval_id": "ap_852c314c",
     "recommendation_status": "qualified",
     "score": 95,
     "lead_status_while_held": "new",
@@ -475,18 +476,18 @@
    "trace": [
     {
      "seq": 1,
-     "ts": "2026-10-23T21:27:48.845220+00:00",
+     "ts": "2026-10-24T00:35:25.062489+00:00",
      "kind": "stage",
      "name": "request_received",
      "stage": "G01",
      "tenant": "tenant-nasha",
-     "lead_id": "lead-8cc660fb9e",
+     "lead_id": "lead-88dd4a0a0e",
      "request_id": "req-export-1",
      "idempotency_key": true
     },
     {
      "seq": 2,
-     "ts": "2026-10-23T21:27:48.847606+00:00",
+     "ts": "2026-10-24T00:35:25.064797+00:00",
      "kind": "auth",
      "role": "SALES",
      "user": "sam",
@@ -495,20 +496,20 @@
     },
     {
      "seq": 3,
-     "ts": "2026-10-23T21:27:48.853710+00:00",
+     "ts": "2026-10-24T00:35:25.072594+00:00",
      "kind": "tool_call",
-     "ms": 3.17,
+     "ms": 4.07,
      "ok": true,
      "tool": "growth__get_lead_context",
      "codes": [],
      "stage": "G03",
-     "call_hash": "fa37d03079933699",
+     "call_hash": "9d63c6588eb8811f",
      "forwarded": true,
      "approval_id": null
     },
     {
      "seq": 4,
-     "ts": "2026-10-23T21:27:48.855109+00:00",
+     "ts": "2026-10-24T00:35:25.074619+00:00",
      "kind": "stage",
      "name": "evidence_collected",
      "stage": "G03",
@@ -522,7 +523,7 @@
     },
     {
      "seq": 5,
-     "ts": "2026-10-23T21:27:48.856212+00:00",
+     "ts": "2026-10-24T00:35:25.076196+00:00",
      "kind": "stage",
      "name": "source_and_consent_validated",
      "stage": "G04",
@@ -531,7 +532,7 @@
     },
     {
      "seq": 6,
-     "ts": "2026-10-23T21:27:48.858862+00:00",
+     "ts": "2026-10-24T00:35:25.079515+00:00",
      "kind": "stage",
      "name": "recommendation",
      "score": 95,
@@ -588,31 +589,31 @@
     },
     {
      "seq": 7,
-     "ts": "2026-10-23T21:27:48.860929+00:00",
+     "ts": "2026-10-24T00:35:25.082626+00:00",
      "kind": "stage",
      "name": "proposal",
      "stage": "G06",
-     "proposal_hash": "832d97cb85990e85"
+     "proposal_hash": "351b232e6e8cce52"
     },
     {
      "seq": 8,
-     "ts": "2026-10-23T21:27:48.863476+00:00",
+     "ts": "2026-10-24T00:35:25.085820+00:00",
      "kind": "tool_call",
-     "ms": 1.36,
+     "ms": 1.33,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G07",
      "failure": null,
-     "call_hash": "d2450a7da8dd3b63",
+     "call_hash": "6b5cbb4cc2b2c13d",
      "forwarded": false,
-     "approval_id": "ap_329f6667",
+     "approval_id": "ap_852c314c",
      "held_for_approval": true
     },
     {
      "seq": 9,
-     "ts": "2026-10-23T21:27:48.865451+00:00",
+     "ts": "2026-10-24T00:35:25.088213+00:00",
      "kind": "stage",
      "name": "held_for_approval",
      "codes": [
@@ -620,11 +621,11 @@
      ],
      "stage": "G07",
      "ttl_s": 900,
-     "approval_id": "ap_329f6667"
+     "approval_id": "ap_852c314c"
     },
     {
      "seq": 10,
-     "ts": "2026-10-23T21:27:48.876942+00:00",
+     "ts": "2026-10-24T00:35:25.101364+00:00",
      "kind": "approval_decision",
      "code": "ROLE_NOT_PERMITTED",
      "role": "SALES",
@@ -633,39 +634,39 @@
     },
     {
      "seq": 11,
-     "ts": "2026-10-23T21:27:48.878895+00:00",
+     "ts": "2026-10-24T00:35:25.102803+00:00",
      "kind": "failure",
      "detail": "SALES may not approve",
      "failure_class": "ROLE_DENIED"
     },
     {
      "seq": 12,
-     "ts": "2026-10-23T21:27:48.883138+00:00",
+     "ts": "2026-10-24T00:35:25.106505+00:00",
      "kind": "approval_decision",
      "by": "ada",
      "role": "OWNER",
      "comment": "evidence reviewed",
      "decision": "approve",
-     "approval_id": "ap_329f6667"
+     "approval_id": "ap_852c314c"
     },
     {
      "seq": 13,
-     "ts": "2026-10-23T21:27:48.894442+00:00",
+     "ts": "2026-10-24T00:35:25.117402+00:00",
      "kind": "tool_call",
-     "ms": 8.41,
+     "ms": 7.8,
      "ok": true,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G09",
-     "call_hash": "d2450a7da8dd3b63",
+     "call_hash": "6b5cbb4cc2b2c13d",
      "forwarded": true,
-     "approval_id": "ap_329f6667"
+     "approval_id": "ap_852c314c"
     },
     {
      "seq": 14,
-     "ts": "2026-10-23T21:27:48.896309+00:00",
+     "ts": "2026-10-24T00:35:25.119949+00:00",
      "kind": "stage",
      "name": "crm_updated",
      "stage": "G09",
@@ -673,7 +674,7 @@
     },
     {
      "seq": 15,
-     "ts": "2026-10-23T21:27:48.897092+00:00",
+     "ts": "2026-10-24T00:35:25.120834+00:00",
      "kind": "stage",
      "name": "no_external_contact",
      "stage": "G10",
@@ -682,7 +683,7 @@
     },
     {
      "seq": 16,
-     "ts": "2026-10-23T21:27:48.898856+00:00",
+     "ts": "2026-10-24T00:35:25.122518+00:00",
      "kind": "approval_decision",
      "code": "APPROVAL_REPLAY",
      "state": "EXECUTED",
@@ -1066,15 +1067,60 @@
     },
     {
      "topic": "Supplier verification",
-     "finding": "A public search on 2026-10-23 found directory listings, press and investor pages for Farm to Table LLC, Hill Country Dairies and Brothers Produce, but no confirmed official website for any of them. All three stay unverified leads.",
+     "finding": "Of 12 real businesses researched on 2026-10-23, none could be verified. Pages on their own domains appeared in search results for 5 of them (snippets only); the rest are known only from directories, press, encyclopedia or investor pages. No page could be opened (network policy), no price was seen and nobody was contacted.",
      "source_kind": "search_result",
      "source_url": "https://www.producemarketguide.com/company/549852/farm-to-table-llc",
      "retrieved_on": "2026-10-23",
      "confidence": 0.6,
-     "limitation": "Only search-result snippets were seen; the pages could not be opened here. An official website, public contact channel and published prices would need a person to confirm them."
+     "limitation": "Search-result snippets only. A person would need to open each official site, confirm the business, a public contact channel and any published prices, and record the date."
     }
    ],
    "suppliers": [
+    {
+     "name": "Austin Homebrew Supply",
+     "category": "Brewing ingredients and equipment",
+     "service_area": "Austin, TX store; location details conflict between sources",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://austinhomebrew.com/collections/promo-eligible?page=75",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "Ben E. Keith Foods",
+     "category": "Broadline foodservice distribution",
+     "service_area": "Texas and other states; Austin is served from the San Antonio facility per a third-party profile",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://www.benekeith.com/food/feed/news/ben-e.-keith-foods-named-2017-sales-marketing-performance-award-by-ifma",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "Briess Malt and Ingredients",
+     "category": "Brewing ingredients: malt",
+     "service_area": "United States (Wisconsin-based; ordering via distributors per the supplier's Where to Buy page)",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://brewingwithbriess.com/about/",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
     {
      "name": "Brothers Produce",
      "category": "Produce distribution",
@@ -1113,6 +1159,96 @@
      "freshness": "unverified",
      "source_kind": "search_result",
      "source_url": "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "Masienda",
+     "category": "Specialty grains and masa (wholesale)",
+     "service_area": "United States (per secondary sources)",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://masienda.com/wholesale/",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "Restaurant Depot",
+     "category": "Cash-and-carry wholesale foodservice",
+     "service_area": "Austin, TX (two stores per a company release)",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://www.austinchamber.com/member-news/restaurant-depot-proudly-opens-its-164th-nationwide-location",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "Sysco Central Texas",
+     "category": "Broadline foodservice distribution",
+     "service_area": "Central Texas (per a 2012 trade report)",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://restaurantbusinessonline.com/sysco-consolidates-central-texas-distribution-centers",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "The Mozzarella Company",
+     "category": "Dairy: fresh cheese producer",
+     "service_area": "Dallas, TX (supplies Texas restaurants per press)",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://www.dallasobserver.com/food-drink/using-2-000-gallons-of-milk-a-week-mozzarella-company-creates-some-of-the-citys-best-cheese-9211192/",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "WebstaurantStore",
+     "category": "Restaurant equipment and supplies (online)",
+     "service_area": "United States, online (per secondary sources)",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://www.webstaurantstore.com/blog/5542/author-bios.html",
+     "website_verified": false,
+     "contact": "none recorded",
+     "priced_items": 0,
+     "price_classes": [
+      "NONE_PUBLISHED"
+     ]
+    },
+    {
+     "name": "Yakima Chief Hops",
+     "category": "Brewing ingredients: hops",
+     "service_area": "United States and export (per secondary sources)",
+     "verification_status": "lead_unverified",
+     "freshness": "unverified",
+     "source_kind": "search_result",
+     "source_url": "https://www.probrewer.com/companies/ych-hops/",
      "website_verified": false,
      "contact": "none recorded",
      "priced_items": 0,
@@ -2629,18 +2765,18 @@
     }
    ],
    "agent_claims": [
-    "Fictional supplier from the repository's synthetic quote set.",
-    "Verification status: synthetic fixture.",
-    "Data freshness: synthetic (not applicable).",
-    "Synthetic fixture generated from a planning-assumption base price with a seeded factor; not a supplier document and not a real price.",
-    "Butter (i-butter): $9.40 per kg, synthetic quote, lead time 4 days, minimum order $0.00.",
-    "Ancho chile, dried (i-ancho): $16.83 per kg, synthetic quote, lead time 3 days, minimum order $0.00.",
-    "Lamb leg, boneless, trimmed (i-lamb-leg): $14.75 per kg, synthetic quote, lead time 3 days, minimum order $0.00.",
-    "Chicken thigh, boneless skinless (i-chicken-thigh): $7.68 per kg, synthetic quote, lead time 4 days, minimum order $0.00."
+    "Wholesale catalogue (no published prices seen): no published price.",
+    "No public price list was found; a real price requires a supplier quote, which has not been requested.",
+    "Service area: United States (Wisconsin-based; ordering via distributors per the supplier's Where to Buy page).",
+    "Verification status: lead unverified.",
+    "A page on the supplier's own domain appeared in search results (snippet only).",
+    "No page on the supplier's own domain appeared in search results.",
+    "Pages on the supplier's own domain appeared in search results (snippets only).",
+    "Pages on the supplier's own domain appeared in search results (snippets only; no page was opened)."
    ],
    "flags": [
     "Every price used is a synthetic fixture. No real supplier price exists, so this is a planning exercise, not a purchasing recommendation.",
-    "Not compared (no published prices): Brothers Produce, Farm to Table LLC, Hill Country Dairies. A quote request would be needed; none has been sent."
+    "Not compared (no published prices): Austin Homebrew Supply, Ben E. Keith Foods, Briess Malt and Ingredients, Brothers Produce, Farm to Table LLC, Hill Country Dairies, Masienda, Restaurant Depot, Sysco Central Texas, The Mozzarella Company, WebstaurantStore, Yakima Chief Hops. A quote request would be needed; none has been sent."
    ],
    "replenishment": [
     {
@@ -2791,19 +2927,14 @@
    "total_cost_cents": 2165313,
    "suppliers": [
     {
-     "supplier": "Synthetic Supplier 03 (produce)",
-     "cost_cents": 97283,
-     "items": 7
-    },
-    {
-     "supplier": "Synthetic Broadline Distributor B (broadline)",
-     "cost_cents": 1088482,
-     "items": 25
-    },
-    {
      "supplier": "Synthetic Supplier 05 (dry goods)",
      "cost_cents": 264884,
      "items": 14
+    },
+    {
+     "supplier": "Synthetic Supplier 03 (produce)",
+     "cost_cents": 97283,
+     "items": 7
     },
     {
      "supplier": "Synthetic Supplier 04 (dairy)",
@@ -2814,6 +2945,11 @@
      "supplier": "Synthetic Broadline Distributor A (broadline)",
      "cost_cents": 699082,
      "items": 22
+    },
+    {
+     "supplier": "Synthetic Broadline Distributor B (broadline)",
+     "cost_cents": 1088482,
+     "items": 25
     }
    ],
    "flags": [
@@ -2824,17 +2960,17 @@
   "trace": [
    {
     "seq": 1,
-    "ts": "2026-10-23T21:27:52.077096+00:00",
+    "ts": "2026-10-24T00:35:28.580551+00:00",
     "kind": "stage",
     "name": "request_received",
     "stage": "P01",
-    "project_id": "proj-978cfade90",
+    "project_id": "proj-817d2771ba",
     "request_id": "req-export-proc",
     "period_weeks": 4
    },
    {
     "seq": 2,
-    "ts": "2026-10-23T21:27:52.079156+00:00",
+    "ts": "2026-10-24T00:35:28.582611+00:00",
     "kind": "auth",
     "role": "ANALYST",
     "user": "ana",
@@ -2843,39 +2979,43 @@
    },
    {
     "seq": 3,
-    "ts": "2026-10-23T21:27:52.170882+00:00",
+    "ts": "2026-10-24T00:35:28.750942+00:00",
     "kind": "tool_call",
-    "ms": 88.43,
+    "ms": 164.43,
     "ok": true,
     "tool": "launch__get_supplier_data",
     "codes": [],
     "stage": "P03",
-    "call_hash": "29e90e21b89ebedd",
+    "call_hash": "530cd7b836970512",
     "forwarded": true,
     "approval_id": null
    },
    {
     "seq": 4,
-    "ts": "2026-10-23T21:27:52.173142+00:00",
+    "ts": "2026-10-24T00:35:28.753550+00:00",
     "kind": "stage",
     "name": "data_read",
     "stage": "P03",
     "project": "NASHA \u2014 The Courtyard",
-    "suppliers": 11,
+    "suppliers": 20,
     "priced_suppliers": 8
    },
    {
     "seq": 5,
-    "ts": "2026-10-23T21:27:52.236829+00:00",
+    "ts": "2026-10-24T00:35:28.768022+00:00",
     "kind": "stage",
     "name": "demand_and_needs",
     "stage": "P04",
+    "industry": "Hospitality",
     "portions": 6499.5,
+    "needs_from": [
+     "recipes"
+    ],
     "ingredients": 70
    },
    {
     "seq": 6,
-    "ts": "2026-10-23T21:27:53.096682+00:00",
+    "ts": "2026-10-24T00:35:29.662068+00:00",
     "kind": "stage",
     "mode": "engine_offline_heuristic",
     "name": "agent_research",
@@ -2892,7 +3032,7 @@
     },
     "evidence": 12,
     "provider": "offline",
-    "agent_run": "run_897e7b8b13b1",
+    "agent_run": "run_af0a73588fa7",
     "independent_problems": [],
     "platform_verification": {
      "ok": true,
@@ -2901,7 +3041,7 @@
    },
    {
     "seq": 7,
-    "ts": "2026-10-23T21:27:53.100112+00:00",
+    "ts": "2026-10-24T00:35:29.667925+00:00",
     "kind": "stage",
     "name": "recommendation",
     "flags": [
@@ -2914,7 +3054,7 @@
    },
    {
     "seq": 8,
-    "ts": "2026-10-23T21:27:53.101339+00:00",
+    "ts": "2026-10-24T00:35:29.669926+00:00",
     "kind": "stage",
     "name": "independent_check",
     "stage": "P06",
@@ -2922,31 +3062,31 @@
    },
    {
     "seq": 9,
-    "ts": "2026-10-23T21:27:53.111128+00:00",
+    "ts": "2026-10-24T00:35:29.680767+00:00",
     "kind": "stage",
     "name": "proposal",
     "stage": "P07",
-    "proposal_hash": "b7fb766f87f144e3"
+    "proposal_hash": "fd5e5144683d03b2"
    },
    {
     "seq": 10,
-    "ts": "2026-10-23T21:27:53.115264+00:00",
+    "ts": "2026-10-24T00:35:29.686585+00:00",
     "kind": "tool_call",
-    "ms": 1.34,
+    "ms": 1.66,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P08",
     "failure": null,
-    "call_hash": "8b6b3626124cb964",
+    "call_hash": "b1b4789791050426",
     "forwarded": false,
-    "approval_id": "ap_f3127eb1",
+    "approval_id": "ap_207a883a",
     "held_for_approval": true
    },
    {
     "seq": 11,
-    "ts": "2026-10-23T21:27:53.118632+00:00",
+    "ts": "2026-10-24T00:35:29.690756+00:00",
     "kind": "stage",
     "name": "held_for_approval",
     "codes": [
@@ -2954,11 +3094,11 @@
     ],
     "stage": "P08",
     "ttl_s": 900,
-    "approval_id": "ap_f3127eb1"
+    "approval_id": "ap_207a883a"
    },
    {
     "seq": 12,
-    "ts": "2026-10-23T21:27:53.130879+00:00",
+    "ts": "2026-10-24T00:35:29.704495+00:00",
     "kind": "approval_decision",
     "code": "ROLE_NOT_PERMITTED",
     "role": "ANALYST",
@@ -2967,46 +3107,46 @@
    },
    {
     "seq": 13,
-    "ts": "2026-10-23T21:27:53.136848+00:00",
+    "ts": "2026-10-24T00:35:29.710283+00:00",
     "kind": "failure",
     "detail": "ANALYST may not approve",
     "failure_class": "ROLE_DENIED"
    },
    {
     "seq": 14,
-    "ts": "2026-10-23T21:27:53.405571+00:00",
+    "ts": "2026-10-24T00:35:29.943938+00:00",
     "kind": "approval_decision",
     "by": "ada",
     "role": "OWNER",
     "comment": "reviewed",
     "decision": "approve",
-    "approval_id": "ap_f3127eb1"
+    "approval_id": "ap_207a883a"
    },
    {
     "seq": 15,
-    "ts": "2026-10-23T21:27:53.466558+00:00",
+    "ts": "2026-10-24T00:35:29.990483+00:00",
     "kind": "tool_call",
-    "ms": 42.14,
+    "ms": 34.51,
     "ok": true,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P09",
-    "call_hash": "8b6b3626124cb964",
+    "call_hash": "b1b4789791050426",
     "forwarded": true,
-    "approval_id": "ap_f3127eb1"
+    "approval_id": "ap_207a883a"
    },
    {
     "seq": 16,
-    "ts": "2026-10-23T21:27:53.468027+00:00",
+    "ts": "2026-10-24T00:35:29.991990+00:00",
     "kind": "stage",
     "name": "recommendation_recorded",
     "stage": "P09"
    },
    {
     "seq": 17,
-    "ts": "2026-10-23T21:27:53.468934+00:00",
+    "ts": "2026-10-24T00:35:29.992777+00:00",
     "kind": "stage",
     "name": "no_order_no_contact",
     "stage": "P10",
@@ -3015,7 +3155,7 @@
    },
    {
     "seq": 18,
-    "ts": "2026-10-23T21:27:53.473668+00:00",
+    "ts": "2026-10-24T00:35:29.998038+00:00",
     "kind": "approval_decision",
     "code": "APPROVAL_REPLAY",
     "state": "EXECUTED",
@@ -3106,15 +3246,39 @@
      "profit_vs_base_cents": -408510
     }
    ],
-   "inputs_hash": "6d488b3f8edaa2b6fac592bbc518d8398445c5287813fece1cfdeb6d23377cd1",
+   "inputs_hash": "c275c72c11bed10a4ef0d46a01c5bc3b0e2c8e86f2b4c089cd783bcf1f8ae076",
    "defaulted_assumptions": []
   },
   "suppliers": {
    "by_verification_status": {
-    "lead_unverified": 3,
+    "lead_unverified": 12,
     "synthetic_fixture": 8
    },
    "real_leads": [
+    {
+     "name": "Austin Homebrew Supply",
+     "status": "lead_unverified",
+     "source_url": "https://austinhomebrew.com/collections/promo-eligible?page=75",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
+    {
+     "name": "Ben E. Keith Foods",
+     "status": "lead_unverified",
+     "source_url": "https://www.benekeith.com/food/feed/news/ben-e.-keith-foods-named-2017-sales-marketing-performance-award-by-ifma",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
+    {
+     "name": "Briess Malt and Ingredients",
+     "status": "lead_unverified",
+     "source_url": "https://brewingwithbriess.com/about/",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
     {
      "name": "Brothers Produce",
      "status": "lead_unverified",
@@ -3135,6 +3299,54 @@
      "name": "Hill Country Dairies",
      "status": "lead_unverified",
      "source_url": "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
+    {
+     "name": "Masienda",
+     "status": "lead_unverified",
+     "source_url": "https://masienda.com/wholesale/",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
+    {
+     "name": "Restaurant Depot",
+     "status": "lead_unverified",
+     "source_url": "https://www.austinchamber.com/member-news/restaurant-depot-proudly-opens-its-164th-nationwide-location",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
+    {
+     "name": "Sysco Central Texas",
+     "status": "lead_unverified",
+     "source_url": "https://restaurantbusinessonline.com/sysco-consolidates-central-texas-distribution-centers",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
+    {
+     "name": "The Mozzarella Company",
+     "status": "lead_unverified",
+     "source_url": "https://www.dallasobserver.com/food-drink/using-2-000-gallons-of-milk-a-week-mozzarella-company-creates-some-of-the-citys-best-cheese-9211192/",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
+    {
+     "name": "WebstaurantStore",
+     "status": "lead_unverified",
+     "source_url": "https://www.webstaurantstore.com/blog/5542/author-bios.html",
+     "prices_published": 0,
+     "contact": "none recorded",
+     "verified_on": null
+    },
+    {
+     "name": "Yakima Chief Hops",
+     "status": "lead_unverified",
+     "source_url": "https://www.probrewer.com/companies/ych-hops/",
      "prices_published": 0,
      "contact": "none recorded",
      "verified_on": null
@@ -3818,8 +4030,9 @@
      "model_backed": false,
      "boundary": "accepted",
      "uncertainty": [
-      "5 of 5 cited supplier records are not verified from an official source: Synthetic Supplier 01 (poultry), Synthetic Supplier 02 (specialty meats), Synthetic Supplier 03 (produce), Synthetic Supplier 04 (dairy), Synthetic Supplier 05 (dry goods).",
-      "Prices cited for 5 supplier(s) are synthetic quotations, not real prices.",
+      "5 of 5 cited supplier records are not verified from an official source: Austin Homebrew Supply, Briess Malt and Ingredients, Masienda, Restaurant Depot, WebstaurantStore.",
+      "No published price exists for: Austin Homebrew Supply, Briess Malt and Ingredients, Masienda, Restaurant Depot, WebstaurantStore; they cannot be ranked.",
+      "Data freshness is not 'fresh' for: Austin Homebrew Supply, Briess Malt and Ingredients, Masienda, Restaurant Depot, WebstaurantStore.",
       "Nothing here has been confirmed with any supplier; a price applies only within its stated validity dates."
      ],
      "price_effect": 21904,
@@ -3880,6 +4093,48 @@
    ],
    "supplier_cards": [
     {
+     "name": "Austin Homebrew Supply",
+     "information": "Unverified public-search lead",
+     "classification": "beverage_ingredients",
+     "area": null,
+     "sources": 3,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Ben E. Keith Foods",
+     "information": "Unverified public-search lead",
+     "classification": "broadline_distribution",
+     "area": null,
+     "sources": 3,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Briess Malt and Ingredients",
+     "information": "Unverified public-search lead",
+     "classification": "beverage_ingredients",
+     "area": null,
+     "sources": 3,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
      "name": "Brothers Produce",
      "information": "Unverified public-search lead",
      "classification": "produce",
@@ -3911,6 +4166,90 @@
      "name": "Hill Country Dairies",
      "information": "Unverified public-search lead",
      "classification": "dairy",
+     "area": null,
+     "sources": 2,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Masienda",
+     "information": "Unverified public-search lead",
+     "classification": "dry_goods_and_grocery",
+     "area": null,
+     "sources": 5,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Restaurant Depot",
+     "information": "Unverified public-search lead",
+     "classification": "broadline_distribution",
+     "area": null,
+     "sources": 1,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Sysco Central Texas",
+     "information": "Unverified public-search lead",
+     "classification": "broadline_distribution",
+     "area": null,
+     "sources": 1,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "The Mozzarella Company",
+     "information": "Unverified public-search lead",
+     "classification": "dairy",
+     "area": null,
+     "sources": 3,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "WebstaurantStore",
+     "information": "Unverified public-search lead",
+     "classification": "equipment",
+     "area": null,
+     "sources": 2,
+     "source_access": [
+      "search_snippet"
+     ],
+     "price_categories": {
+      "none_published": 1
+     },
+     "official_website_verified": false
+    },
+    {
+     "name": "Yakima Chief Hops",
+     "information": "Unverified public-search lead",
+     "classification": "beverage_ingredients",
      "area": null,
      "sources": 2,
      "source_access": [
@@ -4025,6 +4364,868 @@
    },
    "all_steps_ok": true,
    "disclaimer": "Synthetic tenants and data. A recorded recommendation places no order and contacts no supplier; the figures are simulated projections on stated assumptions."
+  }
+ },
+ "m5": {
+  "model": {
+   "model_execution_recorded": false,
+   "harness": "tools/live_model_validation.py",
+   "live_test": "tests/test_growth_model_live.py (skipped here; reported unverified by the release gate)",
+   "last_probe": {
+    "executed": false,
+    "runtime_base_url": "http://localhost:11434/v1",
+    "runtime_reachable": false,
+    "reason": "URLError: <urlopen error [Errno 111] Connection refused>"
+   },
+   "decision_needed": "Founder decision needed to obtain a model run: either (a) allow outbound access to huggingface.co and its CDN hosts in the environment network policy so a small instruct model can be downloaded and served locally, (b) point AP_OLLAMA_BASE_URL at an approved OpenAI-compatible endpoint, or (c) approve a capped paid key via NASHA_ALLOW_PAID_MODEL=1 (not used by default).",
+   "note": "No language model produced any output in this repository. The offline provider is a heuristic, scripted boundary cases are test doubles, and nothing here is presented as model behaviour."
+  },
+  "supplier_research": {
+   "researched_on": "2026-10-23",
+   "method": "Public web search only. Direct reading of any supplier or agency page was attempted for every host below and was denied by this environment's network policy, so NO page was read and NO supplier can be marked verified. 'official_site' sources are search-result snippets of pages on the supplier's own domain (a stronger signal than a directory or press mention, but still not a page read). No supplier was contacted. Phone numbers, e-mail addresses and street addresses seen in third-party results were deliberately not stored.",
+   "suppliers": 12,
+   "shortlisted": 5,
+   "verified_from_primary_page": 0,
+   "evidence_tiers": {
+    "secondary_only": 7,
+    "official_domain_snippet": 5
+   },
+   "blocked_hosts": [
+    "austinhomebrew.com",
+    "webstaurantstore.com",
+    "benekeith.com",
+    "sysco.com",
+    "restaurantdepot.com",
+    "usfoods.com",
+    "labattfood.com",
+    "penzeys.com",
+    "masienda.com",
+    "brewingwithbriess.com",
+    "briess.com",
+    "yakimachief.com",
+    "mozzco.com",
+    "farmtotablellc.com",
+    "texasagriculture.gov",
+    "tabc.texas.gov",
+    "austintexas.gov"
+   ],
+   "blocked_host_count": 17,
+   "records": [
+    {
+     "name": "Farm to Table LLC",
+     "category": "Produce, eggs and dairy wholesale",
+     "service_area": "Austin and surrounding areas (per the source)",
+     "shortlisted": true,
+     "sources": [
+      {
+       "kind": "press",
+       "url": "https://www.austinchronicle.com/food/food-o-file-11764527/"
+      },
+      {
+       "kind": "trade_directory",
+       "url": "https://www.producemarketguide.com/company/549852/farm-to-table-llc"
+      },
+      {
+       "kind": "press",
+       "url": "https://refrigeratedfrozenfood.com/articles/91481-farm-to-table-expands-to-houston-market"
+      }
+     ],
+     "limitations": [
+      "No official website found; no published prices."
+     ]
+    },
+    {
+     "name": "Hill Country Dairies",
+     "category": "Dairy distribution",
+     "service_area": "Austin, TX (per the source)",
+     "shortlisted": true,
+     "sources": [
+      {
+       "kind": "investor_profile",
+       "url": "https://www.pnc.com/content/riverarch/us/en/portfolio/hill-country-dairies.html"
+      },
+      {
+       "kind": "press",
+       "url": "https://www.themiddlemarket.com/latest-news/riverarch-equity-partners-invests-in-hill-country-dairies"
+      }
+     ],
+     "limitations": [
+      "No official website found; no published prices."
+     ]
+    },
+    {
+     "name": "Brothers Produce",
+     "category": "Produce distribution",
+     "service_area": "Greater Houston, Dallas/Fort Worth, Austin, San Antonio and other Texas metros (per the source)",
+     "shortlisted": true,
+     "sources": [
+      {
+       "kind": "partner_listing",
+       "url": "https://www.restaurant365.com/partners/brothers-produce/"
+      },
+      {
+       "kind": "trade_directory",
+       "url": "https://www.producemarketguide.com/company/113604/brothers-produce-inc"
+      },
+      {
+       "kind": "press",
+       "url": "https://www.thepacker.com/news/industry/grubmarket-adds-brothers-produce"
+      }
+     ],
+     "limitations": [
+      "No official website found; no published prices."
+     ]
+    },
+    {
+     "name": "Masienda",
+     "category": "Specialty grains and masa (wholesale)",
+     "service_area": "United States (per secondary sources)",
+     "shortlisted": true,
+     "sources": [
+      {
+       "kind": "official_site",
+       "url": "https://masienda.com/wholesale/"
+      },
+      {
+       "kind": "contact_page",
+       "url": "https://masienda.com/wholesale/"
+      },
+      {
+       "kind": "official_site",
+       "url": "https://masienda.com/collections/wholesale/masa-harina"
+      },
+      {
+       "kind": "official_site",
+       "url": "https://masienda.com/collections/wholesale/heirloom-corn"
+      },
+      {
+       "kind": "press",
+       "url": "https://www.ecowatch.com/heirloom-non-gmo-corn-mexico-farmers-1917248084.html"
+      }
+     ],
+     "limitations": [
+      "Official pages not opened (network policy); no prices seen; minimum orders not seen."
+     ]
+    },
+    {
+     "name": "Austin Homebrew Supply",
+     "category": "Brewing ingredients and equipment",
+     "service_area": "Austin, TX store; location details conflict between sources",
+     "shortlisted": true,
+     "sources": [
+      {
+       "kind": "official_site",
+       "url": "https://austinhomebrew.com/collections/promo-eligible?page=75"
+      },
+      {
+       "kind": "press",
+       "url": "https://communityimpact.com/local-news/austin/round-rock-pflugerville-hutto/news/2019/10/30/austin-homebrew-supply-relocates"
+      },
+      {
+       "kind": "press",
+       "url": "https://edibleaustin.com/food/beverages/byob-brew-your-own-beer/"
+      }
+     ],
+     "limitations": [
+      "Official pages not opened; prices not seen; address conflicts between sources; one blog claim about ownership was unverified and is not recorded."
+     ]
+    },
+    {
+     "name": "WebstaurantStore",
+     "category": "Restaurant equipment and supplies (online)",
+     "service_area": "United States, online (per secondary sources)",
+     "shortlisted": false,
+     "sources": [
+      {
+       "kind": "official_site",
+       "url": "https://www.webstaurantstore.com/blog/5542/author-bios.html"
+      },
+      {
+       "kind": "encyclopedia",
+       "url": "https://en.wikipedia.org/wiki/WebstaurantStore"
+      }
+     ],
+     "limitations": [
+      "The About page was named in results but not seen; no prices seen; warehouse counts differ between sources."
+     ]
+    },
+    {
+     "name": "Ben E. Keith Foods",
+     "category": "Broadline foodservice distribution",
+     "service_area": "Texas and other states; Austin is served from the San Antonio facility per a third-party profile",
+     "shortlisted": false,
+     "sources": [
+      {
+       "kind": "official_site",
+       "url": "https://www.benekeith.com/food/feed/news/ben-e.-keith-foods-named-2017-sales-marketing-performance-award-by-ifma"
+      },
+      {
+       "kind": "encyclopedia",
+       "url": "https://en.wikipedia.org/wiki/Ben_E._Keith_Company"
+      },
+      {
+       "kind": "trade_directory",
+       "url": "https://www.producemarketguide.com/company/129467/ben-e-keith-san-antonio"
+      }
+     ],
+     "limitations": [
+      "Official pages not opened; no dedicated Austin page found; broadline distributors rarely publish prices."
+     ]
+    },
+    {
+     "name": "Restaurant Depot",
+     "category": "Cash-and-carry wholesale foodservice",
+     "service_area": "Austin, TX (two stores per a company release)",
+     "shortlisted": false,
+     "sources": [
+      {
+       "kind": "press",
+       "url": "https://www.austinchamber.com/member-news/restaurant-depot-proudly-opens-its-164th-nationwide-location"
+      }
+     ],
+     "limitations": [
+      "Official site not seen; a single company-supplied release; no prices."
+     ]
+    },
+    {
+     "name": "Sysco Central Texas",
+     "category": "Broadline foodservice distribution",
+     "service_area": "Central Texas (per a 2012 trade report)",
+     "shortlisted": false,
+     "sources": [
+      {
+       "kind": "press",
+       "url": "https://restaurantbusinessonline.com/sysco-consolidates-central-texas-distribution-centers"
+      }
+     ],
+     "limitations": [
+      "Official site not seen; the only source is a 2012 trade report; no prices."
+     ]
+    },
+    {
+     "name": "Yakima Chief Hops",
+     "category": "Brewing ingredients: hops",
+     "service_area": "United States and export (per secondary sources)",
+     "shortlisted": false,
+     "sources": [
+      {
+       "kind": "trade_directory",
+       "url": "https://www.probrewer.com/companies/ych-hops/"
+      },
+      {
+       "kind": "press",
+       "url": "https://www.brewbound.com/news/two-pacific-northwest-hop-suppliers-merge"
+      }
+     ],
+     "limitations": [
+      "Official site named but not seen; buyers use a commercial brewer account; no prices."
+     ]
+    },
+    {
+     "name": "Briess Malt and Ingredients",
+     "category": "Brewing ingredients: malt",
+     "service_area": "United States (Wisconsin-based; ordering via distributors per the supplier's Where to Buy page)",
+     "shortlisted": false,
+     "sources": [
+      {
+       "kind": "official_site",
+       "url": "https://brewingwithbriess.com/about/"
+      },
+      {
+       "kind": "official_site",
+       "url": "https://www.brewingwithbriess.com/?p=796"
+      },
+      {
+       "kind": "partner_listing",
+       "url": "https://americancraftspirits.org/essential_grid/briess-malt-ingredients-co/"
+      }
+     ],
+     "limitations": [
+      "Official pages not opened; no prices; distributor route means a quote would come from a distributor."
+     ]
+    },
+    {
+     "name": "The Mozzarella Company",
+     "category": "Dairy: fresh cheese producer",
+     "service_area": "Dallas, TX (supplies Texas restaurants per press)",
+     "shortlisted": false,
+     "sources": [
+      {
+       "kind": "press",
+       "url": "https://www.dallasobserver.com/food-drink/using-2-000-gallons-of-milk-a-week-mozzarella-company-creates-some-of-the-citys-best-cheese-9211192/"
+      },
+      {
+       "kind": "partner_listing",
+       "url": "https://local.freshpoint.com/location/the-mozzarella-company/"
+      },
+      {
+       "kind": "press",
+       "url": "https://www.austinchronicle.com/columns/2010-02-26/971610"
+      }
+     ],
+     "limitations": [
+      "Official site not confirmed; sources are old; no prices."
+     ]
+    }
+   ],
+   "note": "Primary-source verification was impossible in this environment (the network proxy refuses every supplier host). Every record is a research lead with its evidence tier shown; none is marked verified, no contact was made, no price recorded."
+  },
+  "evaluations": {
+   "supplier": {
+    "development": {
+     "dedupe": {
+      "cases": 22,
+      "true_positive": 11,
+      "false_positive": 0,
+      "false_negative": 0,
+      "precision": 1.0,
+      "recall": 1.0
+     },
+     "classification": {
+      "cases": 16,
+      "correct": 16,
+      "accuracy": 1.0
+     },
+     "service_area": {
+      "cases": 14,
+      "correct": 14,
+      "accuracy": 1.0
+     },
+     "quote_provenance": {
+      "checks": 5,
+      "passed": 5,
+      "failed": []
+     }
+    },
+    "development_mutants": [
+     {
+      "name": "no_domain_match",
+      "killed": true
+     },
+     {
+      "name": "no_plural_and_typo_handling",
+      "killed": true
+     },
+     {
+      "name": "no_typo_tolerance",
+      "killed": true
+     },
+     {
+      "name": "no_generic_word_guard",
+      "killed": true
+     },
+     {
+      "name": "threshold_too_low",
+      "killed": true
+     },
+     {
+      "name": "no_legal_suffix_removal",
+      "killed": true
+     },
+     {
+      "name": "classification_ignores_category",
+      "killed": true
+     },
+     {
+      "name": "area_ignores_project_location",
+      "killed": true
+     },
+     {
+      "name": "synthetic_area_treated_as_real",
+      "killed": true
+     },
+     {
+      "name": "quotes_ranked_across_categories",
+      "killed": true
+     },
+     {
+      "name": "expired_quotes_compared",
+      "killed": true
+     }
+    ],
+    "held_out": {
+     "frozen_at": "168fdb5",
+     "dedupe": {
+      "cases": 22,
+      "true_positive": 8,
+      "false_positive": 0,
+      "false_negative": 4,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "misses": [
+       "Austin Homebrew Supply | Austin Home Brew Supply",
+       "Restaurant Depot | Restaurant Depot Austin",
+       "WebstaurantStore | Webstaurant Store",
+       "Hill Country Dairies | Hill Country Dairy"
+      ]
+     },
+     "classification": {
+      "cases": 24,
+      "correct": 23,
+      "accuracy": 0.9583333333333334,
+      "misses": [
+       "Fitness studio fit-out contractor -> fitness_equipment"
+      ]
+     },
+     "service_area": {
+      "cases": 12,
+      "correct": 12,
+      "accuracy": 1.0,
+      "misses": []
+     }
+    },
+    "note": "The held-out set was written after the rules were frozen (commit 168fdb5) and was not used to tune them. It reports its misses; it is small and author-labelled, so it supports no general-accuracy claim."
+   },
+   "financial": {
+    "development": {
+     "cases": 5,
+     "correct": 5,
+     "mutants": [
+      {
+       "name": "contingency_on_capex_only",
+       "killed": true
+      },
+      {
+       "name": "working_capital_ignores_months",
+       "killed": true
+      },
+      {
+       "name": "inventory_uses_month_not_week",
+       "killed": true
+      },
+      {
+       "name": "headroom_sign_flipped",
+       "killed": true
+      },
+      {
+       "name": "preopening_dropped",
+       "killed": true
+      },
+      {
+       "name": "elasticity_ignored",
+       "killed": true
+      },
+      {
+       "name": "discount_ignored",
+       "killed": true
+      },
+      {
+       "name": "fixed_costs_ignored",
+       "killed": true
+      },
+      {
+       "name": "fees_ignored",
+       "killed": true
+      }
+     ]
+    },
+    "held_out": {
+     "cases": 4,
+     "correct": 4,
+     "fields_checked": 28,
+     "details": [
+      {
+       "name": "two products, unequal mix",
+       "ok": true
+      },
+      {
+       "name": "a price rise, a discount and elasticity",
+       "ok": true
+      },
+      {
+       "name": "a funded start-up plan",
+       "ok": true
+      },
+      {
+       "name": "a loss-making project with a small budget",
+       "ok": true
+      }
+     ]
+    },
+    "note": "Expected values were worked by hand before the code ran against them."
+   },
+   "generalisation": {
+    "cases": 9,
+    "correct": 9,
+    "names": [
+     "a project with no needs plans nothing",
+     "an industry with recipes still flags a product that has none",
+     "an industry without recipes never reads a recipe",
+     "four weeks total 472,000: recurring needs scale with the period",
+     "one-time equipment is the same quantity in any period",
+     "only recurring needs get a reorder point",
+     "recurring service need is weeks x quantity",
+     "the independent re-derivation agrees with the plan",
+     "two weeks of needs total 425,000 at the cheapest quotes"
+    ],
+    "mutants": [
+     {
+      "name": "requirements_ignored",
+      "removes": "explicit requirements are part of what a project needs",
+      "killed": true
+     },
+     {
+      "name": "recurring_not_scaled_by_period",
+      "removes": "a recurring need is needed every week of the period",
+      "killed": true
+     },
+     {
+      "name": "one_time_scaled_by_period",
+      "removes": "a one-time purchase is bought once however long the period",
+      "killed": true
+     },
+     {
+      "name": "recipes_forced_for_every_industry",
+      "removes": "an industry without recipes never reads a recipe",
+      "killed": true
+     },
+     {
+      "name": "equipment_given_a_reorder_point",
+      "removes": "only recurring needs get a reorder point",
+      "killed": true
+     }
+    ]
+   }
+  },
+  "authorization": {
+   "operations": [
+    "add a milestone",
+    "add a requirement",
+    "add a research finding",
+    "add a supplier record",
+    "create a project",
+    "request a recommendation",
+    "save a scenario",
+    "set an assumption",
+    "shortlist a supplier"
+   ],
+   "roles": {
+    "ada": "OWNER",
+    "omar": "OWNER",
+    "ana": "ANALYST",
+    "sam": "SALES",
+    "mia": "MARKETING",
+    "vic": "VIEWER"
+   },
+   "summary": {
+    "checks": 108,
+    "correct": 108,
+    "wrong": [],
+    "allowed_checked": 50,
+    "denied_checked": 58
+   },
+   "mutants": [
+    {
+     "name": "analyst_may_create_projects",
+     "widens": "project.create to ANALYST",
+     "killed": true,
+     "first_catch": "tenant-nasha/create a project/ANALYST: expected deny, got 201"
+    },
+    {
+     "name": "viewer_may_write_requirements",
+     "widens": "requirement.write to VIEWER",
+     "killed": true,
+     "first_catch": "tenant-nasha/add a requirement/VIEWER: expected deny, got 201"
+    },
+    {
+     "name": "sales_may_shortlist_suppliers",
+     "widens": "supplier.shortlist to SALES",
+     "killed": true,
+     "first_catch": "tenant-nasha/shortlist a supplier/SALES: expected deny, got 200"
+    },
+    {
+     "name": "analyst_may_write_milestones",
+     "widens": "milestone.write to ANALYST",
+     "killed": true,
+     "first_catch": "tenant-nasha/add a milestone/ANALYST: expected deny, got 201"
+    },
+    {
+     "name": "marketing_may_save_scenarios",
+     "widens": "scenario.save to MARKETING",
+     "killed": true,
+     "first_catch": "tenant-nasha/save a scenario/MARKETING: expected deny, got 201"
+    },
+    {
+     "name": "viewer_may_set_assumptions",
+     "widens": "project.assumption to VIEWER",
+     "killed": true,
+     "first_catch": "tenant-nasha/set an assumption/VIEWER: expected deny, got 200"
+    }
+   ],
+   "note": "Every (operation, role) pair is exercised in BOTH businesses against a table written from the intended policy."
+  },
+  "journey": {
+   "project": "Pilates annex (created for this walkthrough in the Meridian Fitness tenant)",
+   "steps": [
+    {
+     "n": 1,
+     "label": "Create the studio's launch project with a start-up budget",
+     "role": "OWNER",
+     "ok": true,
+     "result": "created at stage 'idea'; an analyst's attempt is refused (403)"
+    },
+    {
+     "n": 2,
+     "label": "State equipment and service requirements (no recipes)",
+     "role": "ANALYST",
+     "ok": true,
+     "result": "4 spin bikes (one-time) and weekly towel pickups; a viewer's attempt is refused (403)"
+    },
+    {
+     "n": 3,
+     "label": "Calculate the financial scenario from stored assumptions",
+     "role": "ANALYST",
+     "ok": true,
+     "result": "start-up requirement $6,300.00 against a $90,000.00 budget; formulas shown with worked values",
+     "total_requirement_cents": 630000,
+     "budget_cents": 9000000
+    },
+    {
+     "n": 4,
+     "label": "Generate a procurement recommendation from requirements and supplier quotes",
+     "role": "ANALYST",
+     "ok": true,
+     "result": "planned spend $4,250.00 (4 bikes at the cheapest quote + 2 weeks of pickups); research mode: Production AI Agent Platform engine, offline heuristic provider (deterministic; not a language model); no recipe was used",
+     "total_cost_cents": 425000,
+     "model_backed": false,
+     "needs_from": null
+    },
+    {
+     "n": 5,
+     "label": "Hold the recommendation for a different person's approval",
+     "role": "THE WEIR",
+     "ok": true,
+     "result": "held; the requesting analyst cannot approve (403); the project stage has not moved"
+    },
+    {
+     "n": 6,
+     "label": "Record the human authorisation decision",
+     "role": "OWNER",
+     "ok": true,
+     "result": "approved once and recorded; a second approval is refused (409); nothing was ordered"
+    },
+    {
+     "n": 7,
+     "label": "Move the project state in the same transaction",
+     "role": "system",
+     "ok": true,
+     "result": "stage is now 'roadmap'"
+    },
+    {
+     "n": 8,
+     "label": "Preserve an auditable history",
+     "role": "any role",
+     "ok": true,
+     "result": "10 recorded changes in order; the tenant's audit hash chain verifies"
+    },
+    {
+     "n": 9,
+     "label": "Keep the journey invisible to the other business",
+     "role": "other tenant",
+     "ok": true,
+     "result": "the flagship's request for this project's history returns 404"
+    }
+   ],
+   "all_steps_ok": true
+  },
+  "architecture": {
+   "tables_in_schema": 32,
+   "tables_used_by_both_businesses": 27,
+   "tables_both": [
+    "accounts",
+    "audit_log",
+    "contacts",
+    "entity_versions",
+    "financial_scenarios",
+    "idempotency_keys",
+    "launch_events",
+    "launch_projects",
+    "leads",
+    "opportunities",
+    "prices",
+    "procurement_recommendations",
+    "products",
+    "project_assumptions",
+    "project_milestones",
+    "project_requirements",
+    "project_suppliers",
+    "research_findings",
+    "segments",
+    "stage_transitions",
+    "supplier_products",
+    "suppliers",
+    "suppression_list",
+    "tenants",
+    "users",
+    "workflow_events",
+    "workflow_runs"
+   ],
+   "row_counts": {
+    "accounts": {
+     "tenant-nasha": 12,
+     "tenant-fit": 7
+    },
+    "activities": {
+     "tenant-nasha": 0,
+     "tenant-fit": 0
+    },
+    "audit_log": {
+     "tenant-nasha": 791,
+     "tenant-fit": 491
+    },
+    "campaigns": {
+     "tenant-nasha": 2,
+     "tenant-fit": 0
+    },
+    "contacts": {
+     "tenant-nasha": 12,
+     "tenant-fit": 7
+    },
+    "content_items": {
+     "tenant-nasha": 0,
+     "tenant-fit": 0
+    },
+    "entity_versions": {
+     "tenant-nasha": 734,
+     "tenant-fit": 428
+    },
+    "financial_scenarios": {
+     "tenant-nasha": 22,
+     "tenant-fit": 24
+    },
+    "idempotency_keys": {
+     "tenant-nasha": 58,
+     "tenant-fit": 58
+    },
+    "launch_events": {
+     "tenant-nasha": 470,
+     "tenant-fit": 464
+    },
+    "launch_projects": {
+     "tenant-nasha": 16,
+     "tenant-fit": 17
+    },
+    "leads": {
+     "tenant-nasha": 12,
+     "tenant-fit": 7
+    },
+    "offers": {
+     "tenant-nasha": 2,
+     "tenant-fit": 0
+    },
+    "opportunities": {
+     "tenant-nasha": 6,
+     "tenant-fit": 3
+    },
+    "prices": {
+     "tenant-nasha": 15,
+     "tenant-fit": 3
+    },
+    "procurement_recommendations": {
+     "tenant-nasha": 46,
+     "tenant-fit": 45
+    },
+    "products": {
+     "tenant-nasha": 15,
+     "tenant-fit": 3
+    },
+    "project_assumptions": {
+     "tenant-nasha": 27,
+     "tenant-fit": 31
+    },
+    "project_milestones": {
+     "tenant-nasha": 22,
+     "tenant-fit": 22
+    },
+    "project_requirements": {
+     "tenant-nasha": 22,
+     "tenant-fit": 31
+    },
+    "project_suppliers": {
+     "tenant-nasha": 8,
+     "tenant-fit": 8
+    },
+    "research_findings": {
+     "tenant-nasha": 27,
+     "tenant-fit": 24
+    },
+    "segments": {
+     "tenant-nasha": 2,
+     "tenant-fit": 1
+    },
+    "stage_transitions": {
+     "tenant-nasha": 11,
+     "tenant-fit": 6
+    },
+    "supplier_products": {
+     "tenant-nasha": 222,
+     "tenant-fit": 13
+    },
+    "supplier_sources": {
+     "tenant-nasha": 31,
+     "tenant-fit": 0
+    },
+    "suppliers": {
+     "tenant-nasha": 41,
+     "tenant-fit": 27
+    },
+    "suppression_list": {
+     "tenant-nasha": 1,
+     "tenant-fit": 1
+    },
+    "tenants": {
+     "tenant-nasha": 1,
+     "tenant-fit": 1
+    },
+    "users": {
+     "tenant-nasha": 6,
+     "tenant-fit": 6
+    },
+    "workflow_events": {
+     "tenant-nasha": 79,
+     "tenant-fit": 47
+    },
+    "workflow_runs": {
+     "tenant-nasha": 8,
+     "tenant-fit": 5
+    }
+   },
+   "rls_policies": 32,
+   "code_paths_shared": [
+    "service.py (authorisation POLICY)",
+    "launch.py (projects, requirements, scenarios)",
+    "procurement.py",
+    "launch_workflow.py (THE WEIR flow)",
+    "financials.py",
+    "supplier_intel.py",
+    "audit (hash-chained per tenant)"
+   ],
+   "configuration_that_differs": [
+    "capex_labels",
+    "demand_term",
+    "demand_unit",
+    "inventory_term",
+    "label",
+    "need_term",
+    "need_term_plural",
+    "needs",
+    "preopen_labels",
+    "product_term",
+    "product_term_plural",
+    "requirement_examples",
+    "supplier_focus"
+   ],
+   "profile_keys": {
+    "hospitality": [
+     "recipes",
+     "requirements"
+    ],
+    "fitness": [
+     "requirements"
+    ]
+   },
+   "migrations": null,
+   "note": "Everything in 'code_paths_shared' runs unchanged for both tenants. The only industry-specific inputs are the profile fields listed in 'configuration_that_differs', the seed data, and the supplier classification vocabulary."
   }
  },
  "incident": {

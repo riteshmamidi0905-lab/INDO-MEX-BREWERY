@@ -1,6 +1,6 @@
 {
- "total": 892,
- "passed": 890,
+ "total": 919,
+ "passed": 917,
  "failed": 0,
  "skipped": 2,
  "tests": {
@@ -230,6 +230,11 @@
    "failed": 0,
    "skipped": 0
   },
+  "test_growth_authz_matrix": {
+   "passed": 8,
+   "failed": 0,
+   "skipped": 0
+  },
   "test_growth_capabilities": {
    "passed": 3,
    "failed": 0,
@@ -305,13 +310,23 @@
    "failed": 0,
    "skipped": 0
   },
+  "test_growth_second_industry": {
+   "passed": 13,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_supplier_heldout": {
+   "passed": 2,
+   "failed": 0,
+   "skipped": 0
+  },
   "test_growth_supplier_intel": {
    "passed": 12,
    "failed": 0,
    "skipped": 0
   },
   "test_growth_ui": {
-   "passed": 25,
+   "passed": 29,
    "failed": 0,
    "skipped": 0
   },
