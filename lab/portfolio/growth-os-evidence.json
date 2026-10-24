@@ -1,6 +1,6 @@
 {
  "schema": "growth-os-evidence/1",
- "commit": "a61049d",
+ "commit": "1c45d6a",
  "synthetic": true,
  "pushed": false,
  "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
@@ -432,7 +432,7 @@
  "workflow": {
   "name": "governed_lead_qualification",
   "happy_path": {
-   "corr_id": "wf-b06d6ed6bada",
+   "corr_id": "wf-411e0137796a",
    "tenant": "tenant-nasha",
    "before": {
     "status": "new",
@@ -440,7 +440,7 @@
    },
    "held": {
     "status": "AWAITING_APPROVAL",
-    "approval_id": "ap_852c314c",
+    "approval_id": "ap_240760cc",
     "recommendation_status": "qualified",
     "score": 95,
     "lead_status_while_held": "new",
@@ -476,18 +476,18 @@
    "trace": [
     {
      "seq": 1,
-     "ts": "2026-10-24T00:35:25.062489+00:00",
+     "ts": "2026-10-24T00:41:43.733109+00:00",
      "kind": "stage",
      "name": "request_received",
      "stage": "G01",
      "tenant": "tenant-nasha",
-     "lead_id": "lead-88dd4a0a0e",
+     "lead_id": "lead-c484da034c",
      "request_id": "req-export-1",
      "idempotency_key": true
     },
     {
      "seq": 2,
-     "ts": "2026-10-24T00:35:25.064797+00:00",
+     "ts": "2026-10-24T00:41:43.734944+00:00",
      "kind": "auth",
      "role": "SALES",
      "user": "sam",
@@ -496,20 +496,20 @@
     },
     {
      "seq": 3,
-     "ts": "2026-10-24T00:35:25.072594+00:00",
+     "ts": "2026-10-24T00:41:43.743272+00:00",
      "kind": "tool_call",
-     "ms": 4.07,
+     "ms": 4.91,
      "ok": true,
      "tool": "growth__get_lead_context",
      "codes": [],
      "stage": "G03",
-     "call_hash": "9d63c6588eb8811f",
+     "call_hash": "5e712c9d9b0ba8d0",
      "forwarded": true,
      "approval_id": null
     },
     {
      "seq": 4,
-     "ts": "2026-10-24T00:35:25.074619+00:00",
+     "ts": "2026-10-24T00:41:43.744757+00:00",
      "kind": "stage",
      "name": "evidence_collected",
      "stage": "G03",
@@ -523,7 +523,7 @@
     },
     {
      "seq": 5,
-     "ts": "2026-10-24T00:35:25.076196+00:00",
+     "ts": "2026-10-24T00:41:43.745873+00:00",
      "kind": "stage",
      "name": "source_and_consent_validated",
      "stage": "G04",
@@ -532,7 +532,7 @@
     },
     {
      "seq": 6,
-     "ts": "2026-10-24T00:35:25.079515+00:00",
+     "ts": "2026-10-24T00:41:43.748190+00:00",
      "kind": "stage",
      "name": "recommendation",
      "score": 95,
@@ -589,31 +589,31 @@
     },
     {
      "seq": 7,
-     "ts": "2026-10-24T00:35:25.082626+00:00",
+     "ts": "2026-10-24T00:41:43.750313+00:00",
      "kind": "stage",
      "name": "proposal",
      "stage": "G06",
-     "proposal_hash": "351b232e6e8cce52"
+     "proposal_hash": "e39b26800735d3a2"
     },
     {
      "seq": 8,
-     "ts": "2026-10-24T00:35:25.085820+00:00",
+     "ts": "2026-10-24T00:41:43.752711+00:00",
      "kind": "tool_call",
-     "ms": 1.33,
+     "ms": 1.22,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G07",
      "failure": null,
-     "call_hash": "6b5cbb4cc2b2c13d",
+     "call_hash": "b09d0b7275923a14",
      "forwarded": false,
-     "approval_id": "ap_852c314c",
+     "approval_id": "ap_240760cc",
      "held_for_approval": true
     },
     {
      "seq": 9,
-     "ts": "2026-10-24T00:35:25.088213+00:00",
+     "ts": "2026-10-24T00:41:43.754248+00:00",
      "kind": "stage",
      "name": "held_for_approval",
      "codes": [
@@ -621,11 +621,11 @@
      ],
      "stage": "G07",
      "ttl_s": 900,
-     "approval_id": "ap_852c314c"
+     "approval_id": "ap_240760cc"
     },
     {
      "seq": 10,
-     "ts": "2026-10-24T00:35:25.101364+00:00",
+     "ts": "2026-10-24T00:41:43.764214+00:00",
      "kind": "approval_decision",
      "code": "ROLE_NOT_PERMITTED",
      "role": "SALES",
@@ -634,39 +634,39 @@
     },
     {
      "seq": 11,
-     "ts": "2026-10-24T00:35:25.102803+00:00",
+     "ts": "2026-10-24T00:41:43.765660+00:00",
      "kind": "failure",
      "detail": "SALES may not approve",
      "failure_class": "ROLE_DENIED"
     },
     {
      "seq": 12,
-     "ts": "2026-10-24T00:35:25.106505+00:00",
+     "ts": "2026-10-24T00:41:43.769550+00:00",
      "kind": "approval_decision",
      "by": "ada",
      "role": "OWNER",
      "comment": "evidence reviewed",
      "decision": "approve",
-     "approval_id": "ap_852c314c"
+     "approval_id": "ap_240760cc"
     },
     {
      "seq": 13,
-     "ts": "2026-10-24T00:35:25.117402+00:00",
+     "ts": "2026-10-24T00:41:43.780265+00:00",
      "kind": "tool_call",
-     "ms": 7.8,
+     "ms": 7.62,
      "ok": true,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G09",
-     "call_hash": "6b5cbb4cc2b2c13d",
+     "call_hash": "b09d0b7275923a14",
      "forwarded": true,
-     "approval_id": "ap_852c314c"
+     "approval_id": "ap_240760cc"
     },
     {
      "seq": 14,
-     "ts": "2026-10-24T00:35:25.119949+00:00",
+     "ts": "2026-10-24T00:41:43.782299+00:00",
      "kind": "stage",
      "name": "crm_updated",
      "stage": "G09",
@@ -674,7 +674,7 @@
     },
     {
      "seq": 15,
-     "ts": "2026-10-24T00:35:25.120834+00:00",
+     "ts": "2026-10-24T00:41:43.783121+00:00",
      "kind": "stage",
      "name": "no_external_contact",
      "stage": "G10",
@@ -683,7 +683,7 @@
     },
     {
      "seq": 16,
-     "ts": "2026-10-24T00:35:25.122518+00:00",
+     "ts": "2026-10-24T00:41:43.784884+00:00",
      "kind": "approval_decision",
      "code": "APPROVAL_REPLAY",
      "state": "EXECUTED",
@@ -2765,14 +2765,14 @@
     }
    ],
    "agent_claims": [
-    "Wholesale catalogue (no published prices seen): no published price.",
-    "No public price list was found; a real price requires a supplier quote, which has not been requested.",
-    "Service area: United States (Wisconsin-based; ordering via distributors per the supplier's Where to Buy page).",
-    "Verification status: lead unverified.",
-    "A page on the supplier's own domain appeared in search results (snippet only).",
-    "No page on the supplier's own domain appeared in search results.",
-    "Pages on the supplier's own domain appeared in search results (snippets only).",
-    "Pages on the supplier's own domain appeared in search results (snippets only; no page was opened)."
+    "Fictional supplier from the repository's synthetic quote set.",
+    "Verification status: synthetic fixture.",
+    "Data freshness: synthetic (not applicable).",
+    "Synthetic fixture generated from a planning-assumption base price with a seeded factor; not a supplier document and not a real price.",
+    "Lamb leg, boneless, trimmed (i-lamb-leg): $14.75 per kg, synthetic quote, lead time 3 days, minimum order $0.00.",
+    "Chicken thigh, boneless skinless (i-chicken-thigh): $7.68 per kg, synthetic quote, lead time 4 days, minimum order $0.00.",
+    "Butter (i-butter): $9.40 per kg, synthetic quote, lead time 4 days, minimum order $0.00.",
+    "Ancho chile, dried (i-ancho): $16.83 per kg, synthetic quote, lead time 3 days, minimum order $0.00."
    ],
    "flags": [
     "Every price used is a synthetic fixture. No real supplier price exists, so this is a planning exercise, not a purchasing recommendation.",
@@ -2927,21 +2927,6 @@
    "total_cost_cents": 2165313,
    "suppliers": [
     {
-     "supplier": "Synthetic Supplier 05 (dry goods)",
-     "cost_cents": 264884,
-     "items": 14
-    },
-    {
-     "supplier": "Synthetic Supplier 03 (produce)",
-     "cost_cents": 97283,
-     "items": 7
-    },
-    {
-     "supplier": "Synthetic Supplier 04 (dairy)",
-     "cost_cents": 15582,
-     "items": 2
-    },
-    {
      "supplier": "Synthetic Broadline Distributor A (broadline)",
      "cost_cents": 699082,
      "items": 22
@@ -2950,6 +2935,21 @@
      "supplier": "Synthetic Broadline Distributor B (broadline)",
      "cost_cents": 1088482,
      "items": 25
+    },
+    {
+     "supplier": "Synthetic Supplier 05 (dry goods)",
+     "cost_cents": 264884,
+     "items": 14
+    },
+    {
+     "supplier": "Synthetic Supplier 04 (dairy)",
+     "cost_cents": 15582,
+     "items": 2
+    },
+    {
+     "supplier": "Synthetic Supplier 03 (produce)",
+     "cost_cents": 97283,
+     "items": 7
     }
    ],
    "flags": [
@@ -2960,17 +2960,17 @@
   "trace": [
    {
     "seq": 1,
-    "ts": "2026-10-24T00:35:28.580551+00:00",
+    "ts": "2026-10-24T00:41:46.969652+00:00",
     "kind": "stage",
     "name": "request_received",
     "stage": "P01",
-    "project_id": "proj-817d2771ba",
+    "project_id": "proj-f2fb12a6ae",
     "request_id": "req-export-proc",
     "period_weeks": 4
    },
    {
     "seq": 2,
-    "ts": "2026-10-24T00:35:28.582611+00:00",
+    "ts": "2026-10-24T00:41:46.971504+00:00",
     "kind": "auth",
     "role": "ANALYST",
     "user": "ana",
@@ -2979,20 +2979,20 @@
    },
    {
     "seq": 3,
-    "ts": "2026-10-24T00:35:28.750942+00:00",
+    "ts": "2026-10-24T00:41:47.113017+00:00",
     "kind": "tool_call",
-    "ms": 164.43,
+    "ms": 138.22,
     "ok": true,
     "tool": "launch__get_supplier_data",
     "codes": [],
     "stage": "P03",
-    "call_hash": "530cd7b836970512",
+    "call_hash": "b2028e63c3461095",
     "forwarded": true,
     "approval_id": null
    },
    {
     "seq": 4,
-    "ts": "2026-10-24T00:35:28.753550+00:00",
+    "ts": "2026-10-24T00:41:47.115204+00:00",
     "kind": "stage",
     "name": "data_read",
     "stage": "P03",
@@ -3002,7 +3002,7 @@
    },
    {
     "seq": 5,
-    "ts": "2026-10-24T00:35:28.768022+00:00",
+    "ts": "2026-10-24T00:41:47.123750+00:00",
     "kind": "stage",
     "name": "demand_and_needs",
     "stage": "P04",
@@ -3015,7 +3015,7 @@
    },
    {
     "seq": 6,
-    "ts": "2026-10-24T00:35:29.662068+00:00",
+    "ts": "2026-10-24T00:41:47.942055+00:00",
     "kind": "stage",
     "mode": "engine_offline_heuristic",
     "name": "agent_research",
@@ -3030,9 +3030,9 @@
      "rejected": [],
      "report_codes": []
     },
-    "evidence": 12,
+    "evidence": 13,
     "provider": "offline",
-    "agent_run": "run_af0a73588fa7",
+    "agent_run": "run_5dab7e39606c",
     "independent_problems": [],
     "platform_verification": {
      "ok": true,
@@ -3041,7 +3041,7 @@
    },
    {
     "seq": 7,
-    "ts": "2026-10-24T00:35:29.667925+00:00",
+    "ts": "2026-10-24T00:41:47.946569+00:00",
     "kind": "stage",
     "name": "recommendation",
     "flags": [
@@ -3054,7 +3054,7 @@
    },
    {
     "seq": 8,
-    "ts": "2026-10-24T00:35:29.669926+00:00",
+    "ts": "2026-10-24T00:41:47.948103+00:00",
     "kind": "stage",
     "name": "independent_check",
     "stage": "P06",
@@ -3062,31 +3062,31 @@
    },
    {
     "seq": 9,
-    "ts": "2026-10-24T00:35:29.680767+00:00",
+    "ts": "2026-10-24T00:41:47.957155+00:00",
     "kind": "stage",
     "name": "proposal",
     "stage": "P07",
-    "proposal_hash": "fd5e5144683d03b2"
+    "proposal_hash": "e34bd8dd28ba4c08"
    },
    {
     "seq": 10,
-    "ts": "2026-10-24T00:35:29.686585+00:00",
+    "ts": "2026-10-24T00:41:47.961185+00:00",
     "kind": "tool_call",
-    "ms": 1.66,
+    "ms": 1.2,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P08",
     "failure": null,
-    "call_hash": "b1b4789791050426",
+    "call_hash": "20eeb4ed56db3767",
     "forwarded": false,
-    "approval_id": "ap_207a883a",
+    "approval_id": "ap_62ce342b",
     "held_for_approval": true
    },
    {
     "seq": 11,
-    "ts": "2026-10-24T00:35:29.690756+00:00",
+    "ts": "2026-10-24T00:41:47.964748+00:00",
     "kind": "stage",
     "name": "held_for_approval",
     "codes": [
@@ -3094,11 +3094,11 @@
     ],
     "stage": "P08",
     "ttl_s": 900,
-    "approval_id": "ap_207a883a"
+    "approval_id": "ap_62ce342b"
    },
    {
     "seq": 12,
-    "ts": "2026-10-24T00:35:29.704495+00:00",
+    "ts": "2026-10-24T00:41:47.977276+00:00",
     "kind": "approval_decision",
     "code": "ROLE_NOT_PERMITTED",
     "role": "ANALYST",
@@ -3107,46 +3107,46 @@
    },
    {
     "seq": 13,
-    "ts": "2026-10-24T00:35:29.710283+00:00",
+    "ts": "2026-10-24T00:41:47.984687+00:00",
     "kind": "failure",
     "detail": "ANALYST may not approve",
     "failure_class": "ROLE_DENIED"
    },
    {
     "seq": 14,
-    "ts": "2026-10-24T00:35:29.943938+00:00",
+    "ts": "2026-10-24T00:41:48.226676+00:00",
     "kind": "approval_decision",
     "by": "ada",
     "role": "OWNER",
     "comment": "reviewed",
     "decision": "approve",
-    "approval_id": "ap_207a883a"
+    "approval_id": "ap_62ce342b"
    },
    {
     "seq": 15,
-    "ts": "2026-10-24T00:35:29.990483+00:00",
+    "ts": "2026-10-24T00:41:48.277641+00:00",
     "kind": "tool_call",
-    "ms": 34.51,
+    "ms": 39.28,
     "ok": true,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P09",
-    "call_hash": "b1b4789791050426",
+    "call_hash": "20eeb4ed56db3767",
     "forwarded": true,
-    "approval_id": "ap_207a883a"
+    "approval_id": "ap_62ce342b"
    },
    {
     "seq": 16,
-    "ts": "2026-10-24T00:35:29.991990+00:00",
+    "ts": "2026-10-24T00:41:48.278856+00:00",
     "kind": "stage",
     "name": "recommendation_recorded",
     "stage": "P09"
    },
    {
     "seq": 17,
-    "ts": "2026-10-24T00:35:29.992777+00:00",
+    "ts": "2026-10-24T00:41:48.279738+00:00",
     "kind": "stage",
     "name": "no_order_no_contact",
     "stage": "P10",
@@ -3155,7 +3155,7 @@
    },
    {
     "seq": 18,
-    "ts": "2026-10-24T00:35:29.998038+00:00",
+    "ts": "2026-10-24T00:41:48.285249+00:00",
     "kind": "approval_decision",
     "code": "APPROVAL_REPLAY",
     "state": "EXECUTED",
@@ -4988,7 +4988,9 @@
      "result": "planned spend $4,250.00 (4 bikes at the cheapest quote + 2 weeks of pickups); research mode: Production AI Agent Platform engine, offline heuristic provider (deterministic; not a language model); no recipe was used",
      "total_cost_cents": 425000,
      "model_backed": false,
-     "needs_from": null
+     "needs_from": [
+      "requirements"
+     ]
     },
     {
      "n": 5,
@@ -5143,7 +5145,7 @@
     },
     "project_suppliers": {
      "tenant-nasha": 8,
-     "tenant-fit": 8
+     "tenant-fit": 7
     },
     "research_findings": {
      "tenant-nasha": 27,

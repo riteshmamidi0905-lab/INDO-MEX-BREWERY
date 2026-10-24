@@ -1,8 +1,8 @@
 {
  "schema": "release-gate-report/1",
  "overall": "REQUIRES_REVIEW",
- "head": "a61049d",
- "generated_at": 1792802198.0299716,
+ "head": "1c45d6a",
+ "generated_at": 1792802549.4786649,
  "evidence_commit": "a61049d",
  "remote_ci": "NOT_RUN",
  "remote_ci_note": "GitHub workflows have not run remotely; no remote CI result is claimed.",
@@ -178,7 +178,7 @@
   },
   "evidence_consistency": {
    "status": "PASS",
-   "detail": "evidence collected at a61049d (HEAD a61049d); no code changed since; counts match junit.xml",
+   "detail": "evidence collected at a61049d (HEAD 1c45d6a); no code changed since; counts match junit.xml",
    "evidence": [
     "meta.json",
     "summary.json",
