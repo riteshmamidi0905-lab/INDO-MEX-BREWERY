@@ -75,8 +75,9 @@ def _dates(directory):
 
 
 class LaunchProcurement(WeirCaller):
-    def __init__(self, env, agent=None, clock=time.time, ttl=900, as_of=None, fault=None, tool_timeout=TOOL_TIMEOUT_S, agent_timeout=AGENT_TIMEOUT_S):
-        self.env, self.agent, self.clock, self.ttl, self.fault, self.tool_timeout, self.agent_timeout = env, agent, clock, ttl, fault, tool_timeout, agent_timeout
+    def __init__(self, env, agent=None, clock=time.time, ttl=900, as_of=None, fault=None, tool_timeout=TOOL_TIMEOUT_S, agent_timeout=None):
+        self.env, self.agent, self.clock, self.ttl, self.fault, self.tool_timeout = env, agent, clock, ttl, fault, tool_timeout
+        self.agent_timeout = agent_timeout if agent_timeout is not None else AR.env_seconds("NASHA_AGENT_RUN_TIMEOUT_S", AGENT_TIMEOUT_S, hi=7200.0)      # default unchanged (120 s); raised only by an explicit setting
         self.as_of = as_of or date.today()
         self.store = LaunchStore(env)
         self.weir = WeirStore(str(env.weir_db), clock)
@@ -226,7 +227,8 @@ class LaunchProcurement(WeirCaller):
             problems = problems + [p for p in rv["problems"] if p not in problems]
             self.store.event(corr, "stage", stage="P05", name="agent_research", mode=res["mode"], provider=res["provider"], agent_run=res["run_id"], claims=len(res["report"].get("claims", [])) if isinstance(res["report"], dict) and isinstance(res["report"].get("claims", []), list) else 0, evidence=len(res["evidence"]),
                              platform_verification=res["verification"] and dict(ok=res["verification"]["ok"], groundedness=res["verification"]["groundedness"]), independent_problems=problems,
-                             boundary=dict(status=rv["status"], accepted=len(rv["claims_accepted"]), rejected=[dict(codes=r["codes"]) for r in rv["claims_rejected"]], report_codes=rv["report_codes"], flags=rv["flags"]))
+                             boundary=dict(status=rv["status"], accepted=len(rv["claims_accepted"]), rejected=[dict(codes=r["codes"]) for r in rv["claims_rejected"]], report_codes=rv["report_codes"], flags=rv["flags"]),
+                             **(dict(models=res.get("models"), usage=res.get("usage"), event_counts=res.get("event_counts"), agent_timeout_s=self.agent_timeout) if res["mode"] == AR.MODE_MODEL else {}))   # real-model runs only: the offline path's recorded evidence is unchanged
             if rv["status"] == "abstained":
                 rejected = None; why = "agent abstained: the records do not support a conclusion"; res = None
             elif problems or rv["status"] != "accepted" or (res["verification"] and not res["verification"]["ok"]):
