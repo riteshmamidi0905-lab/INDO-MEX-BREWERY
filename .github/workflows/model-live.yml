@@ -107,6 +107,8 @@ jobs:
           for kv in OLLAMA_CONTEXT_LENGTH=8192 OLLAMA_NUM_PARALLEL=1 OLLAMA_MAX_LOADED_MODELS=1 OLLAMA_KEEP_ALIVE=-1; do
             k=${kv%%=*}; want=${kv#*=}
             got=$(grep -m1 -oE "${k}[:=][-0-9A-Za-z.]+" /tmp/ollama.log | head -1 | sed -E "s/^${k}[:=]//; s/(ns|ms|s|m|h)$//" || true)
+            # Ollama prints a keep-alive of -1 (never unload) as the largest Go duration, 2562047h47m16.854775807s. That is the SAME setting, not a different one (run 2 of this workflow stopped here on that false mismatch, before any inference).
+            if [ "$k" = "OLLAMA_KEEP_ALIVE" ] && [ "${got#2562047h}" != "$got" ]; then got=-1; fi
             if [ -z "$got" ]; then echo "NOT OBSERVABLE: $k (intended $want) is not reported in the server log; it will be recorded as not_observable and NOT reported as applied"
             elif [ "$got" = "$want" ]; then echo "CONFIRMED: $k=$got"
             else echo "MISMATCH: $k intended $want but the server reports $got"; fail=1; fi

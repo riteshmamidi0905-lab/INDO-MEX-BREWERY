@@ -353,7 +353,10 @@ EXPECTED_SERVER_ENV = ("OLLAMA_CONTEXT_LENGTH", "OLLAMA_NUM_PARALLEL", "OLLAMA_K
 
 
 def _norm_cfg(v):
-    return re.sub(r"(ns|ms|s|m|h)$", "", str(v).strip().strip('"'))
+    v = str(v).strip().strip('"')
+    if v.startswith("2562047h"):
+        return "-1"                       # Ollama prints a keep-alive of -1 (never unload) as the largest Go duration, 2562047h47m16.854775807s: the same setting
+    return re.sub(r"(ns|ms|s|m|h)$", "", v)
 
 
 def check_effective_config(base, expected_env, log_path):

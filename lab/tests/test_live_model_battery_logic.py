@@ -221,3 +221,21 @@ def test_a_model_answer_the_boundary_rejected_is_not_counted_as_a_correct_answer
     new = dict(cases=[dict(id="A", passed=False, model_passed=False, detail="d", platform_outcome="rejected_by_boundary", platform_safe=True)])
     out = C.compare(dict(cases=[dict(id="A", passed=False, detail="d")]), new)
     assert out["updated_same_cases"]["passed"] == 0 and out["unchanged_fail"] == ["A"] and out["rows"][0]["updated_platform_outcome"] == "rejected_by_boundary"
+
+
+def test_keep_alive_minus_one_is_confirmed_when_the_server_prints_it_as_the_maximum_duration(tmp_path):
+    """Run 2 of model-live stopped on a FALSE mismatch: the server printed OLLAMA_KEEP_ALIVE:2562047h47m16.854775807s for the intended -1. A genuinely different value must still be a mismatch."""
+    log = tmp_path / "ollama.log"
+    log.write_text('env="map[OLLAMA_CONTEXT_LENGTH:8192 OLLAMA_KEEP_ALIVE:2562047h47m16.854775807s OLLAMA_MAX_LOADED_MODELS:1 OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost]]"\n')
+    want = {"OLLAMA_CONTEXT_LENGTH": "8192", "OLLAMA_NUM_PARALLEL": "1", "OLLAMA_KEEP_ALIVE": "-1", "OLLAMA_MAX_LOADED_MODELS": "1"}
+    ec = B.check_effective_config("http://127.0.0.1:9/v1", want, str(log))
+    assert {k: v["status"] for k, v in ec["settings"].items()} == {k: "confirmed" for k in want} and ec["all_confirmed"] is True
+    log.write_text('env="map[OLLAMA_KEEP_ALIVE:5m0s]"\n')
+    assert B.check_effective_config("http://127.0.0.1:9/v1", {"OLLAMA_KEEP_ALIVE": "-1"}, str(log))["settings"]["OLLAMA_KEEP_ALIVE"]["status"] == "mismatch"
+
+
+def test_the_workflow_verification_step_accepts_the_maximum_duration_for_keep_alive_minus_one():
+    import yaml
+    wf = yaml.safe_load((LAB.parent / ".github" / "workflows" / "model-live.yml").read_text())
+    step = next(s for s in wf["jobs"]["live"]["steps"] if str(s.get("name", "")).startswith("Verify the EFFECTIVE"))
+    assert "2562047h" in step["run"] and wf["permissions"] == {"contents": "read"} and list(wf[True] if True in wf else wf["on"]) == ["workflow_dispatch"]
