@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#101718">
+<title>NASHA AI — Enterprise Headquarters</title>
+<link rel="icon" href="/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css"><script type="module" src="/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to workspace</a>
+<section id="access" class="access" aria-labelledby="access-title">
+ <img class="access-art" src="/atrium.svg" alt="An original architectural study of the NASHA AI headquarters in graphite and teal">
+ <div class="access-brand"><img src="/mark.svg" alt="" width="40" height="40"> NASHA <span>AI</span></div>
+ <div class="access-panel"><span class="eyebrow">THE ENTERPRISE SHOWCASE</span><h1 id="access-title">Ideas become<br><em>entire worlds.</em></h1><p>Enter a synthetic enterprise. Explore the business, the people, and the engineering behind it.</p>
+ <form id="login-form"><label for="access-code">Local review access code</label><div class="input-action"><input id="access-code" type="password" autocomplete="current-password" required maxlength="256" placeholder="Your owner-only access code"><button class="primary" type="submit">Enter headquarters <span aria-hidden="true"><svg class="inline-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M3 3h10v10"/></svg></span></button></div><p class="form-help">Use the code in the local host’s owner-only access-code file. No external account required.</p><p id="login-error" role="alert"></p></form>
+ <div class="access-note"><span class="tiny-orbit" aria-hidden="true"></span> Fully synthetic businesses. Actual engineering.</div></div>
+ <span class="access-edition">NASHA AI / ENGINEERING A BUSINESS FROM AN IDEA</span>
+</section>
+<div id="app" class="app" hidden>
+ <aside class="sidebar" aria-label="Headquarters navigation">
+  <a class="brand" href="#/headquarters"><img src="/mark.svg" alt="" width="35" height="35"><span>NASHA <b>AI</b><small>ENTERPRISE HEADQUARTERS</small></span></a>
+  <div class="nav-label">YOUR WORKSPACE <span>01—11</span></div>
+  <nav id="navigation" aria-label="Departments"></nav>
+  <div class="sidebar-bottom"><div class="scope-icon">◇</div><strong>A world built to explore.</strong><p>Synthetic operations.<br>Verifiable engineering.</p><span class="sidebar-tag">LOCAL REVIEW ENVIRONMENT</span></div>
+ </aside>
+ <div class="workspace">
+  <header class="topbar"><button class="icon-button mobile-menu" id="menu-toggle" aria-label="Toggle department navigation" aria-expanded="false">☰</button><div class="breadcrumb"><span>Workspace</span><span aria-hidden="true">/</span><strong id="crumb">Headquarters</strong></div><div class="top-actions"><button id="search-open" class="search-button" aria-label="Search departments">Search headquarters <kbd>⌘ K</kbd></button><span class="review-badge"><span aria-hidden="true">●</span> Local review</span><button class="icon-button" id="logout" title="Sign out" aria-label="Sign out"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H4v16h6M13 7l5 5-5 5M8 12h11"/></svg></button></div></header>
+  <div class="workspace-bar"><div class="business-picker"><label for="business-select">BUSINESS ENVIRONMENT</label><select id="business-select" aria-label="Select granted business"></select></div><div class="scenario-label"><span class="synthetic-pill">SYNTHETIC</span><span id="scenario-period"></span></div></div>
+  <main id="main" tabindex="-1"><div id="view"></div></main>
+  <footer class="footer"><span>NASHA AI <span class="dim">/</span> Enterprise Showcase</span><span>Fictional businesses · No real sales, employees or external actions</span><button id="motion-toggle" class="text-button" aria-pressed="false">Reduce motion</button></footer>
+ </div>
+</div>
+<div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+<dialog id="detail-dialog"><div class="dialog-head"><span class="eyebrow" id="dialog-label">SOURCE RECORD</span><button id="dialog-close" class="icon-button" aria-label="Close details">✕</button></div><div id="dialog-content"></div></dialog>
+<dialog id="search-dialog"><div class="dialog-head"><label for="department-search">Find a department</label><button id="search-close" class="icon-button" aria-label="Close search">✕</button></div><input type="search" id="department-search" placeholder="Finance, engineering, people…" autocomplete="off"><div id="search-results"></div></dialog>
+<noscript><div class="no-script">This interactive local review requires JavaScript. Source documentation and CLI export remain available in showcase/README.md.</div></noscript>
+</body></html>
