@@ -305,3 +305,14 @@ def test_segment_rows_are_labelled_synthetic_and_never_fully_confident(two_tenan
     rows = a.read("SELECT name, evidence_basis, confidence FROM segments")
     assert rows and all(r[1] in ("synthetic_data_derived", "synthetic_assumption") and r[2] < 1 for r in rows)
     assert any(r[1] == "synthetic_data_derived" for r in rows) and next(r for r in rows if r[0] == "nasha-corporate-lunch-organisers")[1] == "synthetic_assumption"
+
+
+def test_the_application_dsn_is_never_the_administrators_when_a_password_is_configured(monkeypatch):
+    """CI runs the suite against a service container that does not trust local connections: the application role must connect as itself, with its own password, never as the superuser that created the schema."""
+    admin = "postgresql://nasha:adminpw@db.example:5432/nasha?sslmode=prefer"
+    monkeypatch.delenv("NASHA_GROWTH_APP_PASSWORD", raising=False)
+    assert SV.app_dsn("postgresql://postgres:@/postgres?host=/tmp/x") == f"postgresql://{S.APP_ROLE}:@/postgres?host=/tmp/x", "embedded trust-auth server: role swapped, as before"
+    monkeypatch.setenv("NASHA_GROWTH_APP_PASSWORD", "p@ss:w/rd")
+    got = SV.app_dsn(admin)
+    assert got == f"postgresql://{S.APP_ROLE}:p%40ss%3Aw%2Frd@db.example:5432/nasha?sslmode=prefer" and "adminpw" not in got and "nasha:" not in got.split("@")[0].replace(S.APP_ROLE + ":", "")
+    assert SV.app_dsn("host=/tmp/x user=postgres dbname=postgres") == "host=/tmp/x user=postgres dbname=postgres", "keyword DSNs are passed through unchanged, as before"

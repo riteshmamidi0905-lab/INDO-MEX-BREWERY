@@ -3,7 +3,9 @@ One GrowthService = one authenticated actor in one tenant. It connects as the no
 versioned. There is deliberately NO send / publish / purchase method: outbound communication, publishing and ad spend are not implemented (and the schema has no state for them)."""
 import hashlib
 import json
+import os
 import uuid
+from urllib.parse import quote, urlsplit, urlunsplit
 
 import psycopg
 from psycopg.types.json import Jsonb
@@ -47,9 +49,15 @@ def provision(admin_dsn, schema, tenant_id, name, vertical, users):
 
 
 def app_dsn(admin_dsn):
-    """The same server, connecting as the unprivileged application role (local trust auth in the embedded test server; a real deployment would use a password or certificate)."""
+    """The same server, connecting as the unprivileged application role (local trust auth in the embedded test server; a real deployment would use a password or certificate).
+    When NASHA_GROWTH_APP_PASSWORD is set and the admin DSN is a URL, the application role connects with that password (for a server that does not trust local connections, such as a CI service container);
+    the role itself must already exist as LOGIN NOBYPASSRLS. The application connection is never silently the administrator's when a password is configured."""
     if "user=" in admin_dsn:
         return admin_dsn
+    pw = os.environ.get("NASHA_GROWTH_APP_PASSWORD")
+    if pw and admin_dsn.startswith(("postgresql://", "postgres://")):
+        u = urlsplit(admin_dsn)
+        return urlunsplit((u.scheme, f"{S.APP_ROLE}:{quote(pw, safe='')}@{u.netloc.rpartition('@')[2]}", u.path, u.query, u.fragment))
     return admin_dsn.replace("postgresql://postgres:", f"postgresql://{S.APP_ROLE}:", 1)
 
 

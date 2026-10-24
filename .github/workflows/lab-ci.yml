@@ -26,6 +26,19 @@ jobs:
       - run: pip install -r lab/requirements-dev.txt -r lab/requirements-ci-extras.txt
       - name: Install pinned THE WEIR gateway so the real-gateway tests run instead of skipping
         run: pip install 'git+https://github.com/riteshmamidi0905-lab/mcp-weir.git@5df274563a4a73ebbd31a6380e3a7d829b6bf4a2'
+      - name: Fonts the brand and plate-pipeline tests open by absolute path (Inter, DejaVu)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-inter fonts-dejavu-core
+      - name: Create the non-privileged application role the Growth OS tests must connect as (the service container does not trust local connections)
+        run: |
+          APP_PW="$(python -c 'import secrets; print(secrets.token_hex(24))')"
+          echo "::add-mask::$APP_PW"
+          APP_PW="$APP_PW" python - <<'PY'
+          import os, psycopg
+          from psycopg import sql
+          with psycopg.connect("postgresql://nasha:nasha@localhost:5432/nasha", autocommit=True) as c:
+              c.execute(sql.SQL("CREATE ROLE growth_app LOGIN NOBYPASSRLS PASSWORD {}").format(sql.Literal(os.environ["APP_PW"])))
+          PY
+          echo "NASHA_GROWTH_APP_PASSWORD=$APP_PW" >> "$GITHUB_ENV"
       - name: Install the pinned Production AI Agent Platform so the tests that need it run instead of skipping
         run: pip install 'git+https://github.com/riteshmamidi0905-lab/production-ai-agent-platform.git@f8ba3735204d192734d9f8db7c164efd67790a71'
       - run: python -m playwright install --with-deps chromium
