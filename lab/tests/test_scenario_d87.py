@@ -144,7 +144,8 @@ def test_no_beef_or_pork_in_any_scenario_table(built):
 
 
 def test_website_and_database_prices_agree(built):
-    subprocess.run([sys.executable, str(model.ROOT / "website/preview_courtyard.py")], check=True, capture_output=True)
+    r = subprocess.run([sys.executable, str(model.ROOT / "website/preview_courtyard.py")], capture_output=True, text=True)
+    assert r.returncode == 0, f"preview_courtyard.py failed ({r.returncode}):\n{r.stderr[-2500:]}"      # same requirement as check=True, but the failure now says why
     html = (model.ROOT / "website/preview-courtyard/menu.html").read_text()
     page = {m[0]: int(m[1]) for m in re.findall(r'data-recipe="([a-z0-9-]+)" data-category="[a-z]+"><div class="slot img">.*?data-price-cents="(\d+)"', html, re.S)}
     db = dict(q(built[0] / "w.db", "SELECT menu_item_id, price_cents FROM scn_menu_item"))
