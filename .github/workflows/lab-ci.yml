@@ -26,7 +26,18 @@ jobs:
       - run: pip install -r lab/requirements-dev.txt -r lab/requirements-ci-extras.txt
       - name: Install pinned THE WEIR gateway so the real-gateway tests run instead of skipping
         run: pip install 'git+https://github.com/riteshmamidi0905-lab/mcp-weir.git@5df274563a4a73ebbd31a6380e3a7d829b6bf4a2'
+      - name: Install the pinned Production AI Agent Platform so the tests that need it run instead of skipping
+        run: pip install 'git+https://github.com/riteshmamidi0905-lab/production-ai-agent-platform.git@f8ba3735204d192734d9f8db7c164efd67790a71'
       - run: python -m playwright install --with-deps chromium
+      - name: Point the Growth OS browser tests at the Chromium and axe-core just installed (otherwise they skip)
+        run: |
+          python - >> "$GITHUB_ENV" <<'PY'
+          import os, axe_playwright_python
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as p:
+              print("CHROMIUM_PATH=" + p.chromium.executable_path)
+          print("AXE_PATH=" + os.path.join(os.path.dirname(axe_playwright_python.__file__), "axe.min.js"))
+          PY
       - name: All tests (unit, data, retrieval, pgvector, API, MCP, trust boundary, LangGraph, identity, UI + accessibility, property-based, failure injection). No paid API, no key.
         run: cd lab && python -m pytest -q -p no:cacheprovider -rs --junitxml=/tmp/junit.xml tests
       - name: Skip report (report-only; flip to --strict after the first clean run)

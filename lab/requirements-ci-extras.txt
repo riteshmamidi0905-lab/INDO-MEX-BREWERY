@@ -4,3 +4,6 @@ opentelemetry-sdk>=1.27
 opentelemetry-exporter-otlp-proto-http>=1.27
 sqlglot>=25            # PostgreSQL warehouse variant (tests/test_warehouse_pg.py)
 rapidocr-onnxruntime   # readable-text check in the source-plate pipeline (tests/test_plate_pipeline.py)
+# Found 2026-10-24 by reproducing lab-ci in a clean Python 3.12 environment: these were never declared, so the Growth OS suites errored at setup (pgserver) or a brand-tool test failed (fontTools).
+pixeltable-pgserver>=0.6,<1   # embedded PostgreSQL + pgvector used by the tests/test_growth_*.py fixtures (they do not read NASHA_PG_DSN)
+fonttools>=4.50,<5            # nasha brand tools import fontTools (tests/test_scenario_d87.py::test_website_and_database_prices_agree builds the preview)

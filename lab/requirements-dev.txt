@@ -1,6 +1,7 @@
 # Test / evaluation extras (not needed to run the API). All free and open source.
 -r requirements.txt
 hypothesis>=6
+pandas>=3.0.5,<4    # imported by nasha_lab.warehouse and enterprise_sim (and tests/test_warehouse*.py); never declared before, found when lab-ci first collected the suite on a clean runner (2026-10-24)
 psycopg[binary]>=3.1
 spacy>=3.7
 playwright>=1.45
