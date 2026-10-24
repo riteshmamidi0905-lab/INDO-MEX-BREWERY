@@ -77,10 +77,24 @@ def _journey(c, envs):
     step(3, "Calculate the financial scenario from stored assumptions", "ANALYST", sc.status_code == 201, f"start-up requirement ${pv['startup']['total_requirement_cents'] / 100:,.2f} against a $90,000.00 budget; formulas shown with worked values",
          total_requirement_cents=pv["startup"]["total_requirement_cents"], budget_cents=pv["startup"]["budget_cents"])
     run = c.post(f"{FIT}/projects/{pid}/procurement", json={"period_weeks": 2}, headers=H("ana")); rid = run.json()["corr_id"]
-    det = c.get(f"{FIT}/procurement/runs/{rid}", headers=H("ana")).json()["business"]
+    full = c.get(f"{FIT}/procurement/runs/{rid}", headers=H("ana")).json(); det = full["business"]
+    def _find(o, key):
+        if isinstance(o, dict):
+            if key in o and isinstance(o[key], list):
+                return o[key]
+            for v in o.values():
+                r = _find(v, key)
+                if r:
+                    return r
+        elif isinstance(o, list):
+            for v in o:
+                r = _find(v, key)
+                if r:
+                    return r
+        return None
     step(4, "Generate a procurement recommendation from requirements and supplier quotes", "ANALYST", run.status_code == 202 and det["recommendation"]["total_cost_cents"] == 4 * 94_500 + 2 * 23_500,
          f"planned spend ${det['recommendation']['total_cost_cents'] / 100:,.2f} (4 bikes at the cheapest quote + 2 weeks of pickups); research mode: {det['research']['mode_label']}; no recipe was used",
-         total_cost_cents=det["recommendation"]["total_cost_cents"], model_backed=det["research"].get("model_backed", False), needs_from=det["recommendation"].get("needs_from"))
+         total_cost_cents=det["recommendation"]["total_cost_cents"], model_backed=det["research"].get("model_backed", False), needs_from=_find(full, "needs_from"))
     own = c.post(f"{FIT}/procurement/runs/{rid}/decision", json={"approve": True}, headers=H("ana")).status_code
     stage_before = c.get(f"{FIT}/projects/{pid}", headers=H("vic")).json()["stage"]
     step(5, "Hold the recommendation for a different person's approval", "THE WEIR", own == 403 and stage_before == "idea", "held; the requesting analyst cannot approve (403); the project stage has not moved")
