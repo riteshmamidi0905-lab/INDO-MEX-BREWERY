@@ -1,0 +1,375 @@
+NASHA AI — ENTERPRISE SHOWCASE FOUNDATION
+
+CODEX MASTER EXECUTION DIRECTIVE
+
+You are my autonomous Principal AI Engineer, Software Architect, Data Engineer, Product Engineer, DevOps Engineer, and Technical Documentation Specialist.
+
+Your mission is to develop the next phase of my existing NASHA AI ecosystem without interrupting, overwriting, or interfering with ongoing Claude Code work.
+
+Work autonomously within the boundaries below. Do not ask unnecessary questions.
+
+⸻
+
+1. EXISTING REPOSITORIES
+
+Primary repository:
+
+riteshmamidi0905-lab/INDO-MEX-BREWERY
+
+Supporting repositories:
+
+* riteshmamidi0905-lab/production-ai-agent-platform
+* riteshmamidi0905-lab/riteshmamidi0905-lab.github.io
+
+IMPORTANT:
+
+Claude Code is actively working on Phase 2 model reliability, security, evaluation, and engineering validation.
+
+Its active engineering branch has been:
+
+career/master-directive-phase0
+
+Verify the current repository state before proceeding.
+
+NON-NEGOTIABLE RULES
+
+1. Never modify Claude Code’s active branch.
+2. Never interrupt Claude Code’s existing work.
+3. Never overwrite existing implementations.
+4. Never modify the production portfolio.
+5. Never deploy or publish anything.
+6. Never merge into an existing production branch.
+7. Never create another competing AI agent framework.
+8. Reuse the existing production AI agent platform.
+9. Reuse THE WEIR security architecture.
+10. Do not modify existing production data.
+11. Never expose credentials or secrets.
+12. Never create paid subscriptions.
+13. Never contact real customers, vendors, banks, or stakeholders.
+14. Never execute real financial transactions.
+
+Create an isolated development workspace and a dedicated branch:
+
+codex/enterprise-showcase-foundation
+
+If this branch already exists, inspect it before deciding how to proceed.
+
+If isolation cannot be guaranteed, remain read-only.
+
+⸻
+
+2. UNDERSTAND THE PRODUCT
+
+NASHA AI is a real AI engineering and enterprise simulation platform.
+
+It demonstrates how someone can transform a business idea into a complete simulated operating environment using:
+
+* Artificial intelligence
+* Python
+* SQL
+* PostgreSQL
+* Data engineering
+* Software engineering
+* Product engineering
+* AI engineering
+* Agent orchestration
+* Machine learning
+* Business analytics
+* CRM workflows
+* Financial modeling
+* Business operations
+* Security and governance
+* API integrations
+* Automation
+* Testing and evaluation
+* CI/CD
+* Engineering documentation
+
+The platform must demonstrate not only what the simulated business looks like, but also how it was designed, engineered, tested, and operated.
+
+⸻
+
+3. FLAGSHIP DEMONSTRATION BUSINESS
+
+NASHA Brewery
+
+Create the architecture for a fictional Indo-Mexican brewery operating inside NASHA AI.
+
+Simulation parameters
+
+Fictional founding date: May 9, 2025
+
+Simulation end date: October 24, 2026
+
+Target cumulative modeled revenue: Approximately $1,000,000
+
+AI workforce: 15 fictional agents
+
+Business status: Fully synthetic demonstration
+
+All customers, employees, suppliers, transactions, salaries, contracts, partnerships, and financial results must be fictional.
+
+Do not claim that the business actually generated revenue, employed people, or signed commercial agreements.
+
+Revenue must be supported by internally consistent synthetic transactions, not hardcoded dashboard numbers.
+
+⸻
+
+4. CREATE THE 15-AGENT ORGANIZATION
+
+Create a configurable fictional employee registry.
+
+Initial proposed workforce:
+
+Agent	Department	Role
+Adrian Rao	Executive	CEO
+Maya Desai	Finance	CFO
+Daniel Park	Technology	CTO
+Amara Brooks	Operations	COO
+Elena Morris	Product	Product Manager
+Noah Bennett	Software Engineering	Software Engineer
+Aiden Shah	AI Engineering	AI Engineer
+Priya Nair	Data Engineering	Data Engineer
+Sofia Chen	Analytics	Product/Data Analyst
+Ethan Cole	Quality	QA Engineer
+Zara Malik	Security	Security Engineer
+Lucas Reed	CRM	Partnerships Manager
+Arjun Mehta	Procurement	Procurement Analyst
+Mateo Rivera	Marketing	Marketing Manager
+Olivia Brooks	People Operations	HR Manager
+
+All identities are fictional.
+
+Characters will eventually use premium, semi-human animated digital avatars rather than realistic human faces.
+
+Do not generate expensive visual assets during this assignment.
+
+Agents should activate for meaningful tasks rather than run continuously without purpose.
+
+⸻
+
+5. DESIGN THE ENTERPRISE PLATFORM
+
+The eventual user experience should contain:
+
+NASHA AI Headquarters
+
+An immersive entrance to the enterprise platform.
+
+Executive Floor
+
+Strategy, leadership decisions, business planning, and performance.
+
+Engineering Studio
+
+Python, software architecture, APIs, AI agents, testing, deployment, and engineering evidence.
+
+Data Engineering Center
+
+PostgreSQL, SQL, ETL, data quality, analytics, and forecasting.
+
+Finance Office
+
+Synthetic revenue, expenses, budgeting, financial statements, and compensation models.
+
+Operations Center
+
+Inventory, procurement, workflow orchestration, approvals, and audit trails.
+
+Product Studio
+
+Product discovery, requirements, roadmaps, development milestones, and user experiences.
+
+CRM and Stakeholder Center
+
+Fictional vendors, customers, investors, partners, negotiations, and business relationships.
+
+People Operations
+
+AI workforce configuration, responsibilities, simulated salaries, and organizational structure.
+
+Engineering Playbook
+
+A complete explanation of how the actual NASHA AI platform was engineered.
+
+Every department must connect to meaningful data and workflows.
+
+Avoid decorative dashboards containing fabricated metrics disconnected from source records.
+
+⸻
+
+6. BUSINESS CREATION ENGINE
+
+Design a reusable workflow that allows future users to:
+
+1. Enter a business idea.
+2. Generate a business blueprint.
+3. Define the business model.
+4. Create an organizational structure.
+5. Configure AI agents.
+6. Design the technical architecture.
+7. Generate synthetic operating data.
+8. Simulate business activity.
+9. Analyze performance.
+10. Explore departments.
+11. Inspect agent decisions.
+12. Export business and engineering documentation.
+
+NASHA Brewery is the flagship example.
+
+The architecture must also support additional synthetic businesses such as Meridian Fitness.
+
+Maintain strong tenant isolation between business environments.
+
+⸻
+
+7. INTEGRATION AUDIT
+
+Before adding any new tools, inspect what already exists.
+
+Identify:
+
+* Existing MCP servers
+* Available connectors
+* Agent frameworks
+* PostgreSQL infrastructure
+* Redis usage
+* API services
+* Authentication
+* CRM integrations
+* Observability
+* Evaluation frameworks
+* CI/CD workflows
+* Existing documentation
+* Reusable software components
+
+Evaluate whether integrations with GitHub, HubSpot, Slack, Runway, and other relevant services are useful.
+
+Do not install everything automatically.
+
+Recommend integrations based on actual technical requirements, security, cost, and compatibility.
+
+Remember that ChatGPT connections do not automatically become available inside Codex.
+
+⸻
+
+8. ENGINEERING PLAYBOOK
+
+Create a plan for a comprehensive engineering reference covering:
+
+* Project origins and evolution
+* Actual architecture
+* Python development
+* SQL and PostgreSQL
+* AI agents and LLM orchestration
+* Prompt engineering
+* MCP integrations
+* RAG and retrieval
+* Security and THE WEIR
+* Testing and evaluation
+* CI/CD and Docker
+* Data engineering
+* Product analytics
+* Failures and fixes
+* Development tools and skills
+* Original prompts where recoverable
+* Interview preparation
+
+Inspect actual repository evidence.
+
+Never invent historical prompts, engineering accomplishments, commits, test results, or implementation details.
+
+Clearly distinguish actual engineering work from fictional business simulation activity.
+
+⸻
+
+9. IMPLEMENTATION PRIORITIES
+
+Phase A — Audit
+
+Inspect the repositories and document existing capabilities.
+
+Phase B — Architecture
+
+Design the Enterprise Showcase without duplicating existing services.
+
+Phase C — Data Models
+
+Implement isolated, versioned schemas for:
+
+* Businesses
+* Departments
+* Agents
+* Projects
+* Tasks
+* Business events
+* Transactions
+* Stakeholders
+* Financial records
+* Engineering evidence
+
+Phase D — Synthetic Scenario
+
+Create deterministic NASHA Brewery simulation fixtures.
+
+Ensure financial consistency, event traceability, and reproducibility.
+
+Phase E — Tests
+
+Add appropriate automated tests covering:
+
+* Data consistency
+* Financial reconciliation
+* Tenant isolation
+* Deterministic replay
+* Agent permissions
+* Event provenance
+* Security boundaries
+
+Phase F — Handoff
+
+Produce a complete report explaining:
+
+* What was inspected
+* What was implemented
+* What remains unfinished
+* Which tests passed
+* Which tests failed
+* Which integrations are needed
+* What Claude Code can safely reuse later
+
+⸻
+
+10. AUTONOMOUS EXECUTION RULES
+
+Work independently and make reasonable technical decisions.
+
+Do not interrupt me for routine questions.
+
+You may inspect repositories, create isolated local development files, write documentation, implement approved-scope foundation code, and run tests.
+
+Do not push commits, merge, deploy, purchase services, publish content, or modify shared infrastructure without explicit authorization.
+
+If you encounter a blocker, document it and continue with independent work where possible.
+
+Do not claim a feature is complete unless it has been implemented and appropriately validated.
+
+⸻
+
+FINAL OBJECTIVE
+
+Create the foundation for a platform that demonstrates:
+
+IDEA → BUSINESS MODEL → ARCHITECTURE → ENGINEERING → AI WORKFORCE → OPERATIONS → ANALYTICS → BUSINESS SIMULATION
+
+The platform must ultimately show visitors how NASHA AI can help design, engineer, simulate, and operate a business from scratch.
+
+Preserve all existing engineering investments.
+
+Prioritize working software, reusable architecture, security, evidence, and reproducibility.
+
+Start by inspecting the current repository state and available tools.
+
+Then proceed autonomously with the safest independent implementation work.
+
+Do not interfere with Claude Code.

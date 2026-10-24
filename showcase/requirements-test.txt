@@ -1,0 +1,7 @@
+pytest>=8,<10
+psycopg[binary]>=3.1
+pixeltable-pgserver>=0.6,<1
+# Same THE WEIR revision as the existing lab CI; no new security framework.
+mcp-weir @ git+https://github.com/riteshmamidi0905-lab/mcp-weir.git@5df274563a4a73ebbd31a6380e3a7d829b6bf4a2
+# Same orchestration revision as the existing lab CI.
+agentplatform @ git+https://github.com/riteshmamidi0905-lab/production-ai-agent-platform.git@f8ba3735204d192734d9f8db7c164efd67790a71
