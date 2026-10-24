@@ -55,15 +55,15 @@
   "scn_variance_week": "e85edf13d333e60b"
  },
  "environment": {
-  "python": "3.13.16",
+  "python": "3.12.3",
   "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
   "packages": {
-   "numpy": "2.5.3",
-   "pandas": "3.0.5",
+   "numpy": "2.5.4",
+   "pandas": "3.1.0",
    "sqlglot": "30.24.0",
    "psycopg": "3.3.6",
-   "pydantic": "2.13.5",
-   "fastapi": "0.143.2"
+   "pydantic": "2.14.1",
+   "fastapi": "0.162.0"
   }
  }
 }

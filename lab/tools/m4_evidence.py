@@ -1,5 +1,5 @@
 """Milestone 4 evidence: runs the real evaluations (supplier intelligence, financial model, model-output boundary), records the model-runtime facts, and drives the complete entrepreneur journey through the real HTTP API on a fresh
-synthetic world. Only deterministic fields are recorded (no ids, no timestamps), so two exports of the same code are identical. Called by export_growth_evidence.py; also runnable alone: python tools/m4_evidence.py."""
+synthetic world. No ids or timestamps are recorded, but two exports are not guaranteed byte-identical: the offline research step ranks supplier documents whose ids are random, so the wording of the recommendation's computed uncertainty can differ between runs (the recommendation, its hash and every number do not). Called by export_growth_evidence.py; also runnable alone: python tools/m4_evidence.py."""
 import os
 import sys
 import tempfile

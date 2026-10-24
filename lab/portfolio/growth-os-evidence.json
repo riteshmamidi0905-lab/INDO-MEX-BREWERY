@@ -1,6 +1,6 @@
 {
  "schema": "growth-os-evidence/1",
- "commit": "1c45d6a",
+ "commit": "67e356f",
  "synthetic": true,
  "pushed": false,
  "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
@@ -432,7 +432,7 @@
  "workflow": {
   "name": "governed_lead_qualification",
   "happy_path": {
-   "corr_id": "wf-411e0137796a",
+   "corr_id": "wf-9968b964fe7c",
    "tenant": "tenant-nasha",
    "before": {
     "status": "new",
@@ -440,7 +440,7 @@
    },
    "held": {
     "status": "AWAITING_APPROVAL",
-    "approval_id": "ap_240760cc",
+    "approval_id": "ap_7fcb1fc6",
     "recommendation_status": "qualified",
     "score": 95,
     "lead_status_while_held": "new",
@@ -476,18 +476,18 @@
    "trace": [
     {
      "seq": 1,
-     "ts": "2026-10-24T00:41:43.733109+00:00",
+     "ts": "2026-10-24T06:11:28.599607+00:00",
      "kind": "stage",
      "name": "request_received",
      "stage": "G01",
      "tenant": "tenant-nasha",
-     "lead_id": "lead-c484da034c",
+     "lead_id": "lead-879b53d4b2",
      "request_id": "req-export-1",
      "idempotency_key": true
     },
     {
      "seq": 2,
-     "ts": "2026-10-24T00:41:43.734944+00:00",
+     "ts": "2026-10-24T06:11:28.602163+00:00",
      "kind": "auth",
      "role": "SALES",
      "user": "sam",
@@ -496,20 +496,20 @@
     },
     {
      "seq": 3,
-     "ts": "2026-10-24T00:41:43.743272+00:00",
+     "ts": "2026-10-24T06:11:28.612023+00:00",
      "kind": "tool_call",
-     "ms": 4.91,
+     "ms": 5.69,
      "ok": true,
      "tool": "growth__get_lead_context",
      "codes": [],
      "stage": "G03",
-     "call_hash": "5e712c9d9b0ba8d0",
+     "call_hash": "5c0af4e001c4bdfa",
      "forwarded": true,
      "approval_id": null
     },
     {
      "seq": 4,
-     "ts": "2026-10-24T00:41:43.744757+00:00",
+     "ts": "2026-10-24T06:11:28.614234+00:00",
      "kind": "stage",
      "name": "evidence_collected",
      "stage": "G03",
@@ -523,7 +523,7 @@
     },
     {
      "seq": 5,
-     "ts": "2026-10-24T00:41:43.745873+00:00",
+     "ts": "2026-10-24T06:11:28.615827+00:00",
      "kind": "stage",
      "name": "source_and_consent_validated",
      "stage": "G04",
@@ -532,7 +532,7 @@
     },
     {
      "seq": 6,
-     "ts": "2026-10-24T00:41:43.748190+00:00",
+     "ts": "2026-10-24T06:11:28.619063+00:00",
      "kind": "stage",
      "name": "recommendation",
      "score": 95,
@@ -589,31 +589,31 @@
     },
     {
      "seq": 7,
-     "ts": "2026-10-24T00:41:43.750313+00:00",
+     "ts": "2026-10-24T06:11:28.621523+00:00",
      "kind": "stage",
      "name": "proposal",
      "stage": "G06",
-     "proposal_hash": "e39b26800735d3a2"
+     "proposal_hash": "62d864f495761044"
     },
     {
      "seq": 8,
-     "ts": "2026-10-24T00:41:43.752711+00:00",
+     "ts": "2026-10-24T06:11:28.624408+00:00",
      "kind": "tool_call",
-     "ms": 1.22,
+     "ms": 1.3,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G07",
      "failure": null,
-     "call_hash": "b09d0b7275923a14",
+     "call_hash": "9770a5765ff84c39",
      "forwarded": false,
-     "approval_id": "ap_240760cc",
+     "approval_id": "ap_7fcb1fc6",
      "held_for_approval": true
     },
     {
      "seq": 9,
-     "ts": "2026-10-24T00:41:43.754248+00:00",
+     "ts": "2026-10-24T06:11:28.626690+00:00",
      "kind": "stage",
      "name": "held_for_approval",
      "codes": [
@@ -621,11 +621,11 @@
      ],
      "stage": "G07",
      "ttl_s": 900,
-     "approval_id": "ap_240760cc"
+     "approval_id": "ap_7fcb1fc6"
     },
     {
      "seq": 10,
-     "ts": "2026-10-24T00:41:43.764214+00:00",
+     "ts": "2026-10-24T06:11:28.643440+00:00",
      "kind": "approval_decision",
      "code": "ROLE_NOT_PERMITTED",
      "role": "SALES",
@@ -634,39 +634,39 @@
     },
     {
      "seq": 11,
-     "ts": "2026-10-24T00:41:43.765660+00:00",
+     "ts": "2026-10-24T06:11:28.645051+00:00",
      "kind": "failure",
      "detail": "SALES may not approve",
      "failure_class": "ROLE_DENIED"
     },
     {
      "seq": 12,
-     "ts": "2026-10-24T00:41:43.769550+00:00",
+     "ts": "2026-10-24T06:11:28.650539+00:00",
      "kind": "approval_decision",
      "by": "ada",
      "role": "OWNER",
      "comment": "evidence reviewed",
      "decision": "approve",
-     "approval_id": "ap_240760cc"
+     "approval_id": "ap_7fcb1fc6"
     },
     {
      "seq": 13,
-     "ts": "2026-10-24T00:41:43.780265+00:00",
+     "ts": "2026-10-24T06:11:28.663328+00:00",
      "kind": "tool_call",
-     "ms": 7.62,
+     "ms": 9.35,
      "ok": true,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G09",
-     "call_hash": "b09d0b7275923a14",
+     "call_hash": "9770a5765ff84c39",
      "forwarded": true,
-     "approval_id": "ap_240760cc"
+     "approval_id": "ap_7fcb1fc6"
     },
     {
      "seq": 14,
-     "ts": "2026-10-24T00:41:43.782299+00:00",
+     "ts": "2026-10-24T06:11:28.665611+00:00",
      "kind": "stage",
      "name": "crm_updated",
      "stage": "G09",
@@ -674,7 +674,7 @@
     },
     {
      "seq": 15,
-     "ts": "2026-10-24T00:41:43.783121+00:00",
+     "ts": "2026-10-24T06:11:28.666454+00:00",
      "kind": "stage",
      "name": "no_external_contact",
      "stage": "G10",
@@ -683,7 +683,7 @@
     },
     {
      "seq": 16,
-     "ts": "2026-10-24T00:41:43.784884+00:00",
+     "ts": "2026-10-24T06:11:28.668915+00:00",
      "kind": "approval_decision",
      "code": "APPROVAL_REPLAY",
      "state": "EXECUTED",
@@ -2927,6 +2927,21 @@
    "total_cost_cents": 2165313,
    "suppliers": [
     {
+     "supplier": "Synthetic Supplier 03 (produce)",
+     "cost_cents": 97283,
+     "items": 7
+    },
+    {
+     "supplier": "Synthetic Supplier 04 (dairy)",
+     "cost_cents": 15582,
+     "items": 2
+    },
+    {
+     "supplier": "Synthetic Supplier 05 (dry goods)",
+     "cost_cents": 264884,
+     "items": 14
+    },
+    {
      "supplier": "Synthetic Broadline Distributor A (broadline)",
      "cost_cents": 699082,
      "items": 22
@@ -2935,21 +2950,6 @@
      "supplier": "Synthetic Broadline Distributor B (broadline)",
      "cost_cents": 1088482,
      "items": 25
-    },
-    {
-     "supplier": "Synthetic Supplier 05 (dry goods)",
-     "cost_cents": 264884,
-     "items": 14
-    },
-    {
-     "supplier": "Synthetic Supplier 04 (dairy)",
-     "cost_cents": 15582,
-     "items": 2
-    },
-    {
-     "supplier": "Synthetic Supplier 03 (produce)",
-     "cost_cents": 97283,
-     "items": 7
     }
    ],
    "flags": [
@@ -2960,17 +2960,17 @@
   "trace": [
    {
     "seq": 1,
-    "ts": "2026-10-24T00:41:46.969652+00:00",
+    "ts": "2026-10-24T06:11:32.858248+00:00",
     "kind": "stage",
     "name": "request_received",
     "stage": "P01",
-    "project_id": "proj-f2fb12a6ae",
+    "project_id": "proj-fa3f3a7a7a",
     "request_id": "req-export-proc",
     "period_weeks": 4
    },
    {
     "seq": 2,
-    "ts": "2026-10-24T00:41:46.971504+00:00",
+    "ts": "2026-10-24T06:11:32.865313+00:00",
     "kind": "auth",
     "role": "ANALYST",
     "user": "ana",
@@ -2979,20 +2979,20 @@
    },
    {
     "seq": 3,
-    "ts": "2026-10-24T00:41:47.113017+00:00",
+    "ts": "2026-10-24T06:11:33.017093+00:00",
     "kind": "tool_call",
-    "ms": 138.22,
+    "ms": 146.78,
     "ok": true,
     "tool": "launch__get_supplier_data",
     "codes": [],
     "stage": "P03",
-    "call_hash": "b2028e63c3461095",
+    "call_hash": "8a985f35d33db963",
     "forwarded": true,
     "approval_id": null
    },
    {
     "seq": 4,
-    "ts": "2026-10-24T00:41:47.115204+00:00",
+    "ts": "2026-10-24T06:11:33.019490+00:00",
     "kind": "stage",
     "name": "data_read",
     "stage": "P03",
@@ -3002,7 +3002,7 @@
    },
    {
     "seq": 5,
-    "ts": "2026-10-24T00:41:47.123750+00:00",
+    "ts": "2026-10-24T06:11:33.028353+00:00",
     "kind": "stage",
     "name": "demand_and_needs",
     "stage": "P04",
@@ -3015,7 +3015,7 @@
    },
    {
     "seq": 6,
-    "ts": "2026-10-24T00:41:47.942055+00:00",
+    "ts": "2026-10-24T06:11:34.080253+00:00",
     "kind": "stage",
     "mode": "engine_offline_heuristic",
     "name": "agent_research",
@@ -3032,7 +3032,7 @@
     },
     "evidence": 13,
     "provider": "offline",
-    "agent_run": "run_5dab7e39606c",
+    "agent_run": "run_03aba09c9bcc",
     "independent_problems": [],
     "platform_verification": {
      "ok": true,
@@ -3041,7 +3041,7 @@
    },
    {
     "seq": 7,
-    "ts": "2026-10-24T00:41:47.946569+00:00",
+    "ts": "2026-10-24T06:11:34.085443+00:00",
     "kind": "stage",
     "name": "recommendation",
     "flags": [
@@ -3054,7 +3054,7 @@
    },
    {
     "seq": 8,
-    "ts": "2026-10-24T00:41:47.948103+00:00",
+    "ts": "2026-10-24T06:11:34.088218+00:00",
     "kind": "stage",
     "name": "independent_check",
     "stage": "P06",
@@ -3062,31 +3062,31 @@
    },
    {
     "seq": 9,
-    "ts": "2026-10-24T00:41:47.957155+00:00",
+    "ts": "2026-10-24T06:11:34.098944+00:00",
     "kind": "stage",
     "name": "proposal",
     "stage": "P07",
-    "proposal_hash": "e34bd8dd28ba4c08"
+    "proposal_hash": "2ed168b04832981d"
    },
    {
     "seq": 10,
-    "ts": "2026-10-24T00:41:47.961185+00:00",
+    "ts": "2026-10-24T06:11:34.105100+00:00",
     "kind": "tool_call",
-    "ms": 1.2,
+    "ms": 1.44,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P08",
     "failure": null,
-    "call_hash": "20eeb4ed56db3767",
+    "call_hash": "f88cffb1fdcbff7c",
     "forwarded": false,
-    "approval_id": "ap_62ce342b",
+    "approval_id": "ap_6f0c961d",
     "held_for_approval": true
    },
    {
     "seq": 11,
-    "ts": "2026-10-24T00:41:47.964748+00:00",
+    "ts": "2026-10-24T06:11:34.111747+00:00",
     "kind": "stage",
     "name": "held_for_approval",
     "codes": [
@@ -3094,11 +3094,11 @@
     ],
     "stage": "P08",
     "ttl_s": 900,
-    "approval_id": "ap_62ce342b"
+    "approval_id": "ap_6f0c961d"
    },
    {
     "seq": 12,
-    "ts": "2026-10-24T00:41:47.977276+00:00",
+    "ts": "2026-10-24T06:11:34.123757+00:00",
     "kind": "approval_decision",
     "code": "ROLE_NOT_PERMITTED",
     "role": "ANALYST",
@@ -3107,46 +3107,46 @@
    },
    {
     "seq": 13,
-    "ts": "2026-10-24T00:41:47.984687+00:00",
+    "ts": "2026-10-24T06:11:34.136578+00:00",
     "kind": "failure",
     "detail": "ANALYST may not approve",
     "failure_class": "ROLE_DENIED"
    },
    {
     "seq": 14,
-    "ts": "2026-10-24T00:41:48.226676+00:00",
+    "ts": "2026-10-24T06:11:34.434703+00:00",
     "kind": "approval_decision",
     "by": "ada",
     "role": "OWNER",
     "comment": "reviewed",
     "decision": "approve",
-    "approval_id": "ap_62ce342b"
+    "approval_id": "ap_6f0c961d"
    },
    {
     "seq": 15,
-    "ts": "2026-10-24T00:41:48.277641+00:00",
+    "ts": "2026-10-24T06:11:34.559502+00:00",
     "kind": "tool_call",
-    "ms": 39.28,
+    "ms": 40.64,
     "ok": true,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P09",
-    "call_hash": "20eeb4ed56db3767",
+    "call_hash": "f88cffb1fdcbff7c",
     "forwarded": true,
-    "approval_id": "ap_62ce342b"
+    "approval_id": "ap_6f0c961d"
    },
    {
     "seq": 16,
-    "ts": "2026-10-24T00:41:48.278856+00:00",
+    "ts": "2026-10-24T06:11:34.561507+00:00",
     "kind": "stage",
     "name": "recommendation_recorded",
     "stage": "P09"
    },
    {
     "seq": 17,
-    "ts": "2026-10-24T00:41:48.279738+00:00",
+    "ts": "2026-10-24T06:11:34.562933+00:00",
     "kind": "stage",
     "name": "no_order_no_contact",
     "stage": "P10",
@@ -3155,7 +3155,7 @@
    },
    {
     "seq": 18,
-    "ts": "2026-10-24T00:41:48.285249+00:00",
+    "ts": "2026-10-24T06:11:34.570361+00:00",
     "kind": "approval_decision",
     "code": "APPROVAL_REPLAY",
     "state": "EXECUTED",
@@ -5032,14 +5032,12 @@
   },
   "architecture": {
    "tables_in_schema": 32,
-   "tables_used_by_both_businesses": 27,
+   "tables_used_by_both_businesses": 24,
    "tables_both": [
     "accounts",
     "audit_log",
     "contacts",
     "entity_versions",
-    "financial_scenarios",
-    "idempotency_keys",
     "launch_events",
     "launch_projects",
     "leads",
@@ -5049,7 +5047,6 @@
     "products",
     "project_assumptions",
     "project_milestones",
-    "project_requirements",
     "project_suppliers",
     "research_findings",
     "segments",
@@ -5072,8 +5069,8 @@
      "tenant-fit": 0
     },
     "audit_log": {
-     "tenant-nasha": 791,
-     "tenant-fit": 491
+     "tenant-nasha": 434,
+     "tenant-fit": 134
     },
     "campaigns": {
      "tenant-nasha": 2,
@@ -5088,24 +5085,24 @@
      "tenant-fit": 0
     },
     "entity_versions": {
-     "tenant-nasha": 734,
-     "tenant-fit": 428
+     "tenant-nasha": 455,
+     "tenant-fit": 149
     },
     "financial_scenarios": {
-     "tenant-nasha": 22,
-     "tenant-fit": 24
+     "tenant-nasha": 0,
+     "tenant-fit": 2
     },
     "idempotency_keys": {
-     "tenant-nasha": 58,
-     "tenant-fit": 58
+     "tenant-nasha": 0,
+     "tenant-fit": 0
     },
     "launch_events": {
-     "tenant-nasha": 470,
-     "tenant-fit": 464
+     "tenant-nasha": 50,
+     "tenant-fit": 44
     },
     "launch_projects": {
-     "tenant-nasha": 16,
-     "tenant-fit": 17
+     "tenant-nasha": 1,
+     "tenant-fit": 2
     },
     "leads": {
      "tenant-nasha": 12,
@@ -5124,8 +5121,8 @@
      "tenant-fit": 3
     },
     "procurement_recommendations": {
-     "tenant-nasha": 46,
-     "tenant-fit": 45
+     "tenant-nasha": 4,
+     "tenant-fit": 3
     },
     "products": {
      "tenant-nasha": 15,
@@ -5136,20 +5133,20 @@
      "tenant-fit": 31
     },
     "project_milestones": {
-     "tenant-nasha": 22,
-     "tenant-fit": 22
+     "tenant-nasha": 7,
+     "tenant-fit": 7
     },
     "project_requirements": {
-     "tenant-nasha": 22,
-     "tenant-fit": 31
+     "tenant-nasha": 0,
+     "tenant-fit": 9
     },
     "project_suppliers": {
      "tenant-nasha": 8,
-     "tenant-fit": 7
+     "tenant-fit": 6
     },
     "research_findings": {
-     "tenant-nasha": 27,
-     "tenant-fit": 24
+     "tenant-nasha": 6,
+     "tenant-fit": 3
     },
     "segments": {
      "tenant-nasha": 2,
@@ -5168,8 +5165,8 @@
      "tenant-fit": 0
     },
     "suppliers": {
-     "tenant-nasha": 41,
-     "tenant-fit": 27
+     "tenant-nasha": 20,
+     "tenant-fit": 6
     },
     "suppression_list": {
      "tenant-nasha": 1,

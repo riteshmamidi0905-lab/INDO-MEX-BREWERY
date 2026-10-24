@@ -1,6 +1,6 @@
 """Milestone 5 evidence: two businesses on one platform. Runs the real evaluations (supplier held-out vs dev, financial held-out vs dev, generalisation, authorisation matrix with policy-widening mutants), records the supplier research
-tiers and the model-execution status, drives a fresh fitness-studio launch through the SAME HTTP API, and compares what the two tenants share. Deterministic fields only (no ids, timestamps), so two exports of the same code are
-identical. Called by export_growth_evidence.py; also runnable alone: python tools/m5_evidence.py"""
+tiers and the model-execution status, drives a fresh fitness-studio launch through the SAME HTTP API, and compares what the two tenants share. No ids or timestamps are recorded, but two exports are not guaranteed byte-identical: the offline research step ranks supplier documents whose ids are random, so the wording of the
+recommendation's computed uncertainty can differ between runs (the recommendation itself, its hash and every number do not). Called by export_growth_evidence.py; also runnable alone: python tools/m5_evidence.py"""
 import json
 import sys
 import tempfile
@@ -145,6 +145,7 @@ def collect():
                 app = GA.create_growth_app(envs, as_of=AS_OF)
             with TestClient(app) as c:
                 journey = _journey(c, envs)
+                arch = shared_architecture(dsn, "m5_evidence")        # counted BEFORE the authorisation matrix, which writes rows (shortlists a supplier on whichever project lists first) and made the counts vary between exports
                 rows = []
                 for t in (A, B):
                     h = {"Authorization": "Bearer " + envs[t].authority.login("vic", f"{t}-vic-dev-passcode")}
@@ -160,7 +161,6 @@ def collect():
                             mrows += AZ.run(c, envs, t, pid, sid)
                     s = AZ.summary(mrows); muts.append(dict(name=name, widens=f"{action} to {role}", killed=bool(s["wrong"]), first_catch=(s["wrong"] or [None])[0]))
                 authz = dict(operations=sorted(AZ.EXPECTED), roles=AZ.USERS, summary={k: v for k, v in base.items()}, mutants=muts, note="Every (operation, role) pair is exercised in BOTH businesses against a table written from the intended policy.")
-            arch = shared_architecture(dsn, "m5_evidence")
         finally:
             srv.cleanup()
     return dict(model=model_status(), supplier_research=supplier_research(), evaluations=ev, authorization=authz, journey=journey, architecture=arch)

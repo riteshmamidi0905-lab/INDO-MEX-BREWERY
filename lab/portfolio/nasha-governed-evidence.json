@@ -75,7 +75,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.92,
+     "ms": 5.93,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -85,7 +85,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 7.61,
+     "ms": 11.91,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -95,7 +95,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.69,
+     "ms": 6.88,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -105,7 +105,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.34,
+     "ms": 6.4,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -115,7 +115,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 4.25,
+     "ms": 5.84,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -125,7 +125,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.64,
+     "ms": 5.53,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -135,7 +135,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 4.44,
+     "ms": 5.27,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -172,7 +172,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.43,
+     "ms": 2.05,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -185,7 +185,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_e0637904"
+      "approval_id": "ap_b4403374"
      }
     },
     {
@@ -200,7 +200,7 @@
      "kind": "tool",
      "stage": "S14",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 4.44,
+     "ms": 5.13,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [
@@ -249,12 +249,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_e0637904"
+     "ref": "ap_b4403374"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_e0637904"
+     "ref": "ap_b4403374"
     },
     {
      "action": "state:APPROVED",
@@ -344,7 +344,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.89,
+     "ms": 9.82,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -354,7 +354,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 7.25,
+     "ms": 9.28,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -364,7 +364,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.69,
+     "ms": 8.03,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -374,7 +374,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.16,
+     "ms": 5.34,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -384,7 +384,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 4.11,
+     "ms": 4.79,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -394,7 +394,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.03,
+     "ms": 4.36,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -404,7 +404,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 3.89,
+     "ms": 4.24,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -441,7 +441,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.03,
+     "ms": 1.14,
      "forwarded": false,
      "held_for_approval": false,
      "codes": [
@@ -567,7 +567,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 5.01,
+     "ms": 6.01,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -577,7 +577,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 14.07,
+     "ms": 8.55,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -587,7 +587,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 5.01,
+     "ms": 6.44,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -597,7 +597,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.34,
+     "ms": 5.15,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -607,7 +607,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 4.22,
+     "ms": 5.5,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -617,7 +617,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.31,
+     "ms": 5.37,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -627,7 +627,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 4.01,
+     "ms": 5.15,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -664,7 +664,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.42,
+     "ms": 1.47,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -677,7 +677,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_f6a24916"
+      "approval_id": "ap_3d206ace"
      }
     },
     {
@@ -720,12 +720,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_f6a24916"
+     "ref": "ap_3d206ace"
     },
     {
      "action": "approval_expired",
      "role": "FOUNDER",
-     "ref": "ap_f6a24916"
+     "ref": "ap_3d206ace"
     },
     {
      "action": "state:FAILED",
@@ -805,7 +805,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 5.37,
+     "ms": 9.28,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -815,7 +815,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 7.72,
+     "ms": 8.46,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -825,7 +825,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.74,
+     "ms": 5.91,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -835,7 +835,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.3,
+     "ms": 5.7,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -845,7 +845,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 4.56,
+     "ms": 5.1,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -855,7 +855,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 5.46,
+     "ms": 4.51,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -865,7 +865,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 4.69,
+     "ms": 4.1,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -902,7 +902,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.96,
+     "ms": 1.49,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -915,7 +915,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_840c2d46"
+      "approval_id": "ap_8b5bb1b9"
      }
     },
     {
@@ -930,7 +930,7 @@
      "kind": "tool",
      "stage": "S14",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.59,
+     "ms": 1.09,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -968,12 +968,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_840c2d46"
+     "ref": "ap_8b5bb1b9"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_840c2d46"
+     "ref": "ap_8b5bb1b9"
     },
     {
      "action": "state:APPROVED",
@@ -983,7 +983,7 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": null,
-     "ref": "ap_a04eefc7"
+     "ref": "ap_f3c81b6f"
     }
    ]
   },
@@ -1058,7 +1058,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 5.38,
+     "ms": 10.03,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1068,7 +1068,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 7.44,
+     "ms": 8.26,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1078,7 +1078,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.72,
+     "ms": 5.91,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1088,7 +1088,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.21,
+     "ms": 4.51,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1098,7 +1098,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 4.19,
+     "ms": 5.12,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1108,7 +1108,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.36,
+     "ms": 4.84,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1118,7 +1118,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 3.77,
+     "ms": 4.64,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1164,7 +1164,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.27,
+     "ms": 1.37,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -1177,7 +1177,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_c5834015"
+      "approval_id": "ap_7f0b48bf"
      }
     }
    ],
@@ -1205,7 +1205,7 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_c5834015"
+     "ref": "ap_7f0b48bf"
     }
    ]
   },
@@ -1280,7 +1280,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 5.45,
+     "ms": 4.77,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1290,7 +1290,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 7.36,
+     "ms": 7.4,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1300,7 +1300,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 6.27,
+     "ms": 4.91,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1310,7 +1310,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 4.49,
+     "ms": 3.92,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1320,7 +1320,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 4.15,
+     "ms": 4.36,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1330,7 +1330,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.54,
+     "ms": 4.26,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1340,7 +1340,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 5.34,
+     "ms": 3.8,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1377,7 +1377,7 @@
      "kind": "tool",
      "stage": "S11",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 1.31,
+     "ms": 1.35,
      "forwarded": false,
      "held_for_approval": true,
      "codes": [
@@ -1390,7 +1390,7 @@
      "stage": "S12",
      "label": "held_for_approval",
      "detail": {
-      "approval_id": "ap_3c9fbf94"
+      "approval_id": "ap_7b88514f"
      }
     },
     {
@@ -1405,7 +1405,7 @@
      "kind": "tool",
      "stage": "S14",
      "label": "procurement__create_draft_purchase_order",
-     "ms": 4.63,
+     "ms": 3.86,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [
@@ -1461,12 +1461,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_3c9fbf94"
+     "ref": "ap_7b88514f"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_3c9fbf94"
+     "ref": "ap_7b88514f"
     },
     {
      "action": "state:APPROVED",
@@ -1486,7 +1486,7 @@
     {
      "action": "decision_refused:APPROVAL_REPLAY",
      "role": "FOUNDER",
-     "ref": "ap_3c9fbf94"
+     "ref": "ap_7b88514f"
     },
     {
      "action": "duplicate_request",
@@ -1566,7 +1566,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__variance_flags",
-     "ms": 4.83,
+     "ms": 4.98,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1576,7 +1576,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__ingredient_usage",
-     "ms": 8.46,
+     "ms": 7.0,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1586,7 +1586,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__dishes_using_ingredient",
-     "ms": 4.16,
+     "ms": 4.99,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1596,7 +1596,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__demand_forecast",
-     "ms": 3.79,
+     "ms": 4.67,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1606,7 +1606,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__reorder_recommendations",
-     "ms": 3.81,
+     "ms": 4.83,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1616,7 +1616,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_comparison",
-     "ms": 4.16,
+     "ms": 4.36,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1626,7 +1626,7 @@
      "kind": "tool",
      "stage": "S08",
      "label": "warehouse__supplier_notes",
-     "ms": 3.45,
+     "ms": 5.5,
      "forwarded": true,
      "held_for_approval": false,
      "codes": [],
@@ -1722,14 +1722,14 @@
  ],
  "repository": {
   "name": "INDO-MEX-BREWERY",
-  "commit": "a61049d",
+  "commit": "67e356f",
   "uncommitted_changes_at_export": true,
   "pushed": false,
   "note": "local commit; not pushed to the remote at export time"
  },
  "incidents": {
   "approved_draft_po": {
-   "corr_id": "run-9a57c911b7",
+   "corr_id": "run-bc4c237d9f",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -1751,7 +1751,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.92
+     "ms": 5.93
     },
     {
      "stage": "S08",
@@ -1760,7 +1760,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 7.61
+     "ms": 11.91
     },
     {
      "stage": "S08",
@@ -1769,7 +1769,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.69
+     "ms": 6.88
     },
     {
      "stage": "S08",
@@ -1778,7 +1778,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.34
+     "ms": 6.4
     },
     {
      "stage": "S08",
@@ -1787,7 +1787,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.25
+     "ms": 5.84
     },
     {
      "stage": "S08",
@@ -1796,7 +1796,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.64
+     "ms": 5.53
     },
     {
      "stage": "S08",
@@ -1805,7 +1805,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.44
+     "ms": 5.27
     },
     {
      "stage": "S11",
@@ -1816,7 +1816,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 1.43
+     "ms": 2.05
     },
     {
      "stage": "S14",
@@ -1827,7 +1827,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 4.44
+     "ms": 5.13
     }
    ],
    "evidence_retrieved": [
@@ -1924,14 +1924,14 @@
     },
     "approvals": [
      {
-      "id": "ap_e0637904",
+      "id": "ap_b4403374",
       "state": "consumed",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": "tenant-a-founder",
       "rules": [
        "R-GATE"
       ],
-      "expires": 1792803096.5264776
+      "expires": 1792823268.6927176
      }
     ]
    },
@@ -1975,12 +1975,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_e0637904"
+     "ref": "ap_b4403374"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_e0637904"
+     "ref": "ap_b4403374"
     },
     {
      "action": "state:APPROVED",
@@ -2030,7 +2030,7 @@
    }
   },
   "unauthorised_role_blocked": {
-   "corr_id": "run-97bba0b5ba",
+   "corr_id": "run-02fccd6f3b",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -2052,7 +2052,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.89
+     "ms": 9.82
     },
     {
      "stage": "S08",
@@ -2061,7 +2061,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 7.25
+     "ms": 9.28
     },
     {
      "stage": "S08",
@@ -2070,7 +2070,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.69
+     "ms": 8.03
     },
     {
      "stage": "S08",
@@ -2079,7 +2079,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.16
+     "ms": 5.34
     },
     {
      "stage": "S08",
@@ -2088,7 +2088,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.11
+     "ms": 4.79
     },
     {
      "stage": "S08",
@@ -2097,7 +2097,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.03
+     "ms": 4.36
     },
     {
      "stage": "S08",
@@ -2106,7 +2106,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 3.89
+     "ms": 4.24
     },
     {
      "stage": "S11",
@@ -2117,7 +2117,7 @@
       "R-UNKNOWN"
      ],
      "failure": "TOOL_DENIED",
-     "ms": 1.03
+     "ms": 1.14
     }
    ],
    "evidence_retrieved": [
@@ -2348,7 +2348,7 @@
    }
   },
   "expired_approval": {
-   "corr_id": "run-ebc639f946",
+   "corr_id": "run-8de106c6ae",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -2370,7 +2370,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.01
+     "ms": 6.01
     },
     {
      "stage": "S08",
@@ -2379,7 +2379,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 14.07
+     "ms": 8.55
     },
     {
      "stage": "S08",
@@ -2388,7 +2388,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.01
+     "ms": 6.44
     },
     {
      "stage": "S08",
@@ -2397,7 +2397,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.34
+     "ms": 5.15
     },
     {
      "stage": "S08",
@@ -2406,7 +2406,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.22
+     "ms": 5.5
     },
     {
      "stage": "S08",
@@ -2415,7 +2415,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.31
+     "ms": 5.37
     },
     {
      "stage": "S08",
@@ -2424,7 +2424,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.01
+     "ms": 5.15
     },
     {
      "stage": "S11",
@@ -2435,7 +2435,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 1.42
+     "ms": 1.47
     }
    ],
    "evidence_retrieved": [
@@ -2532,7 +2532,7 @@
     },
     "approvals": [
      {
-      "id": "ap_f6a24916",
+      "id": "ap_3d206ace",
       "state": "expired",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": null,
@@ -2585,12 +2585,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_f6a24916"
+     "ref": "ap_3d206ace"
     },
     {
      "action": "approval_expired",
      "role": "FOUNDER",
-     "ref": "ap_f6a24916"
+     "ref": "ap_3d206ace"
     },
     {
      "action": "state:FAILED",
@@ -2633,7 +2633,7 @@
    }
   },
   "modified_after_approval": {
-   "corr_id": "run-bbd7c7e0f9",
+   "corr_id": "run-396ea4de43",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -2655,7 +2655,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.37
+     "ms": 9.28
     },
     {
      "stage": "S08",
@@ -2664,7 +2664,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 7.72
+     "ms": 8.46
     },
     {
      "stage": "S08",
@@ -2673,7 +2673,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.74
+     "ms": 5.91
     },
     {
      "stage": "S08",
@@ -2682,7 +2682,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.3
+     "ms": 5.7
     },
     {
      "stage": "S08",
@@ -2691,7 +2691,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.56
+     "ms": 5.1
     },
     {
      "stage": "S08",
@@ -2700,7 +2700,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.46
+     "ms": 4.51
     },
     {
      "stage": "S08",
@@ -2709,7 +2709,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.69
+     "ms": 4.1
     },
     {
      "stage": "S11",
@@ -2720,7 +2720,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 1.96
+     "ms": 1.49
     },
     {
      "stage": "S14",
@@ -2731,7 +2731,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 1.59
+     "ms": 1.09
     }
    ],
    "evidence_retrieved": [
@@ -2828,24 +2828,24 @@
     },
     "approvals": [
      {
-      "id": "ap_840c2d46",
+      "id": "ap_8b5bb1b9",
       "state": "approved",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": "tenant-a-founder",
       "rules": [
        "R-GATE"
       ],
-      "expires": 1792803096.850215
+      "expires": 1792823269.072949
      },
      {
-      "id": "ap_a04eefc7",
+      "id": "ap_f3c81b6f",
       "state": "pending",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": null,
       "rules": [
        "R-GATE"
       ],
-      "expires": 1792803096.8685253
+      "expires": 1792823269.0922806
      }
     ]
    },
@@ -2891,12 +2891,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_840c2d46"
+     "ref": "ap_8b5bb1b9"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_840c2d46"
+     "ref": "ap_8b5bb1b9"
     },
     {
      "action": "state:APPROVED",
@@ -2906,7 +2906,7 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": null,
-     "ref": "ap_a04eefc7"
+     "ref": "ap_f3c81b6f"
     }
    ],
    "answers": {
@@ -2945,7 +2945,7 @@
    }
   },
   "prompt_injection_in_supplier_note": {
-   "corr_id": "run-c450d493d8",
+   "corr_id": "run-b89d0c2553",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -2967,7 +2967,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.38
+     "ms": 10.03
     },
     {
      "stage": "S08",
@@ -2976,7 +2976,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 7.44
+     "ms": 8.26
     },
     {
      "stage": "S08",
@@ -2985,7 +2985,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.72
+     "ms": 5.91
     },
     {
      "stage": "S08",
@@ -2994,7 +2994,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.21
+     "ms": 4.51
     },
     {
      "stage": "S08",
@@ -3003,7 +3003,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.19
+     "ms": 5.12
     },
     {
      "stage": "S08",
@@ -3012,7 +3012,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.36
+     "ms": 4.84
     },
     {
      "stage": "S08",
@@ -3021,7 +3021,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 3.77
+     "ms": 4.64
     },
     {
      "stage": "S11",
@@ -3032,7 +3032,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 1.27
+     "ms": 1.37
     }
    ],
    "evidence_retrieved": [
@@ -3124,14 +3124,14 @@
     },
     "approvals": [
      {
-      "id": "ap_c5834015",
+      "id": "ap_7f0b48bf",
       "state": "pending",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": null,
       "rules": [
        "R-GATE"
       ],
-      "expires": 1792803097.0002
+      "expires": 1792823269.2466178
      }
     ]
    },
@@ -3168,7 +3168,7 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_c5834015"
+     "ref": "ap_7f0b48bf"
     }
    ],
    "answers": {
@@ -3202,7 +3202,7 @@
    }
   },
   "replayed_approval_and_duplicate_request": {
-   "corr_id": "run-4688cee002",
+   "corr_id": "run-27e6e73d37",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -3224,7 +3224,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.45
+     "ms": 4.77
     },
     {
      "stage": "S08",
@@ -3233,7 +3233,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 7.36
+     "ms": 7.4
     },
     {
      "stage": "S08",
@@ -3242,7 +3242,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 6.27
+     "ms": 4.91
     },
     {
      "stage": "S08",
@@ -3251,7 +3251,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.49
+     "ms": 3.92
     },
     {
      "stage": "S08",
@@ -3260,7 +3260,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.15
+     "ms": 4.36
     },
     {
      "stage": "S08",
@@ -3269,7 +3269,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.54
+     "ms": 4.26
     },
     {
      "stage": "S08",
@@ -3278,7 +3278,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 5.34
+     "ms": 3.8
     },
     {
      "stage": "S11",
@@ -3289,7 +3289,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 1.31
+     "ms": 1.35
     },
     {
      "stage": "S14",
@@ -3300,7 +3300,7 @@
       "R-GATE"
      ],
      "failure": null,
-     "ms": 4.63
+     "ms": 3.86
     }
    ],
    "evidence_retrieved": [
@@ -3402,14 +3402,14 @@
     },
     "approvals": [
      {
-      "id": "ap_3c9fbf94",
+      "id": "ap_7b88514f",
       "state": "consumed",
       "tool": "procurement__create_draft_purchase_order",
       "resolved_by": "tenant-a-founder",
       "rules": [
        "R-GATE"
       ],
-      "expires": 1792803097.1022542
+      "expires": 1792823269.3411467
      }
     ]
    },
@@ -3453,12 +3453,12 @@
     {
      "action": "state:AWAITING_APPROVAL",
      "role": "BUYER",
-     "ref": "ap_3c9fbf94"
+     "ref": "ap_7b88514f"
     },
     {
      "action": "approval_approved",
      "role": "FOUNDER",
-     "ref": "ap_3c9fbf94"
+     "ref": "ap_7b88514f"
     },
     {
      "action": "state:APPROVED",
@@ -3478,7 +3478,7 @@
     {
      "action": "decision_refused:APPROVAL_REPLAY",
      "role": "FOUNDER",
-     "ref": "ap_3c9fbf94"
+     "ref": "ap_7b88514f"
     },
     {
      "action": "duplicate_request",
@@ -3518,7 +3518,7 @@
    }
   },
   "malformed_agent_output": {
-   "corr_id": "run-028507ad5f",
+   "corr_id": "run-9f6b6daaed",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -3540,7 +3540,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.83
+     "ms": 4.98
     },
     {
      "stage": "S08",
@@ -3549,7 +3549,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 8.46
+     "ms": 7.0
     },
     {
      "stage": "S08",
@@ -3558,7 +3558,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.16
+     "ms": 4.99
     },
     {
      "stage": "S08",
@@ -3567,7 +3567,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 3.79
+     "ms": 4.67
     },
     {
      "stage": "S08",
@@ -3576,7 +3576,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 3.81
+     "ms": 4.83
     },
     {
      "stage": "S08",
@@ -3585,7 +3585,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 4.16
+     "ms": 4.36
     },
     {
      "stage": "S08",
@@ -3594,7 +3594,7 @@
      "held_for_approval": false,
      "weir_codes": [],
      "failure": null,
-     "ms": 3.45
+     "ms": 5.5
     }
    ],
    "evidence_retrieved": [
@@ -3755,7 +3755,7 @@
    }
   },
   "cross_tenant_blocked": {
-   "corr_id": "run-2b5aceea86",
+   "corr_id": "run-88b5f0d401",
    "tenant": "tenant-a",
    "found": true,
    "who": {
@@ -3940,11 +3940,11 @@
  },
  "measured": {
   "happy_path_tool_calls": 9,
-  "tool_ms_max": 7.61,
-  "tool_ms_median": 4.44,
+  "tool_ms_max": 11.91,
+  "tool_ms_median": 5.84,
   "note": "measured on the build machine for this run; not a benchmark"
  },
- "generated_seconds": 22.2,
+ "generated_seconds": 22.9,
  "metrics": {
   "governed_workflow_tests": {
    "passed": 59,
@@ -4051,11 +4051,11 @@
    "caveat": "Small synthetic case set with a deterministic tool layer and rule router; a perfect score is not evidence of real-world reliability."
   },
   "release_evidence": {
-   "tests_passed": 917,
-   "tests_total": 919,
+   "tests_passed": 918,
+   "tests_total": 920,
    "tests_failed": 0,
    "tests_skipped": 2,
-   "collected_at_commit": "a61049d",
+   "collected_at_commit": "67e356f",
    "model_runtime": "UNVERIFIED: the real-model smoke test is skipped (no local model runtime, no network access to model hosts)",
    "remote_ci": "NOT_RUN: workflows have not executed on GitHub"
   },
@@ -4065,8 +4065,8 @@
  "claims": [
   {
    "id": "tests.passed",
-   "text": "917 automated tests passed in the full suite run (synthetic data)",
-   "value": 917,
+   "text": "918 automated tests passed in the full suite run (synthetic data)",
+   "value": 918,
    "source": {
     "file": "summary.json",
     "pointer": "passed"
@@ -4502,7 +4502,7 @@
    {
     "id": "eval.latency_ms_p50",
     "text": "latency ms p50",
-    "value": 106.6,
+    "value": 114.2,
     "source": {
      "file": "eval.json",
      "pointer": "metrics.latency_ms_p50"
@@ -4511,7 +4511,7 @@
    {
     "id": "eval.latency_ms_p95",
     "text": "latency ms p95",
-    "value": 301.5,
+    "value": 308.1,
     "source": {
      "file": "eval.json",
      "pointer": "metrics.latency_ms_p95"
@@ -5798,7 +5798,7 @@
    {
     "id": "suite.passed",
     "text": "suite passed",
-    "value": 917,
+    "value": 918,
     "source": {
      "file": "summary.json",
      "pointer": "passed"
@@ -5825,7 +5825,7 @@
    {
     "id": "suite.total",
     "text": "suite total",
-    "value": 919,
+    "value": 920,
     "source": {
      "file": "summary.json",
      "pointer": "total"
@@ -7081,12 +7081,12 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": "BUYER",
-       "ref": "ap_e0637904"
+       "ref": "ap_b4403374"
       },
       {
        "action": "approval_approved",
        "role": "FOUNDER",
-       "ref": "ap_e0637904"
+       "ref": "ap_b4403374"
       },
       {
        "action": "state:APPROVED",
@@ -7411,12 +7411,12 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": "BUYER",
-       "ref": "ap_f6a24916"
+       "ref": "ap_3d206ace"
       },
       {
        "action": "approval_expired",
        "role": "FOUNDER",
-       "ref": "ap_f6a24916"
+       "ref": "ap_3d206ace"
       },
       {
        "action": "state:FAILED",
@@ -7555,12 +7555,12 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": "BUYER",
-       "ref": "ap_840c2d46"
+       "ref": "ap_8b5bb1b9"
       },
       {
        "action": "approval_approved",
        "role": "FOUNDER",
-       "ref": "ap_840c2d46"
+       "ref": "ap_8b5bb1b9"
       },
       {
        "action": "state:APPROVED",
@@ -7570,7 +7570,7 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": null,
-       "ref": "ap_a04eefc7"
+       "ref": "ap_f3c81b6f"
       }
      ]
     },
@@ -7685,7 +7685,7 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": "BUYER",
-       "ref": "ap_c5834015"
+       "ref": "ap_7f0b48bf"
       }
      ]
     },
@@ -7823,12 +7823,12 @@
       {
        "action": "state:AWAITING_APPROVAL",
        "role": "BUYER",
-       "ref": "ap_3c9fbf94"
+       "ref": "ap_7b88514f"
       },
       {
        "action": "approval_approved",
        "role": "FOUNDER",
-       "ref": "ap_3c9fbf94"
+       "ref": "ap_7b88514f"
       },
       {
        "action": "state:APPROVED",
@@ -7848,7 +7848,7 @@
       {
        "action": "decision_refused:APPROVAL_REPLAY",
        "role": "FOUNDER",
-       "ref": "ap_3c9fbf94"
+       "ref": "ap_7b88514f"
       },
       {
        "action": "duplicate_request",
