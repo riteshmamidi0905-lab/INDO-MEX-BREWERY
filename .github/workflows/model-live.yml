@@ -71,13 +71,21 @@ jobs:
       - name: Harness logic tests (no model involved; these prove only the scoring rules)
         working-directory: lab
         run: python -m pytest tests/test_live_model_battery_logic.py tests/test_growth_agent_config.py -q
-      - name: Install Ollama, start it, pull the named model ONCE, record identity
+      - name: Install Ollama, run OUR server with the intended settings, pull the named model ONCE, record identity
         run: |
           set -eu
           curl -fsSL https://ollama.com/install.sh | sh
-          (ollama serve > /tmp/ollama.log 2>&1 &)
+          # The installer registers and starts its own systemd service on port 11434 with DEFAULT settings. Run 1 of this workflow let that service answer, so OLLAMA_CONTEXT_LENGTH / NUM_PARALLEL / KEEP_ALIVE were never applied
+          # and the server log we captured was empty. Stop it, and start the one server whose settings and log we control.
+          sudo systemctl stop ollama 2>/dev/null || true
+          sudo systemctl disable ollama 2>/dev/null || true
+          sleep 2
+          if curl -fsS localhost:11434/api/version >/dev/null 2>&1; then echo "::error::something is still answering on 11434 after stopping the installer's service"; exit 1; fi
+          (nohup ollama serve > /tmp/ollama.log 2>&1 &)
           for i in $(seq 1 60); do curl -fsS localhost:11434/api/version && break || sleep 2; done
           echo; ollama --version
+          echo "--- listeners on 11434 and ollama processes"; (ss -ltnp 2>/dev/null | grep 11434 || true); ps -eo pid,args | grep '[o]llama serve' || true
+          echo "--- systemd service state (expected: inactive)"; systemctl is-active ollama || true
           ollama pull "$MODEL"
           mkdir -p /tmp/evidence
           curl -fsS localhost:11434/api/version > /tmp/evidence/ollama-version.json
@@ -91,16 +99,37 @@ jobs:
           print("MODEL_IDENTITY " + json.dumps(dict(requested=m, name=t["name"], digest=t["digest"], size_bytes=t["size"], details=t.get("details"))))
           PY
           df -h / | tail -1; free -m | head -2
+      - name: Verify the EFFECTIVE server configuration (read from the server's own log, not from this job's environment)
+        run: |
+          set -eu
+          echo "--- server log: configuration lines"; grep -m3 -E 'OLLAMA_CONTEXT_LENGTH|server config' /tmp/ollama.log || true
+          fail=0
+          for kv in OLLAMA_CONTEXT_LENGTH=8192 OLLAMA_NUM_PARALLEL=1 OLLAMA_MAX_LOADED_MODELS=1 OLLAMA_KEEP_ALIVE=-1; do
+            k=${kv%%=*}; want=${kv#*=}
+            got=$(grep -m1 -oE "${k}[:=][-0-9A-Za-z.]+" /tmp/ollama.log | head -1 | sed -E "s/^${k}[:=]//; s/(ns|ms|s|m|h)$//" || true)
+            if [ -z "$got" ]; then echo "NOT OBSERVABLE: $k (intended $want) is not reported in the server log; it will be recorded as not_observable and NOT reported as applied"
+            elif [ "$got" = "$want" ]; then echo "CONFIRMED: $k=$got"
+            else echo "MISMATCH: $k intended $want but the server reports $got"; fail=1; fi
+          done
+          # A MISMATCH (the server reports a different value) stops the job before any inference. A setting the server does not report is recorded as not_observable by the battery, never as applied.
+          if [ "$fail" -ne 0 ]; then echo "::error::the server reports settings different from the intended ones; not running the battery"; exit 1; fi
       - name: Real-model battery (inference happens here; every case, pass or fail, is recorded)
         working-directory: lab
         timeout-minutes: 140
         run: python tools/live_model_battery.py --out results/model-validation/live-battery.json
+      - name: Side-by-side comparison with the recorded baseline (run 40109758918)
+        working-directory: lab
+        run: |
+          mkdir -p /tmp/evidence
+          python tools/compare_model_runs.py results/model-validation/baseline-run-40109758918.json results/model-validation/live-battery.json > /tmp/evidence/comparison.json
+          echo MODEL_LIVE_COMPARISON_BEGIN; cat /tmp/evidence/comparison.json; echo MODEL_LIVE_COMPARISON_END
       - name: Evidence for the record (Ollama request lines, version, identity)
         if: always()
         run: |
           mkdir -p /tmp/evidence
-          grep -c 'POST.*"/v1/chat/completions"' /tmp/ollama.log | sed 's/^/ollama_log_chat_completion_requests=/' || true
+          echo "ollama_log_chat_completion_requests=$(grep -c 'POST.*"/v1/chat/completions"' /tmp/ollama.log || true)"
           grep 'POST.*"/v1/chat/completions"' /tmp/ollama.log | tail -n 40 || true
+          journalctl -u ollama --no-pager 2>/dev/null | tail -n 20 > /tmp/evidence/journal-ollama-service.txt || true
           cp /tmp/ollama.log /tmp/evidence/ollama.log 2>/dev/null || true
           cp lab/results/model-validation/live-battery.json /tmp/evidence/ 2>/dev/null || true
           { echo "### model-live"; echo; echo "model: \`$MODEL\`"; python - <<'PY'
