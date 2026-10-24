@@ -1,6 +1,6 @@
 {
  "schema": "growth-os-evidence/1",
- "commit": "f474153",
+ "commit": "77d15b0",
  "synthetic": true,
  "pushed": false,
  "notice": "Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
@@ -432,7 +432,7 @@
  "workflow": {
   "name": "governed_lead_qualification",
   "happy_path": {
-   "corr_id": "wf-bd291d11221d",
+   "corr_id": "wf-f0bacdc39f18",
    "tenant": "tenant-nasha",
    "before": {
     "status": "new",
@@ -440,7 +440,7 @@
    },
    "held": {
     "status": "AWAITING_APPROVAL",
-    "approval_id": "ap_6d02ae36",
+    "approval_id": "ap_41d49a55",
     "recommendation_status": "qualified",
     "score": 95,
     "lead_status_while_held": "new",
@@ -476,18 +476,18 @@
    "trace": [
     {
      "seq": 1,
-     "ts": "2026-10-24T07:11:14.772568+00:00",
+     "ts": "2026-10-24T07:29:23.781158+00:00",
      "kind": "stage",
      "name": "request_received",
      "stage": "G01",
      "tenant": "tenant-nasha",
-     "lead_id": "lead-ad003410e0",
+     "lead_id": "lead-3749723366",
      "request_id": "req-export-1",
      "idempotency_key": true
     },
     {
      "seq": 2,
-     "ts": "2026-10-24T07:11:14.774684+00:00",
+     "ts": "2026-10-24T07:29:23.783171+00:00",
      "kind": "auth",
      "role": "SALES",
      "user": "sam",
@@ -496,20 +496,20 @@
     },
     {
      "seq": 3,
-     "ts": "2026-10-24T07:11:14.782077+00:00",
+     "ts": "2026-10-24T07:29:23.788767+00:00",
      "kind": "tool_call",
-     "ms": 3.8,
+     "ms": 2.98,
      "ok": true,
      "tool": "growth__get_lead_context",
      "codes": [],
      "stage": "G03",
-     "call_hash": "9aaf1b41f82545c4",
+     "call_hash": "02cdf5fb634ed9ee",
      "forwarded": true,
      "approval_id": null
     },
     {
      "seq": 4,
-     "ts": "2026-10-24T07:11:14.783790+00:00",
+     "ts": "2026-10-24T07:29:23.790227+00:00",
      "kind": "stage",
      "name": "evidence_collected",
      "stage": "G03",
@@ -523,7 +523,7 @@
     },
     {
      "seq": 5,
-     "ts": "2026-10-24T07:11:14.785004+00:00",
+     "ts": "2026-10-24T07:29:23.791702+00:00",
      "kind": "stage",
      "name": "source_and_consent_validated",
      "stage": "G04",
@@ -532,7 +532,7 @@
     },
     {
      "seq": 6,
-     "ts": "2026-10-24T07:11:14.787982+00:00",
+     "ts": "2026-10-24T07:29:23.794700+00:00",
      "kind": "stage",
      "name": "recommendation",
      "score": 95,
@@ -589,31 +589,31 @@
     },
     {
      "seq": 7,
-     "ts": "2026-10-24T07:11:14.790473+00:00",
+     "ts": "2026-10-24T07:29:23.797462+00:00",
      "kind": "stage",
      "name": "proposal",
      "stage": "G06",
-     "proposal_hash": "1c85050d9bbd3fbe"
+     "proposal_hash": "910721bdea3d820e"
     },
     {
      "seq": 8,
-     "ts": "2026-10-24T07:11:14.793568+00:00",
+     "ts": "2026-10-24T07:29:23.801001+00:00",
      "kind": "tool_call",
-     "ms": 1.67,
+     "ms": 1.25,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G07",
      "failure": null,
-     "call_hash": "e5369e7bf01dbc8a",
+     "call_hash": "acf04cc5c3a8424c",
      "forwarded": false,
-     "approval_id": "ap_6d02ae36",
+     "approval_id": "ap_41d49a55",
      "held_for_approval": true
     },
     {
      "seq": 9,
-     "ts": "2026-10-24T07:11:14.795574+00:00",
+     "ts": "2026-10-24T07:29:23.803063+00:00",
      "kind": "stage",
      "name": "held_for_approval",
      "codes": [
@@ -621,11 +621,11 @@
      ],
      "stage": "G07",
      "ttl_s": 900,
-     "approval_id": "ap_6d02ae36"
+     "approval_id": "ap_41d49a55"
     },
     {
      "seq": 10,
-     "ts": "2026-10-24T07:11:14.810185+00:00",
+     "ts": "2026-10-24T07:29:23.815554+00:00",
      "kind": "approval_decision",
      "code": "ROLE_NOT_PERMITTED",
      "role": "SALES",
@@ -634,39 +634,39 @@
     },
     {
      "seq": 11,
-     "ts": "2026-10-24T07:11:14.811805+00:00",
+     "ts": "2026-10-24T07:29:23.816926+00:00",
      "kind": "failure",
      "detail": "SALES may not approve",
      "failure_class": "ROLE_DENIED"
     },
     {
      "seq": 12,
-     "ts": "2026-10-24T07:11:14.815416+00:00",
+     "ts": "2026-10-24T07:29:23.820278+00:00",
      "kind": "approval_decision",
      "by": "ada",
      "role": "OWNER",
      "comment": "evidence reviewed",
      "decision": "approve",
-     "approval_id": "ap_6d02ae36"
+     "approval_id": "ap_41d49a55"
     },
     {
      "seq": 13,
-     "ts": "2026-10-24T07:11:14.825681+00:00",
+     "ts": "2026-10-24T07:29:23.829848+00:00",
      "kind": "tool_call",
-     "ms": 7.2,
+     "ms": 6.97,
      "ok": true,
      "tool": "crm__apply_lead_qualification",
      "codes": [
       "R-GATE"
      ],
      "stage": "G09",
-     "call_hash": "e5369e7bf01dbc8a",
+     "call_hash": "acf04cc5c3a8424c",
      "forwarded": true,
-     "approval_id": "ap_6d02ae36"
+     "approval_id": "ap_41d49a55"
     },
     {
      "seq": 14,
-     "ts": "2026-10-24T07:11:14.828221+00:00",
+     "ts": "2026-10-24T07:29:23.831608+00:00",
      "kind": "stage",
      "name": "crm_updated",
      "stage": "G09",
@@ -674,7 +674,7 @@
     },
     {
      "seq": 15,
-     "ts": "2026-10-24T07:11:14.829242+00:00",
+     "ts": "2026-10-24T07:29:23.832399+00:00",
      "kind": "stage",
      "name": "no_external_contact",
      "stage": "G10",
@@ -683,7 +683,7 @@
     },
     {
      "seq": 16,
-     "ts": "2026-10-24T07:11:14.831345+00:00",
+     "ts": "2026-10-24T07:29:23.834003+00:00",
      "kind": "approval_decision",
      "code": "APPROVAL_REPLAY",
      "state": "EXECUTED",
@@ -2961,17 +2961,17 @@
   "trace": [
    {
     "seq": 1,
-    "ts": "2026-10-24T07:11:18.954790+00:00",
+    "ts": "2026-10-24T07:29:27.098761+00:00",
     "kind": "stage",
     "name": "request_received",
     "stage": "P01",
-    "project_id": "proj-16002d42a2",
+    "project_id": "proj-0c2bb59ee4",
     "request_id": "req-export-proc",
     "period_weeks": 4
    },
    {
     "seq": 2,
-    "ts": "2026-10-24T07:11:18.957330+00:00",
+    "ts": "2026-10-24T07:29:27.100434+00:00",
     "kind": "auth",
     "role": "ANALYST",
     "user": "ana",
@@ -2980,20 +2980,20 @@
    },
    {
     "seq": 3,
-    "ts": "2026-10-24T07:11:19.067173+00:00",
+    "ts": "2026-10-24T07:29:27.200133+00:00",
     "kind": "tool_call",
-    "ms": 104.93,
+    "ms": 96.32,
     "ok": true,
     "tool": "launch__get_supplier_data",
     "codes": [],
     "stage": "P03",
-    "call_hash": "6b99635b49abb53f",
+    "call_hash": "57039a52779d01d8",
     "forwarded": true,
     "approval_id": null
    },
    {
     "seq": 4,
-    "ts": "2026-10-24T07:11:19.069371+00:00",
+    "ts": "2026-10-24T07:29:27.202234+00:00",
     "kind": "stage",
     "name": "data_read",
     "stage": "P03",
@@ -3003,7 +3003,7 @@
    },
    {
     "seq": 5,
-    "ts": "2026-10-24T07:11:19.078203+00:00",
+    "ts": "2026-10-24T07:29:27.210996+00:00",
     "kind": "stage",
     "name": "demand_and_needs",
     "stage": "P04",
@@ -3016,7 +3016,7 @@
    },
    {
     "seq": 6,
-    "ts": "2026-10-24T07:11:20.040716+00:00",
+    "ts": "2026-10-24T07:29:28.086583+00:00",
     "kind": "stage",
     "mode": "engine_offline_heuristic",
     "name": "agent_research",
@@ -3033,7 +3033,7 @@
     },
     "evidence": 11,
     "provider": "offline",
-    "agent_run": "run_275091705086",
+    "agent_run": "run_c38a5587c382",
     "independent_problems": [],
     "platform_verification": {
      "ok": true,
@@ -3042,7 +3042,7 @@
    },
    {
     "seq": 7,
-    "ts": "2026-10-24T07:11:20.044207+00:00",
+    "ts": "2026-10-24T07:29:28.091057+00:00",
     "kind": "stage",
     "name": "recommendation",
     "flags": [
@@ -3055,7 +3055,7 @@
    },
    {
     "seq": 8,
-    "ts": "2026-10-24T07:11:20.045510+00:00",
+    "ts": "2026-10-24T07:29:28.092332+00:00",
     "kind": "stage",
     "name": "independent_check",
     "stage": "P06",
@@ -3063,31 +3063,31 @@
    },
    {
     "seq": 9,
-    "ts": "2026-10-24T07:11:20.054552+00:00",
+    "ts": "2026-10-24T07:29:28.101145+00:00",
     "kind": "stage",
     "name": "proposal",
     "stage": "P07",
-    "proposal_hash": "9114eb232323c861"
+    "proposal_hash": "fb3cf32891434927"
    },
    {
     "seq": 10,
-    "ts": "2026-10-24T07:11:20.061504+00:00",
+    "ts": "2026-10-24T07:29:28.106449+00:00",
     "kind": "tool_call",
-    "ms": 1.63,
+    "ms": 1.24,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P08",
     "failure": null,
-    "call_hash": "c5acf8a4bad1c2c9",
+    "call_hash": "d15cde1268730c99",
     "forwarded": false,
-    "approval_id": "ap_f634b189",
+    "approval_id": "ap_89f5ffda",
     "held_for_approval": true
    },
    {
     "seq": 11,
-    "ts": "2026-10-24T07:11:20.068776+00:00",
+    "ts": "2026-10-24T07:29:28.110184+00:00",
     "kind": "stage",
     "name": "held_for_approval",
     "codes": [
@@ -3095,11 +3095,11 @@
     ],
     "stage": "P08",
     "ttl_s": 900,
-    "approval_id": "ap_f634b189"
+    "approval_id": "ap_89f5ffda"
    },
    {
     "seq": 12,
-    "ts": "2026-10-24T07:11:20.083375+00:00",
+    "ts": "2026-10-24T07:29:28.123404+00:00",
     "kind": "approval_decision",
     "code": "ROLE_NOT_PERMITTED",
     "role": "ANALYST",
@@ -3108,46 +3108,46 @@
    },
    {
     "seq": 13,
-    "ts": "2026-10-24T07:11:20.089487+00:00",
+    "ts": "2026-10-24T07:29:28.128333+00:00",
     "kind": "failure",
     "detail": "ANALYST may not approve",
     "failure_class": "ROLE_DENIED"
    },
    {
     "seq": 14,
-    "ts": "2026-10-24T07:11:20.319418+00:00",
+    "ts": "2026-10-24T07:29:28.405103+00:00",
     "kind": "approval_decision",
     "by": "ada",
     "role": "OWNER",
     "comment": "reviewed",
     "decision": "approve",
-    "approval_id": "ap_f634b189"
+    "approval_id": "ap_89f5ffda"
    },
    {
     "seq": 15,
-    "ts": "2026-10-24T07:11:20.424013+00:00",
+    "ts": "2026-10-24T07:29:28.526464+00:00",
     "kind": "tool_call",
-    "ms": 37.89,
+    "ms": 39.33,
     "ok": true,
     "tool": "procure__record_recommendation",
     "codes": [
      "R-GATE"
     ],
     "stage": "P09",
-    "call_hash": "c5acf8a4bad1c2c9",
+    "call_hash": "d15cde1268730c99",
     "forwarded": true,
-    "approval_id": "ap_f634b189"
+    "approval_id": "ap_89f5ffda"
    },
    {
     "seq": 16,
-    "ts": "2026-10-24T07:11:20.425398+00:00",
+    "ts": "2026-10-24T07:29:28.528377+00:00",
     "kind": "stage",
     "name": "recommendation_recorded",
     "stage": "P09"
    },
    {
     "seq": 17,
-    "ts": "2026-10-24T07:11:20.426542+00:00",
+    "ts": "2026-10-24T07:29:28.529376+00:00",
     "kind": "stage",
     "name": "no_order_no_contact",
     "stage": "P10",
@@ -3156,7 +3156,7 @@
    },
    {
     "seq": 18,
-    "ts": "2026-10-24T07:11:20.431469+00:00",
+    "ts": "2026-10-24T07:29:28.534740+00:00",
     "kind": "approval_decision",
     "code": "APPROVAL_REPLAY",
     "state": "EXECUTED",

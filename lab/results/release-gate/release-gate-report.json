@@ -1,9 +1,9 @@
 {
  "schema": "release-gate-report/1",
  "overall": "REQUIRES_REVIEW",
- "head": "67e356f",
- "generated_at": 1792822377.9410286,
- "evidence_commit": "67e356f",
+ "head": "77d15b0",
+ "generated_at": 1792827035.6480715,
+ "evidence_commit": "77d15b0",
  "remote_ci": "NOT_RUN",
  "remote_ci_note": "GitHub workflows have not run remotely; no remote CI result is claimed.",
  "gates": {
@@ -16,7 +16,7 @@
   },
   "integration_tests": {
    "status": "REQUIRES_REVIEW",
-   "detail": "509 passed, 2 skipped; needs review: test_growth_model_live::test_a_real_local_model_runs_the_supplier_research_workflow_through_the_boundary (model runtime not executed: no local model runtime (Ollama) reachable and no permission to use a paid hosted model); test_llm_planner::test_real_local_model_integration_smoke (model runtime not executed: no local model runtime and no network access to model hosts)",
+   "detail": "526 passed, 2 skipped; needs review: test_growth_model_live::test_a_real_local_model_runs_the_supplier_research_workflow_through_the_boundary (model runtime not executed: no local model runtime (Ollama) reachable and no permission to use a paid hosted model); test_llm_planner::test_real_local_model_integration_smoke (model runtime not executed: no local model runtime and no network access to model hosts)",
    "evidence": [
     "integration_tests"
    ]
@@ -178,7 +178,7 @@
   },
   "evidence_consistency": {
    "status": "PASS",
-   "detail": "evidence collected at 67e356f (HEAD 67e356f); no code changed since; counts match junit.xml",
+   "detail": "evidence collected at 77d15b0 (HEAD 77d15b0); no code changed since; counts match junit.xml",
    "evidence": [
     "meta.json",
     "summary.json",

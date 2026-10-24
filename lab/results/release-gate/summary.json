@@ -1,6 +1,6 @@
 {
- "total": 920,
- "passed": 918,
+ "total": 937,
+ "passed": 935,
  "failed": 0,
  "skipped": 2,
  "tests": {
@@ -307,6 +307,11 @@
   },
   "test_growth_pricing_segments": {
    "passed": 12,
+   "failed": 0,
+   "skipped": 0
+  },
+  "test_growth_reproducibility": {
+   "passed": 17,
    "failed": 0,
    "skipped": 0
   },
