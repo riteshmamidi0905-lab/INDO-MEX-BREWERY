@@ -85,13 +85,13 @@ class FakeAgent:
 
 
 class GroundedFake:
-    """Scripted double (NOT a model) that returns one claim copied verbatim from the corpus it is given, with the passage it came from as evidence: what a well-behaved agent's output looks like to the boundary."""
+    """Scripted double (NOT a model) that returns one claim copied from the corpus it is given, prefixed with the NAME of the supplier it came from (the entity-binding rules require a price to be attributed to a named supplier), with the passage it came from as evidence: what a well-behaved agent's output looks like to the boundary."""
     def __init__(self): self.calls = 0
     async def research(self, docs, query, version):
         self.calls += 1
         doc_id, (name, text) = next((k, v) for k, v in sorted(docs.items()) if "$" in v[1])
         line = next(l for l in text.splitlines() if "$" in l).lstrip("- ").strip()
-        return dict(mode=AR.MODE_OFFLINE, provider="offline", run_id="fake", report=dict(title="t", answer="Summary of the cited supplier record.", claims=[dict(text=line, evidence_ids=["e1"])], limitations=["Prices are as stored."]),
+        return dict(mode=AR.MODE_OFFLINE, provider="offline", run_id="fake", report=dict(title="t", answer="Summary of the cited supplier record.", claims=[dict(text=f"{name}: {line}", evidence_ids=["e1"])], limitations=["Prices are as stored."]),
                     verification=dict(ok=True, groundedness=1.0, citation_validity=1.0), evidence={"e1": dict(doc_id=doc_id, title=name, text=text)}, tool_calls=[dict(tool="search_corpus", status="ok")])
     async def close(self): return None
 

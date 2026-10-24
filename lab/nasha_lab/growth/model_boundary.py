@@ -3,7 +3,9 @@ engine, whether the provider is the offline heuristic, a local model (Ollama) or
   * the recommendation (suppliers, quantities, costs) is computed from stored quotes and re-derived by `procurement.check_plan`; the model contributes cited research text only;
   * a report is `accepted` only if it is well-formed AND every claim is grounded; one bad claim rejects the whole output (the workflow then uses the deterministic fallback and records why);
   * `abstained` is a valid, safe outcome: the model said the evidence does not answer the question and made no claims.
-Rules (each yields a stable code): MALFORMED, NO_EVIDENCE, UNKNOWN_EVIDENCE, UNSUPPORTED_NUMBER, PRICE_MISMATCH, UNKNOWN_SUPPLIER, WRONG_SOURCE, UNSUPPORTED_VERIFICATION, UNSUPPORTED_RECOMMENDATION, INSTRUCTION_TEXT, TOOL_NOT_ALLOWED.
+Rules (each yields a stable code): MALFORMED, NO_EVIDENCE, UNKNOWN_EVIDENCE, UNSUPPORTED_NUMBER, PRICE_MISMATCH, UNKNOWN_SUPPLIER, WRONG_SOURCE, UNSUPPORTED_VERIFICATION, UNSUPPORTED_RECOMMENDATION, INSTRUCTION_TEXT, TOOL_NOT_ALLOWED,
+and the entity-binding codes UNATTRIBUTED_PRICE, PRICE_NOT_FROM_NAMED_SUPPLIER, UNKNOWN_ENTITY: a price in a claim must be attributed to a supplier by name, must appear in a cited passage OF THAT supplier, and a subject that is in no supplier record
+cannot be presented as quoting. A real price is not enough; it must belong to the entity the claim says it belongs to. Binding is per supplier record, not per product line, and is lexical (a paraphrase that never names the supplier is rejected as unattributed; one that names it wrongly is caught only if the name appears).
 Uncertainty is COMPUTED from the stored records the claims rest on (unverified leads, synthetic prices, stale data), not taken from the model, so it cannot be omitted or softened by one.
 Limits: these are lexical and structural checks. They catch fabricated numbers, invented evidence, overreach and injected instructions in the shapes listed; they do not prove a sentence is true or that a clever paraphrase of a false claim is caught."""
 import re
@@ -36,6 +38,31 @@ def _present(n, passages):
 
 def _norm(s):
     return re.sub(r"[^a-z0-9]+", " ", (s or "").lower()).strip()
+
+
+AMOUNT = re.compile(r"\$\s?(\d[\d,]*(?:\.\d+)?)")
+SUBJECT = re.compile(r"^\s*(?:The\s+)?([A-Z][\w&'.-]*(?:\s+(?:[A-Z0-9][\w&'.-]*|and|of|the|&)){1,6}?)\s+(?:quotes?|offers?|lists?|charges?|sells?|publishes|provides?|prices?|supplies)\b")
+
+
+def _aliases(directory):
+    """normalised name -> {supplier ids}. A supplier answers to its full name and to the name without a trailing parenthetical category ('Synthetic Supplier 04 (dairy)' is also 'Synthetic Supplier 04')."""
+    out = {}
+    for s in directory:
+        for nm in {_norm(s["name"]), _norm(re.sub(r"\s*\([^)]*\)\s*$", "", s["name"]))}:
+            if nm:
+                out.setdefault(nm, set()).add(s["id"])
+    return out
+
+
+def _mentions(text, aliases):
+    """[(position, supplier ids)] for every whole-word occurrence of a supplier name in the claim; the longest alias wins where names overlap."""
+    low = _norm(text)
+    found = []
+    for nm, ids in sorted(aliases.items(), key=lambda kv: -len(kv[0])):
+        for m in re.finditer(rf"(?<![a-z0-9]){re.escape(nm)}(?![a-z0-9])", low):
+            if not any(a < m.end() and m.start() < b for a, b, _ in found):
+                found.append((m.start(), m.end(), ids))
+    return sorted(found)
 
 
 def computed_uncertainty(directory, cited_supplier_ids):
@@ -86,6 +113,7 @@ def review(report, evidence, directory, tool_calls=(), allowed_tools=ALLOWED_TOO
                 tool_codes.append("TOOL_NOT_ALLOWED"); bad("TOOL_NOT_ALLOWED", f"tool {t.get('tool') if isinstance(t, dict) else t!r} is not in the read-only allowlist {list(allowed_tools)}")
     suppliers = {s["id"]: s for s in directory}
     names = {_norm(s["name"]): s["id"] for s in directory}
+    aliases = _aliases(directory)
     cited_suppliers = set()
     for c in claims:
         codes, text = [], ""
@@ -120,13 +148,34 @@ def review(report, evidence, directory, tool_calls=(), allowed_tools=ALLOWED_TOO
                 if v is not None and round(v, 2) not in stored:
                     codes.append("PRICE_MISMATCH"); break
         low = _norm(text)
-        mentioned = {sid for nm, sid in names.items() if nm and nm in low}
+        mentions = _mentions(text, aliases)
+        mentioned = {sid for _, _, ids in mentions for sid in ids} | {sid for nm, sid in names.items() if nm and nm in low}
         if "source" in R and (mentioned - sup_of):
             codes.append("WRONG_SOURCE")                                      # names a supplier but cites no passage from that supplier's record
         if "supplier_names" in R:
             for m in COMPANY.findall(text):
                 if not any(_norm(m) in nm or nm in _norm(m) for nm in names):
                     codes.append("UNKNOWN_SUPPLIER"); break
+        # ---- entity binding: skipped when an identity code (UNKNOWN_SUPPLIER, WRONG_SOURCE) already rejected the claim, so one defect is not reported twice
+        if not ({"UNKNOWN_SUPPLIER", "WRONG_SOURCE"} & set(codes)):
+            amounts = [_num(m) for m in AMOUNT.findall(text)]
+            amounts = [a for a in amounts if a is not None]
+            if "attribution" in R and amounts and not mentioned:
+                codes.append("UNATTRIBUTED_PRICE")                            # a price with no supplier named is not a usable fact about any supplier
+            if "price_binding" in R and amounts and mentions:
+                own = {sid: [evidence[e]["text"] for e in known if evidence[e]["doc_id"] == f"supplier-{sid}" or evidence[e]["doc_id"].startswith((f"supplier-{sid}#", f"supplier-{sid}:"))] for sid in suppliers}
+                for m in AMOUNT.finditer(text):
+                    v = _num(m.group(1))
+                    # the supplier the price belongs to: the closest name BEFORE it in the claim, else the closest after it ("a price of $4.50 from Meadow Dairy Co")
+                    pos = len(_norm(text[:m.start()]))
+                    before = [t for t in mentions if t[1] <= pos]
+                    near = max(before, key=lambda t: t[1]) if before else min(mentions, key=lambda t: t[0])
+                    if v is not None and _present(v, passages) and not any(_present(v, own[sid]) for sid in near[2] if sid in own):
+                        codes.append("PRICE_NOT_FROM_NAMED_SUPPLIER"); break          # (a price absent from every cited passage is UNSUPPORTED_NUMBER, reported above)
+            if "entity" in R and not mentioned:
+                sm = SUBJECT.match(text)
+                if sm and not any(_norm(sm.group(1)) in nm or nm in _norm(sm.group(1)) for nm in aliases):
+                    codes.append("UNKNOWN_ENTITY")
         if "verification" in R and VERIFIED_WORDS.search(text):
             subjects = (mentioned or sup_of)
             if subjects and any(suppliers[i]["verification_status"] != "verified_public" for i in subjects):
@@ -155,7 +204,7 @@ def review(report, evidence, directory, tool_calls=(), allowed_tools=ALLOWED_TOO
                 problems=problems)
 
 
-RULES = frozenset({"shape", "tools", "instruction", "grounding", "numbers", "prices", "source", "supplier_names", "verification", "recommendation"})
+RULES = frozenset({"shape", "tools", "instruction", "grounding", "numbers", "prices", "source", "supplier_names", "verification", "recommendation", "attribution", "price_binding", "entity"})
 
 # Providers that cost money. A local runtime (Ollama) and the offline heuristic are allowed; a paid hosted provider is refused unless a person sets NASHA_ALLOW_PAID_MODEL=1 for that process. No network call is made on refusal.
 PAID_PROVIDERS = {"openai", "anthropic"}

@@ -45,7 +45,18 @@ CASES = [
     ("two good claims and one bad", R(GOOD1, ("Brothers Produce has no published price.", ["e2"]), ("Meadow Dairy Co quotes Paneer at $3.20 per kg.", ["e1"])), [], "rejected", {"PRICE_MISMATCH", "UNSUPPORTED_NUMBER"}),
     ("a stored minimum order amount quoted correctly", R(("Meadow Dairy Co has a minimum order of $50.00.", ["e1"])), [], "accepted", set()),
     ("a minimum order amount that is not stored", R(("Meadow Dairy Co has a minimum order of $75.00.", ["e1"])), [], "rejected", {"PRICE_MISMATCH", "UNSUPPORTED_NUMBER"}),
-    ("a grounded report with no limitations is accepted but flagged", R(GOOD1, limitations=()), [], "accepted", set())]
+    ("a grounded report with no limitations is accepted but flagged", R(GOOD1, limitations=()), [], "accepted", set()),
+    # ---- ENTITY BINDING (Phase 2 hardening). Expected verdicts below were written from the two failures the first real-model run exposed (C05, C09) BEFORE the rules that satisfy them existed. Pure scripted outputs, not model behaviour.
+    ("C05 pattern: a stored price in a claim that names no supplier", R(("The price for Spanish saffron threads is $4.50 per kg.", ["e1"])), [], "rejected", {"UNATTRIBUTED_PRICE"}),
+    ("C09 pattern: a requested name wrapped around an in-tenant price", R(("Synthetic Facility Supply quotes $4.50 per kg for Paneer.", ["e1"])), [], "rejected", {"UNATTRIBUTED_PRICE", "UNKNOWN_ENTITY"}),
+    ("an entity that is in no record presented as quoting (no price)", R(("Saffron and Sons of Madrid quotes saffron threads.", ["e1"])), [], "rejected", {"UNKNOWN_ENTITY"}),
+    ("identity substituted, valid price kept: named supplier cited, price only in another supplier's cited record", R(("Meadow Dairy Co quotes Paneer at $5.10 per kg.", ["e1", "e3"])), [], "rejected", {"PRICE_NOT_FROM_NAMED_SUPPLIER"}),
+    ("identity substituted using the short name of a supplier whose record has a different price", R(("Synthetic Supplier 04 quotes Paneer at $4.50 per kg.", ["e1", "e3"])), [], "rejected", {"PRICE_NOT_FROM_NAMED_SUPPLIER"}),
+    ("two suppliers named with their prices swapped", R(("Meadow Dairy Co quotes Paneer at $5.10 per kg and Synthetic Supplier 04 quotes it at $4.50 per kg.", ["e1", "e3"])), [], "rejected", {"PRICE_NOT_FROM_NAMED_SUPPLIER"}),
+    ("identity substituted by citation: named supplier, another supplier's record cited", R(("Brothers Produce quotes Paneer at $5.10 per kg.", ["e3"])), [], "rejected", {"WRONG_SOURCE"}),
+    ("short supplier name with its own record and price is accepted", R(("Synthetic Supplier 04 quotes Paneer at $5.10 per kg.", ["e3"])), [], "accepted", set()),
+    ("two suppliers named, each with its own price", R(("Meadow Dairy Co quotes Paneer at $4.50 per kg and Synthetic Supplier 04 quotes it at $5.10 per kg.", ["e1", "e3"])), [], "accepted", set()),
+    ("the price follows the supplier name it belongs to", R(("A price of $4.50 per kg from Meadow Dairy Co.", ["e1"])), [], "accepted", set())]
 
 
 def _codes(v):
@@ -70,7 +81,8 @@ def metrics():
 
 MUTANT_RULES = {"shape": "structured-output shape and size limits", "tools": "tool-call allowlist", "instruction": "instruction-like text is refused", "grounding": "every claim must cite existing evidence",
                 "numbers": "every number must appear in the cited passage", "prices": "every dollar amount must equal a stored price", "source": "a named supplier must be cited from its own record", "supplier_names": "a supplier not in the directory is refused",
-                "verification": "'verified' only for verified records", "recommendation": "the model may not recommend"}
+                "verification": "'verified' only for verified records", "recommendation": "the model may not recommend",
+                "attribution": "a price must be attributed to a named supplier", "price_binding": "a price must come from the record of the supplier it is attributed to", "entity": "a subject that is in no supplier record may not be presented as quoting"}
 
 
 def run_mutants():

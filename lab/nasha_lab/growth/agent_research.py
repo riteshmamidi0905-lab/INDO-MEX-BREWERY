@@ -37,8 +37,9 @@ def env_seconds(name, default, lo=1.0, hi=3600.0):
 
 
 class AgentUnavailable(Exception):
-    def __init__(self, reason, failure_class="unavailable"):
-        super().__init__(reason); self.reason, self.failure_class = reason, failure_class
+    """`telemetry` (when the platform run happened) is what the run measured before it failed: usage, models, verification verdicts with the unsupported claim text, provider errors. Nothing is invented: absent means not measured."""
+    def __init__(self, reason, failure_class="unavailable", telemetry=None):
+        super().__init__(reason); self.reason, self.failure_class, self.telemetry = reason, failure_class, telemetry
 
 
 def money(cents):
@@ -46,7 +47,8 @@ def money(cents):
 
 
 def supplier_documents(directory):
-    """One markdown document per supplier, built from the tenant's stored supplier records: facts, verification status, freshness, products and prices WITH their price class and limitations."""
+    """One markdown document per supplier, built from the tenant's stored supplier records: facts, verification status, freshness, products and prices WITH their price class and limitations.
+    Every product line names its supplier (entity binding at the evidence level: retrieval returns passages that start or end mid-document, and a passage that does not say whose price it holds invites a claim that attributes it to the wrong entity)."""
     docs = {}
     for s in directory:
         lines = [f"# {s['name']}", f"Category: {s['category']}. Service area: {s['service_area']}.",
@@ -57,9 +59,9 @@ def supplier_documents(directory):
             lines.append(s["notes"])
         for p in s["products"]:
             if p["price_class"] == "NONE_PUBLISHED":
-                lines.append(f"- {p['name']}: no published price. {p['limitation']}")
+                lines.append(f"- {p['name']} listed by {s['name']}: no published price. {p['limitation']}")
             else:
-                lines.append(f"- {p['name']} ({p['ingredient_ref'] or 'item'}): {money(float(p['unit_price_cents']))} per {p['unit']}, {p['price_class'].replace('_', ' ').lower()}, lead time {p['lead_days']} days, minimum order {money(p['min_order_cents'] or 0)}. {p['limitation']}")
+                lines.append(f"- {p['name']} ({p['ingredient_ref'] or 'item'}) quoted by {s['name']}: {money(float(p['unit_price_cents']))} per {p['unit']}, {p['price_class'].replace('_', ' ').lower()}, lead time {p['lead_days']} days, minimum order {money(p['min_order_cents'] or 0)}. {p['limitation']}")
         docs[f"supplier-{s['id']}"] = (s["name"], "\n".join(lines) + "\n")
     return docs
 
@@ -113,7 +115,7 @@ class SupplierResearchAgent:
 
     def __init__(self, admin_dsn, tenant, work_dir, provider="offline"):
         self.admin_dsn, self.tenant, self.work_dir, self.provider = admin_dsn, tenant, Path(work_dir), provider
-        self._c, self._ingested = None, None
+        self._c, self._ingested, self.stale_removed = None, None, 0
 
     async def _container(self):
         if self._c is None:
@@ -144,17 +146,42 @@ class SupplierResearchAgent:
         if self._ingested != corpus_version:
             for doc_id, (title, text) in docs.items():
                 await c.ingestor.ingest_text(doc_id, title, text, meta={"tenant": self.tenant})
+            async with c.repo.db.pool.connection() as conn, conn.transaction():
+                cur = await conn.execute("DELETE FROM documents WHERE id <> ALL(%s)", (list(docs),))     # the agent database is persistent: records of suppliers that no longer exist (or whose ids changed) must not stay retrievable as evidence
+                self.stale_removed = cur.rowcount
             self._ingested = corpus_version
         rec = await c.engine.submit(RunRequest(query=query, provider=self.provider, constraints=RunConstraints(max_steps=4, require_approval_for="consequential")))
         await c.engine.wait(rec.id)
         return await c.repo.get_run(rec.id), list(await c.repo.events_after(rec.id, 0))
+
+    @staticmethod
+    def telemetry(rec, events):
+        """Plain-data record of what one platform run measured: usage (server-reported unless `estimated`), models, per-call latency, verification verdicts WITH the claim text the verifier rejected, provider errors/retries, plan fallback."""
+        counts, models, call_ms, verifs, prov = {}, [], [], [], []
+        plan_fb = None
+        for e in events:
+            counts[e.type] = counts.get(e.type, 0) + 1
+            d = e.data
+            if e.type == "usage.updated":
+                if d.get("model") and d["model"] not in models:
+                    models.append(d["model"])
+                call_ms.append(d.get("call_latency_ms"))
+            elif e.type == "verification.completed":
+                verifs.append(dict(attempt=d.get("attempt"), ok=d.get("ok"), groundedness=d.get("groundedness"), citation_validity=d.get("citation_validity"), unsupported_claims=[str(x)[:300] for x in d.get("unsupported_claims", [])],
+                                   invalid_citations=list(d.get("invalid_citations", [])), repaired=d.get("repaired"), notes=list(d.get("notes", []))))
+            elif e.type in ("provider.error", "provider.retrying", "provider.fallback"):
+                prov.append(dict(type=e.type, kind=d.get("kind"), attempt=d.get("attempt"), error=str(d.get("error", ""))[:200]))
+            elif e.type == "plan.fallback":
+                plan_fb = d.get("reason")
+        return dict(run_id=rec.id, state=getattr(rec.state, "value", str(rec.state)), error=rec.error, failure_class=getattr(rec.failure_class, "value", rec.failure_class), usage=rec.usage.model_dump(), models=models, call_latency_ms=call_ms,
+                    event_counts=counts, verification=verifs, provider_events=prov, plan_fallback=plan_fb, tool_calls=[dict(tool=t.tool, status=t.status) for t in rec.tool_calls])
 
     async def research(self, docs, query, corpus_version):
         """Returns dict(mode, provider, run_id, report, verification, evidence{id: {...}}, tool_calls, usage, event_counts, models, failure_class). Raises AgentUnavailable unless the run completed."""
         from agentplatform.models import RunState
         rec, events = await self.run(docs, query, corpus_version)
         if rec.state is not RunState.COMPLETED or rec.report is None:
-            raise AgentUnavailable(f"the agent run ended {rec.state.value}: {rec.error}", getattr(rec.failure_class, "value", "unknown"))
+            raise AgentUnavailable(f"the agent run ended {rec.state.value}: {rec.error}", getattr(rec.failure_class, "value", "unknown"), telemetry=self.telemetry(rec, events))
         evs, counts, models = {}, {}, []
         for e in events:
             counts[e.type] = counts.get(e.type, 0) + 1
@@ -163,7 +190,7 @@ class SupplierResearchAgent:
             elif e.type == "usage.updated" and e.data.get("model") and e.data["model"] not in models:
                 models.append(e.data["model"])
         return dict(mode=MODE_OFFLINE if self.provider == "offline" else MODE_MODEL, provider=rec.provider, run_id=rec.id, report=rec.report.model_dump(), verification=rec.verification.model_dump() if rec.verification else None,
-                    evidence=evs, tool_calls=[dict(tool=t.tool, status=t.status) for t in rec.tool_calls], usage=rec.usage.model_dump(), event_counts=counts, models=models, failure_class=None)
+                    evidence=evs, tool_calls=[dict(tool=t.tool, status=t.status) for t in rec.tool_calls], usage=rec.usage.model_dump(), event_counts=counts, models=models, telemetry=self.telemetry(rec, events), failure_class=None)
 
     async def documents(self):
         """Doc ids currently indexed in THIS tenant's agent database (used to prove corpora are not shared)."""

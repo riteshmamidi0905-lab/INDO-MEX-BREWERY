@@ -208,14 +208,14 @@ class LaunchProcurement(WeirCaller):
              "Cite the supplier records.")
         docs = AR.supplier_documents(directory)
         version = hashlib.sha256(json.dumps({k: v[1] for k, v in sorted(docs.items())}).encode()).hexdigest()
-        res, why = None, None
+        res, why, failure_telemetry = None, None, None
         if self.agent is None:
             why = "no agent configured"
         else:
             try:
                 res = self.loop.run_until_complete(asyncio.wait_for(self.agent.research(docs, q, version), self.agent_timeout))
             except AR.AgentUnavailable as e:
-                why = f"agent unavailable: {e.reason}"
+                why = f"agent unavailable: {e.reason}"; failure_telemetry = e.telemetry if getattr(self.agent, "provider", "offline") != "offline" else None
             except asyncio.TimeoutError:
                 why = "agent timed out"
             except Exception as e:  # noqa: BLE001 - any engine failure degrades to the fallback; it must never block or alter the deterministic recommendation
@@ -228,7 +228,8 @@ class LaunchProcurement(WeirCaller):
             self.store.event(corr, "stage", stage="P05", name="agent_research", mode=res["mode"], provider=res["provider"], agent_run=res["run_id"], claims=len(res["report"].get("claims", [])) if isinstance(res["report"], dict) and isinstance(res["report"].get("claims", []), list) else 0, evidence=len(res["evidence"]),
                              platform_verification=res["verification"] and dict(ok=res["verification"]["ok"], groundedness=res["verification"]["groundedness"]), independent_problems=problems,
                              boundary=dict(status=rv["status"], accepted=len(rv["claims_accepted"]), rejected=[dict(codes=r["codes"]) for r in rv["claims_rejected"]], report_codes=rv["report_codes"], flags=rv["flags"]),
-                             **(dict(models=res.get("models"), usage=res.get("usage"), event_counts=res.get("event_counts"), agent_timeout_s=self.agent_timeout) if res["mode"] == AR.MODE_MODEL else {}))   # real-model runs only: the offline path's recorded evidence is unchanged
+                             **(dict(models=res.get("models"), usage=res.get("usage"), event_counts=res.get("event_counts"), agent_timeout_s=self.agent_timeout, telemetry=res.get("telemetry"),
+                                     rejected_claims=[dict(text=r["text"], codes=r["codes"]) for r in rv["claims_rejected"]]) if res["mode"] == AR.MODE_MODEL else {}))   # real-model runs only: the offline path's recorded evidence is unchanged
             if rv["status"] == "abstained":
                 rejected = None; why = "agent abstained: the records do not support a conclusion"; res = None
             elif problems or rv["status"] != "accepted" or (res["verification"] and not res["verification"]["ok"]):
@@ -237,7 +238,7 @@ class LaunchProcurement(WeirCaller):
                 res["boundary"] = dict(status=rv["status"], uncertainty=rv["uncertainty"], flags=rv["flags"], claims_accepted=len(rv["claims_accepted"]))
         if res is None:
             res = AR.deterministic_summary(directory, names)
-            self.store.event(corr, "stage", stage="P05", name="agent_fallback", reason=why, mode=res["mode"])
+            self.store.event(corr, "stage", stage="P05", name="agent_fallback", reason=why, mode=res["mode"], **(dict(agent_telemetry=failure_telemetry, agent_timeout_s=self.agent_timeout) if failure_telemetry else {}))
         res["fallback_reason"] = why; res["rejected_agent_output"] = rejected
         if "boundary" not in res:
             res["boundary"] = dict(status="not_applicable", uncertainty=MB.computed_uncertainty(directory, {s["id"] for s in directory if s["priced_products"]}), flags=[], claims_accepted=0)
