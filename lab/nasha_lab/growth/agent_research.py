@@ -76,12 +76,20 @@ def verify_claims(report, evidence, directory):
     return problems
 
 
+# The platform's retrieval uses a pgvector HNSW index (approximate; its graph is built with random level draws) and a GIN full-text index, and breaks score ties by whatever order the index returns. On this corpus (tens of
+# short supplier records) that made the retrieved evidence, and so the agent's cited claims, differ between two independently built databases holding IDENTICAL documents (measured: 11, 12 and 13 passages over four
+# fresh databases). Index scans are switched off for this agent database only, so the same query is answered by an exact scan; ties then follow the (deterministic) ingestion order. An exact scan is the right
+# trade at this corpus size; a large corpus would need the index back, and with it a canonical re-ranking step.
+EXACT_SEARCH = "-c enable_indexscan=off -c enable_bitmapscan=off -c enable_indexonlyscan=off"
+
+
 def _tenant_dsn(admin_dsn, tenant):
     dbname = "agent_" + re.sub(r"[^a-z0-9]", "_", tenant.lower())[:40]
     with psycopg.connect(admin_dsn, autocommit=True) as c:
         if not c.execute("SELECT 1 FROM pg_database WHERE datname=%s", (dbname,)).fetchone():
             c.execute(f'CREATE DATABASE "{dbname}"')
     d = conninfo_to_dict(admin_dsn); d["dbname"] = dbname
+    d["options"] = EXACT_SEARCH
     return make_conninfo(**d)
 
 

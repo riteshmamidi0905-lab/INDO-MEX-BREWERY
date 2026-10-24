@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from nasha_lab import identity as ID, llm  # noqa: E402
 from nasha_lab.governed import incident as IN, agent as AG, tenants as T, weir_bridge as WB, workflow as W  # noqa: E402
+from nasha_lab.growth import evidence_canon as EC  # noqa: E402
 
 OUT = ROOT / "portfolio/nasha-governed-evidence.json"
 EVD = ROOT / "results/release-gate"                        # evidence bundle written by tools/release_gate.py collect
@@ -351,6 +352,7 @@ def main():
     out["architecture"] = architecture()
     blob = json.dumps(out)
     assert "dev-passcode" not in blob and not any(re.fullmatch(r"[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}", x) for x in blob.replace('"', " ").replace(",", " ").split()), "credential-like content in export"
+    out["canonical"] = dict(spec="evidence_canon.canonical_view: identifiers masked to <id>, volatile keys removed (times, durations, versions, id-derived hashes), nothing sorted or rounded", sha256=EC.canonical_sha256(out), volatile_keys=sorted(EC.VOLATILE_KEYS))
     OUT.write_text(json.dumps(out, indent=1))
     print("written", OUT, f"{len(out['scenarios'])} scenarios", f"{OUT.stat().st_size // 1024} KB")
 

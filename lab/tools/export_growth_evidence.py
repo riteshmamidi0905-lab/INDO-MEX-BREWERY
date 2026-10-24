@@ -14,7 +14,7 @@ sys.path.insert(0, str(LAB))
 sys.path.insert(0, str(LAB / "tools"))
 import psycopg  # noqa: E402
 from nasha_lab.governed import tenants as T  # noqa: E402
-from nasha_lab.growth import financials as F, schema as S, seed as SD, service as SV, testing as TT  # noqa: E402
+from nasha_lab.growth import evidence_canon as EC, financials as F, procurement as PRC, schema as S, seed as SD, service as SV, testing as TT  # noqa: E402
 from nasha_lab.warehouse import pg_hardening as H  # noqa: E402
 
 SCHEMA = "growth_export"
@@ -204,7 +204,7 @@ def main():
                                        dict(case="viewer requests a recommendation", status=vic["status"], failure=vic.get("failure")), dict(case="approval used a second time", failure=replay.get("failure"))],
                   approved=dict(status=done["status"], side_effects=done["side_effects"]), audit=dict(actor=audit[0][0], approved_by=audit[0][1]["approved_by"], approval_matches=audit[0][1]["approval"] == r1["approval_id"], rows=len(audit)),
                   research=dict(mode=run1["research"]["mode"], claims=len(run1["research"]["report"]["claims"]), rejected=bool(run1["research"]["rejected_agent_output"]), platform_verification=run1["research"].get("verification")),
-                  recommendation=dict(period_weeks=run1["items"]["period_weeks"], total_cost_cents=run1["items"]["total_cost_cents"], suppliers=[dict(supplier=t["supplier"], cost_cents=t["cost_cents"], items=t["items"]) for t in run1["items"]["supplier_totals"]], flags=[f["kind"] for f in run1["items"]["flags"]]),
+                  recommendation=dict(business_digest=EC.business_digest(run1["items"]), period_weeks=run1["items"]["period_weeks"], total_cost_cents=run1["items"]["total_cost_cents"], suppliers=[dict(supplier=t["supplier"], cost_cents=t["cost_cents"], items=t["items"]) for t in run1["items"]["supplier_totals"]], flags=[f["kind"] for f in run1["items"]["flags"]]),
                   trace=lw.trace(r1["corr_id"]), financial=dict(kind="simulated", results={k: prev["results"][k] for k in ("units_per_month", "revenue_cents", "gross_margin", "contribution_margin", "fixed_costs_monthly_cents", "operating_profit_monthly_cents", "breakeven_units_per_month", "payback_months")},
                   sensitivity_price=prev["sensitivity"]["price"], compare=cmp, inputs_hash=prev["inputs_hash"], defaulted_assumptions=prev["inputs"]["defaulted_assumptions"]),
                   suppliers=dict(by_verification_status=by_status, real_leads=[dict(name=sp["name"], status=sp["verification_status"], source_url=sp["source_url"], prices_published=sp["priced_products"], contact=sp["contact_channel"], verified_on=sp["verified_on"]) for sp in directory if sp["source_kind"] == "search_result"], external_verification="INCOMPLETE"),
@@ -227,6 +227,7 @@ def main():
                postgres=a.con.execute("SHOW server_version").fetchone()[0], tenants=[dict(id="tenant-nasha", vertical="hospitality"), dict(id="tenant-fit", vertical="fitness")],
                tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, audit_guard=guard, workflow=workflow, launch=launch, m4=m4, m5=m5, incident=json.loads((LAB / "results/audit-concurrency/incident.json").read_text()), audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
                capabilities=caps["capabilities"], status_rules=caps["rules"], all_expectations_met=ok_all)
+    out["canonical"] = dict(spec="evidence_canon.canonical_view: identifiers masked to <id>, volatile keys removed (times, durations, versions, id-derived hashes), nothing sorted or rounded; business_digest gives the content of a recommendation independent of supplier ids", sha256=EC.canonical_sha256(out), volatile_keys=sorted(EC.VOLATILE_KEYS))
     (LAB / "portfolio/growth-os-evidence.json").write_text(json.dumps(out, indent=1, default=str))
     a.close(); b.close(); nosetting.close(); srv.cleanup()
     print("written; all expectations met:", ok_all, f"{len(matrix)} stage pairs, {len(probes)} tables probed, {sum(m['killed'] for m in mutants)}/{len(mutants)} control mutants and {sum(m['killed'] for m in wf_mutants)}/{len(wf_mutants)} workflow mutants and {sum(m['killed'] for m in launch_mut)}/{len(launch_mut)} launch mutants killed")

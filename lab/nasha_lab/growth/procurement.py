@@ -50,7 +50,7 @@ def _valid(p, as_of):
 
 
 def compare(directory, need_map, as_of):
-    """Cheapest valid quote per ingredient (whole packs only; ties by lead time then supplier id). Returns (items, per-supplier totals, flags)."""
+    """Cheapest valid quote per ingredient (whole packs only; ties by lead time, then supplier NAME, then id: ids are random per database). Returns (items, per-supplier totals, flags)."""
     items, flags = [], []
     for ing, need in sorted(need_map.items()):
         cands = []
@@ -62,7 +62,9 @@ def compare(directory, need_map, as_of):
                     buy = packs * pack
                     cands.append(dict(supplier_id=s["id"], supplier=s["name"], verification_status=s["verification_status"], buy_qty=buy, packs=packs, unit_price_cents=float(p["unit_price_cents"]), cost_cents=round(buy * float(p["unit_price_cents"])),
                                       lead_days=p["lead_days"], min_order_cents=p["min_order_cents"] or 0, price_class=p["price_class"], valid_to=str(p["valid_to"]) if p["valid_to"] else None))
-        cands.sort(key=lambda c: (c["cost_cents"], c["lead_days"] if c["lead_days"] is not None else 99, c["supplier_id"]))
+        # Tie-break (documented, deterministic across databases): cheapest whole-pack cost, then shortest lead time, then supplier NAME, and only then the id. Ids are random per database, so an id-first tie-break
+        # made the supplier listing order (and, with exact ties, the chosen supplier) differ between two otherwise identical environments.
+        cands.sort(key=lambda c: (c["cost_cents"], c["lead_days"] if c["lead_days"] is not None else 99, c["supplier"], c["supplier_id"]))
         if not cands:
             flags.append(dict(kind="no_valid_quote", ingredient=need["ingredient"], message=f"No valid priced quote exists for {need['ingredient']} on the planning date."))
             items.append(dict(ingredient_ref=ing, ingredient=need["ingredient"], unit=need["unit"], need_qty=round(need["qty"], 4), chosen=None, alternatives=0, runner_up=None)); continue
@@ -75,7 +77,7 @@ def compare(directory, need_map, as_of):
             t = totals.setdefault(c["supplier_id"], dict(supplier_id=c["supplier_id"], supplier=c["supplier"], cost_cents=0, min_order_cents=0, items=0, price_classes=set()))
             t["cost_cents"] += c["cost_cents"]; t["items"] += 1; t["min_order_cents"] = max(t["min_order_cents"], c["min_order_cents"]); t["price_classes"].add(c["price_class"])
     out = []
-    for t in sorted(totals.values(), key=lambda t: t["supplier_id"]):
+    for t in sorted(totals.values(), key=lambda t: (t["supplier"], t["supplier_id"])):         # by name first: ids are random per database
         t["price_classes"] = sorted(t["price_classes"]); t["below_minimum_order"] = t["cost_cents"] < t["min_order_cents"]
         if t["below_minimum_order"]:
             flags.append(dict(kind="below_minimum_order", supplier=t["supplier"], message=f"{t['supplier']}: planned spend is below its minimum order."))

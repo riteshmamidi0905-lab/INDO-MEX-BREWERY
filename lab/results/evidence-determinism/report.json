@@ -1,0 +1,354 @@
+{
+ "schema": "evidence-determinism/1",
+ "collected_on": "2026-10-24",
+ "tool": "tools/evidence_diff.py",
+ "classes": {
+  "provenance": "describes this execution",
+  "random_identifier": "generated id, no semantic meaning",
+  "ordering": "same elements, different order",
+  "timestamp_or_env": "time, duration, version",
+  "business_result": "an outcome that differs",
+  "unexplained": "defect until shown otherwise"
+ },
+ "before": {
+  "source": "engineering f474153, four independent exports, fresh databases",
+  "growth": [
+   {
+    "pair": "run1_vs_run2",
+    "total": 62,
+    "by_class": {
+     "ordering": 1,
+     "random_identifier": 13,
+     "timestamp_or_env": 40,
+     "provenance": 8
+    },
+    "by_section": {
+     "launch": 32,
+     "workflow": 30
+    }
+   },
+   {
+    "pair": "run1_vs_run3",
+    "total": 72,
+    "by_class": {
+     "ordering": 1,
+     "random_identifier": 13,
+     "timestamp_or_env": 40,
+     "provenance": 8,
+     "business_result": 2,
+     "unexplained": 8
+    },
+    "by_section": {
+     "launch": 41,
+     "m4": 1,
+     "workflow": 30
+    }
+   },
+   {
+    "pair": "run1_vs_run4",
+    "total": 63,
+    "by_class": {
+     "ordering": 1,
+     "random_identifier": 13,
+     "timestamp_or_env": 40,
+     "provenance": 8,
+     "business_result": 1
+    },
+    "by_section": {
+     "launch": 32,
+     "m4": 1,
+     "workflow": 30
+    }
+   }
+  ],
+  "governed": [
+   {
+    "pair": "run1_vs_run2",
+    "total": 174,
+    "by_class": {
+     "random_identifier": 52,
+     "timestamp_or_env": 122
+    },
+    "by_section": {
+     "dashboards": 11,
+     "generated_seconds": 1,
+     "incidents": 87,
+     "measured": 2,
+     "scenarios[0]": 11,
+     "scenarios[1]": 8,
+     "scenarios[2]": 11,
+     "scenarios[3]": 13,
+     "scenarios[4]": 10,
+     "scenarios[5]": 13,
+     "scenarios[6]": 7
+    }
+   },
+   {
+    "pair": "run1_vs_run3",
+    "total": 174,
+    "by_class": {
+     "random_identifier": 52,
+     "timestamp_or_env": 122
+    },
+    "by_section": {
+     "dashboards": 11,
+     "generated_seconds": 1,
+     "incidents": 87,
+     "measured": 2,
+     "scenarios[0]": 12,
+     "scenarios[1]": 8,
+     "scenarios[2]": 11,
+     "scenarios[3]": 13,
+     "scenarios[4]": 10,
+     "scenarios[5]": 12,
+     "scenarios[6]": 7
+    }
+   },
+   {
+    "pair": "run1_vs_run4",
+    "total": 174,
+    "by_class": {
+     "random_identifier": 52,
+     "timestamp_or_env": 122
+    },
+    "by_section": {
+     "dashboards": 11,
+     "generated_seconds": 1,
+     "incidents": 87,
+     "measured": 2,
+     "scenarios[0]": 12,
+     "scenarios[1]": 8,
+     "scenarios[2]": 11,
+     "scenarios[3]": 13,
+     "scenarios[4]": 10,
+     "scenarios[5]": 13,
+     "scenarios[6]": 6
+    }
+   }
+  ],
+  "growth_detail_run1_vs_run2": [
+   {
+    "path": "/launch/recommendation/suppliers",
+    "cls": "ordering",
+    "note": "5 elements, same content, different order",
+    "a": null,
+    "b": null
+   },
+   {
+    "path": "/launch/trace[2]/call_hash",
+    "cls": "provenance",
+    "note": null,
+    "a": "b5d7d788e111f6f8",
+    "b": "48f0f72f643e9a4d"
+   },
+   {
+    "path": "/launch/trace[8]/proposal_hash",
+    "cls": "provenance",
+    "note": null,
+    "a": "257e097f050218b7",
+    "b": "e8a74d9bea915f80"
+   },
+   {
+    "path": "/launch/trace[9]/call_hash",
+    "cls": "provenance",
+    "note": null,
+    "a": "7d37bd2e0b586969",
+    "b": "035f646e0d080734"
+   },
+   {
+    "path": "/launch/trace[14]/call_hash",
+    "cls": "provenance",
+    "note": null,
+    "a": "7d37bd2e0b586969",
+    "b": "035f646e0d080734"
+   },
+   {
+    "path": "/workflow/happy_path/trace[2]/call_hash",
+    "cls": "provenance",
+    "note": null,
+    "a": "4fbbc34e4ffd543f",
+    "b": "030723bf29482e3a"
+   },
+   {
+    "path": "/workflow/happy_path/trace[6]/proposal_hash",
+    "cls": "provenance",
+    "note": null,
+    "a": "fd093e4bf3cb77f2",
+    "b": "d4f207716cce37cf"
+   },
+   {
+    "path": "/workflow/happy_path/trace[7]/call_hash",
+    "cls": "provenance",
+    "note": null,
+    "a": "5f471016961555cf",
+    "b": "1a19c83272c95609"
+   },
+   {
+    "path": "/workflow/happy_path/trace[12]/call_hash",
+    "cls": "provenance",
+    "note": null,
+    "a": "5f471016961555cf",
+    "b": "1a19c83272c95609"
+   }
+  ],
+  "growth_detail_run1_vs_run3": [
+   {
+    "path": "/launch/trace[5]/evidence",
+    "cls": "business_result",
+    "note": null,
+    "a": "12",
+    "b": "13"
+   },
+   {
+    "path": "/m4/journey/steps[6]/uncertainty",
+    "cls": "business_result",
+    "note": "list length 3 vs 4",
+    "a": null,
+    "b": null
+   }
+  ]
+ },
+ "after": {
+  "source": "working tree with the fixes, four independent exports, fresh databases",
+  "growth": [
+   {
+    "pair": "run1_vs_run2",
+    "total": 61,
+    "by_class": {
+     "random_identifier": 13,
+     "timestamp_or_env": 40,
+     "provenance": 8
+    },
+    "by_section": {
+     "launch": 31,
+     "workflow": 30
+    }
+   },
+   {
+    "pair": "run1_vs_run3",
+    "total": 61,
+    "by_class": {
+     "random_identifier": 13,
+     "timestamp_or_env": 40,
+     "provenance": 8
+    },
+    "by_section": {
+     "launch": 31,
+     "workflow": 30
+    }
+   },
+   {
+    "pair": "run1_vs_run4",
+    "total": 61,
+    "by_class": {
+     "random_identifier": 13,
+     "timestamp_or_env": 40,
+     "provenance": 8
+    },
+    "by_section": {
+     "launch": 31,
+     "workflow": 30
+    }
+   }
+  ],
+  "governed": [
+   {
+    "pair": "run1_vs_run2",
+    "total": 176,
+    "by_class": {
+     "random_identifier": 52,
+     "timestamp_or_env": 124
+    },
+    "by_section": {
+     "dashboards": 11,
+     "generated_seconds": 1,
+     "incidents": 88,
+     "measured": 2,
+     "scenarios[0]": 12,
+     "scenarios[1]": 8,
+     "scenarios[2]": 11,
+     "scenarios[3]": 13,
+     "scenarios[4]": 10,
+     "scenarios[5]": 13,
+     "scenarios[6]": 7
+    }
+   },
+   {
+    "pair": "run1_vs_run3",
+    "total": 176,
+    "by_class": {
+     "random_identifier": 52,
+     "timestamp_or_env": 124
+    },
+    "by_section": {
+     "dashboards": 11,
+     "generated_seconds": 1,
+     "incidents": 88,
+     "measured": 2,
+     "scenarios[0]": 12,
+     "scenarios[1]": 8,
+     "scenarios[2]": 11,
+     "scenarios[3]": 13,
+     "scenarios[4]": 10,
+     "scenarios[5]": 13,
+     "scenarios[6]": 7
+    }
+   },
+   {
+    "pair": "run1_vs_run4",
+    "total": 176,
+    "by_class": {
+     "random_identifier": 52,
+     "timestamp_or_env": 124
+    },
+    "by_section": {
+     "dashboards": 11,
+     "generated_seconds": 1,
+     "incidents": 88,
+     "measured": 2,
+     "scenarios[0]": 12,
+     "scenarios[1]": 8,
+     "scenarios[2]": 11,
+     "scenarios[3]": 13,
+     "scenarios[4]": 10,
+     "scenarios[5]": 13,
+     "scenarios[6]": 7
+    }
+   }
+  ],
+  "canonical_sha256": {
+   "growth": [
+    "206dc3440c8d7ddc8eeb220fe5998e33c09c8b43866b735339b5ed1b5fbc69ad",
+    "206dc3440c8d7ddc8eeb220fe5998e33c09c8b43866b735339b5ed1b5fbc69ad",
+    "206dc3440c8d7ddc8eeb220fe5998e33c09c8b43866b735339b5ed1b5fbc69ad",
+    "206dc3440c8d7ddc8eeb220fe5998e33c09c8b43866b735339b5ed1b5fbc69ad"
+   ],
+   "governed": [
+    "8fc738f202ccf20547b91387883875a3d48f603593dd16240f547c685655ea95",
+    "8fc738f202ccf20547b91387883875a3d48f603593dd16240f547c685655ea95",
+    "8fc738f202ccf20547b91387883875a3d48f603593dd16240f547c685655ea95",
+    "8fc738f202ccf20547b91387883875a3d48f603593dd16240f547c685655ea95"
+   ]
+  },
+  "business_digests": [
+   "cb75e41b4672b3da",
+   "cb75e41b4672b3da",
+   "cb75e41b4672b3da",
+   "cb75e41b4672b3da"
+  ],
+  "proposal_hash_run_specific": [
+   [
+    "b9fd2e3acb182033"
+   ],
+   [
+    "9d047e64f547124a"
+   ],
+   [
+    "532103b7f45c8aee"
+   ],
+   [
+    "9114eb232323c861"
+   ]
+  ]
+ }
+}

@@ -190,7 +190,7 @@ def quote_matrix(directory, as_of=None, baseline=None):
     for ref in sorted(rows):
         r = rows[ref]
         for cat, es in r["categories"].items():
-            es.sort(key=lambda e: (e["unit_price_cents"], e["lead_days"] if e["lead_days"] is not None else 999, e["supplier_id"]))
+            es.sort(key=lambda e: (e["unit_price_cents"], e["lead_days"] if e["lead_days"] is not None else 999, e["supplier"], e["supplier_id"]))      # name before id: ids are random per database
             es[0]["cheapest_in_category"] = True
         r["categories"] = {c: r["categories"][c] for c in sorted(r["categories"], key=RANKABLE.index)}
         r["cross_category_ranking"] = None
