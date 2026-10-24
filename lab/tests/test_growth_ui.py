@@ -219,7 +219,7 @@ def test_workflow_center_lists_business_language_not_identifiers(server, browser
         assert needle.lower() in txt.lower(), needle
     import re
     assert not re.search(r"\b(wf-[0-9a-f]{6,}|lead-[0-9a-f]{6,}|ap_[0-9a-f]+)\b", txt)
-    go(pg, "#/security", ".tablewrap"); sec = pg.inner_text("#main")
+    go(pg, "#/security", ".tablewrap"); pg.wait_for_function("document.querySelector('#main h1').innerText.toLowerCase().includes('security') && document.querySelector('#main').innerText.includes('after approval by')", timeout=15000); sec = pg.inner_text("#main")
     assert "after approval by" in sec and not re.search(r"\b(wf-[0-9a-f]{6,}|lead-[0-9a-f]{6,})\b", sec)
 
 
