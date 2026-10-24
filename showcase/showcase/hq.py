@@ -1,4 +1,4 @@
-"""Authenticated loopback-only Headquarters host. Never mounts a write/egress tool.
+"""Authenticated loopback-only Headquarters host. Optional governed simulation ledger; no external actions.
 Local review identity only: NOT production SSO or a multi-user identity provider.
 """
 import argparse
@@ -38,7 +38,7 @@ class Session:
     lock: object=field(default_factory=threading.RLock)
 
 class Headquarters:
-    def __init__(self,registry,web,state,reports=(),access_code=None,clock=time.monotonic):
+    def __init__(self,registry,web,state,reports=(),access_code=None,clock=time.monotonic,workforce_state=None):
         self.registry={t:Path(p).resolve() for t,p in registry.items()}
         if not self.registry or any(not re.fullmatch('[a-z][a-z0-9-]{0,47}',t) for t in self.registry):
             raise ValueError('Invalid trusted registry')
@@ -62,6 +62,10 @@ class Headquarters:
         os.chmod(codefile,0o600)
         self.assets={p.relative_to(self.web).as_posix():p for p in self.web.rglob('*') if p.is_file() and not p.is_symlink()}
         self.gateway_locks={t:threading.RLock() for t in self.registry}
+        self.workforce=None
+        if workforce_state is not None:
+            from .workforce import Workforce
+            self.workforce=Workforce(self.registry,workforce_state,reports=self.reports)
 
     def login(self,code):
         now=self.clock()
@@ -91,7 +95,7 @@ class Headquarters:
             return sid,session
 
     def metadata(self,session):
-        return {'csrf':session.csrf,'selected':session.tenant,'businesses':[{'id':t,'name':n} for t,n in self.names.items()],'synthetic':True,'identity':'Local authorized reviewer','scope':'Read-only review of the server-granted businesses; no real external actions'}
+        return {'workforce_enabled':self.workforce is not None,'csrf':session.csrf,'selected':session.tenant,'businesses':[{'id':t,'name':n} for t,n in self.names.items()],'synthetic':True,'identity':'Local authorized reviewer','scope':'Read-only review of the server-granted businesses; no real external actions'}
 
     def view(self,session_id,tenant,view,filters):
         if tenant not in self.registry or view not in CAPABILITIES: raise PermissionError('View unavailable')
@@ -119,7 +123,7 @@ class Headquarters:
                         p=ev['payload']
                         if isinstance(p,str): p=json.loads(p)
                         recent.append({'kind':'Gateway read decision','tool':p.get('tool'),'verdict':p.get('verdict') or p.get('decision'),'call':p.get('call')})
-                result['gateway']={'chain_valid':store.verify_chain()[0],'read_decisions':recent[-8:],'consequential_actions':0,'scope':'This local review host registers read tools only; no approval requests or business writes exist here.'}
+                result['gateway']={'chain_valid':store.verify_chain()[0],'read_decisions':recent[-8:],'consequential_actions':0,'scope':'This department read adapter registers read tools only; governed workflow approvals and isolated draft effects are recorded separately when enabled.'}
                 return result
             finally:
                 await gateway.close(); store.close()
@@ -167,6 +171,14 @@ def handler(host):
                     with session.lock:
                         if parsed.path=='/api/session' and not parsed.query:
                             return self.send(200,host.metadata(session))
+                        if parsed.path=='/api/workflows':
+                            if not host.workforce: return self.send(404,{'error':'Governed workflows are not enabled on this host'})
+                            reviewer='reviewer:'+hashlib.sha256(sid.encode()).hexdigest()[:24]
+                            engine=host.workforce.tenant(session.tenant)
+                            query=parse_qs(parsed.query,keep_blank_values=True)
+                            if not query: return self.send(200,engine.catalog(reviewer))
+                            if set(query)!={'run'} or len(query['run'])!=1: return self.send(400,{'error':'Invalid workflow selector'})
+                            with engine.lock: return self.send(200,engine.snapshot(query['run'][0],reviewer))
                         if parsed.path.startswith('/api/view/'):
                             view=parsed.path.removeprefix('/api/view/')
                             if view not in CAPABILITIES: return self.send(404,{'error':'Unknown department'})
@@ -207,6 +219,15 @@ def handler(host):
                 sid,session=host.session(self.headers.get('Cookie'))
                 if not secrets.compare_digest(self.headers.get('X-CSRF-Token',''),session.csrf): return self.send(403,{'error':'Invalid request token'})
                 with session.lock:
+                    if self.path.startswith('/api/workflows/'):
+                        if not host.workforce: return self.send(404,{'error':'Governed workflows are not enabled'})
+                        reviewer='reviewer:'+hashlib.sha256(sid.encode()).hexdigest()[:24]
+                        engine=host.workforce.tenant(session.tenant)
+                        if self.path=='/api/workflows/start' and set(data)=={'scenario','idempotency_key'} and all(isinstance(v,str) for v in data.values()):
+                            return self.send(200,engine.start(reviewer,data['scenario'],data['idempotency_key']))
+                        if self.path=='/api/workflows/review' and set(data)=={'run','approval_id','action_hash','decision'} and all(isinstance(v,str) for v in data.values()):
+                            return self.send(200,engine.decide(reviewer,data['run'],data['approval_id'],data['action_hash'],data['decision']))
+                        return self.send(400,{'error':'Unsupported workflow action or arguments'})
                     if self.path=='/api/select' and set(data)=={'business'} and isinstance(data['business'],str):
                         if data['business'] not in host.registry: return self.send(403,{'error':'Business is not granted'})
                         session.tenant=data['business']
@@ -217,6 +238,7 @@ def handler(host):
                 return self.send(400,{'error':'Unsupported action; this host is read-only'})
             except PermissionError as e: return self.send(401,{'error':str(e)})
             except (ValueError,TypeError): return self.send(400,{'error':'Invalid request'})
+            except Exception: return self.send(503,{'error':'Workflow service unavailable; no outcome is assumed. Inspect recorded state before retrying.'})
     return Handler
 
 def make_server(host,port=8765):
@@ -231,11 +253,14 @@ def main():
     p.add_argument('--foundation-report',type=Path)
     p.add_argument('--phase3-report',type=Path)
     p.add_argument('--port',type=int,default=8765)
+    p.add_argument('--workforce-state',type=Path,help='Enable governed deterministic workflows in an isolated state directory')
     a=p.parse_args()
-    h=Headquarters({'nasha-brewery':a.nasha,'meridian-fitness':a.meridian},a.web,a.state,[r for r in (a.foundation_report,a.phase3_report) if r])
+    h=Headquarters({'nasha-brewery':a.nasha,'meridian-fitness':a.meridian},a.web,a.state,[r for r in (a.foundation_report,a.phase3_report) if r],workforce_state=a.workforce_state)
     server=make_server(h,a.port)
     print(f'NASHA AI local review listening on port {server.server_port}. Access code is in {a.state}/access-code (owner-only).',flush=True)
     try: server.serve_forever()
     except KeyboardInterrupt: pass
-    finally: server.server_close()
+    finally:
+        server.server_close()
+        if h.workforce: h.workforce.close()
 if __name__=='__main__': main()

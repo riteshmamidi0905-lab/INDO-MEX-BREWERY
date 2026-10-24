@@ -11,6 +11,8 @@ from .scenario import summary
 FOUNDATION='6c177d7ac8afa3d5573c46d6298a83bdc09138fd'
 REPO=Path(__file__).resolve().parents[2]
 SOURCE_FILES={
+ 'phase4-playbook':('showcase/workforce/PLAYBOOK.md','Phase 4 · governed workforce playbook'),
+ 'phase4-implementation':('showcase/showcase/workforce.py','Phase 4 · actual deterministic tool and approval adapter'),
  'simulation':('showcase/showcase/scenario.py','Python · deterministic simulation'),
  'schema':('showcase/showcase/schema.sql','SQL · relational records and journals'),
  'tenant':('showcase/showcase/service.py','Python · tenant and persona grants'),
@@ -40,7 +42,7 @@ def source(source_id):
     if source_id not in SOURCE_FILES: raise ValueError('Unknown evidence ID')
     relative,title=SOURCE_FILES[source_id]
     text=(REPO/relative).read_text()
-    return {'id':source_id,'title':title,'path':relative,'sha256':hashlib.sha256(text.encode()).hexdigest(),'text':text[:20000],'truncated':len(text)>20000,'github':f'https://github.com/riteshmamidi0905-lab/INDO-MEX-BREWERY/blob/{FOUNDATION}/{relative}'}
+    return {'id':source_id,'title':title,'path':relative,'sha256':hashlib.sha256(text.encode()).hexdigest(),'text':text[:20000],'truncated':len(text)>20000,'github':None if source_id.startswith('phase4-') else f'https://github.com/riteshmamidi0905-lab/INDO-MEX-BREWERY/blob/{FOUNDATION}/{relative}'}
 
 
 def read_model(path,tenant,view,filters,reports,source_id=None):
