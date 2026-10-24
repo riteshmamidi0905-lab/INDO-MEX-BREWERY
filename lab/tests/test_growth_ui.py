@@ -269,7 +269,7 @@ def test_suppliers_screen_labels_leads_fixtures_and_missing_prices_and_the_short
     t = pg.inner_text("#main")
     tl = t.lower(); assert "Farm to Table LLC" in t and "lead, not verified" in tl and "no published prices" in tl and "synthetic fixture" in tl and "no supplier has been contacted" in tl and "official website: not verified" in tl
     assert "@" not in t.replace("@example", ""), "no e-mail addresses are displayed"
-    pg.select_option("#sver", "lead_unverified"); assert pg.locator("#slist .sup").count() == 3
+    pg.select_option("#sver", "lead_unverified"); assert pg.locator("#slist .sup").count() == 12
     sup = next(s for s in _api(base, envs, "tenant-nasha", "ana", "GET", "/suppliers").json()["items"] if s["name"] == "Brothers Produce")
     pid = _api(base, envs, "tenant-nasha", "ana", "GET", "/projects").json()["items"][0]["id"]
     pg.select_option(f"[data-sl='{sup['id']}']", "preferred"); pg.wait_for_selector(".toast.ok")
@@ -423,6 +423,54 @@ def test_new_screens_have_no_serious_axe_violations_at_phone_width_with_every_se
     pg = login(browser, base, "ada", vp=(390, 844))
     rid = next(r["id"] for r in get(base, envs, "tenant-nasha", "ada", "/procurement/runs?limit=50")["items"] if r["state"] == "AWAITING_APPROVAL")
     for h in ("#/business", "#/suppliers", "#/financial", f"#/procurement/{rid}"):
+        go(pg, h, "#main h1"); pg.wait_for_timeout(900)
+        pg.evaluate("document.querySelectorAll('#main details').forEach(d=>d.open=true)")
+        assert pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), ("horizontal overflow", h)
+        pg.add_script_tag(path=AXE)
+        res = pg.evaluate("axe.run(document,{runOnly:['wcag2a','wcag2aa','wcag21aa']}).then(r=>r.violations.map(v=>({id:v.id,impact:v.impact,n:v.nodes.length,t:v.nodes.slice(0,2).map(n=>n.target.join(' '))})))")
+        bad = [v for v in res if v["impact"] in ("serious", "critical")]
+        assert not bad, (h, bad)
+
+
+# ---- Milestone 5: one app, two businesses --------------------------------------------------------------------------------------------------------------------------------------------------------------
+def test_the_workspace_switcher_opens_the_other_business_in_the_same_app_with_its_own_wording_and_requirements(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ada"); go(pg, "#/business", ".hero-card")
+    assert "NASHA" in pg.inner_text("#who") and pg.locator("[data-ws=tenant-nasha]").get_attribute("aria-pressed") == "true"
+    assert "stated requirements" in pg.inner_text("#main").lower(), "hospitality keeps recipes and shows its extra requirements"
+    pg.click("[data-ws=tenant-fit]"); pg.wait_for_function("document.querySelector('#who b').innerText.includes('Meridian')"); pg.wait_for_function("document.querySelector('#main').innerText.includes('Cedar Park')"); pg.wait_for_load_state("networkidle")
+    t = pg.inner_text("#main").lower()
+    assert "cedar park" in t and "fitness studio" in t and "spin bike" in t and "new sales" in t, "studio wording and its requirements are shown"
+    assert "menu item" not in t and "recipe" not in t.replace("recipes and/or", ""), "no hospitality wording on the studio screen"
+    assert pg.locator("[data-ws=tenant-fit]").get_attribute("aria-pressed") == "true" and not pg.errors
+    reqs = get(base, envs, "tenant-fit", "ada", "/projects")
+    assert reqs, "the studio project is served by the same API"
+
+
+def test_a_requirement_added_through_the_form_is_saved_and_a_viewer_cannot_add_one(server, browser):
+    base, envs = server
+    pg = login(browser, base, "ada", tenant="tenant-fit"); go(pg, "#/business", ".hero-card")
+    pg.evaluate("document.querySelector('#rq').closest('details').open=true")
+    pg.fill("#rq input[name=ref]", "ui-rack"); pg.fill("#rq input[name=name]", "UI test dumbbell rack"); pg.fill("#rq input[name=qty]", "2"); pg.click("#rq button"); pg.wait_for_selector(".toast.ok")
+    pg.wait_for_function("document.querySelector('#main').innerText.includes('UI test dumbbell rack')")
+    v = login(browser, base, "vic", tenant="tenant-fit"); go(v, "#/business", ".hero-card")
+    assert v.query_selector("#rq") is None and "ui test dumbbell rack" in v.inner_text("#main").lower()
+
+
+def test_supplier_cards_show_the_evidence_tier_and_no_real_supplier_is_shown_as_verified(server, browser):
+    base, _ = server
+    pg = login(browser, base, "ada"); go(pg, "#/suppliers", "#slist .sup"); pg.wait_for_timeout(500)
+    t = pg.inner_text("#slist").lower()
+    assert "evidence:" in t and "official-domain search snippet" in t and "secondary" in t
+    assert "verified from public sources" not in t, "no research lead is presented as verified"
+
+
+def test_the_second_business_screens_have_no_serious_axe_violations_or_overflow_at_phone_width(server, browser):
+    if not AXE:
+        pytest.skip("INTEGRATION UNAVAILABLE: axe-core not installed")
+    base, envs = server
+    pg = login(browser, base, "ada", tenant="tenant-fit", vp=(390, 844))
+    for h in ("#/business", "#/suppliers", "#/financial", "#/procurement", "#/roadmap"):
         go(pg, h, "#main h1"); pg.wait_for_timeout(900)
         pg.evaluate("document.querySelectorAll('#main details').forEach(d=>d.open=true)")
         assert pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), ("horizontal overflow", h)

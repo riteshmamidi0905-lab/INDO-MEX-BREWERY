@@ -39,9 +39,16 @@ function shell(){ $('#login').hidden=true;$('#app').hidden=false;
   let lastG='';$('#nav').innerHTML=NAV.map(([k,l,g])=>`${g!==lastG?(lastG=g,`<p class="navh mono">${g}</p>`):''}<a href="#/${k}" data-k="${k}">${l}</a>`).join('');
   $('#who').innerHTML=`<span class="mono">Workspace</span><b>${esc(S.tenant_name||S.tenant)}</b><span class="mono">Signed in</span><b>${esc(S.display_name||S.user)} · ${esc(S.role.charAt(0)+S.role.slice(1).toLowerCase())}</b>
     <div class="vt" role="group" aria-label="Presentation"><span class="mono">View</span><button type="button" data-v="business" aria-pressed="${!eng()}">Business</button><button type="button" data-v="engineering" aria-pressed="${eng()}">Engineering</button></div>
+    <div class="vt ws" role="group" aria-label="Workspace"><span class="mono">Switch workspace</span>${WS.map(([t,l])=>`<button type="button" data-ws="${t}" aria-pressed="${t===S.tenant}">${l}</button>`).join('')}</div>
     <button class="btn sm" id="signout">Sign out</button>`;
+  $$('[data-ws]').forEach(b=>b.onclick=()=>{if(b.dataset.ws!==S.tenant)switchWs(b.dataset.ws)});
   $('#signout').onclick=()=>signOut(false);
-  $$('.vt button').forEach(b=>b.onclick=()=>{VIEW=b.dataset.v;try{localStorage.setItem('growth.view',VIEW)}catch(e){}$$('.vt button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));route()})}
+  $$('.vt:not(.ws) button').forEach(b=>b.onclick=()=>{VIEW=b.dataset.v;try{localStorage.setItem('growth.view',VIEW)}catch(e){}$$('.vt:not(.ws) button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));route()})}
+const WS=[['tenant-nasha','NASHA'],['tenant-fit','Meridian Fitness']];
+/* Demo only: the same person signs in to the other workspace with that workspace's own signing key; nothing is shared between the two, and each keeps its own session. */
+async function switchWs(t){try{const r=await fetch(`/v1/tenants/${t}/session`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user:S.user,passcode:`${t}-${S.user}-dev-passcode`})});const j=await r.json();
+  if(!r.ok){toast('Could not open that workspace: '+(j.error?j.error.message:'error'),'bad');return}
+  S={tenant:t,user:j.user,role:j.role,token:j.token};save();location.hash='#/business';boot()}catch(x){toast('Could not reach the API.','bad')}}
 function signOut(expired){S.token=null;save();$('#app').hidden=true;$('#login').hidden=false;if(expired)$('#l-err').textContent='Your session ended. Sign in again.'}
 function setNav(k){$$('#nav a').forEach(a=>a.toggleAttribute('aria-current',a.dataset.k===k)); $$('#nav a').forEach(a=>{if(a.dataset.k===k)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
 function page(title,lede,html){$('#main').innerHTML=`<div class="head"><div><h1>${title}</h1></div><p class="muted">${lede}</p></div>${html}`;$('#main').focus({preventScroll:true});document.title=title.replace(/<[^>]+>/g,'')+' · Growth OS (synthetic demo)'}

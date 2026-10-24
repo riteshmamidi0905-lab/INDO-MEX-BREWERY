@@ -64,3 +64,4 @@ form.mini{display:flex;gap:6px;align-items:center}form.mini input{width:120px;mi
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.journey li{align-items:flex-start}.chk{display:flex;gap:8px;align-items:flex-start;font-size:13px}.chk input{margin-top:3px}
 .list li>span{min-width:0;overflow-wrap:anywhere}.note a,.timeline li>span{overflow-wrap:anywhere}.timeline li>span{min-width:0}
 .tablewrap td.note{min-width:13em}
+.chips .chip{white-space:normal;max-width:100%;border-radius:12px}
