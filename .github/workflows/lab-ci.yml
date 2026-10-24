@@ -1,9 +1,9 @@
 name: lab-ci
 on:
   push:
-    paths: ["lab/**", ".github/workflows/lab-ci.yml", "docs/decisions/**", "docs/company/**"]
+    paths: ["lab/**", "website/**", "brand/**", "visuals/**", ".github/workflows/lab-ci.yml", "docs/decisions/**", "docs/company/**"]   # lab tests run scripts from website/, brand/ and visuals/ (e.g. preview_courtyard.py), so changes there must run CI
   pull_request:
-    paths: ["lab/**"]
+    paths: ["lab/**", "website/**", "brand/**", "visuals/**"]
 permissions:
   contents: read
 jobs:
