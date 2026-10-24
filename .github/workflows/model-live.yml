@@ -1,0 +1,120 @@
+name: model-live
+# MANUAL ONLY. A genuine open-weight language model (Ollama, free, no API key, no secrets) is run through the Production AI Agent Platform against NASHA Growth OS, and its behaviour is measured by lab/tools/live_model_battery.py.
+# Read-only repository permissions: nothing is pushed, published, deployed or ordered, and no repository setting is touched. Results are printed in the job log between MODEL_LIVE_RESULT_BEGIN/END markers and uploaded as an artifact.
+# The model is named explicitly by the `model` input; there is no fallback model and no silent substitution: if the runner cannot hold it the job fails in the preflight step with the reason.
+# Scripted results (lab/results/model-eval) are a different thing and are not touched here.
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "Ollama model tag (exact; no substitution happens if it does not fit)"
+        default: "qwen2.5:7b-instruct"
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: model-live
+  cancel-in-progress: false
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env: { POSTGRES_USER: nasha, POSTGRES_PASSWORD: nasha, POSTGRES_DB: nasha }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U nasha" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      MODEL: ${{ inputs.model }}
+      NASHA_PG_DSN: postgresql://nasha:nasha@localhost:5432/nasha
+      NASHA_LIVE_MODEL_PROVIDER: ollama
+      AP_OLLAMA_BASE_URL: http://localhost:11434/v1
+      AP_OLLAMA_MODEL: ${{ inputs.model }}
+      OLLAMA_CONTEXT_LENGTH: "8192"
+      OLLAMA_NUM_PARALLEL: "1"
+      OLLAMA_MAX_LOADED_MODELS: "1"
+      OLLAMA_KEEP_ALIVE: "-1"
+      OLLAMA_LOG: /tmp/ollama.log
+      NASHA_AGENT_PROVIDER_TIMEOUT_S: "900"      # one model call; a CPU-served 7B model needs minutes, not seconds. Recorded in the result; never raised to hide a failure.
+      NASHA_AGENT_RUN_TIMEOUT_S: "3000"          # one whole agent run inside the governed workflow (plan + synthesis + one repair)
+    steps:
+      - name: Preflight (model name, memory, disk) - fails clearly rather than substituting a model
+        run: |
+          set -eu
+          case "$MODEL" in *[!A-Za-z0-9._:-]*|"") echo "::error::model tag contains characters outside [A-Za-z0-9._:-]"; exit 1;; esac
+          nproc; free -m | head -2; df -h / | tail -1; uname -a
+          mem_mb=$(awk '/MemAvailable/ {print int($2/1024)}' /proc/meminfo); disk_gb=$(df --output=avail -BG / | tail -1 | tr -dc 0-9)
+          size_b=$(printf '%s' "$MODEL" | sed -n 's/.*[:-]\([0-9][0-9.]*\)b.*/\1/p' | head -1); size_b=${size_b:-7}
+          need_mb=$(awk -v b="$size_b" 'BEGIN { printf "%d", b * 1000 * 0.75 + 3500 }')         # ~4-bit weights + KV cache at 8k context + the rest of the job; a heuristic, not a guarantee
+          need_gb=$(awk -v b="$size_b" 'BEGIN { printf "%d", b * 0.7 + 8 }')
+          echo "model=$MODEL parameters~${size_b}B available_memory_mb=$mem_mb needed_mb~$need_mb available_disk_gb=$disk_gb needed_gb~$need_gb"
+          if [ "$mem_mb" -lt "$need_mb" ]; then echo "::error::this runner has ${mem_mb} MB available; ${MODEL} needs about ${need_mb} MB. No smaller model was substituted. Re-run with an explicitly chosen smaller tag."; exit 1; fi
+          if [ "$disk_gb" -lt "$need_gb" ]; then echo "::error::only ${disk_gb} GB of disk is free; about ${need_gb} GB is needed"; exit 1; fi
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r lab/requirements-dev.txt -r lab/requirements-ci-extras.txt
+      - name: Pinned THE WEIR and Production AI Agent Platform (same pins as lab-ci)
+        run: pip install 'git+https://github.com/riteshmamidi0905-lab/mcp-weir.git@5df274563a4a73ebbd31a6380e3a7d829b6bf4a2' 'git+https://github.com/riteshmamidi0905-lab/production-ai-agent-platform.git@f8ba3735204d192734d9f8db7c164efd67790a71'
+      - name: Non-privileged application role (random per-run password, masked), exactly as in lab-ci
+        run: |
+          APP_PW="$(python -c 'import secrets; print(secrets.token_hex(24))')"; echo "::add-mask::$APP_PW"
+          APP_PW="$APP_PW" python - <<'PY'
+          import os, psycopg
+          from psycopg import sql
+          with psycopg.connect("postgresql://nasha:nasha@localhost:5432/nasha", autocommit=True) as c:
+              c.execute(sql.SQL("CREATE ROLE growth_app LOGIN NOBYPASSRLS PASSWORD {}").format(sql.Literal(os.environ["APP_PW"])))
+          PY
+          echo "NASHA_GROWTH_APP_PASSWORD=$APP_PW" >> "$GITHUB_ENV"
+      - name: Harness logic tests (no model involved; these prove only the scoring rules)
+        working-directory: lab
+        run: python -m pytest tests/test_live_model_battery_logic.py tests/test_growth_agent_config.py -q
+      - name: Install Ollama, start it, pull the named model ONCE, record identity
+        run: |
+          set -eu
+          curl -fsSL https://ollama.com/install.sh | sh
+          (ollama serve > /tmp/ollama.log 2>&1 &)
+          for i in $(seq 1 60); do curl -fsS localhost:11434/api/version && break || sleep 2; done
+          echo; ollama --version
+          ollama pull "$MODEL"
+          mkdir -p /tmp/evidence
+          curl -fsS localhost:11434/api/version > /tmp/evidence/ollama-version.json
+          curl -fsS localhost:11434/api/tags > /tmp/evidence/ollama-tags.json
+          curl -fsS localhost:11434/api/show -d "{\"model\":\"$MODEL\"}" | python -c 'import json,sys; d=json.load(sys.stdin); d.pop("modelfile",None); d.pop("template",None); d.pop("license",None); json.dump(d, open("/tmp/evidence/ollama-show.json","w"), indent=1)'
+          python - <<'PY'
+          import json, os
+          m = os.environ["MODEL"]
+          tags = json.load(open("/tmp/evidence/ollama-tags.json"))["models"]
+          t = next(x for x in tags if m in (x.get("name"), x.get("model")))
+          print("MODEL_IDENTITY " + json.dumps(dict(requested=m, name=t["name"], digest=t["digest"], size_bytes=t["size"], details=t.get("details"))))
+          PY
+          df -h / | tail -1; free -m | head -2
+      - name: Real-model battery (inference happens here; every case, pass or fail, is recorded)
+        working-directory: lab
+        timeout-minutes: 140
+        run: python tools/live_model_battery.py --out results/model-validation/live-battery.json
+      - name: Evidence for the record (Ollama request lines, version, identity)
+        if: always()
+        run: |
+          mkdir -p /tmp/evidence
+          grep -c 'POST.*"/v1/chat/completions"' /tmp/ollama.log | sed 's/^/ollama_log_chat_completion_requests=/' || true
+          grep 'POST.*"/v1/chat/completions"' /tmp/ollama.log | tail -n 40 || true
+          cp /tmp/ollama.log /tmp/evidence/ollama.log 2>/dev/null || true
+          cp lab/results/model-validation/live-battery.json /tmp/evidence/ 2>/dev/null || true
+          { echo "### model-live"; echo; echo "model: \`$MODEL\`"; python - <<'PY'
+          import json
+          try:
+              r = json.load(open("/tmp/evidence/live-battery.json"))
+              print(f"executed: **{r.get('executed')}**  kind: {r.get('kind')}  cases passed: {r.get('cases_passed')}/{r.get('cases_total')}  failed: {r.get('cases_failed')}")
+          except Exception as e:
+              print("no result file:", e)
+          PY
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: model-live-evidence
+          path: /tmp/evidence
+          if-no-files-found: warn
