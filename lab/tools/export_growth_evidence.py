@@ -214,12 +214,18 @@ def main():
     m4 = collect_m4()
     ok_all &= m4["journey"]["all_steps_ok"] and all(x["killed"] for sec in ("boundary", "supplier", "finance") for x in m4[sec]["mutants"]) and m4["boundary"]["metrics"]["false_accepts"] == 0 and m4["supplier"]["metrics"]["dedupe"]["false_positive"] == 0 \
         and all(c["ok"] for c in m4["finance"]["cases"]) and m4["runtime"]["model_backed_run_recorded"] is False
+    from m5_evidence import collect as collect_m5
+    m5 = collect_m5()
+    ev5 = m5["evaluations"]
+    ok_all &= m5["journey"]["all_steps_ok"] and m5["authorization"]["summary"]["correct"] == m5["authorization"]["summary"]["checks"] and all(x["killed"] for x in m5["authorization"]["mutants"]) \
+        and all(x["killed"] for x in ev5["generalisation"]["mutants"]) and ev5["generalisation"]["correct"] == ev5["generalisation"]["cases"] and ev5["financial"]["held_out"]["correct"] == ev5["financial"]["held_out"]["cases"] \
+        and ev5["supplier"]["held_out"]["dedupe"]["false_positive"] == 0 and m5["supplier_research"]["verified_from_primary_page"] == 0 and m5["architecture"]["tables_used_by_both_businesses"] >= 15
     caps = json.loads((LAB / "nasha_lab/growth/capabilities.json").read_text())
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, cwd=LAB).stdout.strip()
     ver = a.verify_audit(), b.verify_audit()
     out = dict(schema="growth-os-evidence/1", commit=commit, synthetic=True, pushed=False, notice="Synthetic tenants and data. NASHA Growth OS is a working name; this is a foundation, not a commercial product. Recorded from probes executed against PostgreSQL when exported.",
                postgres=a.con.execute("SHOW server_version").fetchone()[0], tenants=[dict(id="tenant-nasha", vertical="hospitality"), dict(id="tenant-fit", vertical="fitness")],
-               tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, audit_guard=guard, workflow=workflow, launch=launch, m4=m4, incident=json.loads((LAB / "results/audit-concurrency/incident.json").read_text()), audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
+               tables=S.ALL_TENANT_TABLES, stage_matrix=matrix, isolation_probes=probes, privilege_attempts=attempts, mutants=mutants, audit_guard=guard, workflow=workflow, launch=launch, m4=m4, m5=m5, incident=json.loads((LAB / "results/audit-concurrency/incident.json").read_text()), audit_chains_valid=dict(nasha=ver[0][0], fit=ver[1][0]),
                capabilities=caps["capabilities"], status_rules=caps["rules"], all_expectations_met=ok_all)
     (LAB / "portfolio/growth-os-evidence.json").write_text(json.dumps(out, indent=1, default=str))
     a.close(); b.close(); nosetting.close(); srv.cleanup()

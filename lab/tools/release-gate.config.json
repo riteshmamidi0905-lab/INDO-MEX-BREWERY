@@ -45,7 +45,10 @@
     "test_growth_model_boundary",
     "test_growth_model_live",
     "test_growth_journey",
-    "test_growth_m4_security"
+    "test_growth_m4_security",
+    "test_growth_second_industry",
+    "test_growth_supplier_heldout",
+    "test_growth_authz_matrix"
   ],
   "min_passed": {
     "unit_tests": 300,
