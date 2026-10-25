@@ -10,6 +10,10 @@ on:
         description: "Ollama model tag (exact; no substitution happens if it does not fit)"
         default: "qwen2.5:7b-instruct"
         required: true
+      expected_digest:
+        description: "Exact model digest (sha256, as printed by `ollama show`/api tags). The job fails BEFORE any inference if the pulled model has a different digest; there is no fallback."
+        default: "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+        required: true
 permissions:
   contents: read
 concurrency:
@@ -28,6 +32,7 @@ jobs:
           --health-cmd "pg_isready -U nasha" --health-interval 5s --health-timeout 5s --health-retries 10
     env:
       MODEL: ${{ inputs.model }}
+      EXPECTED_MODEL_DIGEST: ${{ inputs.expected_digest }}
       NASHA_PG_DSN: postgresql://nasha:nasha@localhost:5432/nasha
       NASHA_LIVE_MODEL_PROVIDER: ollama
       AP_OLLAMA_BASE_URL: http://localhost:11434/v1
@@ -99,6 +104,21 @@ jobs:
           print("MODEL_IDENTITY " + json.dumps(dict(requested=m, name=t["name"], digest=t["digest"], size_bytes=t["size"], details=t.get("details"))))
           PY
           df -h / | tail -1; free -m | head -2
+      - name: Enforce the exact expected model digest (fail closed, before any inference)
+        run: |
+          set -eu
+          case "$EXPECTED_MODEL_DIGEST" in *[!0-9a-f]*|"") echo "::error::EXPECTED_MODEL_DIGEST must be a lowercase hex sha256"; exit 1;; esac
+          actual=$(python - <<'PY'
+          import json, os
+          m = os.environ["MODEL"]
+          tags = json.load(open("/tmp/evidence/ollama-tags.json"))["models"]
+          t = next((x for x in tags if m in (x.get("name"), x.get("model"))), None)
+          print(t["digest"] if t else "")
+          PY
+          )
+          echo "expected digest: $EXPECTED_MODEL_DIGEST"; echo "actual digest:   $actual"
+          if [ "$actual" != "$EXPECTED_MODEL_DIGEST" ]; then echo "::error::the pulled model's digest is not the expected one; stopping before any inference. No other model is substituted."; exit 1; fi
+          echo "DIGEST_VERIFIED $actual"; cat /tmp/evidence/ollama-version.json; echo
       - name: Verify the EFFECTIVE server configuration (read from the server's own log, not from this job's environment)
         run: |
           set -eu
@@ -119,12 +139,18 @@ jobs:
         working-directory: lab
         timeout-minutes: 140
         run: python tools/live_model_battery.py --out results/model-validation/live-battery.json
-      - name: Side-by-side comparison with the recorded baseline (run 40109758918)
+      - name: Comparison with run 1 (original baseline) and run 3, by matching case ids; new cases and changed conditions listed
         working-directory: lab
         run: |
           mkdir -p /tmp/evidence
-          python tools/compare_model_runs.py results/model-validation/baseline-run-40109758918.json results/model-validation/live-battery.json > /tmp/evidence/comparison.json
+          python tools/compare_model_runs.py --new results/model-validation/live-battery.json --against run1=results/model-validation/baseline-run-40109758918.json --against run3=results/model-validation/run-40141457239.json > /tmp/evidence/comparison.json
           echo MODEL_LIVE_COMPARISON_BEGIN; cat /tmp/evidence/comparison.json; echo MODEL_LIVE_COMPARISON_END
+      - name: Acceptance gates (PROPOSED criteria v1.0; the verdict is printed, it never changes the Phase 2 status)
+        working-directory: lab
+        run: |
+          python tools/evaluate_acceptance.py results/model-validation/live-battery.json > /tmp/evidence/acceptance.json
+          echo MODEL_LIVE_ACCEPTANCE_BEGIN; cat /tmp/evidence/acceptance.json; echo MODEL_LIVE_ACCEPTANCE_END
+          python -c "import json; d=json.load(open('/tmp/evidence/acceptance.json')); print('ACCEPTANCE_VERDICT', d['verdict']); [print(g['id'], g['status'], '-', g['title']) for g in d['gates']]"
       - name: Evidence for the record (Ollama request lines, version, identity)
         if: always()
         run: |

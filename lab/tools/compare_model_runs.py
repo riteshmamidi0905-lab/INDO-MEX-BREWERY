@@ -34,6 +34,42 @@ def compare(base, new):
                 same_model=(base.get("model") or {}).get("digest") == (new.get("model") or {}).get("digest"), digest=(new.get("model") or {}).get("digest"))
 
 
+# What differed between the runs, from the commit history (the older records did not write a `conditions` block). Used to tell a reader which differences cannot be attributed to the model alone.
+KNOWN_CHANGES = {
+    "run1": [dict(change="supplier documents name the supplier on every product line; stale agent documents removed on re-ingest", applies_to="every case", since="run 2"),
+             dict(change="boundary rules added: entity binding, comparative claims, absence claims, untrusted-source, instruction-echo patterns", applies_to="platform containment of every case", since="runs 2-4"),
+             dict(change="report asked to stay within 200 words (RunConstraints.max_words)", applies_to="every case", since="run 4"),
+             dict(change="corpus quarantine of documents addressed to the assistant (off for C12)", applies_to="C07, C14 and any poisoned document", since="run 4"),
+             dict(change="research question v2 names the 8 costliest ingredients", applies_to="C15 and the governed workflow runs (C11); direct case queries are unchanged", since="run 4"),
+             dict(change="Ollama server runs with the intended settings (the installer's service no longer answers); Ollama version may differ", applies_to="latency and resources", since="run 3")],
+    "run3": [dict(change="report asked to stay within 200 words (RunConstraints.max_words)", applies_to="every case", since="run 4"),
+             dict(change="research question v2 names the 8 costliest ingredients", applies_to="C15 and the governed workflow runs (C11); direct case queries are unchanged", since="run 4"),
+             dict(change="boundary rules added: comparative claims, absence claims, untrusted-source, instruction-echo patterns", applies_to="platform containment of every case", since="run 4"),
+             dict(change="corpus quarantine of documents addressed to the assistant (off for C12)", applies_to="C07, C14 and any poisoned document", since="run 4"),
+             dict(change="cases C14 and C15 are new", applies_to="additional cases, not part of any earlier score", since="run 4")]}
+
+
+def compare_all(new, baselines):
+    """`baselines`: {label: record}, label 'run1' or 'run3' (or any). Per baseline: the id-matched comparison, the cases that exist only in the new run, and the changed conditions. Newly added cases are never folded into a baseline score."""
+    out = dict(model_digest=(new.get("model") or {}).get("digest"), new_cases=[c["id"] for c in new.get("cases", [])], comparisons={})
+    new_ids = {c["id"] for c in new.get("cases", [])}
+    for label, rec in baselines.items():
+        c = compare(rec, new)
+        c["matched_case_ids"] = sorted(i for i in by_id(rec) if i in new_ids)
+        c["newly_added_vs_this_baseline"] = sorted(new_ids - set(by_id(rec)))
+        c["not_run_again"] = sorted(set(by_id(rec)) - new_ids)
+        c["changed_conditions"] = KNOWN_CHANGES.get(label, [])
+        c["baseline_conditions_recorded"] = bool(rec.get("conditions"))
+        out["comparisons"][label] = c
+    return out
+
+
 if __name__ == "__main__":
-    out = compare(load(sys.argv[1]), load(sys.argv[2]))
-    print(json.dumps(out, indent=1))
+    if sys.argv[1] == "--new":                       # compare_model_runs.py --new NEW.json --against run1=A.json --against run3=B.json
+        new = load(sys.argv[2]); bases = {}
+        args = sys.argv[3:]
+        while args:
+            assert args[0] == "--against"; lab, path = args[1].split("=", 1); bases[lab] = load(path); args = args[2:]
+        print(json.dumps(compare_all(new, bases), indent=1))
+    else:
+        print(json.dumps(compare(load(sys.argv[1]), load(sys.argv[2])), indent=1))
