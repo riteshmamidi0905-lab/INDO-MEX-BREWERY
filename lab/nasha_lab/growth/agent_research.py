@@ -36,6 +36,11 @@ def env_seconds(name, default, lo=1.0, hi=3600.0):
     return v
 
 
+REPORT_MAX_WORDS = 200
+# The platform's own per-run bound on report length (RunConstraints.max_words; the offline engine stops adding passages at max_words - 14, and the synthesizer prompt shows it to a model as a constraint). Without it the offline engine's default
+# of 220 words produced a fully grounded 8-claim answer of 1,542 characters for a 2-week plan, which the boundary's 1,500-character limit (unchanged) correctly refuses as MALFORMED. The limit stays; the request now asks for an answer that fits it.
+
+
 class AgentUnavailable(Exception):
     """`telemetry` (when the platform run happened) is what the run measured before it failed: usage, models, verification verdicts with the unsupported claim text, provider errors. Nothing is invented: absent means not measured."""
     def __init__(self, reason, failure_class="unavailable", telemetry=None):
@@ -110,12 +115,26 @@ def _tenant_dsn(admin_dsn, tenant):
     return make_conninfo(**d)
 
 
+def screen_documents(docs):
+    """Retrieved text is untrusted DATA. Before any model can see a document, one that addresses the assistant (directives hidden in a supplier record) is quarantined: it is not ingested, so it cannot be retrieved. Independent of
+    any prompt wording, and independent of the platform's own screening, which flags only a few literal phrasings. -> (clean docs, [dict(doc_id, title, flags)])."""
+    clean, quarantined = {}, []
+    for doc_id, (title, text) in docs.items():
+        flags = MB.directive_flags(text) + MB.directive_flags(title)
+        if flags:
+            quarantined.append(dict(doc_id=doc_id, title=title, flags=flags))
+        else:
+            clean[doc_id] = (title, text)
+    return clean, quarantined
+
+
 class SupplierResearchAgent:
     """Per-tenant runner. `provider` is the platform provider name ('offline' by default). Build lazily; close() releases the pools."""
 
-    def __init__(self, admin_dsn, tenant, work_dir, provider="offline"):
-        self.admin_dsn, self.tenant, self.work_dir, self.provider = admin_dsn, tenant, Path(work_dir), provider
-        self._c, self._ingested, self.stale_removed = None, None, 0
+    def __init__(self, admin_dsn, tenant, work_dir, provider="offline", quarantine=True):
+        """`quarantine=False` exists ONLY so the evaluation can expose a model to adversarial text and measure the model on its own; production keeps the default."""
+        self.admin_dsn, self.tenant, self.work_dir, self.provider, self.quarantine = admin_dsn, tenant, Path(work_dir), provider, quarantine
+        self._c, self._ingested, self.stale_removed, self.quarantined = None, None, 0, []
 
     async def _container(self):
         if self._c is None:
@@ -143,6 +162,8 @@ class SupplierResearchAgent:
         docs: {doc_id: (title, markdown)}."""
         from agentplatform.models import RunConstraints, RunRequest
         c = await self._container()
+        if self.quarantine:
+            docs, self.quarantined = screen_documents(docs)
         if self._ingested != corpus_version:
             for doc_id, (title, text) in docs.items():
                 await c.ingestor.ingest_text(doc_id, title, text, meta={"tenant": self.tenant})
@@ -150,7 +171,7 @@ class SupplierResearchAgent:
                 cur = await conn.execute("DELETE FROM documents WHERE id <> ALL(%s)", (list(docs),))     # the agent database is persistent: records of suppliers that no longer exist (or whose ids changed) must not stay retrievable as evidence
                 self.stale_removed = cur.rowcount
             self._ingested = corpus_version
-        rec = await c.engine.submit(RunRequest(query=query, provider=self.provider, constraints=RunConstraints(max_steps=4, require_approval_for="consequential")))
+        rec = await c.engine.submit(RunRequest(query=query, provider=self.provider, constraints=RunConstraints(max_steps=4, require_approval_for="consequential", max_words=REPORT_MAX_WORDS)))
         await c.engine.wait(rec.id)
         return await c.repo.get_run(rec.id), list(await c.repo.events_after(rec.id, 0))
 
@@ -190,7 +211,7 @@ class SupplierResearchAgent:
             elif e.type == "usage.updated" and e.data.get("model") and e.data["model"] not in models:
                 models.append(e.data["model"])
         return dict(mode=MODE_OFFLINE if self.provider == "offline" else MODE_MODEL, provider=rec.provider, run_id=rec.id, report=rec.report.model_dump(), verification=rec.verification.model_dump() if rec.verification else None,
-                    evidence=evs, tool_calls=[dict(tool=t.tool, status=t.status) for t in rec.tool_calls], usage=rec.usage.model_dump(), event_counts=counts, models=models, telemetry=self.telemetry(rec, events), failure_class=None)
+                    evidence=evs, tool_calls=[dict(tool=t.tool, status=t.status) for t in rec.tool_calls], usage=rec.usage.model_dump(), event_counts=counts, models=models, telemetry=self.telemetry(rec, events), quarantined=list(self.quarantined), failure_class=None)
 
     async def documents(self):
         """Doc ids currently indexed in THIS tenant's agent database (used to prove corpora are not shared)."""

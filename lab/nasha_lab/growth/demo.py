@@ -21,7 +21,8 @@ SIGNALS = [dict(budget_confirmed=True, decision_maker=True, timeline_days=14, fi
            dict(budget_confirmed=False, decision_maker=True, timeline_days=120, fit=0.4, engagement=0.3)]
 
 
-def build(root, dsn, schema=SCHEMA, with_warehouse=True):
+def build(root, dsn, schema=SCHEMA, with_warehouse=True, today=None):
+    """`today` is the date the synthetic quotes' 30-day validity window starts from (default: the real today). Tests that run the app with a FIXED as_of pass the same date, otherwise the quotes fall outside the window as soon as the calendar moves past it."""
     root = Path(root)
     with psycopg.connect(dsn, autocommit=True) as c:
         c.execute(f'DROP SCHEMA IF EXISTS "{schema}" CASCADE'); c.execute(f'CREATE SCHEMA "{schema}"')
@@ -54,7 +55,7 @@ def build(root, dsn, schema=SCHEMA, with_warehouse=True):
                     sales.convert_lead(lead, sc["opp"], SC.basket_cents(prices, sc["basket"]))      # a new opportunity starts in the 'new' stage
         wf.close(); sales.close()
     # business-launch workspace: a project per tenant (stored assumptions, milestones, research, suppliers) and recorded procurement runs for the flagship case study
-    launch_ids = {"tenant-nasha": LS.seed_nasha_launch(owner["tenant-nasha"]), "tenant-fit": LS.seed_meridian_launch(owner["tenant-fit"])}
+    launch_ids = {"tenant-nasha": LS.seed_nasha_launch(owner["tenant-nasha"], today=today), "tenant-fit": LS.seed_meridian_launch(owner["tenant-fit"], today=today)}
     agent = None
     try:
         import agentplatform  # noqa: F401

@@ -27,7 +27,7 @@ def world(tmp_path_factory):
     except Exception as e:  # noqa: BLE001
         pytest.skip(f"INTEGRATION UNAVAILABLE: no PostgreSQL ({type(e).__name__})")
     dsn = srv.get_uri()
-    envs = DM.build(root / "d", dsn, schema="growth_journey", with_warehouse=False)
+    envs = DM.build(root / "d", dsn, schema="growth_journey", with_warehouse=False, today=AS_OF)
     try:
         import agentplatform  # noqa: F401
         app = GA.create_growth_app(envs, agent_dsn=dsn, as_of=AS_OF)

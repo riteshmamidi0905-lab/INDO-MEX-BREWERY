@@ -26,6 +26,21 @@ TOOL_TIMEOUT_S, AGENT_TIMEOUT_S = 5.0, 120.0
 COLS = ("id", "requester", "role", "project_id", "period", "state", "agent_mode", "items", "totals", "research", "proposal_hash", "approval_id", "failure", "decided_by", "version")
 
 
+QUERY_ITEMS = 8
+
+
+def research_query(plan):
+    """The question the research agent is asked. v2 (Phase 2 targeted hardening) NAMES the ingredients that matter: v1 asked about "published prices" and "data freshness" in general, which lexically matches the lead suppliers' "no published price" lines,
+    so retrieval returned mostly records without a quote (offline measurement on the seeded world: 6 of 12 passages carried a price; with the ingredients named, 12 of 13) and the model concluded that no prices exist. The deterministic
+    recommendation never depends on this text. Items are the costliest few (ties by ingredient ref), so the query is stable for a given plan."""
+    items = sorted(plan["items"], key=lambda i: (-((i.get("chosen") or {}).get("cost_cents") or 0), i["ingredient_ref"]))[:QUERY_ITEMS]
+    names = ", ".join(i.get("ingredient") or i["ingredient_ref"] for i in items)
+    return f"Which suppliers quote the lowest prices for these ingredients: {names}? State each supplier's name with the price it quotes per unit. Cite the supplier records."
+    # NOT in the question, deliberately: the words "synthetic" / "unverified". Every quote line is followed by a long boilerplate sentence that contains them ("Synthetic fixture generated from a planning-assumption base price ..."); a question that
+    # mentions them makes the offline engine select eight of those sentences, the answer exceeds the boundary's 1500-character limit and the whole output is (correctly) rejected as MALFORMED. The limit is a security control and is unchanged;
+    # how uncertain each record is comes from the stored records (model_boundary.computed_uncertainty), never from the question.
+
+
 class LaunchStore:
     """procurement_recommendations / launch_events for ONE tenant, over a connection of the unprivileged application role with the tenant set (row-level security applies)."""
 
@@ -204,8 +219,7 @@ class LaunchProcurement(WeirCaller):
     def _research(self, corr, directory, plan):
         """Agent run when an agent is configured and healthy, otherwise (or if its output fails independent verification) the deterministic summary. Always records what ran."""
         names = {i["ingredient_ref"] for i in plan["items"]}
-        q = ("Which suppliers quote the lowest published prices for the ingredients needed, and what are the verification status, data freshness and price limitations of each supplier's data? "
-             "Cite the supplier records.")
+        q = research_query(plan)
         docs = AR.supplier_documents(directory)
         version = hashlib.sha256(json.dumps({k: v[1] for k, v in sorted(docs.items())}).encode()).hexdigest()
         res, why, failure_telemetry = None, None, None
@@ -216,6 +230,9 @@ class LaunchProcurement(WeirCaller):
                 res = self.loop.run_until_complete(asyncio.wait_for(self.agent.research(docs, q, version), self.agent_timeout))
             except AR.AgentUnavailable as e:
                 why = f"agent unavailable: {e.reason}"; failure_telemetry = e.telemetry if getattr(self.agent, "provider", "offline") != "offline" else None
+                if failure_telemetry:
+                    # what the platform verifier rejected, classified deterministically: a universal absence claim is NOT a scoped one, and is judged against the stored records, not against what retrieval returned
+                    failure_telemetry = dict(failure_telemetry, unsupported_claim_classification=[dict(claim=c, absence=MB.classify_absence(c, directory)) for v in failure_telemetry.get("verification", []) for c in v.get("unsupported_claims", [])][:12])
             except asyncio.TimeoutError:
                 why = "agent timed out"
             except Exception as e:  # noqa: BLE001 - any engine failure degrades to the fallback; it must never block or alter the deterministic recommendation
@@ -223,13 +240,13 @@ class LaunchProcurement(WeirCaller):
         rejected = None
         if res is not None:
             problems = AR.verify_claims(res["report"], res["evidence"], directory)
-            rv = MB.review(res["report"], res["evidence"], directory, res.get("tool_calls", []))
+            rv = MB.review(res["report"], res["evidence"], directory, res.get("tool_calls", []), as_of=self.as_of)
             problems = problems + [p for p in rv["problems"] if p not in problems]
             self.store.event(corr, "stage", stage="P05", name="agent_research", mode=res["mode"], provider=res["provider"], agent_run=res["run_id"], claims=len(res["report"].get("claims", [])) if isinstance(res["report"], dict) and isinstance(res["report"].get("claims", []), list) else 0, evidence=len(res["evidence"]),
                              platform_verification=res["verification"] and dict(ok=res["verification"]["ok"], groundedness=res["verification"]["groundedness"]), independent_problems=problems,
                              boundary=dict(status=rv["status"], accepted=len(rv["claims_accepted"]), rejected=[dict(codes=r["codes"]) for r in rv["claims_rejected"]], report_codes=rv["report_codes"], flags=rv["flags"]),
                              **(dict(models=res.get("models"), usage=res.get("usage"), event_counts=res.get("event_counts"), agent_timeout_s=self.agent_timeout, telemetry=res.get("telemetry"),
-                                     rejected_claims=[dict(text=r["text"], codes=r["codes"]) for r in rv["claims_rejected"]]) if res["mode"] == AR.MODE_MODEL else {}))   # real-model runs only: the offline path's recorded evidence is unchanged
+                                     rejected_claims=[dict(text=r["text"], codes=r["codes"]) for r in rv["claims_rejected"]], comparisons=rv.get("comparisons"), absences=rv.get("absences"), quarantined_documents=res.get("quarantined") or []) if res["mode"] == AR.MODE_MODEL else {}))   # real-model runs only: the offline path's recorded evidence is unchanged
             if rv["status"] == "abstained":
                 rejected = None; why = "agent abstained: the records do not support a conclusion"; res = None
             elif problems or rv["status"] != "accepted" or (res["verification"] and not res["verification"]["ok"]):

@@ -90,7 +90,7 @@ def world(tmp_path_factory):
     except Exception as e:  # noqa: BLE001
         pytest.skip(f"INTEGRATION UNAVAILABLE: no PostgreSQL ({type(e).__name__})")
     dsn = srv.get_uri()
-    envs = DM.build(root / "d", dsn, schema="growth_fin", with_warehouse=False)
+    envs = DM.build(root / "d", dsn, schema="growth_fin", with_warehouse=False, today=date(2026, 10, 23))
     yield TestClient(GA.create_growth_app(envs, as_of=date(2026, 10, 23))), envs
     srv.cleanup()
 

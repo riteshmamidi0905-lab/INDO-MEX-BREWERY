@@ -92,13 +92,17 @@ def test_an_unknown_entity_without_any_price_is_still_rejected_as_a_subject():
 
 def test_claims_without_prices_are_unaffected():
     assert verdict("Alpha Dairy Co is a lead whose record states a synthetic quote.", ["e1"])[0] == "accepted"
-    assert verdict("The record says no price is published.", ["e1"])[0] == "accepted"
+    # (absence claims have their own rules and tests in test_growth_comparative_claims.py; "no price is published" cited to a passage that states a price is, rightly, no longer accepted)
 
 
 def test_recorded_real_outputs_that_were_correct_are_still_accepted():
-    """No regression on the real claims that passed in run 40109758918 (C02, C07, C10): replayed verbatim."""
-    d = [dict(id="bp", name="Brothers Produce", verification_status="lead_unverified", freshness="unverified", products=[dict(price_class="NONE_PUBLISHED", unit_price_cents=None, min_order_cents=None)]),
-         dict(id="fe", name="Synthetic Fitness Equipment Wholesale", verification_status="synthetic_fixture", freshness="synthetic", products=[dict(price_class="SYNTHETIC_QUOTE", unit_price_cents=61500.0, min_order_cents=0.0), dict(price_class="SYNTHETIC_QUOTE", unit_price_cents=4650.0, min_order_cents=0.0)])]
+    """No regression on the real claims that passed in run 40109758918 (C02, C07, C10): replayed verbatim. Since the comparative rule, a 'lowest price' claim is also checked against the full stored quote set, so the fixture states that
+    Synthetic Fitness Equipment Wholesale really is the cheapest of two quotes for each item (the real fitness directory is not available here; the quotes are a labelled fixture)."""
+    def fp(name, ref, cents):
+        return dict(name=name, ingredient_ref=ref, unit="each" if "dumbbell" in ref else "m2", unit_price_cents=cents, min_order_cents=0.0, price_class="SYNTHETIC_QUOTE", valid_from=None, valid_to=None)
+    d = [dict(id="bp", name="Brothers Produce", verification_status="lead_unverified", freshness="unverified", products=[dict(name="Wholesale catalogue", ingredient_ref=None, unit="kg", unit_price_cents=None, min_order_cents=None, price_class="NONE_PUBLISHED")]),
+         dict(id="fe", name="Synthetic Fitness Equipment Wholesale", verification_status="synthetic_fixture", freshness="synthetic", products=[fp("Dumbbell rack set", "equip.dumbbell-set", 61500.0), fp("Rubber flooring", "equip.rubber-floor", 4650.0)]),
+         dict(id="fo", name="Other Fitness Supplier", verification_status="synthetic_fixture", freshness="synthetic", products=[fp("Dumbbell rack set", "equip.dumbbell-set", 70000.0), fp("Rubber flooring", "equip.rubber-floor", 5200.0)])]
     ev = {"e1": dict(doc_id="supplier-bp", title="Brothers Produce", text="# Brothers Produce Verification status: lead unverified. no published price."),
           "e2": dict(doc_id="supplier-fe", title="Synthetic Fitness Equipment Wholesale", text="Dumbbell rack set: $615.00 per each, minimum order $0.00."),
           "e5": dict(doc_id="supplier-fe", title="Synthetic Fitness Equipment Wholesale", text="Rubber flooring: $46.50 per m2, minimum order $0.00.")}
