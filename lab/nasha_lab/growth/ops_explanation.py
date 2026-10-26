@@ -3,6 +3,8 @@ Source of truth: the published JSON schemas vendored byte-for-byte in lab/contra
 this module recomputes every claim from the snapshot and renders the explanation from server-owned templates. NO model-written text can reach the rendered explanation (the grammar has no free-text field and the renderer reads only the validated snapshot).
 Scope of this milestone profile (narrower than the specification, which also allows optional price/comparison claims): an ANSWER is exactly OBSERVE(expected_units) + OBSERVE(counted_units) + DIFFERENCE(expected - counted) + LIMITATION(CAUSE_NOT_ESTABLISHED).
 COMPARISON, EXTREMUM, SCOPED_ABSENCE and the other fields/limitations are valid in the schema and DEFERRED here: a claim of those kinds is rejected (fail closed). One false, unsupported or unexpected claim rejects the WHOLE output: there is no partial acceptance.
+Contract alignment (approved baseline D1-D8): canonical-json.v1; tenant-scoped record-hash.v1 (record-hash.v0, the legacy 4-key form of the published example, exists ONLY for golden-vector verification and is never accepted for a live snapshot; no input, model output or caller chooses the profile);
+lower-case diagnostics from one explicit table that also fixes whether a code makes a result REJECTED (the input or output is at fault) or FAILED (infrastructure or configuration is at fault); source provenance and staleness are checked at admission, before any provider call.
 Nothing here calls a model, a database, the network, THE WEIR or the workflow; it neither reads nor writes any store. It is not the governed procurement workflow and cannot change a proposal, an approval or a hash."""
 import hashlib
 import html
@@ -13,9 +15,11 @@ from pathlib import Path
 
 from . import model_boundary as MB
 
-VALIDATOR_REVISION = "ops-validator-v1.0-m-ops-1"
+VALIDATOR_REVISION = "ops-validator-v1.1-m-ops-contract-1"
 RENDERER_REVISION = "ops-renderer-v1.0-m-ops-1"
 PROFILE = "ops-explanation-v1-milestone-profile"
+CANONICAL_JSON_PROFILE = "canonical-json.v1"
+DIAGNOSTICS_VERSION = "ops-diagnostics.v1"
 OUTPUT_VERSION, INPUT_VERSION, RESULT_VERSION = "ops-explanation-output.v1", "ops-explanation-input.v1", "ops-explanation-result.v1"
 MAX_OUTPUT_BYTES, MAX_INPUT_BYTES, MAX_RENDERED_CHARS = 12288, 16384, 2000
 APPROVED_MODEL, APPROVED_DIGEST = "qwen2.5:7b-instruct", "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
@@ -61,41 +65,41 @@ def _pairs(pairs):
     seen = {}
     for k, v in pairs:
         if k in seen:
-            raise StrictJSONError("DUPLICATE_KEY", k)
+            raise StrictJSONError("duplicate_key", k)
         seen[k] = v
     return seen
 
 
 def _no_const(name):
-    raise StrictJSONError("NON_FINITE_NUMBER", name)
+    raise StrictJSONError("non_finite_number", name)
 
 
 def _no_float(text):
-    raise StrictJSONError("NON_INTEGER_NUMBER", text)
+    raise StrictJSONError("non_integer_number", text)
 
 
 def parse_strict(raw, max_bytes=MAX_OUTPUT_BYTES):
     """Bytes or str -> value. Rejects invalid UTF-8, oversize, duplicate object keys, NaN/Infinity, any non-integer number (including 60.0), and nesting deeper than 8."""
     if isinstance(raw, (bytes, bytearray)):
         if len(raw) > max_bytes:
-            raise StrictJSONError("OVERSIZE", str(len(raw)))
+            raise StrictJSONError("oversize", str(len(raw)))
         try:
             raw = bytes(raw).decode("utf-8", errors="strict")
         except UnicodeDecodeError as e:
-            raise StrictJSONError("INVALID_UTF8", str(e))
+            raise StrictJSONError("invalid_utf8", str(e))
     elif isinstance(raw, str):
         if len(raw.encode("utf-8", errors="surrogatepass")) > max_bytes:
-            raise StrictJSONError("OVERSIZE", str(len(raw)))
+            raise StrictJSONError("oversize", str(len(raw)))
     else:
-        raise StrictJSONError("NOT_JSON_TEXT", type(raw).__name__)
+        raise StrictJSONError("not_json_text", type(raw).__name__)
     try:
         value = json.loads(raw, object_pairs_hook=_pairs, parse_constant=_no_const, parse_float=_no_float)
     except StrictJSONError:
         raise
     except (ValueError, RecursionError) as e:
-        raise StrictJSONError("NOT_JSON", str(e)[:80])
+        raise StrictJSONError("not_json", str(e)[:80])
     if _depth(value) > 8:
-        raise StrictJSONError("TOO_DEEP")
+        raise StrictJSONError("too_deep")
     return value
 
 
@@ -111,7 +115,7 @@ def canonical(value):
     """Keys sorted, no whitespace, ensure_ascii=False, integers only (the specification's canonicalization)."""
     def chk(v):
         if isinstance(v, float):
-            raise StrictJSONError("NON_INTEGER_NUMBER", repr(v))
+            raise StrictJSONError("non_integer_number", repr(v))
         if isinstance(v, dict):
             [chk(x) for x in v.values()]
         elif isinstance(v, list):
@@ -183,7 +187,7 @@ def schema_errors(schema, value, root=None, path="$"):
         if branch in schema:
             errs += schema_errors(schema[branch], value, root, path)
     if "anyOf" in schema and not any(not schema_errors(s, value, root, path) for s in schema["anyOf"]):
-        errs.append((path, "SCHEMA_INVALID", "matches none of the allowed forms"))
+        errs.append((path, "schema_invalid", "matches none of the allowed forms"))
     if "oneOf" in schema:
         n = sum(1 for s in schema["oneOf"] if not schema_errors(s, value, root, path))
         if n != 1:
@@ -191,36 +195,36 @@ def schema_errors(schema, value, root=None, path="$"):
             if n == 0 and hit:
                 errs += schema_errors(hit[0], value, root, path)                 # report WHY the variant the claim declares was not matched (e.g. an unknown key)
             else:
-                errs.append((path, "SCHEMA_INVALID", f"matches {n} of the allowed forms, exactly one required"))
+                errs.append((path, "schema_invalid", f"matches {n} of the allowed forms, exactly one required"))
     if "type" in schema and not _type_ok(schema["type"], value):
-        return errs + [(path, "SCHEMA_INVALID", f"expected {schema['type']}")]
+        return errs + [(path, "schema_invalid", f"expected {schema['type']}")]
     if "const" in schema and not _eq(schema["const"], value):
-        errs.append((path, "SCHEMA_INVALID", "not the required constant"))
+        errs.append((path, "schema_invalid", "not the required constant"))
     if "enum" in schema and not any(_eq(e, value) for e in schema["enum"]):
-        errs.append((path, "SCHEMA_INVALID", "not an allowed value"))
+        errs.append((path, "schema_invalid", "not an allowed value"))
     if isinstance(value, str):
         if "pattern" in schema and not re.search(schema["pattern"], value):
-            errs.append((path, "SCHEMA_INVALID", "does not match the required pattern"))
+            errs.append((path, "schema_invalid", "does not match the required pattern"))
         if "minLength" in schema and len(value) < schema["minLength"]:
-            errs.append((path, "SCHEMA_INVALID", "too short"))
+            errs.append((path, "schema_invalid", "too short"))
         if "maxLength" in schema and len(value) > schema["maxLength"]:
-            errs.append((path, "SCHEMA_INVALID", "too long"))
+            errs.append((path, "schema_invalid", "too long"))
         if schema.get("format") == "date-time" and not _is_datetime(value):
-            errs.append((path, "SCHEMA_INVALID", "not an RFC 3339 date-time"))
+            errs.append((path, "schema_invalid", "not an RFC 3339 date-time"))
         elif schema.get("format") not in (None, "date-time"):
             raise ContractMismatch(f"unsupported format {schema['format']!r}")
     if isinstance(value, int) and not isinstance(value, bool):
         if "minimum" in schema and value < schema["minimum"]:
-            errs.append((path, "SCHEMA_INVALID", "below the minimum"))
+            errs.append((path, "schema_invalid", "below the minimum"))
         if "maximum" in schema and value > schema["maximum"]:
-            errs.append((path, "SCHEMA_INVALID", "above the maximum"))
+            errs.append((path, "schema_invalid", "above the maximum"))
     if isinstance(value, list):
         if "minItems" in schema and len(value) < schema["minItems"]:
-            errs.append((path, "SCHEMA_INVALID", "too few items"))
+            errs.append((path, "schema_invalid", "too few items"))
         if "maxItems" in schema and len(value) > schema["maxItems"]:
-            errs.append((path, "SCHEMA_INVALID", "too many items"))
+            errs.append((path, "schema_invalid", "too many items"))
         if schema.get("uniqueItems") and len({json.dumps(x, sort_keys=True) for x in value}) != len(value):
-            errs.append((path, "SCHEMA_INVALID", "items are not unique"))
+            errs.append((path, "schema_invalid", "items are not unique"))
         if "items" in schema:
             for i, x in enumerate(value):
                 errs += schema_errors(schema["items"], x, root, f"{path}[{i}]")
@@ -228,19 +232,73 @@ def schema_errors(schema, value, root=None, path="$"):
         props = schema.get("properties", {})
         for r in schema.get("required", []):
             if r not in value:
-                errs.append((path, "SCHEMA_INVALID", f"missing required key {r!r}"))
+                errs.append((path, "schema_invalid", f"missing required key {r!r}"))
         for k, v in value.items():
             if k in props:
                 errs += schema_errors(props[k], v, root, f"{path}.{k}")
             elif schema.get("additionalProperties") is False:
-                errs.append((f"{path}.{k}", "UNKNOWN_KEY", "key not allowed by the closed schema"))
+                errs.append((f"{path}.{k}", "unknown_key", "key not allowed by the closed schema"))
     return errs
+
+
+# ------------------------------------------------------------------ record hash profiles (D2): the profile is a CONSTANT of the server, never read from the snapshot, the model output or the caller
+LIVE_RECORD_HASH_PROFILE = "record-hash.v1"
+HISTORICAL_RECORD_HASH_PROFILE = "record-hash.v0"
+KNOWN_RECORD_HASH_PROFILES = (HISTORICAL_RECORD_HASH_PROFILE, LIVE_RECORD_HASH_PROFILE)
+ADMISSIBLE_LIVE_RECORD_HASH_PROFILES = (LIVE_RECORD_HASH_PROFILE,)
+V1_PREIMAGE_KEYS = ("profile", "tenant_scope_id", "source_kind", "source_ref", "record_id", "source_revision", "subject_id", "inventory_item_id", "field", "availability", "value", "unit", "as_of")
+
+
+def record_preimage(profile, fact, tenant_scope_id):
+    """The exact object whose canonical JSON is hashed. v0 (published example, historical): {subject_id, field, value, unit}. v1: the tenant-scoped, versioned form below (the profile string is part of the hashed bytes)."""
+    if profile == HISTORICAL_RECORD_HASH_PROFILE:
+        return {k: fact[k] for k in ("subject_id", "field", "value", "unit")}
+    if profile == LIVE_RECORD_HASH_PROFILE:
+        p = fact["provenance"]
+        return dict(profile=LIVE_RECORD_HASH_PROFILE, tenant_scope_id=tenant_scope_id, source_kind=p["source_kind"], source_ref=p["source_ref"], record_id=p["record_id"], source_revision=p["source_revision"], subject_id=fact["subject_id"],
+                    inventory_item_id=fact["inventory_item_id"], field=fact["field"], availability=fact["availability"], value=fact["value"], unit=fact["unit"], as_of=fact["as_of"])
+    raise ContractMismatch(f"unknown record hash profile {profile!r}")
+
+
+def record_sha256(profile, fact, tenant_scope_id):
+    return sha256_hex(canonical(record_preimage(profile, fact, tenant_scope_id)))
+
+
+# ------------------------------------------------------------------ diagnostics (D4, D5): one explicit table. class -> which side is at fault -> the result status.
+DIAGNOSTICS = {
+    # admission of the snapshot (nothing was sent to a provider)
+    "input_refused": "admission", "input_invalid": "admission", "input_oversize": "admission", "input_poisoned": "admission", "duplicate_id": "admission", "noncanonical_order": "admission", "dangling_reference": "admission",
+    # source provenance, checked at admission
+    "source_hash_mismatch": "source", "source_provenance_missing": "source", "stale_snapshot": "source",
+    # the candidate output as bytes / JSON
+    "not_json": "parse", "not_json_text": "parse", "duplicate_key": "parse", "non_finite_number": "parse", "non_integer_number": "parse", "invalid_utf8": "parse", "oversize": "parse", "too_deep": "parse",
+    # the candidate output against the published schema and the bindings
+    "schema_invalid": "schema", "unknown_key": "schema", "binding_mismatch": "binding", "cross_tenant_reference": "binding",
+    # the claims
+    "unknown_evidence": "claim", "wrong_entity": "claim", "wrong_item": "claim", "wrong_fact": "claim", "field_mismatch": "claim", "unit_mismatch": "claim", "value_mismatch": "claim", "incorrect_difference": "claim", "unsupported_claim": "claim",
+    "claim_set_mismatch": "claim", "deferred_claim_kind": "claim", "deferred_field": "claim", "deferred_limitation": "claim",
+    # abstention and completeness
+    "invented_completion": "abstention", "wrong_abstention_reason": "abstention",
+    # infrastructure and configuration: the model output is not what failed
+    "provider_timeout": "provider", "provider_error": "provider", "provider_truncated": "provider", "provider_provenance_missing": "provider", "mode_mismatch": "config", "mode_unsupported": "config", "record_hash_profile_unsupported": "config",
+}
+FAILED_CLASSES = ("provider", "config")
+FLAGS = ("unnecessary_abstention",)                  # not errors: reported beside a verified abstention
+LEGACY_UPPER = {c.upper(): c for c in DIAGNOSTICS} | {"MISSING_PROVENANCE": "source_provenance_missing", "PROVENANCE_MISSING": "provider_provenance_missing"}      # M-OPS-1 (commit 06fc273) spellings, for reading old records only
+
+
+def status_for(codes):
+    """FAILED when any code is an infrastructure or configuration fault; otherwise REJECTED. A code outside the table is a bug and raises."""
+    for c in codes:
+        if c not in DIAGNOSTICS:
+            raise ContractMismatch(f"diagnostic code {c!r} is not in the table")
+    return "FAILED" if any(DIAGNOSTICS[c] in FAILED_CLASSES for c in codes) else "REJECTED"
 
 
 # ------------------------------------------------------------------ the milestone profile
 OBSERVED_FIELDS = ("expected_units", "counted_units")
 RULES = frozenset({"strict_parse", "schema", "duplicate_ids", "bindings", "foreign_refs", "snapshot_hash", "provenance", "entity", "field", "unit", "value", "availability", "arithmetic", "difference_facts",
-                   "limitation", "claim_set", "deferred", "completeness", "abstention", "input_schema", "input_screen"})
+                   "limitation", "claim_set", "deferred", "completeness", "abstention", "input_schema", "input_screen", "record_hash"})
 
 
 def _by_id(items):
@@ -252,46 +310,65 @@ def _sorted_ok(items):
     return ids == sorted(ids)
 
 
-def check_input(model_input, rules=RULES):
-    """Everything about the server-built model input that must hold BEFORE a provider may see it. -> sorted list of codes ([] = admissible). Pure."""
+def check_input(model_input, rules=RULES, now=None, max_age_seconds=None, trusted_record_hashes=None):
+    """Everything about the server-built model input that must hold BEFORE a provider may see it. -> sorted list of codes ([] = admissible). Pure.
+    Record hashes are verified under the LIVE profile (record-hash.v1) only. `trusted_record_hashes` maps "record_id|source_ref" to the hash the HOST read from the authoritative source; with `now` and `max_age_seconds` the snapshot age is bounded."""
+    return _check_input(model_input, rules, now, max_age_seconds, trusted_record_hashes, LIVE_RECORD_HASH_PROFILE)
+
+
+def _check_input(model_input, rules, now, max_age_seconds, trusted_record_hashes, profile):
     codes = set()
     try:
         size = len(canonical(model_input))
     except StrictJSONError as e:
         return [e.code]
     if size > MAX_INPUT_BYTES:
-        codes.add("INPUT_OVERSIZE")
+        codes.add("input_oversize")
     if "input_schema" in rules:
         errs = schema_errors(SCHEMAS["model-input.schema.json"], model_input)
         if errs:
-            codes.add("INPUT_INVALID")
+            codes.add("input_invalid")
             return sorted(codes)
     ents, facts = model_input["entities"], model_input["facts"]
     if "input_schema" in rules:
         if len({e["id"] for e in ents}) != len(ents) or len({f["id"] for f in facts}) != len(facts):
-            codes.add("DUPLICATE_ID")
+            codes.add("duplicate_id")
         for coll in ("entities", "facts", "comparison_groups", "completeness"):
             if not _sorted_ok(model_input[coll]):
-                codes.add("NONCANONICAL_ORDER")
+                codes.add("noncanonical_order")
         ent_ids = {e["id"] for e in ents}
         for f in facts:
             if f["subject_id"] not in ent_ids or f["inventory_item_id"] not in ent_ids:
-                codes.add("DANGLING_REFERENCE")
+                codes.add("dangling_reference")
             if f["availability"] == "PRESENT" and not (isinstance(f["value"], int) and f["value"] >= 0):
-                codes.add("INPUT_INVALID")
+                codes.add("input_invalid")
             if f["availability"] != "PRESENT" and f["value"] is not None:
-                codes.add("INPUT_INVALID")
+                codes.add("input_invalid")
         fact_ids = {f["id"] for f in facts}
         for g in model_input["comparison_groups"]:
             if not set(g["fact_ids"]) <= fact_ids:
-                codes.add("DANGLING_REFERENCE")
+                codes.add("dangling_reference")
     if "snapshot_hash" in rules and model_input["snapshot_sha256"] != snapshot_sha256(model_input):
-        codes.add("SOURCE_HASH_MISMATCH")
+        codes.add("source_hash_mismatch")
+    if "record_hash" in rules and any(f["provenance"]["record_sha256"] != record_sha256(profile, f, model_input["tenant_scope_id"]) for f in facts):
+        codes.add("source_hash_mismatch")                                    # a fact altered after its record hash was taken, a hash from another tenant, or a profile other than the pinned one (mixed profiles end here too)
+    if "provenance" in rules:
+        if max_age_seconds is not None and now is not None:
+            age = (datetime.fromisoformat(now.replace("Z", "+00:00")) - datetime.fromisoformat(model_input["as_of"].replace("Z", "+00:00"))).total_seconds()
+            if age > max_age_seconds or age < 0:
+                codes.add("stale_snapshot")
+        if trusted_record_hashes is not None:
+            for f in facts:
+                want = trusted_record_hashes.get(f["provenance"]["record_id"] + "|" + f["provenance"]["source_ref"])
+                if want is None:
+                    codes.add("source_provenance_missing")
+                elif want != f["provenance"]["record_sha256"]:
+                    codes.add("source_hash_mismatch")
     # untrusted text in the snapshot: a name that addresses the assistant is refused before any provider sees it (reuses the repository's directive screen)
     if "input_screen" in rules:
         strings = [e["alias"] for e in ents] + [f["provenance"]["source_ref"] for f in facts]
         if any(MB.directive_flags(x) or MB.INSTRUCTION_WORDS.search(x) for x in strings):
-            codes.add("INPUT_POISONED")
+            codes.add("input_poisoned")
     return sorted(codes)
 
 
@@ -323,107 +400,107 @@ def _claim_codes(c, facts, item, ex, co, foreign_ids, rules, seen_fields):
     def fact(fid):
         if fid in facts:
             return facts[fid]
-        codes.append("CROSS_TENANT_REFERENCE" if fid in foreign_ids and "foreign_refs" in rules else "UNKNOWN_EVIDENCE")
+        codes.append("cross_tenant_reference" if fid in foreign_ids and "foreign_refs" in rules else "unknown_evidence")
         return None
 
     if kind in ("COMPARISON", "EXTREMUM", "SCOPED_ABSENCE"):
-        return ["DEFERRED_CLAIM_KIND"] if "deferred" in rules else []
+        return ["deferred_claim_kind"] if "deferred" in rules else []
     if kind == "OBSERVE":
         if c["field"] not in OBSERVED_FIELDS:
-            codes.append("DEFERRED_FIELD") if "deferred" in rules else None
+            codes.append("deferred_field") if "deferred" in rules else None
         f = fact(c["fact_id"])
         if f is not None:
             if "entity" in rules:
                 if c["subject_id"] != f["subject_id"]:
-                    codes.append("WRONG_ENTITY")
+                    codes.append("wrong_entity")
                 if f["inventory_item_id"] != c["subject_id"] or c["subject_id"] != item:
-                    codes.append("WRONG_ITEM")
+                    codes.append("wrong_item")
             if "field" in rules and f["field"] != c["field"]:
-                codes.append("FIELD_MISMATCH")
+                codes.append("field_mismatch")
             if "unit" in rules and c["unit"] != f["unit"]:
-                codes.append("UNIT_MISMATCH")
+                codes.append("unit_mismatch")
             if "availability" in rules and f["availability"] != "PRESENT":
-                codes.append("UNSUPPORTED_CLAIM")
+                codes.append("unsupported_claim")
             elif "value" in rules and c["claimed_value"] != f["value"]:
-                codes.append("VALUE_MISMATCH")
+                codes.append("value_mismatch")
             if "claim_set" in rules and c["field"] in OBSERVED_FIELDS:
                 want = ex if c["field"] == "expected_units" else co
                 if want is None or c["fact_id"] != want["id"]:
-                    codes.append("WRONG_FACT")
+                    codes.append("wrong_fact")
         seen_fields.append(c["field"])
     elif kind == "DIFFERENCE":
         e, o = fact(c["expected_fact_id"]), fact(c["counted_fact_id"])
         if e is not None and o is not None:
             if "difference_facts" in rules:
                 if e["field"] != "expected_units" or o["field"] != "counted_units":
-                    codes.append("FIELD_MISMATCH")
+                    codes.append("field_mismatch")
                 if not (c["subject_id"] == e["subject_id"] == o["subject_id"] == item) or e["inventory_item_id"] != o["inventory_item_id"]:
-                    codes.append("WRONG_ITEM")
+                    codes.append("wrong_item")
                 if e["unit"] != "UNITS" or o["unit"] != "UNITS":
-                    codes.append("UNIT_MISMATCH")
+                    codes.append("unit_mismatch")
             if "availability" in rules and (e["availability"] != "PRESENT" or o["availability"] != "PRESENT"):
-                codes.append("UNSUPPORTED_CLAIM")
+                codes.append("unsupported_claim")
             elif "arithmetic" in rules and c["claimed_difference"] != e["value"] - o["value"]:
-                codes.append("INCORRECT_DIFFERENCE")
+                codes.append("incorrect_difference")
     elif kind == "LIMITATION":
         if "limitation" in rules:
             if c["code"] != "CAUSE_NOT_ESTABLISHED":
-                codes.append("DEFERRED_LIMITATION") if "deferred" in rules else None
+                codes.append("deferred_limitation") if "deferred" in rules else None
             for fid in c["fact_ids"]:
                 if fid not in facts:
-                    codes.append("CROSS_TENANT_REFERENCE" if fid in foreign_ids and "foreign_refs" in rules else "UNKNOWN_EVIDENCE")
+                    codes.append("cross_tenant_reference" if fid in foreign_ids and "foreign_refs" in rules else "unknown_evidence")
             if not codes and (ex is None or co is None or set(c["fact_ids"]) != {ex["id"], co["id"]}):
-                codes.append("UNSUPPORTED_CLAIM")
+                codes.append("unsupported_claim")
     return codes
 
 
 def validate_output(raw, model_input, rules=RULES, foreign_scopes=(), foreign_ids=(), trusted_record_hashes=None, now=None, max_age_seconds=None):
     """Judge an untrusted candidate output against the authorized snapshot. Pure; never raises on bad input (returns REJECTED with codes).
-    -> dict(status ANSWER_VERIFIED | ABSTAIN_VERIFIED | REJECTED, codes[sorted], flags[], claims[per-claim], required_reasons[], output|None)."""
+    -> dict(status ANSWER_VERIFIED | ABSTAIN_VERIFIED | REJECTED, codes[sorted], flags[], claims[per-claim], required_reasons[], output|None). Record hashes are verified under record-hash.v1 only."""
+    return _validate(raw, model_input, rules, foreign_scopes, foreign_ids, trusted_record_hashes, now, max_age_seconds, LIVE_RECORD_HASH_PROFILE)
+
+
+def validate_historical_vector(raw, model_input, rules=RULES):
+    """GOLDEN-VECTOR VERIFICATION ONLY: the same judgement with the legacy record-hash.v0 of Codex's published example. It is not reachable from `explain` and its result is marked historical; a v0 snapshot is never accepted for a live explanation."""
+    v = _validate(raw, model_input, rules, (), (), None, None, None, HISTORICAL_RECORD_HASH_PROFILE)
+    v["historical_vector"] = True
+    return v
+
+
+def _validate(raw, model_input, rules, foreign_scopes, foreign_ids, trusted_record_hashes, now, max_age_seconds, profile):
     out = dict(status="REJECTED", codes=[], flags=[], claims=[], required_reasons=[], output=None)
     codes = set()
     foreign_scopes, foreign_ids = set(foreign_scopes), set(foreign_ids)
-    in_codes = check_input(model_input, rules)
+    in_codes = _check_input(model_input, rules, now, max_age_seconds, trusted_record_hashes, profile)
     if in_codes:
-        out["codes"] = sorted({"INPUT_REFUSED"} | set(in_codes)); return out
+        out["codes"] = sorted({"input_refused"} | set(in_codes)); return out
+    if not isinstance(raw, (str, bytes, bytearray, dict, list)):
+        out["codes"] = ["not_json_text"]; return out                          # neither text nor an already-parsed JSON value
     # 1. strict parse, schema, bindings
     try:
         data = parse_strict(raw) if isinstance(raw, (str, bytes, bytearray)) and "strict_parse" in rules else (raw if not isinstance(raw, (str, bytes, bytearray)) else json.loads(raw))
     except StrictJSONError as e:
         out["codes"] = [e.code]; return out
     except Exception:                                                          # noqa: BLE001 - a mutant with strict parsing off may be handed malformed text; it must still produce a verdict
-        out["codes"] = ["NOT_JSON"]; return out
+        out["codes"] = ["not_json"]; return out
     if "schema" in rules:
         errs = schema_errors(SCHEMAS["model-output.schema.json"], data)
         if errs:
             out["codes"] = sorted({k for _, k, _ in errs}); out["errors"] = [dict(path=p, kind=k, message=m) for p, k, m in errs[:12]]; return out
     if not isinstance(data, dict) or not isinstance(data.get("claims", []), list):
-        out["codes"] = ["SCHEMA_INVALID"]; return out
+        out["codes"] = ["schema_invalid"]; return out
     out["output"] = data
     if "bindings" in rules:
         for k in ("analysis_id", "tenant_scope_id", "workflow_id", "snapshot_id", "snapshot_sha256"):
             if data.get(k) != model_input.get(k):
-                codes.add("BINDING_MISMATCH")
+                codes.add("binding_mismatch")
         if data.get("schema_version") != OUTPUT_VERSION:
-            codes.add("BINDING_MISMATCH")
+            codes.add("binding_mismatch")
     if "foreign_refs" in rules and (data.get("tenant_scope_id") in foreign_scopes or data.get("snapshot_sha256") in foreign_scopes):
-        codes.add("CROSS_TENANT_REFERENCE")
+        codes.add("cross_tenant_reference")
     claims = data.get("claims", [])
     if "duplicate_ids" in rules and len({c.get("claim_id") for c in claims if isinstance(c, dict)}) != len(claims):
-        codes.add("DUPLICATE_ID")
-    # 2. provenance
-    if "provenance" in rules:
-        if max_age_seconds is not None and now is not None:
-            age = (datetime.fromisoformat(now.replace("Z", "+00:00")) - datetime.fromisoformat(model_input["as_of"].replace("Z", "+00:00"))).total_seconds()
-            if age > max_age_seconds or age < 0:
-                codes.add("STALE_SNAPSHOT")
-        if trusted_record_hashes is not None:
-            for f in model_input["facts"]:
-                want = trusted_record_hashes.get(f["provenance"]["record_id"] + "|" + f["provenance"]["source_ref"])
-                if want is None:
-                    codes.add("MISSING_PROVENANCE")
-                elif want != f["provenance"]["record_sha256"]:
-                    codes.add("SOURCE_HASH_MISMATCH")
+        codes.add("duplicate_id")
     # 3-8. claims, completeness, abstention
     reasons, item, ex, co = required_reasons(model_input)
     out["required_reasons"] = sorted(reasons)
@@ -433,13 +510,13 @@ def validate_output(raw, model_input, rules=RULES, foreign_scopes=(), foreign_id
         given = set(data.get("reason_codes", []))
         if "abstention" in rules:
             if reasons and given != reasons:
-                codes.add("WRONG_ABSTENTION_REASON")
+                codes.add("wrong_abstention_reason")
             if not reasons:
-                out["flags"].append("UNNECESSARY_ABSTENTION")                 # safe, but not a useful answer; counted against usefulness, never as an error
+                out["flags"].append("unnecessary_abstention")                 # safe, but not a useful answer; counted against usefulness, never as an error
         out["status"] = "ABSTAIN_VERIFIED" if not codes else "REJECTED"
         out["codes"] = sorted(codes); return out
     if "completeness" in rules and reasons:
-        codes.add("INVENTED_COMPLETION")                                      # an ANSWER where the snapshot cannot support one
+        codes.add("invented_completion")                                      # an ANSWER where the snapshot cannot support one
     per, seen_fields, kinds = [], [], []
     for c in claims:
         kinds.append(c["kind"])
@@ -448,9 +525,9 @@ def validate_output(raw, model_input, rules=RULES, foreign_scopes=(), foreign_id
     if "claim_set" in rules:
         want = ["DIFFERENCE", "LIMITATION", "OBSERVE", "OBSERVE"]
         if sorted(kinds) != want and not {"COMPARISON", "EXTREMUM", "SCOPED_ABSENCE"} & set(kinds):
-            codes.add("CLAIM_SET_MISMATCH")
+            codes.add("claim_set_mismatch")
         if sorted(f for f in seen_fields) != sorted(OBSERVED_FIELDS) and "OBSERVE" in kinds:
-            codes.add("CLAIM_SET_MISMATCH")
+            codes.add("claim_set_mismatch")
     out["claims"] = per
     out["codes"] = sorted(codes)
     out["status"] = "ANSWER_VERIFIED" if not codes else "REJECTED"
@@ -493,7 +570,7 @@ def render_answer(model_input):
 
 
 def render_abstention(verdict):
-    if "UNNECESSARY_ABSTENTION" in verdict["flags"]:
+    if "unnecessary_abstention" in verdict["flags"]:
         return UNNECESSARY_TEXT
     return " ".join(ABSTAIN_TEXT[r] for r in ABSTAIN_ORDER if r in verdict["required_reasons"]) + " No explanation is given."
 
@@ -510,6 +587,11 @@ def accepted_result_sha256(model_input, output, rendered):
 
 
 def make_envelope(model_input, status, mode, codes=(), output=None, rendered="", provider=None, audit_complete=False, accepted_hash=None):
+    for c in codes:
+        if c not in DIAGNOSTICS:
+            raise ContractMismatch(f"diagnostic code {c!r} is not in the table")
+    if codes and status in ("REJECTED", "FAILED") and status != status_for(codes):
+        raise ContractMismatch(f"status {status} contradicts the diagnostics {sorted(codes)}")
     env = dict(schema_version=RESULT_VERSION, analysis_id=model_input["analysis_id"], workflow_id=model_input["workflow_id"], tenant_scope_id=model_input["tenant_scope_id"], status=status, mode=mode, model_output=output,
                rendered_explanation=rendered, validation_codes=sorted({c.lower() for c in codes}), provider=provider, audit_complete=audit_complete, accepted_result_sha256=accepted_hash, cached_from_analysis_id=None)
     errs = schema_errors(SCHEMAS["result-envelope.schema.json"], env)
@@ -533,27 +615,43 @@ def result_invariants(env):
         bad.append("LIVE_LLM requires approved model identity and actual, non-estimated model use (PROVENANCE_MISSING)")
     if m == "DETERMINISTIC_REPLAY" and env["provider"] is not None:
         bad.append("DETERMINISTIC_REPLAY requires provider null")
-    if m == "CACHED_REPLAY" and env["cached_from_analysis_id"] is None:
+    if m == "CACHED_REPLAY" and s in ("ACCEPTED", "ABSTAINED", "AUDIT_PENDING") and env["cached_from_analysis_id"] is None:
         bad.append("CACHED_REPLAY requires the originating analysis")
     return bad
 
 
-def explain(model_input, candidate, mode="DETERMINISTIC_REPLAY", audit_complete=False, foreign_scopes=(), foreign_ids=(), rules=RULES):
-    """Run one explanation. `candidate(model_input)` returns raw output text/bytes/dict, or (raw, provider_metadata); it is NOT called when the input is refused. -> dict(envelope, verdict, record).
-    A failure is a failure: nothing is substituted. The labelled deterministic alternative is `deterministic_replay(model_input)`, which is a separate, explicitly marked call."""
+class ProviderTruncated(Exception):
+    """Raised by a host adapter when the provider stopped at its token limit: the output is incomplete because of configuration or capacity, not because the model made an invalid claim. -> FAILED provider_truncated."""
+
+
+def explain(model_input, candidate, mode="DETERMINISTIC_REPLAY", audit_complete=False, foreign_scopes=(), foreign_ids=(), rules=RULES, trusted_record_hashes=None, now=None, max_age_seconds=None, record_hash_profile=LIVE_RECORD_HASH_PROFILE):
+    """Run one explanation. `record_hash_profile` is the HOST's pin; anything other than record-hash.v1 (v0, unknown) is FAILED record_hash_profile_unsupported before the snapshot is even read. `candidate(model_input)` returns raw output text/bytes/dict, or (raw, provider_metadata), or (raw, provider_metadata, finish_reason); it is NOT called when the input is refused.
+    Admission (before any provider call) checks the snapshot, the record hashes under the pinned record-hash.v1, the host's trusted record hashes (REQUIRED for LIVE_LLM) and, when `now` and `max_age_seconds` are given, staleness.
+    A finish_reason other than "stop" (or a raised ProviderTruncated) is FAILED, never an ordinary rejection. A failure is a failure: nothing is substituted. The labelled deterministic alternative is `deterministic_replay`. -> dict(envelope, verdict, record)."""
     record = dict(validator_revision=VALIDATOR_REVISION, renderer_revision=RENDERER_REVISION, profile=PROFILE, snapshot_sha256=model_input.get("snapshot_sha256"), refused_before_provider=False, raw_output=None, raw_chars=None, raw_sha256=None)
-    in_codes = check_input(model_input)
+    if record_hash_profile != LIVE_RECORD_HASH_PROFILE:
+        return _failed(model_input if isinstance(model_input, dict) else {}, mode, "record_hash_profile_unsupported", record)
+    in_codes = check_input(model_input, rules, now, max_age_seconds, trusted_record_hashes)
+    if mode == "LIVE_LLM" and trusted_record_hashes is None:
+        in_codes = sorted(set(in_codes) | {"source_provenance_missing"})       # a live explanation needs the host's own record hashes; the snapshot's self-consistency is not enough
     if in_codes:
         record["refused_before_provider"] = True
-        env = _safe_envelope(model_input, "REJECTED", mode, ["INPUT_REFUSED"] + in_codes, rendered=REJECTED_TEXT)
-        return dict(envelope=env, verdict=dict(status="REJECTED", codes=sorted(["INPUT_REFUSED"] + in_codes), flags=[], claims=[], required_reasons=[], output=None), record=record)
+        env = _safe_envelope(model_input, "REJECTED", mode, ["input_refused"] + in_codes, rendered=REJECTED_TEXT)
+        return dict(envelope=env, verdict=dict(status="REJECTED", codes=sorted(["input_refused"] + in_codes), flags=[], claims=[], required_reasons=[], output=None), record=record)
     try:
         got = candidate(model_input)
     except TimeoutError:
-        return _failed(model_input, mode, "PROVIDER_TIMEOUT", record)
+        return _failed(model_input, mode, "provider_timeout", record)
+    except ProviderTruncated:
+        return _failed(model_input, mode, "provider_truncated", record)
     except Exception:                                                          # noqa: BLE001 - any provider failure is a FAILED result; it never becomes an answer
-        return _failed(model_input, mode, "PROVIDER_ERROR", record)
+        return _failed(model_input, mode, "provider_error", record)
+    finish = None
+    if isinstance(got, tuple) and len(got) == 3:
+        got, finish = (got[0], got[1]), got[2]
     raw, meta = (got if isinstance(got, tuple) and len(got) == 2 else (got, None))
+    if finish not in (None, "stop"):
+        return _failed(model_input, mode, "provider_truncated" if finish == "length" else "provider_error", dict(record, finish_reason=finish))
     if isinstance(raw, (str, bytes, bytearray)):
         b = raw.encode("utf-8", errors="replace") if isinstance(raw, str) else bytes(raw)
         record.update(raw_output=b[:MAX_OUTPUT_BYTES].decode("utf-8", errors="replace"), raw_chars=len(b), raw_sha256=sha256_hex(b))
@@ -563,15 +661,15 @@ def explain(model_input, candidate, mode="DETERMINISTIC_REPLAY", audit_complete=
         except StrictJSONError:
             pass
     if mode == "LIVE_LLM" and not provider_ok(meta):
-        return _failed(model_input, mode, "PROVENANCE_MISSING", record)
+        return _failed(model_input, mode, "provider_provenance_missing", record)
     if mode == "DETERMINISTIC_REPLAY" and meta is not None:
-        return _failed(model_input, mode, "MODE_MISMATCH", record)
+        return _failed(model_input, mode, "mode_mismatch", record)
     if mode not in ("LIVE_LLM", "DETERMINISTIC_REPLAY"):
-        return _failed(model_input, mode if mode in ("CACHED_REPLAY",) else "DETERMINISTIC_REPLAY", "MODE_UNSUPPORTED", record)
-    v = validate_output(raw, model_input, rules, foreign_scopes, foreign_ids)
+        return _failed(model_input, mode if mode in ("CACHED_REPLAY",) else "DETERMINISTIC_REPLAY", "mode_unsupported", record)
+    v = validate_output(raw, model_input, rules, foreign_scopes, foreign_ids, trusted_record_hashes, now, max_age_seconds)
     record.update(codes=v["codes"], claim_verdicts=v["claims"], flags=v["flags"], required_reasons=v["required_reasons"])
     if v["status"] == "REJECTED":
-        env = make_envelope(model_input, "REJECTED", mode, v["codes"], rendered=REJECTED_TEXT)
+        env = make_envelope(model_input, status_for(v["codes"]), mode, v["codes"], rendered=REJECTED_TEXT)
     elif v["status"] == "ABSTAIN_VERIFIED":
         env = make_envelope(model_input, "ABSTAINED" if audit_complete else "AUDIT_PENDING", mode, (), v["output"], render_abstention(v), meta, audit_complete)
     else:
@@ -590,8 +688,8 @@ def _safe_envelope(model_input, status, mode, codes, rendered):
 
 def _failed(model_input, mode, code, record):
     m = mode if mode in ("LIVE_LLM", "DETERMINISTIC_REPLAY", "CACHED_REPLAY") else "DETERMINISTIC_REPLAY"
-    env = make_envelope(model_input, "FAILED", m, [code], rendered=FAILED_TEXT)
-    return dict(envelope=env, verdict=dict(status="REJECTED", codes=[code], flags=[], claims=[], required_reasons=[], output=None), record=dict(record, codes=[code]))
+    env = _safe_envelope(model_input, "FAILED", m, [code], rendered=FAILED_TEXT)
+    return dict(envelope=env, verdict=dict(status="FAILED", codes=[code], flags=[], claims=[], required_reasons=[], output=None), record=dict(record, codes=[code]))
 
 
 # ------------------------------------------------------------------ deterministic reference (the oracle for tests and the explicitly-labelled replay)
@@ -627,9 +725,10 @@ def build_model_input(scenario, tenant_scope_id, analysis_id, workflow_id, item_
     facts = []
     for field in ("counted_units", "expected_units", "target_units"):
         val = sc[field.replace("_units", "")]
-        rec = dict(scenario=scenario, field=field, value=val, source_revision=f"{scenario}:v1")
-        facts.append(dict(id=f"fact:{field}", subject_id=item_id, field=field, availability="PRESENT" if val is not None else "MISSING", value=val, unit="UNITS", as_of=as_of,
-                          provenance=dict(source_kind="SCENARIO_ASSUMPTION", source_ref=f"scenario://{scenario}/v1/{field}", record_id=f"scenario:{scenario}", record_sha256=sha256_hex(canonical(rec)), source_revision=f"{scenario}:v1"), inventory_item_id=item_id))
+        fact = dict(id=f"fact:{field}", subject_id=item_id, field=field, availability="PRESENT" if val is not None else "MISSING", value=val, unit="UNITS", as_of=as_of,
+                    provenance=dict(source_kind="SCENARIO_ASSUMPTION", source_ref=f"scenario://{scenario}/v1/{field}", record_id=f"scenario:{scenario}", record_sha256="0" * 64, source_revision=f"{scenario}:v1"), inventory_item_id=item_id)
+        fact["provenance"]["record_sha256"] = record_sha256(LIVE_RECORD_HASH_PROFILE, fact, tenant_scope_id)
+        facts.append(fact)
     mi = dict(schema_version=INPUT_VERSION, analysis_id=analysis_id, tenant_scope_id=tenant_scope_id, workflow_id=workflow_id, snapshot_id=snapshot_id, snapshot_sha256="0" * 64, task="EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY", as_of=as_of,
               entities=[dict(id=item_id, kind="INVENTORY_ITEM", alias=item_alias)], facts=sorted(facts, key=lambda f: f["id"]), comparison_groups=[], completeness=[],
               prohibited_effects=["PURCHASE", "INVENTORY_MUTATION", "SUPPLIER_CONTACT", "APPROVAL", "FINANCIAL_MUTATION", "ARBITRARY_TOOL"])

@@ -72,11 +72,15 @@ def test_the_example_snapshot_hash_follows_the_specifications_canonicalization()
     assert O.snapshot_sha256(inp) == inp["snapshot_sha256"], "the specified canonicalization reproduces the published example hash"
 
 
-def test_the_published_example_answer_is_accepted_by_the_validator_and_rendered_from_the_snapshot():
+def test_the_published_example_answer_is_accepted_as_a_HISTORICAL_vector_and_never_as_a_live_explanation():
     inp = json.load(open(CONTRACTS / "examples" / "model-input.json")); out = json.load(open(CONTRACTS / "examples" / "model-output.json"))
+    v = O.validate_historical_vector(json.dumps(out), inp)
+    assert v["status"] == "ANSWER_VERIFIED" and v["historical_vector"] is True and v["codes"] == []
+    assert O.render_answer(inp) == "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause."
+    live = O.validate_output(json.dumps(out), inp)
+    assert live["status"] == "REJECTED" and live["codes"] == ["input_refused", "source_hash_mismatch"], "its record hashes are record-hash.v0: not admissible for a live snapshot"
     r = run(inp, json.dumps(out), audit_complete=True)
-    assert r["verdict"]["status"] == "ANSWER_VERIFIED" and r["envelope"]["status"] == "ACCEPTED" and not O.result_invariants(r["envelope"])
-    assert r["envelope"]["rendered_explanation"] == "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause."
+    assert r["envelope"]["status"] == "REJECTED" and r["record"]["refused_before_provider"] is True
 
 
 def test_the_reference_output_equals_the_published_example_up_to_the_order_of_a_set_valued_field():
@@ -140,17 +144,17 @@ OPERATOR_MUTANTS = [
     ("difference computed in the wrong direction", 'c["claimed_difference"] != e["value"] - o["value"]', 'c["claimed_difference"] != o["value"] - e["value"]'),
     ("arithmetic never compared", 'elif "arithmetic" in rules and c["claimed_difference"] != e["value"] - o["value"]:', 'elif False:'),
     ("observed value compared with <= instead of equality", 'c["claimed_value"] != f["value"]', 'c["claimed_value"] > f["value"]'),
-    ("claim fact existence ignored", 'codes.append("CROSS_TENANT_REFERENCE" if fid in foreign_ids and "foreign_refs" in rules else "UNKNOWN_EVIDENCE")\n        return None', 'pass\n        return {"subject_id": c.get("subject_id"), "inventory_item_id": c.get("subject_id"), "field": c.get("field"), "unit": c.get("unit"), "availability": "PRESENT", "value": c.get("claimed_value"), "id": fid}'),
+    ("claim fact existence ignored", 'codes.append("cross_tenant_reference" if fid in foreign_ids and "foreign_refs" in rules else "unknown_evidence")\n        return None', 'pass\n        return {"subject_id": c.get("subject_id"), "inventory_item_id": c.get("subject_id"), "field": c.get("field"), "unit": c.get("unit"), "availability": "PRESENT", "value": c.get("claimed_value"), "id": fid}'),
     ("partial acceptance (rejected claims dropped, rest accepted)", 'out["status"] = "ANSWER_VERIFIED" if not codes else "REJECTED"', 'out["status"] = "ANSWER_VERIFIED"'),
     ("bindings reduced to the analysis id", 'for k in ("analysis_id", "tenant_scope_id", "workflow_id", "snapshot_id", "snapshot_sha256"):', 'for k in ("analysis_id",):'),
-    ("duplicate JSON keys tolerated", 'raise StrictJSONError("DUPLICATE_KEY", k)', 'pass'),
-    ("floats tolerated", 'raise StrictJSONError("NON_INTEGER_NUMBER", text)', 'return int(float(text))'),
+    ("duplicate JSON keys tolerated", 'raise StrictJSONError("duplicate_key", k)', 'pass'),
+    ("floats tolerated", 'raise StrictJSONError("non_integer_number", text)', 'return int(float(text))'),
     ("bool accepted as integer", 'return isinstance(v, int) and not isinstance(v, bool)', 'return isinstance(v, int)'),
     ("unknown keys tolerated", 'elif schema.get("additionalProperties") is False:', 'elif False:'),
-    ("deferred claim kinds accepted", 'return ["DEFERRED_CLAIM_KIND"] if "deferred" in rules else []', 'return []'),
+    ("deferred claim kinds accepted", 'return ["deferred_claim_kind"] if "deferred" in rules else []', 'return []'),
     ("abstention reasons unchecked", 'if reasons and given != reasons:', 'if False:'),
-    ("unnecessary-abstention flag removed (claimed as an error instead)", 'out["flags"].append("UNNECESSARY_ABSTENTION")', 'codes.add("WRONG_ABSTENTION_REASON")'),
-    ("invented completion allowed", 'codes.add("INVENTED_COMPLETION")', 'pass'),
+    ("unnecessary-abstention flag removed (claimed as an error instead)", 'out["flags"].append("unnecessary_abstention")', 'codes.add("wrong_abstention_reason")'),
+    ("invented completion allowed", 'codes.add("invented_completion")', 'pass'),
     ("input admitted without the directive screen", 'if any(MB.directive_flags(x) or MB.INSTRUCTION_WORDS.search(x) for x in strings):', 'if False:'),
     ("renderer reads the model's claimed difference", 'd = e - c', 'd = 0'),
 ]
@@ -220,7 +224,7 @@ def test_every_envelope_status_validates_against_the_published_result_schema_and
 
 def test_validation_codes_are_emitted_in_the_lower_case_form_the_published_result_schema_requires():
     r = run(E.IN["gap"], E.edit(lambda o: E.claim(o, "c3").update(claimed_difference=1))(E.IN["gap"]))
-    assert r["verdict"]["codes"] == ["INCORRECT_DIFFERENCE"] and r["envelope"]["validation_codes"] == ["incorrect_difference"]
+    assert r["verdict"]["codes"] == ["incorrect_difference"] and r["envelope"]["validation_codes"] == ["incorrect_difference"]
 
 
 def test_a_refused_input_never_reaches_the_candidate():
@@ -251,11 +255,12 @@ def test_a_scripted_double_can_never_produce_a_live_model_result():
     mi = E.IN["gap"]
     good = O.reference_output(mi)
     meta = dict(name="ollama", model=O.APPROVED_MODEL, digest=O.APPROVED_DIGEST, runtime_profile_sha256="a" * 64, actual_model_calls=1, prompt_tokens=100, completion_tokens=50, estimated_usage=False, latency_ms=1000)
-    r = O.explain(mi, lambda m: good, "LIVE_LLM")
-    assert r["envelope"]["status"] == "FAILED" and r["envelope"]["validation_codes"] == ["provenance_missing"], "live mode without provider evidence is refused"
+    trusted = E.TRUSTED_RIGHT
+    r = O.explain(mi, lambda m: good, "LIVE_LLM", trusted_record_hashes=trusted)
+    assert r["envelope"]["status"] == "FAILED" and r["envelope"]["validation_codes"] == ["provider_provenance_missing"], "live mode without provider evidence is refused"
     for bad in (dict(meta, digest="0" * 64), dict(meta, model="qwen2.5:14b-instruct"), dict(meta, estimated_usage=True), dict(meta, actual_model_calls=0), {k: v for k, v in meta.items() if k != "latency_ms"}):
-        assert O.explain(mi, lambda m, b=bad: (good, b), "LIVE_LLM")["envelope"]["status"] == "FAILED"
-    ok = O.explain(mi, lambda m: (good, meta), "LIVE_LLM", audit_complete=True)["envelope"]
+        assert O.explain(mi, lambda m, b=bad: (good, b), "LIVE_LLM", trusted_record_hashes=trusted)["envelope"]["status"] == "FAILED"
+    ok = O.explain(mi, lambda m: (good, meta), "LIVE_LLM", audit_complete=True, trusted_record_hashes=trusted)["envelope"]
     assert ok["status"] == "ACCEPTED" and ok["mode"] == "LIVE_LLM" and not O.result_invariants(ok), "structurally complete provenance is accepted; its AUTHENTICITY is the host's job (trusted runtime registry), not this pure module's"
     assert O.explain(mi, lambda m: (good, meta), "DETERMINISTIC_REPLAY")["envelope"]["validation_codes"] == ["mode_mismatch"], "a replay cannot carry provider metadata"
     assert O.explain(mi, lambda m: good, "CACHED_REPLAY")["envelope"]["status"] == "FAILED", "no cross-request cache in this release"
@@ -282,7 +287,7 @@ def test_the_record_keeps_the_complete_raw_output_its_hash_and_the_per_claim_ver
     r = run(mi, json.dumps(bad))
     rec = r["record"]
     assert json.loads(rec["raw_output"]) == bad and rec["raw_chars"] == len(json.dumps(bad)) and len(rec["raw_sha256"]) == 64
-    assert [c["ok"] for c in rec["claim_verdicts"]] == [True, True, False, True] and rec["codes"] == ["INCORRECT_DIFFERENCE"] and rec["snapshot_sha256"] == mi["snapshot_sha256"]
+    assert [c["ok"] for c in rec["claim_verdicts"]] == [True, True, False, True] and rec["codes"] == ["incorrect_difference"] and rec["snapshot_sha256"] == mi["snapshot_sha256"]
     assert rec["validator_revision"] == O.VALIDATOR_REVISION and "facts" not in json.dumps(rec), "the record carries hashes and the candidate's output, not a copy of the tenant snapshot"
 
 
@@ -345,12 +350,12 @@ def test_no_envelope_or_output_can_carry_an_action_approval_tool_or_effect_field
 def test_the_prohibited_effects_list_is_a_constant_of_the_input_and_cannot_be_altered():
     for bad in ([], ["PURCHASE"], ["PURCHASE", "INVENTORY_MUTATION", "SUPPLIER_CONTACT", "APPROVAL", "FINANCIAL_MUTATION"], ["PURCHASE", "INVENTORY_MUTATION", "SUPPLIER_CONTACT", "APPROVAL", "FINANCIAL_MUTATION", "ARBITRARY_TOOL", "SEND_EMAIL"]):
         mi = E.rehash(dict(copy.deepcopy(E.IN["gap"]), prohibited_effects=bad))
-        assert "INPUT_INVALID" in O.check_input(mi)
+        assert "input_invalid" in O.check_input(mi)
 
 
 def test_the_task_is_a_fixed_constant_an_unsupported_task_is_refused():
     mi = E.rehash(dict(copy.deepcopy(E.IN["gap"]), task="APPROVE_PURCHASE_ORDER"))
-    assert "INPUT_INVALID" in O.check_input(mi)
+    assert "input_invalid" in O.check_input(mi)
 
 
 # ============================================================ the milestone gates, stated as one assertion each

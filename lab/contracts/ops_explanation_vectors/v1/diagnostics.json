@@ -1,0 +1,295 @@
+{
+ "codes": [
+  {
+   "class_": "binding",
+   "code": "binding_mismatch",
+   "m_ops_1_spelling": "BINDING_MISMATCH",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "claim_set_mismatch",
+   "m_ops_1_spelling": "CLAIM_SET_MISMATCH",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "binding",
+   "code": "cross_tenant_reference",
+   "m_ops_1_spelling": "CROSS_TENANT_REFERENCE",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "admission",
+   "code": "dangling_reference",
+   "m_ops_1_spelling": "DANGLING_REFERENCE",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "deferred_claim_kind",
+   "m_ops_1_spelling": "DEFERRED_CLAIM_KIND",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "deferred_field",
+   "m_ops_1_spelling": "DEFERRED_FIELD",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "deferred_limitation",
+   "m_ops_1_spelling": "DEFERRED_LIMITATION",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "admission",
+   "code": "duplicate_id",
+   "m_ops_1_spelling": "DUPLICATE_ID",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "parse",
+   "code": "duplicate_key",
+   "m_ops_1_spelling": "DUPLICATE_KEY",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "field_mismatch",
+   "m_ops_1_spelling": "FIELD_MISMATCH",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "incorrect_difference",
+   "m_ops_1_spelling": "INCORRECT_DIFFERENCE",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "admission",
+   "code": "input_invalid",
+   "m_ops_1_spelling": "INPUT_INVALID",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "admission",
+   "code": "input_oversize",
+   "m_ops_1_spelling": "INPUT_OVERSIZE",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "admission",
+   "code": "input_poisoned",
+   "m_ops_1_spelling": "INPUT_POISONED",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "admission",
+   "code": "input_refused",
+   "m_ops_1_spelling": "INPUT_REFUSED",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "parse",
+   "code": "invalid_utf8",
+   "m_ops_1_spelling": "INVALID_UTF8",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "abstention",
+   "code": "invented_completion",
+   "m_ops_1_spelling": "INVENTED_COMPLETION",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "config",
+   "code": "mode_mismatch",
+   "m_ops_1_spelling": "MODE_MISMATCH",
+   "status": "FAILED"
+  },
+  {
+   "class_": "config",
+   "code": "mode_unsupported",
+   "m_ops_1_spelling": "MODE_UNSUPPORTED",
+   "status": "FAILED"
+  },
+  {
+   "class_": "parse",
+   "code": "non_finite_number",
+   "m_ops_1_spelling": "NON_FINITE_NUMBER",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "parse",
+   "code": "non_integer_number",
+   "m_ops_1_spelling": "NON_INTEGER_NUMBER",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "admission",
+   "code": "noncanonical_order",
+   "m_ops_1_spelling": "NONCANONICAL_ORDER",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "parse",
+   "code": "not_json",
+   "m_ops_1_spelling": "NOT_JSON",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "parse",
+   "code": "not_json_text",
+   "m_ops_1_spelling": "NOT_JSON_TEXT",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "parse",
+   "code": "oversize",
+   "m_ops_1_spelling": "OVERSIZE",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "provider",
+   "code": "provider_error",
+   "m_ops_1_spelling": "PROVIDER_ERROR",
+   "status": "FAILED"
+  },
+  {
+   "class_": "provider",
+   "code": "provider_provenance_missing",
+   "m_ops_1_spelling": "PROVENANCE_MISSING",
+   "status": "FAILED"
+  },
+  {
+   "class_": "provider",
+   "code": "provider_timeout",
+   "m_ops_1_spelling": "PROVIDER_TIMEOUT",
+   "status": "FAILED"
+  },
+  {
+   "class_": "provider",
+   "code": "provider_truncated",
+   "m_ops_1_spelling": "PROVIDER_TRUNCATED",
+   "status": "FAILED"
+  },
+  {
+   "class_": "config",
+   "code": "record_hash_profile_unsupported",
+   "m_ops_1_spelling": "RECORD_HASH_PROFILE_UNSUPPORTED",
+   "status": "FAILED"
+  },
+  {
+   "class_": "schema",
+   "code": "schema_invalid",
+   "m_ops_1_spelling": "SCHEMA_INVALID",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "source",
+   "code": "source_hash_mismatch",
+   "m_ops_1_spelling": "SOURCE_HASH_MISMATCH",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "source",
+   "code": "source_provenance_missing",
+   "m_ops_1_spelling": "MISSING_PROVENANCE",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "source",
+   "code": "stale_snapshot",
+   "m_ops_1_spelling": "STALE_SNAPSHOT",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "parse",
+   "code": "too_deep",
+   "m_ops_1_spelling": "TOO_DEEP",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "unit_mismatch",
+   "m_ops_1_spelling": "UNIT_MISMATCH",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "unknown_evidence",
+   "m_ops_1_spelling": "UNKNOWN_EVIDENCE",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "schema",
+   "code": "unknown_key",
+   "m_ops_1_spelling": "UNKNOWN_KEY",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "unsupported_claim",
+   "m_ops_1_spelling": "UNSUPPORTED_CLAIM",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "value_mismatch",
+   "m_ops_1_spelling": "VALUE_MISMATCH",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "abstention",
+   "code": "wrong_abstention_reason",
+   "m_ops_1_spelling": "WRONG_ABSTENTION_REASON",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "wrong_entity",
+   "m_ops_1_spelling": "WRONG_ENTITY",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "wrong_fact",
+   "m_ops_1_spelling": "WRONG_FACT",
+   "status": "REJECTED"
+  },
+  {
+   "class_": "claim",
+   "code": "wrong_item",
+   "m_ops_1_spelling": "WRONG_ITEM",
+   "status": "REJECTED"
+  }
+ ],
+ "disambiguation": {
+  "provider_provenance_missing": "a live result lacks evidence of the approved model identity and actual, non-estimated use (provider side; FAILED)",
+  "source_provenance_missing": "the HOST's trusted record hash for a fact is absent (source side; REJECTED at admission, before any provider call)"
+ },
+ "failed_classes": [
+  "provider",
+  "config"
+ ],
+ "flags": [
+  "unnecessary_abstention"
+ ],
+ "reserved_for_deferred_claim_kinds": [
+  "incorrect_comparison",
+  "invalid_comparison_scope",
+  "incomplete_comparison_set",
+  "incorrect_extremum",
+  "omitted_tie",
+  "unsupported_absence",
+  "price_mismatch",
+  "price_class_mismatch"
+ ],
+ "rules": [
+  "REJECTED: the input or the candidate output is at fault. FAILED: infrastructure or configuration is at fault; the model's output was not judged.",
+  "A provider that stopped at its token limit (finish_reason 'length' or ProviderTruncated) is FAILED provider_truncated. Truncated JSON without that signal is indistinguishable from a bad answer and stays REJECTED not_json: the host MUST pass finish_reason.",
+  "Schema enums (reason_codes, LIMITATION.code, status, kind, availability, units) keep their published upper-case spelling; only diagnostics are lower-case."
+ ],
+ "version": "ops-diagnostics.v1"
+}
