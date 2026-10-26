@@ -16,22 +16,26 @@ from urllib.parse import urlparse
 from . import ops_explanation as O
 
 LAB = Path(__file__).resolve().parents[2]
-CASESET = LAB / "contracts" / "ops_explanation_m_ops_2" / "v1" / "caseset.json"
+CASESET_V1 = LAB / "contracts" / "ops_explanation_m_ops_2" / "v1" / "caseset.json"        # historical, renderer v1.0 expectations; kept as evidence of the finding, never run
+CASESET = LAB / "contracts" / "ops_explanation_m_ops_2" / "v2" / "caseset.json"           # same 60 inputs, renderer v2 expectations
 CASESET_SHA_FILE = CASESET.with_name("CASESET.sha256")
-VECTORS = LAB / "contracts" / "ops_explanation_vectors" / "v1"
+VECTORS_V1 = LAB / "contracts" / "ops_explanation_vectors" / "v1"
+VECTORS = LAB / "contracts" / "ops_explanation_vectors" / "v2"
 PROMPT = O.CONTRACT_DIR / "prompt-candidate.json"
 PROFILE_FILE = O.CONTRACT_DIR / "execution-profile-candidate.json"
 UPSTREAM = O.CONTRACT_DIR / "UPSTREAM.sha256"
 
-FROZEN_CASESET_SHA256 = "df0bb15ae47425018a347b0bcee7bceab5df7b8c4848fc2054976caea05c58e6"
+FROZEN_CASESET_V1_SHA256 = "df0bb15ae47425018a347b0bcee7bceab5df7b8c4848fc2054976caea05c58e6"
+FROZEN_CASESET_SHA256 = "8c0420b763d4a04bd997d96e56bd801c3f075f05da59fffaeacba97671df9e91"
 FROZEN_PROMPT_SHA256 = "16f30b537c473fe8a3ed47a53d1c45f2b77aaae72106620599937d851ad4e77d"
-FROZEN_VECTOR_IDENTITY = "14f526e71a5e76eb7f7287e7e313934d9cf32c0c0af6cf0ca8cd21fca2e59e2f"
+FROZEN_VECTOR_IDENTITY_V1 = "14f526e71a5e76eb7f7287e7e313934d9cf32c0c0af6cf0ca8cd21fca2e59e2f"
+FROZEN_VECTOR_IDENTITY = "a73ec5df83296d265242f4a17050797a29ea0ad45001e2af7cf116c41fac76cc"
 FROZEN_TOTAL_CASES = 60
 EVIDENCE_VERSION = "ops-m-ops-2-evidence.v1"
 CASE_EVIDENCE_VERSION = "ops-m-ops-2-case-evidence.v1"
 
 # --- the frozen execution configuration (design section 2). The evaluation deadline is a deliberate, documented deviation from the candidate profile's 150 s call limit.
-CONFIG = dict(model=O.APPROVED_MODEL, model_digest=O.APPROVED_DIGEST, temperature=0, seed=7, max_tokens=512, response_format="json_object", tools=[], tool_choice=None, stream=False, record_hash_profile=O.LIVE_RECORD_HASH_PROFILE,
+CONFIG = dict(model=O.APPROVED_MODEL, model_digest=O.APPROVED_DIGEST, temperature=0, seed=7, max_tokens=512, response_format="json_object", tools=[], tool_choice=None, stream=False, record_hash_profile=O.LIVE_RECORD_HASH_PROFILE, renderer_revision=O.RENDERER_REVISION,
               max_generations_per_case=2, max_repairs_per_case=1, transport_retries=0, call_timeout_s=300, profile_call_limit_s=150, max_age_seconds=86400, now="2026-10-25T12:00:00Z", prompt_sha256=FROZEN_PROMPT_SHA256, caseset_sha256=FROZEN_CASESET_SHA256)
 RUNTIME_PROFILE_SHA256 = hashlib.sha256(O.canonical({k: v for k, v in CONFIG.items() if k != "now"})).hexdigest()
 REPAIRABLE = frozenset({"not_json", "not_json_text", "duplicate_key", "non_finite_number", "non_integer_number", "invalid_utf8", "oversize", "too_deep", "schema_invalid", "unknown_key"})
@@ -205,6 +209,10 @@ def run_preflight(purpose, out_dir, provider=None, base_url="http://127.0.0.1:11
     checks.append(_check("contract_pins", not bad and set(O.PINNED) <= set(pins), bad or "all pinned files match", "UPSTREAM.sha256 and PINNED"))
     ident, bad_vec = vector_identity(vectors)
     checks.append(_check("vector_package_pin", ident == FROZEN_VECTOR_IDENTITY and not bad_vec, ident if not bad_vec else bad_vec, FROZEN_VECTOR_IDENTITY))
+    ident1, bad_vec1 = vector_identity(VECTORS_V1)
+    checks.append(_check("historical_vector_package_v1_preserved", ident1 == FROZEN_VECTOR_IDENTITY_V1 and not bad_vec1, ident1 if not bad_vec1 else bad_vec1, FROZEN_VECTOR_IDENTITY_V1, "v1 is kept for the historical renderer and is never used to render or score"))
+    checks.append(_check("renderer_revision_pin", config["renderer_revision"] == O.RENDERER_REVISION == "ops-renderer-v2.0-tenant-scoped-labels", config["renderer_revision"], "ops-renderer-v2.0-tenant-scoped-labels", "there is no fallback to renderer v1"))
+    checks.append(_check("historical_caseset_v1_preserved", CASESET_V1.exists() and file_sha256(CASESET_V1) == FROZEN_CASESET_V1_SHA256, file_sha256(CASESET_V1) if CASESET_V1.exists() else None, FROZEN_CASESET_V1_SHA256))
     checks.append(_check("record_hash_profile_pin", config["record_hash_profile"] == O.LIVE_RECORD_HASH_PROFILE and O.ADMISSIBLE_LIVE_RECORD_HASH_PROFILES == (O.LIVE_RECORD_HASH_PROFILE,), config["record_hash_profile"], O.LIVE_RECORD_HASH_PROFILE))
     prof = json.loads(Path(profile_file).read_text())
     cfg_ok = (config["model"] == prof["model"] == O.APPROVED_MODEL and config["model_digest"] == prof["model_digest"] == O.APPROVED_DIGEST and config["temperature"] == 0 and config["seed"] == 7 and config["max_tokens"] == prof["output_tokens_per_call"]
@@ -251,7 +259,7 @@ def _raw_fields(text):
     return dict(raw_output=b[:O.MAX_OUTPUT_BYTES].decode("utf-8", errors="replace"), raw_bytes=len(b), raw_sha256=sha256_hex(b))
 
 
-def run_case(case, provider, config=CONFIG, cfg_now=None):
+def run_case(case, provider, config=CONFIG, cfg_now=None, authorized_tenant_scope=None):
     mi, tr = case["model_input"], trusted_hashes(case["model_input"])
     now = cfg_now or config["now"]
     attempts = []
@@ -291,12 +299,13 @@ def run_case(case, provider, config=CONFIG, cfg_now=None):
                     completion_tokens=sum(x["completion_tokens"] or 0 for x in attempts), estimated_usage=not all(isinstance(x["prompt_tokens"], int) and isinstance(x["completion_tokens"], int) for x in attempts), latency_ms=sum(x["latency_ms"] or 0 for x in attempts))
         return final.text, meta, final.finish_reason if final.finish_reason is not None else "missing_finish_reason"      # a reply without a finish reason is a provider failure, never a quiet "stop"
 
-    res = O.explain(mi, candidate, "LIVE_LLM", audit_complete=False, trusted_record_hashes=tr, now=now, max_age_seconds=config["max_age_seconds"], record_hash_profile=config["record_hash_profile"])
+    res = O.explain(mi, candidate, "LIVE_LLM", audit_complete=False, trusted_record_hashes=tr, now=now, max_age_seconds=config["max_age_seconds"], record_hash_profile=config["record_hash_profile"], authorized_tenant_scope=authorized_tenant_scope)
     env, v, rec = res["envelope"], res["verdict"], res["record"]
-    replay = O.deterministic_replay(mi)
+    replay = O.deterministic_replay(mi, authorized_tenant_scope=authorized_tenant_scope)
     served = env["status"] in ("ACCEPTED", "AUDIT_PENDING", "ABSTAINED") and not env["validation_codes"]
     return dict(schema_version=CASE_EVIDENCE_VERSION, case_id=case["id"], index=case["index"], group=case["group"], category=case["category"], tenant=case["tenant"], label=case.get("label"), repeat_of=case.get("repeat_of"),
-                snapshot_sha256=mi["snapshot_sha256"], record_hash_profile=config["record_hash_profile"], mode="LIVE_LLM", provider_kind=provider.kind, attempts=attempts, repair_used=any(a["kind"] == "repair" for a in attempts), request_tools_offered=False,
+                snapshot_sha256=mi["snapshot_sha256"], record_hash_profile=config["record_hash_profile"], renderer_revision=rec.get("renderer_revision"), authorized_tenant_scope=authorized_tenant_scope,
+                display_label_source=("server_table" if (mi["tenant_scope_id"], mi["entities"][0]["id"]) in O.TRUSTED_DISPLAY_LABELS else "generic_fallback"), mode="LIVE_LLM", provider_kind=provider.kind, attempts=attempts, repair_used=any(a["kind"] == "repair" for a in attempts), request_tools_offered=False,
                 envelope=env, validator=dict(status=v["status"], codes=v["codes"], flags=v.get("flags", []), required_reasons=v.get("required_reasons", []), claim_verdicts=v.get("claims", [])), validator_record=dict(rec, raw_output=None), result_invariant_violations=O.result_invariants(env),
                 served_model_result=served, displayed_text=env["rendered_explanation"], displayed_text_sha256=sha256_hex(env["rendered_explanation"].encode()),
                 deterministic_replay=dict(label="DETERMINISTIC_REPLAY", status=replay["envelope"]["status"], mode=replay["envelope"]["mode"], provider=None, rendered_explanation_sha256=sha256_hex(replay["envelope"]["rendered_explanation"].encode()), counted_as_model_success=False))
@@ -322,11 +331,11 @@ def run_evaluation(out_dir, provider, purpose="offline", cases=None, preflight=N
     files["preflight.json"] = _write_json(out / "preflight.json", pre)
     results = []
     for c in todo:
-        ev = run_case(c, provider, config)
+        ev = run_case(c, provider, config, authorized_tenant_scope=doc["tenants"][c["tenant"]])
         results.append(ev)
         files[f"cases/{c['id']}.json"] = _write_json(out / "cases" / f"{c['id']}.json", ev)
     manifest = dict(schema_version=EVIDENCE_VERSION, kind="live-run" if provider.kind == "ollama-live" else "scripted-shim-dry-run", provider_kind=provider.kind, purpose=purpose, caseset_sha256=FROZEN_CASESET_SHA256, caseset_total=doc["total"], cases_run=len(todo), complete=len(todo) == doc["total"],
-                    case_ids=[c["id"] for c in todo], prompt_sha256=config["prompt_sha256"], vector_identity=FROZEN_VECTOR_IDENTITY, contract_pin_set=doc["contract_pin_set"], validator_revision=O.VALIDATOR_REVISION, renderer_revision=O.RENDERER_REVISION, record_hash_profile=config["record_hash_profile"],
+                    case_ids=[c["id"] for c in todo], prompt_sha256=config["prompt_sha256"], vector_identity=FROZEN_VECTOR_IDENTITY, historical_vector_identity_v1=FROZEN_VECTOR_IDENTITY_V1, renderer_revision=config["renderer_revision"], caseset_version=doc["caseset"], caseset_v1_sha256=FROZEN_CASESET_V1_SHA256, contract_pin_set=doc["contract_pin_set"], validator_revision=O.VALIDATOR_REVISION, record_hash_profile=config["record_hash_profile"],
                     config={k: v for k, v in config.items()}, runtime_profile_sha256=RUNTIME_PROFILE_SHA256, model=config["model"], model_digest_attested=provider.attested_digest, provider_requests=provider.requests, environment=environment or {}, files=files, tools_offered=False,
                     workflow_fingerprint=dict(mode="structural", note="the harness holds no workflow, database, approval or procurement handle; see tests/test_ops_m_ops_2_harness.py::test_harness_imports_no_workflow_database_or_platform_module"), runner_wall_seconds=round(time.time() - t0, 3))
     mh = _write_json(out / "run-manifest.json", manifest)

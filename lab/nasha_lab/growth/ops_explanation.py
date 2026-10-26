@@ -16,7 +16,8 @@ from pathlib import Path
 from . import model_boundary as MB
 
 VALIDATOR_REVISION = "ops-validator-v1.1-m-ops-contract-1"
-RENDERER_REVISION = "ops-renderer-v1.0-m-ops-1"
+RENDERER_REVISION = "ops-renderer-v2.0-tenant-scoped-labels"
+HISTORICAL_RENDERER_REVISION_V1 = "ops-renderer-v1.0-m-ops-1"      # M-OPS-1 / golden vectors v1 / frozen case set v1 only; unreachable from explain()
 PROFILE = "ops-explanation-v1-milestone-profile"
 CANONICAL_JSON_PROFILE = "canonical-json.v1"
 DIAGNOSTICS_VERSION = "ops-diagnostics.v1"
@@ -552,11 +553,27 @@ def _units(n):
     return f"{n} unit" if abs(n) == 1 else f"{n} units"
 
 
-def render_answer(model_input):
-    """The explanation for a VERIFIED answer, computed from the snapshot itself (never from the candidate's claimed values)."""
-    _, item, ex, co = required_reasons(model_input)
-    alias = html.escape(_by_id(model_input["entities"])[item]["alias"])
-    e, c = ex["value"], co["value"]
+# ---- renderer v2 (D-R2): the displayed item label comes ONLY from this server-owned table, keyed by (authorized tenant scope, inventory item id). The snapshot's alias is never read for wording.
+GENERIC_ITEM_LABEL = "the inventory item"
+TRUSTED_DISPLAY_LABELS = {      # PLACEHOLDER tenant scope ids (the golden vectors' and the M-OPS-2 case set's); the host replaces this table with its own authoritative mapping
+    ("00000000-0000-4000-8000-0000000000a1", "item:packaging"): "Synthetic packaging",
+    ("00000000-0000-4000-8000-0000000000b2", "item:packaging"): "Synthetic towels",
+}
+
+
+class RendererAuthorizationError(RuntimeError):
+    """The scope the host authorized for this request is not the snapshot's tenant scope. It is never turned into a generic label: explain() reports REJECTED input_refused + cross_tenant_reference."""
+
+
+def display_label(model_input, item_id, authorized_tenant_scope=None, labels=None):
+    """-> the trusted label for (authorized scope, item id), or exactly GENERIC_ITEM_LABEL when the server table has none. Never the alias, the item id, source text or any sanitized copy of them."""
+    scope = model_input["tenant_scope_id"]
+    if authorized_tenant_scope is not None and authorized_tenant_scope != scope:
+        raise RendererAuthorizationError("the authorized tenant scope does not match the snapshot")
+    return (TRUSTED_DISPLAY_LABELS if labels is None else labels).get((scope, item_id), GENERIC_ITEM_LABEL)
+
+
+def _answer_text(label, e, c):
     d = e - c
     if d > 0:
         rel = f"The counted quantity is {_units(d)} below expected."
@@ -564,9 +581,21 @@ def render_answer(model_input):
         rel = f"The counted quantity is {_units(-d)} above expected."
     else:
         rel = "The counted quantity equals the expected quantity."
-    text = f"In this synthetic snapshot, the expected quantity of {alias} is {_units(e)} and the counted quantity is {_units(c)}. {rel} These scenario assumptions do not establish a physical root cause."
+    text = f"In this synthetic snapshot, the expected quantity of {html.escape(label)} is {_units(e)} and the counted quantity is {_units(c)}. {rel} These scenario assumptions do not establish a physical root cause."
     assert len(text) <= MAX_RENDERED_CHARS
     return text
+
+
+def render_answer(model_input, authorized_tenant_scope=None, labels=None):
+    """The explanation for a VERIFIED answer (renderer v2), computed from the snapshot's numbers and the server's label table (never from the candidate's claimed values, never from the alias)."""
+    _, item, ex, co = required_reasons(model_input)
+    return _answer_text(display_label(model_input, item, authorized_tenant_scope, labels), ex["value"], co["value"])
+
+
+def _render_answer_historical_v1(model_input):
+    """Renderer v1.0 (prints the escaped alias). KEPT ONLY to reproduce golden vectors v1 and case set v1 byte for byte; explain() cannot reach it and nothing falls back to it."""
+    _, item, ex, co = required_reasons(model_input)
+    return _answer_text(_by_id(model_input["entities"])[item]["alias"], ex["value"], co["value"])
 
 
 def render_abstention(verdict):
@@ -581,9 +610,9 @@ def provider_ok(p):
             and p.get("estimated_usage") is False and isinstance(p.get("runtime_profile_sha256"), str) and not schema_errors(SCHEMAS["result-envelope.schema.json"]["properties"]["provider"], p))
 
 
-def accepted_result_sha256(model_input, output, rendered):
+def accepted_result_sha256(model_input, output, rendered, renderer_revision=None):
     return sha256_hex(canonical(dict(schema_version=OUTPUT_VERSION, analysis_id=model_input["analysis_id"], snapshot_sha256=model_input["snapshot_sha256"], claims=output["claims"], rendered_explanation=rendered,
-                                     validator_revision=VALIDATOR_REVISION, renderer_revision=RENDERER_REVISION)))
+                                     validator_revision=VALIDATOR_REVISION, renderer_revision=renderer_revision or RENDERER_REVISION)))
 
 
 def make_envelope(model_input, status, mode, codes=(), output=None, rendered="", provider=None, audit_complete=False, accepted_hash=None):
@@ -624,13 +653,27 @@ class ProviderTruncated(Exception):
     """Raised by a host adapter when the provider stopped at its token limit: the output is incomplete because of configuration or capacity, not because the model made an invalid claim. -> FAILED provider_truncated."""
 
 
-def explain(model_input, candidate, mode="DETERMINISTIC_REPLAY", audit_complete=False, foreign_scopes=(), foreign_ids=(), rules=RULES, trusted_record_hashes=None, now=None, max_age_seconds=None, record_hash_profile=LIVE_RECORD_HASH_PROFILE):
+def explain(model_input, candidate, mode="DETERMINISTIC_REPLAY", audit_complete=False, foreign_scopes=(), foreign_ids=(), rules=RULES, trusted_record_hashes=None, now=None, max_age_seconds=None, record_hash_profile=LIVE_RECORD_HASH_PROFILE, authorized_tenant_scope=None, display_labels=None):
+    """Renderer v2 pipeline (the only one reachable by callers). `authorized_tenant_scope` is the scope the HOST authorized for this request: when given and different from the snapshot's, the result is REJECTED input_refused + cross_tenant_reference before any provider call (never a generic-label fallback). `display_labels` is the HOST's (scope, item id) -> label table; it defaults to TRUSTED_DISPLAY_LABELS and can never come from the snapshot, the model or a request field."""
+    return _explain(model_input, candidate, mode, audit_complete, foreign_scopes, foreign_ids, rules, trusted_record_hashes, now, max_age_seconds, record_hash_profile, authorized_tenant_scope, display_labels, False)
+
+
+def explain_historical_v1(model_input, candidate, mode="DETERMINISTIC_REPLAY", audit_complete=False, foreign_scopes=(), foreign_ids=(), rules=RULES, trusted_record_hashes=None, now=None, max_age_seconds=None, record_hash_profile=LIVE_RECORD_HASH_PROFILE):
+    """Reproduces renderer v1.0 results ONLY to regenerate/verify golden vectors v1 and case set v1 (historical evidence). Not used by any pipeline; a test fails if production code references it."""
+    return _explain(model_input, candidate, mode, audit_complete, foreign_scopes, foreign_ids, rules, trusted_record_hashes, now, max_age_seconds, record_hash_profile, None, None, True)
+
+
+def _explain(model_input, candidate, mode, audit_complete, foreign_scopes, foreign_ids, rules, trusted_record_hashes, now, max_age_seconds, record_hash_profile, authorized_tenant_scope, display_labels, historical_v1):
     """Run one explanation. `record_hash_profile` is the HOST's pin; anything other than record-hash.v1 (v0, unknown) is FAILED record_hash_profile_unsupported before the snapshot is even read. `candidate(model_input)` returns raw output text/bytes/dict, or (raw, provider_metadata), or (raw, provider_metadata, finish_reason); it is NOT called when the input is refused.
     Admission (before any provider call) checks the snapshot, the record hashes under the pinned record-hash.v1, the host's trusted record hashes (REQUIRED for LIVE_LLM) and, when `now` and `max_age_seconds` are given, staleness.
     A finish_reason other than "stop" (or a raised ProviderTruncated) is FAILED, never an ordinary rejection. A failure is a failure: nothing is substituted. The labelled deterministic alternative is `deterministic_replay`. -> dict(envelope, verdict, record)."""
-    record = dict(validator_revision=VALIDATOR_REVISION, renderer_revision=RENDERER_REVISION, profile=PROFILE, snapshot_sha256=model_input.get("snapshot_sha256"), refused_before_provider=False, raw_output=None, raw_chars=None, raw_sha256=None)
+    record = dict(validator_revision=VALIDATOR_REVISION, renderer_revision=HISTORICAL_RENDERER_REVISION_V1 if historical_v1 else RENDERER_REVISION, profile=PROFILE, snapshot_sha256=model_input.get("snapshot_sha256"), refused_before_provider=False, raw_output=None, raw_chars=None, raw_sha256=None)
     if record_hash_profile != LIVE_RECORD_HASH_PROFILE:
         return _failed(model_input if isinstance(model_input, dict) else {}, mode, "record_hash_profile_unsupported", record)
+    if authorized_tenant_scope is not None and (not isinstance(model_input, dict) or model_input.get("tenant_scope_id") != authorized_tenant_scope):
+        record["refused_before_provider"] = True
+        codes = ["input_refused", "cross_tenant_reference"]
+        return dict(envelope=_safe_envelope(model_input, "REJECTED", mode, codes, rendered=REJECTED_TEXT), verdict=dict(status="REJECTED", codes=sorted(codes), flags=[], claims=[], required_reasons=[], output=None), record=record)
     in_codes = check_input(model_input, rules, now, max_age_seconds, trusted_record_hashes)
     if mode == "LIVE_LLM" and trusted_record_hashes is None:
         in_codes = sorted(set(in_codes) | {"source_provenance_missing"})       # a live explanation needs the host's own record hashes; the snapshot's self-consistency is not enough
@@ -673,8 +716,8 @@ def explain(model_input, candidate, mode="DETERMINISTIC_REPLAY", audit_complete=
     elif v["status"] == "ABSTAIN_VERIFIED":
         env = make_envelope(model_input, "ABSTAINED" if audit_complete else "AUDIT_PENDING", mode, (), v["output"], render_abstention(v), meta, audit_complete)
     else:
-        text = render_answer(model_input)
-        env = make_envelope(model_input, "ACCEPTED" if audit_complete else "AUDIT_PENDING", mode, (), v["output"], text, meta, audit_complete, accepted_result_sha256(model_input, v["output"], text))
+        text = _render_answer_historical_v1(model_input) if historical_v1 else render_answer(model_input, authorized_tenant_scope, display_labels)
+        env = make_envelope(model_input, "ACCEPTED" if audit_complete else "AUDIT_PENDING", mode, (), v["output"], text, meta, audit_complete, accepted_result_sha256(model_input, v["output"], text, HISTORICAL_RENDERER_REVISION_V1 if historical_v1 else None))
     return dict(envelope=env, verdict=v, record=record)
 
 
@@ -706,9 +749,9 @@ def reference_output(model_input):
         dict(claim_id="c4", kind="LIMITATION", code="CAUSE_NOT_ESTABLISHED", fact_ids=sorted([ex["id"], co["id"]]))])
 
 
-def deterministic_replay(model_input, audit_complete=False):
+def deterministic_replay(model_input, audit_complete=False, authorized_tenant_scope=None, display_labels=None):
     """The explicitly labelled, scripted path (mode DETERMINISTIC_REPLAY, provider null). It is NOT a model result and is never counted as one."""
-    return explain(model_input, lambda mi: reference_output(mi), "DETERMINISTIC_REPLAY", audit_complete)
+    return explain(model_input, lambda mi: reference_output(mi), "DETERMINISTIC_REPLAY", audit_complete, authorized_tenant_scope=authorized_tenant_scope, display_labels=display_labels)
 
 
 # ------------------------------------------------------------------ snapshot builder for the published Phase 4 scenarios (test and replay support; the facts are hypothetical scenario assumptions)

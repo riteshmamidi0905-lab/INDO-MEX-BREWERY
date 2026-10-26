@@ -230,6 +230,8 @@ def test_the_published_codex_contracts_are_untouched_by_the_alignment():
 def test_the_vector_package_is_exactly_what_the_generator_produces():
     r = subprocess.run([sys.executable, "tools/ops_golden_vectors.py", "--check"], cwd=LAB, env={"PYTHONPATH": str(LAB), "PATH": "/usr/bin:/bin"})
     assert r.returncode == 0, "contracts/ops_explanation_vectors/v1 is stale: run tools/ops_golden_vectors.py"
+    r2 = subprocess.run([sys.executable, "tools/ops_golden_vectors.py", "--version", "2", "--check"], cwd=LAB, env={"PYTHONPATH": str(LAB), "PATH": "/usr/bin:/bin"})
+    assert r2.returncode == 0, "contracts/ops_explanation_vectors/v2 is stale: run tools/ops_golden_vectors.py --version 2"
 
 
 def verify(directory):

@@ -76,7 +76,8 @@ def test_the_published_example_answer_is_accepted_as_a_HISTORICAL_vector_and_nev
     inp = json.load(open(CONTRACTS / "examples" / "model-input.json")); out = json.load(open(CONTRACTS / "examples" / "model-output.json"))
     v = O.validate_historical_vector(json.dumps(out), inp)
     assert v["status"] == "ANSWER_VERIFIED" and v["historical_vector"] is True and v["codes"] == []
-    assert O.render_answer(inp) == "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause."
+    assert O.render_answer(inp) == "In this synthetic snapshot, the expected quantity of the inventory item is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause.", "renderer v2: no server mapping for this tenant, so the generic label (the alias is never displayed)"
+    assert O.render_answer(inp, labels={(inp["tenant_scope_id"], "item:packaging"): "Synthetic packaging"}) == "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause."
     live = O.validate_output(json.dumps(out), inp)
     assert live["status"] == "REJECTED" and live["codes"] == ["input_refused", "source_hash_mismatch"], "its record hashes are record-hash.v0: not admissible for a live snapshot"
     r = run(inp, json.dumps(out), audit_complete=True)
@@ -180,21 +181,23 @@ def test_the_explanation_depends_only_on_the_snapshot_never_on_the_candidates_cl
         assert r["envelope"]["status"] == "ACCEPTED" and r["envelope"]["rendered_explanation"] == want
 
 
-def test_the_rendered_text_is_composed_only_of_template_text_snapshot_integers_and_the_escaped_alias():
+def test_the_rendered_text_is_composed_only_of_template_text_snapshot_integers_and_the_trusted_label():
     for key in ("gap", "budget", "nogap"):
         mi = E.IN[key]
         text = run(mi, O.reference_output(mi), audit_complete=True)["envelope"]["rendered_explanation"]
         e = next(f["value"] for f in mi["facts"] if f["field"] == "expected_units"); c = next(f["value"] for f in mi["facts"] if f["field"] == "counted_units")
-        assert text.startswith(f"In this synthetic snapshot, the expected quantity of {mi['entities'][0]['alias']} is {e} units and the counted quantity is {c} units.")
+        assert text.startswith(f"In this synthetic snapshot, the expected quantity of {O.TRUSTED_DISPLAY_LABELS[(mi['tenant_scope_id'], mi['entities'][0]['id'])]} is {e} units and the counted quantity is {c} units.")
         assert text.endswith("These scenario assumptions do not establish a physical root cause.") and len(text) <= O.MAX_RENDERED_CHARS
     assert "equals the expected quantity" in O.render_answer(E.IN["nogap"]) and "below expected" in O.render_answer(E.IN["gap"])
     ahead = copy.deepcopy(E.IN["gap"]); [f.update(value=150) for f in ahead["facts"] if f["field"] == "counted_units"]
     assert "50 units above expected" in O.render_answer(ahead)
 
 
-def test_a_hostile_alias_is_escaped_if_it_ever_reaches_the_renderer():
+def test_a_hostile_alias_never_reaches_the_rendered_text_at_all():
+    """Renderer v2 supersedes the v1 escaping test: the alias is not read for wording, so there is nothing to escape (a trusted LABEL is still escaped; see tests/test_ops_renderer_v2.py)."""
     mi = copy.deepcopy(E.IN["gap"]); mi["entities"][0]["alias"] = "<b>x</b> & y"
-    assert "<b>" not in O.render_answer(mi) and "&lt;b&gt;x&lt;/b&gt; &amp; y" in O.render_answer(mi)
+    text = O.render_answer(mi)
+    assert "<b>" not in text and "&amp;" not in text and "&lt;" not in text and "Synthetic packaging" in text
 
 
 def test_rendering_and_the_result_hash_are_deterministic_across_processes_and_hash_seeds():
@@ -365,7 +368,7 @@ def test_gate_zero_accepted_invalid_claims():
 
 def test_gate_the_committed_evidence_equals_a_fresh_run():
     r = subprocess.run([sys.executable, "tools/ops_explanation_eval.py", "--check"], cwd=LAB, env={**os.environ, "PYTHONPATH": str(LAB)})
-    assert r.returncode == 0, "results/ops-explanation/m-ops-1-offline-matrix.json is stale: run tools/ops_explanation_eval.py"
+    assert r.returncode == 0, "results/ops-explanation/m-ops-contract-2-offline-matrix.json is stale: run tools/ops_explanation_eval.py"
 
 
 def test_negative_control_a_behaviour_neutral_edit_is_not_flagged_as_a_killed_mutant():

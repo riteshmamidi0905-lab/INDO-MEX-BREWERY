@@ -57,3 +57,7 @@ See the delivery report: perfect run 60/60 cases, 60 requests, computed `DEMONST
 ## Running it (only after a separate, explicit approval)
 
 Dispatch `m-ops-2-live` with `confirm = RUN_M_OPS_2_ONCE`. It runs the frozen-set check and these tests, a scripted dry run, installs Ollama, pulls the named model, **verifies the digest and the server's effective configuration before any inference**, runs the 60 cases, scores them with the independent scorer, prints `M_OPS_2_SCORE_BEGIN/END`, and uploads `/tmp/evidence`. Expected runtime ~1-3.5 h (job cap 5.5 h); see the design, section 5.
+
+## Update: renderer v2 (design amendment 1.1)
+
+The harness now runs the **case set v2** (`8c0420b7…9e91`) under **renderer `ops-renderer-v2.0-tenant-scoped-labels`** and passes the host-authorized tenant scope (taken from the case set's tenant table, not from the snapshot) to `explain`. The preflight additionally checks golden vectors v2 (`a73ec5df…76cc`), the preserved v1 package (`14f526e7…2e59e2f`), the preserved case set v1 (`df0bb15a…`) and the renderer pin; there is no fallback to renderer v1. The scorer gains gate **S-5b** and the `output_integrity` block that counts model-originated and renderer-originated failures separately (see `OPS-EXPLANATION-M-OPS-2-DESIGN-AMENDMENT-1.1.md`). The S-2/S-6 wording in "Deviations" above is superseded by the user-approved interpretations recorded there.

@@ -59,9 +59,11 @@ def test_frozen_pins_hold_and_a_clean_preflight_passes(tmp_path):
     pre = H.run_preflight("offline", tmp_path / "o", provider=H.ScriptedProvider(S.make_script(DOC)), **ROOMY)
     assert pre["ok"], [c for c in pre["checks"] if not c["ok"]]
     assert {c["name"] for c in pre["checks"]} >= {"disk_free_bytes", "memory_available_bytes", "model_digest", "dataset_integrity", "prompt_integrity", "contract_pins", "vector_package_pin", "provider_configuration", "record_hash_profile_pin", "output_directory_unused"}
-    assert H.file_sha256(H.CASESET) == H.FROZEN_CASESET_SHA256 == "df0bb15ae47425018a347b0bcee7bceab5df7b8c4848fc2054976caea05c58e6"
+    assert H.file_sha256(H.CASESET) == H.FROZEN_CASESET_SHA256 == "8c0420b763d4a04bd997d96e56bd801c3f075f05da59fffaeacba97671df9e91"
+    assert H.file_sha256(H.CASESET_V1) == H.FROZEN_CASESET_V1_SHA256 == "df0bb15ae47425018a347b0bcee7bceab5df7b8c4848fc2054976caea05c58e6", "the frozen v1 evidence is preserved"
     assert H.file_sha256(H.PROMPT) == H.FROZEN_PROMPT_SHA256 == "16f30b537c473fe8a3ed47a53d1c45f2b77aaae72106620599937d851ad4e77d"
-    assert H.vector_identity()[0] == H.FROZEN_VECTOR_IDENTITY and H.vector_identity()[1] == []
+    assert H.vector_identity()[0] == H.FROZEN_VECTOR_IDENTITY == "a73ec5df83296d265242f4a17050797a29ea0ad45001e2af7cf116c41fac76cc" and H.vector_identity()[1] == []
+    assert H.vector_identity(H.VECTORS_V1) == ("14f526e71a5e76eb7f7287e7e313934d9cf32c0c0af6cf0ca8cd21fca2e59e2f", []), "golden vectors v1 are preserved"
 
 
 @pytest.mark.parametrize("what,kw", [

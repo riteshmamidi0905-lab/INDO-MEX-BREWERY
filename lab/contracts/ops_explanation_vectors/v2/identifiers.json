@@ -1,0 +1,84 @@
+{
+ "analysis_id": "00000000-0000-4000-8000-000000000001",
+ "approved_model": {
+  "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+  "name": "qwen2.5:7b-instruct"
+ },
+ "authorization_rule": "when the host's authorized tenant scope differs from the snapshot's tenant_scope_id the result is REJECTED with input_refused + cross_tenant_reference before any provider call; it is never a generic-label fallback",
+ "canonical_json": "canonical-json.v1",
+ "contract_pin_set": {
+  "files": {
+   "contracts/model-input.schema.json": "3668b2f080546ca0f1ee5baa4ad9509939efd7a9fad53bc71f8cf336cc71deb0",
+   "contracts/model-output.schema.json": "5414cd904bd2b109be24be52d5ba6d348b7a09d9b0e1829a19fcb06c8bffbccc",
+   "contracts/request-envelope.schema.json": "6ff220a6c64b21a64c8020adb9089ffa0b2d71eb92cc0e92f79e5e1fb911245d",
+   "contracts/result-envelope.schema.json": "7796703418002374f9208b8367bbcc36b2a22312e4286534162bd180e6af0fff",
+   "examples/model-input.json": "d66ce7c118a2347e09fb7579ef82dd547ee4205d785392a55efc3717402ba941",
+   "examples/model-output.json": "ac6a7968ab228cf51e91da00667d9a836c78ba1193b541455f0d07dbd6cdbb80",
+   "execution-profile-candidate.json": "f713b9c35b8d65faf1caf38edb54d246bc3f0d4dee074ed1fbb4aa597aa87a8f",
+   "prompt-candidate.json": "16f30b537c473fe8a3ed47a53d1c45f2b77aaae72106620599937d851ad4e77d"
+  },
+  "id": "codex-phase5-spec@b064414b0773681c9b2af046e1458ce0c1c7f343"
+ },
+ "diagnostics": "ops-diagnostics.v1",
+ "display_labels": [
+  {
+   "item_id": "item:packaging",
+   "label": "Synthetic packaging",
+   "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1"
+  },
+  {
+   "item_id": "item:packaging",
+   "label": "Synthetic towels",
+   "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2"
+  }
+ ],
+ "generic_item_label": "the inventory item",
+ "label_rule": "the displayed item label is resolved ONLY from display_labels by (authorized tenant scope, inventory item id); the snapshot alias is never read for wording; an absent mapping renders exactly generic_item_label; never the alias, the item id, source text or a sanitized copy",
+ "limits": {
+  "max_input_bytes": 16384,
+  "max_json_depth": 8,
+  "max_output_bytes": 12288,
+  "max_rendered_chars": 2000
+ },
+ "milestone_profile": "ops-explanation-v1-milestone-profile",
+ "record_hash": {
+  "historical_golden_vector_only": "record-hash.v0",
+  "live": "record-hash.v1"
+ },
+ "record_hash_v0_preimage_keys": [
+  "subject_id",
+  "field",
+  "value",
+  "unit"
+ ],
+ "record_hash_v1_preimage_keys": [
+  "profile",
+  "tenant_scope_id",
+  "source_kind",
+  "source_ref",
+  "record_id",
+  "source_revision",
+  "subject_id",
+  "inventory_item_id",
+  "field",
+  "availability",
+  "value",
+  "unit",
+  "as_of"
+ ],
+ "renderer_revision": "ops-renderer-v2.0-tenant-scoped-labels",
+ "schema_versions": {
+  "input": "ops-explanation-input.v1",
+  "output": "ops-explanation-output.v1",
+  "result": "ops-explanation-result.v1"
+ },
+ "snapshot_hash": "sha256 of canonical-json.v1 of {as_of, entities, facts, comparison_groups, completeness}; collections sorted by id, referenced id arrays sorted (Codex specification 5.2)",
+ "supersedes": "ops-golden-vectors.v1 (renderer ops-renderer-v1.0-m-ops-1), which stays valid and immutable for the historical renderer",
+ "tenants": {
+  "meridian-fitness": "00000000-0000-4000-8000-0000000000b2",
+  "nasha-brewery": "00000000-0000-4000-8000-0000000000a1"
+ },
+ "validator_revision": "ops-validator-v1.1-m-ops-contract-1",
+ "vector_package": "ops-golden-vectors.v2",
+ "workflow_id": "run-0000000001"
+}

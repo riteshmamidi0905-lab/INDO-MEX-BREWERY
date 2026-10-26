@@ -1,5 +1,5 @@
 name: m-ops-2-live
-# MANUAL ONLY (workflow_dispatch). One controlled evaluation of the digest-pinned qwen2.5:7b-instruct on the FROZEN 60-case M-OPS-2 set (design: docs/growth-os/OPS-EXPLANATION-M-OPS-2-EVALUATION-DESIGN.md, commit ae6e0ec).
+# MANUAL ONLY (workflow_dispatch). One controlled evaluation of the digest-pinned qwen2.5:7b-instruct on the FROZEN 60-case M-OPS-2 set (design: docs/growth-os/OPS-EXPLANATION-M-OPS-2-EVALUATION-DESIGN.md, commit ae6e0ec, as amended by OPS-EXPLANATION-M-OPS-2-DESIGN-AMENDMENT-1.1.md: case set v2 and renderer v2 with trusted display labels; renderer v1 is never used).
 # It must NOT be dispatched without a separate, explicit approval; the `confirm` input exists so a stray click cannot start inference. Read-only permissions: nothing is pushed, published, deployed, approved or ordered; no secrets; no database; no THE WEIR/platform install.
 # The model's output reaches only the pure validator and the shared renderer. Results are scored by tools/ops_m_ops_2_score.py (standard library only). No verdict here is a PASS and none changes Phase 2 (REQUIRES_REVIEW).
 on:
@@ -49,8 +49,13 @@ jobs:
         working-directory: lab
         run: |
           set -eu
-          python tools/ops_m_ops_2_caseset.py --check
-          python -m pytest tests/test_ops_m_ops_2_caseset.py tests/test_ops_m_ops_2_harness.py -q
+          python tools/ops_m_ops_2_caseset.py --version 1 --check
+          python tools/ops_m_ops_2_caseset.py --version 2 --check
+          python tools/ops_golden_vectors.py --check
+          python tools/ops_golden_vectors.py --version 2 --check
+          python3 contracts/ops_explanation_vectors/v1/verify_vectors.py
+          python3 contracts/ops_explanation_vectors/v2/verify_vectors.py
+          python -m pytest tests/test_ops_m_ops_2_caseset.py tests/test_ops_m_ops_2_harness.py tests/test_ops_renderer_v2.py -q
           python tools/ops_m_ops_2_run.py --out /tmp/dryrun --shim mixed --purpose offline
           python tools/ops_m_ops_2_score.py /tmp/dryrun > /tmp/dryrun-score.json
           python -c "import json; d=json.load(open('/tmp/dryrun-score.json')); print('DRY_RUN_VERDICT', d['verdict'], d['computed_verdict'])"

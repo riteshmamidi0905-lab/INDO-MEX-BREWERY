@@ -11,7 +11,9 @@ LAB = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(LAB))
 from nasha_lab.growth import ops_explanation as O  # noqa: E402
 
-OUT = LAB / "contracts" / "ops_explanation_m_ops_2" / "v1" / "caseset.json"
+VERSION = 2 if "--version" in sys.argv and sys.argv[sys.argv.index("--version") + 1] == "2" else 1       # v1: FROZEN with renderer v1.0 (historical evidence, immutable); v2: same inputs, renderer v2 expected renderings
+OUT = LAB / "contracts" / "ops_explanation_m_ops_2" / f"v{VERSION}" / "caseset.json"
+RENDERER_REV = O.HISTORICAL_RENDERER_REVISION_V1 if VERSION == 1 else O.RENDERER_REVISION
 TENANTS = {"nasha-brewery": "00000000-0000-4000-8000-0000000000a1", "meridian-fitness": "00000000-0000-4000-8000-0000000000b2"}      # placeholders, as in the vector package
 ALIAS = {"nasha-brewery": "Synthetic packaging", "meridian-fitness": "Synthetic towels"}
 OTHER = {"nasha-brewery": "meridian-fitness", "meridian-fitness": "nasha-brewery"}
@@ -67,7 +69,7 @@ def build():
     def add(group, category, tenant, mi, markers=None, foreign=None, repeat_of=None, label=None):
         nonlocal n
         ref = O.reference_output(mi); reasons = sorted(O.required_reasons(mi)[0])
-        rendered = O.render_answer(mi) if ref["status"] == "ANSWER" else O.render_abstention(dict(flags=[], required_reasons=reasons))
+        rendered = (O._render_answer_historical_v1(mi) if VERSION == 1 else O.render_answer(mi, TENANTS[tenant])) if ref["status"] == "ANSWER" else O.render_abstention(dict(flags=[], required_reasons=reasons))
         assert not O.check_input(mi), (category, O.check_input(mi))                      # every case is admitted: it genuinely reaches the provider
         cases.append(dict(id=f"c{len(cases) + 1:02d}-{group}-{category}-{tenant.split('-')[0]}" + (f"-{label}" if label else ""), index=len(cases) + 1, group=group, category=category, tenant=tenant, label=label, model_input=mi,
                           snapshot_sha256=mi["snapshot_sha256"], expected_status=ref["status"], expected_reasons=reasons, reference_output_sha256=O.sha256_hex(O.canonical(ref)), expected_rendered_explanation=rendered,
@@ -112,9 +114,12 @@ def summary(cases):
 def render():
     cases = build()
     groups = {g: sum(1 for c in cases if c["group"] == g) for g in ("supported", "abstention", "injection_exposed", "cross_tenant_canary", "repeatability")}
-    doc = dict(caseset="ops-m-ops-2-caseset.v1", total=len(cases), groups=groups, composition=summary(cases), tenants=TENANTS, validator_revision=O.VALIDATOR_REVISION, renderer_revision=O.RENDERER_REVISION, record_hash_profile=O.LIVE_RECORD_HASH_PROFILE,
+    doc = dict(caseset=f"ops-m-ops-2-caseset.v{VERSION}", total=len(cases), groups=groups, composition=summary(cases), tenants=TENANTS, validator_revision=O.VALIDATOR_REVISION, renderer_revision=RENDERER_REV, record_hash_profile=O.LIVE_RECORD_HASH_PROFILE,
                prompt_sha256=hashlib.sha256((O.CONTRACT_DIR / "prompt-candidate.json").read_bytes()).hexdigest(), contract_pin_set="codex-phase5-spec@b064414b0773681c9b2af046e1458ce0c1c7f343",
                note="HYPOTHETICAL scenario assumptions for two synthetic businesses. Published Phase 4 values: count-gap 100/40, budget-risk 100/20, no-gap 100/100, missing-count 100/None. Repeatability cases are outside every rate. Nothing here is model output.", cases=cases)
+    if VERSION == 2:
+        doc.update(derived_from=dict(caseset_v1_sha256="df0bb15ae47425018a347b0bcee7bceab5df7b8c4848fc2054976caea05c58e6", unchanged=["model_input", "snapshot_sha256", "reference_output_sha256", "expected_status", "expected_reasons", "payload_markers", "foreign", "repeat_of", "id", "index", "group", "category", "tenant", "label"], changed=["expected_rendered_explanation"]),
+                   display_labels=[dict(tenant_scope_id=k[0], item_id=k[1], label=v) for k, v in sorted(O.TRUSTED_DISPLAY_LABELS.items())], generic_item_label=O.GENERIC_ITEM_LABEL)
     return json.dumps(doc, indent=1, sort_keys=True, ensure_ascii=False) + "\n"
 
 
