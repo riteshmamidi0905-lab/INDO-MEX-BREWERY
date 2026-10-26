@@ -14,6 +14,9 @@ from ._ops_alignment.nasha_lab.growth import ops_explanation as contract
 
 RECORD_HASH_PROFILE = 'record-hash.v1'
 OUTPUT_VERSION = 'ops-explanation-output.v1'
+RENDERER_REVISION = 'ops-renderer-v2.0-tenant-scoped-labels'
+LABEL_POLICY_REVISION = 'amara-tenant-item-labels.v1'
+VECTOR_V2_IDENTITY = 'a73ec5df83296d265242f4a17050797a29ea0ad45001e2af7cf116c41fac76cc'
 ALIASES = MappingProxyType({'nasha-brewery':'Synthetic packaging','meridian-fitness':'Synthetic towels'})
 EFFECTS = ('PURCHASE','INVENTORY_MUTATION','SUPPLIER_CONTACT','APPROVAL','FINANCIAL_MUTATION','ARBITRARY_TOOL')
 
@@ -61,6 +64,8 @@ class OfflineConfig:
     record_hash_profile: str = RECORD_HASH_PROFILE
 
     def __post_init__(self):
+        if contract.RENDERER_REVISION!=RENDERER_REVISION:
+            raise AdapterRefused('mode_mismatch',status='FAILED')
         if self.record_hash_profile != RECORD_HASH_PROFILE:
             raise AdapterRefused('record_hash_profile_unsupported',status='FAILED')
         scopes=dict(self.tenant_scopes)
@@ -74,10 +79,19 @@ class OfflineConfig:
         object.__setattr__(self,'tenant_scopes',MappingProxyType(scopes))
 
     @property
+    def display_labels(self):
+        # Values come only from reviewed server constants; no input alias is inspected.
+        return MappingProxyType({(scope,'item:packaging'):ALIASES[tenant]
+                                 for tenant,scope in self.tenant_scopes.items()})
+
+    @property
     def sha256(self):
         return sha(dict(tenant_scopes=dict(self.tenant_scopes),source_as_of=self.source_as_of,
                         max_age_seconds=self.max_age_seconds,record_hash_profile=self.record_hash_profile,
-                        validator_revision=contract.VALIDATOR_REVISION,renderer_revision=contract.RENDERER_REVISION))
+                        validator_revision=contract.VALIDATOR_REVISION,renderer_revision=RENDERER_REVISION,
+                        vector_identity=VECTOR_V2_IDENTITY,label_policy_revision=LABEL_POLICY_REVISION,
+                        display_labels=[dict(scope=scope,item_id=item,label=label)
+                                        for (scope,item),label in sorted(self.display_labels.items())]))
 
 
 @dataclass(frozen=True)
@@ -134,6 +148,8 @@ def model_input(config, source, *, tenant, analysis_id, workflow_id, now):
     """Pure transformation. workflow_id must be supplied by a trusted owned-run resolver.
     Test fixtures may supply fixed UUIDs/run IDs; this function never creates a run.
     """
+    if contract.RENDERER_REVISION!=RENDERER_REVISION:
+        raise AdapterRefused('mode_mismatch',status='FAILED')
     if source.record_hash_profile!=RECORD_HASH_PROFILE:
         raise AdapterRefused('record_hash_profile_unsupported',status='FAILED')
     if tenant!=source.tenant or config.tenant_scopes.get(tenant)!=source.tenant_scope_id:
@@ -163,7 +179,8 @@ def replay(config, source, *, tenant, analysis_id, workflow_id, now):
     verdict=contract.validate_output(canonical(output),mi,trusted_record_hashes=source.trusted_record_hashes,
                                      now=now,max_age_seconds=config.max_age_seconds)
     if verdict['status']=='REJECTED':raise AdapterRefused(*verdict['codes'])
-    text=contract.render_answer(mi) if output['status']=='ANSWER' else contract.render_abstention(verdict)
+    text=contract.render_answer(mi,authorized_tenant_scope=config.tenant_scopes[tenant],
+                                labels=config.display_labels) if output['status']=='ANSWER' else contract.render_abstention(verdict)
     accepted_hash=contract.accepted_result_sha256(mi,output,text) if output['status']=='ANSWER' else None
     envelope=contract.make_envelope(mi,'AUDIT_PENDING','DETERMINISTIC_REPLAY',output=output,rendered=text,
                                     audit_complete=False,accepted_hash=accepted_hash)

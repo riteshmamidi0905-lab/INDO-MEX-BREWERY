@@ -12,7 +12,7 @@ from showcase import operations_adapter as adapter
 from showcase.operations_adapter import OfflineConfig,AdapterRefused
 from test_workforce import engine,Clock,start,approve,datasets
 
-FIXTURES=Path(__file__).parent/'fixtures/ops_vectors_v1'
+FIXTURES=Path(__file__).parent/'fixtures/ops_vectors_v2'
 NOW='2026-10-25T00:00:00Z'
 ANALYSIS='00000000-0000-4000-8000-000000000001'
 RUN='run-0000000001'

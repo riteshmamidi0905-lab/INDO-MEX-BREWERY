@@ -1,0 +1,973 @@
+{
+ "classification_map": {
+  "SYNTHETIC_SCENARIO_ASSUMPTION": "SCENARIO_ASSUMPTION"
+ },
+ "d7_renderer_status": "Unchanged by v2: Amara's operations.py wording differs from the shared renderer (Codex keeps operations.py as it is). For the adapter's 8 expectations the v2 visible wording equals v1's because the trusted labels equal the aliases; only the renderer revision, and therefore every accepted-result hash, changes.",
+ "field_map": {
+  "counted": "counted_units",
+  "expected": "expected_units"
+ },
+ "hash_differences": "Amara record sha256 = digest(record incl. id, source, classification); the contract uses record-hash.v1 over the tenant-scoped preimage. Amara snapshot_sha256 = digest({tenant, scenario_id, records}); the contract snapshot hash covers {as_of, entities, facts, comparison_groups, completeness}.",
+ "id_rule": "Amara id '{tenant}:{scenario}:{field}' carries the tenant NAME; the contract uses an opaque tenant_scope_id UUID, supplied by the host (the vectors use placeholders). fact ids are 'fact:{field}_units'.",
+ "item": {
+  "aliases": {
+   "meridian-fitness": "Synthetic towels",
+   "nasha-brewery": "Synthetic packaging"
+  },
+  "id": "item:packaging (nasha-brewery) / item:towels is NOT used: the vectors use item:packaging with a per-tenant alias"
+ },
+ "items": [
+  {
+   "accepted_result_sha256": "f2c165c28b9b74a5a2f083d87047556df70c54e83a7bf30e9f00dd2a34ce50f5",
+   "amara_current": {
+    "difference": 60,
+    "explanation": "The scenario expects 100 units and records 40 counted units: a shortfall of 60 units. These supplied assumptions do not establish a cause.",
+    "records": [
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "expected",
+      "id": "nasha-brewery:count-gap:expected",
+      "sha256": "723df98a25b2efc1dc140ff9f80d9df75aec37d5f4d4ba66ba948ea41d04c497",
+      "source": "workforce.py:SCENARIOS/count-gap/expected",
+      "unit": "units",
+      "value": 100
+     },
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "counted",
+      "id": "nasha-brewery:count-gap:counted",
+      "sha256": "d0097e100101365883e908ff06fe6f7fe9100ef60799529c78f8128a505511a1",
+      "source": "workforce.py:SCENARIOS/count-gap/counted",
+      "unit": "units",
+      "value": 40
+     }
+    ],
+    "renderer_revision": "amara-readonly.v1",
+    "snapshot_sha256": "4f7853ba9d8a3d90e39194f7f5cf4d1f1f140367c9a0d01e4dca6e802a903e91",
+    "status": "EXPLAINED"
+   },
+   "expected_model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic packaging",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "edbbc5d978b421be31de7554657d10fea5cb92201eb31a2b4a26b02a90d4bdb9",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/counted_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 40
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "60bfcaff4efb599621f84495094656b72038c37450f3545566e3137c83a5b52f",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/expected_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "397c77ad1f847e16d9df882644635bf3ee7b0e03c3852a4bb0e83b8c1fdd9b87",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/target_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_model_input_snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+   "scenario": "count-gap",
+   "shared_renderer_status": "ACCEPTED",
+   "shared_renderer_text": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause.",
+   "tenant": "nasha-brewery",
+   "text_differs_from_amara": true,
+   "visible_text_equals_v1": true
+  },
+  {
+   "accepted_result_sha256": "b410bce924a8b12d8fa18b10e58860f5a8522a5cdeecbef3803f1beb4f6646fa",
+   "amara_current": {
+    "difference": 80,
+    "explanation": "The scenario expects 100 units and records 20 counted units: a shortfall of 80 units. These supplied assumptions do not establish a cause.",
+    "records": [
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "expected",
+      "id": "nasha-brewery:budget-risk:expected",
+      "sha256": "179593294cfc7406ae08fb23be48bf1e1f2a7f9e74ffea3dae2eb05bd8505008",
+      "source": "workforce.py:SCENARIOS/budget-risk/expected",
+      "unit": "units",
+      "value": 100
+     },
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "counted",
+      "id": "nasha-brewery:budget-risk:counted",
+      "sha256": "0d20f40ce8d8b1d66881921da8378130d9215f59c320a4996d4ecc2ff431b0ed",
+      "source": "workforce.py:SCENARIOS/budget-risk/counted",
+      "unit": "units",
+      "value": 20
+     }
+    ],
+    "renderer_revision": "amara-readonly.v1",
+    "snapshot_sha256": "628488ff80e46c2fb23ddb5b6747ef4f0333762a25d735c86f0afe3e7e1e7a60",
+    "status": "EXPLAINED"
+   },
+   "expected_model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic packaging",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "145e6ce8a4cb77e680884d064262ca17035aab89d9adb85387ddd1a48a18f64b",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/counted_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 20
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "8d3b919dcfa7ab11953f427469a194ca8747185d51b7d1eadcfbe961f31bbcec",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/expected_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "c78b0d293f76bdf369858d00c62c6d48464de0b95bfdb443ade8ad303eb0e6bd",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/target_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "2853ed3832a503ea473737d9ab5c55dbd7ce059c449a531f96559d3fd77a706d",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_model_input_snapshot_sha256": "2853ed3832a503ea473737d9ab5c55dbd7ce059c449a531f96559d3fd77a706d",
+   "scenario": "budget-risk",
+   "shared_renderer_status": "ACCEPTED",
+   "shared_renderer_text": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 20 units. The counted quantity is 80 units below expected. These scenario assumptions do not establish a physical root cause.",
+   "tenant": "nasha-brewery",
+   "text_differs_from_amara": true,
+   "visible_text_equals_v1": true
+  },
+  {
+   "accepted_result_sha256": "a88130d375b141b808cd9d0935cfef978970d298d5031af26223d07651eb9d97",
+   "amara_current": {
+    "difference": 0,
+    "explanation": "Expected and counted quantities match. There is no discrepancy in this scenario snapshot; this does not establish that inventory is correct elsewhere.",
+    "records": [
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "expected",
+      "id": "nasha-brewery:no-gap:expected",
+      "sha256": "09a61c17d309b9c1da8f5b88d8a4bd018b7b633011fc35b550552e75a7344b99",
+      "source": "workforce.py:SCENARIOS/no-gap/expected",
+      "unit": "units",
+      "value": 100
+     },
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "counted",
+      "id": "nasha-brewery:no-gap:counted",
+      "sha256": "241deabf8d32f157bdf56c75eca604fe9cf7ef6f87c2dce535c6087d6e2625c4",
+      "source": "workforce.py:SCENARIOS/no-gap/counted",
+      "unit": "units",
+      "value": 100
+     }
+    ],
+    "renderer_revision": "amara-readonly.v1",
+    "snapshot_sha256": "1c43beb87fb14e91a9482b2291c422b47fc38aa55ff66c39e75bfb9d06623b8c",
+    "status": "EXPLAINED"
+   },
+   "expected_model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic packaging",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "7017cbca8d823f323513d2f6cfb2a5c51c86b8500835e7782b19f6c5cf137faa",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/counted_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "4de958c062a029ed7b39170e5306bc6b3e6da63b98cb631c412e3cb7e5ac302b",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/expected_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "64d7d1bfc40afc35b64f74c72e33df75ab8cee3ecc37f381d5d0eb3d0d9fec89",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/target_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "fa48f1aee8e6bcd2314fd4e5fb38454139c3d87bdce096ead3380548e5fc4f83",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_model_input_snapshot_sha256": "fa48f1aee8e6bcd2314fd4e5fb38454139c3d87bdce096ead3380548e5fc4f83",
+   "scenario": "no-gap",
+   "shared_renderer_status": "ACCEPTED",
+   "shared_renderer_text": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 100 units. The counted quantity equals the expected quantity. These scenario assumptions do not establish a physical root cause.",
+   "tenant": "nasha-brewery",
+   "text_differs_from_amara": true,
+   "visible_text_equals_v1": true
+  },
+  {
+   "accepted_result_sha256": null,
+   "amara_current": {
+    "difference": null,
+    "explanation": "The counted quantity is missing. No discrepancy can be established. Verify a count before drawing a conclusion.",
+    "records": [
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "expected",
+      "id": "nasha-brewery:missing-count:expected",
+      "sha256": "5bb0e5f3137ff89f27a4ac2a528bdb4e97a2a61c61e4e5fa15596c187219a893",
+      "source": "workforce.py:SCENARIOS/missing-count/expected",
+      "unit": "units",
+      "value": 100
+     },
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "counted",
+      "id": "nasha-brewery:missing-count:counted",
+      "sha256": "1e9ae40ff16b991f7ed72f7674a7f5641bcfc8a46620760010ce62ba5ecaee51",
+      "source": "workforce.py:SCENARIOS/missing-count/counted",
+      "unit": "units",
+      "value": null
+     }
+    ],
+    "renderer_revision": "amara-readonly.v1",
+    "snapshot_sha256": "5bd2852f3f6b5155119ba21e63328d55af1b7a1f4810169dea8bb0b0f6680298",
+    "status": "ABSTAINED"
+   },
+   "expected_model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic packaging",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "MISSING",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "848f2a876f3b4cd97d9f1d16cb7ab4a26f96bdedc03e8da933b334a3e59818d7",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/counted_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": null
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "d5f904af33127ad1d417f41d0a5fa4c950ea7873b5b766c928b91d09d7e7375b",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/expected_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "a42bf023751bf9edb20ee12e199319c9334cb7817d578de811fafaf6d2271ccc",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/target_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "635b8897d56adf36195fc5ea0ac0965a21200bba002216672e59581d142dc6a3",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_model_input_snapshot_sha256": "635b8897d56adf36195fc5ea0ac0965a21200bba002216672e59581d142dc6a3",
+   "scenario": "missing-count",
+   "shared_renderer_status": "ABSTAINED",
+   "shared_renderer_text": "A required count is missing from this synthetic snapshot. No explanation is given.",
+   "tenant": "nasha-brewery",
+   "text_differs_from_amara": true,
+   "visible_text_equals_v1": true
+  },
+  {
+   "accepted_result_sha256": "b4397c8bc71f7a05238d2182bc3ae2abf6c66c60ed593137ae24aa6bc03244f8",
+   "amara_current": {
+    "difference": 60,
+    "explanation": "The scenario expects 100 units and records 40 counted units: a shortfall of 60 units. These supplied assumptions do not establish a cause.",
+    "records": [
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "expected",
+      "id": "meridian-fitness:count-gap:expected",
+      "sha256": "9198f94595d1eb072dd8bf37988e75edfdee1add02d16afdc372070e048e07ae",
+      "source": "workforce.py:SCENARIOS/count-gap/expected",
+      "unit": "units",
+      "value": 100
+     },
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "counted",
+      "id": "meridian-fitness:count-gap:counted",
+      "sha256": "25c73d71a8ac439e9c6836712a7b60018f7435fc759ffa448102913430f3e580",
+      "source": "workforce.py:SCENARIOS/count-gap/counted",
+      "unit": "units",
+      "value": 40
+     }
+    ],
+    "renderer_revision": "amara-readonly.v1",
+    "snapshot_sha256": "1d916e38b6b38582af3c4f05c51f9eefd5d434aeb6628dfe354676c566d4d02f",
+    "status": "EXPLAINED"
+   },
+   "expected_model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic towels",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "2ed318a9ed1bc4c43d36288cc2bd203f3a9375209c171add15d595303fc576ce",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/counted_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 40
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "fc012a875f7c6a571799f644eca5bd7d9c683040e537f7612b6d5b158d7df29f",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/expected_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "eec2c7f8133458eeb4c2657015cd3941a3285d9fa21633f5bc847bd51b881358",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/target_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "9a9f5e2376aa6bfef02ca4a7dafdcea471d8e5c343b1fef82d070d94f2531449",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_model_input_snapshot_sha256": "9a9f5e2376aa6bfef02ca4a7dafdcea471d8e5c343b1fef82d070d94f2531449",
+   "scenario": "count-gap",
+   "shared_renderer_status": "ACCEPTED",
+   "shared_renderer_text": "In this synthetic snapshot, the expected quantity of Synthetic towels is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause.",
+   "tenant": "meridian-fitness",
+   "text_differs_from_amara": true,
+   "visible_text_equals_v1": true
+  },
+  {
+   "accepted_result_sha256": "a7b9c0c729ab011a411749fb8d99164aa41a85f849e190615d62c75684657e59",
+   "amara_current": {
+    "difference": 80,
+    "explanation": "The scenario expects 100 units and records 20 counted units: a shortfall of 80 units. These supplied assumptions do not establish a cause.",
+    "records": [
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "expected",
+      "id": "meridian-fitness:budget-risk:expected",
+      "sha256": "23c8d938f16b89c0237003108d8b1b3db014148a7e983d74367997ec32ae998f",
+      "source": "workforce.py:SCENARIOS/budget-risk/expected",
+      "unit": "units",
+      "value": 100
+     },
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "counted",
+      "id": "meridian-fitness:budget-risk:counted",
+      "sha256": "00f38a93213b9cee5b0c79d34c59cc9afa489c1689dbf3fb2c05466608bacad4",
+      "source": "workforce.py:SCENARIOS/budget-risk/counted",
+      "unit": "units",
+      "value": 20
+     }
+    ],
+    "renderer_revision": "amara-readonly.v1",
+    "snapshot_sha256": "c4687321e843160efaaae09474229e53b9f9d8513d10be62647a68574cb1ea21",
+    "status": "EXPLAINED"
+   },
+   "expected_model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic towels",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "62779d0f9ca09c760adadce4eb05fd8ef4b87bda2189bfdc24433cec75f38a30",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/counted_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 20
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "316a45ac13d52df9c6e46d5eb63ba4771ac037bf72456421aded6c64cf5eca5c",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/expected_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "3a2d333d8d3e2f6402393ea9224988566fe8ee24d853fb6a2b18a7815fd19160",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/target_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "fd6a02f44e04057063fd26de31fa60e554ce851b020a109401be95f64a53ae28",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_model_input_snapshot_sha256": "fd6a02f44e04057063fd26de31fa60e554ce851b020a109401be95f64a53ae28",
+   "scenario": "budget-risk",
+   "shared_renderer_status": "ACCEPTED",
+   "shared_renderer_text": "In this synthetic snapshot, the expected quantity of Synthetic towels is 100 units and the counted quantity is 20 units. The counted quantity is 80 units below expected. These scenario assumptions do not establish a physical root cause.",
+   "tenant": "meridian-fitness",
+   "text_differs_from_amara": true,
+   "visible_text_equals_v1": true
+  },
+  {
+   "accepted_result_sha256": "17b5eefeff6942df5caa02d4da350ba8f34bec9626dde50ab7ccc69978775ca3",
+   "amara_current": {
+    "difference": 0,
+    "explanation": "Expected and counted quantities match. There is no discrepancy in this scenario snapshot; this does not establish that inventory is correct elsewhere.",
+    "records": [
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "expected",
+      "id": "meridian-fitness:no-gap:expected",
+      "sha256": "ab282ec2807192385cdb3ee7ab87432765b2faa552a049c6c9b8b85092d2f0ca",
+      "source": "workforce.py:SCENARIOS/no-gap/expected",
+      "unit": "units",
+      "value": 100
+     },
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "counted",
+      "id": "meridian-fitness:no-gap:counted",
+      "sha256": "1e4f077358954047d0459c703bf12a29ef5392659b4545064d26f20bcfeda6db",
+      "source": "workforce.py:SCENARIOS/no-gap/counted",
+      "unit": "units",
+      "value": 100
+     }
+    ],
+    "renderer_revision": "amara-readonly.v1",
+    "snapshot_sha256": "120223396352e98d64bb7e2d8292decde176b6fdb1c2a50b11b14abd289296ce",
+    "status": "EXPLAINED"
+   },
+   "expected_model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic towels",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "5aac0178f6017faab2f3643ef7efa66eadecad43c8663b0243c52bc13608e67d",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/counted_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "a3ab4140a7455cbd69ad498b63e8985b4066fe3ccac986653d1d690cb4d39913",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/expected_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "da24e056838d0b421dc029bd2dccb45746db5b2e029e2c38c3040c7ff2b7f2a1",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/target_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "fffdcb4f363bcce94296fbba6dc302c65bf4458b88cc4718854aedf6716c4f30",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_model_input_snapshot_sha256": "fffdcb4f363bcce94296fbba6dc302c65bf4458b88cc4718854aedf6716c4f30",
+   "scenario": "no-gap",
+   "shared_renderer_status": "ACCEPTED",
+   "shared_renderer_text": "In this synthetic snapshot, the expected quantity of Synthetic towels is 100 units and the counted quantity is 100 units. The counted quantity equals the expected quantity. These scenario assumptions do not establish a physical root cause.",
+   "tenant": "meridian-fitness",
+   "text_differs_from_amara": true,
+   "visible_text_equals_v1": true
+  },
+  {
+   "accepted_result_sha256": null,
+   "amara_current": {
+    "difference": null,
+    "explanation": "The counted quantity is missing. No discrepancy can be established. Verify a count before drawing a conclusion.",
+    "records": [
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "expected",
+      "id": "meridian-fitness:missing-count:expected",
+      "sha256": "f20eed262aec9ad13696440704e37b55791d397ae4e044bb20146e670593fcfe",
+      "source": "workforce.py:SCENARIOS/missing-count/expected",
+      "unit": "units",
+      "value": 100
+     },
+     {
+      "classification": "SYNTHETIC_SCENARIO_ASSUMPTION",
+      "field": "counted",
+      "id": "meridian-fitness:missing-count:counted",
+      "sha256": "2e094d728509b35c3faf9a6ca026dfaff2c768eee6744002cfbca40049bdd011",
+      "source": "workforce.py:SCENARIOS/missing-count/counted",
+      "unit": "units",
+      "value": null
+     }
+    ],
+    "renderer_revision": "amara-readonly.v1",
+    "snapshot_sha256": "d554bfafdb5ea059c1c19a8892ecbcff872233c1f89223bf2a41cdf93c116044",
+    "status": "ABSTAINED"
+   },
+   "expected_model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic towels",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "MISSING",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "4a2242175990af1acb6829cbad1faee4ce995952f2ca592977f72c306d8bd8d8",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/counted_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": null
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "1f84577def2e74bb89ed58ca26ba4675d50cd0d899610266584a40935dbb344e",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/expected_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "fdaca9dd33b55b9fbae10b70866341bdb40776793fc606c2be0a804d60f2f80a",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/target_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "7664fa3940ee8a747e8f0112bab585a11a2d0295d0fc8a48d07e97287d95f14a",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_model_input_snapshot_sha256": "7664fa3940ee8a747e8f0112bab585a11a2d0295d0fc8a48d07e97287d95f14a",
+   "scenario": "missing-count",
+   "shared_renderer_status": "ABSTAINED",
+   "shared_renderer_text": "A required count is missing from this synthetic snapshot. No explanation is given.",
+   "tenant": "meridian-fitness",
+   "text_differs_from_amara": true,
+   "visible_text_equals_v1": true
+  }
+ ],
+ "missing_in_amara": [
+  "as_of",
+  "entities (item identity and alias)",
+  "availability",
+  "inventory_item_id",
+  "target_units fact (optional)",
+  "analysis_id / workflow_id / snapshot_id",
+  "tenant_scope_id UUID"
+ ],
+ "record_id_template": "scenario:{scenario}",
+ "source": "Amara payload transcribed from codex/amara-readonly-operations@cb71397 showcase/showcase/operations.py; scenario values from workforce.py SCENARIOS (count-gap 100/40, budget-risk 100/20, no-gap 100/100, missing-count 100/None)",
+ "source_ref_template": "scenario://{scenario}/v1/{field}_units",
+ "source_revision_template": "{scenario}:v1",
+ "unit_map": {
+  "units": "UNITS"
+ }
+}

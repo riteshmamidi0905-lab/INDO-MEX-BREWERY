@@ -1,0 +1,709 @@
+{
+ "published_example": {
+  "matches": true,
+  "recomputed_snapshot_sha256": "126d338b08c11d840352cb85ec3703fa8bae9ad60ea10bb88df9d88bdc86f47e",
+  "snapshot_sha256": "126d338b08c11d840352cb85ec3703fa8bae9ad60ea10bb88df9d88bdc86f47e"
+ },
+ "scenarios": [
+  {
+   "model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic packaging",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "edbbc5d978b421be31de7554657d10fea5cb92201eb31a2b4a26b02a90d4bdb9",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/counted_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 40
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "60bfcaff4efb599621f84495094656b72038c37450f3545566e3137c83a5b52f",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/expected_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "397c77ad1f847e16d9df882644635bf3ee7b0e03c3852a4bb0e83b8c1fdd9b87",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/target_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "model_input_canonical_sha256": "6741b612a31f5bcc687e2f0f7c7a0c75cafc9a249a034a0bdfe2a0aeb4121f2a",
+   "required_abstention_reasons": [],
+   "scenario": "count-gap",
+   "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic packaging",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "145e6ce8a4cb77e680884d064262ca17035aab89d9adb85387ddd1a48a18f64b",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/counted_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 20
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "8d3b919dcfa7ab11953f427469a194ca8747185d51b7d1eadcfbe961f31bbcec",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/expected_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "c78b0d293f76bdf369858d00c62c6d48464de0b95bfdb443ade8ad303eb0e6bd",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/target_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "2853ed3832a503ea473737d9ab5c55dbd7ce059c449a531f96559d3fd77a706d",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "model_input_canonical_sha256": "7457714dd90df998b086f86ba1c60aa1cdf6e505954abe76613dd882e04d40d0",
+   "required_abstention_reasons": [],
+   "scenario": "budget-risk",
+   "snapshot_sha256": "2853ed3832a503ea473737d9ab5c55dbd7ce059c449a531f96559d3fd77a706d",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic packaging",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "7017cbca8d823f323513d2f6cfb2a5c51c86b8500835e7782b19f6c5cf137faa",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/counted_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "4de958c062a029ed7b39170e5306bc6b3e6da63b98cb631c412e3cb7e5ac302b",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/expected_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "64d7d1bfc40afc35b64f74c72e33df75ab8cee3ecc37f381d5d0eb3d0d9fec89",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/target_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "fa48f1aee8e6bcd2314fd4e5fb38454139c3d87bdce096ead3380548e5fc4f83",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "model_input_canonical_sha256": "eed7041e1a8d4493d6278019adb68feb30317b09d676420af767fb4cacec8014",
+   "required_abstention_reasons": [],
+   "scenario": "no-gap",
+   "snapshot_sha256": "fa48f1aee8e6bcd2314fd4e5fb38454139c3d87bdce096ead3380548e5fc4f83",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic packaging",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "MISSING",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "848f2a876f3b4cd97d9f1d16cb7ab4a26f96bdedc03e8da933b334a3e59818d7",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/counted_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": null
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "d5f904af33127ad1d417f41d0a5fa4c950ea7873b5b766c928b91d09d7e7375b",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/expected_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "a42bf023751bf9edb20ee12e199319c9334cb7817d578de811fafaf6d2271ccc",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/target_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "635b8897d56adf36195fc5ea0ac0965a21200bba002216672e59581d142dc6a3",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "model_input_canonical_sha256": "5e846c5f6eef12af61f401652b2842c6a1ec4876535133cf25c1f4a587f1c058",
+   "required_abstention_reasons": [
+    "MISSING_REQUIRED_EVIDENCE"
+   ],
+   "scenario": "missing-count",
+   "snapshot_sha256": "635b8897d56adf36195fc5ea0ac0965a21200bba002216672e59581d142dc6a3",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic towels",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "2ed318a9ed1bc4c43d36288cc2bd203f3a9375209c171add15d595303fc576ce",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/counted_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 40
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "fc012a875f7c6a571799f644eca5bd7d9c683040e537f7612b6d5b158d7df29f",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/expected_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:count-gap",
+       "record_sha256": "eec2c7f8133458eeb4c2657015cd3941a3285d9fa21633f5bc847bd51b881358",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://count-gap/v1/target_units",
+       "source_revision": "count-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "9a9f5e2376aa6bfef02ca4a7dafdcea471d8e5c343b1fef82d070d94f2531449",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "workflow_id": "run-0000000001"
+   },
+   "model_input_canonical_sha256": "a5c508b8833fbc20afa73f58353598ef132d621492bd9dd6bab3e2dc748a3196",
+   "required_abstention_reasons": [],
+   "scenario": "count-gap",
+   "snapshot_sha256": "9a9f5e2376aa6bfef02ca4a7dafdcea471d8e5c343b1fef82d070d94f2531449",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic towels",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "62779d0f9ca09c760adadce4eb05fd8ef4b87bda2189bfdc24433cec75f38a30",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/counted_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 20
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "316a45ac13d52df9c6e46d5eb63ba4771ac037bf72456421aded6c64cf5eca5c",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/expected_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:budget-risk",
+       "record_sha256": "3a2d333d8d3e2f6402393ea9224988566fe8ee24d853fb6a2b18a7815fd19160",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://budget-risk/v1/target_units",
+       "source_revision": "budget-risk:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "fd6a02f44e04057063fd26de31fa60e554ce851b020a109401be95f64a53ae28",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "workflow_id": "run-0000000001"
+   },
+   "model_input_canonical_sha256": "0b160aa25f0db1439e7a729914154bd0b5711bbccf3ce3c6367bf66751bf323e",
+   "required_abstention_reasons": [],
+   "scenario": "budget-risk",
+   "snapshot_sha256": "fd6a02f44e04057063fd26de31fa60e554ce851b020a109401be95f64a53ae28",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic towels",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "5aac0178f6017faab2f3643ef7efa66eadecad43c8663b0243c52bc13608e67d",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/counted_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "a3ab4140a7455cbd69ad498b63e8985b4066fe3ccac986653d1d690cb4d39913",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/expected_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:no-gap",
+       "record_sha256": "da24e056838d0b421dc029bd2dccb45746db5b2e029e2c38c3040c7ff2b7f2a1",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://no-gap/v1/target_units",
+       "source_revision": "no-gap:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "fffdcb4f363bcce94296fbba6dc302c65bf4458b88cc4718854aedf6716c4f30",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "workflow_id": "run-0000000001"
+   },
+   "model_input_canonical_sha256": "309cadda55dfdb14e7d29daee16f8895bbdd70e2abe0d380b635be2d11207c5f",
+   "required_abstention_reasons": [],
+   "scenario": "no-gap",
+   "snapshot_sha256": "fffdcb4f363bcce94296fbba6dc302c65bf4458b88cc4718854aedf6716c4f30",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "model_input": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "as_of": "2026-10-25T00:00:00Z",
+    "comparison_groups": [],
+    "completeness": [],
+    "entities": [
+     {
+      "alias": "Synthetic towels",
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM"
+     }
+    ],
+    "facts": [
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "MISSING",
+      "field": "counted_units",
+      "id": "fact:counted_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "4a2242175990af1acb6829cbad1faee4ce995952f2ca592977f72c306d8bd8d8",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/counted_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": null
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "expected_units",
+      "id": "fact:expected_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "1f84577def2e74bb89ed58ca26ba4675d50cd0d899610266584a40935dbb344e",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/expected_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 100
+     },
+     {
+      "as_of": "2026-10-25T00:00:00Z",
+      "availability": "PRESENT",
+      "field": "target_units",
+      "id": "fact:target_units",
+      "inventory_item_id": "item:packaging",
+      "provenance": {
+       "record_id": "scenario:missing-count",
+       "record_sha256": "fdaca9dd33b55b9fbae10b70866341bdb40776793fc606c2be0a804d60f2f80a",
+       "source_kind": "SCENARIO_ASSUMPTION",
+       "source_ref": "scenario://missing-count/v1/target_units",
+       "source_revision": "missing-count:v1"
+      },
+      "subject_id": "item:packaging",
+      "unit": "UNITS",
+      "value": 120
+     }
+    ],
+    "prohibited_effects": [
+     "PURCHASE",
+     "INVENTORY_MUTATION",
+     "SUPPLIER_CONTACT",
+     "APPROVAL",
+     "FINANCIAL_MUTATION",
+     "ARBITRARY_TOOL"
+    ],
+    "schema_version": "ops-explanation-input.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "7664fa3940ee8a747e8f0112bab585a11a2d0295d0fc8a48d07e97287d95f14a",
+    "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "workflow_id": "run-0000000001"
+   },
+   "model_input_canonical_sha256": "73b8eddf63ed8bc3140de58aa38d3b180875432327d03ccdc9f9907f352973cf",
+   "required_abstention_reasons": [
+    "MISSING_REQUIRED_EVIDENCE"
+   ],
+   "scenario": "missing-count",
+   "snapshot_sha256": "7664fa3940ee8a747e8f0112bab585a11a2d0295d0fc8a48d07e97287d95f14a",
+   "tenant": "meridian-fitness"
+  }
+ ]
+}
