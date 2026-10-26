@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "request-envelope.schema.json",
+  "title": "request-envelope \u2014 PROPOSED SPECIFICATION ONLY",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "ops-explanation-request.v1"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36,
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "principal_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+    },
+    "capability_grant_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+    },
+    "authorization_revision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+    },
+    "capabilities": {
+      "const": [
+        "operations.explanation.request"
+      ]
+    },
+    "requested_mode": {
+      "type": "string",
+      "enum": [
+        "LIVE_LLM",
+        "DETERMINISTIC_REPLAY",
+        "CACHED_REPLAY"
+      ]
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "pattern": "^[A-Za-z0-9_-]{8,80}$"
+    },
+    "execution_profile_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+    },
+    "execution_profile_sha256": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "prompt_ref": {
+      "const": "ops-explanation@1"
+    },
+    "prompt_sha256": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "model_input": {
+      "$ref": "model-input.schema.json"
+    }
+  },
+  "required": [
+    "schema_version",
+    "request_id",
+    "principal_id",
+    "tenant_id",
+    "capability_grant_id",
+    "authorization_revision",
+    "capabilities",
+    "requested_mode",
+    "idempotency_key",
+    "execution_profile_id",
+    "execution_profile_sha256",
+    "prompt_ref",
+    "prompt_sha256",
+    "model_input"
+  ]
+}

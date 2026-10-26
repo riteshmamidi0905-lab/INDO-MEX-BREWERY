@@ -7,3 +7,4 @@ rapidocr-onnxruntime   # readable-text check in the source-plate pipeline (tests
 # Found 2026-10-24 by reproducing lab-ci in a clean Python 3.12 environment: these were never declared, so the Growth OS suites errored at setup (pgserver) or a brand-tool test failed (fontTools).
 pixeltable-pgserver>=0.6,<1   # embedded PostgreSQL + pgvector used by the tests/test_growth_*.py fixtures (they do not read NASHA_PG_DSN)
 fonttools>=4.50,<5            # nasha brand tools import fontTools (tests/test_scenario_d87.py::test_website_and_database_prices_agree builds the preview)
+jsonschema>=4.20,<5            # cross-checks the validator against Codex's published schemas (tests/test_ops_explanation.py)

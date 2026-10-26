@@ -1,0 +1,1291 @@
+{
+ "accepted_invalid_claims": 0,
+ "cases": 95,
+ "cases_detail": [
+  {
+   "exact": true,
+   "expect": "ANSWER_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ANSWER_VERIFIED",
+   "group": "correct",
+   "id": "ok-count-gap"
+  },
+  {
+   "exact": true,
+   "expect": "ANSWER_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ANSWER_VERIFIED",
+   "group": "correct",
+   "id": "ok-budget-risk"
+  },
+  {
+   "exact": true,
+   "expect": "ANSWER_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ANSWER_VERIFIED",
+   "group": "correct",
+   "id": "ok-no-gap-zero-difference"
+  },
+  {
+   "exact": true,
+   "expect": "ANSWER_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ANSWER_VERIFIED",
+   "group": "correct",
+   "id": "ok-claims-reordered-and-renumbered"
+  },
+  {
+   "exact": true,
+   "expect": "ANSWER_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ANSWER_VERIFIED",
+   "group": "correct",
+   "id": "ok-limitation-facts-in-either-order"
+  },
+  {
+   "exact": true,
+   "expect": "ANSWER_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ANSWER_VERIFIED",
+   "group": "correct",
+   "id": "ok-codex-published-example"
+  },
+  {
+   "exact": true,
+   "expect": "ABSTAIN_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ABSTAIN_VERIFIED",
+   "group": "abstention",
+   "id": "abstain-missing-count"
+  },
+  {
+   "exact": true,
+   "expect": "ABSTAIN_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ABSTAIN_VERIFIED",
+   "group": "abstention",
+   "id": "abstain-conflicting"
+  },
+  {
+   "exact": true,
+   "expect": "ABSTAIN_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ABSTAIN_VERIFIED",
+   "group": "abstention",
+   "id": "abstain-incompatible-units"
+  },
+  {
+   "exact": true,
+   "expect": "ABSTAIN_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ABSTAIN_VERIFIED",
+   "group": "abstention",
+   "id": "abstain-insufficient-scope-two-items"
+  },
+  {
+   "exact": true,
+   "expect": "ABSTAIN_VERIFIED",
+   "flags": [
+    "UNNECESSARY_ABSTENTION"
+   ],
+   "got_codes": [],
+   "got_status": "ABSTAIN_VERIFIED",
+   "group": "abstention",
+   "id": "abstain-unnecessary-on-complete-data-is-safe-not-useful"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "WRONG_ABSTENTION_REASON"
+   ],
+   "got_status": "REJECTED",
+   "group": "abstention",
+   "id": "abstain-wrong-reason"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "WRONG_ABSTENTION_REASON"
+   ],
+   "got_status": "REJECTED",
+   "group": "abstention",
+   "id": "abstain-extra-reason"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INVENTED_COMPLETION",
+    "UNSUPPORTED_CLAIM"
+   ],
+   "got_status": "REJECTED",
+   "group": "evidence",
+   "id": "answer-invented-on-missing-count"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INVENTED_COMPLETION",
+    "UNSUPPORTED_CLAIM"
+   ],
+   "got_status": "REJECTED",
+   "group": "evidence",
+   "id": "answer-invented-on-conflicting"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INVENTED_COMPLETION",
+    "UNIT_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "evidence",
+   "id": "answer-on-incompatible-units"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INCORRECT_DIFFERENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "arithmetic",
+   "id": "diff-plus-one"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INCORRECT_DIFFERENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "arithmetic",
+   "id": "diff-sign-flipped"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INCORRECT_DIFFERENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "arithmetic",
+   "id": "diff-off-by-ten-times"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INCORRECT_DIFFERENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "arithmetic",
+   "id": "diff-zero"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "FIELD_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "arithmetic",
+   "id": "diff-uses-counted-minus-expected-facts"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "NON_INTEGER_NUMBER"
+   ],
+   "got_status": "REJECTED",
+   "group": "arithmetic",
+   "id": "diff-as-float-text"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "arithmetic",
+   "id": "diff-as-boolean"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "arithmetic",
+   "id": "diff-as-string"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "arithmetic",
+   "id": "diff-wrong-unit"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INCORRECT_DIFFERENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "arithmetic",
+   "id": "diff-of-budget-risk-using-gap-value"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "VALUE_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "observe",
+   "id": "observe-expected-value-wrong"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "VALUE_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "observe",
+   "id": "observe-counted-claims-expected-value"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "UNIT_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "observe",
+   "id": "observe-wrong-unit"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "FIELD_MISMATCH",
+    "VALUE_MISMATCH",
+    "WRONG_FACT"
+   ],
+   "got_status": "REJECTED",
+   "group": "observe",
+   "id": "observe-wrong-field-label"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "WRONG_ENTITY",
+    "WRONG_ITEM"
+   ],
+   "got_status": "REJECTED",
+   "group": "observe",
+   "id": "observe-wrong-subject"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "CLAIM_SET_MISMATCH",
+    "DEFERRED_FIELD"
+   ],
+   "got_status": "REJECTED",
+   "group": "observe",
+   "id": "observe-deferred-field-target"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "UNKNOWN_EVIDENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "evidence",
+   "id": "fabricated-fact-in-observe"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "UNKNOWN_EVIDENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "evidence",
+   "id": "fabricated-fact-in-difference"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "UNKNOWN_EVIDENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "evidence",
+   "id": "fabricated-fact-in-limitation"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "UNSUPPORTED_CLAIM"
+   ],
+   "got_status": "REJECTED",
+   "group": "evidence",
+   "id": "limitation-cites-only-one-fact"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "DEFERRED_LIMITATION"
+   ],
+   "got_status": "REJECTED",
+   "group": "evidence",
+   "id": "limitation-deferred-code"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INPUT_REFUSED",
+    "SOURCE_HASH_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "provenance",
+   "id": "snapshot-tampered-after-hashing"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "BINDING_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "provenance",
+   "id": "binding-analysis_id-wrong"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "BINDING_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "provenance",
+   "id": "binding-tenant_scope_id-wrong"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "BINDING_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "provenance",
+   "id": "binding-workflow_id-wrong"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "BINDING_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "provenance",
+   "id": "binding-snapshot_id-wrong"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "BINDING_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "provenance",
+   "id": "binding-snapshot_sha256-wrong"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "provenance",
+   "id": "binding-schema_version-wrong"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "STALE_SNAPSHOT"
+   ],
+   "got_status": "REJECTED",
+   "group": "provenance",
+   "id": "stale-snapshot"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "MISSING_PROVENANCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "provenance",
+   "id": "trusted-record-hash-missing"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SOURCE_HASH_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "provenance",
+   "id": "trusted-record-hash-differs"
+  },
+  {
+   "exact": true,
+   "expect": "ANSWER_VERIFIED",
+   "flags": [],
+   "got_codes": [],
+   "got_status": "ANSWER_VERIFIED",
+   "group": "provenance",
+   "id": "trusted-record-hashes-match"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "CROSS_TENANT_REFERENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "cross-tenant",
+   "id": "cross-tenant-fact-id"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "BINDING_MISMATCH",
+    "CROSS_TENANT_REFERENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "cross-tenant",
+   "id": "cross-tenant-scope-echo"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "BINDING_MISMATCH",
+    "CROSS_TENANT_REFERENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "cross-tenant",
+   "id": "cross-tenant-snapshot-hash-echo"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "BINDING_MISMATCH",
+    "INCORRECT_DIFFERENCE",
+    "VALUE_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "cross-tenant",
+   "id": "other-tenants-whole-answer-with-colliding-ids"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "UNKNOWN_KEY"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-top-level-tool-calls"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "UNKNOWN_KEY"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-top-level-approve"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "UNKNOWN_KEY"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-top-level-instructions"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "UNKNOWN_KEY"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-top-level-summary-prose"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "UNKNOWN_KEY"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-note-key-inside-a-claim"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-prose-in-claim-id"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-prose-in-subject-id"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-prose-in-reason-code"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "NOT_JSON"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-prose-around-the-json"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "NOT_JSON"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-two-json-documents"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INPUT_POISONED",
+    "INPUT_REFUSED"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-poisoned-entity-alias-refused-before-provider"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INPUT_POISONED",
+    "INPUT_REFUSED"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-tool-name-in-alias-refused"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INPUT_INVALID",
+    "INPUT_REFUSED"
+   ],
+   "got_status": "REJECTED",
+   "group": "injection",
+   "id": "injection-smuggled-key-in-the-input"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "NOT_JSON"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-not-json"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "NOT_JSON"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-empty"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-array"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-null"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "DUPLICATE_KEY"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-duplicate-key"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "NON_FINITE_NUMBER"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-nan"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INVALID_UTF8"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-invalid-utf8"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "OVERSIZE"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-oversize"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "TOO_DEEP"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-too-deep"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-missing-claims-key"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-answer-without-claims"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-answer-with-reasons"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-abstain-with-claims"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-abstain-without-reason"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-unknown-claim-kind"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "DUPLICATE_ID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-duplicate-claim-ids"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-claim-id-out-of-range"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-nine-claims"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "SCHEMA_INVALID"
+   ],
+   "got_status": "REJECTED",
+   "group": "structure",
+   "id": "structure-observe-missing-value"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "DEFERRED_CLAIM_KIND"
+   ],
+   "got_status": "REJECTED",
+   "group": "claim-set",
+   "id": "deferred-comparison"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "DEFERRED_CLAIM_KIND"
+   ],
+   "got_status": "REJECTED",
+   "group": "claim-set",
+   "id": "deferred-extremum"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "DEFERRED_CLAIM_KIND"
+   ],
+   "got_status": "REJECTED",
+   "group": "claim-set",
+   "id": "deferred-scoped-absence"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "CLAIM_SET_MISMATCH",
+    "DEFERRED_FIELD"
+   ],
+   "got_status": "REJECTED",
+   "group": "claim-set",
+   "id": "extra-observe-of-target"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "CLAIM_SET_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "claim-set",
+   "id": "missing-limitation"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "CLAIM_SET_MISMATCH"
+   ],
+   "got_status": "REJECTED",
+   "group": "claim-set",
+   "id": "two-observations-of-the-same-field"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INCORRECT_DIFFERENCE"
+   ],
+   "got_status": "REJECTED",
+   "group": "claim-set",
+   "id": "three-correct-claims-and-one-wrong-is-rejected-whole"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INPUT_REFUSED",
+    "NONCANONICAL_ORDER"
+   ],
+   "got_status": "REJECTED",
+   "group": "input",
+   "id": "input-facts-not-in-canonical-order"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "DANGLING_REFERENCE",
+    "INPUT_REFUSED"
+   ],
+   "got_status": "REJECTED",
+   "group": "input",
+   "id": "input-dangling-reference"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "DUPLICATE_ID",
+    "INPUT_REFUSED"
+   ],
+   "got_status": "REJECTED",
+   "group": "input",
+   "id": "input-duplicate-fact-ids"
+  },
+  {
+   "exact": true,
+   "expect": "REJECTED",
+   "flags": [],
+   "got_codes": [
+    "INPUT_INVALID",
+    "INPUT_REFUSED"
+   ],
+   "got_status": "REJECTED",
+   "group": "input",
+   "id": "input-present-fact-negative"
+  }
+ ],
+ "contract_pins": {
+  "contracts/model-input.schema.json": "3668b2f080546ca0f1ee5baa4ad9509939efd7a9fad53bc71f8cf336cc71deb0",
+  "contracts/model-output.schema.json": "5414cd904bd2b109be24be52d5ba6d348b7a09d9b0e1829a19fcb06c8bffbccc",
+  "contracts/request-envelope.schema.json": "6ff220a6c64b21a64c8020adb9089ffa0b2d71eb92cc0e92f79e5e1fb911245d",
+  "contracts/result-envelope.schema.json": "7796703418002374f9208b8367bbcc36b2a22312e4286534162bd180e6af0fff",
+  "examples/model-input.json": "d66ce7c118a2347e09fb7579ef82dd547ee4205d785392a55efc3717402ba941",
+  "examples/model-output.json": "ac6a7968ab228cf51e91da00667d9a836c78ba1193b541455f0d07dbd6cdbb80",
+  "execution-profile-candidate.json": "f713b9c35b8d65faf1caf38edb54d246bc3f0d4dee074ed1fbb4aa597aa87a8f",
+  "prompt-candidate.json": "16f30b537c473fe8a3ed47a53d1c45f2b77aaae72106620599937d851ad4e77d"
+ },
+ "exact": 95,
+ "failures": [],
+ "false_accepts": 0,
+ "false_rejects": 0,
+ "groups": {
+  "abstention": {
+   "cases": 7,
+   "exact": 7
+  },
+  "arithmetic": {
+   "cases": 10,
+   "exact": 10
+  },
+  "claim-set": {
+   "cases": 7,
+   "exact": 7
+  },
+  "correct": {
+   "cases": 6,
+   "exact": 6
+  },
+  "cross-tenant": {
+   "cases": 4,
+   "exact": 4
+  },
+  "evidence": {
+   "cases": 8,
+   "exact": 8
+  },
+  "injection": {
+   "cases": 13,
+   "exact": 13
+  },
+  "input": {
+   "cases": 4,
+   "exact": 4
+  },
+  "observe": {
+   "cases": 6,
+   "exact": 6
+  },
+  "provenance": {
+   "cases": 11,
+   "exact": 11
+  },
+  "structure": {
+   "cases": 19,
+   "exact": 19
+  }
+ },
+ "note": "SCRIPTED test doubles only: no language model was called and nothing here shows how a model behaves. Written by the M-OPS-1 offline milestone.",
+ "profile": "ops-explanation-v1-milestone-profile",
+ "renderer_revision": "ops-renderer-v1.0-m-ops-1",
+ "rule_mutants": {
+  "abstention": {
+   "changed_cases": 2,
+   "first": [
+    "abstain-wrong-reason",
+    "abstain-extra-reason"
+   ],
+   "killed": true
+  },
+  "arithmetic": {
+   "changed_cases": 7,
+   "first": [
+    "diff-plus-one",
+    "diff-sign-flipped",
+    "diff-off-by-ten-times"
+   ],
+   "killed": true
+  },
+  "availability": {
+   "changed_cases": 2,
+   "first": [
+    "answer-invented-on-missing-count",
+    "answer-invented-on-conflicting"
+   ],
+   "killed": true
+  },
+  "bindings": {
+   "changed_cases": 8,
+   "first": [
+    "binding-analysis_id-wrong",
+    "binding-tenant_scope_id-wrong",
+    "binding-workflow_id-wrong"
+   ],
+   "killed": true
+  },
+  "claim_set": {
+   "changed_cases": 5,
+   "first": [
+    "observe-wrong-field-label",
+    "observe-deferred-field-target",
+    "extra-observe-of-target"
+   ],
+   "killed": true
+  },
+  "completeness": {
+   "changed_cases": 3,
+   "first": [
+    "answer-invented-on-missing-count",
+    "answer-invented-on-conflicting",
+    "answer-on-incompatible-units"
+   ],
+   "killed": true
+  },
+  "deferred": {
+   "changed_cases": 6,
+   "first": [
+    "observe-deferred-field-target",
+    "limitation-deferred-code",
+    "deferred-comparison"
+   ],
+   "killed": true
+  },
+  "difference_facts": {
+   "changed_cases": 1,
+   "first": [
+    "diff-uses-counted-minus-expected-facts"
+   ],
+   "killed": true
+  },
+  "duplicate_ids": {
+   "changed_cases": 1,
+   "first": [
+    "structure-duplicate-claim-ids"
+   ],
+   "killed": true
+  },
+  "entity": {
+   "changed_cases": 1,
+   "first": [
+    "observe-wrong-subject"
+   ],
+   "killed": true
+  },
+  "field": {
+   "changed_cases": 1,
+   "first": [
+    "observe-wrong-field-label"
+   ],
+   "killed": true
+  },
+  "foreign_refs": {
+   "changed_cases": 3,
+   "first": [
+    "cross-tenant-fact-id",
+    "cross-tenant-scope-echo",
+    "cross-tenant-snapshot-hash-echo"
+   ],
+   "killed": true
+  },
+  "input_schema": {
+   "changed_cases": 5,
+   "first": [
+    "injection-smuggled-key-in-the-input",
+    "input-facts-not-in-canonical-order",
+    "input-dangling-reference"
+   ],
+   "killed": true
+  },
+  "input_screen": {
+   "changed_cases": 2,
+   "first": [
+    "injection-poisoned-entity-alias-refused-before-provider",
+    "injection-tool-name-in-alias-refused"
+   ],
+   "killed": true
+  },
+  "limitation": {
+   "changed_cases": 3,
+   "first": [
+    "fabricated-fact-in-limitation",
+    "limitation-cites-only-one-fact",
+    "limitation-deferred-code"
+   ],
+   "killed": true
+  },
+  "provenance": {
+   "changed_cases": 3,
+   "first": [
+    "stale-snapshot",
+    "trusted-record-hash-missing",
+    "trusted-record-hash-differs"
+   ],
+   "killed": true
+  },
+  "schema": {
+   "changed_cases": 21,
+   "first": [
+    "diff-as-boolean",
+    "diff-as-string",
+    "diff-wrong-unit"
+   ],
+   "killed": true
+  },
+  "snapshot_hash": {
+   "changed_cases": 1,
+   "first": [
+    "snapshot-tampered-after-hashing"
+   ],
+   "killed": true
+  },
+  "strict_parse": {
+   "changed_cases": 6,
+   "first": [
+    "diff-as-float-text",
+    "structure-duplicate-key",
+    "structure-nan"
+   ],
+   "killed": true
+  },
+  "unit": {
+   "changed_cases": 1,
+   "first": [
+    "observe-wrong-unit"
+   ],
+   "killed": true
+  },
+  "value": {
+   "changed_cases": 4,
+   "first": [
+    "observe-expected-value-wrong",
+    "observe-counted-claims-expected-value",
+    "observe-wrong-field-label"
+   ],
+   "killed": true
+  }
+ },
+ "rule_mutants_killed": 21,
+ "rule_mutants_total": 21,
+ "validator_revision": "ops-validator-v1.0-m-ops-1"
+}

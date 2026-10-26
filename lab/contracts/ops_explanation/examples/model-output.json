@@ -1,0 +1,49 @@
+{
+  "analysis_id": "00000000-0000-4000-8000-000000000001",
+  "tenant_scope_id": "00000000-0000-4000-8000-000000000002",
+  "workflow_id": "run-0000000001",
+  "snapshot_id": "snapshot:example-v1",
+  "snapshot_sha256": "126d338b08c11d840352cb85ec3703fa8bae9ad60ea10bb88df9d88bdc86f47e",
+  "schema_version": "ops-explanation-output.v1",
+  "status": "ANSWER",
+  "reason_codes": [],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "fact_id": "fact:expected_units",
+      "field": "expected_units",
+      "claimed_value": 100,
+      "unit": "UNITS"
+    },
+    {
+      "claim_id": "c2",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "fact_id": "fact:counted_units",
+      "field": "counted_units",
+      "claimed_value": 40,
+      "unit": "UNITS"
+    },
+    {
+      "claim_id": "c3",
+      "kind": "DIFFERENCE",
+      "subject_id": "item:packaging",
+      "operation": "EXPECTED_MINUS_COUNTED",
+      "expected_fact_id": "fact:expected_units",
+      "counted_fact_id": "fact:counted_units",
+      "claimed_difference": 60,
+      "unit": "UNITS"
+    },
+    {
+      "claim_id": "c4",
+      "kind": "LIMITATION",
+      "code": "CAUSE_NOT_ESTABLISHED",
+      "fact_ids": [
+        "fact:expected_units",
+        "fact:counted_units"
+      ]
+    }
+  ]
+}
