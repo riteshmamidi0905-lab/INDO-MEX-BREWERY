@@ -113,6 +113,7 @@ def verify_comparative(text, directory, mentions_ids, amounts, retrieved_supplie
         rows = [r for r in rows if r[0] in retrieved_supplier_ids]
         out["scope"] = "the retrieved records only (the claim says so); NOT a global statement"
     out["set"] = [dict(supplier=r[1], price=r[2], unit=r[3]) for r in sorted(rows, key=lambda r: (r[2], r[1]))]
+    out["set_detail"] = [dict(supplier_id=r[0], supplier=r[1], price_cents=r[2], unit=r[3], price_class=r[4], ingredient_ref=ref) for r in sorted(rows, key=lambda r: (r[2], r[1]))]      # recording only: which stored quote each row is
     if len({r[1] for r in rows}) < 2:
         return dict(out, verdict="unverifiable", reason="fewer than two suppliers have a comparable quote, so there is nothing to rank")
     if len({_norm_unit(r[3]) for r in rows}) != 1:
@@ -242,6 +243,7 @@ def review(report, evidence, directory, tool_calls=(), allowed_tools=ALLOWED_TOO
     retrieved_supplier_ids = {sid for sid in suppliers if any(v["doc_id"] == f"supplier-{sid}" or v["doc_id"].startswith((f"supplier-{sid}#", f"supplier-{sid}:")) for v in evidence.values())}
     for c in claims:
         codes, text = [], ""
+        binding, cmp_rec, ab_rec = None, None, None                             # recording only: why a rule fired, kept with the rejected claim
         if not isinstance(c, dict) or not isinstance(c.get("text"), str) or not isinstance(c.get("evidence_ids", []), list) or not all(isinstance(e, str) for e in c.get("evidence_ids", [])):
             if "shape" in R:
                 rejected.append(dict(text=str(c)[:80], codes=["MALFORMED"])); bad("MALFORMED", "a claim is not {text, evidence_ids[]}")
@@ -296,6 +298,7 @@ def review(report, evidence, directory, tool_calls=(), allowed_tools=ALLOWED_TOO
                     before = [t for t in mentions if t[1] <= pos]
                     near = max(before, key=lambda t: t[1]) if before else min(mentions, key=lambda t: t[0])
                     if v is not None and _present(v, passages) and not any(_present(v, own[sid]) for sid in near[2] if sid in own):
+                        binding = dict(amount=v, bound_supplier_ids=sorted(near[2]), bound_supplier_names=[suppliers[x]["name"] for x in sorted(near[2]) if x in suppliers])
                         codes.append("PRICE_NOT_FROM_NAMED_SUPPLIER"); break          # (a price absent from every cited passage is UNSUPPORTED_NUMBER, reported above)
             if "entity" in R and not mentioned:
                 sm = SUBJECT.match(text)
@@ -313,7 +316,8 @@ def review(report, evidence, directory, tool_calls=(), allowed_tools=ALLOWED_TOO
                         codes.append("COMPARATIVE_FALSE")
                     elif cmp_["verdict"] == "unverifiable" and not ("UNATTRIBUTED_PRICE" in codes):
                         codes.append("COMPARATIVE_UNVERIFIABLE")
-                    comparisons.append(dict(claim=text[:200], **cmp_))
+                    cmp_rec = dict(claim=text[:200], **cmp_)
+                    comparisons.append(dict(cmp_rec, claim_full=text, claim_chars=len(text), evidence_ids=list(ids), mentioned_supplier_ids=sorted(mentioned)))
             if "absence" in R:
                 ab = classify_absence(text, directory, passages, sorted(mentioned))
                 if ab is not None:
@@ -321,7 +325,8 @@ def review(report, evidence, directory, tool_calls=(), allowed_tools=ALLOWED_TOO
                         codes.append("ABSENCE_CONTRADICTED")
                     elif ab["verdict"] == "overgeneral":
                         codes.append("ABSENCE_OVERGENERAL")
-                    absences.append(dict(claim=text[:200], **ab))
+                    ab_rec = dict(claim=text[:200], **ab)
+                    absences.append(dict(ab_rec, claim_full=text, claim_chars=len(text), evidence_ids=list(ids), mentioned_supplier_ids=sorted(mentioned)))
         if "verification" in R and VERIFIED_WORDS.search(text):
             subjects = (mentioned or sup_of)
             if subjects and any(suppliers[i]["verification_status"] != "verified_public" for i in subjects):
@@ -330,7 +335,9 @@ def review(report, evidence, directory, tool_calls=(), allowed_tools=ALLOWED_TOO
             codes.append("UNSUPPORTED_RECOMMENDATION")
         codes = sorted(set(codes))
         if codes:
-            rejected.append(dict(text=text[:120], codes=codes)); problems.extend(f"{k}: {text[:70]}" for k in codes)
+            rejected.append(dict(text=text[:120], codes=codes, full_text=text, text_chars=len(text), evidence_ids=list(ids), cited_doc_ids=sorted(docs), mentioned_supplier_ids=sorted(mentioned),
+                                 detail=dict(price_binding=binding, comparative=cmp_rec if cmp_rec and cmp_rec.get("verdict") != "verified" else None, absence=ab_rec if ab_rec and ab_rec.get("verdict") not in ("verified", "supported") else None)))
+            problems.extend(f"{k}: {text[:70]}" for k in codes)
             if CRITICAL & set(codes):
                 report_codes += [k for k in codes if k in CRITICAL]
         else:

@@ -146,7 +146,7 @@ def test_the_comparison_never_looks_beyond_the_directory_it_is_given_so_another_
     e = ev(*tenant_a)
     v = review("Zulu Supply quotes the lowest Bay leaf price at $1.00 per kg.", tenant_a, e, ["e1"])
     assert v["status"] == "rejected" and codes(v) & {"UNATTRIBUTED_PRICE", "UNKNOWN_ENTITY", "PRICE_MISMATCH", "UNSUPPORTED_NUMBER"}
-    assert foreign_cheaper["name"] not in json.dumps([dict(c, claim="") for c in v["comparisons"]])      # the set and the extreme never contain it (only the model's own claim text does)
+    assert foreign_cheaper["name"] not in json.dumps([dict(c, claim="", claim_full="") for c in v["comparisons"]])      # the set and the extreme never contain it (only the model's own claim text does, in `claim` and its untruncated copy `claim_full`)
 
 
 def test_minimum_order_is_not_a_superlative():

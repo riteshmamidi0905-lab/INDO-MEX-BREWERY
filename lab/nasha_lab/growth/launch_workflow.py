@@ -29,6 +29,22 @@ COLS = ("id", "requester", "role", "project_id", "period", "state", "agent_mode"
 QUERY_ITEMS = 8
 
 
+RECORDING_VERSION = 2                        # recording format of the model-run research event; 1 = runs up to model-live run #4 (rejected claims kept to 120 characters, comparison claims to 200)
+PASSAGE_CHARS = 600                          # a cited passage is kept up to this length in a rejection record; the full text stays in the corpus
+
+
+def recording(query, corpus_version, res, rv):
+    """RECORDING ONLY (recording format 2): everything needed afterwards to decide whether a boundary rejection was right, without any model call. Nothing here is read by a decision. Scope: the tenant's own run (its report, its retrieved evidence, its stored-quote comparison set);
+    other tenants' data never enters because the boundary is given only this tenant's directory and the agent only this tenant's corpus. Passages are capped at PASSAGE_CHARS; the rest of the evidence is fingerprinted (id, document, SHA-256 of the text, length) so two runs' contexts can be compared."""
+    evidence = res["evidence"] or {}
+    fingerprint = [dict(id=k, doc_id=v["doc_id"], title=v["title"], text_chars=len(v["text"]), text_sha256=hashlib.sha256(v["text"].encode()).hexdigest()) for k, v in evidence.items()]
+    rejected = []
+    for r in rv["claims_rejected"]:
+        rejected.append(dict(text=r.get("full_text", r["text"]), text_chars=r.get("text_chars"), codes=r["codes"], evidence_ids=r.get("evidence_ids", []), cited_doc_ids=r.get("cited_doc_ids", []), mentioned_supplier_ids=r.get("mentioned_supplier_ids", []), detail=r.get("detail"),
+                             cited_passages=[dict(id=e, doc_id=evidence[e]["doc_id"], title=evidence[e]["title"], text=evidence[e]["text"][:PASSAGE_CHARS], text_chars=len(evidence[e]["text"])) for e in r.get("evidence_ids", []) if e in evidence]))
+    return dict(recording_version=RECORDING_VERSION, query=query, corpus_version=corpus_version, evidence_context=fingerprint, rejected_claims_full=rejected,
+                report_reviewed=res["report"] if rv["status"] != "accepted" else None, verification=res.get("verification"), boundary_report_codes=rv["report_codes"], boundary_problems=rv["problems"])
+
 def research_query(plan):
     """The question the research agent is asked. v2 (Phase 2 targeted hardening) NAMES the ingredients that matter: v1 asked about "published prices" and "data freshness" in general, which lexically matches the lead suppliers' "no published price" lines,
     so retrieval returned mostly records without a quote (offline measurement on the seeded world: 6 of 12 passages carried a price; with the ingredients named, 12 of 13) and the model concluded that no prices exist. The deterministic
@@ -246,7 +262,8 @@ class LaunchProcurement(WeirCaller):
                              platform_verification=res["verification"] and dict(ok=res["verification"]["ok"], groundedness=res["verification"]["groundedness"]), independent_problems=problems,
                              boundary=dict(status=rv["status"], accepted=len(rv["claims_accepted"]), rejected=[dict(codes=r["codes"]) for r in rv["claims_rejected"]], report_codes=rv["report_codes"], flags=rv["flags"]),
                              **(dict(models=res.get("models"), usage=res.get("usage"), event_counts=res.get("event_counts"), agent_timeout_s=self.agent_timeout, telemetry=res.get("telemetry"),
-                                     rejected_claims=[dict(text=r["text"], codes=r["codes"]) for r in rv["claims_rejected"]], comparisons=rv.get("comparisons"), absences=rv.get("absences"), quarantined_documents=res.get("quarantined") or []) if res["mode"] == AR.MODE_MODEL else {}))   # real-model runs only: the offline path's recorded evidence is unchanged
+                                     rejected_claims=[dict(text=r["text"], codes=r["codes"]) for r in rv["claims_rejected"]], comparisons=rv.get("comparisons"), absences=rv.get("absences"), quarantined_documents=res.get("quarantined") or [],
+                                     **recording(q, version, res, rv)) if res["mode"] == AR.MODE_MODEL else {}))   # real-model runs only: the offline path's recorded evidence is unchanged
             if rv["status"] == "abstained":
                 rejected = None; why = "agent abstained: the records do not support a conclusion"; res = None
             elif problems or rv["status"] != "accepted" or (res["verification"] and not res["verification"]["ok"]):

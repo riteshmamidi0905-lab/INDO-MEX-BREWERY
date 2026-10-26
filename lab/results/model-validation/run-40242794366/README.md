@@ -12,3 +12,5 @@
 | `SHA256SUMS` | hashes of the above, computed when they were written |
 
 Integrity checks run when writing: 19 case lines = `cases_total`; passed cases (14) = `cases_passed`; the verdict line in the log equals `acceptance.json`; the model digest is identical in identity, model, expected and evaluator records and `digest_verified` is true; governed workflow `model_output_accepted` = 0; the artifact-upload line is present. Historical records (`baseline-run-40109758918.json`, `run-40141457239.json`, `rescore-run-40141457239-v2.json`) are untouched.
+
+**Recording limitations of run #4 (format 1).** The rejected claim is preserved only to 120 characters (audit event) and 200 characters (comparison); the report, query and retrieved evidence of the governed runs were not recorded. A search of every preserved record and the Ollama request lines found no longer copy; the original claim is not recoverable. See `docs/growth-os/PHASE2-RECORDING-REQUIREMENTS.md`.

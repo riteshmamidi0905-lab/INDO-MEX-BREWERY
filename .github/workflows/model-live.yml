@@ -148,7 +148,7 @@ jobs:
       - name: Acceptance gates (PROPOSED criteria v1.0; the verdict is printed, it never changes the Phase 2 status)
         working-directory: lab
         run: |
-          python tools/evaluate_acceptance.py results/model-validation/live-battery.json > /tmp/evidence/acceptance.json
+          python tools/evaluate_acceptance.py results/model-validation/live-battery.json --require-recording=2 > /tmp/evidence/acceptance.json
           echo MODEL_LIVE_ACCEPTANCE_BEGIN; cat /tmp/evidence/acceptance.json; echo MODEL_LIVE_ACCEPTANCE_END
           python -c "import json; d=json.load(open('/tmp/evidence/acceptance.json')); print('ACCEPTANCE_VERDICT', d['verdict']); [print(g['id'], g['status'], '-', g['title']) for g in d['gates']]"
       - name: Evidence for the record (Ollama request lines, version, identity)

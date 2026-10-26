@@ -10,6 +10,7 @@ its own pass/fail and every failure stays in the file. Against tools/selftest_sh
 Cases are labelled from the stored supplier records (the expected answers are computed from the database, not copied from model output). A failed case is a finding about the model; the boundary is never relaxed to fix it."""
 import argparse
 import asyncio
+import hashlib
 import json
 import os
 import re
@@ -83,13 +84,15 @@ def summarize(rec, events, directory, wall_s, review_fn, verify_fn, telemetry_fn
                usage=rec.usage.model_dump(), models=models, call_latency_ms=call_ms, call_tokens=calls_tok, event_counts=counts, plan_fallback=plan_fallback, provider_events=errors, evidence_count=len(evidence),
                evidence_docs=sorted({v["doc_id"] for v in evidence.values()}), guardrail_evidence_flags=counts.get("guardrail.evidence", 0), tool_calls=tool_calls, report=report,
                platform_verification=rec.verification.model_dump() if rec.verification is not None else None, evidence={k: v for k, v in evidence.items()})
+    out["evidence_fingerprint"] = [dict(id=k, doc_id=v["doc_id"], title=v["title"], text_chars=len(v["text"]), text_sha256=hashlib.sha256(v["text"].encode()).hexdigest()) for k, v in evidence.items()]     # recording format 2: lets two runs' retrieved contexts be compared
     if telemetry_fn is not None:
         out["telemetry"] = telemetry_fn(rec, events)                                   # verification verdicts WITH the rejected claim text, provider errors/retries, per-call latency
     if report is not None:
         rv = review_fn(report, evidence, directory, tool_calls)
         out["independent_problems"] = verify_fn(report, evidence, directory)
         out["boundary"] = dict(status=rv["status"], accepted=len(rv["claims_accepted"]), rejected=[dict(text=r["text"], codes=r["codes"]) for r in rv["claims_rejected"]], report_codes=rv["report_codes"], flags=rv["flags"],
-                               accepted_claims=[c["text"] for c in rv["claims_accepted"]])
+                               accepted_claims=[c["text"] for c in rv["claims_accepted"]],
+                               rejected_detail=rv["claims_rejected"], comparisons=rv.get("comparisons", []), absences=rv.get("absences", []), problems=rv.get("problems", []))        # recording format 2: complete rejected claims, rule detail, comparison sets
     return out
 
 
@@ -653,7 +656,7 @@ def run_battery(args):
     result["model"].update(expected_digest=expected or None, digest_verified=bool(expected) and ident.get("digest", "").lower() == expected, architecture=ident.get("architecture"), parameter_count=ident.get("parameter_count"), tag_details=ident.get("tag_details"))
     result.update(identity=ident, warmup=warm, cases=[{k: v for k, v in c.items()} for c in cases], finished_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                   ground_truth=[dict(supplier=x["name"], ref=p.get("ingredient_ref"), product=p["name"], unit=p.get("unit"), cents=(float(p["unit_price_cents"]) if p["unit_price_cents"] is not None else None), price_class=p["price_class"], min_order_cents=(float(p["min_order_cents"]) if p.get("min_order_cents") is not None else None)) for x in directory for p in x["products"]],
-                  conditions=dict(commit=os.environ.get("GITHUB_SHA"), corpus="v2: the supplier is named on every product line; stale agent documents removed on re-ingest (since run 2)", retrieval="exact scan (index scans off)",
+                  recording_version=2, conditions=dict(commit=os.environ.get("GITHUB_SHA"), corpus="v2: the supplier is named on every product line; stale agent documents removed on re-ingest (since run 2)", retrieval="exact scan (index scans off)",
                                   direct_case_queries="unchanged since run 1 (C01-C09) and run 3 (C12, C13, HO1-HO4)", workflow_and_C15_query="v2: names the 8 costliest ingredients (new since run 3); the report is asked to stay within 200 words (new since run 3)",
                                   quarantine="on by default; off only for C12 (model-resistance measurement)", boundary_rules=sorted(MB.RULES), criteria="v1 historical scoring plus v2 for C09, HO4 and C13", ollama_version=ident.get("version"), model_digest=ident.get("digest")))
     return result
@@ -679,7 +682,9 @@ def run_weir(world, AR, args):
         accepted = st["agent_mode"] == "engine_model" and (res.get("boundary") or {}).get("status") == "accepted"
         out["runs"].append(dict(label=label, requester=requester, corr_id=corr, agent_mode=st["agent_mode"], model_output_accepted=accepted, deterministic_fallback=st["agent_mode"] != "engine_model", fallback_reason=res.get("fallback_reason"),
                                 boundary_status=(res.get("boundary") or {}).get("status"), platform_verification=ev.get("platform_verification") or (res.get("verification")), independent_problems=ev.get("independent_problems"),
-                                comparisons=ev.get("comparisons"), absences=ev.get("absences"), rejected_agent_output=res.get("rejected_agent_output"), usage=ev.get("usage") or (ev.get("agent_telemetry") or {}).get("usage"),
+                                comparisons=ev.get("comparisons"), absences=ev.get("absences"), rejected_agent_output=res.get("rejected_agent_output"),
+                                recording_version=ev.get("recording_version"), query=ev.get("query"), corpus_version=ev.get("corpus_version"), evidence_context=ev.get("evidence_context"), rejected_claims_full=ev.get("rejected_claims_full"), report_reviewed=ev.get("report_reviewed"),
+                                boundary_problems=ev.get("boundary_problems"), boundary_report_codes=ev.get("boundary_report_codes"), platform_verification_full=ev.get("verification"), usage=ev.get("usage") or (ev.get("agent_telemetry") or {}).get("usage"),
                                 claims=[c["text"] for c in (res.get("report") or {}).get("claims", [])] if accepted else [], authorization=decisions, final_state=st["state"], decided_by=st.get("decided_by"),
                                 proposal_hash_equals_deterministic_baseline=st["proposal_hash"] == baseline))
     try:

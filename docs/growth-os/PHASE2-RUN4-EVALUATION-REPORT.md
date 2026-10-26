@@ -64,3 +64,9 @@ Why the governed runs differ from C15 on identical prompt token counts (completi
 3. **Not recommended:** accepting the two valid claims when one is rejected (partial acceptance). It changes the containment policy and is not needed to find the cause.
 
 Settling the question requires one further model-live run after change 1, which needs your separate authorization. Without it the established facts stay as stated above: the platform verifier passed, the boundary rejected one multi-supplier claim, and the exact wording is unknown.
+
+## 8. Correction and follow-up (added after the recording-only change)
+
+* **Correction to section 3 and section 5.** I wrote that the workflow's audit event held the *full* rejected claim text. It did not: that event stored `r["text"]`, which the boundary truncates to 120 characters, so the claim is unrecoverable from the event too. The comparison's `claim` field was cut at 200 characters.
+* **Recoverability search (existing records only, no network restriction bypassed):** the preserved job log, `result.json`, `cases.jsonl`, `comparison.json`, `acceptance.json`, the Ollama request lines (metadata only: status and duration, no bodies), and the local filesystem were searched for any continuation of the claim after `... Synthetic Broadline Distributor A (broadline) at`. Every occurrence ends there. The uploaded artifact is the same record as the log and is also unreachable from this session. **The original claim is not recoverable.**
+* **What was done:** recording-only changes and an evaluator requirement for future runs (`PHASE2-RECORDING-REQUIREMENTS.md`). Whether run #4's model was wrong or the rule too strict therefore remains undetermined; it can only be settled by a future approved run that records the claim, which has not been requested.
