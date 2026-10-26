@@ -1,0 +1,118 @@
+name: m-ops-2-live
+# MANUAL ONLY (workflow_dispatch). One controlled evaluation of the digest-pinned qwen2.5:7b-instruct on the FROZEN 60-case M-OPS-2 set (design: docs/growth-os/OPS-EXPLANATION-M-OPS-2-EVALUATION-DESIGN.md, commit ae6e0ec, as amended by OPS-EXPLANATION-M-OPS-2-DESIGN-AMENDMENT-1.1.md: case set v2 and renderer v2 with trusted display labels; renderer v1 is never used).
+# It must NOT be dispatched without a separate, explicit approval; the `confirm` input exists so a stray click cannot start inference. Read-only permissions: nothing is pushed, published, deployed, approved or ordered; no secrets; no database; no THE WEIR/platform install.
+# The model's output reaches only the pure validator and the shared renderer. Results are scored by tools/ops_m_ops_2_score.py (standard library only). No verdict here is a PASS and none changes Phase 2 (REQUIRES_REVIEW).
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type RUN_M_OPS_2_ONCE to start inference (anything else stops the job before any model is installed)"
+        required: true
+      model:
+        description: "Ollama model tag (exact; no substitution)"
+        default: "qwen2.5:7b-instruct"
+        required: true
+      expected_digest:
+        description: "Exact model digest; the job fails BEFORE any inference if the pulled model differs"
+        default: "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: m-ops-2-live
+  cancel-in-progress: false
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    env:
+      MODEL: ${{ inputs.model }}
+      EXPECTED_MODEL_DIGEST: ${{ inputs.expected_digest }}
+      CONFIRM: ${{ inputs.confirm }}
+      M_OPS_2_LIVE_CONFIRM: ${{ inputs.confirm }}
+      OLLAMA_CONTEXT_LENGTH: "8192"
+      OLLAMA_NUM_PARALLEL: "1"
+      OLLAMA_MAX_LOADED_MODELS: "1"
+      OLLAMA_KEEP_ALIVE: "-1"
+    steps:
+      - name: Confirmation gate (before anything is installed)
+        run: |
+          set -eu
+          if [ "$CONFIRM" != "RUN_M_OPS_2_ONCE" ]; then echo "::error::confirm must be exactly RUN_M_OPS_2_ONCE; no model was installed and no inference happened"; exit 1; fi
+          case "$MODEL" in *[!A-Za-z0-9._:-]*|"") echo "::error::model tag contains characters outside [A-Za-z0-9._:-]"; exit 1;; esac
+          case "$EXPECTED_MODEL_DIGEST" in *[!0-9a-f]*|"") echo "::error::expected digest must be lowercase hex"; exit 1;; esac
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r lab/requirements-dev.txt -r lab/requirements-ci-extras.txt
+      - name: Offline gates before any model (frozen set intact, harness tests, scripted dry run and its independent scoring)
+        working-directory: lab
+        run: |
+          set -eu
+          python tools/ops_m_ops_2_caseset.py --version 1 --check
+          python tools/ops_m_ops_2_caseset.py --version 2 --check
+          python tools/ops_golden_vectors.py --check
+          python tools/ops_golden_vectors.py --version 2 --check
+          python3 contracts/ops_explanation_vectors/v1/verify_vectors.py
+          python3 contracts/ops_explanation_vectors/v2/verify_vectors.py
+          python -m pytest tests/test_ops_m_ops_2_caseset.py tests/test_ops_m_ops_2_harness.py tests/test_ops_renderer_v2.py -q
+          python tools/ops_m_ops_2_run.py --out /tmp/dryrun --shim mixed --purpose offline
+          python tools/ops_m_ops_2_score.py /tmp/dryrun > /tmp/dryrun-score.json
+          python -c "import json; d=json.load(open('/tmp/dryrun-score.json')); print('DRY_RUN_VERDICT', d['verdict'], d['computed_verdict'])"
+      - name: Install Ollama and run OUR server with the intended settings; pull the named model once
+        run: |
+          set -eu
+          curl -fsSL https://ollama.com/install.sh | sh
+          sudo systemctl stop ollama 2>/dev/null || true
+          sudo systemctl disable ollama 2>/dev/null || true
+          sleep 2
+          if curl -fsS localhost:11434/api/version >/dev/null 2>&1; then echo "::error::something still answers on 11434"; exit 1; fi
+          (nohup ollama serve > /tmp/ollama.log 2>&1 &)
+          for i in $(seq 1 60); do curl -fsS localhost:11434/api/version && break || sleep 2; done
+          ollama pull "$MODEL"
+          mkdir -p /tmp/evidence
+          curl -fsS localhost:11434/api/version > /tmp/evidence/ollama-version.json
+          curl -fsS localhost:11434/api/tags > /tmp/evidence/ollama-tags.json
+      - name: Verify the EFFECTIVE server configuration from the server's own log (a mismatch stops the job before any inference)
+        run: |
+          set -eu
+          fail=0
+          for kv in OLLAMA_CONTEXT_LENGTH=8192 OLLAMA_NUM_PARALLEL=1 OLLAMA_MAX_LOADED_MODELS=1 OLLAMA_KEEP_ALIVE=-1; do
+            k=${kv%%=*}; want=${kv#*=}
+            got=$(grep -m1 -oE "${k}[:=][-0-9A-Za-z.]+" /tmp/ollama.log | head -1 | sed -E "s/^${k}[:=]//; s/(ns|ms|s|m|h)$//" || true)
+            if [ "$k" = "OLLAMA_KEEP_ALIVE" ] && [ "${got#2562047h}" != "$got" ]; then got=-1; fi
+            if [ -z "$got" ]; then echo "NOT OBSERVABLE: $k (intended $want); recorded as not observable, not as applied"
+            elif [ "$got" = "$want" ]; then echo "CONFIRMED: $k=$got"
+            else echo "MISMATCH: $k intended $want but the server reports $got"; fail=1; fi
+          done
+          if [ "$fail" -ne 0 ]; then echo "::error::the server reports settings different from the intended ones"; exit 1; fi
+      - name: Controlled evaluation (preflight with digest enforcement runs first and fails closed; then 60 cases, every one recorded)
+        working-directory: lab
+        timeout-minutes: 300
+        run: |
+          set -eu
+          (while true; do { date -u +%FT%TZ; free -m | sed -n 2p; ps -C ollama -o rss= | head -1; } >> /tmp/evidence/memory-samples.txt; sleep 60; done) &
+          python tools/ops_m_ops_2_run.py --live --purpose live --out /tmp/evidence/run
+      - name: Independent scoring (standard library only; the verdict is printed and never changes Phase 2)
+        if: always()
+        working-directory: lab
+        run: |
+          if [ -d /tmp/evidence/run ]; then
+            python tools/ops_m_ops_2_score.py /tmp/evidence/run --out /tmp/evidence/score.json > /dev/null || true
+            echo M_OPS_2_SCORE_BEGIN; cat /tmp/evidence/score.json; echo M_OPS_2_SCORE_END
+            python -c "import json; d=json.load(open('/tmp/evidence/score.json')); print('M_OPS_2_VERDICT', d['verdict']); print(json.dumps(d.get('capability'), sort_keys=True)); print(json.dumps({k: v['status'] for k, v in d['safety_gates'].items()}, sort_keys=True))"
+          else
+            echo "no run directory: the evaluation did not start (preflight or digest check failed closed)"
+          fi
+      - name: Evidence for the record
+        if: always()
+        run: |
+          mkdir -p /tmp/evidence
+          cp /tmp/ollama.log /tmp/evidence/ollama.log 2>/dev/null || true
+          echo "ollama_chat_completion_requests=$(grep -c 'POST.*"/v1/chat/completions"' /tmp/ollama.log || true)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m-ops-2-evidence
+          path: /tmp/evidence
+          if-no-files-found: warn
