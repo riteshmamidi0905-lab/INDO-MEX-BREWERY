@@ -123,7 +123,10 @@ class Headquarters:
                         p=ev['payload']
                         if isinstance(p,str): p=json.loads(p)
                         recent.append({'kind':'Gateway read decision','tool':p.get('tool'),'verdict':p.get('verdict') or p.get('decision'),'call':p.get('call')})
-                result['gateway']={'chain_valid':store.verify_chain()[0],'read_decisions':recent[-8:],'consequential_actions':0,'scope':'This department read adapter registers read tools only; governed workflow approvals and isolated draft effects are recorded separately when enabled.'}
+                chain_valid=store.verify_chain()[0]
+                if view=='operations' and not chain_valid:
+                    raise PermissionError('THE WEIR read audit integrity failed; explanation unavailable')
+                result['gateway']={'chain_valid':chain_valid,'read_decisions':recent[-8:],'consequential_actions':0,'scope':'This department read adapter registers read tools only; governed workflow approvals and isolated draft effects are recorded separately when enabled.'}
                 return result
             finally:
                 await gateway.close(); store.close()
@@ -183,9 +186,12 @@ def handler(host):
                             view=parsed.path.removeprefix('/api/view/')
                             if view not in CAPABILITIES: return self.send(404,{'error':'Unknown department'})
                             raw=parse_qs(parsed.query,keep_blank_values=True)
-                            if set(raw)-{'page','month','kind','q','source'} or any(len(v)!=1 for v in raw.values()):
+                            if set(raw)-{'page','month','kind','q','source','scenario'} or any(len(v)!=1 for v in raw.values()):
                                 return self.send(400,{'error':'Unsupported filter'})
                             f={k:v[0] for k,v in raw.items()}
+                            if 'scenario' in f:
+                                from .workforce import SCENARIOS
+                                if view!='operations' or f['scenario'] not in SCENARIOS: return self.send(400,{'error':'Invalid Operations scenario'})
                             if f.get('page'):
                                 if not re.fullmatch(r'\d{1,5}',f['page']): return self.send(400,{'error':'Invalid page'})
                                 f['page']=int(f['page'])

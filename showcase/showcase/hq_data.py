@@ -53,6 +53,9 @@ def read_model(path,tenant,view,filters,reports,source_id=None):
         result={'tenant':tenant,'synthetic':True,'business':business,'view':view,'summary':summary(con,tenant),'source':'foundation schema v1 · financial_records + transactions + business_events'}
         counts={t:con.execute(f'SELECT count(*) FROM {t} WHERE tenant_id=?',(tenant,)).fetchone()[0] for t in ('agents','departments','tasks','transactions','business_events','financial_records','transaction_lines','stakeholders')}
         result['counts']=counts
+        if view == 'operations':
+            from .operations import explain
+            result['operations_explanation']=explain(tenant,filters.get('scenario','count-gap'))
         if view in ('headquarters','executive','finance','data'):
             result['monthly']=rows(con,"""SELECT substr(e.occurred,1,7) month,
               SUM(CASE WHEN f.account='revenue' THEN f.credit_cents-f.debit_cents ELSE 0 END) revenue,
