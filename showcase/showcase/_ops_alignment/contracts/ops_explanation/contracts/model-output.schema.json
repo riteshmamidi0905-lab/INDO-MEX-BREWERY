@@ -1,0 +1,449 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "model-output.schema.json",
+  "title": "model-output \u2014 PROPOSED SPECIFICATION ONLY",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "ops-explanation-output.v1"
+    },
+    "analysis_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36,
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "tenant_scope_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36,
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32,
+      "pattern": "^run-[0-9a-f]{10}$"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+    },
+    "snapshot_sha256": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ANSWER",
+        "ABSTAIN"
+      ]
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8,
+                "pattern": "^c[1-8]$"
+              },
+              "kind": {
+                "const": "OBSERVE"
+              },
+              "subject_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "fact_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "field": {
+                "type": "string",
+                "enum": [
+                  "expected_units",
+                  "counted_units",
+                  "target_units",
+                  "unit_cost_cents"
+                ]
+              },
+              "claimed_value": {
+                "type": "integer",
+                "minimum": -1000000000,
+                "maximum": 1000000000
+              },
+              "unit": {
+                "type": "string",
+                "enum": [
+                  "UNITS",
+                  "USD_CENTS_PER_UNIT"
+                ]
+              }
+            },
+            "required": [
+              "claim_id",
+              "kind",
+              "subject_id",
+              "fact_id",
+              "field",
+              "claimed_value",
+              "unit"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8,
+                "pattern": "^c[1-8]$"
+              },
+              "kind": {
+                "const": "DIFFERENCE"
+              },
+              "subject_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "operation": {
+                "const": "EXPECTED_MINUS_COUNTED"
+              },
+              "expected_fact_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "counted_fact_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "claimed_difference": {
+                "type": "integer",
+                "minimum": -1000000000,
+                "maximum": 1000000000
+              },
+              "unit": {
+                "const": "UNITS"
+              }
+            },
+            "required": [
+              "claim_id",
+              "kind",
+              "subject_id",
+              "operation",
+              "expected_fact_id",
+              "counted_fact_id",
+              "claimed_difference",
+              "unit"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8,
+                "pattern": "^c[1-8]$"
+              },
+              "kind": {
+                "const": "COMPARISON"
+              },
+              "left_subject_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "right_subject_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "left_fact_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "right_fact_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "claimed_relation": {
+                "type": "string",
+                "enum": [
+                  "LT",
+                  "EQ",
+                  "GT"
+                ]
+              },
+              "comparison_group_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              }
+            },
+            "required": [
+              "claim_id",
+              "kind",
+              "left_subject_id",
+              "right_subject_id",
+              "left_fact_id",
+              "right_fact_id",
+              "claimed_relation",
+              "comparison_group_id"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8,
+                "pattern": "^c[1-8]$"
+              },
+              "kind": {
+                "const": "EXTREMUM"
+              },
+              "operation": {
+                "type": "string",
+                "enum": [
+                  "MIN",
+                  "MAX"
+                ]
+              },
+              "comparison_group_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "completeness_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "winner_subject_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 96,
+                  "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+                },
+                "minItems": 1,
+                "maxItems": 32,
+                "uniqueItems": true
+              },
+              "claimed_value": {
+                "type": "integer",
+                "minimum": -1000000000,
+                "maximum": 1000000000
+              },
+              "unit": {
+                "type": "string",
+                "enum": [
+                  "UNITS",
+                  "USD_CENTS_PER_UNIT"
+                ]
+              }
+            },
+            "required": [
+              "claim_id",
+              "kind",
+              "operation",
+              "comparison_group_id",
+              "completeness_id",
+              "winner_subject_ids",
+              "claimed_value",
+              "unit"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8,
+                "pattern": "^c[1-8]$"
+              },
+              "kind": {
+                "const": "SCOPED_ABSENCE"
+              },
+              "subject_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "field": {
+                "type": "string",
+                "enum": [
+                  "expected_units",
+                  "counted_units",
+                  "target_units",
+                  "unit_cost_cents"
+                ]
+              },
+              "completeness_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "scope": {
+                "const": "THIS_SYNTHETIC_SNAPSHOT"
+              }
+            },
+            "required": [
+              "claim_id",
+              "kind",
+              "subject_id",
+              "field",
+              "completeness_id",
+              "scope"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8,
+                "pattern": "^c[1-8]$"
+              },
+              "kind": {
+                "const": "LIMITATION"
+              },
+              "code": {
+                "type": "string",
+                "enum": [
+                  "CAUSE_NOT_ESTABLISHED",
+                  "UNVERIFIED_INVENTORY_SNAPSHOT",
+                  "PLANNING_PRICE_ONLY"
+                ]
+              },
+              "fact_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 96,
+                  "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+                },
+                "minItems": 1,
+                "maxItems": 8,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "claim_id",
+              "kind",
+              "code",
+              "fact_ids"
+            ]
+          }
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 8
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "MISSING_REQUIRED_EVIDENCE",
+          "CONFLICTING_EVIDENCE",
+          "INCOMPATIBLE_UNITS",
+          "INSUFFICIENT_SCOPE",
+          "UNSUPPORTED_TASK"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 5,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "analysis_id",
+    "tenant_scope_id",
+    "workflow_id",
+    "snapshot_id",
+    "snapshot_sha256",
+    "status",
+    "claims",
+    "reason_codes"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ANSWER"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "claims": {
+            "minItems": 1
+          },
+          "reason_codes": {
+            "maxItems": 0
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "claims": {
+            "maxItems": 0
+          },
+          "reason_codes": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

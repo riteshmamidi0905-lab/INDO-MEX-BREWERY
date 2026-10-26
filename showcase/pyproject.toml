@@ -10,3 +10,5 @@ dependencies = ["numpy>=1.26", "pandas>=2.2"]
 include = ["showcase*"]
 [tool.setuptools.package-data]
 showcase = ["*.sql", "*.json"]
+
+"showcase._ops_alignment" = ["UPSTREAM.json", "contracts/ops_explanation/*.json", "contracts/ops_explanation/contracts/*.json", "contracts/ops_explanation/examples/*.json"]

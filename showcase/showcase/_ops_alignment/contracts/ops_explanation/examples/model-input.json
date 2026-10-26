@@ -1,0 +1,80 @@
+{
+  "schema_version": "ops-explanation-input.v1",
+  "analysis_id": "00000000-0000-4000-8000-000000000001",
+  "tenant_scope_id": "00000000-0000-4000-8000-000000000002",
+  "workflow_id": "run-0000000001",
+  "snapshot_id": "snapshot:example-v1",
+  "snapshot_sha256": "126d338b08c11d840352cb85ec3703fa8bae9ad60ea10bb88df9d88bdc86f47e",
+  "task": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY",
+  "as_of": "2026-10-25T00:00:00Z",
+  "entities": [
+    {
+      "id": "item:packaging",
+      "kind": "INVENTORY_ITEM",
+      "alias": "Synthetic packaging"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fact:counted_units",
+      "subject_id": "item:packaging",
+      "field": "counted_units",
+      "availability": "PRESENT",
+      "value": 40,
+      "unit": "UNITS",
+      "as_of": "2026-10-25T00:00:00Z",
+      "provenance": {
+        "source_kind": "SCENARIO_ASSUMPTION",
+        "source_ref": "scenario://count-gap/v1/counted_units",
+        "record_id": "scenario:count-gap",
+        "record_sha256": "c5e5e4152a4f99da2b8c8308c0f1936acb78347315f8b2c4eecc8695f732dbc6",
+        "source_revision": "count-gap:v1"
+      },
+      "inventory_item_id": "item:packaging"
+    },
+    {
+      "id": "fact:expected_units",
+      "subject_id": "item:packaging",
+      "field": "expected_units",
+      "availability": "PRESENT",
+      "value": 100,
+      "unit": "UNITS",
+      "as_of": "2026-10-25T00:00:00Z",
+      "provenance": {
+        "source_kind": "SCENARIO_ASSUMPTION",
+        "source_ref": "scenario://count-gap/v1/expected_units",
+        "record_id": "scenario:count-gap",
+        "record_sha256": "de9e676b7caf5866bf27a78a47c6517a81de8537dde3db7ee8b13edfc0fc3740",
+        "source_revision": "count-gap:v1"
+      },
+      "inventory_item_id": "item:packaging"
+    },
+    {
+      "id": "fact:target_units",
+      "subject_id": "item:packaging",
+      "field": "target_units",
+      "availability": "PRESENT",
+      "value": 120,
+      "unit": "UNITS",
+      "as_of": "2026-10-25T00:00:00Z",
+      "provenance": {
+        "source_kind": "SCENARIO_ASSUMPTION",
+        "source_ref": "scenario://count-gap/v1/target_units",
+        "record_id": "scenario:count-gap",
+        "record_sha256": "2ba1aaa34b369ee625fc9cbdb6a6ae28339f3b356f9d5c4b9831ebb9978499a5",
+        "source_revision": "count-gap:v1"
+      },
+      "inventory_item_id": "item:packaging"
+    }
+  ],
+  "comparison_groups": [],
+  "completeness": [],
+  "prohibited_effects": [
+    "PURCHASE",
+    "INVENTORY_MUTATION",
+    "SUPPLIER_CONTACT",
+    "APPROVAL",
+    "FINANCIAL_MUTATION",
+    "ARBITRARY_TOOL"
+  ]
+}

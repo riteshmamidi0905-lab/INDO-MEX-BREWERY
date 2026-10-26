@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "result-envelope.schema.json",
+  "title": "result-envelope \u2014 PROPOSED SPECIFICATION ONLY",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "ops-explanation-result.v1"
+    },
+    "analysis_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36,
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32,
+      "pattern": "^run-[0-9a-f]{10}$"
+    },
+    "tenant_scope_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36,
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACCEPTED",
+        "ABSTAINED",
+        "REJECTED",
+        "FAILED",
+        "CANCELLED",
+        "INTERRUPTED",
+        "AUDIT_PENDING"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "LIVE_LLM",
+        "DETERMINISTIC_REPLAY",
+        "CACHED_REPLAY"
+      ]
+    },
+    "model_output": {
+      "anyOf": [
+        {
+          "$ref": "model-output.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rendered_explanation": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "validation_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 96,
+        "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+      },
+      "minItems": 0,
+      "maxItems": 32,
+      "uniqueItems": true
+    },
+    "provider": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "const": "ollama"
+            },
+            "model": {
+              "const": "qwen2.5:7b-instruct"
+            },
+            "digest": {
+              "const": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+            },
+            "runtime_profile_sha256": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "actual_model_calls": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "prompt_tokens": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "completion_tokens": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "estimated_usage": {
+              "type": "boolean"
+            },
+            "latency_ms": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "name",
+            "model",
+            "digest",
+            "runtime_profile_sha256",
+            "actual_model_calls",
+            "prompt_tokens",
+            "completion_tokens",
+            "estimated_usage",
+            "latency_ms"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "audit_complete": {
+      "type": "boolean"
+    },
+    "accepted_result_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "cached_from_analysis_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 36,
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "analysis_id",
+    "workflow_id",
+    "tenant_scope_id",
+    "status",
+    "mode",
+    "model_output",
+    "rendered_explanation",
+    "validation_codes",
+    "provider",
+    "audit_complete",
+    "accepted_result_sha256",
+    "cached_from_analysis_id"
+  ]
+}

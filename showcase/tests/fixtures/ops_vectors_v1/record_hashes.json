@@ -1,0 +1,675 @@
+{
+ "rules": [
+  "record-hash.v0 exists only to verify the published example; a live snapshot carrying v0 hashes is refused (verdict vectors: record-hash-v0-is-never-admissible-for-a-live-snapshot).",
+  "The profile is a server constant, never read from the snapshot, the model output or the caller; mixed profiles fail closed (record-hash-mixed-profiles-fail-closed).",
+  "v1 sensitivity: changing ANY preimage field, or removing the profile string, changes the hash; the v1 value of the same facts differs between tenants."
+ ],
+ "v0_published_example": [
+  {
+   "canonical_text": "{\"field\":\"counted_units\",\"subject_id\":\"item:packaging\",\"unit\":\"UNITS\",\"value\":40}",
+   "fact_id": "fact:counted_units",
+   "matches_published": true,
+   "preimage": {
+    "field": "counted_units",
+    "subject_id": "item:packaging",
+    "unit": "UNITS",
+    "value": 40
+   },
+   "published_record_sha256": "c5e5e4152a4f99da2b8c8308c0f1936acb78347315f8b2c4eecc8695f732dbc6",
+   "sha256": "c5e5e4152a4f99da2b8c8308c0f1936acb78347315f8b2c4eecc8695f732dbc6"
+  },
+  {
+   "canonical_text": "{\"field\":\"expected_units\",\"subject_id\":\"item:packaging\",\"unit\":\"UNITS\",\"value\":100}",
+   "fact_id": "fact:expected_units",
+   "matches_published": true,
+   "preimage": {
+    "field": "expected_units",
+    "subject_id": "item:packaging",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "published_record_sha256": "de9e676b7caf5866bf27a78a47c6517a81de8537dde3db7ee8b13edfc0fc3740",
+   "sha256": "de9e676b7caf5866bf27a78a47c6517a81de8537dde3db7ee8b13edfc0fc3740"
+  },
+  {
+   "canonical_text": "{\"field\":\"target_units\",\"subject_id\":\"item:packaging\",\"unit\":\"UNITS\",\"value\":120}",
+   "fact_id": "fact:target_units",
+   "matches_published": true,
+   "preimage": {
+    "field": "target_units",
+    "subject_id": "item:packaging",
+    "unit": "UNITS",
+    "value": 120
+   },
+   "published_record_sha256": "2ba1aaa34b369ee625fc9cbdb6a6ae28339f3b356f9d5c4b9831ebb9978499a5",
+   "sha256": "2ba1aaa34b369ee625fc9cbdb6a6ae28339f3b356f9d5c4b9831ebb9978499a5"
+  }
+ ],
+ "v1_baseline_counted_fact": {
+  "fact_id": "fact:counted_units",
+  "scenario": "count-gap",
+  "sha256": "edbbc5d978b421be31de7554657d10fea5cb92201eb31a2b4a26b02a90d4bdb9",
+  "tenant": "nasha-brewery"
+ },
+ "v1_live": [
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"counted_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:count-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://count-gap/v1/counted_units\",\"source_revision\":\"count-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":40}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:counted_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "counted_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:count-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://count-gap/v1/counted_units",
+    "source_revision": "count-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 40
+   },
+   "scenario": "count-gap",
+   "sha256": "edbbc5d978b421be31de7554657d10fea5cb92201eb31a2b4a26b02a90d4bdb9",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"expected_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:count-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://count-gap/v1/expected_units\",\"source_revision\":\"count-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":100}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:expected_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "expected_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:count-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://count-gap/v1/expected_units",
+    "source_revision": "count-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "scenario": "count-gap",
+   "sha256": "60bfcaff4efb599621f84495094656b72038c37450f3545566e3137c83a5b52f",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"target_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:count-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://count-gap/v1/target_units\",\"source_revision\":\"count-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":120}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:target_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "target_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:count-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://count-gap/v1/target_units",
+    "source_revision": "count-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 120
+   },
+   "scenario": "count-gap",
+   "sha256": "397c77ad1f847e16d9df882644635bf3ee7b0e03c3852a4bb0e83b8c1fdd9b87",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"counted_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:budget-risk\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://budget-risk/v1/counted_units\",\"source_revision\":\"budget-risk:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":20}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:counted_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "counted_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:budget-risk",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://budget-risk/v1/counted_units",
+    "source_revision": "budget-risk:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 20
+   },
+   "scenario": "budget-risk",
+   "sha256": "145e6ce8a4cb77e680884d064262ca17035aab89d9adb85387ddd1a48a18f64b",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"expected_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:budget-risk\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://budget-risk/v1/expected_units\",\"source_revision\":\"budget-risk:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":100}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:expected_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "expected_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:budget-risk",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://budget-risk/v1/expected_units",
+    "source_revision": "budget-risk:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "scenario": "budget-risk",
+   "sha256": "8d3b919dcfa7ab11953f427469a194ca8747185d51b7d1eadcfbe961f31bbcec",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"target_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:budget-risk\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://budget-risk/v1/target_units\",\"source_revision\":\"budget-risk:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":120}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:target_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "target_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:budget-risk",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://budget-risk/v1/target_units",
+    "source_revision": "budget-risk:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 120
+   },
+   "scenario": "budget-risk",
+   "sha256": "c78b0d293f76bdf369858d00c62c6d48464de0b95bfdb443ade8ad303eb0e6bd",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"counted_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:no-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://no-gap/v1/counted_units\",\"source_revision\":\"no-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":100}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:counted_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "counted_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:no-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://no-gap/v1/counted_units",
+    "source_revision": "no-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "scenario": "no-gap",
+   "sha256": "7017cbca8d823f323513d2f6cfb2a5c51c86b8500835e7782b19f6c5cf137faa",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"expected_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:no-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://no-gap/v1/expected_units\",\"source_revision\":\"no-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":100}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:expected_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "expected_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:no-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://no-gap/v1/expected_units",
+    "source_revision": "no-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "scenario": "no-gap",
+   "sha256": "4de958c062a029ed7b39170e5306bc6b3e6da63b98cb631c412e3cb7e5ac302b",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"target_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:no-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://no-gap/v1/target_units\",\"source_revision\":\"no-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":120}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:target_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "target_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:no-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://no-gap/v1/target_units",
+    "source_revision": "no-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 120
+   },
+   "scenario": "no-gap",
+   "sha256": "64d7d1bfc40afc35b64f74c72e33df75ab8cee3ecc37f381d5d0eb3d0d9fec89",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"MISSING\",\"field\":\"counted_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:missing-count\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://missing-count/v1/counted_units\",\"source_revision\":\"missing-count:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":null}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:counted_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "MISSING",
+    "field": "counted_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:missing-count",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://missing-count/v1/counted_units",
+    "source_revision": "missing-count:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": null
+   },
+   "scenario": "missing-count",
+   "sha256": "848f2a876f3b4cd97d9f1d16cb7ab4a26f96bdedc03e8da933b334a3e59818d7",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"expected_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:missing-count\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://missing-count/v1/expected_units\",\"source_revision\":\"missing-count:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":100}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:expected_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "expected_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:missing-count",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://missing-count/v1/expected_units",
+    "source_revision": "missing-count:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "scenario": "missing-count",
+   "sha256": "d5f904af33127ad1d417f41d0a5fa4c950ea7873b5b766c928b91d09d7e7375b",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"target_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:missing-count\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://missing-count/v1/target_units\",\"source_revision\":\"missing-count:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000a1\",\"unit\":\"UNITS\",\"value\":120}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:target_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "target_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:missing-count",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://missing-count/v1/target_units",
+    "source_revision": "missing-count:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "unit": "UNITS",
+    "value": 120
+   },
+   "scenario": "missing-count",
+   "sha256": "a42bf023751bf9edb20ee12e199319c9334cb7817d578de811fafaf6d2271ccc",
+   "tenant": "nasha-brewery"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"counted_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:count-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://count-gap/v1/counted_units\",\"source_revision\":\"count-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":40}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:counted_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "counted_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:count-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://count-gap/v1/counted_units",
+    "source_revision": "count-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 40
+   },
+   "scenario": "count-gap",
+   "sha256": "2ed318a9ed1bc4c43d36288cc2bd203f3a9375209c171add15d595303fc576ce",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"expected_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:count-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://count-gap/v1/expected_units\",\"source_revision\":\"count-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":100}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:expected_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "expected_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:count-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://count-gap/v1/expected_units",
+    "source_revision": "count-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "scenario": "count-gap",
+   "sha256": "fc012a875f7c6a571799f644eca5bd7d9c683040e537f7612b6d5b158d7df29f",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"target_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:count-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://count-gap/v1/target_units\",\"source_revision\":\"count-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":120}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:target_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "target_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:count-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://count-gap/v1/target_units",
+    "source_revision": "count-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 120
+   },
+   "scenario": "count-gap",
+   "sha256": "eec2c7f8133458eeb4c2657015cd3941a3285d9fa21633f5bc847bd51b881358",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"counted_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:budget-risk\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://budget-risk/v1/counted_units\",\"source_revision\":\"budget-risk:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":20}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:counted_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "counted_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:budget-risk",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://budget-risk/v1/counted_units",
+    "source_revision": "budget-risk:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 20
+   },
+   "scenario": "budget-risk",
+   "sha256": "62779d0f9ca09c760adadce4eb05fd8ef4b87bda2189bfdc24433cec75f38a30",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"expected_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:budget-risk\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://budget-risk/v1/expected_units\",\"source_revision\":\"budget-risk:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":100}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:expected_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "expected_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:budget-risk",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://budget-risk/v1/expected_units",
+    "source_revision": "budget-risk:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "scenario": "budget-risk",
+   "sha256": "316a45ac13d52df9c6e46d5eb63ba4771ac037bf72456421aded6c64cf5eca5c",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"target_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:budget-risk\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://budget-risk/v1/target_units\",\"source_revision\":\"budget-risk:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":120}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:target_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "target_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:budget-risk",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://budget-risk/v1/target_units",
+    "source_revision": "budget-risk:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 120
+   },
+   "scenario": "budget-risk",
+   "sha256": "3a2d333d8d3e2f6402393ea9224988566fe8ee24d853fb6a2b18a7815fd19160",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"counted_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:no-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://no-gap/v1/counted_units\",\"source_revision\":\"no-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":100}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:counted_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "counted_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:no-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://no-gap/v1/counted_units",
+    "source_revision": "no-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "scenario": "no-gap",
+   "sha256": "5aac0178f6017faab2f3643ef7efa66eadecad43c8663b0243c52bc13608e67d",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"expected_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:no-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://no-gap/v1/expected_units\",\"source_revision\":\"no-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":100}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:expected_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "expected_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:no-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://no-gap/v1/expected_units",
+    "source_revision": "no-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "scenario": "no-gap",
+   "sha256": "a3ab4140a7455cbd69ad498b63e8985b4066fe3ccac986653d1d690cb4d39913",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"target_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:no-gap\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://no-gap/v1/target_units\",\"source_revision\":\"no-gap:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":120}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:target_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "target_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:no-gap",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://no-gap/v1/target_units",
+    "source_revision": "no-gap:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 120
+   },
+   "scenario": "no-gap",
+   "sha256": "da24e056838d0b421dc029bd2dccb45746db5b2e029e2c38c3040c7ff2b7f2a1",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"MISSING\",\"field\":\"counted_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:missing-count\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://missing-count/v1/counted_units\",\"source_revision\":\"missing-count:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":null}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:counted_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "MISSING",
+    "field": "counted_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:missing-count",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://missing-count/v1/counted_units",
+    "source_revision": "missing-count:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": null
+   },
+   "scenario": "missing-count",
+   "sha256": "4a2242175990af1acb6829cbad1faee4ce995952f2ca592977f72c306d8bd8d8",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"expected_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:missing-count\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://missing-count/v1/expected_units\",\"source_revision\":\"missing-count:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":100}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:expected_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "expected_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:missing-count",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://missing-count/v1/expected_units",
+    "source_revision": "missing-count:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 100
+   },
+   "scenario": "missing-count",
+   "sha256": "1f84577def2e74bb89ed58ca26ba4675d50cd0d899610266584a40935dbb344e",
+   "tenant": "meridian-fitness"
+  },
+  {
+   "canonical_text": "{\"as_of\":\"2026-10-25T00:00:00Z\",\"availability\":\"PRESENT\",\"field\":\"target_units\",\"inventory_item_id\":\"item:packaging\",\"profile\":\"record-hash.v1\",\"record_id\":\"scenario:missing-count\",\"source_kind\":\"SCENARIO_ASSUMPTION\",\"source_ref\":\"scenario://missing-count/v1/target_units\",\"source_revision\":\"missing-count:v1\",\"subject_id\":\"item:packaging\",\"tenant_scope_id\":\"00000000-0000-4000-8000-0000000000b2\",\"unit\":\"UNITS\",\"value\":120}",
+   "equals_input_record_sha256": true,
+   "fact_id": "fact:target_units",
+   "preimage": {
+    "as_of": "2026-10-25T00:00:00Z",
+    "availability": "PRESENT",
+    "field": "target_units",
+    "inventory_item_id": "item:packaging",
+    "profile": "record-hash.v1",
+    "record_id": "scenario:missing-count",
+    "source_kind": "SCENARIO_ASSUMPTION",
+    "source_ref": "scenario://missing-count/v1/target_units",
+    "source_revision": "missing-count:v1",
+    "subject_id": "item:packaging",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000b2",
+    "unit": "UNITS",
+    "value": 120
+   },
+   "scenario": "missing-count",
+   "sha256": "fdaca9dd33b55b9fbae10b70866341bdb40776793fc606c2be0a804d60f2f80a",
+   "tenant": "meridian-fitness"
+  }
+ ],
+ "v1_sensitivity": [
+  {
+   "changed_field": "tenant_scope_id",
+   "new_value": "00000000-0000-4000-8000-0000000000b2",
+   "sha256": "2ed318a9ed1bc4c43d36288cc2bd203f3a9375209c171add15d595303fc576ce"
+  },
+  {
+   "changed_field": "source_kind",
+   "new_value": "SYNTHETIC_RECORD",
+   "sha256": "043cc55a26e2de0e89c26774f74fea8106425d86e40fb5e02efc7fda6ac6879a"
+  },
+  {
+   "changed_field": "source_ref",
+   "new_value": "scenario://count-gap/v1/other",
+   "sha256": "0a7866f9e8b0a8431e28f148bd27b2130ec3a70a2c02de84d0cf0006d509ea6d"
+  },
+  {
+   "changed_field": "record_id",
+   "new_value": "scenario:other",
+   "sha256": "9f135bd387db70c3632867b7f5b60c38a4c7936d46cc156e57bfc1d54f93a5b8"
+  },
+  {
+   "changed_field": "source_revision",
+   "new_value": "count-gap:v2",
+   "sha256": "acece76247503aa7f597d61e993bbc72efbe23fec2c0bc9e70b061861b7dd721"
+  },
+  {
+   "changed_field": "subject_id",
+   "new_value": "item:other",
+   "sha256": "6224dc9683859a38cfb99c24659ffe37281dca7eb7bcfcbb5c85215771c92a2a"
+  },
+  {
+   "changed_field": "inventory_item_id",
+   "new_value": "item:other",
+   "sha256": "148d98401add8a22d3987ff09b728060dde1d2905ccfd39c1a4ac63a80f3b4c4"
+  },
+  {
+   "changed_field": "field",
+   "new_value": "expected_units",
+   "sha256": "cc9c6f6522d95246890f1ca0ba13c6b9a1ead6f04ec59024dec48cf981fa3499"
+  },
+  {
+   "changed_field": "availability",
+   "new_value": "CONFLICTING",
+   "sha256": "b11e5db3ff8534452b14dd4c04f9690bd33772f96595d67611c814dabea20a85"
+  },
+  {
+   "changed_field": "value",
+   "new_value": 41,
+   "sha256": "5d42fd13b0cdde308f137f4bdbbf7c656449bb2dc153d3985ee01f6be17b3a2b"
+  },
+  {
+   "changed_field": "unit",
+   "new_value": "USD_CENTS_PER_UNIT",
+   "sha256": "8c41a95e5b7a4710c5cec1086f5b1d9cae1f5c02541b7aea0e5633c59c4da85c"
+  },
+  {
+   "changed_field": "as_of",
+   "new_value": "2026-10-26T00:00:00Z",
+   "sha256": "dfe1f644a4160f596cee69b42e4f609caaa05db01a2c9611833b881c91efe2ae"
+  },
+  {
+   "changed_field": "profile (removed)",
+   "new_value": null,
+   "sha256": "01167ecc30828faa4c22828b32dd21e567b001cba4fa2d1714d9cb05fc00a429"
+  }
+ ]
+}

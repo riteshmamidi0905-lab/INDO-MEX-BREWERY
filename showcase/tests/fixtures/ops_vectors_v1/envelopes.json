@@ -1,0 +1,1154 @@
+{
+ "envelopes": [
+  {
+   "audit_complete": true,
+   "candidate": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "claims": [
+     {
+      "claim_id": "c1",
+      "claimed_value": 100,
+      "fact_id": "fact:expected_units",
+      "field": "expected_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c2",
+      "claimed_value": 40,
+      "fact_id": "fact:counted_units",
+      "field": "counted_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c3",
+      "claimed_difference": 60,
+      "counted_fact_id": "fact:counted_units",
+      "expected_fact_id": "fact:expected_units",
+      "kind": "DIFFERENCE",
+      "operation": "EXPECTED_MINUS_COUNTED",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c4",
+      "code": "CAUSE_NOT_ESTABLISHED",
+      "fact_ids": [
+       "fact:counted_units",
+       "fact:expected_units"
+      ],
+      "kind": "LIMITATION"
+     }
+    ],
+    "reason_codes": [],
+    "schema_version": "ops-explanation-output.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+    "status": "ANSWER",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_envelope": {
+    "accepted_result_sha256": "9afdfa56a73f1601bd1955e217670d27e700315bef929e6dc8799c11705924b9",
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": true,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": {
+     "analysis_id": "00000000-0000-4000-8000-000000000001",
+     "claims": [
+      {
+       "claim_id": "c1",
+       "claimed_value": 100,
+       "fact_id": "fact:expected_units",
+       "field": "expected_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c2",
+       "claimed_value": 40,
+       "fact_id": "fact:counted_units",
+       "field": "counted_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c3",
+       "claimed_difference": 60,
+       "counted_fact_id": "fact:counted_units",
+       "expected_fact_id": "fact:expected_units",
+       "kind": "DIFFERENCE",
+       "operation": "EXPECTED_MINUS_COUNTED",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c4",
+       "code": "CAUSE_NOT_ESTABLISHED",
+       "fact_ids": [
+        "fact:counted_units",
+        "fact:expected_units"
+       ],
+       "kind": "LIMITATION"
+      }
+     ],
+     "reason_codes": [],
+     "schema_version": "ops-explanation-output.v1",
+     "snapshot_id": "snapshot:scenario-v1",
+     "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+     "status": "ANSWER",
+     "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+     "workflow_id": "run-0000000001"
+    },
+    "provider": null,
+    "rendered_explanation": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "ACCEPTED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [],
+   "expected_verdict_status": "ANSWER_VERIFIED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "accepted-answer",
+   "options": {}
+  },
+  {
+   "audit_complete": false,
+   "candidate": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "claims": [
+     {
+      "claim_id": "c1",
+      "claimed_value": 100,
+      "fact_id": "fact:expected_units",
+      "field": "expected_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c2",
+      "claimed_value": 40,
+      "fact_id": "fact:counted_units",
+      "field": "counted_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c3",
+      "claimed_difference": 60,
+      "counted_fact_id": "fact:counted_units",
+      "expected_fact_id": "fact:expected_units",
+      "kind": "DIFFERENCE",
+      "operation": "EXPECTED_MINUS_COUNTED",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c4",
+      "code": "CAUSE_NOT_ESTABLISHED",
+      "fact_ids": [
+       "fact:counted_units",
+       "fact:expected_units"
+      ],
+      "kind": "LIMITATION"
+     }
+    ],
+    "reason_codes": [],
+    "schema_version": "ops-explanation-output.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+    "status": "ANSWER",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_envelope": {
+    "accepted_result_sha256": "9afdfa56a73f1601bd1955e217670d27e700315bef929e6dc8799c11705924b9",
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": {
+     "analysis_id": "00000000-0000-4000-8000-000000000001",
+     "claims": [
+      {
+       "claim_id": "c1",
+       "claimed_value": 100,
+       "fact_id": "fact:expected_units",
+       "field": "expected_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c2",
+       "claimed_value": 40,
+       "fact_id": "fact:counted_units",
+       "field": "counted_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c3",
+       "claimed_difference": 60,
+       "counted_fact_id": "fact:counted_units",
+       "expected_fact_id": "fact:expected_units",
+       "kind": "DIFFERENCE",
+       "operation": "EXPECTED_MINUS_COUNTED",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c4",
+       "code": "CAUSE_NOT_ESTABLISHED",
+       "fact_ids": [
+        "fact:counted_units",
+        "fact:expected_units"
+       ],
+       "kind": "LIMITATION"
+      }
+     ],
+     "reason_codes": [],
+     "schema_version": "ops-explanation-output.v1",
+     "snapshot_id": "snapshot:scenario-v1",
+     "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+     "status": "ANSWER",
+     "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+     "workflow_id": "run-0000000001"
+    },
+    "provider": null,
+    "rendered_explanation": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "AUDIT_PENDING",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [],
+   "expected_verdict_status": "ANSWER_VERIFIED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "audit-pending-answer",
+   "options": {}
+  },
+  {
+   "audit_complete": true,
+   "candidate": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "claims": [],
+    "reason_codes": [
+     "MISSING_REQUIRED_EVIDENCE"
+    ],
+    "schema_version": "ops-explanation-output.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "635b8897d56adf36195fc5ea0ac0965a21200bba002216672e59581d142dc6a3",
+    "status": "ABSTAIN",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": true,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": {
+     "analysis_id": "00000000-0000-4000-8000-000000000001",
+     "claims": [],
+     "reason_codes": [
+      "MISSING_REQUIRED_EVIDENCE"
+     ],
+     "schema_version": "ops-explanation-output.v1",
+     "snapshot_id": "snapshot:scenario-v1",
+     "snapshot_sha256": "635b8897d56adf36195fc5ea0ac0965a21200bba002216672e59581d142dc6a3",
+     "status": "ABSTAIN",
+     "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+     "workflow_id": "run-0000000001"
+    },
+    "provider": null,
+    "rendered_explanation": "A required count is missing from this synthetic snapshot. No explanation is given.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "ABSTAINED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [],
+   "expected_verdict_status": "ABSTAIN_VERIFIED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:missing-count/nasha-brewery",
+   "name": "abstained-missing-count",
+   "options": {}
+  },
+  {
+   "audit_complete": false,
+   "candidate": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "claims": [],
+    "reason_codes": [
+     "MISSING_REQUIRED_EVIDENCE"
+    ],
+    "schema_version": "ops-explanation-output.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "635b8897d56adf36195fc5ea0ac0965a21200bba002216672e59581d142dc6a3",
+    "status": "ABSTAIN",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": {
+     "analysis_id": "00000000-0000-4000-8000-000000000001",
+     "claims": [],
+     "reason_codes": [
+      "MISSING_REQUIRED_EVIDENCE"
+     ],
+     "schema_version": "ops-explanation-output.v1",
+     "snapshot_id": "snapshot:scenario-v1",
+     "snapshot_sha256": "635b8897d56adf36195fc5ea0ac0965a21200bba002216672e59581d142dc6a3",
+     "status": "ABSTAIN",
+     "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+     "workflow_id": "run-0000000001"
+    },
+    "provider": null,
+    "rendered_explanation": "A required count is missing from this synthetic snapshot. No explanation is given.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "AUDIT_PENDING",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [],
+   "expected_verdict_status": "ABSTAIN_VERIFIED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:missing-count/nasha-brewery",
+   "name": "audit-pending-abstain",
+   "options": {}
+  },
+  {
+   "audit_complete": false,
+   "candidate": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "claims": [
+     {
+      "claim_id": "c1",
+      "claimed_value": 100,
+      "fact_id": "fact:expected_units",
+      "field": "expected_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c2",
+      "claimed_value": 40,
+      "fact_id": "fact:counted_units",
+      "field": "counted_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c3",
+      "claimed_difference": 61,
+      "counted_fact_id": "fact:counted_units",
+      "expected_fact_id": "fact:expected_units",
+      "kind": "DIFFERENCE",
+      "operation": "EXPECTED_MINUS_COUNTED",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c4",
+      "code": "CAUSE_NOT_ESTABLISHED",
+      "fact_ids": [
+       "fact:counted_units",
+       "fact:expected_units"
+      ],
+      "kind": "LIMITATION"
+     }
+    ],
+    "reason_codes": [],
+    "schema_version": "ops-explanation-output.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+    "status": "ANSWER",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": null,
+    "provider": null,
+    "rendered_explanation": "The AI-generated explanation did not pass verification and is not shown. The deterministic Operations output is unaffected.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "REJECTED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [
+     "incorrect_difference"
+    ],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [
+    "incorrect_difference"
+   ],
+   "expected_verdict_status": "REJECTED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "rejected-wrong-difference",
+   "options": {}
+  },
+  {
+   "audit_complete": false,
+   "candidate": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "claims": [
+     {
+      "claim_id": "c1",
+      "claimed_value": 100,
+      "fact_id": "fact:expected_units",
+      "field": "expected_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c2",
+      "claimed_value": 40,
+      "fact_id": "fact:counted_units",
+      "field": "counted_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c3",
+      "claimed_difference": 60,
+      "counted_fact_id": "fact:counted_units",
+      "expected_fact_id": "fact:expected_units",
+      "kind": "DIFFERENCE",
+      "operation": "EXPECTED_MINUS_COUNTED",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c4",
+      "code": "CAUSE_NOT_ESTABLISHED",
+      "fact_ids": [
+       "fact:counted_units",
+       "fact:expected_units"
+      ],
+      "kind": "LIMITATION"
+     }
+    ],
+    "reason_codes": [],
+    "schema_version": "ops-explanation-output.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+    "status": "ANSWER",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "LIVE_LLM",
+    "model_output": null,
+    "provider": null,
+    "rendered_explanation": "The AI-generated explanation did not pass verification and is not shown. The deterministic Operations output is unaffected.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "REJECTED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [
+     "input_refused",
+     "source_provenance_missing"
+    ],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [
+    "input_refused",
+    "source_provenance_missing"
+   ],
+   "expected_verdict_status": "REJECTED",
+   "mode": "LIVE_LLM",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "rejected-input-refused-live-without-trusted-hashes",
+   "options": {}
+  },
+  {
+   "audit_complete": true,
+   "candidate": [
+    {
+     "analysis_id": "00000000-0000-4000-8000-000000000001",
+     "claims": [
+      {
+       "claim_id": "c1",
+       "claimed_value": 100,
+       "fact_id": "fact:expected_units",
+       "field": "expected_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c2",
+       "claimed_value": 40,
+       "fact_id": "fact:counted_units",
+       "field": "counted_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c3",
+       "claimed_difference": 60,
+       "counted_fact_id": "fact:counted_units",
+       "expected_fact_id": "fact:expected_units",
+       "kind": "DIFFERENCE",
+       "operation": "EXPECTED_MINUS_COUNTED",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c4",
+       "code": "CAUSE_NOT_ESTABLISHED",
+       "fact_ids": [
+        "fact:counted_units",
+        "fact:expected_units"
+       ],
+       "kind": "LIMITATION"
+      }
+     ],
+     "reason_codes": [],
+     "schema_version": "ops-explanation-output.v1",
+     "snapshot_id": "snapshot:scenario-v1",
+     "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+     "status": "ANSWER",
+     "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+     "workflow_id": "run-0000000001"
+    },
+    {
+     "actual_model_calls": 1,
+     "completion_tokens": 50,
+     "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+     "estimated_usage": false,
+     "latency_ms": 1000,
+     "model": "qwen2.5:7b-instruct",
+     "name": "ollama",
+     "prompt_tokens": 100,
+     "runtime_profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+   ],
+   "expected_envelope": {
+    "accepted_result_sha256": "9afdfa56a73f1601bd1955e217670d27e700315bef929e6dc8799c11705924b9",
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": true,
+    "cached_from_analysis_id": null,
+    "mode": "LIVE_LLM",
+    "model_output": {
+     "analysis_id": "00000000-0000-4000-8000-000000000001",
+     "claims": [
+      {
+       "claim_id": "c1",
+       "claimed_value": 100,
+       "fact_id": "fact:expected_units",
+       "field": "expected_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c2",
+       "claimed_value": 40,
+       "fact_id": "fact:counted_units",
+       "field": "counted_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c3",
+       "claimed_difference": 60,
+       "counted_fact_id": "fact:counted_units",
+       "expected_fact_id": "fact:expected_units",
+       "kind": "DIFFERENCE",
+       "operation": "EXPECTED_MINUS_COUNTED",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c4",
+       "code": "CAUSE_NOT_ESTABLISHED",
+       "fact_ids": [
+        "fact:counted_units",
+        "fact:expected_units"
+       ],
+       "kind": "LIMITATION"
+      }
+     ],
+     "reason_codes": [],
+     "schema_version": "ops-explanation-output.v1",
+     "snapshot_id": "snapshot:scenario-v1",
+     "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+     "status": "ANSWER",
+     "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+     "workflow_id": "run-0000000001"
+    },
+    "provider": {
+     "actual_model_calls": 1,
+     "completion_tokens": 50,
+     "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+     "estimated_usage": false,
+     "latency_ms": 1000,
+     "model": "qwen2.5:7b-instruct",
+     "name": "ollama",
+     "prompt_tokens": 100,
+     "runtime_profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "rendered_explanation": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "ACCEPTED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [],
+   "expected_verdict_status": "ANSWER_VERIFIED",
+   "mode": "LIVE_LLM",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "live-accepted-with-provider-evidence",
+   "options": {
+    "trusted_record_hashes": "host map of record_id|source_ref -> record_sha256 for the input's facts"
+   }
+  },
+  {
+   "audit_complete": false,
+   "candidate": "<provider failure>",
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": null,
+    "provider": null,
+    "rendered_explanation": "The AI explanation could not be produced. The deterministic Operations output is unaffected.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "FAILED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [
+     "provider_timeout"
+    ],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [
+    "provider_timeout"
+   ],
+   "expected_verdict_status": "FAILED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "failed-provider-timeout",
+   "options": {}
+  },
+  {
+   "audit_complete": false,
+   "candidate": "<provider failure>",
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": null,
+    "provider": null,
+    "rendered_explanation": "The AI explanation could not be produced. The deterministic Operations output is unaffected.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "FAILED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [
+     "provider_error"
+    ],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [
+    "provider_error"
+   ],
+   "expected_verdict_status": "FAILED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "failed-provider-error",
+   "options": {}
+  },
+  {
+   "audit_complete": false,
+   "candidate": [
+    {
+     "analysis_id": "00000000-0000-4000-8000-000000000001",
+     "claims": [
+      {
+       "claim_id": "c1",
+       "claimed_value": 100,
+       "fact_id": "fact:expected_units",
+       "field": "expected_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c2",
+       "claimed_value": 40,
+       "fact_id": "fact:counted_units",
+       "field": "counted_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c3",
+       "claimed_difference": 60,
+       "counted_fact_id": "fact:counted_units",
+       "expected_fact_id": "fact:expected_units",
+       "kind": "DIFFERENCE",
+       "operation": "EXPECTED_MINUS_COUNTED",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c4",
+       "code": "CAUSE_NOT_ESTABLISHED",
+       "fact_ids": [
+        "fact:counted_units",
+        "fact:expected_units"
+       ],
+       "kind": "LIMITATION"
+      }
+     ],
+     "reason_codes": [],
+     "schema_version": "ops-explanation-output.v1",
+     "snapshot_id": "snapshot:scenario-v1",
+     "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+     "status": "ANSWER",
+     "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+     "workflow_id": "run-0000000001"
+    },
+    {
+     "actual_model_calls": 1,
+     "completion_tokens": 50,
+     "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+     "estimated_usage": false,
+     "latency_ms": 1000,
+     "model": "qwen2.5:7b-instruct",
+     "name": "ollama",
+     "prompt_tokens": 100,
+     "runtime_profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "length"
+   ],
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "LIVE_LLM",
+    "model_output": null,
+    "provider": null,
+    "rendered_explanation": "The AI explanation could not be produced. The deterministic Operations output is unaffected.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "FAILED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [
+     "provider_truncated"
+    ],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [
+    "provider_truncated"
+   ],
+   "expected_verdict_status": "FAILED",
+   "mode": "LIVE_LLM",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "failed-provider-truncated-finish-reason-length",
+   "options": {
+    "trusted_record_hashes": "host map of record_id|source_ref -> record_sha256 for the input's facts"
+   }
+  },
+  {
+   "audit_complete": false,
+   "candidate": "<provider failure>",
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": null,
+    "provider": null,
+    "rendered_explanation": "The AI explanation could not be produced. The deterministic Operations output is unaffected.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "FAILED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [
+     "provider_truncated"
+    ],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [
+    "provider_truncated"
+   ],
+   "expected_verdict_status": "FAILED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "failed-provider-truncated-exception",
+   "options": {}
+  },
+  {
+   "audit_complete": false,
+   "candidate": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "claims": [
+     {
+      "claim_id": "c1",
+      "claimed_value": 100,
+      "fact_id": "fact:expected_units",
+      "field": "expected_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c2",
+      "claimed_value": 40,
+      "fact_id": "fact:counted_units",
+      "field": "counted_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c3",
+      "claimed_difference": 60,
+      "counted_fact_id": "fact:counted_units",
+      "expected_fact_id": "fact:expected_units",
+      "kind": "DIFFERENCE",
+      "operation": "EXPECTED_MINUS_COUNTED",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c4",
+      "code": "CAUSE_NOT_ESTABLISHED",
+      "fact_ids": [
+       "fact:counted_units",
+       "fact:expected_units"
+      ],
+      "kind": "LIMITATION"
+     }
+    ],
+    "reason_codes": [],
+    "schema_version": "ops-explanation-output.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+    "status": "ANSWER",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "LIVE_LLM",
+    "model_output": null,
+    "provider": null,
+    "rendered_explanation": "The AI explanation could not be produced. The deterministic Operations output is unaffected.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "FAILED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [
+     "provider_provenance_missing"
+    ],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [
+    "provider_provenance_missing"
+   ],
+   "expected_verdict_status": "FAILED",
+   "mode": "LIVE_LLM",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "failed-provider-provenance-missing",
+   "options": {
+    "trusted_record_hashes": "host map of record_id|source_ref -> record_sha256 for the input's facts"
+   }
+  },
+  {
+   "audit_complete": false,
+   "candidate": [
+    {
+     "analysis_id": "00000000-0000-4000-8000-000000000001",
+     "claims": [
+      {
+       "claim_id": "c1",
+       "claimed_value": 100,
+       "fact_id": "fact:expected_units",
+       "field": "expected_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c2",
+       "claimed_value": 40,
+       "fact_id": "fact:counted_units",
+       "field": "counted_units",
+       "kind": "OBSERVE",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c3",
+       "claimed_difference": 60,
+       "counted_fact_id": "fact:counted_units",
+       "expected_fact_id": "fact:expected_units",
+       "kind": "DIFFERENCE",
+       "operation": "EXPECTED_MINUS_COUNTED",
+       "subject_id": "item:packaging",
+       "unit": "UNITS"
+      },
+      {
+       "claim_id": "c4",
+       "code": "CAUSE_NOT_ESTABLISHED",
+       "fact_ids": [
+        "fact:counted_units",
+        "fact:expected_units"
+       ],
+       "kind": "LIMITATION"
+      }
+     ],
+     "reason_codes": [],
+     "schema_version": "ops-explanation-output.v1",
+     "snapshot_id": "snapshot:scenario-v1",
+     "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+     "status": "ANSWER",
+     "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+     "workflow_id": "run-0000000001"
+    },
+    {
+     "actual_model_calls": 1,
+     "completion_tokens": 50,
+     "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+     "estimated_usage": false,
+     "latency_ms": 1000,
+     "model": "qwen2.5:7b-instruct",
+     "name": "ollama",
+     "prompt_tokens": 100,
+     "runtime_profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+   ],
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": null,
+    "provider": null,
+    "rendered_explanation": "The AI explanation could not be produced. The deterministic Operations output is unaffected.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "FAILED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [
+     "mode_mismatch"
+    ],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [
+    "mode_mismatch"
+   ],
+   "expected_verdict_status": "FAILED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "failed-mode-mismatch-replay-carrying-provider-metadata",
+   "options": {}
+  },
+  {
+   "audit_complete": false,
+   "candidate": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "claims": [
+     {
+      "claim_id": "c1",
+      "claimed_value": 100,
+      "fact_id": "fact:expected_units",
+      "field": "expected_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c2",
+      "claimed_value": 40,
+      "fact_id": "fact:counted_units",
+      "field": "counted_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c3",
+      "claimed_difference": 60,
+      "counted_fact_id": "fact:counted_units",
+      "expected_fact_id": "fact:expected_units",
+      "kind": "DIFFERENCE",
+      "operation": "EXPECTED_MINUS_COUNTED",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c4",
+      "code": "CAUSE_NOT_ESTABLISHED",
+      "fact_ids": [
+       "fact:counted_units",
+       "fact:expected_units"
+      ],
+      "kind": "LIMITATION"
+     }
+    ],
+    "reason_codes": [],
+    "schema_version": "ops-explanation-output.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+    "status": "ANSWER",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": null,
+    "provider": null,
+    "rendered_explanation": "The AI explanation could not be produced. The deterministic Operations output is unaffected.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "FAILED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [
+     "record_hash_profile_unsupported"
+    ],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [
+    "record_hash_profile_unsupported"
+   ],
+   "expected_verdict_status": "FAILED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "failed-record-hash-profile-v0-pinned",
+   "options": {
+    "record_hash_profile": "record-hash.v0"
+   }
+  },
+  {
+   "audit_complete": false,
+   "candidate": {
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "claims": [
+     {
+      "claim_id": "c1",
+      "claimed_value": 100,
+      "fact_id": "fact:expected_units",
+      "field": "expected_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c2",
+      "claimed_value": 40,
+      "fact_id": "fact:counted_units",
+      "field": "counted_units",
+      "kind": "OBSERVE",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c3",
+      "claimed_difference": 60,
+      "counted_fact_id": "fact:counted_units",
+      "expected_fact_id": "fact:expected_units",
+      "kind": "DIFFERENCE",
+      "operation": "EXPECTED_MINUS_COUNTED",
+      "subject_id": "item:packaging",
+      "unit": "UNITS"
+     },
+     {
+      "claim_id": "c4",
+      "code": "CAUSE_NOT_ESTABLISHED",
+      "fact_ids": [
+       "fact:counted_units",
+       "fact:expected_units"
+      ],
+      "kind": "LIMITATION"
+     }
+    ],
+    "reason_codes": [],
+    "schema_version": "ops-explanation-output.v1",
+    "snapshot_id": "snapshot:scenario-v1",
+    "snapshot_sha256": "a5b2d084a33ab4dcb331e88c49f35463379e615d2785c2c027e3cb128b3ff385",
+    "status": "ANSWER",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "workflow_id": "run-0000000001"
+   },
+   "expected_envelope": {
+    "accepted_result_sha256": null,
+    "analysis_id": "00000000-0000-4000-8000-000000000001",
+    "audit_complete": false,
+    "cached_from_analysis_id": null,
+    "mode": "DETERMINISTIC_REPLAY",
+    "model_output": null,
+    "provider": null,
+    "rendered_explanation": "The AI explanation could not be produced. The deterministic Operations output is unaffected.",
+    "schema_version": "ops-explanation-result.v1",
+    "status": "FAILED",
+    "tenant_scope_id": "00000000-0000-4000-8000-0000000000a1",
+    "validation_codes": [
+     "record_hash_profile_unsupported"
+    ],
+    "workflow_id": "run-0000000001"
+   },
+   "expected_verdict_codes": [
+    "record_hash_profile_unsupported"
+   ],
+   "expected_verdict_status": "FAILED",
+   "mode": "DETERMINISTIC_REPLAY",
+   "model_input": "scenario:count-gap/nasha-brewery",
+   "name": "failed-record-hash-profile-unknown",
+   "options": {
+    "record_hash_profile": "record-hash.v9"
+   }
+  }
+ ],
+ "note": "Envelopes are built to ops-explanation-result.v1 (published schema). validation_codes are lower-case. A non-text candidate is shown as its JSON value."
+}

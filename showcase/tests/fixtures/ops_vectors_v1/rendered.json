@@ -1,0 +1,110 @@
+{
+ "abstention_order": [
+  "MISSING_REQUIRED_EVIDENCE",
+  "CONFLICTING_EVIDENCE",
+  "INCOMPATIBLE_UNITS",
+  "INSUFFICIENT_SCOPE",
+  "UNSUPPORTED_TASK"
+ ],
+ "abstentions": [
+  {
+   "required_reasons": [
+    "MISSING_REQUIRED_EVIDENCE"
+   ],
+   "text": "A required count is missing from this synthetic snapshot. No explanation is given."
+  },
+  {
+   "required_reasons": [
+    "CONFLICTING_EVIDENCE"
+   ],
+   "text": "The recorded counts conflict in this synthetic snapshot. No explanation is given."
+  },
+  {
+   "required_reasons": [
+    "INCOMPATIBLE_UNITS"
+   ],
+   "text": "The recorded counts are not in compatible units or for the same item. No explanation is given."
+  },
+  {
+   "required_reasons": [
+    "INSUFFICIENT_SCOPE"
+   ],
+   "text": "This synthetic snapshot does not cover the scope needed for an explanation. No explanation is given."
+  },
+  {
+   "required_reasons": [
+    "MISSING_REQUIRED_EVIDENCE",
+    "CONFLICTING_EVIDENCE"
+   ],
+   "text": "A required count is missing from this synthetic snapshot. The recorded counts conflict in this synthetic snapshot. No explanation is given."
+  },
+  {
+   "required_reasons": [
+    "MISSING_REQUIRED_EVIDENCE",
+    "INCOMPATIBLE_UNITS"
+   ],
+   "text": "A required count is missing from this synthetic snapshot. The recorded counts are not in compatible units or for the same item. No explanation is given."
+  }
+ ],
+ "answer_template": "In this synthetic snapshot, the expected quantity of {alias} is {E} and the counted quantity is {C}. {relation} These scenario assumptions do not establish a physical root cause.",
+ "answers": [
+  {
+   "alias": "Synthetic packaging",
+   "counted": 40,
+   "expected": 100,
+   "name": "shortfall",
+   "text": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause."
+  },
+  {
+   "alias": "Synthetic packaging",
+   "counted": 1,
+   "expected": 2,
+   "name": "shortfall-singular-unit",
+   "text": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 2 units and the counted quantity is 1 unit. The counted quantity is 1 unit below expected. These scenario assumptions do not establish a physical root cause."
+  },
+  {
+   "alias": "Synthetic packaging",
+   "counted": 150,
+   "expected": 100,
+   "name": "surplus",
+   "text": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 150 units. The counted quantity is 50 units above expected. These scenario assumptions do not establish a physical root cause."
+  },
+  {
+   "alias": "Synthetic packaging",
+   "counted": 101,
+   "expected": 100,
+   "name": "surplus-singular-unit",
+   "text": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 101 units. The counted quantity is 1 unit above expected. These scenario assumptions do not establish a physical root cause."
+  },
+  {
+   "alias": "Synthetic packaging",
+   "counted": 100,
+   "expected": 100,
+   "name": "equal",
+   "text": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 100 units. The counted quantity equals the expected quantity. These scenario assumptions do not establish a physical root cause."
+  },
+  {
+   "alias": "Synthetic packaging",
+   "counted": 0,
+   "expected": 100,
+   "name": "zero-counted",
+   "text": "In this synthetic snapshot, the expected quantity of Synthetic packaging is 100 units and the counted quantity is 0 units. The counted quantity is 100 units below expected. These scenario assumptions do not establish a physical root cause."
+  },
+  {
+   "alias": "<b>x</b> & y",
+   "counted": 40,
+   "expected": 100,
+   "name": "alias-with-markup-is-escaped",
+   "text": "In this synthetic snapshot, the expected quantity of &lt;b&gt;x&lt;/b&gt; &amp; y is 100 units and the counted quantity is 40 units. The counted quantity is 60 units below expected. These scenario assumptions do not establish a physical root cause."
+  }
+ ],
+ "failed": "The AI explanation could not be produced. The deterministic Operations output is unaffected.",
+ "rejected": "The AI-generated explanation did not pass verification and is not shown. The deterministic Operations output is unaffected.",
+ "relation_templates": {
+  "above": "The counted quantity is {D} above expected.",
+  "below": "The counted quantity is {D} below expected.",
+  "equal": "The counted quantity equals the expected quantity."
+ },
+ "unit_phrase": "'1 unit' when the absolute value is 1, otherwise '{n} units'; alias is HTML-escaped",
+ "unnecessary_abstention": "The AI declined to explain this snapshot, although the counts are complete. The deterministic Operations output is unaffected."
+}

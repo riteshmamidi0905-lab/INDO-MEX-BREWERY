@@ -1,0 +1,42 @@
+{
+  "profile_id": "ops-explanation-v1-candidate",
+  "enabled": false,
+  "approval_status": "REQUIRES_REVIEW",
+  "provider": "existing Ollama-compatible LLMProvider, approved local runtime only",
+  "model": "qwen2.5:7b-instruct",
+  "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+  "prompt_sha256": "16f30b537c473fe8a3ed47a53d1c45f2b77aaae72106620599937d851ad4e77d",
+  "schema_sha256": {
+    "model-input.schema.json": "3668b2f080546ca0f1ee5baa4ad9509939efd7a9fad53bc71f8cf336cc71deb0",
+    "model-output.schema.json": "5414cd904bd2b109be24be52d5ba6d348b7a09d9b0e1829a19fcb06c8bffbccc",
+    "request-envelope.schema.json": "6ff220a6c64b21a64c8020adb9089ffa0b2d71eb92cc0e92f79e5e1fb911245d",
+    "result-envelope.schema.json": "7796703418002374f9208b8367bbcc36b2a22312e4286534162bd180e6af0fff"
+  },
+  "temperature": 0,
+  "seed": 7,
+  "context_tokens": 8192,
+  "input_token_limit": 4096,
+  "output_tokens_per_call": 512,
+  "max_http_generations_including_repairs": 2,
+  "transport_retries": 0,
+  "executor_retries": 0,
+  "provider_fallbacks": [],
+  "model_callable_tools": [],
+  "host_tool_allowlist": [
+    "workforce__explain_inventory"
+  ],
+  "input_bytes_limit": 16384,
+  "output_bytes_limit": 12288,
+  "deadline_seconds": 180,
+  "http_call_seconds_max": 150,
+  "cancellation_grace_seconds": 5,
+  "executor_timeout_seconds": 185,
+  "weir_timeout_seconds": 190,
+  "watchdog_seconds": 195,
+  "tenant_concurrency": 1,
+  "runtime_concurrency": 1,
+  "queue_depth": 1,
+  "queue_wait_seconds": 5,
+  "cache_enabled": false,
+  "note": "Design artifact, not a supported current runtime configuration. Effective runtime options require adapter implementation and attestation; do not load or activate this file."
+}

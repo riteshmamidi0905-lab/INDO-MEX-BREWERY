@@ -1,0 +1,16 @@
+{
+  "commit": "e549725b1f0ad111d8f009785a411e13bbb1194b",
+  "source_repository": "riteshmamidi0905-lab/INDO-MEX-BREWERY",
+  "files": {
+    "nasha_lab/growth/ops_explanation.py": "830fa7ea53c06c4fa8040324585bda53e4319fd625d92ec9bb102a906266ec00",
+    "nasha_lab/growth/model_boundary.py": "d1ad436e306d70680e035322067fcdbce25959f4715f71c3c484b6f57ded6146",
+    "contracts/ops_explanation/contracts/request-envelope.schema.json": "6ff220a6c64b21a64c8020adb9089ffa0b2d71eb92cc0e92f79e5e1fb911245d",
+    "contracts/ops_explanation/contracts/model-output.schema.json": "5414cd904bd2b109be24be52d5ba6d348b7a09d9b0e1829a19fcb06c8bffbccc",
+    "contracts/ops_explanation/contracts/model-input.schema.json": "3668b2f080546ca0f1ee5baa4ad9509939efd7a9fad53bc71f8cf336cc71deb0",
+    "contracts/ops_explanation/contracts/result-envelope.schema.json": "7796703418002374f9208b8367bbcc36b2a22312e4286534162bd180e6af0fff",
+    "contracts/ops_explanation/examples/model-input.json": "d66ce7c118a2347e09fb7579ef82dd547ee4205d785392a55efc3717402ba941",
+    "contracts/ops_explanation/examples/model-output.json": "ac6a7968ab228cf51e91da00667d9a836c78ba1193b541455f0d07dbd6cdbb80",
+    "contracts/ops_explanation/prompt-candidate.json": "16f30b537c473fe8a3ed47a53d1c45f2b77aaae72106620599937d851ad4e77d",
+    "contracts/ops_explanation/execution-profile-candidate.json": "f713b9c35b8d65faf1caf38edb54d246bc3f0d4dee074ed1fbb4aa597aa87a8f"
+  }
+}

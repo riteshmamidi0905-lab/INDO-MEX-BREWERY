@@ -1,0 +1,391 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "model-input.schema.json",
+  "title": "model-input \u2014 PROPOSED SPECIFICATION ONLY",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "ops-explanation-input.v1"
+    },
+    "analysis_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36,
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "tenant_scope_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36,
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32,
+      "pattern": "^run-[0-9a-f]{10}$"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+    },
+    "snapshot_sha256": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "task": {
+      "const": "EXPLAIN_SYNTHETIC_INVENTORY_DISCREPANCY"
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 40
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "INVENTORY_ITEM",
+              "SYNTHETIC_SUPPLIER"
+            ]
+          },
+          "alias": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 48,
+            "pattern": "^[A-Za-z0-9 _-]+$"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "alias"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 32
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+          },
+          "subject_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+          },
+          "field": {
+            "type": "string",
+            "enum": [
+              "expected_units",
+              "counted_units",
+              "target_units",
+              "unit_cost_cents"
+            ]
+          },
+          "availability": {
+            "type": "string",
+            "enum": [
+              "PRESENT",
+              "MISSING",
+              "CONFLICTING"
+            ]
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -1000000000,
+                "maximum": 1000000000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "UNITS",
+              "USD_CENTS_PER_UNIT"
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "maxLength": 40
+          },
+          "provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_kind": {
+                "type": "string",
+                "enum": [
+                  "SCENARIO_ASSUMPTION",
+                  "SYNTHETIC_RECORD"
+                ]
+              },
+              "source_ref": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "^(scenario|fixture)://[A-Za-z0-9/_:.#-]+$"
+              },
+              "record_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              "record_sha256": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "source_revision": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              }
+            },
+            "required": [
+              "source_kind",
+              "source_ref",
+              "record_id",
+              "record_sha256",
+              "source_revision"
+            ]
+          },
+          "inventory_item_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+          }
+        },
+        "required": [
+          "id",
+          "subject_id",
+          "field",
+          "availability",
+          "value",
+          "unit",
+          "as_of",
+          "provenance",
+          "inventory_item_id"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 32
+    },
+    "comparison_groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "COUNT_COMPARISON",
+              "UNIT_COST_COMPARISON"
+            ]
+          },
+          "fact_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 96,
+              "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+            },
+            "minItems": 1,
+            "maxItems": 32,
+            "uniqueItems": true
+          },
+          "completeness_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "fact_ids",
+          "completeness_id"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 8
+    },
+    "completeness": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+          },
+          "subject_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 96,
+              "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+            },
+            "minItems": 1,
+            "maxItems": 32,
+            "uniqueItems": true
+          },
+          "field": {
+            "type": "string",
+            "enum": [
+              "expected_units",
+              "counted_units",
+              "target_units",
+              "unit_cost_cents"
+            ]
+          },
+          "universe": {
+            "const": "THIS_SYNTHETIC_SNAPSHOT"
+          },
+          "covered_fact_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 96,
+              "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+            },
+            "minItems": 0,
+            "maxItems": 32,
+            "uniqueItems": true
+          },
+          "row_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 32
+          },
+          "complete": {
+            "type": "boolean"
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "maxLength": 40
+          },
+          "source_revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+          },
+          "query_sha256": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "producer": {
+            "const": "SERVER_QUERY_MANIFEST_V1"
+          },
+          "inventory_item_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[a-z][a-z0-9:_-]{0,95}$"
+          }
+        },
+        "required": [
+          "id",
+          "subject_ids",
+          "field",
+          "universe",
+          "covered_fact_ids",
+          "row_count",
+          "complete",
+          "as_of",
+          "source_revision",
+          "query_sha256",
+          "producer",
+          "inventory_item_id"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 8
+    },
+    "prohibited_effects": {
+      "const": [
+        "PURCHASE",
+        "INVENTORY_MUTATION",
+        "SUPPLIER_CONTACT",
+        "APPROVAL",
+        "FINANCIAL_MUTATION",
+        "ARBITRARY_TOOL"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "analysis_id",
+    "tenant_scope_id",
+    "workflow_id",
+    "snapshot_id",
+    "snapshot_sha256",
+    "task",
+    "as_of",
+    "entities",
+    "facts",
+    "comparison_groups",
+    "completeness",
+    "prohibited_effects"
+  ]
+}
